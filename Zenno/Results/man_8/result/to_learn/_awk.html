@@ -1,0 +1,1282 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN awk (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, awk"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="awk" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">awk (8)</font><hr><li> <a href="/man.shtml?topic=awk&amp;category=1&amp;russian=4"><u>awk</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=awk&amp;category=1&amp;russian=1"><u>awk</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=awk&amp;category=1&amp;russian=0"><u>awk</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=awk&amp;category=1&amp;russian=2"><u>awk</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=awk&amp;category=1&amp;russian=5"><u>awk</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=awk&amp;category=8&amp;russian=0"><u>awk</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/awk.html"><u>awk</u></a> обнаружен в базе ключевых слов.</font></li>
+{{Wikify}}
+{{Stub}}
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2> Имя </h2>
+
+<p>
+
+<b>gawk</b> - язык сканирования и обработки шаблонов
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2> Синтаксис </h2>
+
+<p>
+
+<b>gawk [ опции в стиле POSIX или GNU ] -f program-file [ -- ] file ...</b>
+<b>gawk [ опции в стиле POSIX или GNU ] [ -- ] program-text file ...</b>
+<b>pgawk [ опции в стиле POSIX или GNU ] -f program-file [ -- ] file ...</b>
+<b>pgawk [ опции в стиле POSIX или GNU ] [ -- ] program-text file ...</b>
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2> Описание </h2>
+
+<p>
+
+<b>Gawk</b> это GNU реализация языка программирования AWK. Она совместима с определением языка в стандарте POSIX 1003.2 
+"<i>Command Language And Utilities Standard</i>". Эта версия в свою очередь базируется на описании "<i>The AWK Programming 
+Language</i>" Э.Ахо, Б.Кернигана и П.Вайнбергера, с дополнительными возможностями найдеными в <i>System V Release 4</i> 
+версии UNIX awk. <b>Gawk</b> также поддерживает расширения для AWK компании <i>Bell Laboratories</i>, и множество расширений 
+специфичных для GNU. 
+<b>Pgawk</b> это профильная версия <b>gawk</b>. Она идентична <b>gawk</b>, за исключением того, что запускается намного 
+медленее , и автоматически создает профиль выполнения в файле <b>awkprof.out</b>, при успешном выполнении. Смотриие 
+также опцию --profile. 
+Командная строка состоит из опций для <i>gawk</i>, текста программы AWK (если не указаны опции -f или --file, и значения 
+которые будут доступны через предопределенные переменные <b>ARGC</b> и <b>ARGV</b> языка <b>AWK</b>. 
+<a name="lbAE">&nbsp;</a>
+</p><h2> Опции </h2>
+
+<p>
+
+</p><dl compact="">
+<dt><b>{ --field-separator </b><i>fs</i> | -F <i>fs</i>}
+
+</dt><dd>
+<br>&nbsp;Эта&nbsp;опция&nbsp;устанавливает&nbsp;разделитель&nbsp;<i>fs</i>&nbsp;в&nbsp;качестве&nbsp;разделителя&nbsp;полей&nbsp;в&nbsp;записи&nbsp;(это&nbsp;значение&nbsp;предустановленной&nbsp;
+переменной <i>FS</i>). 
+</dd><dt><b>{ --assign </b><i>var</i>=<i>val</i> | -v <i>var</i>=<i>val</i>}
+
+</dt><dd>
+<br>&nbsp;Присваивает&nbsp;значение&nbsp;<i>val</i>&nbsp;переменной&nbsp;<i>var</i>,&nbsp;перед&nbsp;выполнением&nbsp;программы.&nbsp;Такие&nbsp;переменные&nbsp;доступны&nbsp;в&nbsp;блоке&nbsp;
+<i>BEGIN</i> AWK программы . 
+</dd><dt><b>{ --file </b><i>program-file</i> | -f <i>program-file</i>}
+
+</dt><dd>
+<br>&nbsp;Читает&nbsp;исходный&nbsp;код&nbsp;AWK&nbsp;программы&nbsp;из&nbsp;файла&nbsp;<i>program-file</i>,&nbsp;instead&nbsp;of&nbsp;from&nbsp;the&nbsp;first&nbsp;command&nbsp;line&nbsp;argument.&nbsp;Разрешается&nbsp;
+множественное использование опции. 
+</dd><dt><b>{ -m</b><i>f NNN</i> | -m<i>r NNN</i>}
+
+</dt><dd>
+<br>&nbsp;Установка&nbsp;различных&nbsp;ограничений&nbsp;памяти&nbsp;в&nbsp;значение&nbsp;<i>NNN</i>.&nbsp;Флаг&nbsp;<i>f</i>&nbsp;устанавливает&nbsp;максимальное&nbsp;число&nbsp;записей,&nbsp;
+а флаг <i>r</i> максимальный размер записи.  Эти два флага и опция <b> -m</b> позаимствованы из <i>Bell Laboratories research</i> 
+версии awk Unix.  Они игнорируются <b>gawk</b>, так как <b>gawk</b> не имеет никаких предопределенных ограничений. 
+</dd><dt><b>{ --compat | -W compat | -W traditional | --traditional}</b>
+
+</dt><dd>
+<br>&nbsp;Запуск&nbsp;в&nbsp;режиме&nbsp;совместимости.&nbsp;В&nbsp;режиме&nbsp;совместимости,&nbsp;<b>gawk</b>&nbsp;ведет&nbsp;себя&nbsp;идентично&nbsp;с&nbsp;Unix&nbsp;awk;&nbsp;не&nbsp;поддерживая&nbsp;расширения&nbsp;
+GNU. Ипользование опции <b> --traditional</b>, предпочтительнее других ее форм. 
+</dd><dt><b>{ --copyleft| -W copyleft | --copyright | -W copyright }</b>
+
+</dt><dd>
+<br>&nbsp;Выводит&nbsp;краткую&nbsp;версию&nbsp;сообщения&nbsp;информации&nbsp;об&nbsp;авторских&nbsp;правах&nbsp;GNU&nbsp;на&nbsp;стандартный&nbsp;вывод&nbsp;и&nbsp;завершает&nbsp;работу.&nbsp;
+</dd><dt><b>{ --dump-variables[=</b><i>file</i>] | -W dump-variables[=<i>file</i>]}
+
+</dt><dd>
+<br>&nbsp;Выводит&nbsp;краткий&nbsp;список&nbsp;глобальных&nbsp;переменных,&nbsp;их&nbsp;типов&nbsp;и&nbsp;окончательных&nbsp;значений&nbsp;в&nbsp;файл&nbsp;<i>file</i>.&nbsp;Если&nbsp;файл&nbsp;не&nbsp;указан,&nbsp;
+<b>gawk</b> использует файл с именем <b> awkvars.out</b> в текущей директории. Иметь список всех глобальных переменных - это хороший метод обнаружить ошибку в Вашей программе. Вы должны также использовать 
+эту опцию, если есть большая программа с большим количеством функций, и Вы хотите убедиться, что Ваши функции неосторожно 
+не используют глобальные переменные, которые должны быть локальными. 
+</dd><dt><b>{ --help | -W help | --usage | -W usage}</b>
+
+</dt><dd>
+<br>&nbsp;Выводит&nbsp;на&nbsp;стандартный&nbsp;вывод&nbsp;относительно&nbsp;короткое&nbsp;резюме&nbsp;доступных&nbsp;опций.
+<p>
+</p></dd><dt><b>{ --lint[=value] | -W lint[=value]}</b>
+
+</dt><dd>
+<br>&nbsp;Выдает&nbsp;предупреждения&nbsp;о&nbsp;сомнительных&nbsp;или&nbsp;непортируемых&nbsp;конструкциях&nbsp;в&nbsp;другие&nbsp;AWK&nbsp;реализации.&nbsp;С&nbsp;дополнительным&nbsp;аргументом&nbsp;
+<i>fatal</i>, предупреждения становятся критическими ошибками. Эта опция не обязательна, но ее использование приведет 
+к развитию более "чистых" AWK программ. С дополнительным аргументом <i>invalid</i>, будут выдаваться только предупреждения 
+о вещах, которые являются фактически недействительными. 
+</dd><dt><b>{ --lint-old | -W lint-old }</b>
+
+</dt><dd>
+<br>&nbsp;Выводит&nbsp;предупреждения&nbsp;о&nbsp;конструкциях&nbsp;которые&nbsp;не&nbsp;совместимы&nbsp;с&nbsp;оригинальной&nbsp;версией&nbsp;Unix&nbsp;awk.
+<p>
+</p></dd><dt><b>{ --gen-po | -W gen-po}</b>
+
+</dt><dd>
+<br>&nbsp;Сканирует&nbsp;программу&nbsp;AWK,&nbsp;и&nbsp;выводит&nbsp;сгенерированый&nbsp;файл&nbsp;в&nbsp;формате&nbsp;GNU&nbsp;<i>.po</i>&nbsp;на&nbsp;стандартный&nbsp;вывод&nbsp;с&nbsp;вхождениями&nbsp;для&nbsp;
+всех локализированых строк в программе. Сама программа останется не выполнена. Смотрите GNU <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gettext&amp;category=1">gettext</a>(1) для получения 
+более детальной информации о <i>.po</i> файлах. 
+</dd><dt><b>{ --non-decimal-data | -W non-decimal-data}</b>
+
+</dt><dd>
+<br>&nbsp;Распознает&nbsp;восьмиричные&nbsp;и&nbsp;шестнадцатеричные&nbsp;значения&nbsp;во&nbsp;входящих&nbsp;данных.&nbsp;
+<b>Используйте эту опцию с большим предостережением!</b>
+<p>
+</p></dd><dt><b>{ --posix | -W posix}</b>
+
+</dt><dd>
+<br>&nbsp;Включает&nbsp;режим&nbsp;совместимости,&nbsp;с&nbsp;дополнительными&nbsp;ограничениями:
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;не&nbsp;распознаются&nbsp;escape-последоавтельности&nbsp;<b>\x</b>&nbsp;.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Только&nbsp;пробел&nbsp;и&nbsp;табуляция&nbsp;действуют&nbsp;как&nbsp;поле&nbsp;разделитель,&nbsp;когда&nbsp;<b>FS</b>&nbsp;установлена&nbsp;в&nbsp;одиночный&nbsp;пробел,&nbsp;символ&nbsp;новой&nbsp;
+строки - нет. .br
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Вы&nbsp;не&nbsp;можете&nbsp;продолжать&nbsp;строку&nbsp;после&nbsp;символов&nbsp;?&nbsp;и&nbsp;:.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Не&nbsp;распознается&nbsp;синоним&nbsp;<i>func</i>&nbsp;для&nbsp;ключевого&nbsp;слова&nbsp;<i>function</i>.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Операторы&nbsp;**&nbsp;и&nbsp;**=&nbsp;не&nbsp;могут&nbsp;использоваться&nbsp;вместо&nbsp;^&nbsp;и&nbsp;^&nbsp;=.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Функция&nbsp;<b>fflush()</b>&nbsp;недоступна.
+<p>
+</p></dd><dt><b>{ --profile[=</b><i>prof_file</i>] | -W profile[=<i>prof_file</i>] }
+
+</dt><dd>
+<br>&nbsp;Отправить&nbsp;профильные&nbsp;данные&nbsp;в&nbsp;файл&nbsp;<i>prof_file</i>.&nbsp;Если&nbsp;не&nbsp;указано&nbsp;иное,&nbsp;то&nbsp;по&nbsp;умолчанию&nbsp;в&nbsp;файл&nbsp;с&nbsp;именем&nbsp;<b>&nbsp;awkprof.out</b>.&nbsp;
+Если запускается <b>gawk</b>, в файле содержится "правильно форматированная" версия программы. Если запускается <b>pgawk</b>, 
+то профильные данные содержат счетчики выполнения каждого утверждения в программе в левой части и счетчик вызова функции 
+для каждой определенной пользователем функции. 
+</dd><dt><b>{ --re-interval | -W re-interval}</b>
+
+</dt><dd>
+<br>&nbsp;Enable&nbsp;the&nbsp;use&nbsp;of&nbsp;interval&nbsp;expressions&nbsp;in&nbsp;regular&nbsp;expression&nbsp;matching&nbsp;(see&nbsp;Regular&nbsp;Expressions,&nbsp;below).&nbsp;&nbsp;Interval&nbsp;&nbsp;expressions&nbsp;
+<br>&nbsp;were&nbsp;not&nbsp;traditionally&nbsp;available&nbsp;in&nbsp;the&nbsp;AWK&nbsp;language.&nbsp;&nbsp;The&nbsp;POSIX&nbsp;standard&nbsp;added&nbsp;them,&nbsp;to&nbsp;make&nbsp;awk&nbsp;and&nbsp;egrep&nbsp;consistent&nbsp;with&nbsp;
+each other. However, their use is likely to break old AWK programs, so gawk only provides them if they are requested with this 
+option, or when <b>--posix</b> is specified. 
+</dd><dt><b>{ --source </b><i>program-text</i> | -W source <i>program-text</i>}
+
+</dt><dd>
+<br>&nbsp;Использовать&nbsp;<i>program-text</i>&nbsp;как&nbsp;исходный&nbsp;код&nbsp;программы&nbsp;AWK.&nbsp;Эта&nbsp;опция&nbsp;разрешает&nbsp;простое&nbsp;объединение&nbsp;библиотечных&nbsp;
+функций (подключаемых с помощю опций <b>--file_program-file</b> и <b>--file_program-file</b> с исходным кодом 
+в командной строке. 
+<i>Это предназначено прежде всего для средних и больших AWK программ используемых в скриптах коммандной оболочки.</i> 
+<p>
+</p></dd><dt><b>{ --version | -W version}}</b>
+
+</dt><dd>
+<br>&nbsp;Выводит&nbsp;информацию&nbsp;о&nbsp;версии.
+<p>
+</p></dd><dt><b>--</b>
+
+</dt><dd>
+<br>&nbsp;Сигнализирует&nbsp;про&nbsp;окончание&nbsp;опций.&nbsp;Это&nbsp;полезно,&nbsp;если&nbsp;дальнейшие&nbsp;аргументы&nbsp;для&nbsp;программы&nbsp;AWK&nbsp;непосредственно&nbsp;начинаются&nbsp;
+с символа "-". This is mainly for consistency with the argument parsing convention used by most other POSIX programs. In 
+<br>&nbsp;compatibility&nbsp;&nbsp;mode,&nbsp;any&nbsp;other&nbsp;options&nbsp;are&nbsp;flagged&nbsp;as&nbsp;invalid,&nbsp;but&nbsp;are&nbsp;otherwise&nbsp;ignored.&nbsp;&nbsp;In&nbsp;normal&nbsp;operation,&nbsp;as&nbsp;long&nbsp;as&nbsp;
+program text has been supplied, unknown options are passed on to the AWK program in the ARGV  array  for  processing. This is 
+particularly useful for running AWK programs via the "#!" executable interpreter mechanism. 
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>Выполнение AWK программы</h2>
+
+<p>
+
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>Переменные, записи и поля</h2>
+
+<p>
+
+Переменные в AWK динамические; они создаются при первом использовании. Переменные и поля могут быть числами с плавающей 
+запятой, строками или и тем, и другим одновременно, в зависимости от того, как их использовать. Тип переменной зависит 
+от контекста. В числовых выражениях переменная считается числом, в строковых - строкой. AWK также имеет одномерные массивы; 
+многомерные массивы могут быть смоделированы. Некоторые предопределенные переменные устанавливают как работает программа; 
+они будут описаны как необходимо ниже. 
+<a name="lbAH">&nbsp;</a>
+</p><h3> Записи </h3>
+
+<p>
+
+По умолчанию записи разделяются символом новой строки. Вы можете определить способ разделения записей, присвоив нужное 
+значение встроенной переменной <b>RS</b>. Если значение <b>RS</b> какой-нибудь одиночный символ, то он будет использоваться 
+для разделения записей. В противном случае <b>RS</b> - это регулярное выражение. Текст входного потока, совпавший с регулярным 
+выражением, будет разделен на записи. В режиме совместимости для разделения записей будет использоваться только первый 
+символ строки выражения. Если <b>RS</b> - пустая строка, то записи будут разделяться пустыми строками. При этом символ 
+новой строки всегда будет работать как разделитель полей, в дополнение к значению <b>FS</b>. 
+<a name="lbAI">&nbsp;</a>
+</p><h3>Поля</h3>
+
+<p>
+
+Каждую входящую запись <b>gawk</b> разбивает на  поля, используя значение переменной <b>FS</b> в качестве разделителя. 
+Если значение <b>FS</b> - единичный символ, то поля разделяются этим символом. Если значение <b>FS</b> - пустая строка, 
+то каждый символ считается отдельным полем. В противном случае, <b>FS</b> считается полным регулярным выражением. Исключение 
+составляет случай, когда значение <b>FS</b> - один пробел. При этом поля разделяются комбинациями пробелов и/или символов 
+табуляции, и/или символами новой строки. (Смотрите также опцию <b>--posix</b>.) <i>Заметьте, что значение </i><b>IGNORECASE</b> также будет влиять на разделение полей, если <b>FS</b> - регулярное выражение, 
+и на разделение записей, если <b>RS</b> - регулярное выражение. 
+Если переменная <b>FIELDWIDTHS</b> содержит список чисел, разделенных пробелами, то <b>gawk</b> считает ширину каждого 
+поля фиксированной и разделяет запись в соответствие c указанными значениями. Значение переменной <b>FS</b> в этом случае 
+игнорируется. Присваивание нового значения переменной <b>FS</b> аннулирует использование <b>FIELDWIDTHS</b> и восстанавливает 
+поведение, принятое по умолчанию. 
+На любое поле входящей записи можно ссылаться по его позиции - <b>$1</b>, <b>$2</b>, и так далее. <b>$0</b> ссылается на всю 
+входящюю запись. Кроме того, любому полю можно присвоить значение. Для ссылок на поля необязательно использовать константы. 
+Например: 
+</p><dl compact=""><dt></dt><dd>
+<pre> n = 5
+ print $n 
+
+</pre>
+
+</dd></dl>
+
+выведет пятое поле записи. Переменная <b>NF</b> содержит количество полей входной записи.
+<p>
+Результатом ссылки на несуществующее поле (т. е. поле с номером, превышающим $<b>NF</b> является пустая строка. Присваивание 
+значения несуществующему полю (например, $(<b>NF</b>+2) = 5) увеличивает значение <b>NF</b> и создает промежуточные 
+поля с пустой строкой в качестве значения. Содержимое переменной <b>OFS</b> используется в качестве разделителя полей. 
+Значение <b>$0</b> вычисляется заново. Ссылка на поля с отрицательными номерами является ошибкой. Уменьшение значения 
+<b>NF</b> вызывает потерю значений полей с номерами, превышающими новое значение. Значение <b>$0</b> вычисляется заново, 
+поля разделяются содержимым переменной <b>OFS</b>. 
+<a name="lbAJ">&nbsp;</a>
+</p><h3>Встроенные переменные</h3>
+
+<p>
+
+<b>Gawk</b> имеет следующие встроенные переменные:
+</p><p>
+</p><dl compact="">
+<dt><b>ARGC</b>
+
+</dt><dd>
+<br>&nbsp;Число&nbsp;аргументов&nbsp;командной&nbsp;строки&nbsp;(не&nbsp;включая&nbsp;опции&nbsp;<b>gawk</b>,&nbsp;или&nbsp;исходный&nbsp;код).
+<p>
+</p></dd><dt><b>ARGIND</b>
+
+</dt><dd>
+<br>&nbsp;Индекс&nbsp;массива&nbsp;<b>ARGV</b>,&nbsp;указывающий&nbsp;на&nbsp;обрабатываемый&nbsp;в&nbsp;данный&nbsp;момент&nbsp;файл.
+<p>
+</p></dd><dt><b>ARGV</b>
+
+</dt><dd>
+<br>&nbsp;Массив&nbsp;аргументов&nbsp;командной&nbsp;строки.&nbsp;Массив&nbsp;<b>ARGV</b>&nbsp;имеет&nbsp;индексы&nbsp;от&nbsp;0&nbsp;до&nbsp;<b>ARGC</b>&nbsp;-&nbsp;1.
+<p>
+</p></dd><dt><b>BINMODE</b>
+
+</dt><dd>
+<p>
+</p></dd><dt><b>CONVFMT</b>
+
+</dt><dd>
+<br>&nbsp;Формат&nbsp;преобразования&nbsp;для&nbsp;чисел.&nbsp;По&nbsp;умолчанию&nbsp;"<b>%.6g</b>".
+<p>
+</p></dd><dt><b>ENVIRON</b>
+
+</dt><dd>
+<br>&nbsp;Массив&nbsp;содержащий&nbsp;значения&nbsp;текущих&nbsp;переменных&nbsp;окружения.&nbsp;Индекс&nbsp;массива&nbsp;это&nbsp;название&nbsp;переменной,&nbsp;каждый&nbsp;элемент&nbsp;содержит&nbsp;
+значение соответствующей переменной окружения (например, <b>ENVIRON</b>["HOME"]  может иметь значение <i>/home/alexey</i>). 
+Изменение содержимого этого массива не влияет на значения переменных окружения, доступных для программам, запускаемыми 
+из <b>gawk</b> с помощью функции <b>system()</b>. 
+</dd><dt><b>ERRNO</b>
+
+</dt><dd>
+<br>&nbsp;Если&nbsp;возникает&nbsp;системная&nbsp;ошибка&nbsp;при&nbsp;перенаправлении&nbsp;для&nbsp;<b>getline</b>,&nbsp;при&nbsp;чтении&nbsp;для&nbsp;<b>getline</b>,&nbsp;или&nbsp;при&nbsp;вызове&nbsp;
+<b>close()</b>, то <b>ERRNO</b> будет содержать строку, которая описывает ошибку. 
+</dd><dt><b>FIELDWIDTHS</b>
+
+</dt><dd>
+<br>&nbsp;Список&nbsp;длин&nbsp;полей,&nbsp;разделенный&nbsp;пробелами.&nbsp;Если&nbsp;этой&nbsp;переменной&nbsp;присваивается&nbsp;новое&nbsp;значение,&nbsp;то&nbsp;<b>gawk</b>&nbsp;разделяет&nbsp;
+входные данные на поля фиксированной длины, при этом значение переменной <b>FS</b> игнорируется. 
+</dd><dt><b>FILENAME</b>
+
+</dt><dd>
+<br>&nbsp;Имя&nbsp;файла,&nbsp;обрабатываемого&nbsp;в&nbsp;данный&nbsp;момент.&nbsp;Если&nbsp;в&nbsp;командной&nbsp;строке&nbsp;не&nbsp;было&nbsp;указано&nbsp;ни&nbsp;одного&nbsp;файла,&nbsp;то&nbsp;значение&nbsp;<b>FILENAME</b>&nbsp;
+равно "-". Однако, в блоке <i>BEGIN</i> переменная <b>FILENAME</b> не определена (если не установлено getline). 
+</dd><dt><b>FNR</b>
+
+</dt><dd>
+<br>&nbsp;Номер&nbsp;входной&nbsp;записи&nbsp;в&nbsp;текущем&nbsp;входном&nbsp;файле.
+<p>
+</p></dd><dt><b>FS</b>
+
+</dt><dd>
+<br>&nbsp;Разделитель&nbsp;полей&nbsp;во&nbsp;входном&nbsp;потоке,&nbsp;по&nbsp;умолчанию&nbsp;пробел.&nbsp;Смотрите&nbsp;также&nbsp;<b>Поля</b>.
+<p>
+</p></dd><dt><b>IGNORECASE</b>
+
+</dt><dd>
+<br>&nbsp;Контролирует&nbsp;зависимость&nbsp;всех&nbsp;регулярных&nbsp;выражений&nbsp;и&nbsp;строковых&nbsp;операций&nbsp;от&nbsp;регистра.&nbsp;Если&nbsp;значение&nbsp;<b>IGNORECASE</b>&nbsp;
+не равно нулю, то при работе с регулярными выражениями регистр будет игнорироваться в следующих случаях: .RS
+<dl compact=""><dt></dt><dd>
+* при сравнении строк и проверке шаблонов в правилах;
+<p>
+<br>
+
+* при разделении на поля с использованием значения <b>FS</b>;
+</p><p>
+<br>
+
+* при разделении на записи с использованием значения <b>RS</b>;
+</p><p>
+<br>
+
+* в регулярных выражениях c <b>~</b> и <b>!~</b>;
+</p><p>
+<br>
+
+* во встроенных функциях <b>gensub()</b>, <b>gsub()</b>, <b>index()</b>, <b>match()</b>, <b>split()</b> и <b>sub()</b>. 
+</p></dd></dl>
+
+
+<p>
+Таким образом, если значение <b>IGNORECASE</b> не равно нулю, то <b>/aB/</b> совпадет с любой строкой из "<b>ab</b>", "<b>aB</b>", 
+"<b>Ab</b>" или "<b>AB</b>". Как и у всех переменных AWK, начальное значение <b>IGNORECASE</b> равно 0, так что все операции 
+со строками и регулярными выражениями изначально чувствительны к регистру. В Unix при игнорировании регистра используется 
+полный набор символов <i>ISO 8859-1 Latin-1</i>. С <b>gawk</b> версии 3.1.4, сравнение символов полностью совметимо 
+с локалью, основано на библиотечных (&lt;<a href="file:/usr/include/ctype.h">ctype.h</a>&gt;) функциях языка <b>C</b> <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=isalpha&amp;category=3">isalpha</a>(3) и <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tolupper&amp;category=3">tolupper</a>(3). 
+</p></dd><dt><b>LINT</b>
+
+</dt><dd>
+<br>&nbsp;Предоставляет&nbsp;динамическое&nbsp;управление&nbsp;опцией&nbsp;<b>--lint</b>&nbsp;из&nbsp;AWK&nbsp;программы.&nbsp;Если&nbsp;ее&nbsp;значение&nbsp;истина,&nbsp;то&nbsp;<b>gawk</b>&nbsp;
+выводит предупреждения, если ложь то нет. Ели присвоить этой переменной строковое значение "<b>fatal</b>", пердупреждения 
+станут критическими ошибками, аналогично <b>--lint=fatal</b>. Любое другое истиное значение означает вывод предупреждений. 
+<p>
+</p></dd><dt><b>NF</b>
+
+</dt><dd>
+<br>&nbsp;Количество&nbsp;полей&nbsp;в&nbsp;текущей&nbsp;входной&nbsp;записи.
+<p>
+</p></dd><dt><b>NR</b>
+
+</dt><dd>
+<br>&nbsp;Общее&nbsp;количество&nbsp;встреченных&nbsp;записей.
+<p>
+</p></dd><dt><b>OFMT</b>
+
+</dt><dd>
+<br>&nbsp;Формат&nbsp;вывода&nbsp;для&nbsp;чисел.&nbsp;По&nbsp;умолчанию&nbsp;"<b>%.6g</b>".
+<p>
+</p></dd><dt><b>OFS</b>
+
+</dt><dd>
+<br>&nbsp;Разделитель&nbsp;полей&nbsp;в&nbsp;выходном&nbsp;потоке,&nbsp;по&nbsp;умолчанию&nbsp;пробел.
+<p>
+</p></dd><dt><b>ORS</b>
+
+</dt><dd>
+<br>&nbsp;Разделитель&nbsp;выходных&nbsp;записей.&nbsp;По&nbsp;умолчанию&nbsp;символ&nbsp;новой&nbsp;строки.
+<p>
+</p></dd><dt><b>PROCINFO</b>
+
+</dt><dd>
+<br>&nbsp;Элементы&nbsp;этого&nbsp;массива&nbsp;предоставляют&nbsp;доступ&nbsp;к&nbsp;информации&nbsp;о&nbsp;запущенной&nbsp;AWK&nbsp;программе.&nbsp;В&nbsp;некоторых&nbsp;системах,&nbsp;это&nbsp;могут&nbsp;
+быть элементы в массиве, от "<b>group''1</b><i>" до "</i><b>group''n'</b>'" для некоторых n'', которые являются числом 
+групп которые содержит процесс. Используйте оператор <b>in</b> для проверки этих элементов. Следующие элементы гарантировано 
+будут доступны: .br
+<br>&nbsp;&nbsp;*&nbsp;<b>PROCINFO</b>["<b>egid</b>"]&nbsp;-&nbsp;значение&nbsp;возвращаемое&nbsp;системным&nbsp;вызовом&nbsp;<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getegid&amp;category=2">getegid</a>(2).
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;<b>PROCINFO</b>["<b>euid</b>"]&nbsp;-&nbsp;значение&nbsp;возвращаемое&nbsp;системным&nbsp;вызовом&nbsp;<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=geteuid&amp;category=2">geteuid</a>(2).
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;<b>PROCINFO</b>["<b>FS</b>"]-&nbsp;"<b>FS</b>"&nbsp;если&nbsp;поля&nbsp;разделяются&nbsp;<b>FS</b>,&nbsp;или&nbsp;"<b>FIELDWIDTHS</b>"&nbsp;если&nbsp;поля&nbsp;разделяются&nbsp;
+<b>FIELDWIDTHS</b>. .br
+<br>&nbsp;&nbsp;*&nbsp;<b>PROCINFO</b>["<b>gid</b>"]&nbsp;-&nbsp;значение&nbsp;возвращаемое&nbsp;системным&nbsp;вызовом&nbsp;<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getgid&amp;category=2">getgid</a>(2).
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;<b>PROCINFO</b>["<b>pgrpid</b>"]&nbsp;-&nbsp;идентификатор&nbsp;группы&nbsp;процессов&nbsp;для&nbsp;текущего&nbsp;процесса.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;<b>PROCINFO</b>["<b>pid</b>"]&nbsp;-&nbsp;идентификатор&nbsp;текущего&nbsp;процесса.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;<b>PROCINFO</b>["<b>ppid</b>"]&nbsp;-&nbsp;идентификатор&nbsp;родителя&nbsp;текущего&nbsp;процесса.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;<b>PROCINFO</b>["<b>uid</b>"]-&nbsp;значение&nbsp;возвращаемое&nbsp;системным&nbsp;вызовом&nbsp;<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getuid&amp;category=2">getuid</a>(2)''.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;<b>PROCINFO</b>["<b>version</b>"]&nbsp;-&nbsp;версия&nbsp;<b>gawk</b>.
+<p>
+</p></dd><dt><b>RS</b>
+
+</dt><dd>
+<br>&nbsp;Разделитель&nbsp;входных&nbsp;записей.&nbsp;По&nbsp;умолчанию&nbsp;символ&nbsp;новой&nbsp;строки.
+<p>
+</p></dd><dt><b>RT</b>
+
+</dt><dd>
+<br>&nbsp;Конец&nbsp;записи.&nbsp;<b>Gawk</b>&nbsp;присваивает&nbsp;<b>RT</b>&nbsp;значение&nbsp;входного&nbsp;текста,&nbsp;совпавшего&nbsp;с&nbsp;символом&nbsp;или&nbsp;регулярным&nbsp;выражением,&nbsp;
+содержащимся в <b>RS</b>. 
+</dd><dt><b>RSTART</b>
+
+</dt><dd>
+<br>&nbsp;Индекс&nbsp;первого&nbsp;символа,&nbsp;совпавшего&nbsp;при&nbsp;вызове&nbsp;<b>match()</b>.&nbsp;0,&nbsp;если&nbsp;совпадения&nbsp;не&nbsp;было.
+<p>
+</p></dd><dt><b>RLENGTH</b>
+
+</dt><dd>
+<br>&nbsp;Длина&nbsp;строки,&nbsp;совпавшей&nbsp;при&nbsp;вызове&nbsp;<b>match()</b>.&nbsp;-1,&nbsp;если&nbsp;совпадения&nbsp;не&nbsp;было.
+<p>
+</p></dd><dt><b>SUBSEP</b>
+
+</dt><dd>
+<br>&nbsp;Символ,&nbsp;используемый&nbsp;для&nbsp;разделения&nbsp;элементов&nbsp;в&nbsp;массиве.&nbsp;По&nbsp;умолчанию&nbsp;"<b>\034</b>".
+<p>
+</p></dd><dt><b>TEXTDOMAIN</b>
+
+</dt><dd>
+<br>&nbsp;Домен&nbsp;для&nbsp;программы&nbsp;AWK;&nbsp;используется&nbsp;для&nbsp;поиска&nbsp;локализированого&nbsp;перевода&nbsp;строк&nbsp;программы.
+<p>
+</p></dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h3>Массивы</h3>
+
+<p>
+
+Массивы индексируются по выражению, указанному между квадратными скобками (<b>[</b> и <b>]</b>). Если выражение это списком 
+выражений (<i>выражение</i>, <i>выражение</i> ...), то массив индексируется по строке, состоящей из сцепленных (строковых) 
+значений всех выражений, разделенных значением переменной <b>SUBSEP</b>. Эта возможность используется для моделирования 
+многомерных массивов. Например: 
+</p><dl compact=""><dt></dt><dd>
+<pre> i = "A"; j = "B"; k = "C"
+ x[i, j, k] = "hello, world\n" 
+
+</pre>
+
+</dd></dl>
+
+присваивает элементу массива <i>x</i>, индексированного по строке "<i>A\034B\034C</i>", строку "<i>hello, world\n</i>". 
+Все массивы в AWK ассоциативны, т.е. индексируются по строковым значениям. 
+Для проверки существования в массиве определенного индекса в операторах <b>if</b> и <b>while</b> может быть использован 
+специальный оператор <b>in</b>. 
+<dl compact=""><dt></dt><dd>
+<pre> if (val in array)
+     print array[val]
+
+</pre>
+
+</dd></dl>
+
+Если массив многомерный, используйте:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre> (i, j) in array.
+
+</pre>
+
+</dd></dl>
+
+Конструкция <b>in</b> может быть также использована в цикле <b>for</b> для перебора всех элементов массива. 
+Элемент может быть удален из массива оператором <b>delete</b>. Кроме того, оператор <b>delete</b> может быть использован 
+для удаления всего массива. Для этого нужно указать имя массива без индекса. 
+<a name="lbAL">&nbsp;</a>
+<h3> Типы переменных и преобразования </h3>
+
+<p>
+
+Переменные и поля могут быть числами с плавающей запятой, строками или и тем, и другим одновременно. Тип переменной зависит 
+от контекста. В числовых выражениях переменная считается числом, в строковых - строкой. 
+Если вы хотите, чтобы переменная считалась числом, добавьте к ней <b>0</b>. Если вы хотите, чтобы переменная считалась 
+строкой, сцепите ее с пустой строкой. 
+Конвертирование строки в число производится с помощью <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=atof&amp;category=3">atof</a>(3). Конвертирование числа в строку производится с помощью 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sprintf&amp;category=3">sprintf</a>(3), путем использования значения <b>CONVFMT</b> в качестве строки форматирования, и числового значения переменной 
+в качестве аргумента. Хотя все числа в AWK считаются числами с плавающей запятой, целые значения всегда преобразуются 
+как целые. Поэтому в 
+</p><dl compact=""><dt></dt><dd>
+<pre> CONVFMT = "%2.2f"
+ a = 12
+ b = a ""
+
+</pre>
+
+</dd></dl>
+
+строковое значение переменной <i>b</i> будет "12", а не "12.00".
+<p>
+<b>Gawk</b> выполняет сравнения следующим образом:
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;если&nbsp;две&nbsp;переменные&nbsp;имеют&nbsp;числовое&nbsp;значение,&nbsp;то&nbsp;они&nbsp;сравниваются&nbsp;как&nbsp;числа;
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;если&nbsp;одна&nbsp;переменная&nbsp;имеет&nbsp;числовое&nbsp;значение,&nbsp;а&nbsp;вторая&nbsp;является&nbsp;"строкой-числом"&nbsp;(т.е.&nbsp;строкой,&nbsp;состоящей&nbsp;из&nbsp;цифр),&nbsp;
+то переменные сравниваются как числа. Во всех остальных случаях производится преобразование числа в строку, и переменные 
+сравниваются как строки. Две строки, естественно, сравниваются как строки. В соответствие со стандартом <i>POSIX</i>, 
+даже если две строки являются "строками-числами", то они сравниваются как числа. Но это, безусловно, неправильно, поэтому 
+<b>gawk</b> не делает этого. 
+Заметьте, что строковые константы, такие как "57", не являются "строками-числами", а именно строковыми константами. 
+Термин "строка-число" применим лишь к полям, входным данным <b>getline</b>, <b>FILENAME</b>, элементам <b>ARGV</b>, 
+элементам <b>ENVIRON</b> и тем элементам массива, созданного <b>split</b>, которые являются числовыми строками. Основная 
+идея в том, что таким образом интерпретируется только входная информация пользователя, выглядящая, как число. 
+Переменные, неинициализированные явно, имеют числовое значение <b>0</b> и строковое значение <b>""</b> (пустая строка). 
+</p><p>
+<a name="lbAM">&nbsp;</a>
+</p><h3>Восьмиричные и шестнадцатиричные константы</h3>
+
+<p>
+
+</p><p>
+<a name="lbAN">&nbsp;</a>
+</p><h3>Строковые константы</h3>
+
+<p>
+
+</p><p>
+<a name="lbAO">&nbsp;</a>
+</p><h2>Шаблоны и действия</h2>
+
+<p>
+
+</p><p>
+<a name="lbAP">&nbsp;</a>
+</p><h3>Шаблоны</h3>
+
+<p>
+
+</p><p>
+<a name="lbAQ">&nbsp;</a>
+</p><h3>Регулярные выражения</h3>
+
+<p>
+
+</p><p>
+<a name="lbAR">&nbsp;</a>
+</p><h3>Действия</h3>
+
+<p>
+
+</p><p>
+<a name="lbAS">&nbsp;</a>
+</p><h3>Операторы</h3>
+
+<p>
+
+</p><p>
+<a name="lbAT">&nbsp;</a>
+</p><h3>Управляющие последовательности</h3>
+
+<p>
+
+</p><p>
+<a name="lbAU">&nbsp;</a>
+</p><h3> Операторы ввода/вывода </h3>
+
+<p>
+
+Имеются следующие операторы ввода/вывода:
+</p><p>
+</p><dl compact="">
+<dt><b>close(</b><i>filename</i>)
+
+</dt><dd>
+<br>&nbsp;Закрыть&nbsp;файл&nbsp;или&nbsp;канал&nbsp;с&nbsp;именем&nbsp;<i>filename</i>.
+<p>
+</p></dd><dt><b>getline</b>
+
+</dt><dd>
+<br>&nbsp;Считать&nbsp;следующую&nbsp;входящую&nbsp;запись&nbsp;в&nbsp;<b>$0</b>,&nbsp;установить&nbsp;<b>NF</b>,&nbsp;<b>NR</b>,&nbsp;<b>FNR</b>.
+<p>
+</p></dd><dt><b>getline &lt;</b><i>file</i>
+
+</dt><dd>
+<br>&nbsp;Считать&nbsp;следующую&nbsp;входящую&nbsp;запись&nbsp;файла&nbsp;<i>file</i>&nbsp;в&nbsp;<b>$0</b>,&nbsp;установить&nbsp;<b>NF</b>.
+<p>
+</p></dd><dt><b>getline </b><i>var</i>
+
+</dt><dd>
+<br>&nbsp;Считать&nbsp;следующую&nbsp;входящую&nbsp;запись&nbsp;в&nbsp;переменную&nbsp;<i>var</i>,&nbsp;установить&nbsp;<b>NR</b>,&nbsp;<b>FNR</b>.
+<p>
+</p></dd><dt><b>getline </b><i>var</i> &lt;<i>file</i>
+
+</dt><dd>
+<br>&nbsp;Считать&nbsp;следующую&nbsp;входящую&nbsp;запись&nbsp;файла&nbsp;<i>file</i>&nbsp;в&nbsp;переменную&nbsp;<i>var</i>,&nbsp;установить&nbsp;<b>NR</b>,&nbsp;<b>FNR</b>.&nbsp;
+</dd><dt><b>next</b>
+
+</dt><dd>
+<br>&nbsp;Прекратить&nbsp;обработку&nbsp;текущей&nbsp;входящей&nbsp;записи,&nbsp;cчитать&nbsp;следующую&nbsp;входящую&nbsp;запись&nbsp;и&nbsp;начать&nbsp;ее&nbsp;обработку&nbsp;с&nbsp;первого&nbsp;шаблона&nbsp;
+программы AWK. Если обработаны все входящие данные, то выполнить блок(и) <b>END</b>, если они существуют. 
+</dd><dt><b>nextfile</b>
+
+</dt><dd>
+<br>&nbsp;Прекратить&nbsp;обработку&nbsp;текущего&nbsp;входящего&nbsp;файла,&nbsp;следующая&nbsp;входящая&nbsp;запись&nbsp;считывается&nbsp;со&nbsp;следующего&nbsp;входящего&nbsp;файла.&nbsp;
+Обновляются переменные <b>FILENAME</b> и <b>ARGIND</b>, <b>FNR</b> устанавливается в <b>1</b>, обработка начинается 
+с первого шаблона программы AWK. Если обработаны все входящие данные, то выполнить блок(и) <b>END</b>, если они существуют. 
+<p>
+<i>В ранних версиях </i><b>gawk</b> использовалась конструкция <b>next file</b>. Хотя эта конструкция все еще распознается, 
+выдается предупреждающее сообщение. В дальнешем она поддерживаться не будет. 
+</p></dd><dt><b>print</b>
+
+</dt><dd>
+<br>&nbsp;Вывести&nbsp;текущую&nbsp;запись.&nbsp;Запись&nbsp;оканчивается&nbsp;содержимым&nbsp;переменной&nbsp;<b>ORS</b>.
+<p>
+</p></dd><dt><b>print </b><i>expr-list</i>
+
+</dt><dd>
+<br>&nbsp;Вывести&nbsp;выражение.&nbsp;Выражения&nbsp;разделяются&nbsp;содержимым&nbsp;переменной&nbsp;OFS.&nbsp;Запись&nbsp;оканчивается&nbsp;содержимым&nbsp;переменной&nbsp;<b>ORS</b>.&nbsp;
+<p>
+</p></dd><dt><b>print </b><i>expr-list</i> &gt;<i>file</i>
+
+</dt><dd>
+<br>&nbsp;Вывести&nbsp;выражения&nbsp;в&nbsp;файл&nbsp;<i>file</i>.
+<p>
+</p></dd><dt><b>printf fmt, </b><i>expr-list</i>
+
+</dt><dd>
+<br>&nbsp;Отформатировать&nbsp;и&nbsp;вывести&nbsp;выражения.
+<p>
+</p></dd><dt><b>printf fmt, </b><i>expr-list</i> &gt;<i>file</i>
+
+</dt><dd>
+<br>&nbsp;Отформатировать&nbsp;и&nbsp;вывести&nbsp;выражения&nbsp;в&nbsp;файл&nbsp;<i>file</i>.
+<p>
+</p></dd><dt><b>system(</b><i>cmd-line</i>)
+
+</dt><dd>
+<br>&nbsp;Выполнить&nbsp;команду&nbsp;<i>cmd-line</i>&nbsp;и&nbsp;вернуть&nbsp;код&nbsp;завершения&nbsp;команды.&nbsp;(Может&nbsp;быть&nbsp;недоступна&nbsp;на&nbsp;не-POSIX&nbsp;системах.)&nbsp;
+<p>
+</p></dd><dt><b>fflush(</b><i>[file]</i>)
+
+</dt><dd>
+<br>&nbsp;Сбросить&nbsp;буфера,&nbsp;связанные&nbsp;с&nbsp;открытым&nbsp;для&nbsp;записи&nbsp;файлом&nbsp;или&nbsp;каналом&nbsp;<i>file</i>.&nbsp;Если&nbsp;файл&nbsp;не&nbsp;указан,&nbsp;происходит&nbsp;сброс&nbsp;
+буферов стандартного потока вывода. Если файл - пустая строка, то происходит сброс буферов всех открытых файлов и каналов. 
+<p>
+</p></dd></dl>
+<a name="lbAV">&nbsp;</a>
+<h3>The printf Statement</h3>
+
+<p>
+
+</p><p>
+<a name="lbAW">&nbsp;</a>
+</p><h3>Специальные имена файлов</h3>
+
+<p>
+
+</p><p>
+<a name="lbAX">&nbsp;</a>
+</p><h3>Арифметические функции</h3>
+
+<p>
+
+</p><p>
+<a name="lbAY">&nbsp;</a>
+</p><h3>Строковые функции</h3>
+
+<p>
+
+</p><p>
+<a name="lbAZ">&nbsp;</a>
+</p><h3>Функции для работы со временем</h3>
+
+<p>
+
+</p><p>
+<a name="lbBA">&nbsp;</a>
+</p><h3>Функции для манипуляции с битами</h3>
+
+<p>
+
+</p><p>
+<a name="lbBB">&nbsp;</a>
+</p><h3>Функции интернационализации</h3>
+
+<p>
+
+</p><p>
+<a name="lbBC">&nbsp;</a>
+</p><h2>Функции определяемые пользователем</h2>
+
+<p>
+
+</p><p>
+<a name="lbBD">&nbsp;</a>
+</p><h2>Динамическая загрузка новых функций</h2>
+
+<p>
+
+</p><p>
+<a name="lbBE">&nbsp;</a>
+</p><h2>Сигналы</h2>
+
+<p>
+
+</p><p>
+pgawk принимает 2 вида сигналов. SIGUSR1 заставляет его сбросить профиль и стек вызовов функций в файл профиля, который 
+называется awkprof.out, либо имя, указанное в опции --profile. Далее выполнение продолжается. SIGHUP заставляет его сбросить профиль и стек вызовов функций и затем выйти. 
+<a name="lbBF">&nbsp;</a>
+</p><h2>Примеры</h2>
+
+<p>
+
+</p><p>
+Напечатать и отсортировать логины всех пользователей:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre> BEGIN     { FS = ":" }
+      { print $1 | "sort" }
+
+</pre>
+
+</dd></dl>
+
+Сосчитать количество строк в файле:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>      { nlines++ }
+ END  { print nlines }
+
+</pre>
+
+</dd></dl>
+
+Предварить каждую строку её номером в файле:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre> { print FNR, $0 }
+
+</pre>
+
+</dd></dl>
+
+Объединить и пронумеровать (вариация на тему):
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre> { print NR, $0 }
+
+</pre>
+
+</dd></dl>
+
+Запустить внешнюю команду для определенных строк данных:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre> tail -f access_log |
+ awk '/myhome.html/ { system("nmap " $1 "&gt;&gt; logdir/myhome.html") }'
+
+</pre>
+
+</dd></dl>
+
+<p>
+<a name="lbBG">&nbsp;</a>
+</p><h2>Интернационализация</h2>
+
+<p>
+
+</p><p>
+Строковые константы это последовательность символов, заключенных в двойные кавычки.
+В не-англоязычной языковой среде, можно помечать строки в тексте программы AWK как требующие перевода на местный язык. 
+Такие строки помечаются подчеркиванием перед строкой ("_"). Например,
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre> gawk 'BEGIN { print "hello, world" }'
+
+</pre>
+
+</dd></dl>
+
+всегда напечатает "hello, world". Но,
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre> gawk 'BEGIN { print _"hello, world" }'
+
+</pre>
+
+</dd></dl>
+
+должно напечатать "привер, мир" в России.
+<p>
+Чтобы создать и запустить локализованную AWK программу, нужно сделать несколько шагов:
+</p><p>
+1. Добавьте действие BEGIN, чтобы присвоить значение переменной TEXTDOMAIN, чтобы установить текстовую область, связанную 
+с именем вашей программы. 
+</p><dl compact=""><dt></dt><dd>
+<pre> BEGIN { TEXTDOMAIN = "myprog" }
+
+</pre>
+
+</dd></dl>
+
+Это позволит gawk найти файл .mo, связанный с вашей программой.
+Без этого шага, gawk будет использовать текстовую облать сообщений, которая наверняка не содержит перевода для вашей 
+программы. 
+2. Пометьте все строки, нуждающиеся в переводе, лидирующим знаком подчеркивания.
+<p>
+3. Если нужно, используйте функции dcgettext() и/или bindtextdomain() в вашей программе.
+</p><p>
+4. Выполните
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre> gawk --gen-po -f myprog.awk &gt; myprog.po
+
+</pre>
+
+</dd></dl>
+
+чтобы создать .po-файл для вашей программы.
+<p>
+5. Сделайте нужные переводы и сделайте и установите соответствующий .mo-файл.
+</p><p>
+Более подробно процесс интернационализации описан в [<a href="http://www.gnu.org/manual/gawk">http://www.gnu.org/manual/gawk</a> GAWK: Effective AWK Programming] 
+(GAWK: Эффективное программирование на AWK). 
+<a name="lbBH">&nbsp;</a>
+</p><h2>Posix совмесимость</h2>
+
+<p>
+
+</p><p>
+Главная задача для <i>gawk</i> - совместимость как с POSIX стандартом, так и с последней версией UNIX <i>awk</i>. Для этого, 
+gawk включает в себя следующие функции, не описанные в Книге AWK, но входящие в Bell Laboratories версию <i>awk</i>, и имеющиеся 
+в стандарте POSIX. 
+В книге сказано, что присваивание значений переменным, указанным в командной строке, происходит перед открытием awk 
+файла, что происходит после выполнения блока <b>BEGIN</b>. Однако в ранних реализациях, если такое присваивание значений 
+переменным было указано до имен файлов, присваивание происходило до выполнения блока <b>BEGIN</b>. Эта "возможность" 
+стала применяться в приложениях. После того, как <i>awk</i> был приведен в соответствие с документацией, для удовлетворения 
+нужд приложений, зависимых от старого поведения, была добавлена опция <b>-v</b>. (С введением этой возможности согласились 
+как разработчики AT&amp;T, так и GNU.) 
+Опция <b>-W</b> для реализации особенностей взята из стандарта POSIX.
+</p><p>
+При обработке аргументов <i>gawk</i> использует специальную опцию -- для указания конца аргументов. В режиме совместимости 
+будет выдаваться предупреждение о существовании неизвестных опций, но они будут игнорироваться. В обычном режиме такие 
+аргументы передаются для обработки программе AWK. 
+В соответствие с книгой по AWK, значение, возвращаемое <b>srand()</b>, не определено. В стандарте POSIX возвращается 
+предыдущее значение, что позволяет следить за последовательностью случайных чисел. Поэтому <b>srand()</b> в <i>gawk</i> 
+также возвращает значение текущей базы. 
+Другие новые возможности: использование нескольких опций <b>-f</b> (из MKS <i>awk</i>); массив <b>ENVIRON</b>; экранирующие 
+последовательности <b>\a</b> и <b>\v</b> (изначально появившиеся в <i>gawk</i> и затем включенные в AT&amp;T); функции <b>tolower()</b> 
+и <b>toupper()</b> (из AT&amp;T); параметры форматирования ANSI C <b>printf</b> (впервые появившиеся в версии AT&amp;T). 
+<a name="lbBI">&nbsp;</a>
+</p><h2>Исторические возможности</h2>
+
+<p>
+
+</p><p>
+Есть две функции исторических реализаций AWK, которые поддерживает <i>gawk</i>. Во-первых, можно вызывать встроенную 
+функцию <b>length()</b> не только без аргументов, но и без скобок! Соответственно, 
+</p><dl compact=""><dt></dt><dd>
+<pre> a = length     # Holy Algol 60, Batman!
+
+</pre>
+
+</dd></dl>
+
+то же самое, что и любая строчка из
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre> a = length()
+ a = length($0)
+
+</pre>
+
+</dd></dl>
+
+Эта функция помечена в POSIX стандарте как "осуждаемая", и <i>gawk</i> выдает предупреждение при её использовании, если 
+в командной строке указана опция <b>--lint</b>. 
+Другая функция - использование операторов <b>continue</b> либо <b>break</b> вне тела циклов <b>while</b>, <b>for</b> 
+или <b>do</b>. Традиционные реализации AWK трактовали такое использование как эквивалент оператора <b>next</b>. <i>Gawk</i> 
+поддерживает такое использование, если указана опция <b>--traditional</b>. 
+<a name="lbBJ">&nbsp;</a>
+<h2>Расширения GNU</h2>
+
+<p>
+
+</p><p>
+<i>Gawk</i> имеет некоторые расширения по сравнению с POSIX-версией <i>awk</i>. Они описаны в этом разделе. Все эти расширения 
+могут быть отключены вызовом <i>gawk</i> с опцией <b>--traditional</b>. 
+Следующие функции <i>gawk</i> отсутствуют в POSIX <i>awk</i>.
+</p><p>
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Не&nbsp;производится&nbsp;поиск&nbsp;по&nbsp;пути&nbsp;файлов,&nbsp;указанных&nbsp;через&nbsp;опцию&nbsp;<b>-f</b>.&nbsp;Как&nbsp;следствие,&nbsp;переменная&nbsp;окружения&nbsp;<b>AWKPATH</b>&nbsp;
+не имеет специального значения. .br
+<br>&nbsp;&nbsp;*&nbsp;Экранирующая&nbsp;последовательность&nbsp;<b>\x</b>.&nbsp;(Отключается&nbsp;при&nbsp;использовании&nbsp;<b>--posix</b>.)
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Функция&nbsp;<b>fflush()</b>.&nbsp;(Отключается&nbsp;при&nbsp;использовании&nbsp;<b>--posix</b>.)
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Возможность&nbsp;продолжать&nbsp;строку&nbsp;после&nbsp;?&nbsp;и&nbsp;:.&nbsp;(Отключается&nbsp;при&nbsp;использовании&nbsp;<b>--posix</b>.)
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Восьмеричные&nbsp;и&nbsp;шестнадцатиричные&nbsp;константы&nbsp;в&nbsp;AWK&nbsp;программах.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Переменные&nbsp;<b>ARGIND</b>,&nbsp;<b>BINMODE</b>,&nbsp;<b>ERRNO</b>,&nbsp;<b>LINT</b>,&nbsp;<b>RT</b>&nbsp;и&nbsp;<b>TEXTDOMAIN</b>&nbsp;не&nbsp;являются&nbsp;особыми.&nbsp;
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Не&nbsp;обрабатывается&nbsp;переменная&nbsp;<b>IGNORECASE</b>.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Переменная&nbsp;<b>FIELDWIDTHS</b>&nbsp;и&nbsp;разделение&nbsp;на&nbsp;поля&nbsp;с&nbsp;фиксированной&nbsp;шириной.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Отсутствует&nbsp;массив&nbsp;<b>PROCINFO</b>.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Использование&nbsp;<b>RS</b>&nbsp;как&nbsp;регулярных&nbsp;выражений.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Специальные&nbsp;имена&nbsp;файлов&nbsp;для&nbsp;перенаправления&nbsp;ввода/вывода&nbsp;не&nbsp;распознаются.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Оператор&nbsp;|&amp;&nbsp;для&nbsp;создания&nbsp;со-процессов.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Возможность&nbsp;разделения&nbsp;на&nbsp;отдельные&nbsp;символы&nbsp;путем&nbsp;присваивания&nbsp;пустого&nbsp;значения&nbsp;переменной&nbsp;<b>FS</b>&nbsp;или&nbsp;третьему&nbsp;
+аргументу <b>split()</b>. .br
+<br>&nbsp;&nbsp;*&nbsp;Необязательный&nbsp;второй&nbsp;аргумент&nbsp;функции&nbsp;<b>close()</b>.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Необязательный&nbsp;третий&nbsp;аргумент&nbsp;функции&nbsp;<b>match()</b>.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Возможность&nbsp;использовать&nbsp;позиционные&nbsp;спецификаторы&nbsp;в&nbsp;<b>printf</b>&nbsp;и&nbsp;<b>sprintf()</b>.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Использование&nbsp;&lt;TT&gt;delete&nbsp;массив&lt;/TT&gt;&nbsp;чтобы&nbsp;удалить&nbsp;всё&nbsp;содержимое&nbsp;массива.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Использование&nbsp;<b>nextfile</b>&nbsp;для&nbsp;прерывания&nbsp;обработки&nbsp;текущего&nbsp;входного&nbsp;файла.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Функции&nbsp;<b>and()</b>,&nbsp;<b>asort()</b>,&nbsp;<b>asorti()</b>,&nbsp;<b>bindtextdomain()</b>,&nbsp;<b>compl()</b>,&nbsp;<b>dcgettext()</b>,&nbsp;
+<b>dcngettext()</b>, <b>gensub()</b>, <b>lshift()</b>, <b>mktime()</b>, <b>or()</b>, <b>rshift()</b>,  <b>strftime()</b>, 
+<b>strtonum()</b>, <b>systime()</b> и <b>xor()</b>. .br
+<br>&nbsp;&nbsp;*&nbsp;Локализуемые&nbsp;строки.
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;Динамическое&nbsp;добавление&nbsp;новых&nbsp;встроенных&nbsp;функций&nbsp;с&nbsp;помощью&nbsp;функции&nbsp;<b>extension()</b>.
+</p><p>
+Книга AWK не определяет возвращаемое значение функции <b>close()</b>. Версия <i>gawk</i> возвращает значение, полученное 
+от <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fclose&amp;category=3">fclose</a>(3)</b>, или <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pclose&amp;category=3">pclose</a>(3)</b>, когда закрывается выходной файл или канал, соответственно. Она возвращает 
+выходное значение процесса, когда закрывается входной канал. Возвращаемое значение равно <b>-1</b>, если файл, канал 
+или со-процесс не были открыты с перенаправлением. 
+Если при запуске <i>gawk</i> с опцией <b>--traditional</b>, аргумент <b>fs</b> опции <b>-F</b> имеет значение "<b>t</b>", 
+то значением <b>FS</b> будет символ табуляции. Заметьте, что .RS
+</p><pre>gawk -F\t ...
+</pre>
+
+
+<br>&nbsp;приведет&nbsp;лишь&nbsp;к&nbsp;экранированию&nbsp;символа&nbsp;"<b>t</b>",&nbsp;а&nbsp;не&nbsp;к&nbsp;передаче&nbsp;"<b>\t</b>"&nbsp;опции&nbsp;<b>-F</b>.&nbsp;Так&nbsp;как&nbsp;это&nbsp;довольно&nbsp;специфический&nbsp;
+случай, то он не является поведением по умолчанию. Он также не будет работать, если указана опция <b>--posix</b>. Если 
+вам действительно нужно использовать символ табуляции в качестве разделителя полей, то лучше всего воспользоваться 
+кавычками: .RS
+<pre>gawk -F'\t' ...
+</pre>
+
+
+<p>
+Если при установке <i>gawk</i> была указана опция <b>--enable-switch</b> команде <b>configure</b>, тогда <i>gawk</i> 
+понимает дополнительный оператор управления: 
+</p><dl compact=""><dt></dt><dd>
+<pre> switch (expression) {
+ case value|regex : statement
+ ...
+ [ default: statement ]
+ }
+
+</pre>
+
+</dd></dl>
+
+<p>
+<a name="lbBK">&nbsp;</a>
+</p><h2>Переменные окружения</h2>
+
+<p>
+
+</p><p>
+Переменная окружения AWKPATH может быть использована для указания списка директорий, в которых gawk ищет файлы, указанные 
+в опциях -f и --file. 
+Если в переменных окружения присутствует POSIXLY_CORRECT, тогда gawk ведет себя, как если бы опция --posix была указана 
+в командной строке. Если указана опция --lint, gawk выдает предупреждающее сообщение о таком эффекте. 
+<a name="lbBL">&nbsp;</a>
+</p><h2>Смотрите также</h2>
+
+<p>
+
+</p><p>
+<a name="lbBM">&nbsp;</a>
+</p><h2>Ошибки</h2>
+
+<p>
+
+</p><p>
+The -F option is not necessary given the command line variable assignment feature; it remains only for backwards compatibility. 
+</p><p>
+Syntactically invalid single character programs tend  to  overflow  the parse  stack, generating a rather unhelpful message. 
+<br>&nbsp;Such&nbsp;programs&nbsp;are&nbsp;surprisingly&nbsp;difficult&nbsp;to&nbsp;diagnose&nbsp;in&nbsp;the&nbsp;completely&nbsp;general&nbsp;case,&nbsp;and&nbsp;the&nbsp;effort&nbsp;to&nbsp;do&nbsp;so&nbsp;really&nbsp;is&nbsp;not&nbsp;
+worth it. 
+<a name="lbBN">&nbsp;</a>
+</p><h2>Авторы</h2>
+
+<p>
+
+</p><p>
+The original version of UNIX awk was designed and implemented by Alfred
+Aho, Peter Weinberger, and Brian Kernighan of Bell Laboratories.  Brian
+Kernighan continues to maintain and enhance it.
+</p><p>
+Paul  Rubin  and  Jay  Fenlason, of the Free Software Foundation, wrote
+gawk, to be compatible with the original version of awk distributed  in
+Seventh  Edition  UNIX.   John Woods contributed a number of bug fixes.
+David Trueman, with contributions from Arnold Robbins, made  gawk
+compatible  with  the new version of UNIX awk.  Arnold Robbins is the current
+maintainer.
+</p><p>
+The initial DOS port was done  by  Conrad  Kwok  and  Scott  Garfinkle.
+Scott Deifik is the current DOS maintainer.  Pat Rankin did the port to
+VMS, and Michal Jaegermann did the port to the Atari ST.  The  port  to
+OS/2  was done by Kai Uwe Rommel, with contributions and help from Darrel
+Hankerson.  Fred Fish  supplied  support  for  the  Amiga,  Stephen
+Davies  provided  the  Tandem  port, and Martin Brown provided the BeOS
+port.
+</p><p>
+<a name="lbBO">&nbsp;</a>
+</p><h2>Версия</h2>
+
+<p>
+
+Это руководство описывает <b>gawk</b>, версии 3.1.4.
+</p><p>
+<a name="lbBP">&nbsp;</a>
+</p><h2> Перевод </h2>
+
+<p>
+
+</p><p>
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Игорь&nbsp;Чубин&nbsp;&lt;igor&nbsp;ar&nbsp;chub.in&gt;
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB"> Имя </a></dt><dd>
+</dd><dt><a href="#lbAC"> Синтаксис </a></dt><dd>
+</dd><dt><a href="#lbAD"> Описание </a></dt><dd>
+</dd><dt><a href="#lbAE"> Опции </a></dt><dd>
+</dd><dt><a href="#lbAF">Выполнение AWK программы</a></dt><dd>
+</dd><dt><a href="#lbAG">Переменные, записи и поля</a></dt><dd>
+<dl>
+<dt><a href="#lbAH"> Записи </a></dt><dd>
+</dd><dt><a href="#lbAI">Поля</a></dt><dd>
+</dd><dt><a href="#lbAJ">Встроенные переменные</a></dt><dd>
+</dd><dt><a href="#lbAK">Массивы</a></dt><dd>
+</dd><dt><a href="#lbAL"> Типы переменных и преобразования </a></dt><dd>
+</dd><dt><a href="#lbAM">Восьмиричные и шестнадцатиричные константы</a></dt><dd>
+</dd><dt><a href="#lbAN">Строковые константы</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAO">Шаблоны и действия</a></dt><dd>
+<dl>
+<dt><a href="#lbAP">Шаблоны</a></dt><dd>
+</dd><dt><a href="#lbAQ">Регулярные выражения</a></dt><dd>
+</dd><dt><a href="#lbAR">Действия</a></dt><dd>
+</dd><dt><a href="#lbAS">Операторы</a></dt><dd>
+</dd><dt><a href="#lbAT">Управляющие последовательности</a></dt><dd>
+</dd><dt><a href="#lbAU"> Операторы ввода/вывода </a></dt><dd>
+</dd><dt><a href="#lbAV">The printf Statement</a></dt><dd>
+</dd><dt><a href="#lbAW">Специальные имена файлов</a></dt><dd>
+</dd><dt><a href="#lbAX">Арифметические функции</a></dt><dd>
+</dd><dt><a href="#lbAY">Строковые функции</a></dt><dd>
+</dd><dt><a href="#lbAZ">Функции для работы со временем</a></dt><dd>
+</dd><dt><a href="#lbBA">Функции для манипуляции с битами</a></dt><dd>
+</dd><dt><a href="#lbBB">Функции интернационализации</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbBC">Функции определяемые пользователем</a></dt><dd>
+</dd><dt><a href="#lbBD">Динамическая загрузка новых функций</a></dt><dd>
+</dd><dt><a href="#lbBE">Сигналы</a></dt><dd>
+</dd><dt><a href="#lbBF">Примеры</a></dt><dd>
+</dd><dt><a href="#lbBG">Интернационализация</a></dt><dd>
+</dd><dt><a href="#lbBH">Posix совмесимость</a></dt><dd>
+</dd><dt><a href="#lbBI">Исторические возможности</a></dt><dd>
+</dd><dt><a href="#lbBJ">Расширения GNU</a></dt><dd>
+</dd><dt><a href="#lbBK">Переменные окружения</a></dt><dd>
+</dd><dt><a href="#lbBL">Смотрите также</a></dt><dd>
+</dd><dt><a href="#lbBM">Ошибки</a></dt><dd>
+</dd><dt><a href="#lbBN">Авторы</a></dt><dd>
+</dd><dt><a href="#lbBO">Версия</a></dt><dd>
+</dd><dt><a href="#lbBP"> Перевод </a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="awk" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

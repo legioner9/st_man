@@ -1,0 +1,591 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN rpcgen (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, rpcgen"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="rpcgen" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">rpcgen (1)</font><hr><li> <a href="/man.shtml?topic=rpcgen&amp;category=1&amp;russian=4"><u>rpcgen</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=rpcgen&amp;category=1&amp;russian=1"><u>rpcgen</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=rpcgen&amp;category=1&amp;russian=0"><u>rpcgen</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=rpcgen&amp;category=1&amp;russian=2"><u>rpcgen</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+<tt>rpcgen</tt> - компилятор протокола RPC
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<tt>
+</tt><pre>rpcgen <i>infile</i><tt>
+</tt></pre>
+
+
+<br>
+
+<tt>
+</tt><pre>rpcgen [-D<i>name</i><tt>[=</tt><i>value</i><tt>]] [-T] [-K </tt><i>secs</i>] <i>infile</i><tt>
+</tt></pre>
+
+
+<br>
+
+<tt>
+</tt><pre>rpcgen -c|-h|-l|-m|-t [-o <i>outfile</i><tt> ] </tt><i>infile</i><tt>
+</tt></pre>
+
+
+<br>
+
+<tt>
+</tt><pre>rpcgen [-I] -s <i>nettype</i><tt> [-o </tt><i>outfile</i><tt>] </tt><i>infile</i><tt>
+</tt></pre>
+
+
+<br>
+
+<tt>
+</tt><pre>rpcgen -n <i>netid</i><tt> [-o </tt><i>outfile</i><tt>] </tt><i>infile</i><tt>
+</tt></pre><a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+
+<tt>rpcgen</tt>
+является тем инструментом, который генерирует код языка C для применения протокола RPC.
+Входными данными для
+<tt>rpcgen</tt>
+является язык, похожий на C и известный как
+RPC (Remote Procedure Call Language - Язык Удаленного Выполнения Процедур).
+
+<tt>rpcgen</tt>
+обычно используется в первом виде, при этом
+из одного файла ввода генерируется до четырех файлов вывода.
+Если 
+<i>infile</i>
+называется
+<tt>proto.x</tt>,
+то
+<tt>rpcgen</tt>
+сгенерирует файл заголовков
+<tt>proto.h</tt>,
+файл процедур XDR
+<tt>proto_xdr.c</tt>,
+серверную часть в
+<tt>proto_svc.c</tt>,
+и часть клиентa в
+<tt>proto_clnt.c</tt>.
+С параметром
+<tt>-T</tt>
+будет сгенеририрована таблица переходов RPC в
+<tt>proto_tbl.i</tt>.
+С параметром
+<tt>-Sc</tt>
+будет сгенерирован простой код, поясняющий, как использовать
+удаленные процедуры со стороны клиента. Этот код будет создан в файле
+<tt>proto_client.c</tt>.
+С параметром
+<tt>-Ss</tt>
+будет сгенерирован простой код для сервера, поясняющий, как написать
+удаленные процедуры. Код будет сохранен в файле
+<tt>proto_server.c</tt>.
+
+Созданный сервер может быть запущен либо через мониторы порта
+(например <tt>inetd</tt> или <tt>listen</tt>) или сам по себе.
+Когда сервер запущен через монитор порта, сервер создается только для 
+того траснпорта, для которого был передан описатель файла <tt>0</tt>.
+Название транспорта должно быть указано через переменую окружения
+<tt>PM_TRANSPORT</tt>.
+Когда запускается сервер, созданный
+<tt>rpcgen</tt>,
+то он запускает обработку сервером всех транспортов, указанных в 
+переменной окружения <tt>NETPATH</tt> или, если такая не указана,
+сервером будут обрабатываться все видимые транспорты из файла <tt>/etc/netconfig</tt>.
+Примечание:
+транспорты выбираются во время запуска а не во время компиляции.
+Когда стартует сервер, он переводит себя в фоновый режим по умолчанию.
+Для запуска сервера в основном режиме необходимо определить специальный символ
+<tt>RPC_SVC_FG</tt>.
+
+Второй вид использования rpcgen обеспечивает создание дополнительных возможностей,
+позволяющих создание более сложных RPC-серверов.
+Эти возможности включают в себя поддержку пользовательских <tt>#defines</tt>
+и таблиц переходов RPC.
+В таблице переходов содержатся такие элементы:
+<dl compact=""><dt></dt><dd>
+
+<dl compact="">
+<dt>*</dt><dd>
+указатели на вспомогательную программу, соответствующую процедуре,
+</dd><dt>*</dt><dd>
+указатель на входящие и исходящие агрументы
+</dd><dt>*</dt><dd>
+размер этих программ
+
+</dd></dl>
+</dd></dl>
+
+Сервер может использовать таблицу переходов для проверки 
+авторизации и затем исполнять вспомогательные программы; 
+библиотека клиента может использовать ее для работы с
+порядком расположения данных и преобразованиями данных XDR.
+
+Оставшиеся три вида синтаксиса используются, когда
+нужно генерировать не все файлы вывода, а только один.
+В разделе ПРИМЕРЫ ниже приведено несколько вариантов использования программы.
+Когда 
+<tt>rpcgen</tt>
+исполняется с параметром
+<tt>-s</tt>,
+то создаются серверы только для частного класса транспортов.
+Когда программа исполняется с параметром
+<tt>-n</tt>,
+то создается сервер для транспортов, определенных
+<i>netid</i>.
+Если
+<i>infile</i>
+не определено, то
+<tt>rpcgen</tt>
+считывает данные со стандартного устройства ввода.
+
+На файле ввода запускается препроцессор C,
+<tt>cc -E</tt>
+[см. <tt><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cc&amp;category=1">cc</a></tt>(1)],
+прежде чем он будет интерпретирован
+<tt>rpcgen</tt>.
+Для каждого вида файлов вывода
+<tt>rpcgen</tt>
+определяет специальный символ препроцессова для использования программистами
+<tt>rpcgen</tt>:
+
+
+<dl compact="">
+<dt><tt>RPC_HDR</tt></dt><dd>
+определяется при компилировании в файлы заголовков
+</dd><dt><tt>RPC_XDR</tt></dt><dd>
+определяется при компилировании в файл процедур XDR
+</dd><dt><tt>RPC_SVC</tt></dt><dd>
+определяется при компилировании в программу сервера
+</dd><dt><tt>RPC_CLNT</tt></dt><dd>
+определяется при компилировании в программу клиента
+</dd><dt><tt>RPC_TBL</tt></dt><dd>
+определяется при компилировании в таблицу переходов RPC
+
+
+Любая строка, начинающаяся с 
+`<tt>%</tt>',
+записывается напрямую в файл вывода, не интерпретируясь
+<tt>rpcgen</tt>.
+
+Для каждого типа данных, к которым идет обращение в файле ввода
+<i>infile</i>,
+<tt>rpcgen</tt>
+подразумевает существование процедуры со строкой
+<tt>xdr_</tt>
+связанной с названием этого типа данных.
+Если эта процедура не существует в библиотеке RPC/XDR,
+то она должна быть создана. Передача данных неопределенного
+типа позволяет обеспечивать множественность процедур XDR.
+<br>
+
+
+
+Доступны следуюшие параметры:
+</dd><dt><tt>-a</tt></dt><dd>
+Генерировать все файлы, включая примеры кода для клиента и сервера.
+</dd><dt><tt>-b</tt></dt><dd>
+Генерировать код формата SunOS4.1. Существует для обеспечения совместимости.
+Является параметром по умолчанию.
+</dd><dt><tt>-5</tt></dt><dd>
+Генерировать код формата SysVr4. Используется Transport Independent RPC,
+работающей на системах Svr4. По умолчанию rpcgen делает код в формате SunOS4.1.
+</dd><dt><tt>-c</tt></dt><dd>
+Компилировать процедуры XDR.
+</dd><dt><tt>-C</tt></dt><dd>
+Генерировать код в формате ANSI C. С этим параметром также генерируется код, который
+может быть скомпилирован компилятором C++. Является параметром по умолчанию.
+</dd><dt><tt>-k</tt></dt><dd>
+Генерировать код в формате K&amp;R C. Параметром по умолчанию является компиляция в ANSI C.
+</dd><dt><tt>-D</tt><i>name</i><tt>[=</tt><i>value</i><tt>]</tt></dt><dd>
+Определить символ
+<i>name</i>.
+Эквивалентно директиве
+<tt>#define</tt>
+в исходниках.
+Если не задано
+<i>value</i>, то
+<i>value</i>
+определяется как <tt>1</tt>.
+Этот параметр пожет быть указан несколько раз.
+</dd><dt><tt>-h</tt></dt><dd>
+Компилировать в определения данных
+<tt>C</tt>
+(файл заголовков).
+<tt>-T</tt>
+параметр может использоваться совместно с предыдущим чтобы создать файл заголовков,
+который поддерживает таблицы переходов RPC.
+</dd><dt><tt>-I</tt></dt><dd>
+Генерировать службу, которая может быть запущена через inetd.
+По умолчанию генерируется статическая служба, которая обрабатывает транспорты,
+выбранные по <tt>-s</tt>.
+Использование <tt>-I</tt> позволяет запускать службы обоими методами.
+</dd><dt><tt>-K</tt><i> secs</i></dt><dd>
+По умолчанию созданные с использованием <tt>rpcgen</tt> службы ждут <tt>120</tt> секунд
+после выполнения сервиса и затем завершуют работу.
+Этот интервал может быть изменен использованием флага <tt>-K</tt>.
+Для создания сервера, который завершает работу сразу 
+после обработки запроса, надо использовать
+<tt>-K&nbsp;0</tt>.
+Для создания сервера, который до этого никогда не существовал,
+необходимо использовать соответсвующий аргумент
+<tt>-K&nbsp;-1</tt>.
+</dd><dt></dt><dd>
+При осуществлении мониторинга сервера некоторые мониторы порта, такие как
+<tt><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?1M+listen">listen</a></tt>(1M),
+<i>всегда</i>
+
+порождают новый процесс в ответ на запрос службы.
+Известно, что, если сервер используется с такого рода мониторами, то
+он должен заканчивать свою работу немедленно после выполнения всех заданий.
+Для таких серверов необходимо использовать <tt>rpcgen</tt>с параметрами <tt>-K&nbsp;-1</tt>.
+</dd><dt><tt>-l</tt></dt><dd>
+Компилировать часть клиента.
+</dd><dt><tt>-m</tt></dt><dd>
+Компилировать часть сервера, но не генерировать
+процедуру lqmainrq . Этот параметр полезен
+при выполнении зацикленных процедур и для 
+пользователей, которым нужно писать свои собственные 
+процедуры lqmainrq для выполнения инициализации.
+</dd><dt><tt>-n </tt><i>netid</i></dt><dd>
+Компилирование части сервера для транспорта, определенного
+<i>netid</i>.
+Должна быть запись для
+<i>netid</i>
+в базе данных netconfig.
+Этот параметр может указываться несколько раз,
+для компилирования мультитранспорного сервера.
+</dd><dt><tt>-N</tt></dt><dd>
+Использовать новый стиль rpcgen. Позволяет процедурам иметь несколько аргументов. 
+Также использует стиль передачи параметров очень похожий на C. Поэтому, когда
+вы передаете аргумент удаленной процедуре, вам надо передавать не указатель на
+аргумент, а сам аргумент. Такой стиль отличается от обычной генерации кода rpcgen.
+Новый стиль не включен по умолчанию для совместимости.
+</dd><dt><tt>-o </tt><i>outfile</i></dt><dd>
+Указать имя для файла вывода.
+Если не указано, то используется стандартный порт вывода
+(только режимы 
+<tt>-c</tt>,
+<tt>-h</tt>,
+<tt>-l</tt>,
+<tt>-m</tt>,
+<tt>-n</tt>,
+<tt>-s</tt>,
+<tt>-sSc,
+-sSs
+и
+-t</tt>).
+</dd><dt><tt>-s </tt><i>nettype</i></dt><dd>
+Компилировать в часть сервера для всех транспортов, принадлежащих классу
+<i>nettype</i>.
+Поддерживаемые классы -
+<tt>netpath</tt>,
+<tt>visible</tt>,
+<tt>circuit_n</tt>,
+<tt>circuit_v</tt>,
+<tt>datagram_n</tt>,
+<tt>datagram_v</tt>,
+<tt>tcp</tt>,
+и
+<tt>udp</tt>
+[см. <tt><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?3N+rpc">rpc</a></tt>(3N)
+для значений, связанных с этими классами].
+Этот параметр может быть указан несколько раз.
+Примечание:
+транспорты выбираются в момент запуска, а не во время компиляции.
+</dd><dt><tt>-Sc</tt></dt><dd>
+Генерировать простой код для демонстрации работы удаленных процедур
+и привязки к серверу перед вызовом клиентской части, сгенерированной rpcgen.
+</dd><dt><tt>-Ss</tt></dt><dd>
+Генерировать основу кода для удаленных процедур для серверной стороны. 
+Вам понадобится внести сюда потом настоящий код удаленных процедур.
+</dd><dt><tt>-t</tt></dt><dd>
+Компилировать в таблицу переходов RPC.
+</dd><dt><tt>-T</tt></dt><dd>
+Генерировать код для поддержки таблиц переходов RPC.
+
+Параметры
+<tt>-c</tt>,
+<tt>-h</tt>,
+<tt>-l</tt>,
+<tt>-m</tt>,
+<tt>-s</tt>
+и
+<tt>-t</tt>
+используются исключительно для генерации отдельных видов файлов,
+в то время как параметры
+<tt>-D</tt>
+и
+<tt>-T</tt>
+являются глобальными и могут быть использованы с другими параметрами.
+<br>
+
+
+</dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Язык RPC не поддерживает рекурсивность структур.
+Как подобие этого, могут быть объявлены структуры высокого уровня,
+а их имена использоваться внутри других структур для достижения подобного эффекта.
+
+При использовании определений программ могут случиться конфликты имен, так-как
+видимого разграничения фактически не происходит.
+Много можно избежать заданием уникальных названий для программ, версий, процедур и типов.
+
+Код сервера, сгенерированного с параметром
+<tt>-n</tt>,
+обращается к транспорту, определяемому
+<i>netid</i>
+и поэтому очень зависит от адреса.
+<a name="lbAF">&nbsp;</a>
+<h2>ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</h2>
+
+Следующий пример:
+<dl compact="">
+<dt></dt><dd>
+<tt>
+$ rpcgen -T prot.x
+</tt>
+
+генерирует пять файлов:
+<tt>prot.h</tt>,
+<tt>prot_clnt.c</tt>,
+<tt>prot_svc.c</tt>,
+<tt>prot_xdr.c</tt>
+и
+<tt>prot_tbl.i</tt>.
+
+Следующий пример посылает определения данных C (файл заголовков)
+на стандартное устройство вывода.
+</dd><dt></dt><dd>
+<tt>
+$ rpcgen -h prot.x
+</tt>
+
+Для отправки тестовой версии
+<tt>-DTEST</tt>,
+стороной сервера для всех транспортов, принадлежащих классу
+<tt>datagram_n</tt>
+на стандартное устройство вывода сипользуйте:
+</dd><dt></dt><dd>
+<tt>
+$ rpcgen -s datagram_n -DTEST prot.x
+</tt>
+
+Для создания стороны сервера для транспорта, определенного
+<i>netid</i>
+<tt>tcp</tt>,
+используйте:
+</dd><dt></dt><dd>
+<tt>
+$ rpcgen -n tcp -o prot_svc.c prot.x
+</tt>
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<tt><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gcc&amp;category=1">gcc</a></tt>(1).
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="rpcgen" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

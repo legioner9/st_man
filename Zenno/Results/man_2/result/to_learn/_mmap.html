@@ -1,0 +1,614 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN mmap (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, mmap"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="mmap" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">mmap (2)</font><hr><li> <a href="/man.shtml?topic=mmap&amp;category=2&amp;russian=4"><u>mmap</u></a> (2) <font color="#555555"> ( Solaris man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=mmap&amp;category=2&amp;russian=1"><u>mmap</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=mmap&amp;category=2&amp;russian=0"><u>mmap</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=mmap&amp;category=2&amp;russian=2"><u>mmap</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=mmap&amp;category=3&amp;russian=5"><u>mmap</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=mmap&amp;category=9&amp;russian=4"><u>mmap</u></a> (9) <font color="#555555"> ( Solaris man: Ядро )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+mmap, munmap - отражает файлы или устройства в памяти или снимает их отражение
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/unistd.h">unistd.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/sys/mman.h">sys/mman.h</a>&gt;</b>
+
+<p>
+<b>#ifdef _POSIX_MAPPED_FILES</b>
+
+</p><p>
+<b>void * mmap(void *</b><i>start</i><b>, size_t </b><i>length</i><b>, int </b><i>prot</i>
+
+<b>, int </b><i>flags</i><b>, int </b><i>fd</i><b>, off_t </b><i>offset</i><b>);</b>
+
+</p><p>
+<b>int munmap(void *</b><i>start</i><b>, size_t </b><i>length</i><b>);</b>
+
+</p><p>
+<b>#endif</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Функция
+<b>mmap</b>
+
+отражает
+<i>length</i>
+
+байтов, начиная со смещения
+<i>offset </i>
+
+файла (или другого объекта), определенного файловым описателем
+<i>fd</i>,
+
+в память, начиная с адреса
+<i>start</i>.
+
+Последний параметр (адрес) необязателен, и обычно бывает равен 0.
+Настоящее местоположение отраженных данных возвращается самой
+функцией
+<b>mmap</b>,
+
+и никогда не бывает равным 0.
+<p>
+
+Аргумент
+<i>prot</i>
+
+описывает желаемый режим защиты памяти (он не должен конфликтовать
+с режимом открытия файла).
+Оно является либо 
+<b>PROT_NONE</b>
+
+либо побитовым ИЛИ одного или нескольких флагов PROT_*.
+</p><dl compact="">
+<dt><b>PROT_EXEC</b>
+
+</dt><dd>
+(данные в страницах могут исполняться);
+</dd><dt><b>PROT_READ</b>
+
+</dt><dd>
+(данные можно читать);
+</dd><dt><b>PROT_WRITE</b>
+
+</dt><dd>
+(в эту область можно записывать информацию);
+</dd><dt><b>PROT_NONE</b>
+
+</dt><dd>
+(доступ к этой области памяти запрещен).
+</dd></dl>
+<p>
+
+Параметр
+<i>flags</i>
+
+задает тип отражаемого объекта, опции отражения и указывает, принадлежат ли 
+отраженные данные только этому процессу или их могут читать другие. Он состоит
+из комбинации следующих битов:
+</p><dl compact="">
+<dt><b>MAP_FIXED</b>
+
+</dt><dd>
+Не использовать другой адрес, если адрес задан в параметрах функции.
+Если заданный адрес не может быть использован, то функция
+<b>mmap</b>
+
+вернет сообщение об ошибке.  Если используется MAP_FIXED, то
+<i>start</i>
+
+должен быть пропорционален размеру страницы. Использование этой опции
+не рекомендуется.
+</dd><dt><b>MAP_SHARED</b>
+
+</dt><dd>
+Разделить использование этого отражения с другими процессами,
+отражающими тот же объект. Запись информации в эту область памяти будет
+эквивалентна записи в файл. Файл может не обновляться до вызова
+функций
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=msync&amp;category=2">msync</a></b>(2)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=munmap&amp;category=2">munmap</a></b>(2)<b>.</b>
+
+</dd><dt><b>MAP_PRIVATE</b>
+
+</dt><dd>
+Создать неразделяемое отражение с механизмом copy-on-write.
+Запись в эту область памяти не влияет на файл.
+Не определено, являются или нет изменения в файле после вызова
+<b>mmap</b>
+
+видимыми в отраженном диапазоне.
+</dd></dl>
+<p>
+
+Вы должны задать либо MAP_SHARED, либо MAP_PRIVATE.
+</p><p>
+
+Эти три флага описаны в POSIX.1b (бывшем POSIX.4) and SUSv2.
+В Linux также анализируются следующие нестандартные флаги:
+</p><dl compact="">
+<dt><b>MAP_DENYWRITE</b>
+
+</dt><dd>
+Этот флаг игнорируется.
+
+(Раньше он обозначал, что попытки записи в подчиненные файлы должны
+завершаться с кодом ошибки ETXTBUSY. Но это стало основой для
+атак типа 'отказ-в-доступе' - 'denial-of-service'.)
+</dd><dt><b>MAP_EXECUTABLE</b>
+
+</dt><dd>
+Этот флаг игнорируется.
+
+
+
+</dd><dt><b>MAP_NORESERVE</b>
+
+</dt><dd>
+(Используется вместе с MAP_PRIVATE.) Не выделяет страницы
+пространства подкачки для этого отображения.
+Если пространство подкачки выделяется, то это частное пространство
+копирования-при-записи может быть изменено.
+Если оно не выделено, то можно получить SIGSEGV при записи
+и отсутствии доступной памяти.
+
+
+</dd><dt><b>MAP_LOCKED</b>
+
+</dt><dd>
+(Linux 2.5.37 и выше) Блокировать страницу или размеченную область
+в памяти так, как это делает
+<b>mlock()</b>.
+
+Этот флаг игнорируется в старых ядрах.
+
+</dd><dt><b>MAP_GROWSDOWN</b>
+
+</dt><dd>
+Используется для стеков. Для VM системы ядра обозначает, что отображение
+должно распространяться вниз по памяти.
+</dd><dt><b>MAP_ANONYMOUS</b>
+
+</dt><dd>
+Отображение не резервируется ни в каком файле; аргументы
+<i>fd</i>
+
+и
+<i>offset</i>
+
+игнорируются. Этот флаг вместе с MAP_SHARED реализован с Linux 2.4.
+</dd><dt><b>MAP_ANON</b>
+
+</dt><dd>
+Псевдоним для MAP_ANONYMOUS. Не используется.
+</dd><dt><b>MAP_FILE</b>
+
+</dt><dd>
+Флаг совместимости. Игнорируется.
+</dd></dl>
+<p>
+
+<b>MAP_32BIT</b>
+
+Поместить размещение в первые 2Гб адресного рпостранства процесса.
+Игнорируется, если указано
+<i>MAP_FIXED</i>.
+
+Этот флаг сейчас поддерживается только на x86-64 для 64-битных программ.
+</p><p>
+
+Некоторые системы документируют дополнительные флаги
+MAP_AUTOGROW, MAP_AUTORESRV, MAP_COPY и MAP_LOCAL.
+</p><p>
+
+<i>fd</i>
+
+должно быть корректным описателем файла, если только не установлено
+MAP_ANONYMOUS, так как в этом случае аргумент игнорируется.
+</p><p>
+
+<i>offset</i>
+
+должен быть пропорционален размеру страницы, получаемому
+при помощи функции
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getpagesize&amp;category=2">getpagesize</a></b>(2).
+
+</p><p>
+
+Memory mapped by
+<b>mmap</b>
+
+is preserved across
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fork&amp;category=2">fork</a></b>(2),
+
+with the same attributes.
+</p><p>
+
+A file is mapped in multiples of the page size. For a file that is not
+a multiple of the page size, the remaining memory is zeroed when mapped,
+and writes to that region are not written out to the file. The effect of
+changing the size of the underlying file of a mapping on the pages that
+correspond to added or removed regions of the file is unspecified.
+Системный вызов
+<b>munmap</b>
+
+удаляет все отражения из заданной области памяти, после чего все
+ссылки на данную область будут вызывать ошибку "неправильное обращение
+к памяти" (invalid memory reference). Отражение удаляется автоматически
+при завершении процесса. С другой стороны, закрытие файла не приведет
+к снятию отражения.
+</p><p>
+
+Адрес
+<i>start</i>
+
+должно быть кратен размеру страницы. Все страницы, содержащие часть
+указанного диапазона, не отображены, и последующие ссылки на эти
+страницы будут генерировать SIGSEGV. Это не будет являться ошибкой,
+если указанный диапазон не содержит отображенных страниц.
+Для отображений 'файл-бэкэнд' поле
+<b>st_atime</b>
+
+отображаемого файла может быть обновлено в любой момент между
+<b>mmap()</b>
+
+и соответствующим снятием отображения; первое обращение к отображенной
+странице обновит поле, если оно до этого уже не было обновлено.
+</p><p>
+
+Поля
+<b>st_ctime</b>
+
+и
+<b>st_mtime</b>
+
+файла, отображенного по PROT_WRITE и MAP_SHARED, будут обновлены
+после записи в отображенний диапазон, и до вызова последующего
+<i>msync()</i>
+
+с флагом MS_SYNC или MS_ASYNC, если такой случится.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+При удачном выполнении
+<b>mmap</b>
+
+возвращает указатель на область с отраженными данными.
+При ошибке возвращается значение MAP_FAILED (-1), а переменная
+<i>errno</i>
+
+приобретает соответствующее значение.
+При удачном выполнении
+<b>munmap</b>
+
+возвращаемое значение равно нулю. При ошибке возвращается
+-1, а переменная
+<i>errno</i>
+
+приобретает соответствующее значение. (Вероятнее всего,
+это будет EINVAL).
+<a name="lbAF">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Будет содержаться
+<i>PROT_EXEC</i>
+
+в
+<i>PROT_READ</i>
+
+или нет - зависит от архитектуры.
+Портируемые прогарммы должны всегда устанавливать
+<i>PROT_EXEC</i>
+
+если они намерены исполлнить код в новом распределении.
+<a name="lbAG">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>EBADF</b>
+
+</dt><dd>
+<i>fd</i>
+
+не является правильным файловым описателем (и не задано MAP_ANONYMOUS).
+</dd><dt><b>EACCES</b>
+
+</dt><dd>
+Описатель файла ссылается на не обычный файл.
+Или была запрошена опция MAP_PRIVATE, но
+<i>fd</i>
+
+не открыт для чтения.  Или была запрошена опция MAP_SHARED с 
+установленным битом PROT_WRITE, а
+<i>fd</i>
+
+не открыт в режиме чтения/записи (O_RDWR).
+Или установлен PROT_WRITE, но файл доступен только-для-дополнения.
+</dd><dt><b>EINVAL</b>
+
+</dt><dd>
+Неправильные значения
+<i>start, </i>
+
+<i>length</i>
+
+или
+<i>offset</i>.
+
+(Т.е., они либо слишком велики, либо не выровнены по границе страницы.)
+
+
+
+</dd><dt><b>ETXTBSY</b>
+
+</dt><dd>
+Была задана опция MAP_DENYWRITE, но заданный объект
+<i>fd</i>
+
+открыт для записи.
+</dd><dt><b>EAGAIN</b>
+
+</dt><dd>
+Файл заблокирован, или блокируется слишком много памяти.
+</dd><dt><b>ENOMEM</b>
+
+</dt><dd>
+Недостаточно памяти в системе, или было превышено максимальное число
+отображения процесса.
+</dd><dt><b>ENODEV</b>
+
+</dt><dd>
+Связанная файловая система для указанного файла не поддерживает
+отображение памяти.
+</dd></dl>
+<p>
+
+Использование отражаемой области памяти может привести к следующим сигналам:
+</p><dl compact="">
+<dt><b>SIGSEGV</b>
+
+</dt><dd>
+(попытка записи в область памяти, заданную mmap как область для чтения);
+</dd><dt><b>SIGBUS</b>
+
+</dt><dd>
+(попытка доступа к части буфера, которая не является файлом; например, она 
+может находиться за пределами файла. Подобной является ситуация, 
+когда другой процесс уменьшает длину файла).
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+SVr4, POSIX.1b (бывший POSIX.4), 4.4BSD, SUSv2.
+SVr4 описывает дополнительные коды ошибок ENXIO и ENODEV.
+SUSv2 описывает дополнительные коды ошибок EMFILE и EOVERFLOW.
+<p>
+<i>MAP_32BIT </i>
+
+ялвется расширением Linux.
+<a name="lbAI">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getpagesize&amp;category=2">getpagesize</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mlock&amp;category=2">mlock</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mmap2&amp;category=2">mmap2</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mremap&amp;category=2">mremap</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=msync&amp;category=2">msync</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=shm_open&amp;category=2">shm_open</a></b>(2),
+
+B.O. Gallmeister, POSIX.4, O'Reilly, pp. 128-129 and 389-391.
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAH">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAI">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="mmap" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

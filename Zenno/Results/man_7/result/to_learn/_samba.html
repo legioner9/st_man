@@ -1,0 +1,436 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN samba (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, samba"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="samba" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">samba (7)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=samba&amp;category=7&amp;russian=0"><u>samba</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=samba&amp;category=7&amp;russian=2"><u>samba</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li><font color="#555555">Ключ <a href="/keywords/samba.html"><u>samba</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+Samba - подобный LanManager'у файл-сервер для UNIX
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>Samba</b>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Пакет
+<b>Samba</b>
+
+представляет собой набор программ, которые реализуют SMB протокол для
+UNIX систем. Этот протокол иногда называют LanManager или Netbios
+протоколом.
+<a name="lbAE">&nbsp;</a>
+<h2>КОМПОНЕНТЫ</h2>
+
+Пакет Samba состоит из различных компонентов. Каждый компонент описывается
+отдельной страницей руководства. Кроме того очень рекомендуется прочитать
+ту документацию к пакету Samba, которая идет вместе со страницами руководства
+к вышеоговоренным компонентам. Если страницы руководства содержат ошибки,
+то, пожалуйста, пришлите мне заплату (patch).
+<p>
+Демон
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smbd&amp;category=8">smbd</a></b>(8)
+
+предоставляет файлов сервис и сервис печати для SMB клиентов, таких как
+Windows for Workgroups, Windows NT или LanManager. Конфигурационный файл
+ддя этого демона описывается в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smb.conf&amp;category=5">smb.conf</a></b>(5).
+
+</p><p>
+Демон
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=nmbd&amp;category=8">nmbd</a></b>(8)
+
+предоставляет сервис имен Netbios и поддержку просмотра сети. Он также
+может быть запущен в интерактивном режиме для запросов на поиск других
+демонов сервиса имен.
+</p><p>
+Программа
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smbclient&amp;category=1">smbclient</a></b>(1)
+
+реализует простого клинта в стиле ftp. Это полезно для доступа к SMB 
+ресурсам на других серверах, совместимых с SMB (таких как WfWg) и также
+может использоваться для печати из UNIX на принтер, присоединенный к
+какому-либо SMB серверу (такому как PC с WfWg).
+</p><p>
+Утилита
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=testparm&amp;category=1">testparm</a></b>(1)
+
+позволяет вам протестировать ваш конфигурационный файл
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smb.conf&amp;category=5">smb.conf</a></b>(5).
+
+</p><p>
+Утилита
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smbstatus&amp;category=1">smbstatus</a></b>(1)
+
+позволяет вам увидеть, кто в данный момент использует сервер
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smbd&amp;category=8">smbd</a></b>(8).
+
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>ДОСТУПНОСТЬ</h2>
+
+Пакет Samba паспостраняется по лицензии GPL (Gnu Public License).
+Копия этой лиценции идет вместе с этим пакетом. Вам разрешается
+распостранять копии пакета Samba, но пожалуйста, распостраняйте их
+целиком.
+<p>
+Последняя версия пакета Samba может быть получена с ftp-сервера
+samba.anu.edu.au из каталога pub/samba/. Она также доступна на
+различных сайтах-зеркалах в Internet.
+</p><p>
+Кроме того, вы можете найти полезную информацию о Samba в конференции
+USENET под названием comp.protocols.smb, а также по списку рассылки Samba.
+Подробности о том как подписать на список расслыки даются в файле README
+который находится в пакете Samba.
+</p><p>
+Если вы имеете доступ к Web брацзеру (такому как Netscape или Mosaic),
+то вы найдете множество полезной информации, включая список рассылки
+на <a href="http://samba.anu.edu.au/samba/">http://samba.anu.edu.au/samba/</a>
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>АВТОР</h2>
+
+<p>
+Главным автором пакета Samba является Andrew Tridgell. С ним можно связаться
+по адресу e-mail: <a href="mailto:samba-bugs@samba.anu.edu.au">samba-bugs@samba.anu.edu.au</a>.
+</p><p>
+Кроме того есть множество соавторов Samba по всему миру. Частичный список
+соавторов дан ниже, в секции CREDITS. Этот список, однако, устарел.
+Информация об обновлениях пакета может быть получена из файла change-log
+который идет вместе с исходными текстами Samba.
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>СОТРУДНИЧЕСТВО</h2>
+
+<p>
+Если вы хотите присоединится к проекту Samba, то я советую вам подписаться
+на список рассылки Samba.
+</p><p>
+Если вы имеете заплаты (patch) или выявили баги, то вы можете прислать
+их напрямую на адрес <a href="mailto:samba-bugs@samba.anu.edu.au">samba-bugs@samba.anu.edu.au</a>. Однако, заметим, что
+из-за громадной популярности этого пакета я могу задержаться с ответом,
+Я предпочитаю патчи в формате "diff -u".
+</p><p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>CREDITS</h2>
+
+<p>
+Соавторами по данному проетку являются (в алфавитном порядке по адресам
+email):
+</p><p>
+(ЗАМЕЧАНИЕ: Этот список сильно устарел)
+</p><p>
+<br>&nbsp;Adams,&nbsp;Graham
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:gadams@ddrive.demon.co.uk">gadams@ddrive.demon.co.uk</a>)<br>
+<br>&nbsp;Allison,&nbsp;Jeremy
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:jeremy@netcom.com">jeremy@netcom.com</a>)<br>
+<br>&nbsp;Andrus,&nbsp;Ross
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:ross@augie.insci.com">ross@augie.insci.com</a>)<br>
+<br>&nbsp;Auer,&nbsp;Karl
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:Karl.Auer@anu.edu.au">Karl.Auer@anu.edu.au</a>)<br>
+<br>&nbsp;Bogstad,&nbsp;Bill
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:bogstad@cs.jhu.edu">bogstad@cs.jhu.edu</a>)<br>
+<br>&nbsp;Boreham,&nbsp;Bryan
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:Bryan@alex.com">Bryan@alex.com</a>)<br>
+<br>&nbsp;Boreham,&nbsp;David
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:davidb@ndl.co.uk">davidb@ndl.co.uk</a>)<br>
+<br>&nbsp;Butler,&nbsp;Michael
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:imb@asstdc.scgt.oz.au">imb@asstdc.scgt.oz.au</a>)<br>
+<br>&nbsp;???
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:charlie@edina.demon.co.uk">charlie@edina.demon.co.uk</a>)<br>
+<br>&nbsp;Chua,&nbsp;Michael
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:lpc@solomon.technet.sg">lpc@solomon.technet.sg</a>)<br>
+<br>&nbsp;Cochran,&nbsp;Marc
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:mcochran@wellfleet.com">mcochran@wellfleet.com</a>)<br>
+<br>&nbsp;Dey,&nbsp;Martin&nbsp;N
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:mnd@netmgrs.co.uk">mnd@netmgrs.co.uk</a>)<br>
+<br>&nbsp;Errath,&nbsp;Maximilian
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:errath@balu.kfunigraz.ac.at">errath@balu.kfunigraz.ac.at</a>)<br>
+<br>&nbsp;Fisher,&nbsp;Lee
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:leefi@microsoft.com">leefi@microsoft.com</a>)<br>
+<br>&nbsp;Foderaro,&nbsp;Sean
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:jkf@frisky.Franz.COM">jkf@frisky.Franz.COM</a>)<br>
+<br>&nbsp;Greer,&nbsp;Brad
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:brad@cac.washington.edu">brad@cac.washington.edu</a>)<br>
+<br>&nbsp;Griffith,&nbsp;Michael&nbsp;A
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:grif@cs.ucr.edu">grif@cs.ucr.edu</a>)<br>
+<br>&nbsp;Grosen,&nbsp;Mark
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:MDGrosen@spectron.COM">MDGrosen@spectron.COM</a>)<br>
+<br>&nbsp;????
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:gunjkoa@dep.sa.gov.au">gunjkoa@dep.sa.gov.au</a>)<br>
+<br>&nbsp;Haapanen,&nbsp;Tom
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:tomh@metrics.com">tomh@metrics.com</a>)<br>
+<br>&nbsp;Hench,&nbsp;Mike
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:hench@cae.uwm.edu">hench@cae.uwm.edu</a>)<br>
+<br>&nbsp;Horstman,&nbsp;Mark&nbsp;A
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:mh2620@sarek.sbc.com">mh2620@sarek.sbc.com</a>)<br>
+<br>&nbsp;Hudson,&nbsp;Tim
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:tim.hudson@gslmail.mincom.oz.au">tim.hudson@gslmail.mincom.oz.au</a>)<br>
+<br>&nbsp;Hulthen,&nbsp;Erik&nbsp;Magnus
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:magnus@axiom.se">magnus@axiom.se</a>)<br>
+<br>&nbsp;???
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:imb@asstdc.scgt.oz.au">imb@asstdc.scgt.oz.au</a>)<br>
+<br>&nbsp;Iversen,&nbsp;Per&nbsp;Steinar
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:iversen@dsfys1.fi.uib.no">iversen@dsfys1.fi.uib.no</a>)<br>
+<br>&nbsp;Kaara,&nbsp;Pasi
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:ppk@atk.tpo.fi">ppk@atk.tpo.fi</a>)<br>
+<br>&nbsp;Karman,&nbsp;Merik
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:merik@blackadder.dsh.oz.au">merik@blackadder.dsh.oz.au</a>)<br>
+<br>&nbsp;Kiff,&nbsp;Martin
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:mgk@newton.npl.co.uk">mgk@newton.npl.co.uk</a>)<br>
+<br>&nbsp;Kiick,&nbsp;Chris
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:cjkiick@flinx.b11.ingr.com">cjkiick@flinx.b11.ingr.com</a>)<br>
+<br>&nbsp;Kukulies,&nbsp;Christoph
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:kuku@acds.physik.rwth-aachen.de">kuku@acds.physik.rwth-aachen.de</a>)<br>
+<br>&nbsp;???
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:lance@fox.com">lance@fox.com</a>)<br>
+<br>&nbsp;Leighton,&nbsp;Luke
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:lkcl@pires.co.uk">lkcl@pires.co.uk</a>)<br>
+<br>&nbsp;Lendecke,&nbsp;Volker
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:lendecke@namu01.gwdg.de">lendecke@namu01.gwdg.de</a>)<br>
+<br>&nbsp;???
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:lonnie@itg.ti.com">lonnie@itg.ti.com</a>)<br>
+<br>&nbsp;Mahoney,&nbsp;Paul&nbsp;Thomas
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:ptm@xact1.xact.com">ptm@xact1.xact.com</a>)<br>
+<br>&nbsp;Mauelshagen,&nbsp;Heinz
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:mauelsha@ez.da.telekom.de">mauelsha@ez.da.telekom.de</a>)<br>
+<br>&nbsp;Merrick,&nbsp;Barry&nbsp;G
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:bgm@atml.co.uk">bgm@atml.co.uk</a>)<br>
+<br>&nbsp;Mol,&nbsp;Marcel
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:marcel@fanout.et.tudeflt.nl">marcel@fanout.et.tudeflt.nl</a>)<br>
+<br>&nbsp;???
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:njw@cpsg.com.au">njw@cpsg.com.au</a>)<br>
+<br>&nbsp;???
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:noses@oink.rhein.de">noses@oink.rhein.de</a>)<br>
+<br>&nbsp;Owens,&nbsp;John
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:john@micros.com">john@micros.com</a>)<br>
+<br>&nbsp;Pierson,&nbsp;Jacques
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:pierson@ketje.enet.dec.com">pierson@ketje.enet.dec.com</a>)<br>
+<br>&nbsp;Powell,&nbsp;Mark
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:mark@scot1.ucsalf.ac.uk">mark@scot1.ucsalf.ac.uk</a>)<br>
+<br>&nbsp;Reiz,&nbsp;Steven
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:sreiz@aie.nl">sreiz@aie.nl</a>)<br>
+<br>&nbsp;Schlaeger,&nbsp;Joerg
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:joergs@toppoint.de">joergs@toppoint.de</a>)<br>
+<br>&nbsp;S{rkel{,&nbsp;Vesa
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:vesku@rankki.kcl.fi">vesku@rankki.kcl.fi</a>)<br>
+<br>&nbsp;Terpstra,&nbsp;John
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:jht@aquasoft.com.au">jht@aquasoft.com.au</a>)<br>
+<br>&nbsp;Tridgell,&nbsp;Andrew
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:samba-bugs@samba.anu.edu.au">samba-bugs@samba.anu.edu.au</a>)<br>
+<br>&nbsp;Troyer,&nbsp;Dean
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:troyer@saifr00.ateng.az.honeywell.com">troyer@saifr00.ateng.az.honeywell.com</a>)<br>
+<br>&nbsp;Wakelin,&nbsp;Ross
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:rossw@march.co.uk">rossw@march.co.uk</a>)<br>
+<br>&nbsp;Wessels,&nbsp;Stefan
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:SWESSELS@dos-lan.cs.up.ac.za">SWESSELS@dos-lan.cs.up.ac.za</a>)<br>
+<br>&nbsp;Young,&nbsp;Ian&nbsp;A
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:iay@threel.co.uk">iay@threel.co.uk</a>)<br>
+<br>&nbsp;van&nbsp;der&nbsp;Zwan,&nbsp;Paul
+<br>&nbsp;<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(<a href="mailto:paulzn@olivetti.nl">paulzn@olivetti.nl</a>)<br>
+</p><p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">КОМПОНЕНТЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">ДОСТУПНОСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAG">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAH">СОТРУДНИЧЕСТВО</a></dt><dd>
+</dd><dt><a href="#lbAI">CREDITS</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="samba" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

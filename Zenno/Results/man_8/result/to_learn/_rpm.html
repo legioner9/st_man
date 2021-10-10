@@ -1,0 +1,1249 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN rpm (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, rpm"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="rpm" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">rpm (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=rpm&amp;category=8&amp;russian=0"><u>rpm</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=rpm&amp;category=8&amp;russian=2"><u>rpm</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/rpm.html"><u>rpm</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+rpm - Менеджер пакетов RPM
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<a name="lbAD">&nbsp;</a>
+<h3>ЗАПРОС И ПРОВЕРКА ПАКЕТОВ:</h3>
+
+<p>
+
+</p><p>
+</p><p>
+<b>rpm</b> {<b>-q|--query</b>} [<b>опции-выбора</b>] [<b>опции-запроса</b>]
+</p><p>
+</p><p>
+</p><p>
+<b>rpm</b> {<b>-V|--verify</b>} [<b>опции-выбора</b>] [<b>опции-проверки</b>]
+</p><p>
+</p><p>
+</p><p>
+<b>rpm</b> <b>--import</b> <b></b><i>PUBKEY</i><b></b><i> ...</i>
+</p><p>
+</p><p>
+</p><p>
+<b>rpm</b> {<b>-K|--checksig</b>} [<b>--nosignature</b>] [<b>--nodigest</b>]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b></b><i>PACKAGE_FILE</i><b></b><i>&nbsp;...</i>
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h3>УСТАНОВКА, ОБНОВЛЕНИЕ И УДАЛЕНИЕ ПАКЕТОВ:</h3>
+
+<p>
+
+</p><p>
+</p><p>
+<b>rpm</b> {<b>-i|--install</b>} [<b>опции-установки</b>] <b></b><i>PACKAGE_FILE</i><b></b><i> ...</i>
+</p><p>
+</p><p>
+</p><p>
+<b>rpm</b> {<b>-U|--upgrade</b>} [<b>опции-установки</b>] <b></b><i>PACKAGE_FILE</i><b></b><i> ...</i>
+</p><p>
+</p><p>
+</p><p>
+<b>rpm</b> {<b>-F|--freshen</b>} [<b>опции-установки</b>] <b></b><i>PACKAGE_FILE</i><b></b><i> ...</i>
+</p><p>
+</p><p>
+</p><p>
+<b>rpm</b> {<b>-e|--erase</b>} [<b>--allmatches</b>] [<b>--nodeps</b>] [<b>--noscripts</b>]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;[<b>--notriggers</b>]&nbsp;[<b>--repackage</b>]&nbsp;[<b>--test</b>]&nbsp;<b></b><i>PACKAGE_NAME</i><b></b><i>&nbsp;...</i>
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h3>РАЗНОЕ:</h3>
+
+<p>
+
+</p><p>
+</p><p>
+<b>rpm</b> {<b>--initdb|--rebuilddb</b>}
+</p><p>
+</p><p>
+</p><p>
+<b>rpm</b> {<b>--addsign|--resign</b>} <b></b><i>PACKAGE_FILE</i><b></b><i> ...</i>
+</p><p>
+</p><p>
+</p><p>
+<b>rpm</b> {<b>--querytags|--showrc</b>}
+</p><p>
+</p><p>
+</p><p>
+<b>rpm</b> {<b>--setperms|--setugids</b>} <b></b><i>PACKAGE_NAME</i><b></b><i> ...</i>
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h3>опции-выбора</h3>
+
+<p>
+
+</p><p>
+</p><p>
+<br>&nbsp;[<b></b><i>PACKAGE_NAME</i><b></b>]&nbsp;[<b>-a,--all</b>]&nbsp;[<b>-f,--file&nbsp;</b><i>FILE</i><b></b>]
+<br>&nbsp;[<b>-g,--group&nbsp;</b><i>GROUP</i><b></b>]&nbsp;{<b>-p,--package&nbsp;</b><i>PACKAGE_FILE</i><b></b>]
+<br>&nbsp;[<b>--fileid&nbsp;</b><i>MD5</i><b></b>]&nbsp;[<b>--hdrid&nbsp;</b><i>SHA1</i><b></b>]&nbsp;[<b>--pkgid&nbsp;</b><i>MD5</i><b></b>]&nbsp;[<b>--tid&nbsp;</b><i>TID</i><b></b>]
+<br>&nbsp;[<b>--querybynumber&nbsp;</b><i>HDRNUM</i><b></b>]&nbsp;[<b>--triggeredby&nbsp;</b><i>PACKAGE_NAME</i><b></b>]
+<br>&nbsp;[<b>--whatprovides&nbsp;</b><i>CAPABILITY</i><b></b>]&nbsp;[<b>--whatrequires&nbsp;</b><i>CAPABILITY</i><b></b>]
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h3>опции-запроса</h3>
+
+<p>
+
+</p><p>
+</p><p>
+<br>&nbsp;[<b>--changelog</b>]&nbsp;[<b>-c,--configfiles</b>]&nbsp;[<b>-d,--docfiles</b>]&nbsp;[<b>--dump</b>]
+<br>&nbsp;[<b>--filesbypkg</b>]&nbsp;[<b>-i,--info</b>]&nbsp;[<b>--last</b>]&nbsp;[<b>-l,--list</b>]
+<br>&nbsp;[<b>--provides</b>]&nbsp;[<b>--qf,--queryformat&nbsp;</b><i>QUERYFMT</i><b></b>]
+<br>&nbsp;[<b>-R,--requires</b>]&nbsp;[<b>--scripts</b>]&nbsp;[<b>-s,--state</b>]
+<br>&nbsp;[<b>--triggers,--triggerscripts</b>]
+</p><p>
+<a name="lbAI">&nbsp;</a>
+</p><h3>опции-проверки</h3>
+
+<p>
+
+</p><p>
+</p><p>
+<br>&nbsp;[<b>--nodeps</b>]&nbsp;[<b>--nofiles</b>]&nbsp;[<b>--noscripts</b>]
+<br>&nbsp;[<b>--nodigest</b>]&nbsp;[<b>--nosignature</b>]
+<br>&nbsp;[<b>--nolinkto</b>]&nbsp;[<b>--nomd5</b>]&nbsp;[<b>--nosize</b>]&nbsp;[<b>--nouser</b>]
+<br>&nbsp;[<b>--nogroup</b>]&nbsp;[<b>--nomtime</b>]&nbsp;[<b>--nomode</b>]&nbsp;[<b>--nordev</b>]
+</p><p>
+<a name="lbAJ">&nbsp;</a>
+</p><h3>опции-установки</h3>
+
+<p>
+
+</p><p>
+</p><p>
+<br>&nbsp;[<b>--aid</b>]&nbsp;[<b>--allfiles</b>]&nbsp;[<b>--badreloc</b>]&nbsp;[<b>--excludepath&nbsp;</b><i>OLDPATH</i><b></b>]
+<br>&nbsp;[<b>--excludedocs</b>]&nbsp;[<b>--force</b>]&nbsp;[<b>-h,--hash</b>]
+<br>&nbsp;[<b>--ignoresize</b>]&nbsp;[<b>--ignorearch</b>]&nbsp;[<b>--ignoreos</b>]
+<br>&nbsp;[<b>--includedocs</b>]&nbsp;[<b>--justdb</b>]&nbsp;[<b>--nodeps</b>]
+<br>&nbsp;[<b>--nodigest</b>]&nbsp;[<b>--nosignature</b>]&nbsp;[<b>--nosuggest</b>]
+<br>&nbsp;[<b>--noorder</b>]&nbsp;[<b>--noscripts</b>]&nbsp;[<b>--notriggers</b>]
+<br>&nbsp;[<b>--oldpackage</b>]&nbsp;[<b>--percent</b>]&nbsp;[<b>--prefix&nbsp;</b><i>NEWPATH</i><b></b>]
+<br>&nbsp;[<b>--relocate&nbsp;</b><i>OLDPATH</i><b>=</b><i>NEWPATH</i><b></b>]
+<br>&nbsp;[<b>--repackage</b>]&nbsp;[<b>--replacefiles</b>]&nbsp;[<b>--replacepkgs</b>]
+<br>&nbsp;[<b>--test</b>]
+</p><p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<p>
+
+<b>rpm</b> - это мощный <b>Менеджер Пакетов</b>,
+который может быть использован для сборки, установки, запроса, проверки,
+обновления и удаления отдельных программных пакетов.
+<b>Пакет</b> содержит архив с файлами и метаданные, используемые для
+установки и удаления файлов архива. Метаданные включают сценарии,
+атрибуты файлов и информацию с описанием пакета. 
+<b>Пакеты</b> бывают двух типов: двоичные пакеты, используемые для
+объединения устанавливаемых программ, и пакеты с исходными кодами,
+включающие исходные коды и описание способа формирования двоичного пакета.
+</p><p>
+
+Необходимо указать один из следующих основных режимов работы:
+<b>Запрос</b>,
+<b>Проверка</b>,
+<b>Проверка подписи</b>,
+<b>Установка/Обновление/Освежение</b>,
+<b>Удаление</b>,
+<b>Инициализация Базы данных</b>,
+<b>Перестройка Базы данных</b>,
+<b>Повторная подпись</b>,
+<b>Добавление подписи</b>,
+<b>Задание Владельцев/Групп</b>,
+<b>Отображение тегов запроса</b> и
+<b>Отображение конфигурации</b>.
+<a name="lbAL">&nbsp;</a>
+</p><h3>ОБЩИЕ ОПЦИИ</h3>
+
+<p>
+
+Эти опции могут быть использованы во всех режимах.
+</p><dl compact="">
+<dt><b>-?, --help</b></dt><dd>
+Вывести более детальную, чем обычно, справку об использовании.
+</dd><dt><b>--version</b></dt><dd>
+Вывести одну строку, содержащую номер версии <b>rpm</b>. 
+</dd><dt><b>--quiet</b></dt><dd>
+Выводить как можно меньше сообщений - как правило, отображаются только
+сообщения об ошибках.
+</dd><dt><b>-v</b></dt><dd>
+Выводить подробную информацию - как правило, отображаются сообщения о
+выполнении всех шагов.
+</dd><dt><b>-vv</b></dt><dd>
+Выводить много отладочной информации.
+</dd><dt><b>--rcfile </b><i>FILELIST</i><b></b></dt><dd>
+Каждый из файлов разделенного двоеточиями списка файлов <i>FILELIST</i> последовательно
+прочитывается <i>rpm</i> на предмет конфигурационной информации.  
+В этом списке обязан существовать только первый файл; 
+все знаки тильда будут заменены значением <b>$HOME</b>.
+По умолчанию список файлов <i>FILELIST</i> выглядит как 
+<i>/usr/lib/rpm/rpmrc</i>:<i>/usr/lib/rpm/redhat/rpmrc</i>:<i>/etc/rpmrc</i>:<i>~/.rpmrc</i>.
+</dd><dt><b>--pipe </b><i>CMD</i><b></b></dt><dd>
+Перенаправляет вывод <b>rpm</b> на вход команды <i>CMD</i>.
+</dd><dt><b>--dbpath </b><i>DIRECTORY</i><b></b></dt><dd>
+Использовать базу данных RPM в каталоге <i>DIRECTORY</i> вместо пути по умолчанию
+<i>/var/lib/rpm</i>
+</dd><dt><b>--root </b><i>DIRECTORY</i><b></b></dt><dd>
+Использовать для всех операций файловую систему с корнем в <i>DIRECTORY</i>.  
+Обратите внимание, что это значит, что база данных внутри <i>DIRECTORY</i> 
+будет использоваться для проверки зависимостей, и все сценарии <b>%post</b> и <b>%prep</b> 
+будут исполняться после <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chroot&amp;category=2">chroot</a>(2) в <i>DIRECTORY</i>.
+</dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h3>ОПЦИИ УСТАНОВКИ И ОБНОВЛЕНИЯ</h3>
+
+<p>
+
+Общая форма команды установки rpm приведена ниже
+</p><p>
+
+</p><p>
+<b>rpm</b> {<b>-i|--install</b>} [<b>опции-установки</b>] <b></b><i>PACKAGE_FILE</i><b></b><i> ...</i>
+</p><p>
+</p><p>
+
+Так выполняется установка нового пакета.
+</p><p>
+
+Общая форма команды обновления rpm приведена ниже
+</p><p>
+
+</p><p>
+<b>rpm</b> {<b>-U|--upgrade</b>} [<b>опции-установки</b>] <b></b><i>PACKAGE_FILE</i><b></b><i> ...</i>
+</p><p>
+</p><p>
+
+Так выполняется установка или обновление уже установленного 
+пакета до новой версии. Эта операция аналогична установке,
+при этом все другие версии удаляются после установки
+нового пакета.
+</p><p>
+
+</p><p>
+<b>rpm</b> {<b>-F|--freshen</b>} [<b>опции-установки</b>] <b></b><i>PACKAGE_FILE</i><b></b><i> ...</i>
+</p><p>
+</p><p>
+
+Так выполняется обновление пакетов, но только если предыдущая
+версия уже установлена. Параметр <i>PACKAGE_FILE</i> может быть
+указан как адрес 
+<b>ftp</b> или 
+<b>http</b> URL,
+в таком случае пакет будет скачан перед установкой. См.
+<b>ОПЦИИ FTP/HTTP</b>
+для получения информации о работе <b>rpm</b> с поддержкой
+<b>ftp</b> или
+<b>http</b>.
+</p><p>
+</p><p>
+
+</p><dl compact="">
+<dt><b>--aid</b></dt><dd>
+Добавляет при необходимости предложенные пакеты в набор транзакции.
+</dd><dt><b>--allfiles</b></dt><dd>
+Устанавливает или обновляет все файлы с флагом missingok в пакете,
+независимо от их существования.
+</dd><dt><b>--badreloc</b></dt><dd>
+Используется вместе с <b>--relocate</b>, разрешает перемещение
+всех путей файлов, не только тех, для которых старые пути <i>OLDPATH</i>
+включены в заметки по перемещению (relocation hint) в бинарном пакете.
+</dd><dt><b>--excludepath </b><i>OLDPATH</i><b></b></dt><dd>
+Не устанавливать файлы названия, которых начинаются с 
+<i>OLDPATH</i>.
+</dd><dt><b>--excludedocs</b></dt><dd>
+Не устанавливать файлы помеченные как документация
+(включающие man страницы и документы texinfo).
+</dd><dt><b>--force</b></dt><dd>
+Эквивалентно использованию 
+<b>--replacepkgs</b>,
+<b>--replacefiles</b> и
+<b>--oldpackage</b>.
+</dd><dt><b>-h, --hash</b></dt><dd>
+Выводит 50 отметок при распаковке архива.
+Используется с <b>-v|--verbose</b> для удобства отображения.
+</dd><dt><b>--ignoresize</b></dt><dd>
+Не проверять подключенные файловые системы на наличие необходимого
+места на диске перед установкой данного пакета.  
+</dd><dt><b>--ignorearch</b></dt><dd>
+Разрешить установку или обновление, даже если архитектуры
+бинарного пакета и узла не совпадают.
+</dd><dt><b>--ignoreos</b></dt><dd>
+Разрешить установку или обновление, даже если операционные системы
+бинарного пакета и узла не совпадают.
+</dd><dt><b>--includedocs</b></dt><dd>
+Устанавливать файлы с документацией. Это поведение задано по умолчанию.
+</dd><dt><b>--justdb</b></dt><dd>
+Обновить только информацию в базе, но не файловые системы. 
+</dd><dt><b>--nodigest</b></dt><dd>
+Не проверять при чтении дайджест пакета или заголовка.
+</dd><dt><b>--nosignature</b></dt><dd>
+Не проверять при чтении подпись пакета или заголовка.
+</dd><dt><b>--nodeps</b></dt><dd>
+Не выполнять проверку зависимостей перед установкой или обновлением пакета.
+</dd><dt><b>--nosuggest</b></dt><dd>
+Не предлагать пакет(ы) для разрешения отсутствующих зависимостей.
+</dd><dt><b>--noorder</b></dt><dd>
+Не выполнять переупорядочивание пакетов для установки. Список пакетов
+обычно переупорядочивается для удовлетворения зависимостей.
+</dd><dt><b>--noscripts</b></dt><dd>
+</dd><dt><b>--nopre</b></dt><dd>
+</dd><dt><b>--nopost</b></dt><dd>
+</dd><dt><b>--nopreun</b></dt><dd>
+</dd><dt><b>--nopostun</b></dt><dd>
+Не выполнять скриптлеты с указанным именем. 
+Опция <b>--noscripts</b> эквивалентна
+<p>
+<b>--nopre</b>
+<b>--nopost</b>
+<b>--nopreun</b>
+<b>--nopostun</b>
+</p><p>
+и выключает исполнение соответствующих
+<b>%pre</b>,
+<b>%post</b>,
+<b>%preun</b> и
+<b>%postun</b>
+скриптлетов.
+</p></dd><dt><b>--notriggers</b></dt><dd>
+</dd><dt><b>--notriggerin</b></dt><dd>
+</dd><dt><b>--notriggerun</b></dt><dd>
+</dd><dt><b>--notriggerpostun</b></dt><dd>
+<p>
+Не выполнять ни какие триггерные скриптлеты с указанным именем.
+Опция <b>--notriggers</b> эквивалентна 
+</p><p>
+<b>--notriggerin</b>
+<b>--notriggerun</b>
+<b>--notriggerpostun</b>
+</p><p>
+и выключает исполнение соответствующих
+<b>%triggerin</b>,
+<b>%triggerun</b> и
+<b>%triggerpostun</b>
+скриптлетов.
+</p></dd><dt><b>--oldpackage</b></dt><dd>
+Разрешает обновить или заменить новый пакет более старой версией.
+</dd><dt><b>--percent</b></dt><dd>
+Вывести информацию в процентах по мере распаковки файлов из архива пакета.
+Она предназначена для упрощения вызова <b>rpm</b> из других утилит.
+</dd><dt><b>--prefix </b><i>NEWPATH</i><b></b></dt><dd>
+Для перемещаемых бинарных пакетов, преобразовать все пути файлов,
+которые начинаются с инсталляционного префикса в заметках по
+перемещению (relocation hint) на <i>NEWPATH</i>.
+</dd><dt><b>--relocate </b><i>OLDPATH</i><b>=</b><i>NEWPATH</i><b></b></dt><dd>
+Для перемещаемых бинарных пакетов, преобразовать все пути файлов,
+которые начинаются с <i>OLDPATH</i> в заметках по
+перемещению (relocation hint) на <i>NEWPATH</i>.
+Данная опция может быть использована несколько раз,
+если требуется переместить несколько путей <i>OLDPATH</i>
+в пакете.
+</dd><dt><b>--repackage</b></dt><dd>
+Переупаковать файлы перед удалением. Ранее установленный пакет
+будет назван в соответствии с макросом
+<b>%_repackage_name_fmt</b>
+и будет создан в каталоге, названном по значению макроса
+<b>%_repackage_dir</b> (значение по умолчанию - 
+<i>/var/spool/repackage</i>).
+</dd><dt><b>--replacefiles</b></dt><dd>
+Установить пакеты, даже если они заменяют файлы от других
+установленных пакетов.
+</dd><dt><b>--replacepkgs</b></dt><dd>
+Установить пакеты, даже если они уже установлены в системе.
+</dd><dt><b>--test</b></dt><dd>
+Не устанавливать пакеты, просто выполнить проверку и сообщить
+о потенциальных конфликтах.
+</dd></dl>
+<a name="lbAN">&nbsp;</a>
+<h3>ОПЦИИ УДАЛЕНИЯ</h3>
+
+<p>
+
+Общая форма команды удаления rpm приведена ниже
+</p><p>
+
+</p><p>
+<b>rpm</b> {<b>-e|--erase</b>} [<b>--allmatches</b>] [<b>--nodeps</b>] [<b>--noscripts</b>] [<b>--notriggers</b>] [<b>--repackage</b>] [<b>--test</b>] <b></b><i>PACKAGE_NAME</i><b></b><i> ...</i>
+</p><p>
+</p><p>
+
+Следующие опции могут быть также использованы:
+</p><dl compact="">
+<dt><b>--allmatches</b></dt><dd>
+Удалить все версии пакета совпадающие с 
+<i>PACKAGE_NAME</i>. Обычно при наличии нескольких
+пакетов совпадающих с <i>PACKAGE_NAME</i>
+возникает ошибка.
+</dd><dt><b>--nodeps</b></dt><dd>
+Не проверять зависимости перед удалением пакетов.
+</dd><dt><b>--noscripts</b></dt><dd>
+</dd><dt><b>--nopreun</b></dt><dd>
+</dd><dt><b>--nopostun</b></dt><dd>
+Не выполнять скриптлеты с указанными именами.
+Наличие параметра <b>--noscripts</b> при удалении пакетов
+эквивалентно 
+<p>
+<b>--nopreun</b>
+<b>--nopostun</b>
+</p><p>
+и выключает исполнение соответствующих скриптлетов
+<b>%preun</b> и
+<b>%postun</b>.
+</p></dd><dt><b>--notriggers</b></dt><dd>
+</dd><dt><b>--notriggerun</b></dt><dd>
+</dd><dt><b>--notriggerpostun</b></dt><dd>
+Не выполнять ни какие триггерные скриптлеты с указанным именем. 
+Опция <b>--notriggers</b> эквивалентна 
+<p>
+<b>--notriggerun</b>
+<b>--notriggerpostun</b>
+</p><p>
+и выключает исполнение соответствующих 
+<b>%triggerun</b> и
+<b>%triggerpostun</b> 
+скриптлетов.
+</p></dd><dt><b>--repackage</b></dt><dd>
+Переупаковать файлы перед удалением. Ранее установленный пакет 
+будет назван в соответствии с макросом
+<b>%_repackage_name_fmt</b>
+и будет создан в каталоге, названном по значению макроса
+<b>%_repackage_dir</b> (значение по умолчанию 
+- <i>/var/spool/repackage</i>).
+</dd><dt><b>--test</b></dt><dd>
+Не удалять пакеты, просто выполнить проверку.
+Удобно использовать этот параметр при отладке совместно 
+с опцией <b>-vv</b>.
+</dd></dl>
+<a name="lbAO">&nbsp;</a>
+<h3>ОПЦИИ ЗАПРОСА</h3>
+
+<p>
+
+Общая форма команды запроса rpm приведена ниже
+</p><p>
+
+</p><p>
+<b>rpm</b> {<b>-q|--query</b>} [<b>select-options</b>] [<b>query-options</b>]
+</p><p>
+</p><p>
+
+Существует возможность задать формат вывода информации о пакете.
+Для этого необходимо использовать параметр
+</p><p>
+<br>&nbsp;<b>--qf|--queryformat</b>&nbsp;<b></b><i>QUERYFMT</i><b></b>
+</p><p>
+вслед за которым указывается строка формата <i>QUERYFMT</i>.  
+Форматирование запроса - это измененная версия стандартного 
+механизма <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=printf&amp;category=3">printf</a>(3)</b>. Форматирование формируется из 
+статических строк (которые могут включать стандартные для 
+языка C escape-последовательности для перевода строки, табуляции 
+и других спец. символов) и меток форматирования <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=printf&amp;category=3">printf</a>(3)</b>. 
+Т.к. <b>rpm</b> заранее знает тип выводимой информации, указатель 
+формата может быть опущен и заменен на имя выводимого тега заголовка, 
+заключенного в фигурные скобки <b>{}</b>. Имена тегов не чувствительны 
+к регистру и префикс <b>RPMTAG_</b> в имени тега можно опускать.
+</p><p>
+
+Альтернативные форматы вывода могут быть заданы при помощи 
+задания типа вывода <b>:</b><i>typetag</i><b></b> после имени тега.
+В данный момент поддерживаются следующие типы:
+</p><dl compact="">
+<dt><b>:armor</b></dt><dd>
+Упаковать публичный ключ в ASCII вид.
+</dd><dt><b>:base64</b></dt><dd>
+Закодировать двоичные данные в формат base64.
+</dd><dt><b>:date</b></dt><dd>
+Использовать формат <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=strftime&amp;category=3">strftime</a>(3) "%c".
+</dd><dt><b>:day</b></dt><dd>
+Использовать формат <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=strftime&amp;category=3">strftime</a>(3) "%a %b %d %Y".
+</dd><dt><b>:depflags</b></dt><dd>
+Форматировать флаги зависимостей.
+</dd><dt><b>:fflags</b></dt><dd>
+Форматировать флаги файлов.
+</dd><dt><b>:hex</b></dt><dd>
+В шестнадцатеричном виде.
+</dd><dt><b>:octal</b></dt><dd>
+В восьмеричном виде.
+</dd><dt><b>:perms</b></dt><dd>
+Форматировать права доступа файлов.
+</dd><dt><b>:shescape</b></dt><dd>
+Экранировать одиночные кавычки для применения в сценариях.
+</dd><dt><b>:triggertype</b></dt><dd>
+Вывести суффикс триггера.
+</dd></dl>
+<p>
+
+Например, для вывода только имени пакета при запросе, вы можете 
+использовать строку формата <b>%{NAME}</b>.
+Для вывода имени пакетов и информации о дистрибутиве в две колонки 
+вы можете использовать <b>%-30{NAME}%{DISTRIBUTION}</b>.
+Команда <b>rpm</b> отобразит спиков всех тегов, с которыми она может работать 
+при ее вызове с параметром <b>--querytags</b>.
+</p><p>
+
+Существуют два набора параметров для выполнения запросов: для выбора пакетов
+и для указания информации.
+<a name="lbAP">&nbsp;</a>
+</p><h3>ОПЦИИ ВЫБОРА ПАКЕТОВ:</h3>
+
+<p>
+
+</p><dl compact="">
+<dt><b></b><i>PACKAGE_NAME</i><b></b></dt><dd>
+Выполняет запрос к установленному пакету с именем <i>PACKAGE_NAME</i>.
+</dd><dt><b>-a, --all</b></dt><dd>
+Выполняет запрос ко всем установленным пакетам.
+</dd><dt><b>-f, --file </b><i>FILE</i><b></b></dt><dd>
+Выполняет запрос к пакету, владельцу файла <i>FILE</i>.
+</dd><dt><b>--fileid </b><i>MD5</i><b></b></dt><dd>
+Выполняет запрос к пакету, который содержит указанный идентификатор файла, 
+т.е. <i>MD5</i> дайджест содержимого файла.
+</dd><dt><b>-g, --group </b><i>GROUP</i><b></b></dt><dd>
+Выполняет запрос к пакету с группой <i>GROUP</i>.
+</dd><dt><b>--hdrid </b><i>SHA1</i><b></b></dt><dd>
+Выполняет запрос к пакету, содержащему указанный идентификатор заголовка, 
+т.е. <i>SHA1</i> дайджест неизменной части заголовка.
+</dd><dt><b>-p, --package </b><i>PACKAGE_FILE</i><b></b></dt><dd>
+Выполняет запрос к (неустановленному) пакету в файле <i>PACKAGE_FILE</i>.
+Параметр <i>PACKAGE_FILE</i> может быть указан в виде адреса <b>ftp</b> или 
+<b>http</b> URL, в результате чего заголовок пакета будет скачан и опрошен.
+Обратитесь к <b>ОПЦИЯМ FTP/HTTP</b> за информацией о поддержке в
+<b>rpm</b> работы с 
+<b>ftp</b> и
+<b>http</b>. 
+Если аргумент(ы) <i>PACKAGE_FILE</i> не является бинарным пакетом, то он 
+будет интерпретирован как ASCII манифест пакета. 
+В нем разрешено применение комментариев начинающихся с '#', каждая из строк файла 
+манифеста пакета может включать разделенные запятыми glob выражения, 
+включая адреса URL с внешними glob выражениями, они будут развернуты в 
+пути, которые будут подставлены вместо манифеста пакета как дополнительный 
+аргумент <i>PACKAGE_FILE</i> в запросе. 
+</dd><dt><b>--pkgid </b><i>MD5</i><b></b></dt><dd>
+Выполняет запрос к пакету, который содержит указанный идентификатор пакета, 
+т.е. <i>MD5</i> дайджест объединенного содержимого заголовка и тела пакета.
+</dd><dt><b>--querybynumber </b><i>HDRNUM</i><b></b></dt><dd>
+Выполняет запрос напрямую <i>HDRNUM</i>'ой записи в базе данных; используется 
+только для отладки.
+</dd><dt><b>--specfile </b><i>SPECFILE</i><b></b></dt><dd>
+Обработать и выполнить запрос к <i>SPECFILE</i> файлу, как если бы это был 
+пакет. Хотя не вся информация доступна (например, список файлов), 
+этот тип запросов позволяет использовать rpm для извлечения информации из 
+spec файлов без написания специализированного анализатора таких файлов.
+</dd><dt><b>--tid </b><i>TID</i><b></b></dt><dd>
+Выполняет запрос к пакету(ам), который содержит указанный идентификатор 
+транзакции <i>TID</i>. В данный момент используется временная метка unix 
+в качестве идентификатора. Все пакеты установленные или удаленные в составе 
+одной транзакции будут иметь один и тот же идентификатор.
+</dd><dt><b>--triggeredby </b><i>PACKAGE_NAME</i><b></b></dt><dd>
+Выполняет запрос к пакетам, которые вызывают срабатывание триггера пакета(ов)  
+<i>PACKAGE_NAME</i>.
+</dd><dt><b>--whatprovides </b><i>CAPABILITY</i><b></b></dt><dd>
+Выполняет запрос ко всем пакетам, которые предоставляют функциональность  
+<i>CAPABILITY</i>.
+</dd><dt><b>--whatrequires </b><i>CAPABILITY</i><b></b></dt><dd>
+Выполняет запрос ко всем пакетам, которые требуют <i>CAPABILITY</i> для 
+корректной работы.
+</dd></dl>
+<a name="lbAQ">&nbsp;</a>
+<h3>ОПЦИИ ЗАПРОСА ПАКЕТОВ:</h3>
+
+<p>
+
+</p><dl compact="">
+<dt><b>--changelog</b></dt><dd>
+Вывести информацию об изменениях в пакете.
+</dd><dt><b>-c, --configfiles</b></dt><dd>
+Вывести только конфигурационные файлы (подразумевает <b>-l</b>).
+</dd><dt><b>-d, --docfiles</b></dt><dd>
+Вывести только файлы документации (подразумевает <b>-l</b>).
+</dd><dt><b>--dump</b></dt><dd>
+Распечатать информацию о файле в виде:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<p>
+</p><pre>path size mtime md5sum mode owner group isconfig isdoc rdev symlink
+        
+</pre>
+
+</dd></dl>
+
+<p>
+Эта опция должна быть использована совместно с одной из
+<b>-l</b>,
+<b>-c</b>,
+<b>-d</b>.
+</p></dd><dt><b>--filesbypkg</b></dt><dd>
+Вывести все файлы во всех выбранных пакетах.
+</dd><dt><b>-i, --info</b></dt><dd>
+Вывести информацию о пакете, включая имя, версию и описание.
+Будет использована  <b>--queryformat</b> если указана.
+</dd><dt><b>--last</b></dt><dd>
+Упорядочивает вывод пакетов по времени установки так, чтобы последние 
+пакеты были выведены в начале.
+</dd><dt><b>-l, --list</b></dt><dd>
+Вывести список файлов в пакете.
+</dd><dt><b>--provides</b></dt><dd>
+Вывести функциональность (capabilities) предоставляемую пакетом.
+</dd><dt><b>-R, --requires</b></dt><dd>
+Вывести пакеты, от которых зависит этот пакет.
+</dd><dt><b>--scripts</b></dt><dd>
+Вывести скриптлет(ы) пакета, которые используются как часть процесса 
+установки или удаления пакетов.
+</dd><dt><b>-s, --state</b></dt><dd>
+Вывести состояние (<i>state</i>) файлов в пакете (подразумевается <b>-l</b>). 
+Состояние каждого файла в пакете является одним из 
+<i>нормальное (normal)</i>,
+<i>не установлен (not installed)</i> или 
+<i>заменен (replaced)</i>.
+</dd><dt><b>--triggers, --triggerscripts</b></dt><dd>
+Показать сценарии триггеров (если существуют), входящие в состав пакета.
+<p>
+</p></dd></dl>
+<a name="lbAR">&nbsp;</a>
+<h3>ОПЦИИ ПРОВЕРКИ</h3>
+
+<p>
+
+Общая форма команды проверки rpm приведена ниже
+</p><p>
+
+</p><p>
+<b>rpm</b> {<b>-V|--verify</b>} [<b>опции-выбора</b>] [<b>опции-проверки</b>]
+</p><p>
+</p><p>
+
+Операция проверки пакета сравнивает информацию о файлах установленных из 
+пакета с информацией о них из метаданных пакета, хранимых в базе данных rpm.
+Среди прочего при проверке сравниваются размер, MD5 сумма, права доступа 
+тип, владельца и группу каждого файла. Любые расхождения будут отображены.
+Файлы, которые не были установлены вместе с пакетом, например, файлы 
+документации, исключенные при помощи опции "<b>--excludedocs</b>", 
+будут проигнорированы без предупреждения.
+</p><p>
+
+Опции выбора пакетов являются аналогичными запросу пакетов (включая 
+файлы манифеста пакета в качестве аргумента). 
+Опции, уникальные для режима проверки, приведены ниже:
+</p><dl compact="">
+<dt><b>--nodeps</b></dt><dd>
+Не выполнять проверку зависимостей пакетов.
+</dd><dt><b>--nodigest</b></dt><dd>
+Не проверять при чтении дайджест пакета или заголовка.
+</dd><dt><b>--nofiles</b></dt><dd>
+Не проверять атрибуты файлов пакетов.
+</dd><dt><b>--noscripts</b></dt><dd>
+Не выполнять скриптлет <b>%verifyscript</b> (если существует).
+</dd><dt><b>--nosignature</b></dt><dd>
+Не проверять при чтении подпись пакета или заголовка при чтении.
+</dd><dt><b>--nolinkto</b></dt><dd>
+</dd><dt><b>--nomd5</b></dt><dd>
+</dd><dt><b>--nosize</b></dt><dd>
+</dd><dt><b>--nouser</b></dt><dd>
+</dd><dt><b>--nogroup</b></dt><dd>
+</dd><dt><b>--nomtime</b></dt><dd>
+</dd><dt><b>--nomode</b></dt><dd>
+</dd><dt><b>--nordev</b></dt><dd>
+Не проверять соответствующие атрибуты файлов.
+</dd></dl>
+<p>
+
+Формат вывода представляет собой строку из 8 символов и маркера из заголовка пакета, 
+за которыми следует имя файла. Возможные маркеры атрибутов приведены ниже:
+</p><p>
+</p><pre><b>c</b> <b>%config</b> конфигурационный файл.
+<b>d</b> <b>%doc</b> файл документации.
+<b>g</b> <b>%ghost</b> файл (т.е. содержимое файла не включено в состав пакета).
+<b>l</b> <b>%license</b> файл с лицензией.
+<b>r</b> <b>%readme</b> файл readme.
+</pre>
+
+<p>
+Каждый из 8 символов отражает результат проверки атрибута(ов) файлов с значением 
+того же атрибута, записанного в базе данных. Символ 
+"<b>.</b>" (точка)
+означает, что проверка прошла, а символ 
+"<b>?</b>" (вопросительный знак)
+означает, что проверка не может быть выполнена (например, права доступа к файлу не 
+позволяют провести чтение). В противном случае будут отображены символы (для привлечения 
+внимания выделены жирным), показывающие сбой проверки соответствующего <b>--verify</b> теста:
+</p><p>
+</p><pre><b>S</b> размер (<b>S</b>ize) файла отличается
+<b>M</b> режим (<b>M</b>ode) доступа отличается (включая права доступа и тип файла)
+<b>5</b> отличается контрольная MD<b>5</b> сумма
+<b>D</b> отличается старший/младший номер файла устройства (<b>D</b>evice)
+<b>L</b> отличается путь ссылки при read<b>L</b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ink&amp;category=2">ink</a>(2) 
+<b>U</b> отличается владелец (<b>U</b>ser)
+<b>G</b> отличается групповое владение (<b>G</b>roup)
+<b>T</b> отличается время изменения (m<b>T</b>ime)
+</pre>
+
+<p>
+<a name="lbAS">&nbsp;</a>
+</p><h3>ПРОВЕРКА ЦИФРОВОЙ ПОДПИСИ И ДАЙДЖЕСТА</h3>
+
+<p>
+
+Общая форма команд rpm по работе с цифровой подписью приведена ниже
+</p><p>
+
+</p><p>
+</p><p>
+<b>rpm</b> <b>--import</b> <b></b><i>PUBKEY</i><b></b><i> ...</i>
+</p><p>
+</p><p>
+<b>rpm</b> {<b>--checksig</b>} [<b>--nosignature</b>] [<b>--nodigest</b>]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b></b><i>PACKAGE_FILE</i><b></b><i>&nbsp;...</i>
+</p><p>
+</p><p>
+
+Опция <b>--checksig</b> проверяет все дайджесты и подписи, содержащиеся в 
+<i>PACKAGE_FILE</i> для проверки целостности и происхождения пакета. 
+Обратите внимание, что подписи теперь проверяются при каждом
+чтении пакета и опция <b>--checksig</b> полезна для проверки
+всех дайджестов и подписей, ассоциированных с пакетом.
+</p><p>
+
+Цифровые подписи не могут быть проверены без публичных ключей. 
+Публичный ключ в ASCII формате может быть добавлен в базу
+данных <b>rpm</b> при использовании команды <b>--import</b>.
+Импортированный публичный ключ заносится в заголовок и
+управление ключами проводится аналогично управлению пакетами. 
+Например, все импортированные ключи можно просмотреть при помощи:
+</p><p>
+
+<b>rpm -qa gpg-pubkey*</b>
+</p><p>
+
+Подробная информация о конкретном публичном ключе после импорта
+может быть отображена при запросе. Информация о ключе 
+Red Hat GPG/DSA:
+</p><p>
+
+<b>rpm -qi gpg-pubkey-db42a60e</b>
+</p><p>
+
+Наконец, публичный ключ может быть удален после его импорта
+также как пакет. Удаление ключа Red Hat GPG/DSA:
+</p><p>
+
+<b>rpm -e gpg-pubkey-db42a60e</b>
+<a name="lbAT">&nbsp;</a>
+</p><h3>ПОДПИСЬ ПАКЕТА</h3>
+
+<p>
+
+</p><p>
+<b>rpm</b> <b>--addsign|--resign</b> <b></b><i>PACKAGE_FILE</i><b></b><i> ...</i>
+</p><p>
+</p><p>
+
+Обе опции <b>--addsign</b> и <b>--resign</b>
+создают и вставляют новую подпись для каждого указанного
+файла <i>PACKAGE_FILE</i>, заменяя существующие подписи. 
+Эти две опции существуют по историческим причинам, 
+и разницы в поведении между ними сейчас нет.
+<a name="lbAU">&nbsp;</a>
+</p><h3>ИСПОЛЬЗОВАНИЕ GPG ДЛЯ ПОДПИСИ ПАКЕТОВ</h3>
+
+<p>
+
+Для того, чтобы подписывать пакеты при помощи GPG, <b>rpm</b>
+должен быть настроен на запуск GPG и иметь возможность 
+находить хранилище ключей с требуемыми ключами. По умолчанию
+<b>rpm</b> использует те же соглашения, что и GPG для обнаружения 
+хранилища ключей, а именно переменную среды <b>$GNUPGHOME</b>.
+Если ваше хранилище ключей располагается не там, где его 
+ожидает найти GPG, вам потребуется определить в макросе  
+<b>%_gpg_path</b> 
+расположение хранилища ключей GPG.
+</p><p>
+
+Для совместимости со старыми версиями GPG, PGP и rpm 
+следует настраивать только подпись пакетов V3 OpenPGP. 
+Могут быть использованы алгоритмы проверки DSA и RSA, хотя 
+предпочитается DSA.
+</p><p>
+
+Если вам требуется подписывать собственные пакеты, вам также 
+потребуется создать собственную пару из публичного и приватного 
+ключа (см. руководство по GPG). Вам также потребуется настроить 
+<b>rpm</b> макрос 
+</p><dl compact="">
+<dt><b>%_signature</b></dt><dd>
+Типы подписи. На данный момент поддерживаются только gpg и pgp.
+</dd><dt><b>%_gpg_name</b></dt><dd>
+Имя пользователя, ключом которого будут подписываться ваши пакеты.
+</dd></dl>
+<p>
+
+Например, для использования GPG для подписи пакетов от имени 
+<i>"John Doe &lt;<a href="mailto:jdoe@foo.com">jdoe@foo.com</a>&gt;"</i>
+из хранилища ключей расположенного в <i>/etc/rpm/.gpg</i>,
+используя программу <i>/usr/bin/gpg</i>, вам потребуется включить строки
+</p><p>
+
+</p><pre>%_signature gpg
+%_gpg_path /etc/rpm/.gpg
+%_gpg_name John Doe &lt;<a href="mailto:jdoe@foo.com">jdoe@foo.com</a>&gt;
+%_gpgbin /usr/bin/gpg
+</pre>
+
+<p>
+
+в файл настройки макросов. Для общесистемной настройки используется 
+<i>/etc/rpm/macros</i> и <i>~/.rpmmacros</i> для конкретного пользователя.
+<a name="lbAV">&nbsp;</a>
+</p><h3>ОПЦИИ ПЕРЕСТРОЙКИ БАЗЫ ДАННЫХ</h3>
+
+<p>
+
+Общая форма команды перестройки базы данных rpm приведена ниже 
+</p><p>
+
+</p><p>
+<b>rpm</b> {<b>--initdb|--rebuilddb</b>} [<b>-v</b>] [<b>--dbpath </b><i>DIRECTORY</i><b></b>] [<b>--root </b><i>DIRECTORY</i><b></b>]
+</p><p>
+</p><p>
+
+Используйте <b>--initdb</b> для создания новой базы данных и
+<b>--rebuilddb</b> для перестройки индексов базы данных на основании
+заголовков установленных пакетов.
+<a name="lbAW">&nbsp;</a>
+</p><h3>SHOWRC</h3>
+
+<p>
+
+Команда
+</p><p>
+
+<b>rpm</b> <b>--showrc</b>
+</p><p>
+
+показывает значения, которые <b>rpm</b> будет использовать
+для всех опций, установленные в конфигурационных файлах
+<i>rpmrc</i> и
+<i>macros</i>.
+<a name="lbAX">&nbsp;</a>
+</p><h3>ОПЦИИ FTP/HTTP</h3>
+
+<p>
+
+<b>rpm</b> может выступать в качестве клиента FTP и/или HTTP,
+таким образом пакеты могут быть опрошены или установлены из Интернет.
+Пакеты для операций установки, обновления или запроса могут
+быть указаны в виде адреса 
+<b>ftp</b> или
+<b>http</b>
+URL:  
+</p><p>
+
+<a href="ftp://USER:PASSWORD@HOST:PORT/path/to/package.rpm">ftp://USER:PASSWORD@HOST:PORT/path/to/package.rpm</a>
+</p><p>
+
+Если параметр <b>:PASSWORD</b> будет опущен, пароль будет запрошен
+(один раз для пары пользователь/узел). Если опущены оба параметра
+(user и password), будет выполнено анонимное подключение <b>ftp</b>.
+Во всех случаях используется пассивный (PASV) режим передачи 
+файлов <b>ftp</b>.
+</p><p>
+
+<b>rpm</b> допускает следующие опции для адресов
+ftp URL:
+</p><dl compact="">
+<dt><b>--ftpproxy </b><i>HOST</i><b></b></dt><dd>
+Узел <i>HOST</i> будет использован как прокси-сервер
+для всех операций передачи данных ftp, что позволяет работать
+с ftp через межсетевые экраны, на которых запущена служба прокси. 
+Эта опция может быть также указана при
+настройке макроса <b>%_ftpproxy</b>. 
+</dd><dt><b>--ftpport </b><i>PORT</i><b></b></dt><dd>
+Номер TCP порта <i>PORT</i> будет использован для ftp подключения
+к ftp прокси-серверу вместо порта по умолчанию. Эта опция
+может быть также указана при настройке макроса <b>%_ftpport</b>.
+</dd></dl>
+<p>
+
+<b>rpm</b> допускает следующие опции для адресов 
+<b>http</b> URL:
+</p><dl compact="">
+<dt><b>--httpproxy </b><i>HOST</i><b></b></dt><dd>
+Узел <i>HOST</i> будет использован как прокси-сервер для
+всех операций передачи данных <b>http</b>. Эта опция
+может быть также указана при настройке макроса
+<b>%_httpproxy</b>.
+</dd><dt><b>--httpport </b><i>PORT</i><b></b></dt><dd>
+Номер TCP порта <i>PORT</i> будет использован для <b>http</b> подключения
+к http прокси-серверу вместо порта по умолчанию. Эта опция
+может быть также указана при настройке макроса <b>%_httpport</b>.
+</dd></dl>
+<a name="lbAY">&nbsp;</a>
+<h2>ВОПРОСЫ СОВМЕСТИМОСТИ</h2>
+
+<a name="lbAZ">&nbsp;</a>
+<h3>Выполнение rpmbuild</h3>
+
+<p>
+
+Режимы сборки rpm теперь вынесены в программу
+<i>/usr/bin/rpmbuild</i>. 
+Не смотря на это, совместимость, обеспечиваемая при помощи popt 
+псевдонимов, указанных ниже, является адекватной, но не совершенной. 
+Поэтому совместимость режимов сборки через псевдонимы popt 
+удалена из rpm. Установите пакет <b>rpmbuild</b> и просмотрите
+документацию в <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rpmbuild&amp;category=8">rpmbuild</a></b>(8) по всем режимам сборки <b>rpm</b>,
+ранее приведенную здесь в <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rpm&amp;category=8">rpm</a></b>(8). 
+</p><p>
+
+Добавьте следующие строки в <i>/etc/popt</i>, 
+если вы желаете вызывать <b>rpmbuild</b> из 
+командной строки <b>rpm</b>:
+</p><p>
+
+</p><pre>rpm     exec --bp               rpmb -bp
+rpm     exec --bc               rpmb -bc
+rpm     exec --bi               rpmb -bi
+rpm     exec --bl               rpmb -bl
+rpm     exec --ba               rpmb -ba
+rpm     exec --bb               rpmb -bb
+rpm     exec --bs               rpmb -bs 
+rpm     exec --tp               rpmb -tp 
+rpm     exec --tc               rpmb -tc 
+rpm     exec --ti               rpmb -ti 
+rpm     exec --tl               rpmb -tl 
+rpm     exec --ta               rpmb -ta
+rpm     exec --tb               rpmb -tb
+rpm     exec --ts               rpmb -ts 
+rpm     exec --rebuild          rpmb --rebuild
+rpm     exec --recompile        rpmb --recompile
+rpm     exec --clean            rpmb --clean
+rpm     exec --rmsource         rpmb --rmsource
+rpm     exec --rmspec           rpmb --rmspec
+rpm     exec --target           rpmb --target
+rpm     exec --short-circuit    rpmb --short-circuit
+</pre>
+
+<a name="lbBA">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<a name="lbBB">&nbsp;</a>
+<h3>Конфигурация rpmrc</h3>
+
+<p>
+
+</p><pre><i>/usr/lib/rpm/rpmrc</i>
+<i>/usr/lib/rpm/redhat/rpmrc</i>
+<i>/etc/rpmrc</i>
+<i>~/.rpmrc</i>
+</pre>
+
+<a name="lbBC">&nbsp;</a>
+<h3>Конфигурация макросов</h3>
+
+<p>
+
+</p><pre><i>/usr/lib/rpm/macros</i>
+<i>/usr/lib/rpm/redhat/macros</i>
+<i>/etc/rpm/macros</i>
+<i>~/.rpmmacros</i>
+</pre>
+
+<a name="lbBD">&nbsp;</a>
+<h3>База данных</h3>
+
+<p>
+
+</p><pre><i>/var/lib/rpm/Basenames</i>
+<i>/var/lib/rpm/Conflictname</i>
+<i>/var/lib/rpm/Dirnames</i>
+<i>/var/lib/rpm/Filemd5s</i>
+<i>/var/lib/rpm/Group</i>
+<i>/var/lib/rpm/Installtid</i>
+<i>/var/lib/rpm/Name</i>
+<i>/var/lib/rpm/Packages</i>
+<i>/var/lib/rpm/Providename</i>
+<i>/var/lib/rpm/Provideversion</i>
+<i>/var/lib/rpm/Pubkeys</i>
+<i>/var/lib/rpm/Removed</i>
+<i>/var/lib/rpm/Requirename</i>
+<i>/var/lib/rpm/Requireversion</i>
+<i>/var/lib/rpm/Sha1header</i>
+<i>/var/lib/rpm/Sigmd5</i>
+<i>/var/lib/rpm/Triggername</i>
+</pre>
+
+<a name="lbBE">&nbsp;</a>
+<h3>Временные файлы</h3>
+
+<p>
+
+<i>/var/tmp/rpm*</i>
+<a name="lbBF">&nbsp;</a>
+</p><h2>СМОТРИ ТАКЖЕ</h2>
+
+<p>
+</p><pre><b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=popt&amp;category=3">popt</a></b>(3),
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rpm2cpio&amp;category=8">rpm2cpio</a></b>(8),
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rpmbuild&amp;category=8">rpmbuild</a></b>(8),
+</pre>
+
+<p>
+<b><a href="http://www.rpm.org/">http://www.rpm.org/</a> &lt;URL:<a href="http://www.rpm.org/">http://www.rpm.org/</a>&gt;
+</b>
+<a name="lbBG">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+<p>
+</p><pre>Marc Ewing &lt;<a href="mailto:marc@redhat.com">marc@redhat.com</a>&gt;
+Jeff Johnson &lt;<a href="mailto:jbj@redhat.com">jbj@redhat.com</a>&gt;
+Erik Troan &lt;<a href="mailto:ewt@redhat.com">ewt@redhat.com</a>&gt;
+</pre>
+
+<a name="lbBH">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+<pre>Андрей Мартынов &lt;<a href="mailto:andrewm@inventa.ru">andrewm@inventa.ru</a>&gt;
+</pre>
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+<dl>
+<dt><a href="#lbAD">ЗАПРОС И ПРОВЕРКА ПАКЕТОВ:</a></dt><dd>
+</dd><dt><a href="#lbAE">УСТАНОВКА, ОБНОВЛЕНИЕ И УДАЛЕНИЕ ПАКЕТОВ:</a></dt><dd>
+</dd><dt><a href="#lbAF">РАЗНОЕ:</a></dt><dd>
+</dd><dt><a href="#lbAG">опции-выбора</a></dt><dd>
+</dd><dt><a href="#lbAH">опции-запроса</a></dt><dd>
+</dd><dt><a href="#lbAI">опции-проверки</a></dt><dd>
+</dd><dt><a href="#lbAJ">опции-установки</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAK">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAL">ОБЩИЕ ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAM">ОПЦИИ УСТАНОВКИ И ОБНОВЛЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAN">ОПЦИИ УДАЛЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAO">ОПЦИИ ЗАПРОСА</a></dt><dd>
+</dd><dt><a href="#lbAP">ОПЦИИ ВЫБОРА ПАКЕТОВ:</a></dt><dd>
+</dd><dt><a href="#lbAQ">ОПЦИИ ЗАПРОСА ПАКЕТОВ:</a></dt><dd>
+</dd><dt><a href="#lbAR">ОПЦИИ ПРОВЕРКИ</a></dt><dd>
+</dd><dt><a href="#lbAS">ПРОВЕРКА ЦИФРОВОЙ ПОДПИСИ И ДАЙДЖЕСТА</a></dt><dd>
+</dd><dt><a href="#lbAT">ПОДПИСЬ ПАКЕТА</a></dt><dd>
+</dd><dt><a href="#lbAU">ИСПОЛЬЗОВАНИЕ GPG ДЛЯ ПОДПИСИ ПАКЕТОВ</a></dt><dd>
+</dd><dt><a href="#lbAV">ОПЦИИ ПЕРЕСТРОЙКИ БАЗЫ ДАННЫХ</a></dt><dd>
+</dd><dt><a href="#lbAW">SHOWRC</a></dt><dd>
+</dd><dt><a href="#lbAX">ОПЦИИ FTP/HTTP</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAY">ВОПРОСЫ СОВМЕСТИМОСТИ</a></dt><dd>
+<dl>
+<dt><a href="#lbAZ">Выполнение rpmbuild</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbBA">ФАЙЛЫ</a></dt><dd>
+<dl>
+<dt><a href="#lbBB">Конфигурация rpmrc</a></dt><dd>
+</dd><dt><a href="#lbBC">Конфигурация макросов</a></dt><dd>
+</dd><dt><a href="#lbBD">База данных</a></dt><dd>
+</dd><dt><a href="#lbBE">Временные файлы</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbBF">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbBG">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbBH">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="rpm" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

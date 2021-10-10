@@ -1,0 +1,439 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN boot (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, boot"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="boot" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">boot (7)</font><hr><li> <a href="/man.shtml?topic=boot&amp;category=1&amp;russian=4"><u>boot</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=boot&amp;category=1&amp;russian=0"><u>boot</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=boot&amp;category=7&amp;russian=0"><u>boot</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=boot&amp;category=7&amp;russian=2"><u>boot</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=boot&amp;category=8&amp;russian=1"><u>boot</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=boot&amp;category=9&amp;russian=1"><u>boot</u></a> (9) <font color="#555555"> ( FreeBSD man: Ядро )</font></li><li><font color="#555555">Ключ <a href="/keywords/boot.html"><u>boot</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+<p>
+
+boot-scripts - общее описание последовательности загрузки системы
+<a name="lbAC">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<p>
+
+Последовательность загрузки варьируется в отдельных местах
+на разных системах, но в целом все равно разбивается на
+несколько основных шагов:
+(i) включение оборудования, (ii) загрузчик ОС,
+(iii) запуск ядра, (iv) работа init и inittab,
+(v) загрузочные скрипты.
+Теперь опишем каждый из этих шагов более подробнее.
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h3>Включение оборудования</h3>
+
+После включения компьютера или перезагрузки управление машиной
+передается программе, вшитой в память ПЗУ (сейчас обычно это память PROM).
+В мире PC эта программа называется <b>BIOS</b>.
+<p>
+Эта программа обычно осуществляет простейшие тесты системы и реализует
+доступ к памяти, где хранятся дополнительные настройки компьютера. 
+Этот блок в PC реализован на памяти CMOS с питанием от батареи, 
+и для краткости называется просто <b>CMOS</b>, хотя официальное ее
+название снаружи мира PC - <b>nvram</b> (non-volatile ram).
+</p><p>
+Параметры, хранящиеся в nvram, отличаются в разных системах, но как минимум
+там хранится информация о загрузочном устройстве или о методе поиска
+загрузочного устройства.
+</p><p>
+Затем стадия включения определяет загрузочное устройство и подгружает
+с него загрузчик операционной системы, расположенной на определенном
+месте устройства, и передает управление дальнейшей загрузкой ему.
+</p><p>
+</p><dl compact="">
+<dt>Примечание:</dt><dd>
+Мы не будем рассматривать тут загрузку по сети. Те, кто хотят
+исследовать эти области, должны искать и изучать документацию
+по DHCP, TFTP, PXE, Etherboot.
+<p>
+</p></dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h3>Загрузчик ОС</h3>
+
+В мире PC загрзчик операционной системы расположен в первом секторе
+загрузочного устройства - в так называемой главной загрузочной
+записи <b>MBR</b> (Master Boot Record).
+<p>
+В большинстве систем этот начальный загрузчик в силу разных
+обстоятельств крайне ограничен. Даже на системах не-PC существуют
+некоторые ограничения на размер и сложность загрузчика, ну а
+ограничение MBR до 512 байт на PC (включая и таблицу разделов!)
+делает совершенно невозможным полностью разместить там
+полноценный загрузчик ОС.
+</p><p>
+Тем не менее, большинство операционных систем хитрят и указывают
+в начальном загрузчике вызов вторичного загрузчика ОС,
+расположенного в особом месте на разделе диска.
+</p><p>
+В Linux системным загрузчиком ОС обычно является программа
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lilo&amp;category=8">lilo</a></b>(8)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=grub&amp;category=8">grub</a></b>(8).
+
+Оба они могут устанавливаться как вторичные загрузчики (то есть
+раздел DOS с установленным MBR указывает на них), либо как
+загрузчик из двух частей, где первая часть кода в MBR запускает
+вторую, расподложенную на системном загрузочном разделе.
+</p><p>
+Основной задачей загрузчика ОС является определение ядра на диске,
+затем его загрузка в память и запуск. Большинство системных загрузчиков
+позволяют использование интерактивного режима, тем самым позволяя
+загружать разные ядра (резервные или наоборот, экспериментальные
+версии) и передавать ядру дополнительные опции при загрузке.
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h3>Запуск ядра</h3>
+
+Когда ядро загружено, то оно: инициализирует устройства (через
+их драйвера), запускает процесс обмена (это "процесс ядра",
+теперь обычно называется kswapd на последних ядрах Linux),
+и подключает корневую файловую систему (/).
+<p>
+Некоторые из параметров, передаваемые ядру, уже могут влиять на 
+эти действия (например, вы можете переопределить корневую
+файловую систему по умолчанию). Для более подробной информации
+о параметрах ядра Linux читайте
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bootparam&amp;category=7">bootparam</a></b>(7).
+
+</p><p>
+Только затем ядро создает первый процесс (пользовательский)
+с номером 1. Этот процесс исполняет программу
+<i>/sbin/init</i>,
+
+передавая ей все оставшиеся параметры загрузки, не обработанные ядром.
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h3>Работа init и inittab</h3>
+
+При запуске init считывается файл
+<i>/etc/inittab</i>
+
+для более подробных и дальнейших инструкций.
+Этот файл определяет, что должно быть запущено на разных
+<i>уровнях загрузки (run-levels)</i>.
+<p>
+Это позволяет системному администратору легко определять и управлять
+схемой загрузки, так как на каждом уровне запуска определены разные
+алгоритмы загрузки и разные наборы сервисов (например:
+<b>4</b> это <i>однопользовательский режим</i>, на <b>2</b> запускаются
+почти все сетевые сервисы и т.п.). Администратор может изменить текущий
+уровень запуска с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=init&amp;category=8">init</a></b>(8)
+
+и определить текущий уровень запуска, используя
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=runlevel&amp;category=8">runlevel</a></b>(8).
+
+</p><p>
+Однако, было бы неразумно управлять отдельными сервисами в одном файле,
+поэтому inittab только указывает на наборы скриптов, действительно 
+запускающих/останавливающих отдельные сервисы.
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h3>Загрузочные скрипты</h3>
+
+<p>
+</p><dl compact="">
+<dt>Примечание:</dt><dd>
+Следующее описание применимо к системам, основанным на SYSV-R4,
+к которым на текущий момент относятся большинство коммерческих
+*nix-систем (Unices) - Solaris, HPUX, Irix, Tru64, а также большинство
+дистрибутивов Linux - RedHat, Debian, Mandrake, Suse, Caldera.
+Некоторые системы (Slackware Linux, FreeBSD, OpenBSD) имеют
+немного другую схему работы загрузочных скриптов.
+</dd></dl>
+<p>
+
+</p><p>
+Для каждого управляемого сервиса (mail, nfs server, cron и т.п.)
+существует отдельный скрипт запуска в особом каталоге
+(<i>/etc/init.d</i>
+
+в большинстве версий Linux).
+Каждый из этих скриптов воспринимает один аргумент, обычно слово
+
+Скрипт может (необязательно) воспринимать и другие параметры
+(например, 'restart' для остановки и запуска, 'status' для
+отображения состояния сервиса). Запуск скрипта без параметров
+обычно покажет все возможные аргументы.
+</p><p>
+<a name="lbAI">&nbsp;</a>
+</p><h3>Последовательность каталогов запуска</h3>
+
+Для того, чтобы разные скрипты запускались/останавливались на разных
+уровнях запуска в некотором, четко определенном порядке, существует
+так называемая <i>последовательность каталогов запуска</i>. Это список
+каталогов, обычно в <b>/etc/rc[0-6S].d</b>. В каждом из этих каталогов
+есть ссылки (обычно символьные) на скрипты в каталоге <i>init.d</i>.
+<p>
+Первичный скрипт (обычно <i>/etc/rc</i>) вызывается из <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=inittab&amp;category=5">inittab</a>(5)
+и запускает остальные скрипты сервисов через ссылки в подкаталогах.
+Все ссылки с именами, начинающимися  на 'S' вызываются с аргументом
+
+на 'K' запускаются с аргументом 'stop' (тем самым останавливая сервис).
+</p><p>
+Для придания порядка пуску скриптов в одном уровне запуска имена ссылок
+содержат порядковые номера. Также для понимания смысла имен они обычно
+заканчиваются на имя сервиса, который они обслуживают. Например:
+ссылка <i>/etc/rc2.d/S80sendmail</i> запускает сервис sendmail на уровне
+запуска 2. Это случится после запуска <i>/etc/rc2.d/S12syslog</i>, но
+перед запуском <i>/etc/rc2.d/S90xfs</i>.
+</p><p>
+Для управления порядком загрузки и уровнями запуска нужно просто
+привести эти файлы в нужный вам вид. Однако, во многих версиях Linux
+существуют инструменты, помогающие в решении задач по управлению сервисами
+(например:
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chkconfig&amp;category=8">chkconfig</a></b>(8)).
+
+</p><p>
+<a name="lbAJ">&nbsp;</a>
+</p><h3>Настройки загрузки</h3>
+
+Обычно запущенные демоны могут дополнительно воспринимать разные опции
+и параметры командной строки. Для изменения таких параметров системными
+администраторами без редактирования собственно скриптов загрузки можно
+использовать файлы настроек. Они расположены в особом каталоге (обычно
+<i>/etc/sysconfig</i> на системах типа RedHat) и используются
+загрузочными скриптами.
+<p>
+В более старых версиях Unices эти файлы содержали именно командные строки
+для демонов, но всовременных системах Linux (а также в HPUX) эти
+файлы просто содержат разные опции и переменные оболочки. Загрузочные
+скрипты в <i>/etc/init.d</i> просматривают <b>сначала</b> эти файлы настроек
+и лишь потом используют значения переменных.
+<a name="lbAK">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<p>
+
+<i>/etc/init.d/</i>,
+
+<i>/etc/rc[S0-6].d/</i>.
+
+<i>/etc/sysconfig/</i>
+
+</p><p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=inittab&amp;category=5">inittab</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bootparam&amp;category=7">bootparam</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=init&amp;category=8">init</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=runlevel&amp;category=8">runlevel</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=shutdown&amp;category=8">shutdown</a></b>(8)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAD">Включение оборудования</a></dt><dd>
+</dd><dt><a href="#lbAE">Загрузчик ОС</a></dt><dd>
+</dd><dt><a href="#lbAF">Запуск ядра</a></dt><dd>
+</dd><dt><a href="#lbAG">Работа init и inittab</a></dt><dd>
+</dd><dt><a href="#lbAH">Загрузочные скрипты</a></dt><dd>
+</dd><dt><a href="#lbAI">Последовательность каталогов запуска</a></dt><dd>
+</dd><dt><a href="#lbAJ">Настройки загрузки</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAK">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAL">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="boot" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

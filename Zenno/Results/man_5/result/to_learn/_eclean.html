@@ -1,0 +1,509 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN eclean (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, eclean"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="eclean" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">eclean (5)</font><hr><li> <a href="/man.shtml?topic=eclean&amp;category=1&amp;russian=0"><u>eclean</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=eclean&amp;category=5&amp;russian=0"><u>eclean</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li>
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>Имя</h2>
+
+<p>
+
+eclean - Утилита для очистки локального репозитария дистрибутивов и бинарных пакетов.
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>Использование</h2>
+
+<p>
+
+</p><p>
+<b>eclean</b> [<b></b><i>глобальные параметры</i><b></b>] ... &lt;<b></b><i>действия</i><b></b>&gt; [<b></b><i>параметры для текущего режима</i><b></b>] 
+
+<b>eclean-dist</b> [<b></b><i>глобальные параметры</i><b></b>, <b></b><i>параметры для режима удаления 'distfiles'</i><b></b>] 
+
+<b>eclean-pkg</b> [<b></b><i>глобальные параметры</i><b></b>, <b></b><i>параметры для режима удаления 'packages'</i><b></b>] ... 
+</p><p>
+<b>eclean(-dist,-pkg)</b> [<b></b><i>--help</i><b></b>, <b></b><i>--version</i><b></b>]
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>Описание</h2>
+
+<p>
+
+</p><p>
+eclean это небольшая утилита для удаления устаревших исходников и бинарных файлов пакетов. Используя стандартные операции 
+она очищает каталоги, описываемые переменными DISTDIR и PKGDIR, пока там не останутся только пакеты, которые действительно 
+актуальны на момент очистки. 
+По умолчанию eclean не трогает все пакеты, прописаные в дереве портежей. Это наиболее безопасный режим, позволяющий сохранить 
+старые пакеты на случай отката на старые или стабильные версии, а также для переустановки пакетов. Учтите, что этот режим 
+сохраняет размер ваших DISTDIR и PKGDIR довольно большими. Для дистрибутивных файлов этот режим довольно медленный, 
+поскольку требует проверки всего дерева портежей. 
+Если же вы используете опцию --destructive, eclean защищает только некоторые файлы, отвечающие за установленные в 
+системе пакеты(буквально учитывая версию пакета). Этот режим освободит гораздо больше места, всё ещё "беспокоясь" о 
+сохранности большинства пакетов, основываясь на младшей части версии каждого пакета, а также позволяя восстановить 
+повреждённые пакеты. Но в этом случае утилита не будет заботиться о менее важных пакетах, необходимых например для отката 
+или установки нового пакета. Это тоже быстрый режим работы, используемый в большинством подобных скриптов вроде yacleaner(это 
+верно по меньшей мере относитеьно версии 0.3). 
+Где-то посередине между этими режимами находится режим, определяемый опцией --package-names (при использовании 
+опции --destructive), в котором eclean оставит только те дистрибутивы, которые необходимы для установленных пакетов. 
+Он позволит легко откатиться на старую версию пакета без пересборки или закачки пакета заново, но не защитит вас в случае 
+удаления пакета. 
+В дополнение к этим основным режимам некторые опции позволяют описать некоторые специфические условия работы утилиты: 
+</p><p>
+</p><dl compact="">
+<dt><b>--time-limit</b>
+
+</dt><dd>
+<br>
+
+окажется полезной в том случае, если необходимо сохранить файлы, созданные позже указанного времени
+<p>
+</p></dd><dt><b>--size-limit</b>
+
+</dt><dd>
+<br>
+
+может применяться только к дистрибутивам и позволяет оставить в системе файлы большего размера, нежели указано в данной 
+опции 
+</dd><dt><b>--fetch-restricted</b>
+
+</dt><dd>
+<br>
+
+применима к файлам вручную скачанных дистрибутивов, не подвергая их уничтожению. Параметр сильно замедляет работу утилиты, 
+поскольку обработке подвергается всё дерево portage 
+Ну и наконец вы можете указать список категорий, исключаемых из обработки (см. ниже параметр EXCLUSION FILES). 
+</dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>Параметры</h2>
+
+<p>
+
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h3>Глобальные параметры </h3>
+
+<p>
+
+</p><dl compact="">
+<dt><b>-C, --nocolor</b>
+
+</dt><dd>
+<br>&nbsp;не&nbsp;использовать&nbsp;цвета&nbsp;в&nbsp;выводе&nbsp;на&nbsp;консоль&nbsp;
+</dd><dt><b>-d, --destructive</b>
+
+</dt><dd>
+<br>&nbsp;оставить&nbsp;только&nbsp;самый&nbsp;необходимый&nbsp;для&nbsp;переустановки&nbsp;минимум&nbsp;файлов
+</dd><dt><b>-e, --exclude-file=&lt;путь&gt;</b>
+
+</dt><dd>
+<br>&nbsp;путь&nbsp;к&nbsp;файлу,&nbsp;содержащему&nbsp;список&nbsp;категорий,&nbsp;исключаемых&nbsp;из&nbsp;обработки.&nbsp;<i>Здесь&nbsp;&lt;путь&gt;&nbsp;-&nbsp;это&nbsp;абсолютный&nbsp;путь&nbsp;к&nbsp;файлу&nbsp;исключений.&nbsp;
+Если путь не указан, используется значение по умолчанию /etc/eclean/{packages,distfiles}.exclude (если он, конечно, 
+существует).  Используйте, пожалуйста, путь /dev/null в том случае, если файл у вас имеется, но временно вы не хотите к нему 
+обращаться.</i> .TP
+<b>-i, --interactive</b>
+
+<br>&nbsp;запросить&nbsp;подтверждение&nbsp;перед&nbsp;удалением&nbsp;файлов&nbsp;
+</dd><dt><b>-n, --package-names</b>
+
+</dt><dd>
+<br>&nbsp;защитить&nbsp;все&nbsp;версии&nbsp;(только&nbsp;при&nbsp;использовании&nbsp;опции&nbsp;--destructive&nbsp;)&nbsp;
+</dd><dt><b>-p, --pretend</b>
+
+</dt><dd>
+<br>&nbsp;вывести&nbsp;список&nbsp;того,&nbsp;что&nbsp;подлежит&nbsp;уничтожению,&nbsp;но&nbsp;не&nbsp;удалять&nbsp;немедленно&nbsp;
+</dd><dt><b>-q, --quiet</b>
+
+</dt><dd>
+<br>&nbsp;подавлять&nbsp;любые&nbsp;сообщения&nbsp;на&nbsp;выводе,&nbsp;оставлять&nbsp;только&nbsp;ошибки
+</dd><dt><b>-t, --time-limit=&lt;время&gt;</b>
+
+</dt><dd>
+<br>&nbsp;не&nbsp;удалять&nbsp;файлы,&nbsp;созданные&nbsp;позже&nbsp;указанного&nbsp;параметра&nbsp;&lt;время&gt;&nbsp;
+<i>&lt;время&gt; здесь указывается как период времени: "1y" означает один год, "2w" это две недели, и т.д. .br
+Принятые единицы времени: y (годы), m (месяцы), w (недели), d (дни) и h (часы).</i>
+</dd><dt><b>-h, --help</b>
+
+</dt><dd>
+<br>&nbsp;показать&nbsp;страницу&nbsp;помощи&nbsp;
+</dd><dt><b>-V, --version</b>
+
+</dt><dd>
+<br>&nbsp;отобразить&nbsp;версию&nbsp;утилиты
+<p>
+</p></dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h3>Действия (actions)</h3>
+
+<p>
+
+</p><dl compact="">
+<dt><b>distfiles</b>
+
+</dt><dd>
+<br>&nbsp;Очищать&nbsp;каталог&nbsp;<i>/usr/portage/distfiles</i>&nbsp;&nbsp;(или&nbsp;тот&nbsp;каталог,&nbsp;на&nbsp;который&nbsp;ссылается&nbsp;переменная&nbsp;DISTDIR&nbsp;в&nbsp;файле&nbsp;<i>/etc/make.conf</i>).&nbsp;
+<br>&nbsp;Это&nbsp;действие&nbsp;будет&nbsp;полезно&nbsp;для&nbsp;практически&nbsp;каждого&nbsp;пользователя&nbsp;Gentoo,&nbsp;размер&nbsp;каталога&nbsp;с&nbsp;дистрибутивами&nbsp;которого&nbsp;вырос&nbsp;
+до значительных величин. .TP
+<b>eclean-dist</b>
+
+<br>&nbsp;Превдоним&nbsp;для&nbsp;утилиты&nbsp;eclean,&nbsp;предписывающий&nbsp;обработку&nbsp;дистрибутивных&nbsp;файлов,&nbsp;создан&nbsp;для&nbsp;удобства,&nbsp;не&nbsp;более&nbsp;того.&nbsp;.TP
+<b>packages</b>
+
+<br>&nbsp;Производить&nbsp;очистку&nbsp;каталога&nbsp;<i>/usr/portage/packages</i>&nbsp;(или,&nbsp;соответственно,&nbsp;содержимого&nbsp;каталога,&nbsp;указанного&nbsp;
+переменной PKGDIR в файле <i>/etc/make.conf</i>.  Это действие полезно в частности применительно к тем, кто использует 
+"buildpkg" или "buildsyspkg" флаги переменной FEATURES. .TP
+<b>eclean-pkg</b>
+
+<br>&nbsp;это&nbsp;также&nbsp;синоним&nbsp;команды&nbsp;eclean&nbsp;в&nbsp;режиме&nbsp;очистки&nbsp;каталога&nbsp;с&nbsp;packages.
+<p>
+</p></dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h3>Параметры, применяемые в случае указания обработки 'distfiles'</h3>
+
+<p>
+
+</p><dl compact="">
+<dt><b>-f, --fetch-restricted</b>
+
+</dt><dd>
+<br>&nbsp;оставить&nbsp;файлы,&nbsp;помеченные&nbsp;в&nbsp;дереве&nbsp;как&nbsp;'fetch-restricted'&nbsp;(--destructive&nbsp;only)&nbsp;
+</dd><dt><b>-s, --size-limit=&lt;размер&gt;</b>
+
+</dt><dd>
+<br>&nbsp;не&nbsp;удалять&nbsp;файлы,&nbsp;размер&nbsp;которых&nbsp;больше&nbsp;чем&nbsp;&lt;размер&gt;&nbsp;
+<i>&lt;размер&gt; указывается следующим образом: "10M" это "десять мегабайт", "200K" это "двести килобайт", и т.д. .br
+Единицы измерения: G, M, K и B.</i>
+<p>
+</p></dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h3>Параметры для действия 'packages'</h3>
+
+<p>
+
+Нет специальных параметров.
+</p><p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2>Файлы исключений</h2>
+
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+Файлы исключений это файлы, содержащие списки названий пакетов или целых категорий, не подлежащих обработке утилитой 
+eclean. Такие списки могут пригодиться в том случае, ели необходимо защитить от удаления определённые пакеты, например, 
+пакеты, содержащиеся в каталоге, указываемом в файле <i>/etc/make.conf</i> в переменной PKGDIR. Применяется следующий 
+синтаксис описания списка: 
+<br>
+
+*пустые строки, а также строки, начинающиеся с символа "#" (обычно обозначает комментарии) игнорируются 
+<br>
+
+*только одно опредение в одной строке позволяется
+<p>
+<br>
+
+*если строка содержит название категории, например "sys-apps", то все пакеты из этой категории исключаются из обработки. 
+Как вариант, можно написать так: "sys-apps/*", что предусмотрено исключительно в эстетических целях, но никак не означает, 
+что шаблоны могут использоваться во всех иных случаях. 
+<br>
+
+*если строка содержит имя пакета("app-shells/bash"), то именно этот пакет и будет под защитой. Атомы, подобные "&gt;=app-shells/bash-3" 
+с указанием версий не поддерживаются. Кроме того, обязательно указание полного имени пакета (вместе с категорией). 
+<br>
+
+*если в строке указан пакет с предшествующим его имени восклицательным знаком("!sys-apps/portage"),то этот пакет 
+исключается из области защиты. Это полезно только в случае защиты всей категории, к которой относится данный пакет. 
+<br>
+
+*для защиты дистрибутивов можно указать конкретное имя файла. Такие записи могут пригодиться, если в базе данных portage 
+не содержатся такие дистрибутивы, например файлы локализации (i18n) OpenOffice.org ("helpcontent_33_unix.tgz" в 
+частности). .RE
+</p><p>
+</p></dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h2>Примеры использования</h2>
+
+<p>
+
+Удалить только дистрибутивы, спрашивать подтверждение на удаление:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>       # eclean -i distfiles
+
+</pre>
+
+</dd></dl>
+
+Проверить, что нужно удалить, не использовать цвета при выводе:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>       # eclean -Cp packages 
+
+</pre>
+
+</dd></dl>
+
+Очистить бинарные пакеты, которые уже были удалены из системы, но оставить все версии установленных в системе пакетов: 
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>       # eclean-pkg -d -n 
+
+</pre>
+
+</dd></dl>
+
+Удалить все дистрибутивные файлы за исключением относящихся к уже установленным пакетам (текущая версия), не старше 
+одного месяца, размером большие, чем 50 Мб, а также помеченные как fetch-restricted: 
+<dl compact=""><dt></dt><dd>
+<pre>       # eclean-dist -d -t1m -s50M -f 
+
+</pre>
+
+</dd></dl>
+
+Из файла crontab, в "тихом" режиме удалить пакеты в наиболее безопасном режиме, а также применив режим --destructive, 
+но сохранив в этом режиме файлы не старше недели, задачу выполнять каждое воскресенье в час ночи: 
+<dl compact=""><dt></dt><dd>
+<pre>       0 1 * * sun   eclean -C -q packages ; eclean -C -q -d -t1w distfiles
+
+</pre>
+
+</dd></dl>
+
+<p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>Смотри также</h2>
+
+<p>
+
+</p><p>
+<b> eclean (1)</b>
+</p><p>
+==Полезные ссылки== 
+[<a href="http://forums.gentoo.org/viewtopic.php?t=3011">http://forums.gentoo.org/viewtopic.php?t=3011</a> Обсуждение на форуме Gentoo, приведшее к написанию утилиты eclean] 
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre> 
+
+</pre>
+
+</dd></dl>
+
+[<a href="http://bugs.gentoo.org/show_bug.cgi?id=33877">http://bugs.gentoo.org/show_bug.cgi?id=33877</a> Запрос на включение утилиты в gentoolkit в багзилле]
+<p>
+[<a href="http://blog.tacvbo.net/data/files/yacleaner/">http://blog.tacvbo.net/data/files/yacleaner/</a> Yacleaner, утилита, подобная eclean]
+</p><p>
+<a name="lbAM">&nbsp;</a>
+</p><h2>Авторы</h2>
+
+<p>
+
+Thomas de Grenier de Latour (tgl) &lt;<a href="mailto:degrenier@easyconnect.fr">degrenier@easyconnect.fr</a>&gt; 
+gentoolkit                                                            0.4.1                                                            <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=eclean&amp;category=1">eclean</a>(1) 
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">Имя</a></dt><dd>
+</dd><dt><a href="#lbAC">Использование</a></dt><dd>
+</dd><dt><a href="#lbAD">Описание</a></dt><dd>
+</dd><dt><a href="#lbAE">Параметры</a></dt><dd>
+<dl>
+<dt><a href="#lbAF">Глобальные параметры </a></dt><dd>
+</dd><dt><a href="#lbAG">Действия (actions)</a></dt><dd>
+</dd><dt><a href="#lbAH">Параметры, применяемые в случае указания обработки 'distfiles'</a></dt><dd>
+</dd><dt><a href="#lbAI">Параметры для действия 'packages'</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAJ">Файлы исключений</a></dt><dd>
+</dd><dt><a href="#lbAK">Примеры использования</a></dt><dd>
+</dd><dt><a href="#lbAL">Смотри также</a></dt><dd>
+</dd><dt><a href="#lbAM">Авторы</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="eclean" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

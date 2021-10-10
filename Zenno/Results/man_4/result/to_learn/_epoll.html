@@ -1,0 +1,755 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN epoll (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, epoll"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="epoll" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">epoll (4)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=epoll&amp;category=4&amp;russian=0"><u>epoll</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=epoll&amp;category=4&amp;russian=2"><u>epoll</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=epoll&amp;category=7&amp;russian=2"><u>epoll</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+epoll - фабрика уведомлений о событиях ввода/вывода
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/sys/epoll.h">sys/epoll.h</a>&gt;</b>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<b>epoll</b>
+
+является вариантом
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=poll&amp;category=2">poll</a></b>(2),
+
+используемой либо как Edge, либо как Level Triggered интерфейс и хорошо
+масштабируемой для больших номеров наблюдаемых fds. Для настройки и управления 
+<b>epoll</b>
+
+предлагаются три системных вызова:
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_create&amp;category=2">epoll_create</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_ctl&amp;category=2">epoll_ctl</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2).
+
+<p>
+<b>epoll</b>
+
+подключается к описателю файла, созданного
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_create&amp;category=2">epoll_create</a></b>(2).
+
+Интерес к соответствующим описателям файлов затем регистрируется через
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_ctl&amp;category=2">epoll_ctl</a></b>(2).
+
+Наконец, фактическое ожидание запускается
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2).
+
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ЗАМЕЧАНИЯ</h2>
+
+Интерфейс распределения событий
+<b>epoll</b>
+
+имеет два типа поведения: Edge Triggered (ET) и Level Triggered (LT).
+Разница между механизмами распределения событий ET и LT может быть
+описана так. Предположим, что реализован следующий сценарий событий:
+<dl compact="">
+<dt><b>1</b>
+
+</dt><dd>
+Описатель файла, представляющий считывающую сторону при перенаправлении (
+<b>RFD</b>
+
+) добавляется внутрь устройства
+<b>epoll</b>.
+
+</dd><dt><b>2</b>
+
+</dt><dd>
+Перенаправление записывает 2Кб данных на записываемую сторону.
+</dd><dt><b>3</b>
+
+</dt><dd>
+Вызов к
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2)
+
+закончен, при этом возвращается
+<b>RFD</b>
+
+как готовый описатель файла.
+</dd><dt><b>4</b>
+
+</dt><dd>
+Перенаправление считывает 1Кб данных с
+<b>RFD</b>.
+
+</dd><dt><b>5</b>
+
+</dt><dd>
+Вызов к
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2)
+
+закончен.
+</dd></dl>
+<p>
+
+</p><p>
+Если описатель файла
+<b>RFD</b>
+
+добавлен к интерфейсу
+<b>epoll</b>,
+
+используя флаг
+<b>EPOLLET</b>,
+
+то вызов к
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2),
+
+законченный на шаге
+<b>5</b>,
+
+повиснет из-за возможных данных, все еще находящихся в буфере ввода.
+Причиной этого является то, что Edge Triggered доставляет события
+только если статус отслеживаемого устройства изменяеся с
+недоступного пространства ввода/вывода ( состояние
+<b>0</b>)
+
+на доступное пространство ввода/вывода ( состояние
+<b>1</b>).
+
+В приведенном выше примере событие на
+<b>RFD</b>
+
+будет сгенерировано ( предполагая, что считывающий буфер перенаправления был
+до этого пуст ) из-за записи, сделанной в 
+<b>2</b>,
+
+и события, предполагаемого в 
+<b>3</b>.
+
+Так-как операция чтения, сделанная в
+<b>4</b>,
+
+не предполагает полного буфера данных ( то есть условие наличия
+остатка доступного пространства ввода/вывода )that is, the condition
+remains I/O space available ) и передача
+<b>0</b>
+
+-&gt;
+<b>1</b>
+
+не может случиться в
+<b>5</b>.
+
+Интерфейс
+<b>epoll</b>
+
+при использовании с флагом
+<b>EPOLLET</b>
+
+( Edge Triggered )
+должно использовать неблокированные описатели файлов для избежания
+блокировок чтения или записи для задания, обрабатывающего
+множество описателей файлов. Предлагается использовать далее
+<b>epoll</b>,
+
+как интерфейс Edge Triggered (
+<b>EPOLLET</b>)
+
+и возможные методы обхода проблем.
+
+</p><dl compact="">
+<dt><b>i</b>
+
+</dt><dd>
+неблокированные описатели файлов
+</dd><dt><b>ii</b>
+
+</dt><dd>
+начинать ожидать события только после того, как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></b>(2)
+
+возвратят EAGAIN
+
+</dd></dl>
+<p>
+
+Напротив, при использовании интерфейса Level Triggered,
+<b>epoll</b>
+
+по всем показателям лучше и быстрее
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=poll&amp;category=2">poll</a></b>(2),
+
+и может быть использован в любом случае, так как разделяет
+ту же семантику.
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</h2>
+
+<p>
+При использовании
+<b>epoll</b>
+
+с интерфейсом Level Triggered имеет ту же семантику
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=poll&amp;category=2">poll</a></b>(2),
+
+а Edge Triggered требует больше четкости для избежания зависаний
+в циклических приложениях. В этом примере слушающим является
+не блокированный сокет, для которого было вызвано
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=listen&amp;category=2">listen</a></b>(2).
+
+Функция do_use_fd() использует новые готовые описатели файлов
+до тех пор, пока не возвратится EAGAIN от другого
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></b>(2).
+
+Машина приложения, с переданным статусом события, должна плсде получения
+EAGAIN записать свое текущее состояние так, чтобы последующий вызов do_use_fd()
+продолжил
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></b>(2)
+
+с места остановки.  
+</p><p>
+</p><pre>struct epoll_event ev, *events;
+
+for(;;) {
+    nfds = epoll_wait(kdpfd, events, maxevents, -1);
+
+    for(n = 0; n &lt; nfds; ++n) {
+        if(events[n].data.fd == listener) {
+            client = accept(listener, (struct sockaddr *) &amp;local,
+                            &amp;addrlen);
+            if(client &lt; 0){
+                perror("accept");
+                continue;
+            }
+            setnonblocking(client);
+            ev.events = EPOLLIN | EPOLLET;
+            ev.data.fd = client;
+            if (epoll_ctl(kdpfd, EPOLL_CTL_ADD, client, &amp;ev) &lt; 0) {
+                fprintf(stderr, "epoll set insertion error: fd=%d,
+                        client);
+                return -1;
+            }
+        }
+        else
+            do_use_fd(events[n].data.fd);
+    }
+}
+</pre>
+
+<p>
+При использовании в виде интерфейса Edge Triggered для качества работы
+возможно добавлять описатель файла внутрь интерфейса epoll (
+<b>EPOLL_CTL_ADD</b>),
+
+указывая  (
+<b>EPOLLIN | EPOLLOUT</b>).
+
+Это позволит вам избежать постоянного переключения между
+<b>EPOLLIN</b>
+
+и
+<b>EPOLLOUT</b>
+
+вызывающими
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_ctl&amp;category=2">epoll_ctl</a></b>(2)
+
+и
+<b>EPOLL_CTL_MOD</b>.
+
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>ВОПРОСЫ И ОТВЕТЫ (из linux-kernel)</h2>
+
+<p>
+
+</p><dl compact="">
+<dt><b>Q1 </b>
+
+</dt><dd>
+Что случится, если вы добавите один fd в epoll_set дважды?
+</dd><dt><b>A1 </b>
+
+</dt><dd>
+Вероятно, вы получите EEXIST. However, it is possible that two
+threads may add the same fd twice. This is a harmless condition.
+</dd><dt><b>Q2 </b>
+
+</dt><dd>
+Могут ли два набора
+<b>epoll</b>
+
+ожидать один fd? Если так, то сообщают ли события в оба набора
+<b>epoll</b>
+
+fds?
+</dd><dt><b>A2</b>
+
+</dt><dd>
+Да. Однако, это не рекомендуется. Да, будет сообщено в оба.
+</dd><dt><b>Q3</b>
+
+</dt><dd>
+Может ли
+<b>epoll</b>
+
+fd само по себе выбрать poll/epoll?
+</dd><dt><b>A3</b>
+
+</dt><dd>
+Да.
+</dd><dt><b>Q4 </b>
+
+</dt><dd>
+Что случается, если
+<b>epoll</b>
+
+fd помещается в свой собственный набор fd?
+</dd><dt><b>A4</b>
+
+</dt><dd>
+Произойдет ошибка. Однако, можно добавлять
+<b>epoll</b>
+
+fd внутрь другого набора epoll fd. 
+</dd><dt><b>Q5</b>
+
+</dt><dd>
+Могу я отправить
+<b>epoll</b>
+
+fd через сокет unix на другой процесс?
+</dd><dt><b>A5</b>
+
+</dt><dd>
+Нет.
+</dd><dt><b>Q6</b>
+
+</dt><dd>
+Будет ли закрытие fd приводить к его автоматическому удалению из всех наборов
+<b>epoll</b>?
+
+</dd><dt><b>A6</b>
+
+</dt><dd>
+Да.
+</dd><dt><b>Q7 </b>
+
+</dt><dd>
+Если более одного события придут между вызовами
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2),
+
+то они будут скомбинированы или будут сообщены отдельно?
+</dd><dt><b>A7</b>
+
+</dt><dd>
+Они будут скомбинированы.
+</dd><dt><b>Q8</b>
+
+</dt><dd>
+Влияет ли операция на fd на уже собранные, но пока еще не сообщенные события?
+</dd><dt><b>A8</b>
+
+</dt><dd>
+Можно выполнять две операции на существующем fd. Удаление в этом случае
+бессмысленно. Изменение приведет к повторному чтению всего доступного ввода/вывода.
+</dd><dt><b>Q9</b>
+
+</dt><dd>
+Должен ли я постоянно читать/записывать fd до получения EAGAIN при использовании флага
+<b>EPOLLET</b>
+
+( поведение Edge Triggered ) ?
+</dd><dt><b>A9</b>
+
+</dt><dd>
+Нет, не должны. Получение события от
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2)
+
+должно сообщить вам, что такой описатель файла готов для запрошенной операции
+ввода/вывода. Вы должны просто предположить, что он готов, пока вы не получите
+следующий EAGAIN. Когда и как вы будете использовать описатель файла - полностью
+зависит от вас. Также условия, при которых чтение/запись пространства ввода/вывода
+закончилось, могут быть определены через проверки количества считанных/записанных
+данных из/в описатель файла. Например, если вы вызвали
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+запросом на чтение определенного количества данных и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+возвращает меньшее количество байтов, то можно быть уверенным, что вы истратили
+пространство чтения ввода/вывода для этого описателя файла. То же самое справедливо
+для записи через функцию
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></b>(2).
+
+
+<p>
+</p></dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>ВОЗМОЖНЫЕ ЛОВУШКИ И МЕТОДЫ ИХ ОБХОДА</h2>
+
+
+<dl compact="">
+<dt><b>o Ложное срабатывание ( Edge Triggered )</b>
+
+</dt><dd>
+</dd></dl>
+<p>
+
+Возможно, что во время чтения (предположим, что вы читаете в цикле ожидания EAGAIN),
+больше вводов/выводов пришло на второе событие. Этот ввод/вывод будет считан
+немедленно. Однако, в следующий раз, когда вы вызовете
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2)
+
+на этот fd, вам сообщится, что уже есть готовое событие,
+хотя ввод/вывод для него уже был сделан.
+</p><p>
+
+</p><dl compact="">
+<dt><b>1</b>
+
+</dt><dd>
+Некоторое количество данныз приходит на просматриваемый описатель файла.
+</dd><dt><b>2</b>
+
+</dt><dd>
+Вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2)
+
+возвращается с указанным выше описателем файла.
+</dd><dt><b>3</b>
+
+</dt><dd>
+Другой кусок данных приходит на тот же описатель файла.
+</dd><dt><b>4</b>
+
+</dt><dd>
+Описатель файла внутренне сигнализирует о готовности.
+</dd><dt><b>5</b>
+
+</dt><dd>
+Вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+расходует все доступные данные.
+</dd><dt><b>6</b>
+
+</dt><dd>
+Другой вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2)
+
+возвратит указанный выше описатель файла, даже если данные недоступны,
+тем самым приводя следующий вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+к возврату EAGAIN.
+</dd></dl>
+<p>
+
+</p><p>
+
+В случае с неблокированными описателями файлов это приведет к тому, что
+следуюющий вызов чтения немедленно возвратит EAGAIN. В случае блокировки
+описателей файлов вы зависните, ожидая чтения ввода/вывода, которого нет.
+Автор не рекомендует использовать блокировку описателей файлов вместе с
+поведением Edge Triggered, но и останавливать вас тоже не будет.
+</p><p>
+
+</p><p>
+
+Одним из методов решения этой ситуации является пометка описателей файлов
+как "готовых" в ассоциированной структуре данных после получения первого события,
+а затем игнорирование других событий, пока он в состоянии "готов".
+Когда вы читаете до получения EAGAIN, уберите флаг "готов" перед вызовом
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2)
+
+снова на этом fd.
+</p><p>
+
+</p><dl compact="">
+<dt><b>o Недостаток ( Edge Triggered )</b>
+
+</dt><dd>
+</dd></dl>
+<p>
+
+Если существует большое пространство ввода/вывода, то возможно, что при
+попытке его очистки другие файлы не будут обрабатываться, привода к
+недостатку данных. Этого обычно не происходит с
+<b>epoll</b>.
+
+</p><p>
+
+</p><p>
+
+Решением будет поддержка списка готовности и помечение "готовых" описателей
+файлов в ассоциированной структуре данных, тем самым позволяя приложению
+запоминать файлы, требуемые для обработки, но все еще не обработанных
+среди уже "готовых" файлов. Это также поддерживает игнорирование
+последующих событий, получаемых вами для fd, которые уже "готовы".
+</p><p>
+
+</p><p>
+</p><dl compact="">
+<dt><b>o Если использовать кэш событий...</b>
+
+</dt><dd>
+</dd></dl>
+<p>
+
+Если вы используете кэш событий или храните все fd, возвращенные от
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2),
+
+то убедитесь, что вы обеспечите способ его динамического закрытия
+(например - после обработки предыдущего события). Предположим, что вы
+получите 100 событий от
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2),
+
+и что в событии #47 некоторое условие определяет, что событие #13 должно быть закрыто.
+Если вы уберете структуру и закроете close() fd для события #13, то ваш кэш событий
+все еще может сообщать о том, что есть ожидаемые события, непонятные для этого fd.
+</p><p>
+
+</p><p>
+
+Одним из решений будет вызов во время обработки события 47
+<b>epoll_ctl</b>(<b>EPOLL_CTL_DEL</b>)
+
+для удаления fd 13 и close(), а затем отметки его ассоциированной структуры данных
+как удаленной и связки его со списком очистки. Если найдется другое событие для fd 13
+по работе, то ему сообщится, что fd уже было удалено и конфликтов не будет.
+</p><p>
+
+</p><p>
+
+<a name="lbAI">&nbsp;</a>
+</p><h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll&amp;category=4">epoll</a></b>(4)
+
+является новым API, представленном в ядре Linux 2.5.44.
+Его интерфейс должен окончательно определиться к Linux 2.5.66.
+<a name="lbAJ">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_ctl&amp;category=2">epoll_ctl</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_create&amp;category=2">epoll_create</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=epoll_wait&amp;category=2">epoll_wait</a></b>(2)
+
+<p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">ВОПРОСЫ И ОТВЕТЫ (из linux-kernel)</a></dt><dd>
+</dd><dt><a href="#lbAH">ВОЗМОЖНЫЕ ЛОВУШКИ И МЕТОДЫ ИХ ОБХОДА</a></dt><dd>
+</dd><dt><a href="#lbAI">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="epoll" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

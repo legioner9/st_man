@@ -1,0 +1,502 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN winedbg (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, winedbg"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="winedbg" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">winedbg (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=winedbg&amp;category=1&amp;russian=0"><u>winedbg</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=winedbg&amp;category=1&amp;russian=2"><u>winedbg</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><pre><!-- Manpage converted by man2html 3.0.1 -->
+
+winedbg --gdb [параметры] [имя программы [параметры программы] | pid]
+
+winedbg --auto pid
+
+winedbg --minidump [file.mdmp] pid
+
+winedbg file.mdmp
+ОПИСАНИЕ
+winedbg - отладчик для Wine. Это позволяет:
+
+    + отладка собственных приложений Win32
+
+    + отладка приложений Winelib.
+    + является заменой для доктора Уотсона
+
+ 
+РЕЖИМЫ
+winedbg можно использовать в пяти режимах. Первый аргумент программы определяет, в каком режиме будет работать winedbg.
+
+по умолчанию
+    Без какого-либо явного режима это стандартный режим работы winedbg. winedbg будет выступать в качестве переднего конца для пользователя.
+--gdb
+    winedbg будет использоваться в качестве прокси-сервера для gdb. gdb будет фронтом для обработки команд, а winedbg проксирует все запросы отладки от gdb до API Win32.
+--авто
+    Этот режим используется, когда winedbg настроен в записи реестра AeDebug как отладчик по умолчанию. Затем winedbg отобразит основную информацию о сбое. Это полезно для пользователей, которые не хотят отлаживать сбой, а скорее собирают соответствующую информацию о сбое, который будет отправлен разработчикам.
+--minidump
+    Этот режим похож на -auto one, за исключением того, что вместо того, чтобы печатать информацию на экране (как --auto), он сохраняется в файле minidump. Имя файла либо передается в командной строке, либо генерируется WineDbg, если не указано ни одного. Этот файл позже может быть перезагружен в winedbg для дальнейшего изучения.
+file.mdmp
+    Этот режим позволяет перезагрузить в winedbg состояние debuggee, которое было сохранено в файле minidump. См. Ниже команду minidump или режим --minidump.
+
+ 
+ОПЦИИ
+В режиме по умолчанию доступны следующие параметры:
+
+--command &lt;string&gt;
+    winedbg выполнит команду &lt;string&gt;, как если бы она была введена в командную строку winedbg, а затем выйдет. Это может быть полезно для получения pid запущенных процессов (winedbg --command &lt;&lt;info proc&gt;&gt;).
+--file &lt;имя_файла&gt;
+    winedbg выполнит список команд, содержащихся в файле &lt;filename&gt;, как если бы они были введены в командную строку winedbg, а затем выйдет.
+
+В режиме прокси-сервера gdb доступны следующие параметры:
+
+--no-старт
+    gdb не будет автоматически запущен. Соответствующая информация для запуска gdb выводится на экран. Это полезно, когда напрямую не используется gdb, а некоторые графические интерфейсы, такие как ddd или kgbd.
+--with-Xterm
+    Это приведет к запуску gdb в собственном xterm вместо использования текущей консоли Unix для текстового отображения.
+
+Во всех режимах остальная часть командной строки, когда она передается, используется для определения того, какие программы, если они есть, должны отлаживаться:
+
+название программы
+    Это имя исполняемого файла для начала сеанса отладки. winedbg фактически создаст процесс с помощью этого исполняемого файла. Если также указаны аргументы программ, они будут использоваться в качестве аргументов для создания процесса, который будет отлаживаться.
+ПИД-регулятор
+уволиться
+    Выход из отладчика.
+прикрепить N
+    Прикрепите к вине-процессу (N - его идентификатор, числовой или шестнадцатеричный). Идентификаторы могут быть получены с помощью команды info process. Обратите внимание, что команда info-процесса возвращает шестнадцатеричные значения
+отрывать
+    Отсоедините от винного процесса.
+
+Команды справки
+
+Помогите
+    Печатает некоторую помощь по командам.
+справочная информация
+    Распечатывает некоторую помощь в информационных командах
+
+Команды управления потоком
+
+продолжение
+    Продолжайте выполнение до следующей точки останова или исключения.
+проходить
+    Передайте событие исключения до цепочки фильтра.
+шаг
+    Продолжить выполнение до следующей строки кода C (входит в вызов функции)
+следующий
+    Продолжить выполнение до следующей строки кода C (не входит в вызов функции)
+СТЕПИ
+    Выполните следующую инструкцию по сборке (введите вызов функции)
+Nexti
+    Выполните следующую инструкцию по сборке (не входите в вызов функции)
+Конец
+    Выполнить до достижения текущей функции.
+
+cont, step, next, stepi, nexti могут быть добавлены числом (N), что означает, что команда должна быть выполнена N раз, пока элемент управления не будет возвращен пользователю.
+
+Точки останова, точки наблюдения
+
+включить N
+    Включает (break | watch) -point #N
+запрещать
+    Отключает (break | watch) -point #N
+Удалить
+    Удаляет (break | watch) -point #N
+cond N
+    Удаляет любое существующее состояние (break | watch) -point N
+cond N &lt;expr&gt;
+    Добавляет условие &lt;expr&gt; to (break | watch) -point #N. &lt;expr&gt; будет оцениваться каждый раз, когда поражается точка (break | watch). Если результатом является нулевое значение, точка останова не запускается.
+break * N
+    Добавляет точку останова по адресу N
+break &lt;id&gt;
+    Добавляет точку останова по адресу символа &lt;id&gt;
+break &lt;id&gt; N
+    Добавляет точку останова в строке N внутри символа &lt;id&gt;.
+перерыв N
+Управление стеками
+
+Б.Т.
+    Печать вызова стека текущего потока.
+bt N
+    Выводить стек вызовов потока из идентификатора N. Примечание: это не изменяет положение текущего кадра при манипулировании командами up &amp; dn).
+вверх
+    Подходит к одному кадру в стеке текущего потока
+до N
+    Восстанавливает N кадров в стеке текущего потока
+дп
+    Переход вниз по одному кадру в стеке текущего потока
+dn N
+    Спускает N кадров в стеке текущего потока
+кадр N
+    Устанавливает N в качестве текущего кадра для стека текущего потока.
+информация местные жители
+    Распечатывает информацию о локальных переменных для текущего фрейма функции.
+
+Управление каталогом и исходными файлами
+показать дир
+    Распечатывает список dir: s, где ищутся исходные файлы.
+dir &lt;путь&gt;
+    Добавляет &lt;pathname&gt; в список dir: s, где искать исходные файлы
+реж
+    Удаляет список dir: s, где искать исходные файлы
+symbolfile &lt;путь&gt;
+    Загружает внешний символ символа символа &lt;pathname&gt;
+symbolfile &lt;путь&gt; N
+    Загружает внешний символ символа символа &lt;pathname&gt; (применяя смещение N к адресам)
+список
+    Перечисляет 10 исходных строк вперед из текущего положения.
+список -
+    Перечисляет 10 исходных строк назад из текущего положения
+список N
+    Перечисляет 10 исходных строк из строки #N в текущем файле
+list &lt;путь&gt;: N
+    Перечисляет 10 строк исходного кода из строки #N в файле &lt;путь&gt;
+list &lt;id&gt;
+    Перечисляет 10 исходных строк функции &lt;id&gt;
+список * N
+    Перечисляет 10 строк исходного кода из адреса N
+
+Вы можете указать конечную цель (изменить значение 10 строк) с помощью разделителя ','. Например:
+
+
+список 123, 234
+    перечисляет исходные строки из строки 123 до строки 234 в текущем файле
+list foo.c: 1,56
+    перечисляет исходные строки из строки 1 до 56 в файл foo.c
+
+
+    &lt;expr&gt; выполняется с использованием заданного формата (см. команду печати
+    для получения дополнительной информации о форматах)
+del display N
+unisplay N
+    Удаляет отображение #N
+
+
+
+разборка
+
+
+disas
+    Разберитесь с текущим положением
+disas &lt;expr&gt;
+    Разберитесь с адресом &lt;expr&gt;
+disas &lt;expr&gt;, &lt;expr&gt;
+    Разбирает код между адресами, указанными двумя &lt;expr&gt;: s
+
+
+
+Память (чтение, запись, ввод текста)
+
+
+x &lt;expr&gt;
+    Изучает память в адресе &lt;expr&gt;
+x / fmt &lt;expr&gt;
+    Изучает память по адресу &lt;expr&gt;, используя формат / fmt
+print &lt;expr&gt;
+    Распечатывает значение &lt;expr&gt; (возможно, используя его тип)
+print / fmt &lt;expr&gt;
+    Распечатывает значение &lt;expr&gt; (возможно, используя его тип)
+set &lt;var&gt; = &lt;expr&gt;
+    Записывает значение &lt;expr&gt; в переменной &lt;var&gt;.
+whatis &lt;expr&gt;
+    Распечатывает выражение типа C &lt;expr&gt;
+
+
+
+/ FMT
+    либо / &lt;letter&gt;, либо / &lt;count&gt; &lt;letter&gt;. &lt;Письмо&gt;
+    возможно:
+
+
+        s
+            строка ASCII
+        U
+            строка Unicode UTF16
+        я
+            инструкции (разобрать)
+        Икс
+            32-разрядное шестнадцатеричное целое число без знака
+
+    Идентификаторы могут принимать значение &lt;&lt;!&gt;&gt; в их именах. Это позволяет в основном
+    укажите модуль, где можно посмотреть модуль: USER32! CreateWindowExA.
+
+    В режиме литья, когда вы указываете структуру или союз, вы должны
+    используйте ключевое слово struct или union (даже если ваша программа использует typedef).
+
+
+
+При указании идентификатора &lt;id&gt;, если несколько символов с
+это имя существует, отладчик запросит символ, который вы хотите
+использовать. Возьмите тот, который вы хотите от его числа.
+
+Разный
+
+
+minidump file.mdmp
+    сохраняет контекст отладки debuggee в файле minidump, называемом
+    file.mdmp
+
+
+
+Информация о внутренних винах
+
+
+информационный класс
+    Список всех классов Windows, зарегистрированных в Wine
+info class &lt;id&gt;
+    Распечатывает информацию о классе Windows &lt;id&gt;
+информация
+    Список всех динамических библиотек, загруженных в отладочную программу
+    (включая файлы .so, NE и PE DLL)
+информация доля N
+    Распечатывает информацию о модуле по адресу N
+info regs
+    Распечатывает значения регистров CPU
+информация all-regs
+    Распечатывает значение регистров CPU и Floating Point
+информационный сегмент
+    Перечисляет все выделенные сегменты (только i386)
+информационный сегмент N
+    Распечатывает информацию о сегменте N (только i386)
+информационный стек
+    Распечатывает значения поверх стека
+информация карта
+    Перечисляет все виртуальные сопоставления, используемые отладочной программой
+информация карта N
+    Перечисляет все виртуальные сопоставления, используемые программой pid N
+информация wnd
+    Отображает иерархию окон, начиная с окна рабочего стола
+информация wnd N
+    Распечатывает информацию о окне ручки N
+    Включает предупреждение на канале &lt;&lt;выиграть&gt;&gt;
+set + win
+    Включает предупреждение / fixme / err / trace на канале 'win'
+set - win
+    Отключает предупреждение / fixme / err / trace на канале 'win'
+set - fixme
+    Отключает класс &lt;&lt;fixme&gt;&gt; на всех каналах
+
+
+
+Режим Gdb:
+
+См. Документацию gdb для всех команд gdb.
+
+Тем не менее, несколько расширений Wine доступны через команду монитора:
+
+монитор wnd
+    Выводит список всех окон в сеансе Wine
+контролировать proc
+    Перечисляет все процессы в сеансе Wine
+монитор mem
+    Отображает отображение памяти отлаженного процесса
+
+ 
+Авто и мини-пушки:
+
+Поскольку пользовательский ввод невозможен, команды не доступны.
+
+ 
+ОКРУЖАЮЩАЯ СРЕДА
+
+WINE_GDB
+    При использовании в режиме прокси-сервера gdb WINE_GDB указывает имя (и путь) исполняемого файла, который будет использоваться для gdb. По умолчанию используется &lt;&lt;gdb&gt;&gt;.
+
+ 
+FILES
+Нет конкретных файлов (пока).
+ОШИБКИ
+Много.
+АВТОРЫ
+Первая версия была написана Эриком Янгдейлом.
+
+См. Список разработчиков Wine для остальных участников.
+СМОТРИТЕ ТАКЖЕ
+Файл README файла winedbg
+
+Руководство пользователя Winelib
+
+</pre>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="winedbg" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,425 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN sources.list (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, sources.list"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="sources.list" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">sources.list (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=sources.list&amp;category=5&amp;russian=0"><u>sources.list</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=sources.list&amp;category=5&amp;russian=2"><u>sources.list</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+sources.list - список ресурсов пакетов для APT
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Список ресурсов пакетов используется для задания местоположения архивов пакетов дистрибутива системы. 
+<p>
+
+Список источников разрабатывается для поддержки любого количества активных источников и различных видов этих источников. В данном файле перечисляется по одному источнику на строку, где источники следуют в порядке их приоритета. Формат каждой строки такой: <i>type uri args</i>. Первый элемент, <i>type</i>, определяет формат для
+<i>args</i>. <i>uri</i> - это Универсальный Идентификатор Ресурса (Universal Resource Identifier (URI)), который является родителем для более специфичного и хорошо известного Универсального Локатора Ресурса (Universal Resource Locator или URL).
+<a name="lbAD">&nbsp;</a>
+</p><h2>Типы deb и deb-src </h2>
+
+Тип <b>deb</b> описывает типичный двухуровневый архив Debian, <i>дистрибутив/компонент</i>. Обычно, <i>дистрибутив</i> это один из <i>stable</i>, <i>unstable</i> или <i>frozen</i>, а <i>компонент</i> - это один из <i>main</i>, <i>contrib</i>, <i>non-free</i> или <i>non-us</i>. Тип <b>deb-src</b> описывает исходный код дистрибутива Debian в той же самой форме как и <b>deb</b>. Строка <b>deb-src</b> требуется для выкачивания индексов источников. Формат для записей <b>sources.list</b> использующих типы <i>deb</i> и <i>deb-src</i> такой:
+<p>
+</p><pre> 
+deb uri дистрибутив [компонент1] [компонент2] [...]
+</pre>
+
+<p>
+URI для типа <i>deb</i> должен задавать основной дистрибутив Debian, от которого <b>APT</b> будет искать нужную информацию. <i>дистрибутив</i> может быть задан полным путем и в этом случае <i>компонент</i>ы должны быть опущены, и <b>дистрибутив</b> должен заканчиваться символом  "/". Это полезно, когда интерес представляют только отдельные подсекции архива, заданного через URI. Если <b>дистрибутив</b> не задан полным путем, то по крайней мере, должен быть указан хотя бы один <b>компонент</b>. 
+</p><p>
+
+<b>дистрибутив</b> также может содержать переменную, <b>$(ARCH)</b>, которая будет заменена на архитектуру Debian (i386, m68k, powerpc, ...), которая используется в текущей системе. Это позволяет создавать архитектурно-независимые файлы <b>sources.list</b>. Обычно такая возможность интересна только при задании полного пути, так как <b>APT</b> будет автоматически генерировать URI с текущей архитектурой. 
+</p><p>
+
+Поскольку в одной строке может быть указан только один дистрибутив, то возможно понадобится несколько строк с одним и тем же URI, если необходим весь класс доступных дистрибутивов или компонентов. <b>APT</b> впоследствии будет сортировать список URI для генерации полного списка внутри и будет объединять множество ссылок на один и тот же узел Интернет, например, в одно соединение, чтобы не происходило соединение по FTP, его закрытие, обращение к другим узлам и повторное соединение с тем же узлом. Данная особенность полезна для доступа к загруженным FTP серверам с ограничением на количество соединений для анонимных пользователей. <b>APT</b> также распараллеливает соединения для разных узлов для более эффективного выполнения своих функций для сайтов с низкой скоростью выкачивания. 
+</p><p>
+
+Важно, чтобы список источников располагался в порядке их приоритетов с более приоритетными источниками вначале. Обычно их сортируют по скорости от более быстрых к более медленным (CD-ROM, затем источники в локальной сети и затем удаленные узлы Интернет).
+</p><p>
+
+Некоторые примеры:
+</p><p>
+</p><pre> 
+deb <a href="http://http.us.debian.org/debian">http://http.us.debian.org/debian</a> stable main contrib non-free
+</pre>
+
+<br>&nbsp;
+<pre> 
+deb <a href="http://http.us.debian.org/debian">http://http.us.debian.org/debian</a> dists/stable-updates
+</pre>
+
+<a name="lbAE">&nbsp;</a>
+<h2>Типы rpm и rpm-src</h2>
+
+Тип <b>rpm</b> описывает репозитарий базирующийся на RPM, разделённый на два уровня, <i>дистрибутив</i> и <i>компонент</i>. <i>дистрибутив</i> обычно состоит из версии дистрибутива и названия поставщика, такое как <i>6.0/conectiva</i>. <i>компонент</i> - это название компоненты, такой как тип <b>rpm-src</b>, описывающий исходные тексты дистрибутива, в той же форме, что и тип <b>rpm</b>. Строка <b>rpm-src</b> необходима для получения целевых индексов. Формат для записей <b>sources.list</b> использующих типы <i>rpm</i> и <i>rpm-src</i> таков:
+<p>
+</p><pre> 
+rpm [[поставщик]] uri дистрибутив [компонент1] [компонент2] [...]
+
+</pre>
+
+<p>
+URI для типа <i>rpm</i> должен задавать базу дистрибутива, в которой <b>APT</b> будет искать нужную информацию. Так же, должен быть указан хотя бы один <b>компонент</b>. 
+</p><p>
+
+Поскольку в одной строке может быть указан только один дистрибутив, то возможно понадобится несколько строк с одним и тем же URI, если необходим весь класс доступных дистрибутивов или компонентов. <b>APT</b> впоследствии будет сортировать список URI для генерации полного списка внутри и будет объединять множество ссылок на один и тот же узел Интернет, например, в одно соединение, чтобы не происходило соединение по FTP, его закрытие, обращение к другим узлам и повторное соединение с тем же узлом. Данная особенность полезна для доступа к загруженным FTP серверам с ограничением на количество соединений для анонимных пользователей. <b>APT</b> также распараллеливает соединения для разных узлов для более эффективного выполнения своих функций для сайтов с низкой скоростью выкачивания. 
+</p><p>
+
+Важно, чтобы список источников располагался в порядке их приоритетов с более приоритетными источниками вначале. Обычно их сортируют по скорости от более быстрых к более медленным (CD-ROM, затем источники в локальной сети и затем удаленные узлы Интернет).
+</p><p>
+
+Некоторые примеры:
+</p><p>
+</p><pre>
+rpm <a href="ftp://ftp.conectiva.com/pub/conectiva/.0">ftp://ftp.conectiva.com/pub/conectiva/.0</a> 6.0/conectiva main extra non-us non-free
+
+</pre>
+
+<a name="lbAF">&nbsp;</a>
+<h2>Аутентификация Зеркала Репозитария</h2>
+
+Если вы пользуетесь зеркалом дистрибутива, то существует риск, что держатель узла может внедрить в пакеты злонамеренный код, тем самым ставя под угрозу защиту всех систем, которые используют такой сайт как источник пакетов. Для снижения возможности возникновения ситуации, подобной этой, apt в состоянии аутентифицировать репозитарии пакетов. Имейте в виду, что аутентификация НЕ гарантирует, что содержимое репозитария абсолютно безопасно. Она лишь позволяет убедиться, что:
+<dl compact="">
+<dt>о</dt><dd>
+все пакеты в репозитарии имеют верную контрольную сумму, соответствующую той, которая содержится в списке пакетов;
+</dd><dt>o</dt><dd>
+apt-get к получению доступны только те пакеты, которые присутствуют в списке пакетов;
+</dd><dt>o</dt><dd>
+все списки пакетов имеют верные контрольные суммы, соответствующие содержащемся в индексном файле;
+</dd><dt>o</dt><dd>
+индексный файл имеет цифровую подпись поставщика, идентифицированного в <b>sources.list</b>, соответствующую отпечатку gpg в <b>vendors.list</b>.
+</dd></dl>
+<p>
+
+apt способен проверить, что сайт, который зеркалирует архив, имеет то же самое содержание как оригинальный сайт.
+</p><p>
+
+Для получения дополнительной информации о настройке аутентификации смотрите <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vendors.list&amp;category=5">vendors.list</a>(5)</b>.
+<a name="lbAG">&nbsp;</a>
+</p><h2>Спецификация URI</h2>
+
+В настоящий момент распознаются следующие типы URI: cdrom, file, http и ftp.
+<dl compact="">
+<dt><b>file</b></dt><dd>
+Схема file позволяет указать как архив нужный каталог в файловой системе. Это полезно для каталогов, смонтированных по NFS и локальных зеркал или архивов.
+</dd><dt><b>cdrom</b></dt><dd>
+Схема cdrom позволяет <b>APT</b> использовать локальное устройство CDROM со сменным носителем. Используйте программу <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt-cdrom&amp;category=8">apt-cdrom</a>(8)</b> для создания записей cdrom в файле содержащем список источников.
+</dd><dt><b>http</b></dt><dd>
+Схема http задает архив на HTTP сервере. Если установлена переменная окружения <b>$http_proxy</b> в формате <b><a href="http://server:port/">http://server:port/</a></b>, то будет использован прокси сервер заданный в <b>$http_proxy</b>. Пользователи HTTP/1.1 прокси с авторизацией доступа могут использовать строку формата  <b><a href="http://user:pass@server:port/">http://user:pass@server:port/</a></b>. Заметим, что это метод авторизации, который не отвечает безопастности.
+</dd><dt><b>ftp</b></dt><dd>
+Схема ftp задает архив на FTP сервере. Поведение APT FTP хорошо настраивается; для подробностей смотрите страницу руководства <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt.conf&amp;category=5">apt.conf</a>(5)</b>. Пожалуйста заметьте, что используя переменную окружения ftp_proxy может быть задан ftp прокси. Возможно задать http прокси (http прокси серверы часто понимают URL для ftp) используя данный метод и ТОЛЬКО этот метод. Заданные в файле с настройками ftp прокси, использующие http, будут игнорированы. 
+</dd><dt><b>copy</b></dt><dd>
+Схема copy идентична схеме file за исключением того, что пакеты копируются в каталог кэша вместо того, чтобы использоваться непосредственно из их местоположения. Это полезно для людей, использующих диск zip для копирования файлов для APT.
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>ПРИМЕРЫ</h2>
+
+Ниже даны примеры, в которых указаны архивы, хранящиеся локально (или смонтированные по NFS) в каталоге /home/jason/debian для stable/main, stable/contrib и stable/non-free.
+<dl compact=""><dt></dt><dd>
+"deb file:/home/jason/debian stable main contrib non-free"
+</dd></dl>
+
+<p>
+
+Как и выше, только используется unstable (development) дистрибутив.
+</p><dl compact=""><dt></dt><dd>
+"deb file:/home/jason/debian unstable main contrib non-free"
+</dd></dl>
+
+<p>
+
+Строка для источника исходных текстов для примера данного выше
+</p><dl compact=""><dt></dt><dd>
+"deb-src file:/home/jason/debian unstable main contrib non-free"
+</dd></dl>
+
+<p>
+
+А здесь используется HTTP для доступа к архиву на archive.debian.org
+и только к области hamm/main.
+</p><dl compact=""><dt></dt><dd>
+"deb <a href="http://archive.debian.org/debian-archive">http://archive.debian.org/debian-archive</a> hamm main"
+</dd></dl>
+
+<p>
+
+Здесь используется FTP для доступа к архиву <a href="ftp://ftp.debian.org">ftp.debian.org</a> в каталог
+debian, а также только область stable/contrib.
+</p><dl compact=""><dt></dt><dd>
+"deb <a href="ftp://ftp.debian.org/debian">ftp://ftp.debian.org/debian</a> stable contrib"
+</dd></dl>
+
+<p>
+
+В данном случае FTP используется для доступа к основным компонентам дистрибутива conectiva версии 6.0 в архиве <a href="ftp://ftp.conectiva.com">ftp.conectiva.com</a>, из каталога /pub/conectiva.
+</p><dl compact=""><dt></dt><dd>
+"rpm <a href="ftp://ftp.conectiva.cpm/pub/conectiva">ftp://ftp.conectiva.cpm/pub/conectiva</a> 6.0/conectiva main"
+</dd></dl>
+
+<p>
+
+Здесь используется FTP для доступа к архиву <a href="ftp://ftp.debian.org">ftp.debian.org</a> в каталог
+debian и область unstable/contrib. Если данная строка будет включена
+также как и в предыдущем примере в <b>sources.list</b>, то для обоих
+строк будет использована одна сессия FTP.
+</p><dl compact=""><dt></dt><dd>
+"deb <a href="ftp://ftp.debian.org/debian">ftp://ftp.debian.org/debian</a> unstable contrib"
+</dd></dl>
+
+<p>
+
+Здесь используется HTTP для доступа к архиву nonus.debian.org, в каталог
+debian-non-US.
+</p><dl compact=""><dt></dt><dd>
+"deb <a href="http://nonus.debian.org/debian-non-US">http://nonus.debian.org/debian-non-US</a> stable/non-US main contrib non-free"
+</dd></dl>
+
+<p>
+
+Тоже, что и выше, но здесь используется аутентификация от поставщика по имени <i>bla</i>, который должен быть указан в <b>vendors.list</b>.
+</p><dl compact=""><dt></dt><dd>
+"deb [bla] <a href="http://nonus.debian.org/debian-non-US">http://nonus.debian.org/debian-non-US</a> stable/non-US main contrib non-free"
+</dd></dl>
+
+<p>
+
+Здесь используется HTTP для доступа к архиву nonus.debian.org, в каталог
+debian-non-US и только для файлов в unstable/binary-i386 на i386 машинах,
+unstable/binary-m68k на m68k и так для четырех других поддерживаемых
+архитектур. [Заметим, что этот пример только иллюстрирует как используется
+подстановка переменной, так как non-us теперь имеет другую структуру]
+</p><dl compact=""><dt></dt><dd>
+"deb <a href="http://ftp.de.debian.org/debian-non-US">http://ftp.de.debian.org/debian-non-US</a> unstable/binary-$(ARCH)/"
+</dd></dl>
+
+<p>
+
+<a name="lbAI">&nbsp;</a>
+</p><h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt-cache&amp;category=8">apt-cache</a>(8)</b>, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt.conf&amp;category=5">apt.conf</a>(5)</b>, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vendors.list&amp;category=5">vendors.list</a>(5)</b>
+<a name="lbAJ">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+Смотри <a href="http://bugs.debian.org/apt.">http://bugs.debian.org/apt.</a> Если вы хотите отправить отчет об ошибке
+в <b>apt-cache</b>, пожалуйста смотрите <b>/usr/doc/debian/bug-reporting.txt</b>
+или команду <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bug&amp;category=1">bug</a>(1)</b>. Если вы используете систему базирующуюся на RPM, то в этом случае, пожалуйста,  воспользуйтесь <a href="http://distro.conectiva.com.br/bugzilla/.">http://distro.conectiva.com.br/bugzilla/.</a>
+<a name="lbAK">&nbsp;</a>
+<h2>АВТОР</h2>
+
+<b>apt-get</b> была написана командой APT &lt;<a href="mailto:apt@packages.debian.org">apt@packages.debian.org</a>&gt; и портирован на системы базирующиеся на RPM Alfredo K. Kojima, &lt;<a href="mailto:kojima@conectiva.com.br">kojima@conectiva.com.br</a> &gt;, из Conectiva S.A.
+<a name="lbAL">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+
+Перевод с английского сделал Виктор Вислобоков &lt;<a href="mailto:victor_v@permonline.ru">victor_v@permonline.ru</a>&gt;
+
+
+Дополнено и обновлено Александр Блохин &lt;<a href="mailto:sass@altlinux.ru">sass@altlinux.ru</a>&gt;, ALT Linux Team
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">Типы deb и deb-src </a></dt><dd>
+</dd><dt><a href="#lbAE">Типы rpm и rpm-src</a></dt><dd>
+</dd><dt><a href="#lbAF">Аутентификация Зеркала Репозитария</a></dt><dd>
+</dd><dt><a href="#lbAG">Спецификация URI</a></dt><dd>
+</dd><dt><a href="#lbAH">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAI">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAK">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAL">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="sources.list" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

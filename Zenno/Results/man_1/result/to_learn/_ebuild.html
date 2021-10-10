@@ -1,0 +1,937 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ebuild (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ebuild"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ebuild" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ebuild (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=ebuild&amp;category=1&amp;russian=0"><u>ebuild</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ebuild&amp;category=5&amp;russian=0"><u>ebuild</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>portage</h1></td>
+<td><h2 align="center">Gentoo Linux</h2></td>
+<td><h1 align="right">ebuild(5)</h1></td>
+</tr>
+</tbody></table>
+
+<a name="name"><h2>ИМЯ</h2></a>
+<p><b>ebuild</b> - внутренний формат, переменные и функции в сценарии <b>ebuild</b></p>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<p>Программа <b>ebuild(1)</b> воспринимает в качестве аргумента единственный
+сценарий ebuild. Этот сценарий содержит переменные и команды, указывающие, как
+загружать, распаковывать, вносить исправления, компилировать, устанавливать и
+включать в дерево пакет из его оригинальных исходных текстов. Кроме всего этого,
+сценарий ebuild может также содержать команды, которые необходимо выполнять
+до/после установки/удаления пакета.</p>
+
+<h2><a name="examples">ПРИМЕРЫ</a></h2>
+
+<p>Вот простой пример сценария ebuild:</p>
+
+<pre># Copyright 1999-2002 Gentoo Technologies, Inc.
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+DESCRIPTION="Super-useful stream editor (sed)"
+SRC_URI="ftp://alpha.gnu.org/pub/gnu/sed/${P}.tar.gz"
+HOMEPAGE="http://www.gnu.org/software/sed/sed.html"
+KEYWORDS="~x86"
+SLOT="0"
+LICENSE="GPL-2"
+IUSE=""
+DEPEND="virtual/glibc"
+RDEPEND="virtual/glibc"
+
+src_compile() {
+	econf || die "could not configure"
+	emake || die "emake failed"
+}
+
+src_install() {
+	into /usr
+	doinfo doc/sed.info
+	doman doc/sed.1
+	into /
+	dobin sed/sed
+	dodir /usr/bin
+	dosym /bin/sed /usr/bin/sed
+	dodoc COPYING NEWS README* THANKS TODO AUTHORS BUGS ANNOUNCE
+}
+</pre>
+
+<h2><a name="varables">ПЕРЕМЕННЫЕ</a></h2>
+
+<h3>ПРИМЕЧАНИЯ ОБ ИСПОЛЬЗОВАНИИ</h3>
+
+<ul>
+<li>Переменные <b>PORTAGE*</b> и <b>PORTDIR*</b> можно найти в файле <b>make.conf(5)</b>.</li>
+<li>При присвоении значений переменным в пакетах ebuild нельзя указывать пробел между
+именем переменной и знаком равенства.</li>
+</ul>
+
+<dl>
+<dt><b><a name="P">P</a></b></dt><dd>
+Эта переменная содержит имя пакета без номера редакции ebuild. Эту переменную нельзя менять
+НИКОГДА.
+<pre>xfree-4.2.1-r2.ebuild --&gt; $P=='xfree-4.2.1'</pre>
+</dd>
+<dt><b><a name="PN">PN</a></b></dt><dd>
+Содержит имя сценария без номера версии.
+<pre>xfree-4.2.1-r2.ebuild --&gt; $PN=='xfree'</pre>
+</dd>
+<dt><b><a name="PV">PV</a></b></dt><dd>
+Содержит номер версии без номера редакции.
+<pre>xfree-4.2.1-r2.ebuild --&gt; $PV=='4.2.1'</pre>
+</dd>
+<dt><b><a name="PR">PR</a></b></dt><dd>
+Содержит номер редакции (revision number) или '<b>r0</b>', если номер редакции не задан.
+<pre>xfree-4.2.1-r2.ebuild --&gt; $PR=='r2'</pre>
+</dd>
+<dt><b><a name="PVR">PVR</a></b></dt><dd>
+Содержит номер версии с номером редакции.
+<pre>xfree-4.2.1-r2.ebuild --&gt; $PV=='4.2.1-r2'</pre>
+</dd>
+<dt><b><a name="PF">PF</a></b></dt><dd>
+Содержит полное имя пакета: <b>[PN]-[PV]-r[PR]</b>
+<pre>xfree-4.2.1-r2.ebuild --&gt; $PF=='xfree-4.2.1-r2'</pre>
+</dd>
+<dt><b><a name="A">A</a></b></dt><dd>
+Содержит все исходные файлы, необходимые для пакета. Эта переменная не должна определяться.
+Она генерируется автоматически на основе переменных <a href="#SRC_URI"><b>SRC_URI</b></a>.
+<br><br></dd>
+<dt><b><a name="WORKDIR">WORKDIR = "${PORTAGE_TMPDIR}/portage/${PF}/work"</a></b></dt><dd>
+Содержит полное имя <i>корневого каталога</i> построения пакета. Не изменяйте эту переменную.
+<br><br></dd>
+<dt><b><a name="FILESDIR">FILESDIR = "${PORTDIR}/${CATEGORY}/${PN}/files"</a></b></dt><dd>
+Содержит полное имя подкаталога '<b>files</b>' в соответствующем каталоге пакета в дереве портежей.
+Не изменяйте эту переменную.
+<br><br></dd>
+<dt><b><a name="S">S = "${WORKDIR}/${P}"</a></b></dt><dd>
+Содержит полное имя <i>временного каталога для процесса построения</i> (temporary build directory). Эта переменная
+используется функциями <a href="#src_compile"><b>src_compile</b></a> и <a href="#src_install"><b>src_install</b></a>. Обе они выполняются в каталоге <b>S</b>. Эта переменная может меняться в соответствии с каталогом,
+в который распаковывается архив (tarball) пакета.
+<br><br></dd>
+<dt><b><a name="T">T = "${PORTAGE_TMPDIR}/portage/${PF}/temp"</a></b></dt><dd>
+Содержит полное имя <i>временного каталога</i>. Его можно использовать для любых целей.
+<br><br></dd>
+<dt><b><a name="D">D = "${PORTAGE_TMPDIR}/portage/${PF}/image"</a></b></dt><dd>
+Содержит полное имя временного каталога для установки. Каждая операция записи, выполняемая
+не через вспомогательные средства и функции (представленные далее), должна выполняться в
+каталоге <b>${D}</b>. Не изменяйте значение этой переменной.
+<br><br></dd>
+<dt><b><a name="DESCRIPTION">DESCRIPTION = "A happy little package"</a></b></dt><dd>
+Эта переменная должна содержать краткое описание пакета.
+<br><br></dd>
+<dt><b><a name="SRC_URI">SRC_URI = "http://happy.com/little/${P}.tar.gz"</a></b></dt><dd>
+Содержит список адресов URI для соответствующих исходных файлов. Она может содержать несколько
+адресов URI для одного исходного файла. Если файла нет на <b>GENTOO_MIRROR</b>, выбирается
+самый быстрый из перечисленных сайтов.
+<br><br></dd>
+<dt><b><a name="HOMEPAGE">HOMEPAGE = "http://happy.com/"</a></b></dt><dd>
+Должна содержать список адресов URL для основных сайтов с исходными текстами и другой
+информацией для пакета.
+<br><br></dd>
+<dt><b><a name="KEYWORDS">KEYWORDS = [-~][x86,ppc,sparc,mips,alpha,arm,hppa]</a></b></dt><dd>
+Должна содержать соответствующий список архитектур, на которых пакет ebuild определенно работает/не работает.
+По умолчанию, если неизвестно, работает ли пакет ebuild на определенной архитектуре, соответствующее
+ключевое слово (KEYWORD) просто не указывается. Если пакет ebuild не будет работать на определенной
+архитектуре, укажите ее с минусом, например, <b>-ppc</b>. Если пакет ebuild посылается для
+включения, у него должны быть установлены ключевые слова <b>~arch</b> для архитектур, на которых он
+ПРЕДПОЛОЖИТЕЛЬНО РАБОТАЕТ (PROVEN TO WORK). Пакеты с соответствующими ключевыми словами можно
+будет демаскировать для тестирования путем установки <b>ACCEPT_KEYWORDS="~arch"</b> в командной строке
+или в файле <b>make.conf(5)</b>. Полный список имен архитектур см. в файле 
+<b>/usr/portage/profiles/arch.list</b>.
+<br><br></dd>
+<dt><b><a name="SLOT">SLOT</a></b></dt><dd>
+Устанавливает слот (SLOT) для пакетов, которым необходимо сосуществовать. По умолчанию, необходимо
+устанавливать <b>SLOT="0"</b>, если только вы не уверены, что явно нужно другое значение. Эта переменная
+НИКОГДА не должна оставаться неопределенной.
+<br><br></dd>
+<dt><b><a name="LICENSE">LICENSE</a></b></dt><dd>
+Значение должно представлять собой список (через пробел) имен лицензий, по которым распространяется
+пакет. Это <b>должны</b> быть лицензии, представленные в каталоге <b>/usr/portage/licenses/</b>.
+Если соответствующей лицензии в системе портежей нет, ее необходимо явно добавить.
+<br><br></dd>
+<dt><b><a name="IUSE">IUSE</a></b></dt><dd>
+Значением должен быть список всех необходимых флагов <b>USE</b>, использующихся в сценарии построения
+пакета. В этой переменной не должны указываться только флаги <b>USE</b>, задающие архитектуру
+(см. <a href="#KEYWORDS"><b>KEYWORDS</b></a>).
+<br><br></dd>
+<dt><b><a name="DEPEND">DEPEND</a></b></dt><dd>
+Эта переменная должна содержать список всех пакетов, которые необходимы для компиляции программы.
+<dl>
+<dt><a name="DEPEND_Atoms"><b>Атомы зависимости</b></a></dt><dd>
+Атом зависимости - это просто зависимость, используемая системой портежей при определении взаимосвязей между
+пакетами. Учтите, пожелуйста, что если атом еще не был включен в дерево пакетов, включаться будет
+самая последняя доступная версия.
+
+<dl>
+<dt>Базовые атомы</dt><dd>
+Базовый атом - это просто полное имя категории/имя пакета. Вот примеры базовых атомов:
+<pre>sys-apps/sed
+sys-libs/zlib
+net-misc/dhcp
+</pre>
+</dd>
+<dt>Версии атомов</dt><dd>
+Иногда необходимо дополнительное уточнение, что подойдут только определенные версии атомов. Учтите, что версии
+необходимо указывать для префикса - базового атома. Таким образом, номер версии просто добавляется
+как суффикс к базовому атому:
+<pre>sys-apps/sed-4.0.5
+sys-libs/zlib-1.1.4-r1
+net-misc/dhcp-3.0_p2
+</pre>
+<p>Номера версий обычно состоят из двух или трех чисел, разделенных точками, например, <b>1.2</b>
+или <b>4.5.2</b>. После этой строки может идти буква, например, <b>1.2a</b> или <b>4.5.2z</b>. 
+Учтите, что эта буква не должна обозначать статус <b>alpha</b>, <b>beta</b> и т.д. Для этого
+используется необязательный суффикс: <b>_alpha</b>, <b>_beta</b>, <b>_pre</b> (пре-релиз),
+<b>_rc</b> (релиз-кандидат) или <b>_p</b> (patch). Это означает, что для третьего пре-релиза пакета
+надо будет использовать версию типа <b>1.2_pre3</b>.</p>
+</dd>
+<dt>Префиксные операторы атома [<b>&gt; &gt;= = &gt;= &gt;</b>]</dt><dd>
+Иногда необходимо указывать зависимость от группы версий, не задавая постоянно каждую из них явно.
+Для этого предоставляются стандартные булевы операторы:
+<pre>&gt;media-libs/libgd-1.6
+&gt;=media-libs/libgd-1.6
+=media-libs/libgd-1.6
+&gt;=media-libs/libgd-1.6
+&gt;media-libs/libgd-1.6
+</pre>
+</dd>
+<dt>Дополнительные префиксы [<b>!~</b>] и суффиксы [<b>*</b>] атомов</dt><dd>
+Чтобы стало еще интереснее, обеспечивается возможность указывать блокирующие пакеты и соответствующие
+диапазоны версий. Учтите также, что эти дополнительные префиксы/суффиксы можно сочетать любым способом
+с представленными выше классами атомов. Вот ряд типичных примеров, которые можно найти в дереве портежей:
+<pre>!app-text/dos2unix
+=dev-libs/glib-2*
+!=net-fs/samba-2*
+~net-libs/libnet-1.0.2a
+</pre>
+<table cellspacing="4" border="0">
+<tbody><tr><td valign="top" width="5%"><b>!</b></td> <td>означает блокировку одновременной 
+установки пакетов.</td></tr>
+<tr><td valign="top" width="5%"><b>*</b></td> <td>означает соответствие любой версии пакета с указанной
+базой. Поэтому версия '<b>2*</b>' будет соответствовать '<b>2.1</b>', '<b>2.2</b>' и т.д.</td></tr>
+<tr><td valign="top" width="5%"><b>~</b></td> <td>означает соответствие любой редакции указанной базовой
+версии. Поэтому в представленноми выше примере будут соответствовать версии '<b>1.0.2a</b>', 
+'<b>1.0.2a-r1</b>', '<b>1.0.2a-r2</b>' и т.д.</td></tr>
+</tbody></table>
+</dd>
+</dl>
+</dd>
+<dt>Динамические зависимости</dt><dd>
+Иногда программы могут зависеть от разных пакетов и версий, в зависимости от значения переменной 
+<a href="#USE"><b>USE</b></a>. Система портежей предлагает несколько опций для учета этого. Учтите,
+что при использовании следующих синтаксических конструкций, каждая конструкция рассматривается
+как 1 атом в соответствующем контексте. Это означает, что каждый атом може включать за счет задания условий
+несколько атомов, и вложенность эта может быть любой глубины.
+<dl>
+<dt><b>&lt;переменная USE&gt;? ( &lt;атом зависимости&gt; )</b></dt><dd>
+Для включения библиотеки <b>jpeg</b> при указании пользователем <b>jpeg</b> в переменной USE, используйте
+следуюущую конструкцию:
+<pre>jpeg? ( media-libs/jpeg )
+</pre>
+</dd>
+<dt><b>&lt;переменная USE&gt;? ( &lt;атом если истина&gt; ) : ( &lt;атом если ложь&gt; )</b></dt><dd>
+Работает аналогично терциарному оператору <b>:</b> языка C. Если пакет использует <b>GTK2</b> или <b>GTK1</b>,
+но не оба вместе, это можно выразить так:
+<pre>gtk2? ( =x11-libs/gtk+-2* ) : ( =x11-libs/gtk+-1* )
+</pre>
+<p>В результате, по умолчанию будет использоваться более новая библиотека <b>GTK2</b>.</p>
+</dd>
+<dt><b>!&lt;переменная USE&gt;? ( &lt;атом&gt; )</b></dt><dd>
+Если необходимо включать пакет только при отсутствии определенной опции в переменной USE, используется
+следующая конструкция:
+<pre>!nophysfs? ( dev-games/physfs )
+</pre>
+<p>Она часто используется, когда необходимо добавить необязательную поддержку той или иной возможности,
+и установливать ее по умолчанию.
+</p></dd>
+<dt><b>|| ( &lt;атом&gt; &lt;атом&gt; ... )</b></dt><dd>
+Когда пакет может работать с несколькими различными пакетами, но категория <b>virtual</b> не подходит, 
+можно запросто использовать эту конструкцию.
+<pre>|| 
+(
+app-games/unreal-tournament
+app-games/unreal-tournament-goty
+)
+</pre>
+<p>Здесь мы видим, что пакет <b>unreal-tournament</b> бывает в обычной версии и в версии <b>goty</b>.
+Поскольку обе они предоставляют один и тот же базовый набор файлов, другой пакет может использовать
+любой из них. Добавление категории <b>virtual</b> не подходит, поскольку она не охватывает
+соответствующие файлы.</p>
+
+<p>Еще один хороший пример - это когда пакет может строиться с несколькими видеоинтерфейсами, но
+для каждого конкретного построения дорлжен использоваться какой-то один из них.</p>
+<pre>|| 
+(
+sdl? ( media-libs/libsdl )
+svga? ( media-libs/svgalib )
+opengl? ( virtual/opengl )
+ggi? ( media-libs/libggi )
+virtual/x11
+)
+</pre>
+<p>В данном случае, будет выбран только один из пакетов, а поряждок предпочтения определяется
+порядком их перечисления. Поэтому библиотека <b>sdl</b> является наиболее вероятным кандидатом, далее
+идет <b>svga</b>, затем - <b>opengl</b>, <b>ggi</b> и по умолчанию, если пользователь не задаст явно одну из
+предыдущих библиотек, будет использоваться X.</p>
+</dd>
+</dl>
+
+</dd></dl>
+</dd>
+<dt><b><a name="RDEPEND">RDEPEND</a></b></dt><dd>
+Эта переменная должна содержать список всех пакетов, необходимых для работы данной программы (другими
+словами, это зависимости <i>времени выполнения</i>). Если она не установлена, по умолчанию используется
+значение переменной <a href="#DEPEND"><b>DEPEND</b></a>.<br>
+Для задания динамических зависимостей можно использовать такие же конструкции, как и для переменной <b>DEPEND</b>.
+<br><br></dd>
+<dt><b><a name="PDEPEND">PDEPEND</a></b></dt><dd>
+Эта переменная должна содержать список всех пакетов, которые необходимо установить после включения
+в дерево данной программы.<br>
+Для задания динамических зависимостей можно использовать такие же конструкции, как и для переменной <b>DEPEND</b>.
+<br><br></dd>
+<dt><b><a name="RESTRICT">RESTRICT = [nostrip,nomirror,fetch,nouserpriv]</a></b></dt><dd>
+Задает список (через пробел) ограничений возможностей системы портежей.
+
+<dl>
+<dt><b><a name="nostrip">nostrip</a></b></dt><dd>
+Из результирующих двоичных модулей/библиотек не будет удаляться отладочная информация.
+<br><br></dd>
+<dt><b><a name="nouserpriv">nouserpriv</a></b></dt><dd>
+Отключает <b>userpriv</b> для определенных пакетов.
+<br><br></dd>
+<dt><b><a name="nomirror">nomirror</a></b></dt><dd>
+Файлы, указанные в переменной <a href="#SRC_URI"><b>SRC_URI</b></a>, не будут загружаться с зеркальных
+сайтов, <b>GENTOO_MIRRORS</b>.
+<br><br></dd>
+<dt><b><a name="fetch">fetch</a></b></dt><dd>
+Аналогично <b>nomirror</b>, но файлы не будут выбираться и через переменную 
+<a href="#SRC_URI"><b>SRC_URI</b></a>.</dd>
+</dl>
+</dd>
+<dt><b><a name="PROVIDE">PROVIDE = "virtual/TARGET"</a></b></dt><dd>
+Эта переменная должна использоваться только если пакет предоставляет виртуальную цель 
+(из категории <b>virtual</b>). Например, <b>blackdown-jdk</b> и <b>sun-jdk</b> предоставляют 
+<b>virtual/jdk</b>. Это позволяет пакетам задавать зависимости от <b>virtual/jdk</b>,
+а не явно от реализации <b>blackdown</b> или <b>sun</b>.
+</dd>
+</dl>
+
+<h2><a name="functions">ФУНКЦИИ</a></h2>
+<dl>
+<dt><b><a name="pkg_nofetch">pkg_nofetch</a></b></dt><dd>
+Если <b>fetch</b> указано в переменной <a href="#RESTRICT"><b>RESTRICT</b></a>, эта функция будет
+вызываться, когда не удастся найти файлы в <a href="#SRC_URI"><b>SRC_URI</b></a>. Пригодится для
+выдачи информации пользователю о том, <b>как</b> получить соответствующие файлы. Достаточно выдать
+сообщение и нормально завершить работу функции. Не завершайте функцию вызовом <a href="#die"><b>die</b></a>.
+<br><br></dd>
+<dt><b><a name="pkg_setup">pkg_setup</a></b></dt><dd>
+Эту функцию можно использовать, если для пакета необходимо выполнить определенные действия по настройке
+или проверки, прежде чем делать все остальное.
+
+<p>Исходным рабочим каталогом для этой функции будет 
+${<a href="#PORTAGE_TMPDIR"><b>PORTAGE_TMPDIR</b></a>}.</p>
+</dd>
+<dt><b><a name="src_unpack">src_unpack</a></b></dt><dd>
+Эта функция используется для распаковки всех исходных текстов, указанных в <a href="#A"><b>A</b></a> в
+каталог <a href="#WORKDIR"><b>WORKDIR</b></a>. Если эта функция в сценарии ebuild не определена,
+вызывается <a href="#unpack"><b>unpack ${A}</b></a>. В этой функции необходимо устанавливать патчи
+и выполнять все остальные изменения перед конфигурированием/компиляцией.
+
+<p>Исходным рабочим каталогом для этой функции будет <a href="#WORKDIR"><b>$WORKDIR</b></a>.</p>
+</dd>
+<dt><b><a name="src_compile">src_compile</a></b></dt><dd>
+В этой функции должны выполняються все необходимые шаги конфигурирования и компиляции.
+
+<p>Исходным рабочим каталогом для этой функции будет <a href="#S"><b>$S</b></a>.</p>
+</dd>
+<dt><b><a name="src_install">src_install</a></b></dt><dd>
+Должна содержать все необходимое для установки пакета во временном каталоге установки.
+
+<p>Исходным рабочим каталогом для этой функции будет <a href="#S"><b>$S</b></a>.</p>
+</dd>
+<dt><b><a name="pkg_preinst">pkg_preinst</a><br> 
+<a name="pkg_postinst">pkg_postinst</a></b></dt><dd>
+В этих функциях должны выполняться все модификации в "живой" файловой системы, необходимые до и после
+включения пакета в дерево. В <b>pkg_postinst</b> также необходимо указывать комментарий для пользователя, 
+поскольку он будет выводиться напоследок.
+
+<p>Исходным рабочим каталогом для этой функции будет <a href="#PWD"><b>$PWD</b></a>.</p>
+</dd>
+<dt><b><a name="pkg_prerm">pkg_prerm</a>
+<a name="pkg_postrm">pkg_postrm</a></b></dt><dd>
+Аналогично функциям <b>pkg_*inst</b>, но - для исключения пакета из дерева (unmerge).
+
+<p>Исходным рабочим каталогом для этой функции будет <a href="#PWD"><b>$PWD</b></a>.</p>
+</dd>
+<dt><b><a name="config">config</a></b></dt><dd>
+Эта функция должна содержать необязательные основные шаги по конфигурированию.
+
+<p>Исходным рабочим каталогом для этой функции будет <a href="#PWD"><b>$PWD</b></a>.</p>
+</dd>
+</dl>
+
+<h3>ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ: ОБЩИЕ</h3>
+
+<dl>
+<dt><b><a name="die">die [&lt;причина&gt;]</a></b></dt><dd>
+Вызывает прекращение работы текущего процесса <b>emerge</b>. Выводимая при этом информация будет
+включать <b>причину</b>.
+<br><br></dd>
+<dt><b><a name="use">use &lt;элемент USE&gt;</a></b></dt><dd>
+Если <b>элемент USE</b> указан в переменной <b>USE</b>, <b>элемент USE</b> будет выведен, и функция
+вернет 0. Если же <b>элемент USE</b> в переменной <b>USE</b> не указан, функция вернет 1.
+
+<p>Пример:</p>
+<pre>if [ `use gnome` ] ; then
+	guiconf="--enable-gui=gnome --with-x"
+elif [ `use gtk` ] ; then
+	guiconf="--enable-gui=gtk --with-x"
+elif [ `use X` ] ; then
+	guiconf="--enable-gui=athena --with-x"
+else
+	<b># Версия с графическим интерфейсом строиться не будет</b>
+	guiconf=""
+fi
+</pre>
+</dd>
+<dt><b><a name="use_with">use_with &lt;элемент USE&gt; [&lt;опция configure&gt;]</a></b></dt><dd>
+Пригодится для создания специфических опций, передаваемых сценарию <b>configure</b>. Если <b>элемент USE</b>
+указан в переменной <b>USE</b>, будет выведена строка <b>--with-[&lt;опция configure&gt;]</b>. 
+Если же <b>элемент USE</b> не указан в переменной <b>USE</b>, будет выведена строка 
+<b>--without-[&lt;опция configure&gt;]</b>. Если <b>опция configure</b> не указана, вместо нее
+будет использован <b>элемент USE</b>.
+
+<p>Пример:</p>
+<pre>USE="jpeg"
+myconf="`use_with jpeg libjpeg`"
+</pre>
+(<b>myconf</b> теперь имеет значение <b>"--with-libjpeg"</b>)
+
+<pre>USE=""
+myconf="`use_with jpeg libjpeg`"
+</pre>
+(<b>myconf</b> теперь имеет значение <b>"--without-libjpeg"</b>)
+
+<pre>USE="pic"
+myconf="`use_with pic`"
+</pre>
+(<b>myconf</b> теперь имеет значение <b>"--with-pic"</b>)
+<br><br></dd>
+<dt><b><a name="use_enable">use_enable &lt;элемент USE&gt; [&lt;опция configure&gt;]</a></b></dt><dd>
+Пригодится для создания специфических опций, передаваемых сценарию <b>configure</b>. Если <b>элемент USE</b>
+указан в переменной <b>USE</b>, будет выводиться строка <b>--enable-[&lt;опция configure&gt;]</b>.
+Если же <b>элемент USE</b> в переменной <b>USE</b> не указан, будет выводиться строка 
+<b>--disable-[&lt;опция configure&gt;]</b>. Если <b>опция configure</b> не указана, вместо нее
+будет использоваться сам <b>элемент USE</b>.
+
+<p>Пример см. в описании функции <a href="#use_with"><b>use_with</b></a>.</p>
+</dd>
+<dt><b><a name="has">has &lt;элемент&gt; &lt;список элементов&gt;</a></b></dt><dd>
+Если <b>элемент</b> входит в <b>список элементов</b>, такой <b>эемент</b> выводится и функция
+возвращает 0. В противном случае, ничего не выводится и функция возвращает 1.
+
+<p>Разделитель <b>списка элементов</b> задается переменной <b>IFS</b>. Ее стандартное значение&nbsp;- 
+<b>' '</b>, пробел. Это - переменная команжного интерпретатора <a href="/man.shtml?topic=bash&amp;category=1"><b>bash(1)</b></a>.</p>
+</dd>
+<dt><b><a name="has_version">has_version &lt;категория&gt;/&lt;пакет&gt;-&lt;версия&gt;</a></b></dt><dd>
+Проверяет, установлена ли <b>категория/пакет-версия</b> в системе. Параметр может иметь любые
+значения, допустимые для переменной <a href="#DEPEND"><b>DEPEND</b></a>. Эта функция возвращает
+0, если <b>категория/пакет-версия</b> установлена и 1 в противном случае.
+<br><br></dd>
+<dt><b><a name="best_version">best_version &lt;имя пакета&gt;</a></b></dt><dd>
+Эта функция будет искать <b>имя пакета</b> в базе данных установленных в настоящее время программ и
+выводить "лучшую версию" уже установленного пакета. Функция возвращает 0, если в системе есть пакет с
+соответствующим именем. В противном случае она возвращает 1.
+
+<p>Пример:</p>
+<pre>VERINS=`best_version net-ftp/glftpd`
+</pre>
+
+<p>Переменная <b>VERINS</b> теперь имеет значение "<b>net-ftp/glftpd-1.27</b>", если в системе
+установлен <b>glftpd-1.27</b>.</p>
+</dd>
+</dl>
+
+<h3>ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ: ВЫВОД</h3>
+<dl>
+<dt><b><a name="einfo">einfo "информационное сообщение"</a></b></dt><dd>
+Если необходимо вывести сообщение пользователю для прочтения, используйте функцию <b>einfo</b>. Она
+работает аналогично <a href="/man.shtml?topic=echo&amp;category=1"><b>echo(1)</b></a>, но добавляет дополнительную информацию,
+привлекающую внимание пользователя.
+<br><br></dd>
+<dt><b><a name="ewarn">ewarn "предупреждающее сообщение"</a></b></dt><dd>
+Аналогична <b>einfo</b>, но должна использоваться для предупреждения пользователя.
+<br><br></dd>
+<dt><b><a name="eerror">eerror "сообщение об ошибке"</a></b></dt><dd>
+Аналогична <b>einfo</b>, но должна использоваться для выдачи пользователю сообщения об ошибках.</dd>
+</dl>
+
+<h3>ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ: РАСПАКОВКА</h3>
+<dl>
+<dt><b><a name="unpack">unpack &lt;исходник&gt; [&lt;список дополнительных исходников&gt;]</a></b></dt><dd>
+Эта функция распаковывает (uncompresses) и/или разархивирует (untars) <b>список исходников</b> в текущий
+каталог. Она добавляет <b>исходник</b> к значению переменной <a href="#DISTDIR"><b>DISTDIR</b></a>.</dd>
+</dl>
+
+<h3>ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ: КОМПИЛЯЦИЯ</h3>
+<dl>
+<dt><b><a name="econf">econf [&lt;опции configure&gt;]</a></b></dt><dd>
+Эта функция используется вместо <b>configure</b>. Выполняет:
+<pre>configure \
+	--prefix=/usr \
+	--host=${CHOST} \
+	--mandir=/usr/share/man \
+	--infodir=/usr/share/info \
+	--datadir=/usr/share \
+	--sysconfdir=/etc \
+	--localstatedir=/var/lib \
+	${EXTRA_ECONF} \
+	<b>&lt;опции configure&gt;</b>
+</pre>
+<p>Поэтому можно передавать опции <b>econf</b> либо в командной строке, либо через переменную <b>EXTRA_ECONF</b>.
+При явном вызове функции <b>econf</b> имеет смысл передавать дополнительные аргументы <b>econf</b>, а не
+использовать переменную <b>EXTRA_ECONF</b>.</p>
+</dd>
+<dt><b><a name="emake">emake [&lt;опции make&gt;]</a></b></dt><dd>
+Эта функция используется вместо <b>make</b>. Добавляет стандартную опцию <b>MAKEOPTS="-j2"</b>.
+
+<dl><dt><b>ПРЕДУПРЕЖДЕНИЕ</b></dt><dd>
+Если вы собираетесь использовать <b>emake</b>, убедитесь что построение возможно при
+распараллеливании (<b>make -j2</b>). Это необходимо тщательно протестировать, поскольку распараллеливание
+построения <b>иногда</b>, хотя и не всегда, приводит к ошибкам.</dd></dl>
+</dd>
+</dl>
+
+<h3>ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ: УСТАНОВКА</h3>
+<dl>
+<dt><b><a name="einstall">einstall [&lt;опции make&gt;]</a></b></dt><dd>
+Эта функция используется вместо <b>make install</b>. Выполняет:
+<pre>make prefix=${D}/usr \
+	mandir=${D}/usr/share/man \
+	infodir=${D}/usr/share/info \
+	datadir=${D}/usr/share \
+	sysconfdir=${D}/etc \
+	localstatedir=${D}/var/lib \
+	<b>&lt;опции make&gt;</b> install
+</pre>
+<p>Пожалуйста, не используйте эту функцию вместо '<b>make install DESTDIR=${D}</b>'.
+Это - предпочтительный способ установки пакетов, собираемых с помощью <b>make</b> (make-based packages).</p>
+</dd>
+<dt><b><a name="prepall">prepall</a><br>
+<a name="prepalldocs">prepalldocs</a><br>
+<a name="prepallinfo">prepallinfo</a><br>
+<a name="prepallman">prepallman</a><br>
+<a name="prepallstrip">prepallstrip</a></b></dt><dd>
+Эти функции пригодятся, когда пакет устанавливается в каталог <a href="#D"><b>${D}</b></a> с помощью сценариев,
+например, make-файлов. Если необходимо гарантировать, что библиотеки являются выполняемыми, файлы
+<b>aclocal</b> установлены в нужное место, все файлы <b>doc</b>/<b>info</b>/<b>man</b> упакованы, а из 
+выполняемых файлов удалена отладочная информация, используйте этот набор функций.
+<dl>
+<dt><b>prepall</b>:</dt><dd>
+Выполняет <b>prepallman</b>, <b>prepallinfo</b>, <b>prepallstrip</b>, устанавливает для библиотек <b>+x</b>, а
+затем проверяет каталоги <b>aclocal</b>. Обратите внимание, что функция <b>prepalldocs</b> при этом
+<b>не вызывается</b>.
+<br><br></dd>
+<dt><b>prepalldocs</b>:</dt><dd>
+Упаковывает все <b>doc</b>-файлы в каталоге <b>${D}/usr/share/doc</b>.
+<br><br></dd>
+<dt><b>prepallinfo</b>:</dt><dd>
+Упаковывает все <b>info</b>-файлы в каталоге <b>${D}/usr/share/info</b>.
+<br><br></dd>
+<dt><b>prepallman</b>:</dt><dd>
+Упаковывает все <b>man</b>-файлы в каталоге <b>${D}/usr/share/man</b>.
+<br><br></dd>
+<dt><b>prepallstrip</b>:</dt><dd>
+Удаляет отладочную инфомацию из всех выполняемых файлов, в том числе, из библиотек.</dd>
+</dl>
+</dd>
+<dt><b><a name="prepinfo">prepinfo [&lt;каталог&gt;]</a><br>
+<a name="preplib">preplib [&lt;каталог&gt;]</a><br>
+<a name="preplib.so">preplib.so [&lt;каталог&gt;]</a><br>
+<a name="prepman">prepman [&lt;каталог&gt;]</a><br>
+<a name="prepstrip">prepstrip [&lt;каталог&gt;]</a></b></dt><dd>
+Аналогичны функциям <b>prepall</b>, но немного отличаются.
+<dl>
+<dt><b>prepinfo</b>:</dt><dd>
+Если <b>каталог</b> не указан, функция <b>prepinfo</b> предполагает использование каталога <b>usr</b>. 
+Функция <b>prepinfo</b> будет упаковывать все файлы в каталоге <b>${<a href="#D">D</a>}/dir/info</b>.
+<br><br></dd>
+<dt><b>preplib</b>:</dt><dd>
+Если <b>каталог</b> не указан, функция <b>preplib</b> предполагает использование каталога <b>usr</b>.
+Функция <b>preplib</b> будет выполнять '<b>ldconfig -n -N</b>' в каталоге <b>${D}/dir/lib</b>.
+<br><br></dd>
+<dt><b>preplib.so</b>:</dt><dd>
+Функция находит все файлы со строкой <b>'.so'</b> в имени в каталоге <b>${D}/dir</b> и удаляет
+из них отладочную информацию. Можно указывать несколько каталогов.
+<br><br></dd>
+<dt><b>prepman</b>:</dt><dd>
+Если <b>каталог</b> не указан, функция <b>prepman</b> предполагает использование каталога <b>usr</b>.
+Функция <b>prepman</b> будет упаковывать все файлы в каталоге <b>${D}/dir/man/*/</b>.
+<br><br></dd>
+<dt><b>prepstrip</b>:</dt><dd>
+Из всех файлов <b>${D}/dir</b> удаляется отладочная информация. Можно указывать несколько каталогов.</dd>
+</dl>
+</dd>
+<dt><b><a name="dopython">dopython &lt;команды&gt;</a></b></dt><dd>
+Выполняет команды языка <b>python</b> и возвращает результат.
+<br><br></dd>
+<dt><b><a name="dosed">dosed "s:шаблон:замена:g" &lt;имя файла&gt;</a></b></dt><dd>
+Выполняет команду <a href="/man.shtml?topic=sed&amp;category=1"><b>sed</b></a> (с необходимым переименованием/копированием) 
+для указанного <b>файла</b>.
+
+<p>Функция '<b>dosed "s:/usr/local:/usr:g" /usr/bin/some-script</b>' выполняет соответствующую 
+команду замены <b>sed</b> для файла <b>${D}/usr/bin/some-script</b>.</p>
+</dd>
+<dt><b><a name="dodir">dodir &lt;полное имя&gt;</a></b></dt><dd>
+Создает каталог в каталоге <b>${<a href="#D">D</a>}</b>.
+
+<p>Команда '<b>dodir /usr/lib/apache</b>' создает каталог <b>${D}/usr/lib/apache</b>.</p>
+</dd>
+<dt><b><a name="diropts">diropts [&lt;опции для install(1)&gt;]</a></b></dt><dd>
+Может использоваться для задания опций утилите <b>install</b>, используемой в функции 
+<a href="#dodir"><b>dodir</b></a>. Стандартное значение&nbsp;- <b>-m0755</b>.
+<br><br></dd>
+<dt><b><a name="into">into &lt;path&gt;</a></b></dt><dd>
+Устанавливает корневой каталог (<a href="#DESTTREE"><b>DESTTREE</b></a>) для других функций типа
+<a href="#dobin"><b>dobin</b></a>, <a href="#dosbin"><b>dosbin</b>, </a><a href="#doman"><b>doman</b></a>,
+<a href="#doinfo"><b>doinfo</b></a>, <a href="#dolib"><b>dolib</b></a>.
+
+<p>По умолчанию в качестве корневого используется каталог <b>/usr</b>.</p>
+</dd>
+<dt><b><a name="keepdir">keepdir &lt;полное имя&gt;</a></b></dt><dd>
+Указывает системе портежей оставлять указанный каталог, даже если он пустой.
+
+<p>В остальном, работает аналогично <a href="#dodir"><b>dodir</b></a>.</p>
+</dd>
+<dt><b><a name="dobin">dobin &lt;двоичный файл&gt; [&lt;список дополнительных файлов&gt;]</a></b></dt><dd>
+Устанавливает один или все перечисленные двоичные файлы в каталог <b>DESTTREE/bin</b>. Создает
+при этом все необходимые каталоги.
+<br><br></dd>
+<dt><b><a name="dosbin">dosbin &lt;двоичный файл&gt; [&lt;список дополнительных файлов&gt;]</a></b></dt><dd>
+Устанавливает один или все перечисленные двоичные файлы в каталог <b>DESTTREE/sbin</b>. Создает
+при этом все необходимые каталоги.
+<br><br></dd>
+<dt><b><a name="dolib">dolib &lt;библиотека&gt; [&lt;список дополнительных библиотек&gt;]</a><br>
+<a name="dolib.a">dolib.a &lt;библиотека&gt; [&lt;список дополнительных библиотек&gt;]</a><br>
+<a name="dolib.so">dolib.so &lt;библиотека&gt; [&lt;список дополнительных библиотек&gt;]</a></b></dt><dd>
+Устанавливает библиотеку или все перечисленные библиотеки в каталог <b>DESTTREE/lib</b>. Создает
+при этом все необходимые каталоги.
+<br><br></dd>
+<dt><b><a name="libopts">libopts [&lt;опции для install(1)&gt;]</a></b></dt><dd>
+Может использоваться для передачи опций утилите <b>install</b>, используемой в функциях <b>dolib</b>.
+Стандартное значение&nbsp;- <b>-m0644</b>.
+<br><br></dd>
+<dt><b><a name="doman">doman &lt;man-страница&gt; [&lt;список дополнительных man-страниц&gt;]</a></b></dt><dd>
+Устанавливает страницы справочного руководства в каталоги <b>DESTDIR/man/man[1-8n]</b> в зависимости от
+последних символов в имени файла. Файлы упаковываются с помощью <a href="/man.shtml?topic=gzip&amp;category=1"><b>gzip</b></a>, если они 
+еще не упакованы. Функция создает все необходимые каталоги.
+<br><br></dd>
+<dt><b><a name="dohard">dohard &lt;имя файла&gt; &lt;имя связи&gt;</a><br>
+<a name="dosym">dosym &lt;имя файла&gt; &lt;имя связи&gt;</a></b></dt><dd>
+Выполняет команду <a href="/man.shtml?topic=ln&amp;category=1"><b>ln</b></a> для создания жесткой или символической связи.
+<br><br></dd>
+<dt><b><a name="dohtml">dohtml [-a &lt;типы файлов&gt;] [-r] [-x &lt;список игнорируемых каталогов&gt;] [&lt;список файлов и каталогов&gt;]</a></b></dt><dd>
+Устанавливает указанные в списке через пробел файлы в каталог <b>/usr/share/doc/${<a href="#PF">PF</a>}/html</b>,
+если имена этих файлов заканчиваются на <b>.html</b>, <b>.png</b>, <b>.js</b>. Опция <b>-a</b> добавляет
+новые завершения к этому стандартному списку, а опция <b>-x</b> позволяет указать каталоги, которые при этом
+необходимо пропустить (каталог <b>CVS</b> исключается по умолчанию). Опция <b>-r</b> требует
+обрабатывать подкаталоги рекурсивно.
+<br><br></dd>
+<dt><b><a name="doinfo">doinfo &lt;info-файл&gt; [&lt;список дополнительных info-файлов&gt;]</a></b></dt><dd>
+Устанавливает info-страницы в каталог <b>DESTDIR/info</b>. Файлы при этом автоматически упаковываются с помощью
+<b>gzip</b>. Функция создает все необходимые каталоги.
+<br><br></dd>
+<dt><b><a name="dojar">dojar &lt;jar-файл&gt; [&lt;список дополнительных jar-файлов&gt;]</a></b></dt><dd>
+Устанавливает jar-файлы в каталог <b>/usr/share/${<a href="#PN">PN</a>}/lib</b> и добавляет
+их в <b>/usr/share/${PN}/classpath.env</b>.
+<br><br></dd>
+<dt><b><a name="domo">domo &lt;файл локали&gt; [&lt;список дополнительных файлов локали&gt;]</a></b></dt><dd>
+Устанавливает файлы локали в каталог <b>DESTDIR/usr/share/locale/[LANG]</b>, в зависимости от 
+завершения имени файла локали. Функция создает все необходимые каталоги.
+<br><br></dd>
+<dt><b><a name="fowners">fowners &lt;владелец&gt; &lt;файл&gt; [&lt;файлы&gt;]</a><br>
+<a name="fperms">fperms &lt;права&gt; &lt;файл&gt; [&lt;файлы&gt;]</a></b></dt><dd>
+Выполняет <b>chown</b> (<b>fowners</b>) или <b>chmod</b> (<b>fperms</b>), устанавливая 
+владельца и права доступа к указанным файлам.
+<br><br></dd>
+<dt><b><a name="insinto">insinto [&lt;полное имя&gt;]</a></b></dt><dd>
+Устанавливает корневой каталог (<a href="#INSDESTTREE"><b>INSDESTTREE</b></a>) для функции 
+<a href="#doins"><b>doins</b></a>. По умолчанию в качестве корневого используется каталог <b>/</b>.
+<br><br></dd>
+<dt><b><a name="insopts">insopts [&lt;опции для install(1)&gt;]</a></b></dt><dd>
+Может использоваться для задания опций утилите <b>install</b>, используемой в функции 
+<a href="#doins"><b>doins</b></a>. Стандартное значение&nbsp;- <b>-m0644</b>.
+<br><br></dd>
+<dt><b><a name="doins">doins &lt;файл&gt; [&lt;список дополнительных файлов&gt;]</a></b></dt><dd>
+Устанавливает указанные файлы в каталог <a href="#INSDESTTREE"><b>INSDESTTREE</b></a>. 
+Эта функция использует утилиту <b>install(1)</b>.
+<br><br></dd>
+<dt><b><a name="exeinto">exeinto [&lt;полное имя&gt;]</a></b></dt><dd>
+Устанавливает корневой каталог (<a href="#EXEDESTTREE"><b>EXEDESTTREE</b></a>) для функции 
+<a href="#doexe"><b>doexe</b></a>. По умолчанию в качестве корневого используется каталог <b>/</b>.
+<br><br></dd>
+<dt><b><a name="exeopts">exeopts [&lt;опции для install(1)&gt;]</a></b></dt><dd>
+Может использоваться для задания опций утилите <b>install</b>, используемой в функции 
+<a href="#doexe"><b>doexe</b></a>. Стандартное значение&nbsp;- <b>-m0755</b>.
+<br><br></dd>
+<dt><b><a name="doexe">doexe &lt;выполняемый файл&gt; [&lt;список дополнительных выполняемых файлов&gt;]</a></b></dt><dd>
+Устанавливает указанный выполняемый файл или файлы в каталог <a href="#EXEDESTTREE"><b>EXEDESTTREE</b></a>.
+Эта функция использует утилиту <b>install(1)</b>.
+<br><br></dd>
+<dt><b><a name="docinto">docinto [&lt;полное имя&gt;]</a></b></dt><dd>
+Устанавливает относительный подкаталог (<b>DOCDESTTREE</b>), используемый  функцией 
+<a href="#dodoc"><b>dodoc</b></a>.
+<br><br></dd>
+<dt><b><a name="dodoc">dodoc &lt;документ&gt; [&lt;список дополнительных документов&gt;]</a></b></dt><dd>
+Устанавливает один или несколько указанных документов в каталог 
+<b>/usr/share/doc/${<a href="#PF">PF</a>}/DOCDESTTREE</b>. Файлы автоматически упаковываются 
+утилитой <b>gzip</b>. Функция создает все необходимые каталоги.
+<br><br></dd>
+<dt><b><a name="newbin">newbin &lt;старый файл&gt; &lt;новое имя файла&gt;</a><br>
+<a name="newsbin">newsbin &lt;старый файл&gt; &lt;новое имя файла&gt;</a><br>
+<a name="newlib">newlib &lt;старый файл&gt; &lt;новое имя файла&gt;</a><br>
+<a name="newlib.so">newlib.so &lt;старый файл&gt; &lt;новое имя файла&gt;</a><br>
+<a name="newlib.a">newlib.a &lt;старый файл&gt; &lt;новое имя файла&gt;</a><br>
+<a name="newman">newman &lt;старый файл&gt; &lt;новое имя файла&gt;</a><br>
+<a name="newinfo">newinfo &lt;старый файл&gt; &lt;новое имя файла&gt;</a><br>
+<a name="newins">newins &lt;старый файл&gt; &lt;новое имя файла&gt;</a><br>
+<a name="newexe">newexe &lt;старый файл&gt; &lt;новое имя файла&gt;</a><br>
+<a name="newdoc">newdoc &lt;старый файл&gt; &lt;новое имя файла&gt;</a></b></dt><dd>
+Все эти функции работают аналогично функциям <b>do*</b>, но работают они только с одним файлом, который
+устанавливается с <b>новым именем</b>.
+</dd>
+</dl>
+
+<h2><a name="reporting_bugs">СООБЩЕНИЯ ОБ ОШИБКАХ</a></h2>
+
+<p>Пожалуйста, сообщайте об ошибках на сайте <a href="http://bugs.gentoo.org/"><b>http://bugs.gentoo.org/</b></a></p>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=ebuild&amp;category=1"><b>ebuild(1)</b></a>,
+	<a href="/man.shtml?topic=make.conf&amp;category=5"><b>make.conf(5).</b></a><br>
+<br>
+	Сценарий <b>/usr/sbin/ebuild.sh</b>.<br>
+	Вспомогательные приложения в каталоге <b>/usr/lib/portage/bin</b>.
+</dd></dl>
+
+<h2><a name="files">ФАЙЛЫ</a></h2><a name="files">
+<dl>
+<dt><b>/etc/make.conf</b></dt><dd>
+Содержит переменные для процесса построения, имеющие приоритет над заданными в файле <b>make.defaults</b>.
+<br><br></dd>
+<dt><b>/etc/make.globals</b></dt><dd>
+Содержит стандартные переменные для процесса построения. Редактировать значения надо не здесь,
+а в файле <b>/etc/make.conf</b>.
+</dd></dl>
+
+</a><h2><a name="files"></a><a name="authors">АВТОРЫ</a></h2>
+
+<p>
+Achim Gottinger &lt;achim@gentoo.org&gt;<br>
+Mark Guertin &lt;gerk@gentoo.org&gt;<br>
+Nicholas Jones &lt;carpaski@gentoo.org&gt;<br>
+Mike Frysinger &lt;vapier@gentoo.org&gt;
+</p>
+
+<h2><a name="cvs">ЗАГОЛОВОК CVS</a></h2>
+
+<pre>$Header: /home/cvsroot/gentoo-src/portage/man/ebuild.5,v 1.54 2003/10/14 17:29:49 vapier Exp $</pre>
+
+<p align="center">Последнее изменение: февраль 2003 года</p>
+
+<p align="center"><font size="-2">
+Copyleft (no c) - Fuck copyright!, 2003 
+<a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ebuild" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

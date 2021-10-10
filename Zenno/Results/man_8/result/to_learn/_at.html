@@ -1,0 +1,592 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN at (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, at"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="at" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">at (8)</font><hr><li> <a href="/man.shtml?topic=at&amp;category=1&amp;russian=4"><u>at</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=at&amp;category=1&amp;russian=1"><u>at</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=at&amp;category=1&amp;russian=0"><u>at</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=at&amp;category=1&amp;russian=2"><u>at</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=at&amp;category=1&amp;russian=5"><u>at</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=at&amp;category=8&amp;russian=0"><u>at</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td><h1>Пользовательские команды</h1></td>
+<td><h1 align="right">at(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+<p><b>at</b>, <b>batch</b> - выполнять команды позже</p>
+
+<h2><a name="synopsis">СИНТАКСИС</a></h2>
+<dl><dt></dt><dd><tt>
+at [ -c | -k  | -s ] [ -m ] [ -f <b>файл</b> ] [ -p <b>проект</b> ] [ -q <b>очередь</b> ]<br>
+&nbsp;&nbsp;&nbsp; -t <b>время</b><br>
+at [ -c | -k  | -s ] [ -m ] [ -f <b>файл</b> ] [ -p <b>проект</b> ] [ -q <b>очередь</b> ]<br> 
+&nbsp;&nbsp;&nbsp; <b>спецификация_времени</b> ...<br>
+at -l [ -p <b>проект</b> ] [ -q <b>очередь</b> ] [ <b>идентификатор_задания_at</b> ... ]<br>
+at -r <b>идентификатор_задания_at</b> ...<br>
+batch [ -p <b>проект</b> ]
+</tt></dd></dl>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<h3>&nbsp;&nbsp;&nbsp;   <a name="at">at</a></h3>
+
+<p>Утилита <b>at</b> читает команды со стандартного входного потока и группирует
+их в виде <i>задания <b>at</b></i> для выполнения позже, в заданное время.</p>
+
+<p>Задание <b>at</b> будет выполняться отдельным процессом командного 
+интерпретатора, работающим в отдельной группе процессов без управляющего терминала, но
+переменные среды, текущий каталог, маска создания файла (см. 
+<a href="/man.shtml?topic=umask&amp;category=1"><b>umask(1)</b></a>) и ограничения системных ресурсов (только для
+командных интерпретаторов <b>sh</b> и <b>ksh</b>, см. 
+<a href="/man.shtml?topic=ulimit&amp;category=1"><b>ulimit(1)</b></a>), имеющиеся в момент вызова утилиты <b>at</b>,
+сохраняются и будут использованы при выполнении задания <b>at</b>.</p>
+
+<p>При посылке задания <b>at</b> его <i>идентификатор</i> и запланированное время
+выполнения выдаются в стандартный поток ошибок. <b>идентификатор_задания_at</b> - это 
+строка, состоящая исключительно из алфавитноцифровых символов и символа точки.
+<b>идентификатор_задания_at</b> присваивается заданию системой при постановке на
+выполнение и является уникальным.</p>
+
+<p>Уведомление пользователя, а также обработка стандартного выходного потока
+и стандартного потока ошибок задания описано ниже (см. опцию <a href="#m"><b>-m</b></a>).</p>
+
+<p>Пользователям разрешается использовать команды <b>at</b> и <b>batch</b> 
+(см. <a href="#batch">ниже</a>), если их регистрационные имена указаны в файле
+<b>/usr/lib/cron/at.allow</b>. Если этот файл не существует, прверяется файл
+<b>/usr/lib/cron/at.deny</b>, чтобы определить, не запрещен ли пользователю доступ к 
+<b>at</b>. Если ни один из файлов не существует, посылать задание может только
+пользователь с привилегией <b>solaris.jobs.user</b>. Если существует только файл 
+<b>at.deny</b>, и он пустой, использовать утилиту разрешается всем. 
+Файлы <b>at.allow</b> и <b>at.deny</b> содержат по одному регисчтрационному имени
+пользователя в строке.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  <a name="batch">batch</a></h3>
+
+<p>Утилита <b>batch</b> читает команды для выполнения в дальнейшем. Она эквивалентна
+команде:</p>
+<dl><dt></dt><dd><tt>
+at -q b -m now
+</tt></dd></dl>
+
+<p>где очередь <b>b</b> - специальная очередь <b>at</b> для <i>пакетных</i> (<b>batch</b>)
+заданий. Пакетные задания ставятся в эту очередь для немедленного выполнения.</p>
+
+<h2><a name="options">ОПЦИИ</a></h2>
+
+<p>Поддерживаются следующие опции. Если не указаны опции <b>-c</b>, <b>-k</b> или <b>-s</b>,
+используемый командный интерпретатор задает переменная среды <b>SHELL</b>.</p>
+
+<dl>
+<dt><a name="c"><b>-c</b></a></dt><dd>
+Командный интерпретатор C shell. Для выполнения задания <b>at</b> используется
+командный интерпретатор <a href="/man.shtml?topic=csh&amp;category=1"><b>csh(1)</b></a>.<br><br></dd>
+<dt><a name="k"><b>-k</b></a></dt><dd>
+Командный интерпретатор Korn shell. Для выполнения задания <b>at</b> используется
+командный интерпретатор <a href="/man.shtml?topic=ksh&amp;category=1"><b>ksh(1)</b></a>.<br><br></dd>
+<dt><a name="s"><b>-s</b></a></dt><dd>
+Командный интерпретатор Bourne shell. Для выполнения задания <b>at</b> используется
+командный интерпретатор <a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>.<br><br></dd>
+<dt><a name="f"><b>-f файл</b></a></dt><dd>
+Здает полное имя файла, используемого в качестве источника задания <b>at</b>
+вместо стандартного входного потока.<br><br></dd>
+<dt><a name="l"><b>-l (буква "эл")</b></a></dt><dd> 
+Выдает информацию о всех запланированных заданиях вызвавшего пользователя, еслне заданы операнды
+<b>идентификатор_задания_at</b>. Если идентфикаторы заданий указаны, выдает информацию только
+об этих заданиях.<br><br></dd>
+<dt><a name="m"><b>-m</b></a></dt><dd>
+Посылает сообщение по электронной почте вызвавшему пользователю после запуска задания
+<b>at</b>, уведомляющее о его выполнении. Стандартный выходной поток и стандартный поток
+ошибок, выданные заданием <b>at</b>, тоже отправляютс пользователю по электронной почте,
+если не перенаправлены. Сообщение будет послано, даже если задание ничего не выдало в потоки.
+<br><br>
+Если опция <b>-m</b> не указана, стандартный выходной поток и стандартный поток ошибок
+задания будут направлены пользователю по электронной почте, если не перенаправлены; если
+ничего в эти потоки не выдано, пользователь не уведомляется выполнении задания.<br><br></dd>
+<dt><a name="p"><b>-p проект</b></a></dt><dd>
+Задает, в каком проекте будет выполняться задание <b>at</b> или <b>batch</b>. При
+использовании с опцией <a href="#l"><b>-l</b></a> ограничивает поиск только 
+указанным <b>проектом</b>. Значения параметра <b>проект</b> будут интерпретироваться 
+сначала как имя, а потом как возможный идентификатор проекта, если состоят 
+исключительно из цифр. По умолчанию используется текущий проект пользователя.<br><br></dd>
+<dt><a name="q"><b>-q очередь</b></a></dt><dd>
+Задает, в каку очередь поставить задание для выполнения. При использовании с опцией
+<a href="#l"><b>-l</b></a> ограничивает поиск указанной <b>очередью</b>. В качестве значений
+параметра <b>очередь</b> могут использоваться только строчные буквы от <b>a</b> до <b>z</b>.
+По умолчанию задания <b>at</b> помещаются в очередь <b>a</b>. Очередь <b>b</b>
+зарезервирована для пакетных заданий <b>batch</b>. Поскольку очередь <b>c</b> зарезервирована
+для заданий <b>cron</b>, ее нельзя указывать в опции <b>-q</b>.<br><br></dd>
+<dt><a name="r"><b>-r идентификатор_задания_at</b></a></dt><dd>
+Удаляет задания с указанными <b>идентификаторами_задания_at</b>, ранее запланированные
+к выполнению с помощью утилиты <b>at</b>.<br><br></dd>
+<dt><a name="t"><b>-t время</b></a></dt><dd>
+Посылает задание для выполнения в указанное <b>время</b>, которое должно задаваться в
+формате, определяемом утилитой <a href="/man.shtml?topic=touch&amp;category=1"><b>touch(1)</b></a>.</dd>
+</dl>
+
+<h2><a name="operands">ОПЕРАНДЫ</a></h2>
+
+<p>Поддерживаются следующие операнды:</p>
+
+<dl>
+<dt><b>идентификатор_задания_at</b></dt><dd>
+Имя, выданное при вызове утилиты <b>at</b>, когда задание было 
+запланировано к выполнению.</dd>
+<dt><b>спецификация_времени</b></dt><dd>
+Дата и время выполнения задания. Все операнды <b>спецификация_вермени</b> интерпретируются
+так, как если бы они были разделены пробелами и конкатенированы. Дата и время
+интерпретируются относительно часового пояса пользователя (задаваемого переменной
+среды <b>TZ</b>), если только имя часового пояса не указано в
+представленном ниже компоненте <a href="#time"><b>время</b></a>.
+
+<p>В локали "C" три компонента строки спецификации времени можно описать
+следующим образом. Все значения категорий <b>LC_TIME</b> в локали "C" распознаются
+независимо от регистра.</p>
+
+<dl>
+<dt><a name="time"><b>время</b></a></dt><dd>
+<b>Время</b> может задаваться одной, двумя или четырьмя цифрами. Одно- и двузначные числа
+считаются часами, а четырехзначные - часами и минутами. Время также можно задавать
+двумя числами через двоеточие, - <b>часов</b>:<b>минут</b>. После времени
+можно указывать признак времени суток (одно из значений для ключевого слова <b>am_pm</b> 
+в категории локали <b>LC_TIME</b>). Если он не указан, время считается заданным в 
+24-часовом формате. Далее может быть указано имя часового пояса, <b>GMT</b>, <b>UCT</b> 
+или <b>ZULU</b> (независимо от регистра), означающее, что время задано как 
+<i>скоординированное универсальное время</i> (Coordinated Universal Time).
+Другие часовые пояса можно задавать с помощью переменной среды <b>TZ</b>. В поле времени
+в локали "C" также может указываться одна из следующих лексем:
+
+<dl>
+<dt><b>midnight</b></dt><dd>
+Обозначает время <b>12:00 am</b> (12 ночи, <b>00:00</b> - полночь).</dd>
+<dt><b>noon</b></dt><dd>
+Обозначет время <b>12:00 pm</b> (12 дня - полдень).</dd>
+<dt><b>now</b></dt><dd>
+Обозначает текущий день и время. При постановке задания <b>now</b>, оно отправляется
+потенциально для немедленного выполнения (т.е. возможны только непредвиденные задержки
+в связи с выполнением других заданий).</dd>
+</dl>
+</dd>
+
+<dt><a name="date"><b>дата</b></a></dt><dd>
+Необязательный параметр <b>дата</b> можно задавать в виде имени
+месяца (одно из значений ключевых слов <b>mon</b> или <b>abmon</b> в категории
+локали <b>LC_TIME</b>), за которым идет день месяца (и, возможно, год через запятую) или
+день недели (одно из значений ключевых слов <b>day</b> или <b>abday</b> в категории локали
+<b>LC_TIME</b>). В локали "C" распознаются две специальных даты:
+
+<dl>
+<dt><b>today</b></dt><dd>
+Обозначает текущий день.</dd>
+<dt><b>tomorrow</b></dt><dd>
+Обозначает следующий день.</dd>
+</dl>
+
+Если дата не задана, предполагается текущий день, если указанное время превосходит текущее,
+и следующий день, если не превосходит. Если указанный месяц - меньше текущего (и год не
+задан), предполагается следующий год.
+<br><br>
+</dd>
+
+<dt><b>инкремент</b></dt><dd>
+Необязательный <b>инкремент</b> - это число, предваренное знаком плюс (<b>+</b>) и снабженное
+одним из следующих суффиксов: <b>minutes</b>, <b>hours</b>, <b>days</b>, <b>weeks</b>,
+<b>months</b> или <b>years</b>. (Форма единсвенного числа, без <b>s</b>, тоже поддерживается.) Ключевое слово <b>next</b> эквивалентно инкременту <b>+ 1</b>. Например, следующие команды
+эквивалентны:
+<dl><dt></dt><dd><pre>at 2pm + 1 week
+at 2pm next week
+</pre></dd></dl>
+
+</dd>
+</dl>
+
+</dd></dl>
+
+<h2><a name="usage">ИСПОЛЬЗОВАНИЕ</a></h2>
+
+<p>Передставленный здесь формат командной строки <b>at</b> гарантированно работает
+только в локали "C". В других локалях значения <b>midnight</b>, <b>noon</b>, <b>now</b>,
+<b>mon</b>, <b>abmon</b>, <b>day</b>, <b>abday</b>, <b>today</b>, <b>tomorrow</b>,
+<b>minutes</b>, <b>hours</b>, <b>days</b>, <b>weeks</b>, <b>months</b>, <b>years</b> и
+<b>next</b> не поддерживаются.</p>
+
+<p>Поскольку команды выполняются в отдельном экземпляре командного интерпретатора,
+работающем в отдельной группе процессов и не связанном с управляющим терминалом, 
+дескрипторы открытых файлов, обработчики сигналов и приоритет из вызывающей среды
+гне наследуются.</p>
+
+<h2><a name="examples">ПРИМЕРЫ</a></h2>
+
+<h3>&nbsp;&nbsp;&nbsp;  at</h3>
+<h3><a name="ex1">Пример 1: Типичный запуск с терминала</a></h3>
+
+<p>Следующую команду можно вводить с терминала:</p>
+
+<dl><dt></dt><dd><pre>$ at -m 0730 tomorrow
+sort &lt; file &gt;outfile
+&lt;EOT&gt;
+</pre></dd></dl>
+
+<h3><a name="ex2">Пример 2: Перенаправление результатов</a></h3>
+
+<p>Эта команда, демонстрирующая перенаправление стандартного потока ошибок по 
+конвейеру, пригодится в комнадных файлах (порядок перенаправлений
+существенен):</p>
+
+<dl><dt></dt><dd><pre>$ at now + 1 hour &lt;&lt;!
+diff file1 file2 2&gt;&amp;1 &gt;outfile | mailx mygroup
+!
+</pre></dd></dl>
+
+<h3><a name="ex3">Пример 3: Повторная постановка себя на выполнение</a></h3>
+
+<p>Чтобы задание само поставило себя на повторное выполнение, в тексте задания
+можно выполнить команду <b>at</b>. Например, следующий "ежедневный сценарий"
+по имени <b>my.daily</b> будет выполняться каждый день (хотя для подобного
+рода задач лучше использовать механизм <b>crontab</b>):</p>
+
+<dl><dt></dt><dd><pre># my.daily выполняется каждый день
+at now tomorrow &lt; my.daily
+daily-processing
+</pre></dd></dl>
+
+<h3><a name="ex4">Пример 4: Различные форматы задания времени и операндов</a></h3>
+
+<p>Три компонента спецификации времени в локали "C" позволяют эффективно его
+задавать, если только интерпретируются однозначно. Вот некоторые примеры 
+указания времени выполнения задания:</p>
+
+<dl><dt></dt><dd><pre>at 0815am Jan 24
+at 8 :15amjan24
+at now "+ 1day"
+at 5 pm FRIday
+at '17
+utc+
+30minutes'
+</pre></dd></dl>
+
+<h3>&nbsp;&nbsp;&nbsp;  batch</h3>
+<h3><a name="ex5">Пример 5: Типичный запуск с терминала</a></h3>
+
+<p>Следующую команду можно вводить с терминала:</p>
+
+<dl><dt></dt><dd><pre>$ batch
+sort &lt;file &gt;outfile
+&lt;EOT&gt;
+</pre></dd></dl>
+
+<h3><a name="ex6">Пример 6: Перенаправление результатов</a></h3>
+
+<p>Эта команда, демонстрирующая перенаправление стандартного потока ошибок по 
+конвейеру, пригодится в комнадных файлах (порядок перенаправлений
+существенен):</p>
+
+<dl><dt></dt><dd><pre>$ batch &lt;&lt;!
+diff file1 file2 2&gt;&amp;1 &gt;outfile | mailx mygroup
+!
+</pre></dd></dl>
+
+<h2><a name="env">ПЕРЕМЕННЫЕ СРЕДЫ</a></h2>
+
+<p>Описание следующих переменных среды:  
+<b>LC_CTYPE</b>, <b>LC_MESSAGES</b>, <b>NLSPATH</b> и <b>LC_TIME</b>, 
+влияющих на работу команд <b>at</b> и <b>batch</b>, 
+см. на странице справочного руководства <b><a href="/man.shtml?topic=environ&amp;category=5">environ(5)</a></b>.</p>
+
+<dl>
+<dt><b>SHELL</b></dt><dd>
+Задает командный интерпретатор, используемый для выполнения задания <b>at</b>. Если
+эта переменная не установлена или имеет пустое значение, будет использоваться
+командный интерпретатор <b>sh</b>. Если она имеет значение, отличное от <b>sh</b>, для
+выполнения будет использоваться соответствующий командный интерпретатор; будет выдано
+диагностическое сообщение, информирующее об используемом командном интерпретаторе.</dd>
+<dt><b>TZ</b></dt><dd>
+Задает часовой пояс. Задание будет послано на выполнение в указанное 
+<b>спецификацией_времени</b> или аргументом опции <b>-t</b> время в часовом поясе, задаваемом
+переменной <b>TZ</b>. Если в <b>спецификации_времени</b> указан часовой пояс, он 
+переопределяет значение, задаваемое переменной <b>TZ</b>. Если в <b>спецификации_времени</b>
+часовой пояс не указан, а переменная <b>TZ</b> не устанволена или имеет пустое значение, будет
+использован неопределенный стандартный часовой пояс.</dd>
+<dt><b>DATEMSK</b></dt><dd>
+Если переменная среды <b>DATEMSK</b> установлена, утилита <b>at</b> будет использовать
+ее значение как полное имя файла-шаблона, содержащего строки формата. Эти строки
+состоят из спецификаторов формата и текстовых символов, и используются для расширения
+набора допустимых форматов даты на разных языках путем соответствующих установок
+переменных среды <b>LANG</b> или <b>LC_TIME</b>. Список допустимых спецификаторов формата
+можно найти на странице справочного руководства <a href="/man.shtml?topic=getdate&amp;category=3"><b>getdate(3C)</b></a>. 
+Форматы аргументов времени и даты, описанные в разделе <a href="#operands">"ОПЕРАНДЫ"</a>, 
+специальные имена <b>noon</b>, <b>midnight</b>, <b>now</b>, <b>next</b>, <b>today</b>,
+<b>tomorrow</b> и аргумент <b>инкремент</b> не распознаются, когда установлена переменная
+<b>DATEMSK</b>.</dd>
+</dl>
+
+<h2><a name="exit_status">СТАТУС ВЫХОДА</a></h2>
+
+<p>Команды завершаются со следующими статусами выхода:</p>
+
+<table width="100%" border="0">
+<tbody><tr><td width="10%"><b>0</b></td><td>
+Утилита <b>at</b> успешно сформировала, удалила или выдала соответствующие задания.</td></tr>
+<tr><td><b>&gt;0</b></td><td>
+Произошла ошибка и задание <b>at</b> не поставлено в очередь для выполнения.</td></tr>
+</tbody></table>
+
+<h2><a name="files">ФАЙЛЫ</a></h2>
+
+<dl>
+<dt><b>/usr/lib/cron/at.allow</b></dt><dd>
+имена пользователей, по одному в строке, которым разрешен доступ к утилитам
+<b>at</b> и <b>batch</b></dd>
+<dt><b>/usr/lib/cron/at.deny</b></dt><dd>
+имена пользователей, по одному в строке, которым запрещен доступ к утилитам
+<b>at</b> и <b>batch</b></dd>
+</dl>
+
+<h2>АТРИБУТЫ</h2>
+
+<p>Описание следующих атрибутов см. на странице справочного руководства
+<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>:</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  at</h3>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWcsu</td></tr>
+<tr><td>CSI</td>
+<td>Не включено</td></tr>
+</tbody></table>
+
+<h3>&nbsp;&nbsp;&nbsp;  batch</h3>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWesu</td></tr>
+<tr><td>CSI</td>
+<td>Включено</td></tr>
+</tbody></table>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=auths&amp;category=1"><b>auths(1)</b></a>,
+	<a href="/man.shtml?topic=crontab&amp;category=1"><b>crontab(1)</b></a>,
+	<a href="/man.shtml?topic=csh&amp;category=1"><b>csh(1)</b></a>,
+	<a href="/man.shtml?topic=date&amp;category=1"><b>date(1)</b></a>,
+	<a href="/man.shtml?topic=ksh&amp;category=1"><b>ksh(1)</b></a>,
+	<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>,
+	<a href="/man.shtml?topic=touch&amp;category=1"><b>touch(1)</b></a>,
+	<a href="/man.shtml?topic=ulimit&amp;category=1"><b>ulimit(1)</b></a>,
+	<a href="/man.shtml?topic=umask&amp;category=1"><b>umask(1)</b></a>,
+	<a href="/man.shtml?topic=cron&amp;category=1"><b>cron(1M)</b></a>,
+	<a href="/man.shtml?topic=getdate&amp;category=3"><b>getdate(3C)</b></a>,
+	<a href="/man.shtml?topic=auth_attr&amp;category=4"><b>auth_attr(4)</b></a>, 
+	<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>, 
+	<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>
+</dd></dl>
+
+<h2><a name="notes">ПРИМЕЧАНИЯ</a></h2>
+
+<p>Независимо от количества используемых очередей, демон 
+<a href="/man.shtml?topic=cron&amp;category=1"><b>cron(1M)</b></a> имеет ограничение - не более 100 выполняемых
+заданий в каждый момент времени.</p>
+
+<p>При выполнении заданий <b>at</b> демоном <b>cron</b> возможны задержки. В некоторых случаях,
+эти задержки могут достигнуть такой продолжительности, что обработка заданий <b>cron</b>
+кажется зависшей. Рано или поздно, все задания будут выполнены. При слишком продолжительных
+задержках остается только остановить и перезапустить демон <b>cron</b>.</p>
+
+<p align="center">Последнее изменение: 10 января 2000 года</p>
+
+<p align="center"><font size="-2">
+Copyright 2002 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="at" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

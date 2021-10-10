@@ -1,0 +1,769 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN hosts_access (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, hosts_access"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="hosts_access" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">hosts_access (5)</font><hr><li> <a href="/man.shtml?topic=hosts_access&amp;category=3&amp;russian=4"><u>hosts_access</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=hosts_access&amp;category=3&amp;russian=1"><u>hosts_access</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=hosts_access&amp;category=3&amp;russian=2"><u>hosts_access</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=hosts_access&amp;category=5&amp;russian=4"><u>hosts_access</u></a> (5) <font color="#555555"> ( Solaris man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=hosts_access&amp;category=5&amp;russian=1"><u>hosts_access</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=hosts_access&amp;category=5&amp;russian=0"><u>hosts_access</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=hosts_access&amp;category=5&amp;russian=2"><u>hosts_access</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>НАЗВАНИЕ</h2>
+
+hosts_access - format of host access control files
+<p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Это руководство пользовател описывает простой язык
+управления доступом , который основывается на модели
+киента (имя хоста/адрес, имя пользователя) и сервера (имя
+процесса, имя хоста /адрес). Примеры приведены в конце.
+Нетерпеливый читатель может пропустить секцию ПРИМЕРОВ для
+быстрого введения.
+<p>
+</p><dl compact="">
+<dt>Рассширеная версия языка </dt><dd>
+<p>
+управления доступом описана в
+документе <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hosts_options&amp;category=5">hosts_options</a>(5)</b>
+. Расширения включаются в
+программе скомпилированной с опцией -DPROCESS_OPTIONS.
+</p><p>
+В следующем тексе, <i>daemon</i> это имя процесса network daemon
+process, и <i>client</i> это имя и/или адрес хоста требуемой
+службы. Имя процесса сетевого демона определяется в файле
+конфигурации inetd.conf.
+</p><p>
+</p></dd><dt><b>ФАЙЛЫ УПРАВЛЕНИЯ ДОСТУПА</b></dt><dd>
+<p>
+The access control software consults two files. The search
+stops at the first match:
+</p><p>
+</p></dd><dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Access&nbsp;will&nbsp;be&nbsp;granted&nbsp;when&nbsp;a&nbsp;(daemon,client)&nbsp;pair
+matches an entry in the <i>/etc/hosts.allow</i> file.
+</p><p>
+</p></dd><dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;access&nbsp;will&nbsp;be&nbsp;denied&nbsp;when&nbsp;a&nbsp;(daemon,client)
+pair matches an entry in the
+<i>/etc/hosts.deny</i> file.
+</p><p>
+</p></dd><dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;access&nbsp;will&nbsp;be&nbsp;granted.
+</p><p>
+A non-existing access control file is treated as if it
+were an empty file. Thus, access control can be turned off
+by providing no access control files.
+</p><p>
+</p></dd></dl>
+<a name="lbAD">&nbsp;</a>
+<h2>Access&lt;/bf&gt; <b>Control</b> &lt;bf&gt;Rules</h2>
+
+<p>
+Each access control file consists of zero or more lines of
+text. These lines are processed in order of appearance.
+The search terminates when a match is found.
+</p><p>
+</p><dl compact="">
+<dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;newline&nbsp;character&nbsp;is&nbsp;ignored&nbsp;when&nbsp;it&nbsp;is&nbsp;preceded
+by a backslash character. This permits you to break
+up long lines so that they are easier to edit.
+</p><p>
+</p></dd><dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blank&nbsp;lines&nbsp;or&nbsp;lines&nbsp;that&nbsp;begin&nbsp;with&nbsp;a&nbsp;`#&nbsp;character
+are ignored. This permits you to insert comments
+and whitespace so that the tables are easier
+to read.
+</p><p>
+</p></dd><dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All&nbsp;other&nbsp;lines&nbsp;should&nbsp;satisfy&nbsp;the&nbsp;following&nbsp;format,
+things between [] being optional:
+</p><p>
+daemon_list : client_list [ : shell_command ]
+</p><p>
+<i>daemon_list</i> is a list of one or more daemon process names
+(argv[0] values) or wildcards (see below).
+</p><p>
+<i>client_list</i> is a list of one or more host names, host
+addresses, patterns or wildcards (see below) that will be
+matched against the client host name or address.
+</p><p>
+The more complex forms <i><a href="mailto:daemon@host">daemon@host</a></i> and <i><a href="mailto:user@host">user@host</a></i> are
+explained in the sections on server endpoint patterns and
+on client username lookups, respectively.
+</p><p>
+List elements should be separated by blanks and/or commas.
+</p><p>
+With the exception of NIS (YP) netgroup lookups, all
+access control checks are case insensitive.
+</p><p>
+</p></dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>Patterns</h2>
+
+<p>
+The access control language implements the following patterns:
+</p><p>
+</p><dl compact="">
+<dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;string&nbsp;that&nbsp;begins&nbsp;with&nbsp;a&nbsp;`.&nbsp;character.&nbsp;A&nbsp;host
+name is matched if the last components of its name
+match the specified pattern. For example, the pattern
+`.tue.nl matches the host name
+`wzv.win.tue.nl.
+</p><p>
+</p></dd><dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;string&nbsp;that&nbsp;ends&nbsp;with&nbsp;a&nbsp;`.&nbsp;character.&nbsp;A&nbsp;host
+address is matched if its first numeric fields
+match the given string. For example, the pattern
+`131.155. matches the address of (almost) every
+host on the Eindhoven University network
+(131.155.x.x).
+</p><p>
+</p></dd><dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;string&nbsp;that&nbsp;begins&nbsp;with&nbsp;an&nbsp;`@&nbsp;character&nbsp;is
+treated as an NIS (formerly YP) netgroup name. A
+host name is matched if it is a host member of the
+specified netgroup. Netgroup matches are not supported
+for daemon process names or for client user
+names.
+</p><p>
+</p></dd><dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;expression&nbsp;of&nbsp;the&nbsp;form&nbsp;`n.n.n.n/m.m.m.m&nbsp;is
+interpreted as a `net/mask pair. A host address is
+matched if `net is equal to the bitwise AND of the
+address and the `mask. For example, the net/mask
+pattern `131.155.72.0/255.255.254.0 matches every
+address in the range `131.155.72.0 through
+`131.155.73.255.
+</p><p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>Wildcards</h2>
+
+<p>
+The access control language supports explicit wildcards:
+</p><p>
+</p><dl compact="">
+<dt>ALL </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;The&nbsp;universal&nbsp;wildcard,&nbsp;always&nbsp;matches.
+</p><p>
+LOCAL Matches any host whose name does not contain a dot
+character.
+</p><p>
+</p></dd><dt>UNKNOWN</dt><dd>
+<p>
+Matches any user whose name is unknown, and matches
+any host whose name <i>or</i> address are unknown. This
+pattern should be used with care: host names may be
+unavailable due to temporary name server problems.
+A network address will be unavailable when the
+software cannot figure out what type of network it
+is talking to.
+</p><p>
+KNOWN Matches any user whose name is known, and matches
+any host whose name <i>and</i> address are known. This
+pattern should be used with care: host names may be
+unavailable due to temporary name server problems.
+A network address will be unavailable when the
+software cannot figure out what type of network it
+is talking to.
+</p><p>
+</p></dd><dt>PARANOID</dt><dd>
+<p>
+Matches any host whose name does not match its
+address. When tcpd is built with -DPARANOID
+(default mode), it drops requests from such clients
+even before looking at the access control tables.
+Build without -DPARANOID when you want more control
+over such requests.
+</p><p>
+</p></dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>Operators</h2>
+
+<p>
+EXCEPT Intended use is of the form: `list_1 EXCEPT
+list_2; this construct matches anything that
+matches <i>list_1</i> unless it matches <i>list_2</i>. The
+EXCEPT operator can be used in daemon_lists and in
+client_lists. The EXCEPT operator can be nested: if
+the control language would permit the use of parentheses,
+`a EXCEPT b EXCEPT c would parse as `(a
+EXCEPT (b EXCEPT c)).
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>Shell&lt;/bf&gt; &lt;bf&gt;Commands</h2>
+
+<p>
+If the first-matched access control rule contains a shell
+command, that command is subjected to %&lt;letter&gt; substitutions
+(see next section). The result is executed by a
+<i>/bin/sh</i> child process with standard input, output and
+error connected to <i>/dev/null</i>. Specify an `&amp; at the end
+of the command if you do not want to wait until it has
+completed.
+</p><p>
+Shell commands should not rely on the PATH setting of the
+inetd. Instead, they should use absolute path names, or
+they should begin with an explicit PATH="whatever" statement.
+</p><p>
+The <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hosts_options&amp;category=5">hosts_options</a>(5)</b>
+<br>&nbsp;document&nbsp;describes&nbsp;an&nbsp;alternative
+language that uses the shell command field in a different
+and incompatible way.
+</p><p>
+</p><dl compact="">
+<dt><b>% EXPANSIONS</b></dt><dd>
+<p>
+The following expansions are available within shell commands:
+</p><p>
+%a (%A)
+</p><p>
+The client (server) host address.
+</p><p>
+</p></dd><dt>%c </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Client&nbsp;information:&nbsp;<a href="mailto:user@host">user@host</a>,&nbsp;<a href="mailto:user@address">user@address</a>,&nbsp;a&nbsp;host
+name, or just an address, depending on how much
+information is available.
+</p><p>
+</p></dd><dt>%d </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;daemon&nbsp;process&nbsp;name&nbsp;(argv[0]&nbsp;value).
+</p><p>
+%h (%H)
+</p><p>
+The client (server) host name or address, if the
+host name is unavailable.
+</p><p>
+%n (%N)
+</p><p>
+The client (server) host name (or "unknown" or
+"paranoid").
+</p><p>
+</p></dd><dt>%p </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;daemon&nbsp;process&nbsp;id.
+</p><p>
+</p></dd><dt>%s </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Server&nbsp;information:&nbsp;<a href="mailto:daemon@host">daemon@host</a>,&nbsp;<a href="mailto:daemon@address">daemon@address</a>,&nbsp;or
+just a daemon name, depending on how much information
+is available.
+</p><p>
+</p></dd><dt>%u </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;client&nbsp;user&nbsp;name&nbsp;(or&nbsp;"unknown").
+</p><p>
+</p></dd><dt>%% </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Expands&nbsp;to&nbsp;a&nbsp;single&nbsp;`%&nbsp;character.
+</p><p>
+Characters in % expansions that may confuse the shell are
+replaced by underscores.
+</p><p>
+</p></dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>Server&lt;/bf&gt; <b>Endpoint</b> &lt;bf&gt;Patterns</h2>
+
+<p>
+In order to distinguish clients by the network address
+that they connect to, use patterns of the form:
+</p><p>
+<a href="mailto:process_name@host_pattern">process_name@host_pattern</a> : client_list ...
+</p><p>
+Patterns like these can be used when the machine has different
+internet addresses with different internet hostnames.
+Service providers can use this facility to offer
+FTP, GOPHER or WWW archives with internet names that may
+even belong to different organizations. See also the
+`twist' option in the <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hosts_options&amp;category=5">hosts_options</a>(5)</b>
+<br>&nbsp;document.&nbsp;Some&nbsp;systems
+(Solaris, FreeBSD) can have more than one internet
+address on one physical interface; with other systems you
+may have to resort to SLIP or PPP pseudo interfaces that
+live in a dedicated network address space.
+</p><p>
+The host_pattern obeys the same syntax rules as host names
+and addresses in client_list context. Usually, server endpoint
+information is available only with connection-oriented
+services.
+</p><p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2>Client&lt;/bf&gt; <b>Username</b> &lt;bf&gt;Lookup</h2>
+
+<p>
+When the client host supports the RFC 931 protocol or one
+of its descendants (TAP, IDENT, RFC 1413) the wrapper programs
+can retrieve additional information about the owner
+of a connection. Client username information, when available,
+is logged together with the client host name, and
+can be used to match patterns like:
+</p><p>
+daemon_list : ... <a href="mailto:user_pattern@host_pattern">user_pattern@host_pattern</a> ...
+</p><p>
+The daemon wrappers can be configured at compile time to
+perform rule-driven username lookups (default) or to
+always interrogate the client host. In the case of ruledriven
+username lookups, the above rule would cause username
+lookup only when both the <i>daemon_list</i> and the
+<i>host_pattern</i> match.
+</p><p>
+A user pattern has the same syntax as a daemon process
+pattern, so the same wildcards apply (netgroup membership
+is not supported). One should not get carried away with
+username lookups, though.
+</p><p>
+</p><dl compact="">
+<dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;client&nbsp;username&nbsp;information&nbsp;cannot&nbsp;be&nbsp;trusted
+when it is needed most, i.e. when the client system
+has been compromised. In general, ALL and
+(UN)KNOWN are the only user name patterns that make
+sense.
+</p><p>
+</p></dd><dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Username&nbsp;lookups&nbsp;are&nbsp;possible&nbsp;only&nbsp;with&nbsp;TCP-based
+services, and only when the client host runs a
+suitable daemon; in all other cases the result is
+"unknown".
+</p><p>
+</p></dd><dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;well-known&nbsp;UNIX&nbsp;kernel&nbsp;bug&nbsp;may&nbsp;cause&nbsp;loss&nbsp;of&nbsp;service
+when username lookups are blocked by a firewall.
+The wrapper README document describes a procedure
+to find out if your kernel has this bug
+(reportedly, SunOS 4.1.1, Next 2.0a, ISC 3.0 with
+TCP 1.3, AIX 3.2.2 and Linux 1.0.9 and later are
+OK).
+</p><p>
+</p></dd><dt><br>&nbsp;</dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Username&nbsp;lookups&nbsp;may&nbsp;cause&nbsp;noticeable&nbsp;delays&nbsp;for
+non-UNIX users. The default timeout for username
+lookups is 10 seconds: too short to cope with slow
+networks, but long enough to irritate PC users.
+</p><p>
+Selective username lookups can alleviate the last problem.
+For example, a rule like:
+</p><p>
+daemon_list : @pcnetgroup ALL@ALL
+</p><p>
+would match members of the pc netgroup without doing username
+lookups, but would perform username lookups with all
+other systems.
+</p><p>
+</p></dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h2>Detecting&lt;/bf&gt; Address Spoofing Attacks</h2>
+
+<p>
+A flaw in the sequence number generator of many TCP/IP
+implementations allows intruders to easily impersonate
+trusted hosts and to break in via, for example, the remote
+shell service. The IDENT (RFC931 etc.) service can be
+used to detect such and other host address spoofing
+attacks.
+</p><p>
+Before accepting a client request, the wrappers can use
+the IDENT service to find out that the client did not send
+the request at all. When the client host provides IDENT
+service, a negative IDENT lookup result (the client
+matches `<a href="mailto:UNKNOWN@host">UNKNOWN@host</a>') is strong evidence of a host
+spoofing attack.
+</p><p>
+A positive IDENT lookup result (the client matches
+`<a href="mailto:KNOWN@host">KNOWN@host</a>') is less trustworthy. It is possible for an
+intruder to spoof both the client connection and the IDENT
+lookup, although doing so is much harder than spoofing
+just a client connection. It may also be that the clients
+IDENT server is lying.
+</p><p>
+Note: IDENT lookups dont work with UDP services.
+</p><p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>Examples</h2>
+
+<p>
+The language is flexible enough that different types of
+access control policy can be expressed with a minimum of
+fuss. Although the language uses two access control
+tables, the most common policies can be implemented with
+one of the tables being trivial or even empty.
+</p><p>
+When reading the examples below it is important to realize
+that the allow table is scanned before the deny table,
+that the search terminates when a match is found, and that
+access is granted when no match is found at all.
+</p><p>
+The examples use host and domain names. They can be
+improved by including address and/or network/netmask
+information, to reduce the impact of temporary name server
+lookup failures.
+</p><p>
+<a name="lbAM">&nbsp;</a>
+</p><h2>Mostly &lt;bf&gt;Closed</h2>
+
+<p>
+In this case, access is denied by default. Only explicitly
+authorized hosts are permitted access.
+</p><p>
+The default policy (no access) is implemented with a trivial
+deny file:
+</p><p>
+/etc/hosts.deny:
+</p><p>
+ALL: ALL
+</p><p>
+This denies all service to all hosts, unless they are permitted
+access by entries in the allow file.
+</p><p>
+The explicitly authorized hosts are listed in the allow
+file. For example:
+</p><p>
+/etc/hosts.allow:
+</p><p>
+ALL: LOCAL @some_netgroup&lt;/p&gt;
+ALL: .foobar.edu EXCEPT terminalserver.foobar.edu
+</p><p>
+The first rule permits access from hosts in the local
+domain (no `. in the host name) and from members of the
+<i>some_netgroup</i> netgroup. The second rule permits access
+from all hosts in the <i>foobar.edu</i> domain (notice the leading
+dot), with the exception of <i>terminalserver.foobar.edu</i>.
+</p><p>
+<a name="lbAN">&nbsp;</a>
+</p><h2>Mostly&lt;/bf&gt; &lt;bf&gt;Open</h2>
+
+<p>
+Here, access is granted by default; only explicitly specified
+hosts are refused service.
+</p><p>
+The default policy (access granted) makes the allow file
+redundant so that it can be omitted. The explicitly nonauthorized
+hosts are listed in the deny file. For example:
+</p><p>
+/etc/hosts.deny:
+</p><p>
+ALL: some.host.name, .some.domain&lt;/p&gt;
+ALL EXCEPT in.fingerd: other.host.name, .other.domain
+</p><p>
+The first rule denies some hosts and domains all services;
+the second rule still permits finger requests from other
+hosts and domains.
+</p><p>
+<a name="lbAO">&nbsp;</a>
+</p><h2>Booby&lt;/bf&gt; &lt;bf&gt;Traps</h2>
+
+<p>
+The next example permits tftp requests from hosts in the
+local domain (notice the leading dot). Requests from any
+other hosts are denied. Instead of the requested file, a
+finger probe is sent to the offending host. The result is
+mailed to the superuser.
+</p><p>
+/etc/hosts.allow:
+</p><p>
+in.tftpd: LOCAL, .my.domain
+</p><p>
+/etc/hosts.deny:
+</p><p>
+in.tftpd: ALL: (/some/where/safe_finger -l @%h | /usr/ucb/mail -s %d-%h root) &amp;
+</p><p>
+The safe_finger command comes with the tcpd wrapper and
+should be installed in a suitable place. It limits possible
+damage from data sent by the remote finger server. It
+gives better protection than the standard finger command.
+</p><p>
+The expansion of the %h (client host) and %d (service
+name) sequences is described in the section on shell commands.
+</p><p>
+Warning: do not booby-trap your finger daemon, unless you
+are prepared for infinite finger loops.
+</p><p>
+On network firewall systems this trick can be carried even
+further. The typical network firewall only provides a
+limited set of services to the outer world. All other services
+can be "bugged" just like the above tftp example.
+The result is an excellent early-warning system.
+</p><p>
+<a name="lbAP">&nbsp;</a>
+</p><h2>СООБЩЕНИЯ ОБ ОШИБКАХ</h2>
+
+<p>
+An error is reported when a syntax error is found in a
+host access control rule; when the length of an access
+control rule exceeds the capacity of an internal buffer;
+when an access control rule is not terminated by a newline
+character; when the result of %&lt;letter&gt; expansion would
+overflow an internal buffer; when a system call fails that
+shouldnt. All problems are reported via the syslog daemon.
+</p><p>
+<a name="lbAQ">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<p>
+/etc/hosts.allow, (daemon,client) pairs that are granted access.
+/etc/hosts.deny, (daemon,client) pairs that are denied access.
+</p><p>
+<a name="lbAR">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<p>
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcpd&amp;category=8">tcpd</a>(8)</b>
+<br>&nbsp;tcp/ip&nbsp;daemon&nbsp;wrapper&nbsp;program.
+</p><p>
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcpdchk&amp;category=8">tcpdchk</a>(8)</b>
+, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcpdmatch&amp;category=8">tcpdmatch</a>(8)</b>
+, test programs.
+</p><p>
+<a name="lbAS">&nbsp;</a>
+</p><h2>ОШИБКИ</h2>
+
+<p>
+If a name server lookup times out, the host name will not
+be available to the access control software, even though
+the host is registered.
+</p><p>
+Domain name server lookups are case insensitive; NIS (formerly
+YP) netgroup lookups are case sensitive.
+</p><p>
+<a name="lbAT">&nbsp;</a>
+</p><h2>АВТОР(Ы)</h2>
+
+<p>
+Wietse Venema (<a href="mailto:wietse@wzv.win.tue.nl">wietse@wzv.win.tue.nl</a>)
+</p><p>
+Department of Mathematics and Computing Science
+Eindhoven University of Technology&lt;/p&gt;
+Den Dolech 2, P.O. Box 513,&lt;/p&gt;
+5600 MB Eindhoven, The Netherlands
+</p><p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">Access&lt;/bf&gt; <b>Control</b> &lt;bf&gt;Rules</a></dt><dd>
+</dd><dt><a href="#lbAE">Patterns</a></dt><dd>
+</dd><dt><a href="#lbAF">Wildcards</a></dt><dd>
+</dd><dt><a href="#lbAG">Operators</a></dt><dd>
+</dd><dt><a href="#lbAH">Shell&lt;/bf&gt; &lt;bf&gt;Commands</a></dt><dd>
+</dd><dt><a href="#lbAI">Server&lt;/bf&gt; <b>Endpoint</b> &lt;bf&gt;Patterns</a></dt><dd>
+</dd><dt><a href="#lbAJ">Client&lt;/bf&gt; <b>Username</b> &lt;bf&gt;Lookup</a></dt><dd>
+</dd><dt><a href="#lbAK">Detecting&lt;/bf&gt; <b>Address Spoofing Attacks</b></a></dt><dd><b>
+</b></dd><dt><b><a href="#lbAL">Examples</a></b></dt><dd><b>
+</b></dd><dt><b><a href="#lbAM">Mostly &lt;bf&gt;Closed</a></b></dt><dd><b>
+</b></dd><dt><b><a href="#lbAN">Mostly&lt;/bf&gt; &lt;bf&gt;Open</a></b></dt><dd><b>
+</b></dd><dt><b><a href="#lbAO">Booby&lt;/bf&gt; &lt;bf&gt;Traps</a></b></dt><dd><b>
+</b></dd><dt><b><a href="#lbAP">СООБЩЕНИЯ ОБ ОШИБКАХ</a></b></dt><dd><b>
+</b></dd><dt><b><a href="#lbAQ">ФАЙЛЫ</a></b></dt><dd><b>
+</b></dd><dt><b><a href="#lbAR">СМ. ТАКЖЕ</a></b></dt><dd><b>
+</b></dd><dt><b><a href="#lbAS">ОШИБКИ</a></b></dt><dd><b>
+</b></dd><dt><b><a href="#lbAT">АВТОР(Ы)</a></b></dt><dd><b>
+</b></dd></dl><b>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="hosts_access" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</b></body>
+<!---------------------------------------------  0  ---------------------------------------------->

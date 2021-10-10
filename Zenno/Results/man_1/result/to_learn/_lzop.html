@@ -1,0 +1,549 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN lzop (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, lzop"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="lzop" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">lzop (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=lzop&amp;category=1&amp;russian=0"><u>lzop</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+lzop - сжимает или разжимает файлы
+<a name="lbAC">&nbsp;</a>
+<h2>РЕЗЮМЕ</h2>
+
+<b>lzop</b> - это упаковщик файлов наподобие <b>gzip</b>.
+В <b>lzop</b> скорость сжатия выше за счёт большего размера архива.
+<a name="lbAD">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>lzop</b> [&nbsp;<i>команда</i>&nbsp;] [&nbsp;<i>параметры</i>&nbsp;] [&nbsp;<i>имя_файла</i>&nbsp;...&nbsp;&nbsp;]
+<p>
+
+<b>lzop</b> [<b>-dxlthIVL19</b>] [<b>-qvcfFnNkU</b>]
+[<b>-o</b>&nbsp;<i>файл</i>] [<b>-p</b>[<i>путь</i>]] [<b>-S</b>&nbsp;<i>суффикс</i>]
+[<i>имя_файла</i>&nbsp;...]
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<p>
+
+<b>lzop</b> уменьшает размер указанных файлов. В тех случаях, когда это возможно, сжатие производится пофайлово с добавлением расширения <b>.lzo</b>, с сохранением оригинальных прав доступа, времени модификации и времени доступа к файлу. Если файлы не указаны, или указан "<b>-</b>" в качестве имени файла, lzop пытается сжимать стандартный ввод, передавая результат на стандартный вывод. lzop обрабатывает только обычные файлы. В частности, он игнорирует каталоги и символические ссылки.
+</p><p>
+
+Если полученное имя архива слишком длинно для файловой системы, <b>lzop</b> обрежет его.
+</p><p>
+
+Сжатые файлы разжимаются следующей командой: <b>lzop&nbsp;-d</b>.
+<b>lzop&nbsp;-d</b> берет список файлов из командной строки и распаковывает те файлы, имена которых заканчиваются на <b>.lzo</b> и содержимое которых начинается с правильного "магического числа", в файлы без этого расширения.
+<b>lzop&nbsp;-d</b> также распознает специальное расширение <b>.tzo</b> как более краткую запись для <b>tar.lzo</b>.
+При сжатии lzop использует расширение <b>.tzo</b>, если это необходимо, вместо усечения имени файла с расширением <b>tar</b>.
+</p><p>
+
+<b>lzop</b> сохраняет оригинальные имя файла, права и временные отметки в сжатом файле.
+Они могут быть использованы при распаковке файла с опцией <b>-d</b>.
+Это полезно, когда имя сжатого файла было обрезано или когда временные отметки не сохранились при перемещении файла.
+</p><p>
+
+При сжатии <b>lzop</b> сохраняет владельца, права доступа и временные отметки файлов.
+При распаковке lzop восстанавливает права доступа и временные отметки, если они присутствуют в сжатых файлах.
+Для более подробной информации смотрите описание опций <b>-n</b>, <b>-N</b>, <b>--no-mode</b> и <b>--no-time</b>.
+</p><p>
+
+<b>lzop</b> всегда сохраняет исходные файлы, если только вы не указали опцию <b>-U</b>.
+</p><p>
+
+Для сжатия <b>lzop</b> использует <i>библиотеку сжатия LZO</i>.
+Размер полученной сжатой информации зависит от размера сжимаемой информации и от распределения общих подстрок.
+Обычно текст типа исходного кода или английского текста сжимается до 40-50% от исходного размера, большие файлы обычно сжимаются намного лучше, чем маленькие.
+Скорость сжатия и распаковки как правило намного выше, чем у <b>gzip</b>, но степень сжатия хуже.
+<a name="lbAF">&nbsp;</a>
+</p><h2>УРОВНИ СЖАТИЯ</h2>
+
+lzop предлагает следующие уровни сжатия для алгоритма LZO1X:
+<dl compact="">
+<dt>-3</dt><dd>
+уровень сжатия по умолчанию, обеспечивающий довольно быстрое сжатие. Замечание: уровни сжатия -2, -3, -4, -5 и -6 на данный момент эквивалентны - это может быть изменено в будущем.
+</dd><dt>-1, --fast</dt><dd>
+может быть немного быстрее в некоторых случаях - но в большинстве случаев вы не заметите разницы
+</dd><dt>-7, -8, -9, --best</dt><dd>
+эти уровни сжатия, в основном, предназначены для создания предварительно сжатых данных. Особенно скорость сжатия снижается при использовании <b>-9</b>
+</dd></dl>
+<p>
+
+Распаковка производится <i>очень</i> быстро для всех уровней сжатия.
+<a name="lbAG">&nbsp;</a>
+</p><h2>ОСНОВНЫЕ КОМАНДЫ</h2>
+
+Если <i>команда</i> не задана, то lzop будет сжимать данные.
+<dl compact="">
+<dt>-#, --fast, --best</dt><dd>
+Регулирует скорость сжатия, используя соответствующую цифру <b>#</b>, где <b>-1</b> или <b>--fast</b> задает самый быстрый метод (меньшее сжатие), а <b>-9</b> или <b>--best</b> задает самый медленный метод (лучшее сжатие). Уровень сжатия по умолчанию - <b>-3</b>.
+</dd><dt>-d, --decompress, --uncompress</dt><dd>
+Распаковка. Каждый файл будет размещен в тот же каталог, где находится сжатый файл.
+</dd><dt>-x, --extract</dt><dd>
+Извлекает сжатые файлы в текущий рабочий каталог. Синоним для `-dNp'.
+</dd><dt>-t, --test</dt><dd>
+Тест. Проверяет целостность сжатого файла.
+</dd><dt>-l, --list</dt><dd>
+Отображает для каждого сжатого файла следующие поля:
+<p>
+<br>&nbsp;&nbsp;<i>method</i>:&nbsp;алгоритм&nbsp;сжатия;
+<br>&nbsp;&nbsp;<i>compressed</i>:&nbsp;размер&nbsp;сжатого&nbsp;файла;
+<br>&nbsp;&nbsp;<i>uncompr.</i>:&nbsp;размер&nbsp;исходного&nbsp;файла;
+<br>&nbsp;&nbsp;<i>ratio</i>:&nbsp;степень&nbsp;сжатия;
+<br>&nbsp;&nbsp;<i>uncompressed_name</i>:&nbsp;имя&nbsp;исходного&nbsp;файла.
+</p><p>
+В комбинации с опцией <i>--verbose</i> также выводятся следующие поля:
+</p><p>
+<br>&nbsp;&nbsp;<i>date&nbsp;&amp;&nbsp;time</i>:&nbsp;временная&nbsp;отметка&nbsp;исходного&nbsp;файла
+</p><p>
+При использовании опции <i>--name</i> имя исходного файла, дата и время берутся из сжатого файла, если они были сохранены.
+</p><p>
+При указании <i>--verbose</i> также отображаются суммарные размеры  всех файлов и их общая степень сжатия. При указании <i>--quiet</i> заголовок и строки с итоговыми значениями не отображаются.
+</p><p>
+<b>Замечание</b>: lzop определяет степень сжатия как размер_сжатого / оригинальный_размер.
+</p></dd><dt>--ls, --ls=<i>FLAGS</i></dt><dd>
+Отображает каждый сжатый файл в формате, подобном выводу <b>ls&nbsp;-ln</b>.
+<p>
+Распознаются следующие флаги:
+<br>&nbsp;&nbsp;F&nbsp;&nbsp;Добавляет&nbsp;`*'&nbsp;для&nbsp;выполняемых&nbsp;файлов.
+<br>&nbsp;&nbsp;G&nbsp;&nbsp;Подавляет&nbsp;отображение&nbsp;информации&nbsp;о&nbsp;группе.
+<br>&nbsp;&nbsp;Q&nbsp;&nbsp;Заключает&nbsp;имена&nbsp;файлов&nbsp;в&nbsp;двойные&nbsp;кавычки.
+</p></dd><dt>--info</dt><dd>
+Отображает служебные заголовочные поля для каждого сжатого файла.
+</dd><dt>-I, --sysinfo</dt><dd>
+Отображает информацию о системе и выходит.
+</dd><dt>-L, --license</dt><dd>
+Отображает лицензию, под которой выпущен lzop, и выходит.
+</dd><dt>-h, -H, --help</dt><dd>
+Отображает краткую справку и выходит.
+</dd><dt>-V</dt><dd>
+Версия. Отображает номер версии и опции сборки и выходит.
+</dd><dt>--version</dt><dd>
+Версия. Отображает номер версии и выходит.
+</dd></dl>
+<p>
+
+<b>Замечание</b>: <b>-t</b> имеет приоритет над <b>-d</b>, <b>-l</b> над <b>-t</b>, и т.д.
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПАРАМЕТРЫ</h2>
+
+<dl compact="">
+<dt>-c, --stdout, --to-stdout</dt><dd>
+Осуществляет выдачу на стандартный вывод. Если на входе было несколько файлов, то вывод будет состоять из последовательности независимо сжатых/разжатых частей. Объедините файлы перед сжатием для достижения лучшей степени сжатия.
+</dd><dt>-o <i>FILE</i>, --output=<i>ФАЙЛ</i></dt><dd>
+Выдает результат в файл <i>ФАЙЛ</i>. Если на входе было задано несколько файлов, то вывод будет состоять из последовательности независимо сжатых/разжатых частей.
+</dd><dt>-p, -p<i>КАТАЛОГ</i>, --path=<i>КАТАЛОГ</i></dt><dd>
+Записывает выходные файлы в каталог <i>КАТАЛОГ</i> вместо каталога, определяемого исходным файлом. Если <i>КАТАЛОГ</i> опущен, тогда запись осуществляется в текущий рабочий каталог.
+</dd><dt>-f, --force</dt><dd>
+Заставляет lzop делать следующее:
+<br>&nbsp;&nbsp;-&nbsp;переписывать&nbsp;существующие&nbsp;файлы
+<br>&nbsp;&nbsp;-&nbsp;сжимать&nbsp;стандартный&nbsp;ввод,&nbsp;даже&nbsp;если&nbsp;он&nbsp;похож&nbsp;на&nbsp;терминал
+<br>&nbsp;&nbsp;-&nbsp;сжимать,&nbsp;осуществляя&nbsp;выдачу&nbsp;на&nbsp;стандартный&nbsp;вывод,&nbsp;даже&nbsp;если&nbsp;он&nbsp;похож&nbsp;на&nbsp;терминал
+<br>&nbsp;&nbsp;-&nbsp;допускать&nbsp;использование&nbsp;опции&nbsp;<i>-c</i>&nbsp;вместе&nbsp;с&nbsp;<i>-U</i>
+<p>
+Использование <b>-f</b> два или более раза делает возможным вдобавок к вышеуказанному следующее:
+<br>&nbsp;&nbsp;-&nbsp;сжимать&nbsp;файлы,&nbsp;которые&nbsp;уже&nbsp;имеют&nbsp;суффикс&nbsp;.lzo
+<br>&nbsp;&nbsp;-&nbsp;распаковывать&nbsp;файлы,&nbsp;которые&nbsp;не&nbsp;имеют&nbsp;верного&nbsp;суффикса
+<br>&nbsp;&nbsp;-&nbsp;предпринимать&nbsp;попытку&nbsp;обработки&nbsp;файлов&nbsp;с&nbsp;неизвестными&nbsp;заголовочными&nbsp;флагами
+</p><p>
+<b>Использовать осторожно</b>.
+</p></dd><dt>-F, --no-checksum</dt><dd>
+Не сохраняет и не проверяет контрольную сумму распакованного файла при сжатии и распаковке.
+Это немного ускоряет производительность lzop (особенно при распаковке), но использование этой опции, как правило, не рекомендуется, т.к. при поврежденных архивах искажение данных может пройти незамеченным. Также, контрольная сумма всегда сохраняется при сжатии на одном из медленных уровней сжатия (-7, -8 или -9).
+</dd><dt>-n, --no-name</dt><dd>
+При распаковке не восстанавливает оригинальное имя файла при его наличии (лишь удаляет суффикс lzop из имени сжатого файла). Эта опция задается по умолчанию при работе в <b>UNIX</b>.
+</dd><dt>-N, --name</dt><dd>
+При распаковке восстанавливает имя оригинального файла при его наличии. Эта опция полезна для систем, имеющих ограничение на длину имени файла. Если оригинальное имя, сохраненное в сжатом файле, не подходит для данной файловой системы, то оригинальное имя файла преобразуется таким образом, чтобы полученное  новое имя файла не конфликтовало с файловой системой. Эта опция задается по умолчанию на платформах <b>DOS</b>, <b>Windows</b> и <b>OS/2</b>.
+</dd><dt>--no-mode</dt><dd>
+Не восстанавливать оригинальные права доступа, сохраненные в сжатом файле, при распаковке.
+</dd><dt>--no-time</dt><dd>
+Не восстанавливать временные отметки, сохраненные в оригинальном файле, при распаковке.
+</dd><dt>-S <i>.suf</i>, --suffix=<i>.suf</i></dt><dd>
+Использовать суффикс <i>.suf</i> вместо <i>.lzo</i>. Суффикс не должен содержать нескольких точек и специальных символов типа `*' и `+'. Следует воздержаться от использования суффиксов, отличных от <i>.lzo</i>, чтобы избежать путаницы при передаче файлов в другие системы.
+</dd><dt>-k, --keep</dt><dd>
+Не удалять исходные файлы. Эта опция установлена по умолчанию.
+</dd><dt>-U, --unlink, --delete</dt><dd>
+Удалять исходные файлы после успешной упаковки или распаковки. Будьте осторожны! Использование этой опции делает lzop похожим на <b>gzip</b>. <b>Замечание</b>: опция <b>-k</b> отменяет <b>-U</b>.
+</dd><dt>--no-stdin</dt><dd>
+Не пытаться читать со стандартного ввода. Эта опция необходима для работы из-под планировщика заданий (cron), который не имеет терминала. Имя файла `-' отменяет эту опцию.
+</dd><dt>--no-warn</dt><dd>
+Подавляет вывод всех предупреждений.
+</dd><dt>--ignore-warn</dt><dd>
+Подавляет вывод всех предупреждений и никогда не завершает работу с кодом выхода 2.
+</dd><dt>-q, --quiet, --silent</dt><dd>
+Подавляет вывод всех предупреждений и уменьшает степень детализации некоторых команд типа <b>--list</b> или <b>--test</b>.
+</dd><dt>-v, --verbose</dt><dd>
+Степень детализации. Отображает имя каждого сжимаемого или разжимаемого файла. Можно использовать несколько <b>-v</b> для увеличения детализации команд типа <b>--list</b> или <b>--test</b>.
+</dd><dt>--</dt><dd>
+Отмечает конец списка опций. Любое имя файла после <b>--</b> не будет интерпретироваться как опция, даже если оно начинается с дефиса.
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>ПРОЧИЕ ПАРАМЕТРЫ</h2>
+
+<dl compact="">
+<dt>--no-color</dt><dd>
+Не использовать никаких цветовых управляющих последовательностей.
+</dd><dt>--mono</dt><dd>
+Подразумевать монохромный ANSI терминал. Эта опция используется по умолчанию в UNIX.
+</dd><dt>--color</dt><dd>
+Подразумевать цветной ANSI терминал или попробовать полноэкранный режим. Эта опция используется по умолчанию в DOS и в виртуальной консоли Linux.
+</dd><dt>--intro</dt><dd>
+Попробовать отобразить приятную начальную заставку и выйти. Требуется полноэкранный режим.
+</dd><dt>--filter=<i>НОМЕР</i></dt><dd>
+Редко используется. Перед сжатием предварительно обрабатывает данные, используя специальный "мультимедиа" фильтр для улучшения степени сжатия.
+<i>НОМЕР</i> должен быть десятичным числом от 1 до 16 включительно. Использование фильтра немного замедляет и сжатие, и распаковку, а степень сжатия обычно не сильно улучшается... Однако в будущем могут быть добавлены более эффективные фильтры.
+<p>
+Вы можете попробовать --filter=1 с данными наподобие 8-битных звуковых файлов, --filter=2 с 16-битными звуковыми файлами или изображениями с глубиной цвета 16 бит, и т.д.
+</p><p>
+Обратная обработка во время распаковки производится автоматически.
+</p></dd><dt>-C, --checksum</dt><dd>
+Устаревшая. Только для совместимости со старыми версиями, т.к. lzop теперь использует контрольную сумму по умолчанию. В будущем эта опция может быть удалена.
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>РАСШИРЕННОЕ ИСПОЛЬЗОВАНИЕ</h2>
+
+lzop позволяет вам гибко работать с файлами. Ниже приведено несколько примеров использования:
+<p>
+<b>режим одиночного файла:</b> сжимает или распаковывает каждый файл по отдельности
+</p><p>
+<br>&nbsp;создание
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;a.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;создать&nbsp;a.c.lzo
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;a.c&nbsp;b.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;создать&nbsp;a.c.lzo&nbsp;&amp;&nbsp;b.c.lzo
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-U&nbsp;a.c&nbsp;b.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;создать&nbsp;a.c.lzo&nbsp;&amp;&nbsp;b.c.lzo&nbsp;и&nbsp;удалить&nbsp;a.c&nbsp;&amp;&nbsp;b.c
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;*.c
+</p><p>
+<br>&nbsp;извлечение
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-d&nbsp;a.c.lzo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;восстановить&nbsp;a.c
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-df&nbsp;a.c.lzo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;восстановить&nbsp;a.c,&nbsp;переписав,&nbsp;если&nbsp;такой&nbsp;файл&nbsp;уже&nbsp;существует
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-d&nbsp;*.lzo
+</p><p>
+<br>&nbsp;список
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-l&nbsp;a.c.lzo
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-l&nbsp;*.lzo
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-lv&nbsp;*.lzo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;отображать&nbsp;подробно
+</p><p>
+<br>&nbsp;тестирование
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-t&nbsp;a.c.lzo
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-tq&nbsp;*.lzo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;не&nbsp;отображать&nbsp;лишней&nbsp;информации
+</p><p>
+<b>потоковый режим:</b> сжимает или распаковывает стандартный ввод на стандартный вывод
+</p><p>
+<br>&nbsp;создание
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;&lt;&nbsp;a.c&nbsp;&gt;&nbsp;y.lzo
+<br>&nbsp;&nbsp;&nbsp;cat&nbsp;a.c&nbsp;|&nbsp;lzop&nbsp;&gt;&nbsp;y.lzo
+<br>&nbsp;&nbsp;&nbsp;tar&nbsp;-cf&nbsp;-&nbsp;*.c&nbsp;|&nbsp;lzop&nbsp;&gt;&nbsp;y.ta&nbsp;r.lzo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;создать&nbsp;сжатый&nbsp;архив&nbsp;tar
+</p><p>
+<br>&nbsp;извлечение
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-d&nbsp;&lt;&nbsp;y.lzo&nbsp;&gt;&nbsp;a.c
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-d&nbsp;&lt;&nbsp;y.ta&nbsp;r.lzo&nbsp;|&nbsp;tar&nbsp;-xvf&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;распаковать&nbsp;архив&nbsp;tar
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-d&nbsp;&lt;&nbsp;y.ta&nbsp;r.lzo&nbsp;|&nbsp;tar&nbsp;-tvf&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;вывести&nbsp;список&nbsp;файлов&nbsp;в&nbsp;архиве&nbsp;tar
+</p><p>
+<br>&nbsp;список
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-l&nbsp;&lt;&nbsp;y.lzo
+<br>&nbsp;&nbsp;&nbsp;cat&nbsp;y.lzo&nbsp;|&nbsp;lzop&nbsp;-l
+</p><p>
+<br>&nbsp;тестирование
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-t&nbsp;&lt;&nbsp;y.lzo
+<br>&nbsp;&nbsp;&nbsp;cat&nbsp;y.lzo&nbsp;|&nbsp;lzop&nbsp;-t
+</p><p>
+<b>режим выдачи на стандартный вывод:</b> сжимает или распаковывает, осуществляя выдачу на стандартный вывод
+</p><p>
+<br>&nbsp;создание
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-c&nbsp;a.c&nbsp;&gt;&nbsp;y.lzo
+</p><p>
+<br>&nbsp;извлечение
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-dc&nbsp;y.lzo&nbsp;&gt;&nbsp;a.c
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-dc&nbsp;y.ta&nbsp;r.lzo&nbsp;|&nbsp;tar&nbsp;-tvf&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;отобразить&nbsp;список&nbsp;файлов&nbsp;в&nbsp;архиве&nbsp;tar
+</p><p>
+<b>архивный режим:</b> сжатие/распаковка нескольких файлов в один архивный файл
+</p><p>
+<br>&nbsp;создание
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;a.c&nbsp;b.c&nbsp;-o&nbsp;sources.lzo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;создать&nbsp;архив
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-c&nbsp;*.c&nbsp;&gt;&nbsp;sources.lzo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;другой&nbsp;способ&nbsp;создания&nbsp;архива
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-c&nbsp;*.h&nbsp;&gt;&gt;&nbsp;sources.lzo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;добавить&nbsp;файлы&nbsp;в&nbsp;архив
+</p><p>
+<br>&nbsp;извлечение
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-dN&nbsp;sources.lzo
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-x&nbsp;../src/sources.lzo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;извлечь&nbsp;в&nbsp;текущий&nbsp;каталог
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-x&nbsp;-p/tmp&nbsp;&lt;&nbsp;../src/sources.lzo&nbsp;&nbsp;-&gt;&nbsp;извлечь&nbsp;в&nbsp;каталог&nbsp;/tmp
+</p><p>
+<br>&nbsp;список
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-lNv&nbsp;sources.lzo
+</p><p>
+<br>&nbsp;тестирование
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-t&nbsp;sources.lzo
+<br>&nbsp;&nbsp;&nbsp;lzop&nbsp;-tvv&nbsp;sources.lzo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;быть&nbsp;весьма&nbsp;многословным
+</p><p>
+</p><p>
+
+Если вы хотите создать один архивный файл с несколькими частями, так, чтобы потом части можно было извлекать независимо, вам больше подойдет полноценный архиватор, например tar или zip. Последняя версия GNU tar поддерживает опцию <b>--use-compress-program=lzop</b> для прозрачного запуска lzop. lzop сделан как дополнение к tar, а не как его замена.
+<a name="lbAK">&nbsp;</a>
+</p><h2>ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</h2>
+
+Переменная окружения <b>LZOP</b> может содержать набор настроек по умолчанию для lzop. Эти опции интерпретируются первыми и могут быть переназначены явным указанием в командной строке. Например:
+<p>
+
+<br>&nbsp;&nbsp;для&nbsp;sh/ksh/zsh:&nbsp;&nbsp;&nbsp;&nbsp;LZOP="-1v&nbsp;--name";&nbsp;export&nbsp;LZOP
+<br>&nbsp;&nbsp;для&nbsp;csh/tcsh:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setenv&nbsp;LZOP&nbsp;"-1v&nbsp;--name"
+<br>&nbsp;&nbsp;для&nbsp;DOS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set&nbsp;LZOP=-1v&nbsp;--name
+</p><p>
+В VAX/VMS имя переменной окружения LZOP_OPT. Это сделано для того, чтобы избежать конфликтов с символьным набором, используемым для запуска программы.
+</p><p>
+
+Замечание: не все опции могут использоваться в переменной окружения - lzop сообщит вам.
+<a name="lbAL">&nbsp;</a>
+</p><h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gzip&amp;category=1">gzip</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tar&amp;category=1">tar</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bzip2&amp;category=1">bzip2</a></b>(1)
+<p>
+
+Готовые бинарные файлы для некоторых платформ скоро будут доступны с домашней страницы lzop.
+</p><p>
+
+<br>&nbsp;см.&nbsp;<a href="http://www.oberhumer.com/opensource/lzop/">http://www.oberhumer.com/opensource/lzop/</a>
+</p><p>
+lzop использует для своей работы библиотеку сжатия данных LZO.
+</p><p>
+
+<br>&nbsp;см.&nbsp;<a href="http://www.oberhumer.com/opensource/lzo/">http://www.oberhumer.com/opensource/lzo/</a>
+<a name="lbAM">&nbsp;</a>
+</p><h2>ДИАГНОСТИКА</h2>
+
+Код выхода обычно 0; если произошла ошибка, код выхода будет 1. Если было выдано предупреждение, код выхода будет 2.
+<p>
+
+Диагностика <b>lzop</b> сделана красноречивой.
+<a name="lbAN">&nbsp;</a>
+</p><h2>ОШИБКИ</h2>
+
+Обо всех ошибках, пожалуйста, немедленно сообщайте автору.
+<a name="lbAO">&nbsp;</a>
+<h2>АВТОР</h2>
+
+Markus F.X.J. Oberhumer; <a href="http://www.oberhumer.com/mfx/pgp.php">http://www.oberhumer.com/mfx/pgp.php</a>
+<a name="lbAP">&nbsp;</a>
+<h2>АВТОРСКОЕ ПРАВО</h2>
+
+На lzop и библиотеку сжатия данных LZO распространяется авторское право (C) 1996, 1997, 1998 Markus Franz Xaver Johannes Oberhumer.
+<p>
+
+lzop и библиотека сжатия данных LZO распространяются на условиях Универсальной Общественной Лицензии GNU (GNU GPL).
+<a name="lbAQ">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+Перевод выполнен: 
+<pre>Andrey Brindeew &lt;<a href="mailto:abr@altlinux.ru">abr@altlinux.ru</a>&gt;
+Alexandre Prokoudine &lt;<a href="mailto:avp@altlinux.ru">avp@altlinux.ru</a>&gt;
+</pre>
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">РЕЗЮМЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAF">УРОВНИ СЖАТИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">ОСНОВНЫЕ КОМАНДЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAI">ПРОЧИЕ ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAJ">РАСШИРЕННОЕ ИСПОЛЬЗОВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAK">ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAL">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAM">ДИАГНОСТИКА</a></dt><dd>
+</dd><dt><a href="#lbAN">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAO">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAP">АВТОРСКОЕ ПРАВО</a></dt><dd>
+</dd><dt><a href="#lbAQ">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="lzop" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

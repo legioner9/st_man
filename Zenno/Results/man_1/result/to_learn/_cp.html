@@ -1,0 +1,791 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN cp (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, cp"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="cp" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">cp (1)</font><hr><li> <a href="/man.shtml?topic=cp&amp;category=1&amp;russian=4"><u>cp</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=cp&amp;category=1&amp;russian=1"><u>cp</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=cp&amp;category=1&amp;russian=0"><u>cp</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=cp&amp;category=1&amp;russian=2"><u>cp</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=cp&amp;category=1&amp;russian=5"><u>cp</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=cp&amp;category=4&amp;russian=1"><u>cp</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+cp - копирование файлов и каталогов
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>cp [</b><i>опции</i><b>] </b><i>файл путь</i>
+
+<br>
+
+<b>cp [</b><i>опции</i><b>] </b><i>файл... каталог</i>
+
+<p>
+Опции POSIX:
+<b>[-fiprR] [--]</b>
+
+</p><p>
+Дополнительные опции POSIX 1003.1-2003:
+<b>[-HLP]</b>
+
+</p><p>
+Опции GNU file-utils 4.0 (краткая форма):
+<br>
+
+<b>[-abdfilprsuvxPR]</b>
+
+<b>[-S </b><i>СУФФИКС</i><b>]</b>
+
+<b>[-V {numbered,existing,simple}]</b>
+
+<b>[--backup=</b><i>CONTROL</i><b>]</b>
+
+<b>[--sparse=</b><i>КОГДА</i><b>]</b>
+
+<b>[--help] [--version] [--]</b>
+
+</p><p>
+Дополнительные опции GNU file-utils 4.1 (краткая форма):
+<br>
+
+<b>[-HLP]</b>
+
+<b>[--copy-contents]</b>
+
+<b>[--no-preserve]</b>
+
+<b>[--reply=</b><i>HOW</i><b>]</b>
+
+<b>[--remove-destination]</b>
+
+<b>[--strip-trailing-slashes]</b>
+
+<b>[--target-directory=</b><i>DIR</i><b>]</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<b>cp</b>
+
+копирует файлы (или, если попросить, каталоги).  Вы можете либо
+копировать один файл в другой, заданный файл, либо копировать сколько
+угодно файлов в заданный каталог.
+<p>
+
+Если последний аргумент является существующим каталогом, то
+<b>cp</b>
+
+копирует каждый исходный 
+<i>файл </i>
+
+в этот каталог (сохраняя имена).  В противном случае, если задано
+только два файла, то
+<b>cp</b>
+
+копирует первый файл во второй. Если задано более двух аргументов,
+которые не являются опциями, а последний аргумент не является именем
+какого-либо каталога, то это приведет к ошибке.
+</p><p>
+
+(Так, если /a~-- это каталог, то cp -r /a /b скопирует /a в /b/a и /a/x в /b/a/x в
+случае, если /b уже существует, но эта же команда будет копировать /a
+в /b и /a/x to /b/x, если /b не существует, или же завершится с
+ошибкой, если /b~-- обычный файл).
+</p><p>
+
+Права доступа к файлам и каталогам будут равны тем, что были на
+оригинальных файлах, логически умноженными (AND) на 0777 (другими
+словами, в новых правах будут сброшены биты sticky, setuid и setgid --
+Прим. ред.), а также с учетом
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=umask&amp;category=1">umask</a></b>(1)
+
+пользователя (за исключением случая, когда задана опция -p).
+(Но во время рекурсивного копирования каталогов, вновь создаваемые
+каталоги будут временно получать права, логически сложенные (OR) со
+значением S_IRWXU (0700), для того, чтобы разрешить чтение, запись
+и поиск во вновь созданных каталогах).
+</p><p>
+
+При попытке скопировать файл сам в себя ничего происходить не
+будет (за исключением возможной выдачи сообщения об ошибке).
+Когда происходит копирование файла в другой существующий файл, то
+он открывается с использованием вызова open(path, O_WRONLY | O_TRUNC).
+Когда копирование осуществляется во вновь создаваемый файл, то он
+создается с использованием вызова open(path, O_WRONLY | O_CREAT, mode).
+Если эти вызовы завершаются неудачно, то считается, что файл существует,
+а чтобы 
+<b>cp</b>
+
+попытался его удалить (unlink), необходимо указать опцию -f.  Если
+удаление проходит успешно, то дальше все работает как для случая с
+новым файлом.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОПЦИИ POSIX</h2>
+
+POSIX имеет четыре с половиной опции:
+<dl compact="">
+<dt><b>-f</b>
+
+</dt><dd>
+Если требуется, удаляет существующие файлы, в которые происходит
+копирование. (См. выше) 
+</dd><dt><b>-i</b>
+
+</dt><dd>
+Спрашивает, нужно ли перезаписывать существующие файлы, в которые
+происходит копирование. (Запрос выдается на стандартный вывод ошибок,
+а ответ читается со стандартного ввода. Копирование осуществляется только
+в случае положительного ответа).
+</dd><dt><b>-p</b>
+
+</dt><dd>
+Сохраняет исходные параметры файла, такие как владелец, группа, права
+доступа (включая suid и sgid биты), время последней модификации и время
+последнего доступа к файлу. В случае, если установка владельца или
+группы приводит к ошибке, suid и sgid биты сбрасываются.
+(Заметим, что впоследствии исходный файл и его копия могут иметь
+разное время последнего доступа, так как операция копирования является 
+доступом к исходному файлу).
+</dd><dt><b>-R</b>
+
+</dt><dd>
+Копировать каталоги рекурсивно; правильно обрабатывать ситуации, когда
+попадаются объекты, не являющиеся обычными файлами или каталогами.
+(Так, копией FIFO или специального файла будет также являться FIFO
+или специальный файл).
+</dd><dt><b>-r</b>
+
+</dt><dd>
+Копировать каталоги рекурсивно; выполнять какие-то, неопределенные стандартом
+действия, когда попадаются объекты, не являющиеся обычными файлами
+или каталогами. (Так, разрешается, и фактически одобряется, наличие
+опции -r как синонима для -R.  Однако, глупое поведение, которое
+проявляет версия
+<b>cp</b>
+
+в GNU 4.0 не запрещается.)
+</dd><dt><b>--</b>
+
+</dt><dd>
+Завершает список опций.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ДОПОЛНИТЕЛЬНЫЕ ОПЦИИ POSIX 2003</h2>
+
+Стандарт POSIX 1003.1-2003 добавляет три опции, которые определяют как
+управлять символьными ссылками. Когда выполняется нерекурсивное
+копирование, символьные ссылки разименовываются (берутся те объекты
+на которые они указывают, вместо самой ссылки -- прим.пер.).
+Когда выполняется рекурсивное копирование с использованием опции -r,
+результаты зависят от реализации. Когда выполняется рекурсивное
+копирование с использованием опции -R:
+<dl compact="">
+<dt><b>-H</b>
+
+</dt><dd>
+Разименовывает символьные ссылки, указанные в списке параметров.
+Не разименовывает символьные ссылки, которые встречаются во время
+рекурсивного копирования, а просто копирует их.
+</dd><dt><b>-L</b>
+
+</dt><dd>
+Разименовывает все символьные ссылки, как заданные в списке параметров
+так и встретившиеся во время рекурсивного копирования.
+</dd><dt><b>-P</b>
+
+</dt><dd>
+Не разименовывает никакие символьные ссылки, ни заданные в списке
+параметров, ни встретившиеся во время рекурсивного копирования.
+Просто копирует их как символьные ссылки.
+</dd></dl>
+<p>
+
+Нет опции, работающей по умолчанию - необходимо указывать одну из
+опций для достижения нужного результата.
+<a name="lbAG">&nbsp;</a>
+</p><h2>ПОДРОБНОСТИ ВЕРСИИ GNU</h2>
+
+<p>
+
+Обычно файлы записываются точно в том же виде, как и были прочитаны.
+См. ниже об опции
+<b>--sparse</b>,
+
+который является исключением.
+</p><p>
+
+По умолчанию cp не копирует каталоги (см. опцию
+<b>-r</b>
+
+).
+</p><p>
+
+<b>cp</b>
+
+обычно отвергает копирование файла в себя же, за следующим исключением:
+если заданы опции
+<b>--force --backup</b>
+
+и при этом
+<i>исходный файл</i>
+
+и 
+<i>файл</i>,
+
+в который осуществляется копирование,
+идентичны и являются обычными файлами, то
+<b>cp</b>
+
+сделает резервную копию файла: обычную или нумерованную, как скажете.
+Это полезно, когда вы просто хотите сделать резервную
+копию существующего файла, перед тем как его изменить.
+</p><p>
+
+По умолчанию, символьные ссылки не разименовываются.
+<a name="lbAH">&nbsp;</a>
+</p><h2>ОПЦИИ GNU</h2>
+
+<dl compact="">
+<dt><b>-a, --archive</b>
+
+</dt><dd>
+По возможности сохраняет структуру и атрибуты исходных файлов при
+копировании (но не сохраняет структуру каталогов). Эквивалентно заданию
+опций
+<b>-dpPR</b>.
+
+</dd><dt><b>-b</b>
+
+</dt><dd>
+Смотрите обсуждение резервных копий ниже.
+</dd><dt><b>--copy-contents</b> (начиная с версии file-utils 4.1)
+
+</dt><dd>
+В file-utils 4.0 делаются глупые вещи, попытки копировать содержимое
+файлов устройств и FIFO во время рекурсивного копирования. Никогда не
+используйте эту опцию. С ней, `cp' может просто зависнуть, читая
+FIFO или /dev/tty или заполнить весь диск копируя /dev/zero.
+</dd><dt><b>-d</b>
+
+</dt><dd>
+Копирует символьные ссылки как символьные ссылки, а не файлы, на
+которые они указывают, и сохраняет жесткие ссылки между исходными
+файлами в копиях.
+<p>
+В file-utils 4.0 длинная опция --no-dereference была синонимом
+для опции -d, но в file-utils 4.1 она является синонимом для
+опции -P, в то время как опция -d эквивалентна опциям
+--no-dereference --preserve=links.
+</p></dd><dt><b>-f, --force</b>
+
+</dt><dd>
+Удаляет существующие файлы в случае возникновения ошибки при открытии
+их на чтение и никогда не спрашивает подтверждения перед тем как это
+сделать. (Такое поведение начинается с версии file-utils 4.1. В
+file-utils 4.0 эта опция была эквивалентна новой опции
+--remove-destination.)
+</dd><dt><b>-H</b> (начиная с версии file-utils 4.1)
+
+</dt><dd>
+См. описание POSIX выше.
+</dd><dt><b>-i, --interactive</b>
+
+</dt><dd>
+Спрашивает, нужно ли перезаписывать существующие обычные файлы.
+</dd><dt><b>-l, --link</b>
+
+</dt><dd>
+Делает жесткие ссылки вместо копирования обычных файлов (не каталогов).
+</dd><dt><b>-L, --dereference</b> (начиная с версии file-utils 4.1)
+
+</dt><dd>
+Смотрите описание POSIX выше.
+</dd><dt><b>--no-preserve=</b><i>АТРИБУТЫ</i> (начиная с версии file-utils 4.1)
+
+</dt><dd>
+Не сохраняет заданные атрибуты.
+См. ниже опцию --preserve.
+</dd><dt><b>-p, --preserve</b>
+
+</dt><dd>
+Защищает оригинальные параметры файла, такие как владелец, группа, права
+доступа и временные штампы.
+</dd><dt><b>--preserve=</b><i>АТРИБУТЫ</i> (начиная с версии file-utils 4.1)
+
+</dt><dd>
+Здесь параметр АТРИБУТЫ может принимать одно из значений "mode" (права
+доступа), "ownership" (владелец и группа), "timestamps" (временные
+штампы), "links", "all" (всё перечисленное).
+</dd><dt><b>-P, --no-dereference</b> (начиная с версии file-utils 4.1)
+
+</dt><dd>
+См. выше описание POSIX.
+Эта опция заменяет опцию -P в file-utils 4.0, которая была синонимом
+опции --parents. См. также опцию -d выше.
+</dd><dt><b>--parents</b> (начиная с версии file-utils 4.0 также -P)
+
+</dt><dd>
+Формирует имя каждого копируемого файла путем добавления к имени
+каталога, в который осуществляется копирование, символа косой черты
+(/) и указанного полного имени исходного файла.  Последний заданный
+аргумент
+<b>cp</b>
+
+должен быть именем существующего каталога. Например, команда 
+<br>
+
+<pre>    cp --parents a/b/c existing_dir
+<br>
+</pre>
+
+копирует файл a/b/c в existing_dir/a/b/c, создавая отсутствующие
+промежуточные каталоги.
+</dd><dt><b>-r</b>
+
+</dt><dd>
+В file-utils 4.1: синоним опции -R.
+В file-utils 4.0:
+Копирует каталоги рекурсивно, копирует любые не-каталоги и не
+символьные ссылки (то есть FIFO и специальные файлы), как если бы
+они были обычными файлами.  Это глупое поведение можно получить в
+file-utils 4.1 если указать опцию --copy-contents.
+</dd><dt><b>-R, --recursive</b>
+
+</dt><dd>
+Копирует каталоги рекурсивно, защищая не-каталоги.
+</dd><dt><b>--reply=</b><i>HOW</i> (начиная с версии file-utils 4.1)
+
+</dt><dd>
+Здесь аргумент HOW может принимать одно из значений "yes", "no",
+"query", определяя какой ответ будет автоматически даваться на
+все вопросы: "да", "нет" или "запрос" пользователю соответственно.
+</dd><dt><b>--remove-destination</b> (начиная с версии file-utils 4.1)
+
+</dt><dd>
+Удаляет каждый существующий (в том месте куда происходит
+копирование) файл, перед копированием. В версии
+file-utils 4.0 эта опция неявно включалась при указании опции -f.
+</dd><dt><b>--sparse=</b><i>КОГДА</i>
+
+</dt><dd>
+Разреженный (sparse) файл содержит
+дыры -- последовательности нулевых байт, которые не занимают физических
+блоков на диске; системный вызов read читает их как нули. Такой подход
+может как сохранить дисковое пространство, так и увеличить скорость работы,
+потому что многие бинарные файлы содержат много расположенных
+последовательно нулевых байт. По умолчанию,
+<b>cp</b>
+
+определяет дыры в исходном файле с помощью простой эвристики и делает
+соответствующий выходной файл также разреженным.
+<dl compact=""><dt></dt><dd>
+<p>
+
+Параметр
+<i>КОГДА</i>
+
+может принимать следующие значения:
+</p><dl compact="">
+<dt><b>auto</b>
+
+</dt><dd>
+Поведение по умолчанию: выходной файл является разреженным, если входной
+файл также является разреженным.
+</dd><dt><b>always</b>
+
+</dt><dd>
+Всегда делать выходной файл разреженным. Это полезно, когда входной
+файл расположен на файловой системе, которая не поддерживает
+разреженные файлы, а выходной файл будет располагаться на файловой
+системе, которая их поддерживает.
+</dd><dt><b>never</b>
+
+</dt><dd>
+Никогда не делать выходные файлы разреженными. Если вы нашли применение
+для этой опции, дайте нам знать.
+</dd></dl>
+</dd></dl>
+
+</dd><dt><b>--strip-trailing-slashes</b> (начиная с file-utils 4.1)
+
+</dt><dd>
+Удаляет все конечные символы `' из каждого аргумента. (Это
+может изменить интерпретацию аргумента, если он является символьной
+ссылкой на каталог.)
+</dd><dt><b>-s, --symbolic-link</b>
+
+</dt><dd>
+Делает символьные ссылки вместо копирования не-каталогов.  Все имена
+исходных файлов должны быть полными, т.&nbsp;е. начинаться с символа /,
+за исключением случая, когда символьные ссылки будут создаваться в
+текущем каталоге.  Эта опция генерирует сообщение об ошибке, если
+система не поддерживает символьные ссылки.
+</dd><dt><b>-S</b>
+
+</dt><dd>
+Суффикс резервной копии, см. ниже.
+</dd><dt><b>--target-directory=</b><i>КАТАЛОГ</i> (начиная с версии file-utils 4.1)
+
+</dt><dd>
+Задаёт каталог назначения, куда будет осуществляться копирование.
+Имеется в виду для использования с
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=xargs&amp;category=1">xargs</a></b>(1),
+
+как, например, в "ls | xargs cp --target-directory=../d".
+</dd><dt><b>-t, --target-directory</b><i>=КАТАЛОГ</i>
+
+</dt><dd>
+копирует все аргументы ИСТОЧНИК в КАТАЛОГ
+</dd><dt><b>-T, --no-target-directory</b>
+
+</dt><dd>
+обрабатывать DEST как обычный файл.
+</dd><dt><b>-u, --update</b>
+
+</dt><dd>
+Не копировать не-каталоги, которые уже существуют в том месте, куда
+осуществляется копирование, если они имеют такое же или более раннее
+время модификации.
+</dd><dt><b>-v, --verbose</b>
+
+</dt><dd>
+Выводить имя каждого файла перед его копированием.
+</dd><dt><b>-x, --one-file-system</b>
+
+</dt><dd>
+Пропускать подкаталоги, которые расположены на файловых системах,
+отличных от той, где начиналось копирование.
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>ОПЦИИ РЕЗЕРВНОГО КОПИРОВАНИЯ GNU</h2>
+
+GNU-версии таких программ как
+<b>cp</b>,
+
+<b>mv</b>,
+
+<b>ln</b>,
+
+<b>install</b>
+
+и
+<b>patch </b>
+
+могут, если потребуется, делать резервные копии файлов, которые будут
+перезаписаны, изменены или уничтожены.  При желании, резервные копии
+файлов создаются с помощью опции -b.  Как они будут называться,
+задает опция -V.  В случае, если имя файла резервной копии создается
+с помощью добавления суффикса к имени исходного файла, то суффикс
+указывается с помощью опции -S.
+<dl compact="">
+<dt><b>-b, --backup</b>
+
+</dt><dd>
+Делать резервные копии файлов, которые будут перезаписаны или удалены.
+</dd><dt><b>--backup=</b><i>CONTROL</i>
+
+</dt><dd>
+(Начиная с версии fileutils-4.1.)
+</dd><dt><b>-S </b><i>СУФФИКС</i><b>, --suffix=</b><i>СУФФИКС</i>
+
+</dt><dd>
+Добавить
+<i>СУФФИКС</i>
+
+к имени файла при создании его резервной копии.
+<p>
+Если данная опция не задана, то суффикс можно также задать, используя
+переменную окружения 
+<b>SIMPLE_BACKUP_SUFFIX</b>
+
+Если не задана ни опция, ни переменная, то по умолчанию используется
+суффикс ~.
+</p></dd><dt><b>-V </b><i>МЕТОД</i><b>, --version-control=</b><i>МЕТОД</i>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+Определяет, как будут называться резервные копии файлов. Аргумент
+<i>МЕТОД</i>
+
+может принимать значения numbered (или t), existing (или nil)
+и never (или simple). Если данная опция не задана, то будет
+использовано значение переменной окружения
+<b>VERSION_CONTROL</b>.
+
+Если же не задано значение и этой переменной, то по умолчанию тип
+резервного копирования устанавливается в existing.
+<p>
+
+Данная опция соответствует переменной version-control в Emacs.
+Допустимыми значениями
+<i>МЕТОД</i>
+
+являются (допускаются однозначные сокращения):
+</p><dl compact="">
+<dt><b>t</b>, <b>numbered</b>
+
+</dt><dd>
+Всегда делать нумерованные резервные копии файлов.
+</dd><dt><b>nil</b>, <b>existing</b>
+
+</dt><dd>
+Делать нумерованные резервные копии файлов для файлов, которые уже их
+имеют и простые резервные копии для остальных файлов.
+</dd><dt><b>never</b>, <b>simple</b>
+
+</dt><dd>
+Всегда делать простые резервные копии.
+</dd></dl>
+</dd></dl>
+
+<p>
+</p></dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>СТАНДАРТНЫЕ ОПЦИИ GNU</h2>
+
+<dl compact="">
+<dt><b>--help</b>
+
+</dt><dd>
+Выдать подсказку на стандартный вывод и успешно завершиться.
+</dd><dt><b>--version</b>
+
+</dt><dd>
+Выдать информацию о версии на стандартный вывод и успешно завершиться.
+</dd><dt><b>--</b>
+
+</dt><dd>
+Служит для обозначения конца списка опций.
+<p>
+</p></dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h2>ОКРУЖЕНИЕ</h2>
+
+При работе обычным образом используются значения переменных LANG,
+LC_ALL, LC_COLLATE, LC_CTYPE и LC_MESSAGES.  Для GNU версии
+используются также переменные SIMPLE_BACKUP_SUFFIX и VERSION_CONTROL,
+контролирующие создание резервных копий, как описано выше.
+<a name="lbAL">&nbsp;</a>
+<h2>СОВМЕСТИМОСТЬ</h2>
+
+POSIX 1003.2
+<a name="lbAM">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Данная страница описывает версию
+<b>cp</b>
+
+пакета fileutils-4.1;
+другие версии могут иметь небольшие отличия.
+Исправления и дополнения присылайте по адресу <a href="mailto:aeb@cwi.nl">aeb@cwi.nl</a>.
+Сообщения об ошибках в этой программе присылайте по адресу
+<a href="mailto:fileutils-bugs@gnu.ai.mit.edu">fileutils-bugs@gnu.ai.mit.edu</a>.
+<a name="lbAN">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевёл с английского Виктор Вислобоков &lt;<a href="mailto:corochoone@perm.ru">corochoone@perm.ru</a>&gt; 2003
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ POSIX</a></dt><dd>
+</dd><dt><a href="#lbAF">ДОПОЛНИТЕЛЬНЫЕ ОПЦИИ POSIX 2003</a></dt><dd>
+</dd><dt><a href="#lbAG">ПОДРОБНОСТИ ВЕРСИИ GNU</a></dt><dd>
+</dd><dt><a href="#lbAH">ОПЦИИ GNU</a></dt><dd>
+</dd><dt><a href="#lbAI">ОПЦИИ РЕЗЕРВНОГО КОПИРОВАНИЯ GNU</a></dt><dd>
+</dd><dt><a href="#lbAJ">СТАНДАРТНЫЕ ОПЦИИ GNU</a></dt><dd>
+</dd><dt><a href="#lbAK">ОКРУЖЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAL">СОВМЕСТИМОСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAM">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAN">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="cp" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

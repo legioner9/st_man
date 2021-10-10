@@ -1,0 +1,541 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN intro (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, intro"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="intro" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">intro (1)</font><hr><li> <a href="/man.shtml?topic=intro&amp;category=1&amp;russian=4"><u>intro</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=1&amp;russian=1"><u>intro</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=intro&amp;category=1&amp;russian=0"><u>intro</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=1&amp;russian=2"><u>intro</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=2&amp;russian=4"><u>intro</u></a> (2) <font color="#555555"> ( Solaris man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=2&amp;russian=1"><u>intro</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=2&amp;russian=0"><u>intro</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=2&amp;russian=2"><u>intro</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=3&amp;russian=4"><u>intro</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=3&amp;russian=1"><u>intro</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=3&amp;russian=0"><u>intro</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=3&amp;russian=2"><u>intro</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=4&amp;russian=4"><u>intro</u></a> (4) <font color="#555555"> ( Solaris man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=4&amp;russian=1"><u>intro</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=4&amp;russian=0"><u>intro</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=4&amp;russian=2"><u>intro</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=5&amp;russian=4"><u>intro</u></a> (5) <font color="#555555"> ( Solaris man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=5&amp;russian=1"><u>intro</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=5&amp;russian=0"><u>intro</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=5&amp;russian=2"><u>intro</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=6&amp;russian=4"><u>intro</u></a> (6) <font color="#555555"> ( Solaris man: Игры )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=6&amp;russian=0"><u>intro</u></a> (6) <font color="#555555"> ( Русские man: Игры )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=6&amp;russian=2"><u>intro</u></a> (6) <font color="#555555"> ( Linux man: Игры )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=7&amp;russian=4"><u>intro</u></a> (7) <font color="#555555"> ( Solaris man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=7&amp;russian=1"><u>intro</u></a> (7) <font color="#555555"> ( FreeBSD man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=7&amp;russian=0"><u>intro</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=7&amp;russian=2"><u>intro</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=8&amp;russian=1"><u>intro</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=8&amp;russian=0"><u>intro</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=8&amp;russian=2"><u>intro</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=9&amp;russian=1"><u>intro</u></a> (9) <font color="#555555"> ( FreeBSD man: Ядро )</font></li><li> <a href="/man.shtml?topic=intro&amp;category=9&amp;russian=2"><u>intro</u></a> (9) <font color="#555555"> ( Linux man: Ядро )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+intro - Введение в пользовательские команды
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Linux является одним из диалектов Unix и в первом приближении
+все пользовательские команды для Unix точно также работают в
+Linux (а также во FreeBSD и в большом количестве других Unix-подобных
+систем).
+<p>
+
+Под Linux существуют GUI (графические интерфейсы пользователя), где
+вы можете с помощью мышки выполнить необходимую работу без чтения
+большого объёма документации. Но традиционное окружение Unix - это
+CLI (интерфейс командной строки), где вы вводите команды, чтобы
+сказать компьютеру о том, что нужно сделать. Такой подход является
+более гибким и обеспечивает больше возможностей, а также более быструю
+работу, но требует знания команд.
+Ниже даётся минимум, который поможет сделать первые шаги.
+<a name="lbAD">&nbsp;</a>
+</p><h3>Login</h3>
+
+Для того, чтобы начать работу, вы предположительно должны сперва
+пройти процедуру регистрации в системе (login), которая требует ввода
+имени пользователя и пароля. См. также
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=login&amp;category=1">login</a></b>(1).
+
+Программа
+<i>login</i>
+
+после регистрации запускает для вас какой-либо
+<i>shell</i>
+
+(командный интерпретатор).
+В случае если процедура регистрации происходит в графическом режиме,
+вы увидите экран, где есть меню или значки и можете запустить
+командный интерпретатор в каком-либо окне. См. также
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=xterm&amp;category=1">xterm</a></b>(1).
+
+<a name="lbAE">&nbsp;</a>
+<h3>Командный интерпретатор shell</h3>
+
+Вы можете вводить команды для командного интерпретатора
+<i>shell</i>.
+
+Он не является каким-то встроенным средством - это просто программа и
+вы можете изменить shell. Каждый имеет свой любимый командный
+интерпретатор. Стандартное имя
+<i>sh</i>.
+
+См. также
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ash&amp;category=1">ash</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bash&amp;category=1">bash</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=csh&amp;category=1">csh</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=zsh&amp;category=1">zsh</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chsh&amp;category=1">chsh</a></b>(1).
+
+<p>
+
+Сессия работы, начиная с регистрации может выглядеть так:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre><b>knuth login: </b><i>aeb</i>
+<b>Password: </b><i>********</i>
+<b>% </b><i>date</i>
+Tue Aug  6 23:50:44 CEST 2002
+<b>% </b><i>cal</i>
+     August 2002
+Su Mo Tu We Th Fr Sa 
+             1  2  3
+ 4  5  6  7  8  9 10
+11 12 13 14 15 16 17
+18 19 20 21 22 23 24
+25 26 27 28 29 30 31
+
+<b>% </b><i>ls</i>
+bin  tel
+<b>% </b><i>ls -l</i>
+total 2
+drwxrwxr-x   2 aeb       1024 Aug  6 23:51 bin
+-rw-rw-r--   1 aeb         37 Aug  6 23:52 tel
+<b>% </b><i>cat tel</i>
+maja    0501-1136285
+peter   0136-7399214
+<b>% </b><i>cp tel tel2</i>
+<b>% </b><i>ls -l</i>
+total 3
+drwxr-xr-x   2 aeb       1024 Aug  6 23:51 bin
+-rw-r--r--   1 aeb         37 Aug  6 23:52 tel
+-rw-r--r--   1 aeb         37 Aug  6 23:53 tel2
+<b>% </b><i>mv tel tel1</i>
+<b>% </b><i>ls -l</i>
+total 3
+drwxr-xr-x   2 aeb       1024 Aug  6 23:51 bin
+-rw-r--r--   1 aeb         37 Aug  6 23:52 tel1
+-rw-r--r--   1 aeb         37 Aug  6 23:53 tel2
+<b>% </b><i>diff tel1 tel2</i>
+<b>% </b><i>rm tel1</i>
+<b>% </b><i>grep maja tel2</i>
+maja    0501-1136285
+<b>% </b>
+</pre>
+
+</dd></dl>
+
+и здесь после нажатия Control-D эта сессия была завершена.
+Символ
+<b>% </b>
+
+здесь является приглашением к вводу команды - таким способ shell
+показывает, что он готов к выполнению следующей команды. Вид
+приглашения может быть настроен многими способами и оно может
+включать имя пользователя, имя машины, текущий каталог, время и т.д.
+Например выполнение PS1="What next, master? " изменит приглашение
+на то, что мы ввели.
+<p>
+
+Выше мы видели, что есть такие команды как
+<i>date</i>
+
+(которая выдаёт дату и время) и
+<i>cal</i>
+
+(которая выдаёт календарь).
+</p><p>
+
+Команда
+<i>ls</i>
+
+выдаёт список содержимого текущего каталога - говорит какие файлы
+у вас есть. С опцией -l эта команда выдаёт длинный список,
+который включает владельца, размер и дату файла, а также права
+доступа, которыми обладают пользователи на чтение и/или изменение
+файла. Например, файл "tel" имеет размер в 37 байт, владелец
+файла пользователь aeb, а права доступа такие, что владелец может
+читать и писать в этот файл, а другие могут только читать его.
+Владелец и права доступа могут быть изменены командами
+<i>chown</i>
+
+и
+<i>chmod</i>.
+
+</p><p>
+
+Команда
+<i>cat</i>
+
+показывает содержимое файла.
+(Имя команды является аббревиатурой от слов "concatenate and print"
+(соединить и напечатать): все файлы, заданные как параметры этой команды,
+будут соединины в один и отправлены на "стандартный вывод", которым в данном
+случае является экран терминала).
+</p><p>
+
+Команда
+<i>cp</i>
+
+(от слова "copy") копирует файлы. С другой стороны, команда
+<i>mv</i>
+
+(от слова "move") только переименовывает (или перемещает -- прим.пер.) их.
+</p><p>
+
+Команда
+<i>diff</i>
+
+показывает разницу между двумя файлами.
+В примере, который дан выше, она ничего не выдаёт, потому что различий нет.
+</p><p>
+
+Команда
+<i>rm</i>
+
+(от слова "remove") удаляет файлы и будьте осторожны! Это опасно.
+Не существует возможности их восстановить. Удалённые файлы будут потеряны.
+</p><p>
+
+Команда
+<i>grep</i>
+
+(от "g/re/p") ищет указанные строки в одном или нескольких файлах.
+В примере команда ищет телефонный номер Maja.
+<a name="lbAF">&nbsp;</a>
+</p><h3>Полное имя, путь и текущий каталог</h3>
+
+Файлы находятся в большом дереве, файловой иерархии. Каждый файл
+имеет 
+<i>path name (полное имя)</i>
+
+описывающее путь от корня этого дерева (который имеет имя /) до данного
+файла. Например, таким полным именем может быть /home/aeb/tel.
+Постоянное использование полного имени может быть нерациональным и
+имя файла в текущем каталоге может быть сокращено до последнего
+компонента. Так, полное имя "/home/aeb/tel" может быть сокращено
+до "tel", если текущим каталогом является каталог "/home/aeb".
+<p>
+
+Команда
+<i>pwd</i>
+
+показывает текущий каталог.
+</p><p>
+
+Команда
+<i>cd</i>
+
+изменяет текущий каталог.
+Попытайтесь выполнить команды "cd /", "pwd", "cd" и "pwd".
+<a name="lbAG">&nbsp;</a>
+</p><h3>Каталоги</h3>
+
+Команда
+<i>mkdir</i>
+
+создаёт новый каталог.
+<p>
+
+Команда
+<i>rmdir</i>
+
+удаляет каталог, если он пустой, в противном случае выдаёт ошибку.
+</p><p>
+
+Команда
+<i>find</i>
+
+(нескольк причудливым синтаксисом) ищет файлы, с указанным именем
+или другими свойствами. Например, "find . -name tel" будет искать
+файл "tel" начиная с указанного каталога (которые имеет имя ".").
+А команда "find / -name tel" будет делать тоже самое, но начиная
+с корневого каталога дерева файлов. Поиск по многогигабайтому
+диску будет занимать много времени и возможно лучше будет
+воспользоваться командой
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=locate&amp;category=1">locate</a></b>(1).
+
+<a name="lbAH">&nbsp;</a>
+</p><h3>Диски и файловые системы</h3>
+
+Команда
+<i>mount</i>
+
+подключает файловую систему найденную на каком-либо диске (или
+дисководе или CD-ROMе и т.д.) к основной иерархии файловой системы.
+А команда
+<i>umount</i>
+
+отключает её снова.
+Команда
+<i>df</i>
+
+скажет вам как много осталось свободного пространства на вашем диске.
+<a name="lbAI">&nbsp;</a>
+<h3>Процессы</h3>
+
+В Unix системах многие пользовательские и системные процессы запущены
+одновременно. Некоторые запущены в режиме
+<i>foreground</i>(переднего<i>плана),</i>
+
+другие в режиме
+<i>background</i>(фоновом<i>режиме).</i>
+
+Команда
+<i>ps</i>
+
+покажет вам какие процессы активны и какие нормера они имеют.
+Команда
+<i>kill</i>
+
+позволяет вам освобождаться от них. Без опций эта команда посылает
+процессу сигнал завершения. А если за командой "kill -9" следует
+номер процесса, то этот процесс будет немедленно убит.
+Процессы переднего плана часто могут быть сняты через Control-C.
+<a name="lbAJ">&nbsp;</a>
+<h3>Получение информации</h3>
+
+Существуют тысячи команд, каждая из которых имеет множество опций.
+Традиционно команды документируются на страницах электронного
+руководства
+<i>man pages</i>,
+
+(таких как эта), так что команда "man kill" покажет вам документ,
+в котором описывается использование команды "kill" (а "man man"
+документ, где описывается использование команды "man").
+Программа
+<i>man</i>
+
+выводит текст через специальную утилиту
+<i>pager</i>,
+
+обычно
+<i>less</i>.
+
+Нажмите пробел, чтобы перейти к следующей странице или q для выхода.
+<p>
+
+В документации встречаются ссылки на страницы электронного руководства
+man, которые выглядят как имя и номер секции, например
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=man&amp;category=1">man</a></b>(1).
+
+Страницы руководства являются кратким описанием и позволят вам
+быстро найти некоторые забытые подробности. Для новичков существуют
+тексты введений с большим количеством примеров и разъяснений, что
+является полезным.
+</p><p>
+
+Большое количество программного обеспечения GNU/FSF предоставляется
+вместе с файлами info. Введите команду "info info", чтобы получить
+начальное представление об использовании программы "info".
+</p><p>
+
+Некоторые специальные вопросы часто рассматриваются в документах
+HOWTO. Смотрите
+<i>/usr/share/doc/howto/en</i>
+
+и используйте браузер для просмотра, если вы нашли там нужные HTML
+файлы.
+
+
+
+<a name="lbAK">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+Перевёл с английского Виктор Вислобоков &lt;<a href="mailto:corochoone@perm.ru">corochoone@perm.ru</a>&gt; 2003
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAD">Login</a></dt><dd>
+</dd><dt><a href="#lbAE">Командный интерпретатор shell</a></dt><dd>
+</dd><dt><a href="#lbAF">Полное имя, путь и текущий каталог</a></dt><dd>
+</dd><dt><a href="#lbAG">Каталоги</a></dt><dd>
+</dd><dt><a href="#lbAH">Диски и файловые системы</a></dt><dd>
+</dd><dt><a href="#lbAI">Процессы</a></dt><dd>
+</dd><dt><a href="#lbAJ">Получение информации</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAK">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="intro" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

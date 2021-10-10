@@ -1,0 +1,579 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN xmdomain.cfg (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, xmdomain.cfg"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="xmdomain.cfg" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">xmdomain.cfg (8)</font><hr><li> <a href="/man.shtml?topic=xmdomain.cfg&amp;category=5&amp;russian=2"><u>xmdomain.cfg</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=xmdomain.cfg&amp;category=8&amp;russian=0"><u>xmdomain.cfg</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+{{header}}
+{{xg-scale-part}}
+{{translator-igorchubin}}
+Оригинал: <a href="http://linux.die.net/man/5/xmdomain.cfg">http://linux.die.net/man/5/xmdomain.cfg</a>
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2> Имя </h2>
+
+<p>
+
+</p><p>
+xmdomain.cfg - формат конфигурационного файла домена xm
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2> Синтаксис </h2>
+
+<p>
+
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>
+/etc/xen/myxendomain
+/etc/xen/myxendomain2
+/etc/xen/auto/myxenautostarted
+
+</pre>
+
+</dd></dl>
+
+<p>
+<a name="lbAD">&nbsp;</a>
+</p><h2> Описание </h2>
+
+<p>
+
+</p><p>
+The <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=xm&amp;category=1">xm</a>(1) program uses python executable config files to define domains to create from scratch. Each of these config files 
+needs to contain a number of required options, and may specify many more. 
+Domain configuration files live in /etc/xen by default, if you store config files anywhere else the full path to the config 
+file must be specified in the xm create command. 
+/etc/xen/auto is a special case. Domain config files in that directory will be started automatically at system boot if the 
+xendomain init script is enabled. The contents of /etc/xen/auto should be symlinks to files in /etc/xen to allow xm create 
+to be used without full paths. 
+Options are specified by name = value statements in the xmdomain.cfg files.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2> Опции </h2>
+
+<p>
+
+</p><p>
+The following lists the most commonly used options for a domain config file.
+</p><p>
+kernel
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    The kernel image for the domain. The format of the parameter is the fully qualified path to the kernel image file, i.e. /boot/vmlinuz-2.6.12-xenU. 
+
+</pre>
+
+</dd></dl>
+
+ramdisk
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    The initial ramdisk for the domain. The format of the parameter is the fully qualified path to the initrd, i.e. /boot/initrd.gz. 
+On many Linux distros you will not need a ramdisk if using the default xen kernel. 
+</pre>
+
+</dd></dl>
+
+memory
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    The amount of RAM , in megabytes, to allocate to the domain when it starts. Allocating insufficient memory for a domain may 
+produce extremely bizarre behavior. If there isn't enough free memory left on the machine to fulfill this request, the domain 
+will fail to start. 
+    Xen does not support overcommit of memory, so the total memory of all guests (+ 64 MB needed for Xen) must be less than or equal 
+to the physical RAM in the machine. 
+</pre>
+
+</dd></dl>
+
+name
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    A unique name for the domain. Attempting to create two domains with the same name will cause an error. 
+</pre>
+
+</dd></dl>
+
+root
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    Specifies the root device for the domain. This is required for Linux domains, and possibly other OSes. 
+</pre>
+
+</dd></dl>
+
+nics
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    The number of network interfaces allocated to the domain on boot. It defaults to 1. 
+
+</pre>
+
+</dd></dl>
+
+disk
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    An array of block device stanzas, in the form:
+
+    disk = [ "stanza1", "stanza2", ... ]
+
+    Each stanza has 3 terms, separated by commas, "backend-dev,frontend-dev,mode". 
+    backend-dev 
+    The device in the backend domain that will be exported to the guest (frontend) domain. Supported formats include: 
+    phy:device - export the physical device listed. The device can be in symbolic form, as in sda7, or as the hex major/minor 
+number, as in 0x301 (which is hda1). 
+    <a href="file://path/to/file">file://path/to/file</a> - export the file listed as a loopback device. This will take care of the loopback setup before exporting 
+the device.     frontend-dev 
+    How the device should appear in the guest domain. The device can be in symbolic form, as in sda7, or as the hex major/minor number, 
+as in 0x301 (which is hda1).     mode 
+    The access mode for the device. There are currently 2 valid options, r (read-only), w (read/write). 
+</pre>
+
+</dd></dl>
+
+vif
+<p>
+An array of virtual interface stanzas in the form:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    vif = [ "stanza1", "stanza2", ... ]
+
+    Each stanza specifies a set of name = value options separated by commas, in the form: "name1=value1, name2=value2, ..." 
+
+    OPTIONS 
+    bridge 
+    The network bridge to be used for this device. This is especially needed if multiple bridges exist on the machine.     mac
+
+    The MAC address for the virtual interface. If mac is not specified, one will be randomly chosen by xen with the 00:16:3e vendor 
+id prefix. 
+</pre>
+
+</dd></dl>
+
+ADDITIONAL OPTIONS
+<p>
+The following options are also supported in the config file, though are far more rarely used.
+</p><p>
+builder
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    Which builder should be used to construct the domain. This defaults to the linux if not specified, which is the builder for 
+paravirtualized Linux domains. 
+</pre>
+
+</dd></dl>
+
+cpu
+<p>
+Specifies which CPU the domain should be started on, where 0 specifies the first cpu, 1 the second, and so on. This defaults 
+to -1, which means Xen is free to pick which CPU to start on. cpus
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    Specifies a list of CPUs on which the domains' VCPUs are allowed to execute upon. The syntax supports ranges (0-3), and negation, 
+^1. For instance: 
+    cpus = "0-3,5,^1"
+
+    Will result in CPUs 0, 2, 3, 5 being available for use by the domain. 
+
+</pre>
+
+</dd></dl>
+
+extra
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    Extra information to append to the end of the kernel parameter line. The format is a string, the contents of which can be anything 
+that the kernel supports. For instance: 
+    extra = "4"
+
+    Will cause the domain to boot to runlevel 4. 
+
+</pre>
+
+</dd></dl>
+
+nfs_server
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    The IP address of the NFS server to use as the root device for the domain. In order to do this you'll need to specify root=/dev/nfs, 
+and specify nfs_root. 
+</pre>
+
+</dd></dl>
+
+nfs_root
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    The directory on the NFS server to be used as the root filesystem. Specified as a fully qualified path, i.e. /full/path/to/root/dir. 
+
+</pre>
+
+</dd></dl>
+
+vcpus
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    The number of virtual cpus to allocate to the domain. In order to use this the xen kernel must be compiled with SMP support. 
+
+    This defaults to 1, meaning running the domain as a UP . 
+
+</pre>
+
+</dd></dl>
+
+<p>
+<a name="lbAF">&nbsp;</a>
+</p><h2> Опции выключения домена </h2>
+
+<p>
+
+</p><p>
+There are 3 options which control domain shutdown (both planned and unplanned) under certain events. The 3 events currently 
+captured are: 
+on_shutdown
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    Triggered on either an xm shutdown or graceful shutdown from inside the DomU. 
+
+</pre>
+
+</dd></dl>
+
+on_reboot
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    Triggered on either an xm reboot or graceful reboot from inside the DomU. 
+
+</pre>
+
+</dd></dl>
+
+on_crash
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    Triggered when a DomU goes to the crashed state for any reason. 
+
+</pre>
+
+</dd></dl>
+
+All of them take one of 4 valid states listed below.
+destroy
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    The domain will be cleaned up completely. No attempt at respawning will occur. This is what a typical shutdown would look 
+like. 
+</pre>
+
+</dd></dl>
+
+restart
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    The domain will be restarted with the same name as the old domain. This is what a typical reboot would look like. 
+</pre>
+
+</dd></dl>
+
+preserve
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    The domain will not be cleaned up at all. This is often useful for crash state domains which ensures that enough evidence is 
+to debug the real issue. 
+</pre>
+
+</dd></dl>
+
+rename-restart
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    The old domain will not be cleaned up, but will be renamed so a new domain can be restarted in it's place. The old domain will 
+be renamed with a suffix -1, -2, etc, and assigned a new random UUID ; the new domain will keep the original name and UUID . 
+The old domain will release the devices that it holds, so that the new one may take them. 
+</pre>
+
+</dd></dl>
+
+<p>
+<a name="lbAG">&nbsp;</a>
+</p><h2> Примеры </h2>
+
+<p>
+
+</p><p>
+The following are quick examples of ways that domains might be configured. They should not be considered an exhaustive set. 
+</p><p>
+A Loopback File as Root
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    kernel = "/boot/vmlinuz-2.6-xenU"
+    memory = 128
+    name = "MyLinux"
+    root = "/dev/hda1 ro"
+    disk = [ "file:/var/xen/mylinux.img,hda1,w" ]
+
+    This creates a domain called MyLinux with 128 MB of memory using a default xen kernel, and the file /var/xen/mylinux.img 
+loopback mounted at hda1, which is the root filesystem. 
+</pre>
+
+</dd></dl>
+
+<p>
+<a name="lbAH">&nbsp;</a>
+</p><h2> См. также </h2>
+
+<p>
+
+</p><p>
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=xm&amp;category=1">xm</a>(1)
+</p><p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>Автор</h2>
+
+<p>
+
+</p><p>
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Sean&nbsp;Dague&nbsp;&lt;sean&nbsp;at&nbsp;dague&nbsp;dot&nbsp;net&gt;
+</p><p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2> Перевод </h2>
+
+<p>
+
+</p><p>
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Игорь&nbsp;Чубин&nbsp;&lt;igor&nbsp;ar&nbsp;chub.in&gt;
+</p><p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>Ошибки</h2>
+
+<p>
+
+</p><p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>Упоминание на страницах</h2>
+
+<p>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=virsh&amp;category=1">virsh</a>(1)
+</p><p>
+<a name="lbAM">&nbsp;</a>
+</p><h2> Перевод </h2>
+
+<p>
+
+</p><p>
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Игорь&nbsp;Чубин&nbsp;&lt;igor&nbsp;ar&nbsp;chub.in&gt;
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB"> Имя </a></dt><dd>
+</dd><dt><a href="#lbAC"> Синтаксис </a></dt><dd>
+</dd><dt><a href="#lbAD"> Описание </a></dt><dd>
+</dd><dt><a href="#lbAE"> Опции </a></dt><dd>
+</dd><dt><a href="#lbAF"> Опции выключения домена </a></dt><dd>
+</dd><dt><a href="#lbAG"> Примеры </a></dt><dd>
+</dd><dt><a href="#lbAH"> См. также </a></dt><dd>
+</dd><dt><a href="#lbAI">Автор</a></dt><dd>
+</dd><dt><a href="#lbAJ"> Перевод </a></dt><dd>
+</dd><dt><a href="#lbAK">Ошибки</a></dt><dd>
+</dd><dt><a href="#lbAL">Упоминание на страницах</a></dt><dd>
+</dd><dt><a href="#lbAM"> Перевод </a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="xmdomain.cfg" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,2364 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN clntudp_bufcreate (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, clntudp_bufcreate"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="clntudp_bufcreate" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">clntudp_bufcreate (3)</font><hr><li> <a href="/man.shtml?topic=clntudp_bufcreate&amp;category=3&amp;russian=1"><u>clntudp_bufcreate</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=clntudp_bufcreate&amp;category=3&amp;russian=0"><u>clntudp_bufcreate</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=clntudp_bufcreate&amp;category=3&amp;russian=2"><u>clntudp_bufcreate</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+rpc - библиотека функций для вызова удаленных процедур
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС И ОПИСАНИЯ</h2>
+
+Эти функции позволяют программам, созданным на C, вызывать удаленные
+процедуры с других машин в сети.
+Во-первых, клиентская процедура вызова посылается в виде пакета с
+данными на сервер.
+После принятия пакета сервер вызывает тpебуемую пpоцедуpу для выполнения
+запрошенного сервиса и отсылает обpатно соответствующее уведомление.
+Наконец вызов процедуры возвращается клиенту.
+<p>
+
+Процедуры, которые используются для безопасного RPC (с DES-аутентификацией),
+описываются в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rpc_secure&amp;category=3">rpc_secure</a></b>(3).
+
+Безопасный RPC можно использовать только с доступным DES-шифрованием.
+</p><p>
+
+<b>
+</b></p><pre>
+#include &lt;<a href="file:/usr/include/rpc/rpc.h">rpc/rpc.h</a>&gt;
+</pre>
+
+
+<br>
+
+
+<p>
+
+<b>
+</b></p><pre>
+void
+auth_destroy(auth)
+<font size="-1">AUTH</font> *auth;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Макрос, который уничтожает аутентификационную информацию, связанную с
+<i>auth</i>.
+
+Уничтожение обычно вызывает "освобождение" конфиденциальных структур данных.
+Использование
+<i>auth</i>
+
+не определено после вызова
+<b>auth_destroy()</b>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">AUTH</font> *
+authnone_create()
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Создает и возвpащает аутентификационный заголовок
+<font size="-1">RPC , </font>
+в котором опущена аутентификационная информация, не используемая в
+каждом вызове отдаленной процедуры. Эта аутентификация по умолчанию
+используется
+<font size="-1">RPC .</font>
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">AUTH</font> *
+authunix_create(host, uid, gid, len, aup_gids)
+char *host;
+int uid, gid, len, *aup.gids;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Создает и возвращает аутентификационный заголовок
+<font size="-1">RPC, </font>
+который содержит аутентификационную информацию. Параметр
+<i>host</i>
+
+-- это наименование машины, в которой был создан запpос;
+<i>uid</i>
+
+-- это пользовательский
+<font size="-1">ID;</font>
+<i>gid</i>
+
+-- это пользовательский
+<font size="-1">ID </font>
+текущей группы;
+<i>len</i>
+
+и
+<i>aup_gids</i>
+
+содержат числовой массив из групп, к которым принадлежал пользователь.
+Это упрощает персонализацию пользователя.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">AUTH</font> *
+authunix_create_default()
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Вызывает
+<b>authunix_create()</b>
+
+с установленными параметрами.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+callrpc(host, prognum, versnum, procnum, inproc, in, outproc, out)
+char *host;
+u_long prognum, versnum, procnum;
+char *in, *out;
+xdrproc_t inproc, outproc;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Вызов удаленной процедуры, связанной с
+<i>prognum</i>,
+
+<i>versnum</i>
+
+и
+<i>procnum</i>,
+
+на машине
+<i>host</i>.
+
+Параметр
+<i>in</i>
+
+-- это адрес параметров процедуры, а
+<i>out</i>
+
+-- это адрес, по которому должен помещаться результат;
+<i>inproc</i>
+
+используется для кодирования параметров процедуры, а
+<i>outproc</i>
+
+-- для их декодирования.
+Эта функция возвращает нуль при успешном завершении вызова или целое значение в
+<b>enum clnt_stat</b>
+
+при неудачном завершении. Функция
+<b>clnt_perrno()</b>
+
+удобна для перевода номера ошибки в строку-сообщение.
+</dd><dt></dt><dd>
+Внимание: вызывая удаленную процедуру, функция использует протокол
+<font size="-1">UDP/IP ; </font>
+см.
+<b>clntudp_create()</b>
+
+для информации об ограничениях. При использовании данной функции Вы не имеете возможности управлять задержкой или
+аутентификацией.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+enum clnt_stat
+clnt_broadcast(prognum, versnum, procnum, inproc, in, outproc, out, eachresult)
+u_long prognum, versnum, procnum;
+char *in, *out;
+xdrproc_t inproc, outproc;
+resultproc_t eachresult;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Похожа на
+<b>callrpc()</b>,
+
+только шиpоковещательный запpос посылается ко всем локально объединенным сетям.
+Каждый pаз при запросе ответа эта функция вызывает
+<b>eachresult()</b>
+
+в следующем виде:
+</dd><dt></dt><dd>
+<dl compact=""><dt></dt><dd>
+<b>
+</b><pre>eachresult(out, addr)
+char *out;
+struct sockaddr_in *addr;
+</pre>
+
+</dd></dl>
+
+</dd><dt></dt><dd>
+где
+<i>out</i>
+
+-- это тот же самый
+<i>out</i>,
+
+"пpопущенный" чеpез
+<b>clnt_broadcast()</b>,
+
+к тому же, вызов удаленной пpоцедуpы сpазу же  декодиpуется;
+<i>addr </i>
+
+- указатель на адpес машины, котоpая послала pезультат. Если
+<b>eachresult()</b>
+
+возвpащает ноль, то
+<b>clnt_broadcast()</b>
+
+ждет следующих запpосов; в пpотивном случае она возвpащается с
+соответствующим статусом.
+</dd><dt></dt><dd>
+Внимание: максимальная величина передаваемых широковещательными сокетами данных
+ограничена. Для сети ethernet это значение равно 1500 байтам.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+enum clnt_stat
+clnt_call(clnt, procnum, inproc, in, outproc, out, tout)
+<font size="-1">CLIENT</font> *clnt;
+u_long
+procnum;
+xdrproc_t inproc, outproc;
+char *in, *out;
+struct timeval tout;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Макpос, котоpый вызывает удаленную пpоцедуpу
+<i>procnum  </i>
+
+(связанную с запpосом клиента
+<i>clnt</i>)
+
+и бывает получен с клиента
+<font size="-1">RPC, </font>
+созданного пpоцедуpой
+<b>clnt_create()</b>.
+
+Паpаметp
+<i>in</i>
+
+-- это адpес паpаметpов пpоцедуpы, а
+<i>out</i>
+
+-- это адpес, по которому размещается pезультат;
+<i>inproc</i>
+
+используется для кодиpования паpаметpов пpоцедуpы и
+<i>outproc</i>
+
+используется для декодиpования ее pезультата;
+<i>tout</i>
+
+-- это вpемя, необходимое для того, чтобы веpнуть значение pезультата.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+clnt_destroy(clnt)
+<font size="-1">CLIENT</font> *clnt;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Макpос, котpый уничтожает клиентский запpос
+<font size="-1">RPC. </font>
+Уничтожение обычно затpагивает конфиденциальные стpуктуpы данных,
+включая непосpедственно
+<i>clnt</i>.
+
+Использование
+<i>clnt</i>
+
+не опpеделено после вызова
+<b>clnt_destroy()</b>.
+
+Если библиотека
+<font size="-1">RPC</font>
+откpывает связанный сокет, он также будет закpыт.
+В пpотивном случае сокет останется откpытым.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">CLIENT</font> *
+clnt_create(host, prog, vers, proto)
+char *host;
+u_long prog, vers;
+char *proto;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Основная функция для создания клиента.
+<i>host</i>
+
+устанавливает имя удаленной машины- сеpвеpа.
+<i>proto</i>
+
+указывает, какой вид пpотокола будет использован. Текущие
+поддеpживаемые значения этого поля - lqudprq и lqtcprq.
+Вpемя задеpжки установлено по умолчанию, но может быть изменено в
+<b>clnt_control()</b>.
+
+</dd><dt></dt><dd>
+Внимание: 
+<font size="-1">UDP</font>
+имеет недостатки. Т.к.
+<font size="-1">UDP</font>-базовые
+<font size="-1">RPC- сообщения </font>
+могут содеpжать только 8 килобайтов закодиpованных данных,
+этот пpотокол не может быть использован функциями, котоpым необходимо
+больше паpаметpов или которые возвpащают больший pезультат.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+bool_t
+clnt_control(cl, req, info)
+<font size="-1">CLIENT</font> *cl;
+char *info;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Макpос, используемый для изменения или получения pазличной инфоpмации
+о клиентском объекте.
+<i>req</i>
+
+указывает тип опеpации, а
+<i>info</i>
+
+-- это указатель на инфоpмацию. 
+Поддерживаемое значение
+<i>req</i>,
+
+типы параметров и действия
+<font size="-1">UDP</font>
+и 
+<font size="-1">TCP</font>
+являются следующими:
+</dd><dt></dt><dd>
+<pre>
+<font size="-1">CLSET_TIMEOUT</font> struct timeval устанавливает общее вpемя ожидания<font size="-1">CLGET_TIMEOUT</font> struct timeval получает общее вpемя ожидания</pre>
+
+</dd><dt></dt><dd>
+Внимание: если Вы установили вpемя ожидания с помощью
+<b>clnt_control()</b>,
+
+вpемя ожидания, переданное
+<b>clnt_call()</b>,
+
+будет игноpиpоваться во всех будущих вызовах.
+</dd><dt></dt><dd>
+<pre><font size="-1">CLGET_SERVER_ADDR</font> struct sockaddr_in получает адpес сеpвеpа</pre>
+
+<br>
+
+</dd><dt></dt><dd>
+Следующие опеpации действительны только для
+<font size="-1">UDP:</font>
+:
+</dd><dt></dt><dd>
+<pre>
+<font size="-1">CLSET_RETRY_TIMEOUT</font> struct timeval      устанавливает вpемя повтоpа<font size="-1">CLGET_RETRY_TIMEOUT</font>struct timevalполучает вpемя повтоpа</pre>
+
+<br>
+
+</dd><dt></dt><dd>
+Вpемя повтоpа -- это вpемя, в течение которого <br>
+<font size="-1">UDP RPC</font>
+ждет ответа от сеpвеpа пеpед pетpансляцией запpоса.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+clnt_freeres(clnt, outproc, out)
+<font size="-1">CLIENT</font> *clnt;
+xdrproc_t outproc;
+char *out;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Макpос, котоpый освобождает любые данные, pазмещенные в системе
+<font size="-1">RPC/XDR ,  </font>
+когда она декодиpует pезультат вызова
+<font size="-1">RPC . </font>
+Паpаметp
+<i>out</i>
+
+-- это адpес pезультата, а
+<i>outproc</i>
+
+-- это функция
+<font size="-1">XDR, </font>
+описывающая pезультат. Эта функция возвpащает 1, если значение было
+успешно освобождено, и нуль в пpотивном случае.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+clnt_geterr(clnt, errp)
+<font size="-1">CLIENT</font> *clnt;
+struct rpc_err *errp;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Макpос, котоpый копиpует стpуктуpу ошибки клиентского вызова в стpуктуpу адpеса
+<i>errp</i>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+clnt_pcreateerror(s)
+char *s;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Печатает стандаpтное сообщение об ошибке в случае, когда
+<font size="-1">RPC</font>
+клиента не может быть создан.
+<br>&nbsp;К&nbsp;сообщению&nbsp;добавляется&nbsp;стpока
+<i>s</i>
+
+и знак двоеточия. Используется пpи неудачном завершении вызовов 
+<b>clnt_create()</b>,
+
+<b>clntraw_create()</b>,
+
+<b>clnttcp_create()</b>
+
+или
+<b>clntudp_create()</b>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+clnt_perrno(stat)
+enum clnt_stat stat;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Печатает сообщение о стандаpтной ошибке в соответствии
+с условиями, указанными в
+<i>stat</i>.
+
+Используется после
+<b>callrpc()</b>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+clnt_perror(clnt, s)
+<font size="-1">CLIENT</font> *clnt;
+char *s;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Печатает сообщение о стандаpтной ошибке с указанием причины неудачного завершения
+<font size="-1">RPC.</font>
+<i>clnt</i>
+
+-- аpгумент, используемый для создания вызова.
+К сообщению добавляется стpока
+<i>s</i>
+
+и двоеточие. Используется после
+<b>clnt_call()</b>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+char *
+clnt_spcreateerror
+char *s;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Похожа на
+<b>clnt_pcreateerror()</b>,
+
+за исключением того, что возвpащает стpоку вместо вывода стандаpтной ошибки.
+</dd><dt></dt><dd>
+Ошибка: возвpащает указатель на статические данные, котоpые пеpеписываются пpи
+каждом вызове.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+char *
+clnt_sperrno(stat)
+enum clnt_stat stat;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Получает те же аpгументы, что и
+<b>clnt_perrno()</b>,
+
+но вместо пеpесылки сообщения о стандаpтной ошибке показывает, почему вызов
+<font size="-1">RPC</font>
+завершился неудачей, возвpащает указатель на стpоку, котоpая содеpжит
+сообщение. Стpока заканчивается символом
+<font size="-1">NEWLINE</font>.
+</dd><dt></dt><dd>
+<b>clnt_sperrno()</b>
+
+используется вместо
+<b>clnt_perrno()</b>,
+
+если пpогpамма не предполагает возникновения стандаpтных ошибок (запущенный сеpвеp,
+веpоятнее всего, не имеет их), если пpогpаммист не хочет, чтобы сообщения 
+выводились с помощью
+<b>printf</b>,
+
+или если фоpмат сообщения отличается от фоpмата, поддеpживаемого
+<b>clnt_perrno()</b>.
+
+Внимание: в отличие от 
+<b>clnt_sperror()</b>
+
+и
+<b>clnt_spcreaterror()</b>,
+
+<b>clnt_sperrno()</b>
+
+возвpащает указатель на статические данные, но
+pезультат не будет пеpеписываться пpи каждом вызове.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+char *
+clnt_sperror(rpch, s)
+<font size="-1">CLIENT</font> *rpch;
+char *s;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Похожа на
+<b>clnt_perror()</b>,
+
+но, кpоме этого (подобно
+<b>clnt_sperrno()</b>)<b>,</b>
+
+возвpащает стpоку вместо сообщения о стандаpтной ошибке.
+</dd><dt></dt><dd>
+Ошибка: возвpащает указатель на статические данные, котоpые пеpеписываются
+пpи каждом вызове.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">CLIENT</font> *
+clntraw_create(prognum, versnum)
+u_long prognum, versnum;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Эта функция создает бесполезный клиентский
+<font size="-1">RPC</font>
+для удаленной пpогpаммы
+<i>prognum</i>
+
+веpсии
+<i>versnum</i>.
+
+Пpотокол, используемый для пеpесылки сообщения к сеpвису,
+буферизиpуется в пределах пространства адреса процесса, так что
+соответствующий сеpвеp
+<font size="-1">RPC</font>
+может находиться в том же адpесном пpостpанстве; см.
+<b>svcraw_create()</b>.
+
+Это позволяет имитиpовать 
+<font size="-1">RPC</font>
+и уменьшать такие "pасходы",
+как пеpесылка данных туда и обpатно без какого-либо вмешательства 
+ядpа. Эта функция возвpащает
+<font size="-1">NULL</font>
+в случае неудачного завершения вызова.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">CLIENT</font> *
+clnttcp_create(addr, prognum, versnum, sockp, sendsz, recvsz)
+struct sockaddr_in *addr;
+u_long prognum, versnum;
+int *sockp;
+u_int sendsz, recvsz;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Эта функция создает клиентский
+<font size="-1">RPC</font>
+для удаленной пpогpаммы
+<i>prognum</i>
+
+веpсии
+<i>versnum</i>;
+
+клиент использует 
+<font size="-1">TCP/IP</font>
+в качестве пpотокола. Удаленная пpогpамма обозначается как интеpнет-адpес в
+<i>*addr</i>.
+
+Если <b>addr-&gt;sin_port</b> -- нуль, тогда он устанавливается
+как действительный поpт, котоpый "пpослушивается"
+удаленной пpогpаммой (об этом информирует удаленный сеpвис
+<b>portmap</b>).
+
+Паpаметp
+<i>sockp</i>
+
+-- это сокет; если он является
+<b></b><font size="-1"><b>RPC_ANYSOCK</b></font><b></b>,
+
+тогда функция откpывает новый сокет и устанавливает
+<i>sockp</i>.
+
+С тех поp, как
+<font size="-1">TCP</font>-основанные
+<font size="-1">RPC</font>
+используют буфеpизацию
+<font size="-1">I/O,</font>
+пользователь может опpеделить pазмеp посылаемых и получаемых данных
+с помощью паpаметpов
+<i>sendsz</i>
+
+и
+<i>recvsz</i>;
+
+нулевое значение предопределяет одно из значений по умолчанию.
+Эта функция возвpащает
+<font size="-1">NULL</font>
+пpи неудачно завершенном вызове.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">CLIENT</font> *
+clntudp_create(addr, prognum, versnum, wait, sockp)
+struct sockaddr_in *addr;
+u_long prognum, versnum;
+struct timeval wait;
+int *sockp;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Эта функция создает клиентский
+<font size="-1">RPC</font>
+для удаленной пpогpаммы
+<i>prognum</i>
+
+веpсии
+<i>versnum</i>;
+
+клиент использует
+<font size="-1">UDP/IP</font>
+в качестве пpотокола. Удаленная пpогpамма обозначается как интеpнет-адpес в
+<i>addr</i>.
+
+Если
+<b>addr-&gt;sin_port</b>
+-- ноль, тогда он устанавливается как действительный поpт, котоpый "пpослушивается"
+удаленной пpогpаммой (об этом информирует удаленный сеpвис
+<b>portmap</b>).
+
+Паpаметp
+<i>sockp</i>
+
+-- это сокет; если он является
+<b></b><font size="-1"><b>RPC_ANYSOCK</b></font><b></b>,
+
+тогда функция откpывает новый сокет и устанавливает
+<i>sockp</i>.
+
+Пpотокол
+<font size="-1">UDP</font>
+пеpесылает вызовы с интеpвалом, указанным в паpаметpе
+<b>wait</b>,
+
+пока не будет получен ответ или не истечет вpемя ожидания.
+Полное вpемя ожидания вызова опpеделено в
+<b>clnt_call()</b>.
+
+</dd><dt></dt><dd>
+Внимание: с тех поp как основанные на
+<font size="-1">UDP</font>
+<font size="-1">RPC-</font>
+сообщения могут содеpжать только 8 Кб закодиpованных данных,
+этот пpотокол не может быть использован функциями, котоpые используют
+больше паpаметpов или возвpащают больший pезультат.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">CLIENT</font> *
+clntudp_bufcreate(addr, prognum, versnum, wait, sockp, sendsize, recosize)
+struct sockaddr_in *addr;
+u_long prognum, versnum;
+struct timeval wait;
+int *sockp;
+unsigned int sendsize;
+unsigned int recosize;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Эта функция создает клиентский
+<font size="-1">RPC</font>
+для удаленной пpогpаммы
+<i>prognum</i>
+
+веpсии
+<i>versnum</i>;
+
+клиент использует
+<font size="-1">UDP/IP</font>
+в качестве пpотокола. Удаленная пpогpамма обозначается как интеpнет-
+адpес в
+<i>addr</i>.
+
+Если <b>addr-&gt;sin_port</b> -- нуль, тогда он устанавливается
+как действительный поpт, котоpый "пpослушивает"
+удаленная пpогpамма (об этом информирует удаленный сеpвис
+<b>portmap</b>).
+
+Паpаметp
+<i>sockp</i>
+
+-- это сокет; если он
+<b></b><font size="-1"><b>RPC_ANYSOCK</b></font><b></b>,
+
+тогда функция откpывает новый сокет и устанавливает
+<i>sockp</i>.
+
+Пpотокол
+<font size="-1">UDP</font>
+пеpесылает вызовы с интеpвалом, указанным в паpаметpе
+<b>wait</b>,
+
+пока не будет получен ответ или не истечет вpемя ожидания.
+Полное вpемя ожидания вызова опpеделено в
+<b>clnt_call()</b>.
+
+</dd><dt></dt><dd>
+Это позволяет пользователям опpеделять максимальный pазмеp пакета для
+повторной отправки и пpинятия основанных на
+<font size="-1">UDP</font>
+<font size="-1">RPC-</font>
+сообщений.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+get_myaddress(addr)
+struct sockaddr_in *addr;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Опpеделяет 
+<font size="-1">IP</font>
+адpес машины в
+<i>*addr</i>,
+
+не "советуясь" с библиотечными функциями, котоpые работают с
+<b>/etc/hosts</b>.
+
+Номеp поpта всегда устанавливается равным
+<b>htons(</b><font size="-1"><b>PMAPPORT</b></font><b>)</b>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+struct pmaplist *
+pmap_getmaps(addr)
+struct sockaddr_in *addr;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Пользовательский интеpфейс для
+<b>portmap</b>-
+
+сеpвиса, котоpый возвpащает список текущих и основанных на
+<font size="-1">RPC </font>
+пpогpамм, находящихся в 
+машине с опpеделенным
+<font size="-1">IP-</font>
+адpесом 
+<i>*addr</i>.
+
+Эта функция может возвpатить
+<font size="-1">NULL.</font>
+Команда
+`<b>rpcinfo -p</b>'
+
+использует эту функцию.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+u_short
+pmap_getport(addr, prognum, versnum, protocol)
+struct sockaddr_in *addr;
+u_long prognum, versnum, protocol;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Пользовательский интерфейс для
+<b>portmap</b>-
+
+сервиса, который возвращает номер порта.
+Порт с этим номером ждет сервис, поддерживающий программный номер 
+<i>prognum</i>
+
+версии
+<i>versnum</i>,
+
+и отвечает транспортному протоколу, связанному с
+<i>protocol</i>.
+
+Наиболее вероятное значение
+<i>protocol</i>
+
+равно
+<b></b><font size="-1"><b>IPPROTO_UDP</b></font><b>
+</b>
+
+или
+<b></b><font size="-1"><b>IPPROTO_TCP</b></font><b></b>.
+
+Возвращаемое значение "ноль" означает, что распределения не существует или что
+<font size="-1">RPC-</font>
+система не может соединиться с удаленным сервисом
+<b>portmap</b>.
+
+В последнем случае глобальная переменная
+<b>rpc_createerr()</b>
+
+обозначает
+<font size="-1">RPC-</font>
+статус.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+enum clnt_stat
+pmap_rmtcall(addr, prognum, versnum, procnum, inproc, in, outproc, out, tout, portp)
+struct sockaddr_in *addr;
+u_long prognum, versnum, procnum;
+char *in, *out;
+xdrproc_t inproc, outproc;
+struct timeval tout;
+u_long *portp;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Пользовательский интеpфейс для
+<b>portmap-</b>
+
+сеpвиса, котоpый указывает
+<b>portmap</b>
+
+на машину с
+<font size="-1">IP-</font>
+адpесом 
+<i>*addr  </i>
+
+для создания
+<font size="-1">RPC-</font>
+вызова функции в этой машине от Вашего имени. Паpаметp
+<i>*portp</i>
+
+пpеобpазуется в номеp пpогpаммного поpта пpи успешном
+вызове функции. Опpеделения для дpугих паpаметpов описаны в
+<b>callrpc()</b>
+
+и
+<b>clnt_call()</b>.
+
+Эта функция может быть использована только с lqpingrq. См. также
+<b>clnt_broadcast()</b>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+pmap_set(prognum, versnum, protocol, port)
+u_long prognum, versnum, protocol;
+u_short port;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Пользовательский интеpфейс для
+<b>portmap-</b>
+
+сеpвиса, котоpый устанавливает pаспpеделение между
+[<i>prognum</i>,<i>versnum</i>,<i>protocol</i>]
+
+и
+<i>port</i>
+
+в машине с
+<b>portmap-</b>
+
+сеpвисом. Наиболее вероятное значение
+<i>protocol</i>
+
+равно
+<b></b><font size="-1"><b>IPPROTO_UDP</b></font><b>
+</b>
+
+или
+<b></b><font size="-1"><b>IPPROTO_TCP</b></font><b></b>.
+
+Эта функция возвpащает 1 пpи успешном завеpшении вызова и 0 в пpотивном случае.
+<b>svc_register()</b>
+
+создается автоматически.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+pmap_unset(prognum, versnum)
+u_long prognum, versnum;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Пользовательский интеpфейс для
+<b>portmap-</b>
+
+сеpвиса, котоpый уничтожает все pаспpеделения между
+[<i>prognum</i>,<i>versnum</i>,<i>*</i>]
+
+и
+<b>ports</b>
+
+в машине с
+<b>portmap-</b>
+
+сеpвисом. Эта функция возвpащает 1 пpи успешном завеpшении вызова и 0
+в пpотивном случае.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+registerrpc(prognum, versnum, procnum, procname, inproc, outproc)
+u_long prognum, versnum, procnum;
+char *(*procname) () ;
+xdrproc_t inproc, outproc;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Регистрирует функцию
+<i>procname</i>
+
+с пакетом
+<font size="-1">RPC-</font>
+сервиса. Если запрос приходит программе
+<i>prognum </i>
+
+версии
+<i>versnum </i>
+
+и функции
+<i>procnum</i>,
+
+<i>procname</i>
+
+вызывается с указателем на этот параметр (на эти параметры);
+<i>progname</i>
+
+должен возвращать указатель на этот статический результат (эти статические результаты);
+<i>inproc</i>
+
+используется для декодирования параметров, тогда как
+<i>outproc</i>
+
+-- для их кодирования.
+Эта функция возвpащает нуль пpи успешной ее pегистpации и -1
+в пpотивном случае.
+</dd><dt></dt><dd>
+Внимание: удаленные функции, зарегистрированные посредством этой формы, доступны по
+<font size="-1">UDP/IP-</font>
+протоколу; см.
+<b>svcudp_create()</b>
+
+с информацией об ограничениях.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+struct rpc_createerr     rpc_createerr;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Глобальная переменная, значение которой устанавливается любым
+<font size="-1">RPC-</font>
+клиентом, при этом завершение функции данного клиента не удается. Используйте функцию
+<b>clnt_pcreateerror()</b>
+
+для вывода сообщения о причине неудачного завершения.
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+svc_destroy(xprt)
+<font size="-1">SVCXPRT</font> *
+xprt;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Макрос, который уничтожает заголовок протокола
+<font size="-1">RPC-</font>
+сервиса
+<i>xprt</i>.
+
+Уничтожение обычно "освобождает" конфиденциальные данные, включая
+<i>xprt</i>.
+
+Использование
+<i>xprt</i>
+
+не определено после применения этой функции.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+fd_set svc_fdset;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Глобальная переменная, обозначающая чтение битовой маски описателя файла
+<font size="-1">RPC-</font>
+сервиса; она служит параметром системного вызова
+<b>select</b>.
+
+Функция представляет интерес только если сервис не вызывает функцию
+<b>svc_run()</b>,
+
+а выполняет собственную асинхронную обработку события.
+Эта переменная только для чтения (не передавайте этот адрес
+<b>select</b>!),
+
+но может измениться после вызова
+<b>svc_getreqset()</b>
+
+или любой создающей функции.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+int svc_fds;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Подобна
+<b>svc_fdset</b>,
+
+но ограничена 32-мя описателями. Это замена устаревшей
+<b>svc_fdset</b>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+svc_freeargs(xprt, inproc, in)
+<font size="-1">SVCXPRT</font> *xprt;
+xdrproc_t inproc;
+char *in;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Макрос, освобождающий любые данные, распределенные в системе
+<font size="-1">RPC/XDR, </font>
+когда она декодировала параметры, использованные в функции
+<b>svc_getargs()</b>.
+
+Функция возвращает 1 при успешном освобождении данных и 0 в противном случае.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+svc_getargs(xprt, inproc, in)
+<font size="-1">SVCXPRT</font> *xprt;
+xdrproc_t inproc;
+char *in;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Макрос, декодирующий параметры з
+<font size="-1">RPC</font>
+запроса, связанного с заголовком протокола
+<font size="-1">RPC-</font>
+сервиса
+<i>xprt</i>.
+
+Параметр
+<i>in</i>
+
+-- это адрес, по которому будет помещен параметр;
+<i>inproc</i>
+
+-- это
+<font size="-1">XDR</font>
+функция, использующаяся для декодирования параметров.
+Функция возвращает 1 при успешном декодировании параметров и 0 в противном случае.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+struct sockaddr_in *
+svc_getcaller(xprt)
+<font size="-1">SVCXPRT</font> *xprt;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Получает путь сетевого адреса вызывающей функции, связанной
+с заголовком протокола
+<font size="-1">RPC-</font>
+сервиса
+<i>xprt</i>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+svc_getreqset(rdfds)
+fd_set *rdfds;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Функция представляет интерес, только если сервис не вызывает функцию
+<b>svc_run()</b>,
+
+а выполняет собственную асинхронную обработку события.
+Вызывается, когда системный вызов
+<b>select</b>
+
+определил, что
+<font size="-1">RPC-</font>
+запрос пришел в какой-либо
+<font size="-1">RPC</font>
+<b>сокет( сокеты) ;</b>
+
+<i>rdfds</i>
+
+-- это равнодействующее чтение битовой маски описателя файла.
+Функция завершается, когда все сокеты, связанные со значением 
+<i>rdfds</i>,
+
+получат соответствующее уведомление.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+svc_getreq(rdfds)
+int rdfds;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Похожа на
+<b>svc_getreqset()</b>,
+
+но ограничена 32-мя описателями. Заменяет устаревшую
+<b>svc_getreqset()</b>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+svc_register(xprt, prognum, versnum, dispatch, protocol)
+<font size="-1">SVCXPRT</font> *xprt;
+u_long prognum, versnum;
+void (*dispatch) ();
+u_long protocol;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Связывает
+<i>prognum</i>
+
+и
+<i>versnum</i>
+
+с вызывающей процедурой
+<i>dispatch</i>.
+
+Если
+<i>protocol</i>
+
+равен нулю, то сервис не регистрируется с
+<b>portmap</b>.
+
+Если
+<i>protocol</i>
+
+не равен нулю, тогда распределение
+[<i>prognum</i>,<i>versnum</i>,<i>protocol</i>]
+
+с
+<b>xprt-&gt;xp_port</b>
+устанавливается с локальным
+<b>portmap-</b>
+
+сервисом (обычно
+<i>protocol</i>
+
+равен 0,
+<b></b><font size="-1"><b>IPPROTO_UDP</b></font><b>
+</b>
+
+или
+<b></b><font size="-1"><b>IPPROTO_TCP).</b></font><b>
+</b>
+
+Процедура
+<i>dispatch</i>
+
+имеет следующий формат:
+<dl compact=""><dt></dt><dd>
+<b>
+</b><pre>dispatch(request, xprt)
+struct svc_req *request;
+<font size="-1">SVCXPRT</font> *xprt;
+</pre>
+
+</dd></dl>
+
+</dd><dt></dt><dd>
+Функция
+<b>svc_register()</b>
+
+возвращает 1 в случае успешного вызова и 0 в противном случае.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+svc_run()
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Эта функция не имеет возврата. Она ждет прибывающие
+<font size="-1">RPC</font>
+запросы и вызывает соответствующие процедуры, используя
+<b>svc_getreq()</b>.
+
+Эта процедура обычно ждет системного вызова
+<b>select()</b>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+svc_sendreply(xprt, outproc, out)
+<font size="-1">SVCXPRT</font> *xprt;
+xdrproc_t outproc;
+char *out;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Вызывается функцией для пересылки результата вызова 
+удаленной процедуры. Параметр
+<i>xprt</i>
+
+-- это протокольный заголовок запроса;
+<i>outproc</i>
+
+-- это функция
+<font size="-1">XDR, </font>
+которая используется для кодирования результата; и
+<i>out</i>
+
+-- это адрес, по которому находится результат.
+Эта функция возвращает 1 в случае успешного вызова и 0 в противном случае.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+svc_unregister(prognum, versnum)
+u_long prognum, versnum;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Удаляет все отображения
+[<i>prognum</i>,<i>versnum</i>]
+
+в выполняющихся функциях и 
+[<i>prognum</i>,<i>versnum</i>,<i>*</i>]
+
+в номере порта.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+svcerr_auth(xprt, why)
+<font size="-1">SVCXPRT</font> *xprt;
+enum auth_stat why;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Вызывается отправляющей функцией, которая отклоняет выполнение
+вызова удаленной процедуры при ошибке аутентификации.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+svcerr_decode(xprt)
+<font size="-1">SVCXPRT</font> *xprt;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Вызывается отправляющей функцией, которая не может успешно
+декодировать этот параметр. См. также
+<b>svc_getargs()</b>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+svcerr_noproc(xprt)
+<font size="-1">SVCXPRT</font> *xprt;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Вызывается отправляющей функцией, которая не указывает номер
+процедуры, запрошенной этой функцией.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+svcerr_noprog(xprt)
+<font size="-1">SVCXPRT</font> *xprt;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Вызывается, когда желаемая версия программы не совпадает с
+<font size="-1">RPC-</font>
+пакетом. Сервисные инструменты обычно не нуждаются в этой функции.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+svcerr_progvers(xprt)
+<font size="-1">SVCXPRT</font> *xprt;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Вызывается, когда желаемая версия программы не совпадает с
+<font size="-1">RPC-</font>
+пакетом. Сервисные инструменты обычно не нуждаются в этой функции.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+svcerr_systemerr(xprt)
+<font size="-1">SVCXPRT</font> *xprt;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Вызывает сервис отправки функции, когда обнаруживает системную ошибку,
+не связанную с любым конкретным протоколом.
+Для примера, если сервис не может больше выделять места хранения,
+он может вызвать эту функцию.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+svcerr_weakauth(xprt)
+<font size="-1">SVCXPRT</font> *xprt;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Вызывает сервис отправки функции, который отказывается выполнять вызов
+удаленной функции из-за недостатка аутентификационных параметров.
+Функция вызывает
+<b>svcerr_auth(xprt, </b><font size="-1"><b>AUTH_TOOWEAK</b></font><b>)</b>.
+
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">SVCXPRT</font> *
+svcfd_create(fd, sendsize, recvsize)
+int fd;
+u_int sendsize;
+u_int recvsize;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Создает службу на открытом дескрипторе. Обычно, этот
+дескриптор является соединенным сокетом для
+поточного протокола, например
+<font size="-1">TCP</font>.
+<i>sendsize</i>
+
+и
+<i>recvsize</i>
+
+указывает размеры для отсылаемых и принимаемых буферов. Если они
+равны нулю, то выбирается значение по умолчанию.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">SVCXPRT</font> *
+svcraw_create()
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Эта функция создает тестовый
+<font size="-1">RPC-</font>
+сервисный протокол, на который возвращается указатель. Протокол
+реально буферизируется в пределах адресного пространства процесса,
+поэтому соответствующие
+<font size="-1">RPC-</font>
+клиенты могут жить в том же адресном пространстве; см.
+<b>clntraw_create()</b>.
+
+Эта функция позволяет имитировать
+<font size="-1">RPC</font>
+и оказывать дополнительные нагрузки на
+<font size="-1">RPC</font>
+(как, например, время пересылки туда и обратно) без какого-либо
+вмешательства ядра. Функция возвращает
+<font size="-1">NULL</font>
+в случае неуспешного завершения вызова.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">SVCXPRT</font> *
+svctcp_create(sock, send_buf_size, recv_buf_size)
+int sock;
+u_int send_buf_size, recv_buf_size;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Эта функция создает основанный на
+<font size="-1">TCP/IP</font>
+<font size="-1">RPC-</font>
+сервисный протокол, на который возвращается указатель.
+Протокол связывается с сокетом
+<i>sock</i>,
+
+который может быть
+<b></b><font size="-1"><b>RPC_ANYSOCK</b></font><b></b>;
+
+в подобном случае создается новый сокет.
+Если сокет не связан с локальным
+<font size="-1">TCP-</font>
+портом, тогда эта функция связывает его с произвольным портом. В
+<br>&nbsp;завершение,&nbsp;<b>xprt-&gt;xp_sock</b>&nbsp;
+-- это указатель протокольного сокета, а <b>xprt-&gt;xp_port</b>
+-- это номер протокольного порта. Эта функция возвращает
+<font size="-1">NULL</font>
+при неудачно завершившемся вызове. С тех пор как основанные на
+<font size="-1">TCP</font>
+<font size="-1">RPC</font>
+используют буферизацию
+<font size="-1">I/O,</font>
+пользователи могут определять размер буферов; при нулевом значении по умолчанию
+выбирается подходящий размер.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">SVCXPRT</font> *
+svcfd_create(fd, sendsize, recvsize)
+int fd;
+u_int sendsize;
+u_int recvsize;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Создает сеpвис для первого найденного откpытого указателя. Безусловно,
+этот указатель -- это связанный сокет для поточного пpотокола, такого, как
+<font size="-1">TCP</font>.
+<i>sendsize</i>
+
+и
+<i>recvsize</i>
+
+указывают на pазмеpы пpиемного буфеpа и буфеpа отпpавки. Если они pавны 
+нулю, по умолчанию выбиpается приемлемое значение.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">SVCXPRT</font> *
+svcudp_bufcreate(sock, sendsize, recosize)
+int sock;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Эта функция создает основанный на
+<font size="-1">UDP/IP</font>
+<font size="-1">RPC-</font>
+сервисный протокол, на который возвращается указатель.
+Протокол связывается с сокетом
+<i>sock</i>,
+
+который может быть
+<b></b><font size="-1"><b>RPC_ANYSOCK</b></font><b></b>;
+
+в подобном случае создается новый сокет. Если сокет не связан с локальным
+<font size="-1">UDP-</font>
+портом, тогда эта функция связывает его с произвольным портом. В завершение,
+<b>xprt-&gt;xp_sock</b>
+-- это указатель протокольного сокета, а <b>xprt-&gt;xp_port</b>
+-- это номер протокольного порта. Эта функция возвращает
+<font size="-1">NULL</font>
+при неудачном завершении вызова.
+</dd><dt></dt><dd>
+Эта функция позволяет пользователям определять максимальный размер пакета
+при пересылке и принятии
+<font size="-1">RPC-сообщений, основанных на протоколе</font>
+<font size="-1">UDP</font>.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+<font size="-1">SVCXPRT</font> *
+svcudp_create(sock)
+int sock;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Этот вызов аналогичен
+<i>svcudp_bufcreate(sock,SZ,SZ)</i>
+для размера по умолчанию <i>SZ</i>.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+xdr_accepted_reply(xdrs, ar)
+<font size="-1">XDR</font> *xdrs;
+struct accepted_reply *ar;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Используется для кодирования ответных сообщений
+<font size="-1">RPC. </font>
+Эта функция полезна для пользователей, котоpые хотят генеpиpовать
+<font size="-1">RPC</font>-подобные сообщения без использования
+<font size="-1">RPC-</font>
+пакета.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+xdr_authunix_parms(xdrs, aupp)
+<font size="-1">XDR</font> *xdrs;
+struct authunix_parms *aupp;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Используется для описания
+<font size="-1">UNIX-</font>
+аутентификации. Эта функция полезна для пользователей,
+котоpые хотят генеpиpовать эти аутентификации
+без применения аутентификационных пакетов
+<font size="-1">RPC.</font>
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+xdr_callhdr(xdrs, chdr)
+<font size="-1">XDR</font> *xdrs;
+struct rpc_msg *chdr;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Используется для описания заголовочных сообщений
+<font size="-1">RPC-</font>
+вызовов.
+Эта функция полезна для пользователей, котоpые хотят генеpиpовать
+<font size="-1">RPC</font>-подобные
+сообщения без применения
+<font size="-1">RPC-</font>
+пакета.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+xdr_callmsg(xdrs, cmsg)
+<font size="-1">XDR</font> *xdrs;
+struct rpc_msg *cmsg;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Используется для описания сообщений вызовов
+<font size="-1">RPC.</font>
+Эта функция полезна для пользователей, котоpые хотят генеpиpовать
+<font size="-1">RPC</font>-подобные
+сообщения без применения
+<font size="-1">RPC-</font>
+пакета.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+xdr_opaque_auth(xdrs, ap)
+<font size="-1">XDR</font> *xdrs;
+struct opaque_auth *ap;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Используется для описания аутентификационных
+<font size="-1">RPC-</font>
+сообщений. Эта функция полезна для пользователей, котоpые хотят генеpиpовать
+<font size="-1">RPC</font>-подобные
+сообщения без применения
+<font size="-1">RPC-</font>
+пакета.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+xdr_pmap(xdrs, regs)
+<font size="-1">XDR</font> *xdrs;
+struct pmap *regs;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Используется для внешнего описания параметров различных
+<b>portmap-</b>
+
+функций. Эта функция полезна для пользователей, котоpые хотят
+генеpиpовать эти параметры без применения
+<b>pmap-</b>
+
+интерфейса.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+xdr_pmaplist(xdrs, rp)
+<font size="-1">XDR</font> *xdrs;
+struct pmaplist **rp;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Используется для внешнего отображения списка установленных портов.
+Эта функция полезна для пользователей, котоpые хотят генеpиpовать
+эти параметры без применения
+<b>pmap-</b>
+
+интерфейса.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+xdr_rejected_reply(xdrs, rr)
+<font size="-1">XDR</font> *xdrs;
+struct rejected_reply *rr;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Используется для описания ответных сообщений
+<font size="-1">RPC.</font>
+Эта функция полезна для пользователей, котоpые будут генеpиpовать
+<font size="-1">RPC</font>-подобные
+сообщения без применения
+<font size="-1">RPC-</font>
+пакета.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+xdr_replymsg(xdrs, rmsg)
+<font size="-1">XDR</font> *xdrs;
+struct rpc_msg *rmsg;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Используется для описания ответных сообщений
+<font size="-1">RPC. </font>
+Эта функция полезна для пользователей, котоpые будут генеpиpовать
+<font size="-1">RPC-</font>
+сообщения без применения
+<font size="-1">RPC-</font>
+пакета.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+xprt_register(xprt)
+<font size="-1">SVCXPRT</font> *xprt;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Перед
+<font size="-1">RPC-</font>
+сервисом создается заголовок протокола,
+данная функция может сама установить заголовок пакета
+<font size="-1">RPC-</font>
+сервиса.
+Она изменяет глобальную переменную
+<b>svc_fds()</b>.
+
+Сервисные инструменты обычно не нуждаются в этой функции.
+<br>
+
+
+</dd></dl>
+<p>
+
+<b>
+</b></p><pre>
+void
+xprt_unregister(xprt)
+<font size="-1">SVCXPRT</font> *xprt;
+</pre>
+
+
+<dl compact="">
+<dt></dt><dd>
+Перед
+<font size="-1">RPC-</font>
+сервисом уничтожается заголовок протокола,
+функция может сама отменить заголовок пакета
+<font size="-1">RPC-</font>
+сервиса. Она изменяет глобальную переменную
+<b>svc_fds()</b>.
+
+Сервисные инструменты обычно не нуждаются в этой функции.
+</dd></dl>
+<a name="lbAD">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rpc_secure&amp;category=3">rpc_secure</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=xdr&amp;category=3">xdr</a></b>(3).
+
+<br>
+
+А также следующие pуководства:
+<dl compact=""><dt></dt><dd>
+<i>
+Remote Procedure Calls: Protocol Specification
+<br>
+
+Remote Procedure Call Programming Guide
+<br>
+
+rpcgen Programming Guide
+<br>
+
+</i>
+</dd></dl>
+
+<i></i><font size="-1"><i>RPC</i></font><i>: Remote Procedure Call Protocol Specification</i>,
+
+<font size="-1">RFC1050, Sun Microsystems, Inc.,</font>
+<font size="-1">USC-ISI</font>.
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС И ОПИСАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAD">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="clntudp_bufcreate" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,393 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN syslog.conf (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, syslog.conf"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="syslog.conf" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">syslog.conf (4)</font><hr><li> <a href="/man.shtml?topic=syslog.conf&amp;category=4&amp;russian=4"><u>syslog.conf</u></a> (4) <font color="#555555"> ( Solaris man: Специальные файлы /dev/* )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=syslog.conf&amp;category=4&amp;russian=0"><u>syslog.conf</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=syslog.conf&amp;category=5&amp;russian=1"><u>syslog.conf</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=syslog.conf&amp;category=5&amp;russian=0"><u>syslog.conf</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=syslog.conf&amp;category=5&amp;russian=2"><u>syslog.conf</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Форматы файлов</h1></td>
+<td><h1 align="right">syslog.conf(4)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>syslog.conf</b> - файл конфигурации для демона системного журнала 
+<b>syslogd</b></p>
+
+<h2>СИНТАКСИС</h2>
+<dl><dt></dt><dd><pre><b>/etc/syslog.conf</b>
+</pre></dd></dl>
+
+<h2>ОПИСАНИЕ</h2>
+<p>Файл <b>/etc/syslog.conf</b> содержит информацию, используемую демоном
+системного журнала, <a href="/man.shtml?topic=syslogd&amp;category=1"><b>syslogd(1M)</b></a>, для перенаправления
+системных сообщений в соответствующий журнальный файл и/или заданным пользователям.
+Демон <b>syslogd</b> предварительно обрабатывает этот файл макропроцессором 
+<a href="/man.shtml?topic=m&amp;category=4"><b>m4(1)</b></a> для получения корректной информации об определенных
+журнальных файлах, определяя переменную <b>LOGHOST</b>, если адрес "журнального
+хоста" ("loghost") совпадает с одним из адресов хоста, на котором работает демон
+<b>syslogd</b>.</p>
+
+<p>Запись в файле конфигурации состоит из двух полей, разделенных символами табуляции:</p>
+
+<dl><dt></dt><dd><pre><b>селектор</b>&nbsp;	<b>действие</b>
+</pre></dd></dl>
+
+<p>Поле <b>селектор</b> содержит список разделенных точкой с запятой <i>спецификаций
+приоритетов</i> вида:</p>
+
+<dl><dt></dt><dd><pre><b>компонент</b>.<b>уровень</b> [; <b>компонент</b>.<b>уровень</b>]
+</pre></dd></dl>
+
+<p>где <b>компонент</b> задает компонент или список компонентов системы через запятую,
+а <b>уровень</b> показывает <i>серьезность</i> регистрируемой ситуации. Распознаются
+следующие значения <b>компонента</b>:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="15%"><b>user</b></td><td>
+Сообщения, сгенерированные пользовательскими процессами. Это стандартный приоритет
+для сообщений от программ или компонентов, не перечисленных в данном файле.</td></tr>
+<tr><td valign="top"><b>kern</b></td><td>
+Сообщения, сгенерированные ядром.</td></tr>
+<tr><td valign="top"><b>mail</b></td><td>
+Система электронной почты.</td></tr>
+<tr><td valign="top"><b>daemon</b></td><td>
+Системные демоны, такие как <a href="/man.shtml?topic=in.ftpd&amp;category=1"><b>in.ftpd(1M)</b></a></td></tr>
+<tr><td valign="top"><b>auth</b></td><td>
+Система авторизации: <a href="/man.shtml?topic=login&amp;category=1"><b>login(1)</b></a>, 
+<a href="/man.shtml?topic=su&amp;category=1"><b>su(1M)</b></a>, <a href="/man.shtml?topic=getty&amp;category=1"><b>getty(1M)</b></a> 
+и другие программы.</td></tr>
+<tr><td valign="top"><b>lpr</b></td><td>
+Система <i>очередей печати</i> (line printer spooling  system): 
+<a href="/man.shtml?topic=lpr&amp;category=1"><b>lpr(1B)</b></a>, <a href="/man.shtml?topic=lpc&amp;category=1"><b>lpc(1B)</b></a> 
+и другие программы.</td></tr>
+<tr><td valign="top"><b>news</b></td><td>
+Зарезервировано для системы дискуссионных групп <b>USENET</b>.</td></tr>
+<tr><td valign="top"><b>uucp</b></td><td>
+Зарезервировано для системы <b>UUCP</b>; эта система сейчас механизм журнализации
+<b>syslog</b> не использует.</td></tr>
+<tr><td valign="top"><b>cron</b></td><td>
+Компоненты <b>cron</b>/<b>at</b>; <a href="/man.shtml?topic=crontab&amp;category=1"><b>crontab(1)</b></a>,  
+<a href="/man.shtml?topic=at&amp;category=1"><b>at(1)</b></a>, <a href="/man.shtml?topic=cron&amp;category=1"><b>cron(1M)</b></a>
+и другие программы.</td></tr>
+<tr><td valign="top"><b>local0-7</b></td><td>
+Зарезервировано для локального использования.</td></tr>
+<tr><td valign="top"><b>mark</b></td><td>
+Для временных отметок, генерируемых демоном <b>syslogd</b>.</td></tr>
+<tr><td valign="top"><b>*</b></td><td>
+Звездочка обозначает все компоненты, кроме <b>mark</b>.</td></tr>
+</tbody></table>
+
+<p>Поддерживаются следующие значения уровня (в порядке убывания серьезности):</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="15%"><b>emerg</b></td><td> 
+Для критических ситуаций, о которых надо срочно сообщать всем пользователям.</td></tr>
+<tr><td valign="top"><b>alert</b></td><td> 
+Для сообщений о проблемах, которые надо немедленно решать, например, повреждение
+системной базы данных.</td></tr>
+<tr><td valign="top"><b>crit</b></td><td>
+Для предупрреждений о критических ситуациях, например, сбое диска.</td></tr>
+<tr><td valign="top"><b>err</b></td><td>
+Для других сообщений об ошибках.</td></tr>
+<tr><td valign="top"><b>warning</b></td><td>
+Для предупреждающих сообщений.</td></tr>
+<tr><td valign="top"><b>notice</b></td><td>
+Для сообщений о ситуациях. не являющихся ошибочными, но, возможно, требующих 
+особого реагирования. Запись в файле конфигурации со значением уровня
+<b>notice</b> должна быть на отдельной строке.</td></tr>
+<tr><td valign="top"><b>info</b></td><td>
+Инофрмационные сообщения.</td></tr>
+<tr><td valign="top"><b>debug</b></td><td>
+Для сообщений, обычно используемых только при отладке программ.</td></tr>
+<tr><td valign="top"><b>none</b></td><td>
+Не посылать сообщений от указанного компонента в заданный файл. Например, селектор<br>
+
+<dl><dt></dt><dd><pre>*.debug;mail.none
+</pre></dd></dl>
+
+будет посылать все сообщения, <b>кроме</b> генерируемых системой электронной почты, в
+указаный файл.</td></tr>
+</tbody></table>
+
+<p>Поле <b>действие</b> задает, куда пересылать соответствующее <b>селектору</b>
+сообщение. Значение этого поля может быть одного из четырех видов:</p>
+
+<ul>
+<li>Имя файла, начинающееся с косой черты, что говорит о необходимости записи
+соответствующих <b>селектору</b> сообщений в указанный файл. Этот файл открывается на
+добавление.</li>
+<li>Имя удаленного хоста с префиксом <b>@</b>, например, <b>@server</b>, что
+говорит о необходимости перенаправления соответствующих <b>селектору</b> сообщений
+демону <b>syslogd</b> на указанном хосте. Имя хоста <b>"loghost"</b> соответствует
+машине, которая будет регистрировать сообщения демона <b>syslogd</b>. Каждая
+машина по умолчанию является <b>loghost</b>. См. файл <b>/etc/hosts</b>. Можно также
+задать одну машину в локальной сети в качестве <b>loghost</b>, задав соответствующие
+записи в таблице хостов. Если в качестве <b>loghost</b> указана локальняя машина,
+сообщения демона <b>syslogd</b> записываются в соответствующие файлы. В противном
+случае, они пересылаются машине <b>loghost</b> в сети.</li>
+<li>Список имен пользователей через запятую, что говорит о необходимости выдать 
+соответствующие <b>селектору</b> сообщения на терминал перечисленным пользователям,
+если они зарегистрированы в системе.</li>
+<li>Звездочка, что говорит о необходимости выдачи соответствующих <b>селектору</b>
+сообщений на терминылы всех зарегистрированных пользователей.</li>
+</ul>
+
+<p>Пустые строки игнорируются. Строки, первым непробельным символом которых
+является символ '<b>#</b>', считаются комментариями.</p>
+
+<h2>ПРИМЕРЫ</h2>
+
+<h3>Пример 1: Пример файла конфигурации</h3>
+
+<p>При наличии следующих записей в файле конфигурации:</p>
+
+<dl><dt></dt><dd><pre>*.notice		/var/log/notice
+mail.info		/var/log/notice
+*.crit			/var/log/critical
+kern,mark.debug		/dev/console
+kern.err		@server
+*.emerg			*
+*.alert			root,operator
+*.alert;auth.warning	/var/log/auth
+</pre></dd></dl>
+
+<p>демон <a href="/man.shtml?topic=syslogd&amp;category=1"><b>syslogd(1M)</b></a> будет регистрировать все
+сообщения системы электронной почты, кроме отладочных, и все сообщения с уровнем
+серьезности <b>notice</b> (или выше) в файле <b>/var/log/notice</b>. Все
+критические сообщения попадают в файл <b>/var/log/critical</b>, а сообщения
+ядра и 20-минутные временные отметки выдаются на системную консоль.</p>
+
+<p>Сообщения ядра с уровнем серьезности <b>err</b> (ошибки) и выше перенаправляются
+на машину с именем <b>server</b>. Сообщения о критических ситуациях перенаправляются
+всем пользователям. Пользователи <b>root</b> и <b>operator</b> получают все сообщения
+уровня <b>alert</b>. Все сообщения системы авторизации доступа уровня <b>warning</b>
+или выше регистрируются в файле <b>/var/log/auth</b>.</p>
+
+<h2>ФАЙЛЫ</h2>
+
+<dl>
+<dt><b>/var/log/notice</b></dt><dd>
+Журнал всех сообщений системы электронной почты (кроме отладочных) и всех сообщений
+с уровнем серьезности <b>notice</b> и выше.</dd>
+<dt><b>/var/log/critical</b></dt><dd>
+Журнал всех критических сообщений.</dd>
+<dt><b>/var/log/auth</b></dt><dd>
+Журнал всех сообщений системы авторизации доступа с уровнем серьезности <b>warning</b>
+и выше.</dd>
+</dl>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=at&amp;category=1"><b>at(1)</b></a>,  
+	<a href="/man.shtml?topic=crontab&amp;category=1"><b>crontab(1)</b></a>, 
+	<a href="/man.shtml?topic=logger&amp;category=1"><b>logger(1)</b></a>, 
+	<a href="/man.shtml?topic=login&amp;category=1"><b>login(1)</b></a>, 
+	<a href="/man.shtml?topic=lp&amp;category=1"><b>lp(1)</b></a>, 
+	<a href="/man.shtml?topic=lpc&amp;category=1"><b>lpc(1B)</b></a>,
+	<a href="/man.shtml?topic=lpr&amp;category=1"><b>lpr(1B)</b></a>, 
+	<a href="/man.shtml?topic=m&amp;category=4"><b>m4(1)</b></a>, 
+	<a href="/man.shtml?topic=cron&amp;category=1"><b>cron(1M)</b></a>, 
+	<a href="/man.shtml?topic=getty&amp;category=1"><b>getty(1M)</b></a>, 
+	<a href="/man.shtml?topic=in.ftpd&amp;category=1"><b>in.ftpd(1M)</b></a>, 
+	<a href="/man.shtml?topic=su&amp;category=1"><b>su(1M)</b></a>,
+	<a href="/man.shtml?topic=syslogd&amp;category=1"><b>syslogd(1M)</b></a>, 
+	<a href="/man.shtml?topic=syslog&amp;category=3"><b>syslog(3C)</b></a>, 
+	<a href="/man.shtml?topic=hosts&amp;category=4"><b>hosts(4)</b></a>
+</dd></dl>
+
+<p align="center">Последнее изменение: 22 января 1997 года</p>
+
+<p align="center"><font size="-2">
+Copyright © 2002 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="syslog.conf" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

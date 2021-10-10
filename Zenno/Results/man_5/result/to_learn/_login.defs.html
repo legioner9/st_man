@@ -1,0 +1,1080 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN login.defs (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, login.defs"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="login.defs" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">login.defs (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=login.defs&amp;category=5&amp;russian=0"><u>login.defs</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=login.defs&amp;category=5&amp;russian=2"><u>login.defs</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+login.defs - содержит конфигурацию подсистемы теневых паролей
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<p>
+
+Файл
+<i>/etc/login.defs</i>
+содержит настройки подсистемы теневых паролей (shadow password suite). Этот файл является обязательным. Отсутствие данного файла не повлияет на работу системы, но, вероятно, приведёт к выполнению нежелаемых операций.
+</p><p>
+
+Файл представляет собой обычный текстовый файл; каждая строка описывает один параметр конфигурации. Строки состоят из названия параметра и его значения, которые разделяются пробельным символом. Пустые строки и комментарии игнорируются. Комментарии начинаются со знака фунта "#", который должен быть первым непробельным символом в строке.
+</p><p>
+
+Parameter values may be of four types: strings, booleans, numbers, and long numbers. A string is comprised of any printable characters. A boolean should be either the value
+<i>yes</i>
+or
+<i>no</i>. An undefined boolean parameter or one with a value other than these will be given a
+<i>no</i>
+value. Numbers (both regular and long) may be either decimal values, octal values (precede the value with
+<i>0</i>) or hexadecimal values (precede the value with
+<i>0x</i>). The maximum value of the regular and long numeric parameters is machine-dependent.
+</p><p>
+
+Возможны следующие параметры конфигурации:
+</p><p>
+
+<b>CHFN_AUTH</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+If
+<i>yes</i>, the
+<b>chfn</b>
+program will require authentication before making any changes, unless run by the superuser.
+</dd></dl>
+
+<p>
+
+<b>CHFN_RESTRICT</b> (string)
+</p><dl compact=""><dt></dt><dd>
+This parameter specifies which values in the
+<i>gecos</i>
+field of the
+<i>/etc/passwd</i>
+file may be changed by regular users using the
+<b>chfn</b>
+program. It can be any combination of letters
+<i>f</i>,
+<i>r</i>,
+<i>w</i>,
+<i>h</i>, for Full name, Room number, Work phone, and Home phone, respectively. For backward compatibility,
+<i>yes</i>
+is equivalent to
+<i>rwh</i>
+and
+<i>no</i>
+is equivalent to
+<i>frwh</i>. If not specified, only the superuser can make any changes. The most restrictive setting is better achieved by not installing
+<b>chfn</b>
+SUID.
+</dd></dl>
+
+<p>
+
+<b>CHSH_AUTH</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+If
+<i>yes</i>, the
+<b>chsh</b>
+program will require authentication before making any changes, unless run by the superuser.
+</dd></dl>
+
+<p>
+
+<b>CONSOLE</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If defined, either full pathname of a file containing device names or a ":" delimited list of device names. Root logins will be allowed only upon these devices.
+<p>
+If not defined, root will be allowed on any device.
+</p></dd></dl>
+
+<p>
+
+<b>CONSOLE_GROUPS</b> (string)
+</p><dl compact=""><dt></dt><dd>
+List of groups to add to the user's supplementary group set when logging in on the console (as determined by the CONSOLE setting). Default is none.
+<p>
+Use with caution - it is possible for users to gain permanent access to these groups, even when not logged in on the console.
+</p></dd></dl>
+
+<p>
+
+<b>DEFAULT_HOME</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Indicate if login is allowed if we can't cd to the home directory. Default in no.
+<p>
+If set to
+<i>yes</i>, the user will login in the root (<i>/</i>) directory if it is not possible to cd to her home directory.
+</p></dd></dl>
+
+<p>
+
+<b>ENCRYPT_METHOD</b> (string)
+</p><dl compact=""><dt></dt><dd>
+This defines the system default encryption algorithm for encrypting passwords (if no algorithm are specified on the command line).
+<p>
+It can take one of these values:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+*<i>DES</i>
+(default)
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+*<i>MD5</i>
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+*<i>SHA256</i>
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+*<i>SHA512</i>
+</dd></dl>
+
+<dl compact="">
+<dt></dt><dd>
+<p>
+Note: this parameter overrides the
+<b>MD5_CRYPT_ENAB</b>
+variable.
+</p><p>
+Note: if you use PAM, it is recommended to set this variable consistently with the PAM modules configuration.
+</p></dd></dl>
+</dd></dl>
+
+<p>
+
+<b>ENV_HZ</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If set, it will be used to define the HZ environment variable when a user login. The value must be preceded by
+<i>HZ=</i>. A common value on Linux is
+<i>HZ=100</i>.
+</dd></dl>
+
+<p>
+
+<b>ENV_PATH</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If set, it will be used to define the PATH environment variable when a regular user login. The value can be preceded by
+<i>PATH=</i>, or a colon separated list of paths (for example
+<i>/bin:/usr/bin</i>). The default value is
+<i>PATH=/bin:/usr/bin</i>.
+</dd></dl>
+
+<p>
+
+<b>ENV_SUPATH</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If set, it will be used to define the PATH environment variable when the superuser login. The value can be preceded by
+<i>PATH=</i>, or a colon separated list of paths (for example
+<i>/sbin:/bin:/usr/sbin:/usr/bin</i>). The default value is
+<i>PATH=/bin:/usr/bin</i>.
+</dd></dl>
+
+<p>
+
+<b>ENV_TZ</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If set, it will be used to define the TZ environment variable when a user login. The value can be the name of a timezone preceded by
+<i>TZ=</i>
+(for example
+<i>TZ=CST6CDT</i>), or the full path to the file containing the timezone specification (for example
+<i>/etc/tzname</i>).
+<p>
+If a full path is specified but the file does not exist or cannot be read, the default is to use
+<i>TZ=CST6CDT</i>.
+</p></dd></dl>
+
+<p>
+
+<b>ENVIRON_FILE</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If this file exists and is readable, login environment will be read from it. Every line should be in the form name=value.
+</dd></dl>
+
+<p>
+
+<b>ERASECHAR</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Terminal ERASE character (<i>010</i>
+= backspace,
+<i>0177</i>
+= DEL).
+<p>
+The value can be prefixed "0" for an octal value, or "0x" for an hexadecimal value.
+</p></dd></dl>
+
+<p>
+
+<b>FAIL_DELAY</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Delay in seconds before being allowed another attempt after a login failure.
+</dd></dl>
+
+<p>
+
+<b>FAILLOG_ENAB</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Enable logging and display of
+<i>/var/log/faillog</i>
+login failure info.
+</dd></dl>
+
+<p>
+
+<b>FAKE_SHELL</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If set,
+<b>login</b>
+will execute this shell instead of the users' shell specified in
+<i>/etc/passwd</i>.
+</dd></dl>
+
+<p>
+
+<b>FTMP_FILE</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If defined, login failures will be logged in this file in a utmp format.
+</dd></dl>
+
+<p>
+
+<b>GID_MAX</b> (number), <b>GID_MIN</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Range of group IDs used for the creation of regular groups by
+<b>useradd</b>,
+<b>useradd</b>, or
+<b>newusers</b>.
+</dd></dl>
+
+<p>
+
+<b>HUSHLOGIN_FILE</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If defined, this file can inhibit all the usual chatter during the login sequence. If a full pathname is specified, then hushed mode will be enabled if the user's name or shell are found in the file. If not a full pathname, then hushed mode will be enabled if the file exists in the user's home directory.
+</dd></dl>
+
+<p>
+
+<b>ISSUE_FILE</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If defined, this file will be displayed before each login prompt.
+</dd></dl>
+
+<p>
+
+<b>KILLCHAR</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Terminal KILL character (<i>025</i>
+= CTRL/U).
+<p>
+The value can be prefixed "0" for an octal value, or "0x" for an hexadecimal value.
+</p></dd></dl>
+
+<p>
+
+<b>LASTLOG_ENAB</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Enable logging and display of /var/log/lastlog login time info.
+</dd></dl>
+
+<p>
+
+<b>LOG_OK_LOGINS</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Enable logging of successful logins.
+</dd></dl>
+
+<p>
+
+<b>LOG_UNKFAIL_ENAB</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Enable display of unknown usernames when login failures are recorded.
+<p>
+Note: logging unknown usernames may be a security issue if an user enter her password instead of her login name.
+</p></dd></dl>
+
+<p>
+
+<b>LOGIN_RETRIES</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Maximum number of login retries in case of bad password.
+</dd></dl>
+
+<p>
+
+<b>LOGIN_STRING</b> (string)
+</p><dl compact=""><dt></dt><dd>
+The string used for prompting a password. The default is to use "Password: ", or a translation of that string. If you set this variable, the prompt will no be translated.
+<p>
+If the string contains
+<i>%s</i>, this will be replaced by the user's name.
+</p></dd></dl>
+
+<p>
+
+<b>LOGIN_TIMEOUT</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Max time in seconds for login.
+</dd></dl>
+
+<p>
+
+<b>MAIL_CHECK_ENAB</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Enable checking and display of mailbox status upon login.
+<p>
+You should disable it if the shell startup files already check for mail ("mailx -e" or equivalent).
+</p></dd></dl>
+
+<p>
+
+<b>MAIL_DIR</b> (string)
+</p><dl compact=""><dt></dt><dd>
+Почтовый каталог. Данный параметр нужен для управления почтовым ящиком при изменении или удалении учётной записи пользователя. Если параметр не задан, то используется значение указанное при сборке.
+</dd></dl>
+
+<p>
+
+<b>MAIL_FILE</b> (string)
+</p><dl compact=""><dt></dt><dd>
+Defines the location of the users mail spool files relatively to their home directory.
+</dd></dl>
+
+<p>
+
+The
+<b>MAIL_DIR</b>
+and
+<b>MAIL_FILE</b>
+variables are used by
+<b>useradd</b>,
+<b>usermod</b>, and
+<b>userdel</b>
+to create, move, or delete the user's mail spool.
+</p><p>
+
+If
+<b>MAIL_CHECK_ENAB</b>
+is set to
+<i>yes</i>, they are also used to define the
+<b>MAIL</b>
+environment variable.
+</p><p>
+
+<b>MAX_MEMBERS_PER_GROUP</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Maximum members per group entry. When the maximum is reached, a new group entry (line) is started in
+<i>/etc/group</i>
+(with the same name, same password, and same GID).
+<p>
+The default value is 0, meaning that there are no limits in the number of members in a group.
+</p><p>
+This feature (split group) permits to limit the length of lines in the group file. This is useful to make sure that lines for NIS groups are not larger than 1024 characters.
+</p><p>
+If you need to enforce such limit, you can use 25.
+</p><p>
+Note: split groups may not be supported by all tools (even in the Shadow toolsuite. You should not use this variable unless you really need it.
+</p></dd></dl>
+
+<p>
+
+<b>MD5_CRYPT_ENAB</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Indicate if passwords must be encrypted using the MD5-based algorithm. If set to
+<i>yes</i>, new passwords will be encrypted using the MD5-based algorithm compatible with the one used by recent releases of FreeBSD. It supports passwords of unlimited length and longer salt strings. Set to
+<i>no</i>
+if you need to copy encrypted passwords to other systems which don't understand the new algorithm. Default is
+<i>no</i>.
+<p>
+This variable is superceded by the
+<b>ENCRYPT_METHOD</b>
+variable or by any command line option used to configure the encryption algorithm.
+</p><p>
+This variable is deprecated. You should use
+<b>ENCRYPT_METHOD</b>.
+</p><p>
+Note: if you use PAM, it is recommended to set this variable consistently with the PAM modules configuration.
+</p></dd></dl>
+
+<p>
+
+<b>MOTD_FILE</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If defined, ":" delimited list of "message of the day" files to be displayed upon login.
+</dd></dl>
+
+<p>
+
+<b>NOLOGINS_FILE</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If defined, name of file whose presence will inhibit non-root logins. The contents of this file should be a message indicating why logins are inhibited.
+</dd></dl>
+
+<p>
+
+<b>OBSCURE_CHECKS_ENAB</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Enable additional checks upon password changes.
+</dd></dl>
+
+<p>
+
+<b>PASS_ALWAYS_WARN</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Warn about weak passwords (but still allow them) if you are root.
+</dd></dl>
+
+<p>
+
+<b>PASS_CHANGE_TRIES</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Maximum number of attempts to change password if rejected (too easy).
+</dd></dl>
+
+<p>
+
+<b>PASS_MAX_DAYS</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Максимальное число дней использования пароля. Если пароль старее этого числа, то будет запущена процедура смены пароля. Если значение не задано, то предполагается значение -1 (то есть возможность ограничения не используется).
+</dd></dl>
+
+<p>
+
+<b>PASS_MIN_DAYS</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Максимальное число дней между изменениями пароля. Любая смена пароля ранее заданного срока выполнена не будет. Если значение не задано, то предполагается значение -1 (то есть возможность ограничения не используется).
+</dd></dl>
+
+<p>
+
+<b>PASS_WARN_AGE</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Число дней за которое начнёт выдаваться предупреждение об устаревании пароля. Нулевое значение означает, что предупреждение выдаётся в день устаревания, при отрицательном значении предупреждение выдаваться не будет. Если значение не задано, выдача предупреждения отключается.
+</dd></dl>
+
+<p>
+
+</p><p>
+<b>PASS_MAX_DAYS</b>,
+<b>PASS_MIN_DAYS</b>
+and
+<b>PASS_WARN_AGE</b>
+are only used at the time of account creation. Any changes to these settings won't affect existing accounts.
+</p><p>
+
+<b>PASS_MAX_LEN</b> (number), <b>PASS_MIN_LEN</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Number of significant characters in the password for crypt().
+<b>PASS_MAX_LEN</b>
+is 8 by default. Don't change unless your crypt() is better. This is ignored if
+<b>MD5_CRYPT_ENAB</b>
+set to
+<i>yes</i>.
+</dd></dl>
+
+<p>
+
+<b>PORTTIME_CHECKS_ENAB</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Enable checking of time restrictions specified in /etc/porttime.
+</dd></dl>
+
+<p>
+
+<b>QUOTAS_ENAB</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Enable setting of ulimit, umask, and niceness from passwd gecos field.
+</dd></dl>
+
+<p>
+
+<b>SHA_CRYPT_MIN_ROUNDS</b> (number), <b>SHA_CRYPT_MAX_ROUNDS</b> (number)
+</p><dl compact=""><dt></dt><dd>
+When
+<b>ENCRYPT_METHOD</b>
+is set to
+<i>SHA256</i>
+or
+<i>SHA512</i>, this defines the number of SHA rounds used by the encryption algorithm by default (when the number of rounds is not specified on the command line).
+<p>
+With a lot of rounds, it is more difficult to brute forcing the password. But note also that more CPU resources will be needed to authenticate users.
+</p><p>
+If not specified, the libc will choose the default number of rounds (5000).
+</p><p>
+The values must be inside the 1000-999999999 range.
+</p><p>
+If only one of the
+<b>SHA_CRYPT_MIN_ROUNDS</b>
+or
+<b>SHA_CRYPT_MAX_ROUNDS</b>
+values is set, then this value will be used.
+</p><p>
+If
+<b>SHA_CRYPT_MIN_ROUNDS</b>
+&gt;
+<b>SHA_CRYPT_MAX_ROUNDS</b>, the highest value will be used.
+</p></dd></dl>
+
+<p>
+
+<b>SULOG_FILE</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If defined, all su activity is logged to this file.
+</dd></dl>
+
+<p>
+
+<b>SU_NAME</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If defined, the command name to display when running "su -". For example, if this is defined as "su" then a "ps" will display the command is "-su". If not defined, then "ps" would display the name of the shell actually being run, e.g. something like "-sh".
+</dd></dl>
+
+<p>
+
+<b>SU_WHEEL_ONLY</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+If
+<i>yes</i>, the user must be listed as a member of the first gid 0 group in
+<i>/etc/group</i>
+(called
+<i>root</i>
+on most Linux systems) to be able to
+<b>su</b>
+to uid 0 accounts. If the group doesn't exist or is empty, no one will be able to
+<b>su</b>
+to uid 0.
+</dd></dl>
+
+<p>
+
+<b>SYS_GID_MAX</b> (number), <b>SYS_GID_MIN</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Range of group IDs used for the creation of system groups by
+<b>useradd</b>,
+<b>groupadd</b>, or
+<b>newusers</b>.
+</dd></dl>
+
+<p>
+
+<b>SYS_UID_MAX</b> (number), <b>SYS_UID_MIN</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Range of user IDs used for the creation of system users by
+<b>useradd</b>
+or
+<b>newusers</b>.
+</dd></dl>
+
+<p>
+
+<b>SYSLOG_SG_ENAB</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Enable "syslog" logging of
+<b>sg</b>
+activity.
+</dd></dl>
+
+<p>
+
+<b>SYSLOG_SU_ENAB</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Enable "syslog" logging of
+<b>su</b>
+activity - in addition to sulog file logging.
+</dd></dl>
+
+<p>
+
+<b>TTYGROUP</b> (string), <b>TTYPERM</b> (string)
+</p><dl compact=""><dt></dt><dd>
+The terminal permissions: the login tty will be owned by the
+<b>TTYGROUP</b>
+group, and the permissions will be set to
+<b>TTYPERM</b>.
+<p>
+By default, the ownership of the terminal is set to the user's primary group and the permissions are set to
+<i>0600</i>.
+</p><p>
+</p><p>
+<b>TTYGROUP</b>
+can be either the name of a group or a numeric group identifier.
+</p><p>
+If you have a
+<b>write</b>
+program which is "setgid" to a special group which owns the terminals, define TTYGROUP to the group number and TTYPERM to 0620. Otherwise leave TTYGROUP commented out and assign TTYPERM to either 622 or 600.
+</p></dd></dl>
+
+<p>
+
+<b>TTYTYPE_FILE</b> (string)
+</p><dl compact=""><dt></dt><dd>
+If defined, file which maps tty line to TERM environment parameter. Each line of the file is in a format something like "vt100 tty01".
+</dd></dl>
+
+<p>
+
+<b>UID_MAX</b> (number), <b>UID_MIN</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Range of user IDs used for the creation of regular users by
+<b>useradd</b>
+or
+<b>newusers</b>.
+</dd></dl>
+
+<p>
+
+<b>ULIMIT</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Default
+<b>ulimit</b>
+value.
+</dd></dl>
+
+<p>
+
+<b>UMASK</b> (number)
+</p><dl compact=""><dt></dt><dd>
+Задаёт начальное значение маски доступа. Если не указано, то маска доступа устанавливается в 022.
+</dd></dl>
+
+<p>
+
+<b>USERDEL_CMD</b> (string)
+</p><dl compact=""><dt></dt><dd>
+Определяет программу, которая будет запущена при удалении пользователя. Она должна удалять любые задания at/cron/печати удаляемого пользователя (передаётся в качестве первого аргумента).
+</dd></dl>
+
+<p>
+
+<b>USERGROUPS_ENAB</b> (boolean)
+</p><dl compact=""><dt></dt><dd>
+Enable setting of the umask group bits to be the same as owner bits (examples: 022 -&gt; 002, 077 -&gt; 007) for non-root users, if the uid is the same as gid, and username is the same as the primary group name.
+<p>
+If set to
+<i>yes</i>,
+<b>userdel</b>
+will remove the user's group if it contains no more members, and
+<b>useradd</b>
+will create by default a group with the name of the user.
+</p></dd></dl>
+
+<a name="lbAD">&nbsp;</a>
+<h2>CROSS REFERENCES</h2>
+
+<p>
+
+The following cross references show which programs in the shadow password suite use which parameters.
+</p><p>
+
+chfn
+</p><dl compact=""><dt></dt><dd>
+<p>
+CHFN_AUTH
+CHFN_RESTRICT
+LOGIN_STRING
+</p></dd></dl>
+
+<p>
+
+chgpasswd
+</p><dl compact=""><dt></dt><dd>
+ENCRYPT_METHOD MAX_MEMBERS_PER_GROUP MD5_CRYPT_ENAB SHA_CRYPT_MAX_ROUNDS SHA_CRYPT_MIN_ROUNDS
+</dd></dl>
+
+<p>
+
+chpasswd
+</p><dl compact=""><dt></dt><dd>
+ENCRYPT_METHOD MD5_CRYPT_ENAB SHA_CRYPT_MAX_ROUNDS SHA_CRYPT_MIN_ROUNDS
+</dd></dl>
+
+<p>
+
+chsh
+</p><dl compact=""><dt></dt><dd>
+CHSH_AUTH LOGIN_STRING
+</dd></dl>
+
+<p>
+
+gpasswd
+</p><dl compact=""><dt></dt><dd>
+ENCRYPT_METHOD MAX_MEMBERS_PER_GROUP MD5_CRYPT_ENAB SHA_CRYPT_MAX_ROUNDS SHA_CRYPT_MIN_ROUNDS
+</dd></dl>
+
+<p>
+
+groupadd
+</p><dl compact=""><dt></dt><dd>
+GID_MAX GID_MIN MAX_MEMBERS_PER_GROUP SYS_GID_MAX SYS_GID_MIN
+</dd></dl>
+
+<p>
+
+groupdel
+</p><dl compact=""><dt></dt><dd>
+MAX_MEMBERS_PER_GROUP
+</dd></dl>
+
+<p>
+
+groupmems
+</p><dl compact=""><dt></dt><dd>
+MAX_MEMBERS_PER_GROUP
+</dd></dl>
+
+<p>
+
+groupmod
+</p><dl compact=""><dt></dt><dd>
+MAX_MEMBERS_PER_GROUP
+</dd></dl>
+
+<p>
+
+grpck
+</p><dl compact=""><dt></dt><dd>
+MAX_MEMBERS_PER_GROUP
+</dd></dl>
+
+<p>
+
+grpconv
+</p><dl compact=""><dt></dt><dd>
+MAX_MEMBERS_PER_GROUP
+</dd></dl>
+
+<p>
+
+grpunconv
+</p><dl compact=""><dt></dt><dd>
+MAX_MEMBERS_PER_GROUP
+</dd></dl>
+
+<p>
+
+login
+</p><dl compact=""><dt></dt><dd>
+<p>
+CONSOLE
+CONSOLE_GROUPS DEFAULT_HOME
+ENV_HZ ENV_PATH ENV_SUPATH ENV_TZ ENVIRON_FILE
+ERASECHAR FAIL_DELAY
+FAILLOG_ENAB
+FAKE_SHELL
+FTMP_FILE
+HUSHLOGIN_FILE
+ISSUE_FILE
+KILLCHAR
+LASTLOG_ENAB
+LOGIN_RETRIES
+LOGIN_STRING
+LOGIN_TIMEOUT LOG_OK_LOGINS LOG_UNKFAIL_ENAB
+MAIL_CHECK_ENAB MAIL_DIR MAIL_FILE MOTD_FILE NOLOGINS_FILE PORTTIME_CHECKS_ENAB QUOTAS_ENAB
+TTYGROUP TTYPERM TTYTYPE_FILE
+ULIMIT UMASK
+USERGROUPS_ENAB
+</p></dd></dl>
+
+<p>
+
+newgrp
+</p><dl compact=""><dt></dt><dd>
+SYSLOG_SG_ENAB
+</dd></dl>
+
+<p>
+
+newusers
+</p><dl compact=""><dt></dt><dd>
+ENCRYPT_METHOD GID_MAX GID_MIN MAX_MEMBERS_PER_GROUP MD5_CRYPT_ENAB PASS_MAX_DAYS PASS_MIN_DAYS PASS_WARN_AGE SHA_CRYPT_MAX_ROUNDS SHA_CRYPT_MIN_ROUNDS SYS_GID_MAX SYS_GID_MIN SYS_UID_MAX SYS_UID_MIN UID_MAX UID_MIN UMASK
+</dd></dl>
+
+<p>
+
+passwd
+</p><dl compact=""><dt></dt><dd>
+ENCRYPT_METHOD MD5_CRYPT_ENAB OBSCURE_CHECKS_ENAB PASS_ALWAYS_WARN PASS_CHANGE_TRIES PASS_MAX_LEN PASS_MIN_LEN SHA_CRYPT_MAX_ROUNDS SHA_CRYPT_MIN_ROUNDS
+</dd></dl>
+
+<p>
+
+pwck
+</p><dl compact=""><dt></dt><dd>
+PASS_MAX_DAYS PASS_MIN_DAYS PASS_WARN_AGE
+</dd></dl>
+
+<p>
+
+pwconv
+</p><dl compact=""><dt></dt><dd>
+PASS_MAX_DAYS PASS_MIN_DAYS PASS_WARN_AGE
+</dd></dl>
+
+<p>
+
+su
+</p><dl compact=""><dt></dt><dd>
+<p>
+CONSOLE
+CONSOLE_GROUPS DEFAULT_HOME
+ENV_HZ ENVIRON_FILE
+ENV_PATH ENV_SUPATH
+ENV_TZ LOGIN_STRING MAIL_CHECK_ENAB MAIL_DIR MAIL_FILE QUOTAS_ENAB
+SULOG_FILE SU_NAME
+SU_WHEEL_ONLY
+SYSLOG_SU_ENAB
+USERGROUPS_ENAB
+</p></dd></dl>
+
+<p>
+
+sulogin
+</p><dl compact=""><dt></dt><dd>
+ENV_HZ
+ENV_TZ
+</dd></dl>
+
+<p>
+
+useradd
+</p><dl compact=""><dt></dt><dd>
+GID_MAX GID_MIN MAIL_DIR MAX_MEMBERS_PER_GROUP PASS_MAX_DAYS PASS_MIN_DAYS PASS_WARN_AGE SYS_GID_MAX SYS_GID_MIN SYS_UID_MAX SYS_UID_MIN UID_MAX UID_MIN UMASK
+</dd></dl>
+
+<p>
+
+userdel
+</p><dl compact=""><dt></dt><dd>
+MAIL_DIR MAIL_FILE MAX_MEMBERS_PER_GROUP USERDEL_CMD USERGROUPS_ENAB
+</dd></dl>
+
+<p>
+
+usermod
+</p><dl compact=""><dt></dt><dd>
+MAIL_DIR MAIL_FILE MAX_MEMBERS_PER_GROUP
+</dd></dl>
+
+<p>
+
+vipw
+</p><dl compact=""><dt></dt><dd>
+MAX_MEMBERS_PER_GROUP
+</dd></dl>
+
+<a name="lbAE">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<p>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=login&amp;category=1">login</a></b>(1),
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=passwd&amp;category=1">passwd</a></b>(1),
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=su&amp;category=1">su</a></b>(1),
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=passwd&amp;category=5">passwd</a></b>(5),
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=shadow&amp;category=5">shadow</a></b>(5),
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pam&amp;category=8">pam</a></b>(8).
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">CROSS REFERENCES</a></dt><dd>
+</dd><dt><a href="#lbAE">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="login.defs" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

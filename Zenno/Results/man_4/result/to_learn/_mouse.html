@@ -1,0 +1,357 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN mouse (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, mouse"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="mouse" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">mouse (4)</font><hr><li> <a href="/man.shtml?topic=mouse&amp;category=4&amp;russian=1"><u>mouse</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=mouse&amp;category=4&amp;russian=0"><u>mouse</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=mouse&amp;category=4&amp;russian=2"><u>mouse</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li><li><font color="#555555">Ключ <a href="/keywords/mouse.html"><u>mouse</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+mouse - последовательный интерфейс мыши
+<a name="lbAC">&nbsp;</a>
+<h2>НАСТРОЙКА</h2>
+
+Мышь подключается последовательному порту RS232/V24. Для получения
+более подробной информации прочтите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ttys&amp;category=4">ttys</a></b>(4)
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<a name="lbAE">&nbsp;</a>
+<h3>Введение</h3>
+
+ниже приведено описание разъема c девятью контантами, используемого
+для подключения мыши:
+<center><table>
+<tbody><tr valign="top"><td align="right">контакт</td><td align="center">название</td><td>используется для<br></td></tr>
+<tr valign="top"><td align="right">2</td><td align="center">RX</td><td>Данные<br></td></tr>
+<tr valign="top"><td align="right">3</td><td align="center">TX</td><td>-12 V, Imax = 10 mA<br></td></tr>
+<tr valign="top"><td align="right">4</td><td align="center">DTR</td><td>+12 V, Imax = 10 mA<br></td></tr>
+<tr valign="top"><td align="right">7</td><td align="center">RTS</td><td>+12 V, Imax = 10 mA<br></td></tr>
+<tr valign="top"><td align="right">5</td><td align="center">GND</td><td>Заземление<br></td></tr>
+</tbody></table></center>
+
+Это описание приводится в документации, хотя 9-и V хватит почти любой мыши.
+<p>
+
+Драйвер мыши может распознать мышь, посылая слабый сигнал RTS и затем увеличивая его.
+Примерно через 14 миллисекунд мышь вернет 0x4D ('M').
+Еще через 63 милисекунды трехкнопочная мышь Microsoft-compatible
+вернет сигнал
+0x33 ('3').
+</p><p>
+
+Относительное движение мыши посылается как <i>dx</i> (положительное значение означает 
+движение направо)
+и <i>dy</i> (положительное значение означает движение вниз). Различные мыши могут 
+работать с разными скоростями.
+Для определения скорости устанавливаются следующие ее значения (по очереди):
+9600, 4800, 2400 и 1200 бит/с; каждый раз при установке значения скорости пишутся
+2 символа из таблицы, приведенной ниже, и после этого идет время ожидания, равное 0,1 секунды.
+В таблице указаны скорости и символы, соответствующие им:
+</p><center><table>
+<tbody><tr valign="top"><td>бит/с</td><td>символы<br></td></tr>
+<tr valign="top"><td>9600</td><td>*q<br></td></tr>
+<tr valign="top"><td>4800</td><td>*p<br></td></tr>
+<tr valign="top"><td>2400</td><td>*o<br></td></tr>
+<tr valign="top"><td>1200</td><td>*n<br></td></tr>
+</tbody></table></center>
+
+первый байт из пакета может использоваться для синхронизации.
+<a name="lbAF">&nbsp;</a>
+<h3>Протокол Microsoft</h3>
+
+Протокол <b>Microsoft</b> использует один начальный бит, 7 битов данных (без проверки
+четности), один стоп-бит; протокол работает со скоростью 1200 бит/с. 
+Данные пересылаются в RxD трехбайтовыми
+пакетами. Движения по <i>dx</i> и <i>dy</i> пересылаются как дополнения друг друга.
+Значение <i>lb</i> (<i>rb</i>) устанавливается при нажатии левой (правой)
+кнопки:
+<center><table>
+<tbody><tr valign="top"><td align="right">байт</td><td align="center">d6</td><td align="center">d5</td><td align="center">d4</td><td align="center">d3</td><td align="center">d2</td><td align="center">d1</td><td align="center">d0<br></td></tr>
+<tr valign="top"><td align="right">1</td><td align="center">1</td><td align="center">lb</td><td align="center">rb</td><td align="center">dy7</td><td align="center">dy6</td><td align="center">dx7</td><td align="center">dx6<br></td></tr>
+<tr valign="top"><td align="right">2</td><td align="center">0</td><td align="center">dx5</td><td align="center">dx4</td><td align="center">dx3</td><td align="center">dx2</td><td align="center">dx1</td><td align="center">dx0<br></td></tr>
+<tr valign="top"><td align="right">3</td><td align="center">0</td><td align="center">dy5</td><td align="center">dy4</td><td align="center">dy3</td><td align="center">dy2</td><td align="center">dy1</td><td align="center">dy0<br></td></tr>
+</tbody></table></center>
+
+<a name="lbAG">&nbsp;</a>
+<h3>Протокол Microsoft для трехкнопочной мыши</h3>
+
+Обычно мышь Microsoft имеет две кнопки. Но есть несколько трехкнопочных
+мышей, также использующих протокол Microsoft. О нажатии средней кнопки сообщается
+отсыланием пакета с нулевым движением и ненажатыми клавишами.
+(Таким образом, в отличие от двух других кнопок, статус средней
+не отображается в каждом пакете).
+<a name="lbAH">&nbsp;</a>
+<h3>Протокол Logitech</h3>
+
+Трехкнопочная мышь Logitech использует варианты протокола
+Microsoft: когда средняя кнопка отпущена, посылается вышеописанный трехбайтовый пакет,
+а когда она нажата, посылается четырехбайтовый пакет, где четвертый байт  
+имеет значение 0x20. В частности, о нажатии средней кнопки сообщается с помощью пакета
+0,0,0,0x20 при том, что остальные кнопки остаются ненажатыми.
+<a name="lbAI">&nbsp;</a>
+<h3>Протокол Mousesystems</h3>
+
+Протокол <b>Mousesystems</b> использует один начальный бит, 8 битов данных, не использует
+проверку по четности и два стоп-бита при скорости 1200 бит/с. Данные посылаются на RxD
+пятибайтовыми пакетами. <i>dx</i> посылается как совокупность двух величин, состоящих из
+двух частей, <i>dy</i> посылается как совокупность двух отрицательных величин, состоящих из
+двух частей. <i>lb</i> (<i>mb</i>, <i>rb</i>) обнуляются при нажатии левой (средней,
+правой) кнопки:
+<center><table>
+<tbody><tr valign="top"><td align="right">байт</td><td align="center">d7</td><td align="center">d6</td><td align="center">d5</td><td align="center">d4</td><td align="center">d3</td><td align="center">d2</td><td align="center">d1</td><td align="center">d0<br></td></tr>
+<tr valign="top"><td align="right">1</td><td align="center">1</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">lb</td><td align="center">mb</td><td align="center">rb<br></td></tr>
+<tr valign="top"><td align="right">2</td><td align="center">0</td><td align="center">dxa6</td><td align="center">dxa5</td><td align="center">dxa4</td><td align="center">dxa3</td><td align="center">dxa2</td><td align="center">dxa1</td><td align="center">dxa0<br></td></tr>
+<tr valign="top"><td align="right">3</td><td align="center">0</td><td align="center">dya6</td><td align="center">dya5</td><td align="center">dya4</td><td align="center">dya3</td><td align="center">dya2</td><td align="center">dya1</td><td align="center">dya0<br></td></tr>
+<tr valign="top"><td align="right">4</td><td align="center">0</td><td align="center">dxb6</td><td align="center">dxb5</td><td align="center">dxb4</td><td align="center">dxb3</td><td align="center">dxb2</td><td align="center">dxb1</td><td align="center">dxb0<br></td></tr>
+<tr valign="top"><td align="right">5</td><td align="center">0</td><td align="center">dyb6</td><td align="center">dyb5</td><td align="center">dyb4</td><td align="center">dyb3</td><td align="center">dyb2</td><td align="center">dyb1</td><td align="center">dyb0<br></td></tr>
+</tbody></table></center>
+
+Четвертый и пятый байты описывают изменения, произошедшие за время передачи 
+второго и третьего байта.
+<a name="lbAJ">&nbsp;</a>
+<h3>Протокол Sun</h3>
+
+Протокол <b>Sun</b> - это трехбайтовая версия протокола 
+Mousesystems (описанного выше), только два последних байта не отсылаются.
+<a name="lbAK">&nbsp;</a>
+<h3>Протокол MM</h3>
+
+Протокол <b>MM</b> производит проверку на нечетность, использует один начальный бит, 
+восемь битов данных и один стоп-бита при скорости 1200 бит/с. Данные посылаются 
+на RxD трехбайтовыми пакетами. <i>dx</i> и <i>dy</i> отсылаются как отдельные значения 
+со своими знаками, бит знака имеет отрицательное значение. <i>lb</i> (<i>mb</i>, <i>rb</i>) 
+отсылаются при нажатии левой (средней, правой) кнопки:
+<center><table>
+<tbody><tr valign="top"><td align="right">байт</td><td align="center">d7</td><td align="center">d6</td><td align="center">d5</td><td align="center">d4</td><td align="center">d3</td><td align="center">d2</td><td align="center">d1</td><td align="center">d0<br></td></tr>
+<tr valign="top"><td align="right">1</td><td align="center">1</td><td align="center">0</td><td align="center">0</td><td align="center">dxs</td><td align="center">dys</td><td align="center">lb</td><td align="center">mb</td><td align="center">rb<br></td></tr>
+<tr valign="top"><td align="right">2</td><td align="center">0</td><td align="center">dx6</td><td align="center">dx5</td><td align="center">dx4</td><td align="center">dx3</td><td align="center">dx2</td><td align="center">dx1</td><td align="center">dx0<br></td></tr>
+<tr valign="top"><td align="right">3</td><td align="center">0</td><td align="center">dy6</td><td align="center">dy5</td><td align="center">dy4</td><td align="center">dy3</td><td align="center">dy2</td><td align="center">dy1</td><td align="center">dy0<br></td></tr>
+</tbody></table></center>
+
+<a name="lbAL">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt><i>/dev/mouse</i>
+
+</dt><dd>
+- это обычно используемая символьная ссылка на устройство "мышь".
+</dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ttys&amp;category=4">ttys</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gpm&amp;category=8">gpm</a></b>(8)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">НАСТРОЙКА</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAE">Введение</a></dt><dd>
+</dd><dt><a href="#lbAF">Протокол Microsoft</a></dt><dd>
+</dd><dt><a href="#lbAG">Протокол Microsoft для трехкнопочной мыши</a></dt><dd>
+</dd><dt><a href="#lbAH">Протокол Logitech</a></dt><dd>
+</dd><dt><a href="#lbAI">Протокол Mousesystems</a></dt><dd>
+</dd><dt><a href="#lbAJ">Протокол Sun</a></dt><dd>
+</dd><dt><a href="#lbAK">Протокол MM</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAL">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAM">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="mouse" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

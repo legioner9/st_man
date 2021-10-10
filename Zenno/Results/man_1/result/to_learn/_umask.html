@@ -1,0 +1,439 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN umask (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, umask"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="umask" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">umask (1)</font><hr><li> <a href="/man.shtml?topic=umask&amp;category=1&amp;russian=4"><u>umask</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=umask&amp;category=1&amp;russian=1"><u>umask</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=umask&amp;category=1&amp;russian=0"><u>umask</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=umask&amp;category=1&amp;russian=2"><u>umask</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=umask&amp;category=1&amp;russian=5"><u>umask</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=umask&amp;category=2&amp;russian=4"><u>umask</u></a> (2) <font color="#555555"> ( Solaris man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=umask&amp;category=2&amp;russian=1"><u>umask</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=umask&amp;category=2&amp;russian=0"><u>umask</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=umask&amp;category=2&amp;russian=2"><u>umask</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=umask&amp;category=3&amp;russian=5"><u>umask</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Пользовательские команды</h1></td>
+<td><h1 align="right">umask(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>umask</b> - получение или установка маски режима создания файлов</p>
+
+<h2>СИНТАКСИС</h2>
+<dl>
+<dt></dt><dd><tt>
+/usr/bin/mask [ -S ]  [ <b>маска</b> ]
+</tt></dd>
+<dt><b>sh</b></dt>
+<dd><tt>
+umask [ <b>ooo</b> ]
+</tt></dd>
+<dt><b>csh</b></dt>
+<dd><tt>
+umask [ <b>ooo</b> ]
+</tt></dd>
+<dt><b>ksh</b></dt>
+<dd><tt>
+umask [ -S ]  [ <b>маска</b> ]
+</tt></dd>
+</dl>
+
+<h2>ОПИСАНИЕ</h2>
+
+<p>Утилита <b>umask</b> задает маску режима создания файла в текущей среде
+командного интерпретатора равной значению, задаваемому операндом
+<b>маска</b>. Эта маска влияет на начальное значение битов прав доступа
+всех создаваемых далее файлов. Если <b>umask</b> вызвана в порожденном
+командном интерпретаторе или в отдельной среде выполнения, например, так:</p>
+
+<dl><dt></dt><dd><pre>(umask 002)
+nohup umask ...
+find . -exec umask ...
+</pre></dd></dl>
+
+<p>она не влияет на маску режима создания файлов в вызывающей среде. Поэтому утилиту
+<b>/usr/bin/umask</b> нельзя использовать для изменения маски в текущем сеансе. Ее
+действие ограниичивается проверкой значения маски вызывающего сеанса. Чтобы изменить
+маску текущего сеанса, необходимо использовать одну из встроенных команд
+интерпретаторов.</p>
+
+<p>Если операнд <b>маска</b> не указан, утилита <b>umask</b> выдает в
+стандартный выходной поток значение маски режима создания файлов вызывающего 
+процесса.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  sh</h3>
+
+<p>Маска режима создания файла устанавливается равной <b>ooo</b>. Три восьмеричные
+цифры задают права на чтение/запис/выполнение для владельца, группы-владельца и всех
+прочих пользователей, соответственно (см. <a href="/man.shtml?topic=chmod&amp;category=1"><b>chmod(1)</b></a>, 
+<a href="/man.shtml?topic=chmod&amp;category=2"><b>chmod(2)</b></a> и <a href="/man.shtml?topic=umask&amp;category=2"><b>umask(2)</b></a>).
+Значение каждой указанной цифры вычитается из соответствующей "цифры",
+задаваемой системой при создании файла (см. <a href="/man.shtml?topic=creat&amp;category=2"><b>creat(2)</b></a>).
+Например, команда <b>umask 022</b> отбирает право записи у группы и прочих пользователей (файлы, обычно создаваемые с правами 777, создаются с правами 755;
+файлы, создаваемые с правами 666, создаются с правами 644).</p>
+
+<ul>
+<li>Если значение <b>ooo</b> не указано, выдается текущее значение маски.</li>
+<li>Команда <b>umask</b> распознается и выполняется командным интерпретатором.</li>
+<li>Команду <b>umask</b> можно включить в файл <b>.profile</b> пользователя (см. 
+<a href="/man.shtml?topic=profile&amp;category=4"><b>profile(4)</b></a>) и вызывать, тем самым, автоматически
+при регистрации для установки прав доступа на создаваемые пользователем файлы и каталоги.</li>
+</ul>
+
+<h3>&nbsp;&nbsp;&nbsp;  csh</h3>
+
+<p>См. выше описание работы встроенной команды <b>umask</b> в командном интерпретаторе
+Bourne shell (<b>sh</b>).</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  ksh</h3>
+
+<p>Маска создания файла для пользователя устанавливается равной указанной <b>маске</b>.
+<b>Маску</b> можно задавать либо восьмеричным числом, либо символьным значением, как
+описано на странице справочного руководства <a href="/man.shtml?topic=chmod&amp;category=1"><b>chmod(1)</b></a>.
+Если указано символьное значение, новое значение <b>umask</b>  value
+is the complement of the result of applying mask to the com-
+plement of the previous umask value. If mask is omitted, the
+current value of the mask is printed.</p>
+
+<h3>ОПЦИИ</h3>
+<p>Поддерживается следующая опция:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="10%"><a name="S"><b>-S</b></a></td><td>
+Выдает результаты в символьном виде.</td></tr>
+</tbody></table>
+
+<p>Стандартный стиль выдачи результата не задается, но будет распознаваться
+при последующем вызове команды <b>umask</b> в той же системе в качестве
+операнда <b>маска</b> для восстановления прежней маски режима создания файла.</p>
+
+<h2>ОПЕРАНДЫ</h2>
+
+<p>Поддерживается следующий операнд:</p>
+
+<dl>
+<dt><b>маска</b></dt>
+<dd>
+Строка, задающая новую маску режима создания файла. Эта строка интерпретируется так
+же, как и операнд <b>права_доступа</b>, описанный на странице справочного руководства
+<b><a href="/man.shtml?topic=chmod&amp;category=1">chmod(1)</a></b>.
+
+<p>Если <b>маска</b> задана в символьном виде, новым значением маски режима создания
+файла будет логическое дополнение битов прав доступа к файлу, задаваемых
+соответствующей строкой.</p>
+
+<p>При задании <b>маски</b> в символьном виде, операторы относительного изменения
+прав доступа <b>+</b> и <b>-</b> применяются к текущей маске режима создания файла.
+Оператор <b>+</b> сбрасывает биты соответствующих прав доступа в маске, а оператор 
+<b>-</b> устанавливает их.</p>
+
+<p>Интерпретация прав доступа, задающих старшие 3 бита прав, не определена.</p>
+
+<p>Маска режима создания файла получает результирующее числовое значение.</p>
+
+<p>Стандартный результат предыдущего вызова <b>umask</b> в той же системе без
+операндов можно использовать в качестве <b>маски</b>. Использование операнда, полученного таким образом, поддерживается, даже если он представляет собой 
+восьмеричное число.</p>
+</dd>
+</dl>
+
+<h2>РЕЗУЛЬТАТ</h2>
+
+<p>Если операнд <b>маска</b> не указан, утилита <b>umask</b> будет выдавать в 
+стандартный выходной поток сообщение, которое в дальнейшем можно использовать как
+операнд <b>umask</b>.</p>
+
+<p>Если указана опция <a href="#S"><b>-S</b></a>, сообщение будет иметь следующий
+формат:</p>
+
+<pre>"u=%s,g=%s,o=%s\n", &lt;права владельца&gt;, &lt;права группы&gt;, &lt;права прочих&gt;
+</pre>
+
+<p>где в качестве значений будут указаны комбинации букв из набора 
+{<b>r</b>, <b>w</b>, <b>x</b>}; если буква указана, значит, соответствующий бит в
+маске режима создания файла сброшен.</p>
+
+<p>Если указан операнд <b>маска</b>, в стандартный выходной поток ничего не 
+выдается.</p>
+
+<h2>ПРИМЕРЫ</h2>
+
+<h3>Пример 1: Использование команды umask</h3>
+
+<p>Любая из команд:</p>
+
+<dl><dt></dt><dd><pre>umask a=rx,ug+w
+umask 002
+</pre></dd></dl>
+
+<p>устанавливает маску режима создания так, что у создаваемых далее файлов
+бит <b>S_IWOTH</b> сброшен.</p>
+
+<p>После установки маски режима создания любой из указанных выше команд, можно
+получить текущее значение маски с помощью команды <b>umask</b> без параметров:</p>
+
+<dl><dt></dt><dd><pre>$ umask
+0002
+</pre></dd></dl>
+
+<p>(Формат результата не задается, но старые реализации используют классический
+формат восьмеричного числа.)</p>
+
+<dl><dt></dt><dd><pre>$ umask -S
+u=rwx,g=rwx,o=rx
+</pre></dd></dl>
+
+<p>Любой из этих результатов можно использовать в качестве операнда <b>маска</b>
+при следующих вызовах утилиты <b>umask</b>.</p>
+
+<p>Если маска режима создания задана так, как показано выше, команда:</p>
+
+<dl><dt></dt><dd><pre>umask g-w
+</pre></dd></dl>
+
+<p>изменяет маску так, что у создаваемых далее файлов биты <b>S_IWGRP</b> и
+<b>S_IWOTH</b> сброшены.</p>
+
+<p>Команда:</p>
+
+<dl><dt></dt><dd><pre>umask - -w
+</pre></dd></dl>
+
+<p>утанавливает такое значение маски, что у создаваемых далее файлов все биты
+записи сброшены. Учтите, что перед операндами маски <b>r</b>, <b>w</b>, <b>x</b> или
+любыми другими, начинающимися с дефиса (<b>-</b>), надо указывать еще один дефис, чтобы
+операнд не интерпретировался как опция.</p>
+
+<h2>ПЕРЕМЕННЫЕ СРЕДЫ</h2>
+
+<p>Описание переменных среды <b>LC_CTYPE</b>, <b>LC_MESSAGES</b> и <b>NLSPATH</b>, 
+влияющих на работу команды <b>umask</b>, 
+см. на странице справочного руководства <b><a href="/man.shtml?topic=environ&amp;category=5">environ(5)</a></b>.</p>
+
+<h2>СТАТУС ВЫХОДА</h2>
+
+<p>Команда завершается со следующими статусами выхода:</p>
+
+<table width="100%" border="0">
+<tbody><tr><td width="10%"><b>0</b></td><td>
+Маска режима создания файла успешно изменена или операнд <b>маска</b> не указан.
+</td></tr>
+<tr><td><b>&gt;0</b></td><td>
+Произошла ошибка.</td></tr>
+</tbody></table>
+
+<h2>АТРИБУТЫ</h2>
+
+<p>Описание следующих атрибутов см. на странице справочного руководства
+<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>:</p>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWcsu</td></tr>
+</tbody></table>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=chmod&amp;category=1"><b>chmod(1)</b></a>,
+	<a href="/man.shtml?topic=csh&amp;category=1"><b>csh(1)</b></a>,
+	<a href="/man.shtml?topic=ksh&amp;category=1"><b>ksh(1)</b></a>,
+	<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>,
+	<a href="/man.shtml?topic=chmod&amp;category=2"><b>chmod(2)</b></a>,
+	<a href="/man.shtml?topic=creat&amp;category=2"><b>creat(2)</b></a>,
+	<a href="/man.shtml?topic=umask&amp;category=2"><b>umask(2)</b></a>,
+	<a href="/man.shtml?topic=profile&amp;category=4"><b>profile(4)</b></a>,
+	<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>,
+	<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>
+</dd></dl>
+
+<p align="center">Последнее изменение: 13 марта 1998 года</p>
+
+<p align="center"><font size="-2">
+Copyright © 2002 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="umask" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

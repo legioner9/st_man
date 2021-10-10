@@ -1,0 +1,438 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN raid (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, raid"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="raid" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">raid (4)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=raid&amp;category=4&amp;russian=0"><u>raid</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li><font color="#555555">Ключ <a href="/keywords/raid.html"><u>raid</u></a> обнаружен в базе ключевых слов.</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>raid(4)</h1></td>
+<td><h2 align="center">Руководство по интерфейсам ядра FreeBSD</h2></td>
+<td><h1 align="right">raid(4)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+<p><b>raid</b> - драйвер диска RAIDframe</p>
+
+<h2><a name="synopsis">СИНТАКСИС</a></h2>
+
+<dl><dt></dt><dd>
+<tt>device raidframe</tt>
+</dd></dl>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<p>Драйвер <b>raid</b> обеспечивает поддержку RAID-массивов уровней 0, 1, 4 и 5 
+(и других!) в FreeBSD. Это руководство предполагает, что читатель хотя бы
+немного знаком с RAID-массивами и соответствующей терминологией. Также предполагается,
+что читатель знает, как конфигурировать диски и псевдоустройства в ядрах,
+как генерировать ядра и как разбивать диски на разделы.</p>
+
+<p>Устройство RAIDframe поддерживает несколько уровней RAID, в том числе:</p>
+<dl>
+<dt><b>RAID 0</b></dt>
+<dd>обеспечивает простое разбиение данных на полосы, распределенные по
+компонентам массива.</dd>
+<dt><b>RAID 1</b></dt>
+<dd>обеспечивает зеркалирование.</dd>
+<dt><b>RAID 4</b></dt>
+<dd>обеспечивает разбиение данных на полосы по компонентам, с сохранением 
+информации о четности на выделенном диске (в данном случае, на последнем компоненте
+массива).</dd>
+<dt><b>RAID 5</b></dt>
+<dd>обеспечивает разбиение данных на полосы по компонентам, с распределением 
+информации о четности по всем компонентам.</dd>
+</dl>
+
+<p>Драйвер RAIDframe поддерживает множество и других уровней RAID,
+включая <i>проверку четности</i> (Even-Odd parity), RAID уровня 5 с 
+rotated sparing, <i>цепочной декластеризацией</i> (chained declustering) 
+и <i>декластеризацией с чередованием</i> (interleaved declustering). Подробнее
+об этих различных конфигурациях RAID читатель может узнать в документации RAIDframe,
+указанной в разделе <a href="#history">ИСТОРИЯ</a>.</p>
+
+<p>В зависимости от сконфигурированного <i>уровня паритета</i> (parity level), драйвер
+устройства может обрабатывать сбои дисков-компонентов. Количество допустимых
+сбоев зависит от выбранного уровня паритета. Если драйвер может справиться со
+сбоем диска, и этот сбой происходит, то система работает в 
+"деградированном режиме". В этом режиме все недостающие данные необходимо 
+реконструировать на основе данных и информации о четности, представленных в
+других компонентах массива.	Это приводит к замедлению доступа к данным, но
+означает, что сбой не вызывает полную остановку системы.</p>
+
+<p>Драйвер RAID поддерживает и требует использования "меток компонентов" (component
+labels). <i>Метка компонента</i> содержит важную информацию о компоненте, включая
+указанный пользователем серийный номер, строку и столбец для этого компонента в
+наборе RAID, и являются ли данные (и информация о четности) на компоненте 
+"чистыми". Если драйвер определяет, что метки существенно не согласованы друг с другом
+(например, не совпадает два или более серийных номера) или что метка компонента
+не соответствует его месту в наборе (например, метка компонента утверждает, что
+он является третьим в 6-дисковом наборе, но в RAID-массиве он является третьим в
+5-дисковом наборе), то устройство не будет сконфигурировано. Если драйвер определяет,
+что некорректной, видимо, является метка ровно одного компонента, а RAID-набор
+сконфигурирован как способный продолжать работу при сбое одного компонента,
+то RAID-набор будет сконфигурирован, не компонент с некорректной меткой будет
+помечен как сбойный (failed), и RAID-набор начнет работать в деградированном режиме.
+Если все компоненты согласованы между собой, RAID-набор будет нормально
+сконфигурирован.</p>
+
+<p>Метки компонентов также используются для поддержки автоматического выявления
+и конфигурирования RAID-наборов. RAID-набор можно пометить как автоконфигурируемый,
+и тогда он будет конфигурироваться автоматически в процессе загрузки ядра.
+Файловые системы на RAID-наборе, который конфигурируется автоматически, также пригодны
+для использования в качестве корневой файловой системы. В настоящее время 
+имеется только ограниченная поддержка (на архитектурах <b>alpha</b> и <b>pmax</b>)
+загрузки ядра непосредственно с набора RAID 1, а загрузка с любых других RAID-наборов
+вообще не поддерживается. Для использования RAID-набора в качестве корневой файловой
+системы ядро обычно получается с небольшого не-RAID раздела, после чего для
+корневой файловой системы можно использовать любой автоматически конфигурируемый
+RAID-набор. Дополнительную информацию об автоматическом конфигурировании RAID-наборов
+см. на странице справочного руководства <a href="/man.shtml?topic=raidctl&amp;category=8"><b>raidctl(8)</b></a>.</p>
+
+<p>Драйвер поддерживает "горячее резервирование": подключенные диски, не используемые
+активно в существующей файловой системе. При сбое диска, драйвер может пересоздать
+сбойный диск на диске горячей замены или обратно на замененном диске. Если допускается
+горячая замена компонентов, можно удалить сбойный диск, установить новый вместо него,
+и скопировать данные обратно. Операция <i>обратного копирования</i> (copyback), как
+следует из ее названия, будет копировать реконструированные данные с диска горячего
+резервирования на ранее сбойный (а теперь - замененный) диск. Диски для горячего
+резервирования тоже можно добавлять на ходу с помощью 
+<a href="/man.shtml?topic=raidctl&amp;category=8"><b>raidctl(8)</b></a>.</p>
+
+<p>Если компонент не может быть выявлен при конфигурировании устройства RAID,
+этот компонент просто помечается как сбойный (failed).</p>
+
+<p>Пользовательская утилита для выполнения всех действий по конфигурированию raid
+и других действий с набором&nbsp;- <b>raidctl(8)</b>. Самое главное, что
+утилиту <a href="/man.shtml?topic=raidctl&amp;category=8"><b>raidctl(8)</b></a> с опцией <b>-i</b> необходимо
+использовать для инициализации всех RAID-наборов. В частности, эта инициализация
+включает пересоздание данных о четности. Это пересоздание данных о четности
+также необходимо, когда новое устройство RAID запускается впервые или после
+не чистой остановки RAID-устройства. Указывая опцию <b>-P</b> утилиты <b>raidctl(8)</b> 
+и выполняя это перевычисление всех данных о четности перед выполнением команд 
+<a href="/man.shtml?topic=fsck&amp;category=8"><b>fsck(8)</b></a> или <a href="/man.shtml?topic=newfs&amp;category=8"><b>newfs(8)</b></a>, 
+можно гарантировать целостность файловой системы и данных о четности. Стоит повторить,
+что перевычисленые данных о четности обязательно перед созданием или использованием
+любой файловой системы на устройстве RAID. Если данные четности некорректны, нельзя
+будет правильно восстановить недостающие данные.</p>
+
+<p>Уровни RAID можно комбинировать иерархически. Например, устройство RAID 0 
+может состоять из нескольких устройств RAID 5 (которые, в свою очередь, могут состоять
+из физических дисков или любых других устройств RAID).</p>
+
+<p>Для нормального функционирования RAID-устройства важно, чтобы диски были жестко
+привязаны к соответствующим адресам (т.е. не оставались в "свободном плавании", в
+результате которого диск с идентификатором SCSI ID 4 может оказаться устройством
+<b>/dev/da0c</b>). Это верно для всех типов дисков, включая IDE, SCSI и т.п. 
+Для дисков IDE используйте опцию <b>ATAPI_STATIC_ID</b> в файле конфигурации ядра.
+Для SCSI подключать устройства следует в порядке, соответствующем их ID. 
+Примеры применения этого подхода см. на странице справочного руководства 
+<a href="/man.shtml?topic=cam&amp;category=4"><b>cam(4)</b></a>. Причина фиксации адресов устройств следующая:
+Рассмотрим систему с тремя SCSI-дисками, имеющими SCSI ID 4, 5 и 6, 
+и соответствующими компонентам <b>/dev/da0e</b>, <b>/dev/da1e</b> и <b>/dev/da2e</b>
+набора типа RAID 5. Если диск с SCSI ID 5 сбоит и система перегружается,
+старое устройство <b>/dev/da2e</b> станет доступно как <b>/dev/da1e</b>. Драйвер RAID
+может выявить, что позиции компонентов изменились, и не позволит нормально 
+сконфигурировать набор. Если адреса устройств жестко "зашиты", однако, драйвер RAID
+выявит, что недоступен средний компонент, и сможет запустить набор RAID 5 в
+деградированном режиме. Учтите, что коду автоматического выявления и конфигурирования
+не важно, где находятся компоненты. Код автоконфигурирования правильно сконфигурирует
+устройство даже после перемещения любого количества компонентов.</p>
+
+<p>Первый шаг при использовании драйвера <b>raid</b> - проверить, что он правильно
+сконфигурирован в ядре.	Это делается с помощью строки следующего вида:</p>
+<pre>	   pseudo-device   raidframe	  # Дисковое устройство RAIDframe
+</pre>
+<p>в файле конфигурации ядра. Количество устройств указывать не нужно, поскольку
+драйвер автоматически создаст и сконфигурирует новые экземпляры устройств при
+необходимости. Для включения автоматического выявления и конфигурирования
+компонентов RAID-наборов, просто добавьте строку:</p>
+<pre>	   options    RAID_AUTOCONFIG
+</pre>
+<p>в файл конфигурации ядра.</p>
+
+<p>Все разделы-компоненты должны быть типа <b>FS_BSDFFS</b> (например, 4.2BSD) или
+<b>FS_RAID</b>. Использование последнего типа настоятельно рекомендуется, и обязательно,
+если надо обеспечить автоматическое конфигурирование RAID-набора. Поскольку RAIDframe
+оставляет место для меток диска, компонентами RAID могут быть просто неформатированные
+диски (raw disks) или разделы, занимающие целый диск.</p>
+
+<p>Более детальное описание фактического использования устройства <b>raid</b> представлено
+на странице справочного руководства <a href="/man.shtml?topic=raidctl&amp;category=8"><b>raidctl(8)</b></a>. 
+Системному администратору настоятельно рекомендуется разобраться, какие шаги
+необходимо предпринять для пересоздания, копирования данных на замененный диск и 
+перевычисления информации о четности, до того, как произойдет сбой компонента.
+Неправильные действия при сбое компонента могут привести к потере данных.</p>
+
+<h2><a name="warnings">ПРЕДУПРЕЖДЕНИЯ</a></h2>
+
+<p>Некоторые уровни RAID (1, 4, 5, 6 и другие) могут защитить от потери данных
+при сбое одного компонента. Однако потеря двух компонентов системы RAID 4 или 5, 
+либо потеря одного компонента системы RAID 0 приводит к потере всей файловой
+системе на этом RAID-устройстве. RAID&nbsp;- <b>не замена</b> продуманной стратегии
+резервного копирования.</p>
+
+<p>Перевычисление четности <b>должно</b> выполняться в любой ситуации, когда есть
+шанс, что эти данные могут быть повреждены. К этим ситуациям относятся сбои системы
+или добавление ранее не использовавшегося RAID-устройства. Некорректная информация
+о четности приведет к катастрофе в случае любого сбоя компонента&nbsp;- лучше использовать
+RAID 0, и получить дополнительное место и выигрыш в скорости, чем хранить информацию о
+четности, но не обеспечивать ее корректность. Использование RAID 0 хотя бы не
+создает видимость повышенной защиты данных.</p>
+
+<h2><a name="files">ФАЙЛЫ</a></h2>
+<dl>
+<dt><b>/dev/raid*</b></dt>
+<dd>специальные файлы устройств raid.</dd>
+</dl>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+<dl>
+<dt></dt><dd>
+	<a href="/man.shtml?topic=config&amp;category=8"><b>config(8)</b></a>,
+	<a href="/man.shtml?topic=fsck&amp;category=8"><b>fsck(8)</b></a>,
+	<a href="/man.shtml?topic=mount&amp;category=8"><b>mount(8)</b></a>,
+	<a href="/man.shtml?topic=newfs&amp;category=8"><b>newfs(8)</b></a>,
+	<a href="/man.shtml?topic=raidctl&amp;category=8"><b>raidctl(8)</b></a>
+</dd></dl>
+
+<h2><a name="history">ИСТОРИЯ</a></h2>
+
+<p>Драйвер <b>raid</b> в ОС FreeBSD - это портированный RAIDframe, механизм для
+быстрого прототипирования RAID-структур, разработанный сотрудниками Parallel
+Data Laboratory университета Карнеги-Мэллона (Carnegie Mellon University&nbsp;- CMU).
+RAIDframe, в том виде, как он исходно распространялся CMU, предоставляет RAID-симулятор
+для ряда различных архитектур, а также драйвер устройства пользовательского
+уровня и драйвер устройства ядра для Digital Unix. Драйвер <b>raid</b>&nbsp;- версия
+уровня ядра механизма RAIDframe v1.1, основанная на портированной Грэгом Остером (Greg
+Oster) в ОС NetBSD версии RAIDframe.</p>
+
+<p>Более полное описание внутреннего устройства и возможностей RAIDframe
+можно найти в статье "<b>RAIDframe: A Rapid Prototyping Tool for RAID
+Systems</b>", by William V. Courtright II, Garth Gibson, Mark Holland, LeAnn
+Neal Reilly, and Jim Zelenka, опубликованной Parallel Data Laboratory университета
+Карнеги-Мэллона. Драйвер <b>raid</b> впервые появился в ОС FreeBSD 4.4.</p>
+
+<h2><a name="copyright">АВТОРСКИЕ ПРАВА</a></h2>
+
+<p>Авторские права на RAIDframe (RAIDframe Copyright) следующие:</p>
+<pre>Copyright (c) 1994-1996 Carnegie-Mellon University.
+All rights reserved.
+
+Permission to use, copy, modify and distribute this software and
+its documentation is hereby granted, provided that both the copyright
+notice and this permission notice appear in all copies of the
+software, derivative works or modified versions, and any portions
+thereof, and that both notices appear in supporting documentation.
+
+CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
+CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND
+FOR ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
+
+Университет Carnegie Mellon требует от пользователей этого ПО пересылать
+по адресу:
+
+ Software Distribution Coordinator  или  Software.Distribution@CS.CMU.EDU
+ School of Computer Science
+ Carnegie Mellon University
+ Pittsburgh PA 15213-3890
+
+любые улучшения или расширения, которые они сделали, и предоставлять 
+университету права на дальнейшее распространение этих изменений.
+</pre>
+
+<p align="center">FreeBSD 4.9, 20 октября 2002 года</p>
+
+<p align="center"><font size="-2">Copyleft (no c) - Fuck copyright! 
+2004 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский
+язык</font></p>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="raid" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

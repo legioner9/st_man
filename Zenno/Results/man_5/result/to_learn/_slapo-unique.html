@@ -1,0 +1,448 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN slapo-unique (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, slapo-unique"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="slapo-unique" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">slapo-unique (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=slapo-unique&amp;category=5&amp;russian=0"><u>slapo-unique</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+slapo-unique - наложение обеспечения уникальности атрибутов для slapd
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+/usr/local/etc/openldap/slapd.conf
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Наложение обеспечения уникальности атрибутов может быть использовано с базами данных таких механизмов
+манипуляции данными, как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-bdb&amp;category=5">slapd-bdb</a></b>(5)
+
+для соблюдения уникальности значений некоторых или всех атрибутов в заданном диапазоне записей. По
+умолчанию этот диапазон соответствует всем объектам поддерева базы данных, для которой настраивается
+наложение обеспечения уникальности.
+<p>
+
+Для обеспечения уникальности при выполнении операций
+<b>add</b>,
+
+<b>modify</b>
+
+или
+<b>modrdn</b>
+
+осуществляется поиск по поддереву с целью проверки того, что значения всех атрибутов, присутствующих
+в этих операциях, являются уникальными в данном диапазоне. Например, если для атрибута
+<b>uid</b>
+
+была настроена проверка соблюдения уникальности, то по заданному поддереву будет осуществлён поиск
+других записей, содержащих то же самое значение в атрибуте
+<b>uid</b>.
+
+Если хотя бы одна запись будет найдена, запрос будет отклонен.
+</p><p>
+
+Этот поиск выполняется от имени rootdn целевой базы данных во избежание ограничений на просмотр всей
+требуемой информации со стороны ACL. Соответственно, в базе данных должно быть настроено rootdn.
+<a name="lbAE">&nbsp;</a>
+</p><h2>КОНФИГУРАЦИЯ</h2>
+
+Следующие директивы конфигурации
+<b>slapd.conf</b>
+
+применяются к наложению обеспечения уникальности атрибутов. Они должны указываться после директивы
+<b>overlay</b>.
+
+<dl compact="">
+<dt><b>unique_uri &lt;[strict ][ignore ]URI[URI...]...&gt;</b>
+
+</dt><dd>
+Задаёт базу поиска, атрибуты, диапазон и фильтр поиска для проверки уникальности. Внутри одной области
+ограничений могут быть заданы несколько URI для комплексного отбора объектов. Несколько директив
+<b>unique_uri</b>
+
+или атрибутов
+<b>olcUniqueURI</b>
+
+создадут независимые области ограничений, каждую со своим независимым списком URI и настройками ignore/strict.
+<p>
+Ключевые слова
+<b>strict</b>
+
+и
+<b>ignore</b>
+
+должны быть заключены в кавычки (") вместе с идущим следом URI.
+</p><p>
+Синтаксис LDAP URI является подмножеством синтаксиса, определённого в
+<b>RFC&nbsp;4516</b>,
+
+и представляет собой следующую форму:
+</p><p>
+<a href="ldap:///[base">ldap:///[base</a> dn]?[attributes...]?scope[?filter]
+</p><p>
+По умолчанию
+<b>base dn</b>
+
+соответствует контексту именования той базы данных, к которой применяется наложение. Определяемые явно
+base dn должны находиться внутри поддерева этого контекста именования.
+</p><p>
+Если не указан компонент
+<b>attributes</b>,
+
+URI применяется ко всем неоперационным атрибутам.
+</p><p>
+Компонент
+<b>scope</b>
+
+по существу является обязательным, поскольку диапазон поиска по умолчанию для LDAP URI -
+<b>base</b>,
+
+что не подходит для определения уникальности, так как в группе, состоящей из одного объекта,
+уникальность соблюдается всегда. Подходящие варианты поискового диапазона:
+<b>sub</b>
+
+(для поиска по поддереву) и
+<b>one</b>
+
+для поиска на один уровень ниже относительно базы поиска.
+</p><p>
+Задание компонента
+<b>filter</b>
+
+приведёт к тому, что область ограничений будет накладывать ограничения уникальности только на те
+объекты, которые соответствуют этому фильтру. Например, URI
+<b><a href="ldap:///?cn?sub?(sn=e*)">ldap:///?cn?sub?(sn=e*)</a></b>
+
+требует соблюдения уникальности значений атрибута
+<b>cn</b>
+
+для всех объектов поддерева базы данных, у которых значения атрибута
+<b>sn</b>
+
+начинаются на букву e.
+</p><p>
+Существует возможность обеспечить уникальность всех неоперационных атрибутов, за исключением тех,
+которые перечислены в URI, перед которым присутствует ключевое слово
+<b>ignore</b>.
+
+Если такая настройка не задана, значения всех неоперационных (не являющихся системными) атрибутов
+должны быть уникальны. Имейте ввиду, что в список
+<b>attributes</b>
+
+URI
+<b>ignore</b>
+
+в общем случае должны попасть атрибуты
+<b>objectClass</b>,
+
+<b>dc</b>,
+
+<b>ou</b>
+
+и
+<b>o</b>,
+
+поскольку, с одной стороны, их значения, скорее всего, не должны быть уникальными, а с другой, все
+они являются неоперационными атрибутами.
+</p><p>
+Существует возможность задать область ограничений со строгой проверкой уникальности, указав перед
+URI ключевое слово
+<b>strict.</b>
+
+По умолчанию проверка уникальности не распространяется на null-значения. Включение режима
+<b>strict</b>
+
+распространяет концепцию уникальности на null-значения, то есть в пределах поддерева только одному
+атрибуту будет разрешено иметь null-значение. Строгая проверка применяется ко всем URI в пределах
+одной области ограничений, но если задаётся несколько областей ограничений, то одни из них могут быть
+со строгой проверкой уникальности, а другие - нет.
+</p></dd></dl>
+<p>
+
+Нельзя одновременно задавать и URI, и устаревшие параметры конфигурации slapo-unique. Устаревшие
+параметры конфигурации управляют частями настроек единственной области ограничений в виде поддерева,
+при поиске по которому нельзя применить фильтрацию.
+</p><dl compact="">
+<dt><b>unique_base &lt;basedn&gt;</b>
+
+</dt><dd>
+Этот устаревший параметр конфигурации следует преобразовать в компонент URI
+<b>base dn</b>
+
+в приведённой выше директиве
+<b>unique_uri</b>.
+
+</dd><dt><b>unique_ignore &lt;attribute...&gt;</b>
+
+</dt><dd>
+Этот устаревший параметр конфигурации следует преобразовать в директиву
+<b>unique_uri</b>
+
+с ключевым словом
+<b>ignore</b>,
+
+как описано выше.
+</dd><dt><b>unique_attributes &lt;attribute...&gt;</b>
+
+</dt><dd>
+Этот устаревший параметр конфигурации следует преобразовать в компонент URI
+<b>attributes</b>
+
+директивы
+<b>unique_uri</b>,
+
+как описано выше.
+</dd><dt><b>unique_strict  &lt;attribute...&gt;</b>
+
+</dt><dd>
+Этот устаревший параметр конфигурации следует преобразовать в директиву
+<b>unique_uri</b>
+
+с ключевым словом
+<b>strict</b>,
+
+как описано выше.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ПРЕДОСТЕРЕЖЕНИЯ</h2>
+
+<p>
+
+<b>unique_uri</b>
+
+нельзя использовать совместно с конфигурацией в старом стиле, и наоборот. С помощью
+<b>unique_uri</b>
+
+можно реализовать всё то, что позволяла сделать старая система конфигурации.
+</p><p>
+
+В код наложения намеренно не включены атрибуты по умолчанию для URI
+<b>ignore <a href="ldap:///...">ldap:///...</a></b>,
+
+чтобы обеспечить максимальную гибкость при выполнении требований, специфичных для конкретных систем.
+</p><p>
+
+Репликация, а также операции с элементом управления
+<b>manageDsaIt</b>,
+
+позволяют обойти данное ограничение. Поэтому для поддержания уникальности значений в реплицируемом DIT
+важно, чтобы на всех серверах, принимающих и обрабатывающих операции записи, было настроено это наложение.
+<a name="lbAG">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt>/usr/local/etc/openldap/slapd.conf</dt><dd>
+конфигурационный файл slapd по умолчанию.
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-config&amp;category=5">slapd-config</a></b>(5).
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">КОНФИГУРАЦИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРЕДОСТЕРЕЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="slapo-unique" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

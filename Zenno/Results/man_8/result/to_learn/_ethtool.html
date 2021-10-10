@@ -1,0 +1,1065 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ethtool (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ethtool"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ethtool" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ethtool (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=ethtool&amp;category=8&amp;russian=0"><u>ethtool</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=ethtool&amp;category=8&amp;russian=2"><u>ethtool</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+ethtool - Отображает или позволяет изменить настройки сетевой карты
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>ethtool</b>
+
+<i>ethX</i>
+
+<p>
+<b>ethtool -h</b>
+
+</p><p>
+<b>ethtool -a</b>
+
+<i>ethX</i>
+
+</p><p>
+<b>ethtool -A</b>
+
+<i>ethX</i>
+
+
+[<b>autoneg</b>&nbsp;<b>on</b>|<b>off</b>]
+
+
+[<b>rx</b>&nbsp;<b>on</b>|<b>off</b>]
+
+
+[<b>tx</b>&nbsp;<b>on</b>|<b>off</b>]
+
+</p><p>
+<b>ethtool -c</b>
+
+<i>ethX</i>
+
+</p><p>
+<b>ethtool -C</b>
+
+<i>ethX</i>
+
+
+[<b>adaptive-rx</b>&nbsp;<b>on</b>|<b>off</b>]
+
+
+[<b>adaptive-tx</b>&nbsp;<b>on</b>|<b>off</b>]
+
+[<b>rx-usecs</b>
+
+<i>N</i>]
+
+[<b>rx-frames</b>
+
+<i>N</i>]
+
+[<b>rx-usecs-irq</b>
+
+<i>N</i>]
+
+[<b>rx-frames-irq</b>
+
+<i>N</i>]
+
+[<b>tx-usecs</b>
+
+<i>N</i>]
+
+[<b>tx-frames</b>
+
+<i>N</i>]
+
+[<b>tx-usecs-irq</b>
+
+<i>N</i>]
+
+[<b>tx-frames-irq</b>
+
+<i>N</i>]
+
+[<b>stats-block-usecs</b>
+
+<i>N</i>]
+
+[<b>pkt-rate-low</b>
+
+<i>N</i>]
+
+[<b>rx-usecs-low</b>
+
+<i>N</i>]
+
+[<b>rx-frames-low</b>
+
+<i>N</i>]
+
+[<b>tx-usecs-low</b>
+
+<i>N</i>]
+
+[<b>tx-frames-low</b>
+
+<i>N</i>]
+
+[<b>pkt-rate-high</b>
+
+<i>N</i>]
+
+[<b>rx-usecs-high</b>
+
+<i>N</i>]
+
+[<b>rx-frames-high</b>
+
+<i>N</i>]
+
+[<b>tx-usecs-high</b>
+
+<i>N</i>]
+
+[<b>tx-frames-high</b>
+
+<i>N</i>]
+
+[<b>sample-interval</b>
+
+<i>N</i>]
+
+</p><p>
+<b>ethtool -g</b>
+
+<i>ethX</i>
+
+</p><p>
+<b>ethtool -G</b>
+
+<i>ethX</i>
+
+[<b>rx</b>
+
+<i>N</i>]
+
+[<b>rx-mini</b>
+
+<i>N</i>]
+
+[<b>rx-jumbo</b>
+
+<i>N</i>]
+
+[<b>tx</b>
+
+<i>N</i>]
+
+</p><p>
+<b>ethtool -i</b>
+
+<i>ethX</i>
+
+</p><p>
+<b>ethtool -d</b>
+
+<i>ethX</i>
+
+</p><p>
+<b>ethtool -e</b>
+
+<i>ethX</i>
+
+
+[<b>raw</b>&nbsp;<b>on</b>|<b>off</b>]
+
+[<b>offset</b>
+
+<i>N</i>]
+
+[<b>length</b>
+
+<i>N</i>]
+
+</p><p>
+<b>ethtool -k</b>
+
+<i>ethX</i>
+
+</p><p>
+<b>ethtool -K</b>
+
+<i>ethX</i>
+
+
+[<b>rx</b>&nbsp;<b>on</b>|<b>off</b>]
+
+
+[<b>tx</b>&nbsp;<b>on</b>|<b>off</b>]
+
+
+[<b>sg</b>&nbsp;<b>on</b>|<b>off</b>]
+
+</p><p>
+<b>ethtool -p</b>
+
+<i>ethX</i>
+
+<i>[</i>N<i>]</i>
+
+</p><p>
+<b>ethtool -r</b>
+
+<i>ethX</i>
+
+</p><p>
+<b>ethtool -S</b>
+
+<i>ethX</i>
+
+</p><p>
+<b>ethtool -t</b>
+
+<i>ethX</i>
+
+
+[<b>offline</b>|<b>online</b>]
+
+</p><p>
+<b>ethtool -s</b>
+
+<i>ethX</i>
+
+
+[<b>speed</b>&nbsp;<b>10</b>|<b>100</b>|<b>1000</b>]
+
+
+[<b>duplex</b>&nbsp;<b>half</b>|<b>full</b>]
+
+
+[<b>port</b>&nbsp;<b>tp</b>|<b>aui</b>|<b>bnc</b>|<b>mii</b>]
+
+
+[<b>autoneg</b>&nbsp;<b>on</b>|<b>off</b>]
+
+[<b>phyad</b>
+
+<i>N</i>]
+
+
+[<b>xcvr</b>&nbsp;<b>internal</b>|<b>external</b>]
+
+[<b>wol</b>&nbsp;<b>p</b>|<b>u</b>|<b>m</b>|<b>b</b>|<b>a</b>|<b>g</b>|<b>s</b>|<b>d</b>...]
+
+[<b>sopass</b>&nbsp;<i>xx</i><b>:</b><i>yy</i><b>:</b><i>zz</i><b>:</b><i>aa</i><b>:</b><i>bb</i><b>:</b><i>cc</i>]
+
+[<b>msglvl</b>
+
+<i>N</i>]
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<b>ethtool</b>
+
+используется для чтения, отображения настроек сетевого устройства и их настройки.
+<p>
+<i>ethX</i>
+
+является названием того сетевого устройства, которое настраивают или, для которого определяют
+характеристики. Обычно X=0,1,2..
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ПАРАМЕТРЫ</h2>
+
+При использовании большинства параметров для
+<b>ethtool</b>
+
+должно быть задано то название устройства, по отношению к которому предпринимаются действия.
+Для визуальной идентификации устройства используйте параметр <i>-p</i> (см.ниже).
+Например, следующая команда отображает текущие настройки сетевой карты eth0:
+<p>
+
+<i># ethtool eth0</i>
+<br>
+
+Settings for eth0 (Установки для eth0):
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Supported ports: [ TP MII ]<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Поддерживаемые порты)<br>
+<br>
+
+</p><p>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Supported link modes:   10baseT/Half 10baseT/Full<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Поддерживаемые режимы связи, тип носителя) <br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>                        100baseT/Half 100baseT/Full <br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Supports auto-negotiation: Yes<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Поддержка авто-согласования: Да)<br>
+<br>
+
+</p><p>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Advertised link modes:  10baseT/Half 10baseT/Full<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Оповещаемые режимы связи, тип носителя)<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>                        100baseT/Half 100baseT/Full <br>
+<br>
+
+</p><p>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Advertised auto-negotiation: Yes<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Оповещение авто-согласования: Да)<br>
+<br>
+
+</p><p>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Speed: 100Mb/s<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Текущая скорость приёма/передачи: 100 Mбит/с)<br>
+<br>
+
+</p><p>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Duplex: Full<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Режим двухстороннего обмена: Полный)<br>
+<br>
+
+</p><p>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Port: Twisted Pair<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Подключение: Витая пара)<br>
+<br>
+
+</p><p>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>PHYAD: 1<br>
+<br>
+
+</p><p>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Transceiver: internal<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Приёмо-передатчик: Внутренний)<br>
+<br>
+
+</p><p>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Auto-negotiation: on<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Режим авто-согласования: Вкл.)<br>
+<br>
+
+</p><p>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Supports Wake-on: puag<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Поддержка режимов "пробуждение": puag)<br>
+<br>
+
+</p><p>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Wake-on: g<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Текущий режим "пробуждение": g)<br>
+<br>
+
+</p><p>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Link detected: yes<br>
+<br>
+
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>(Обнаружение соединения: да)<br>
+<br>
+
+--------------
+</p><dl compact="">
+<dt><b>-h</b>
+
+</dt><dd>
+выводит краткую справку о команде и примерах параметров.
+</dd><dt><b>-a</b>
+
+</dt><dd>
+запрашивает и отображает настройки параметров ожидания для указанного сетевого устройства.
+Например:
+</dd></dl>
+<p>
+
+<i># ethtool -a eth0 </i>
+<br>
+
+Pause parameters for eth0:
+<br>
+
+(Параметры ожидания для eth0)
+<br>
+
+Autonegotiate:<tt>&nbsp;</tt>off<br>
+<br>
+
+(Авто-согласование: выкл.)
+<br>
+
+RX:<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>off<br>
+<br>
+
+TX:<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>off<br>
+</p><dl compact="">
+<dt><b>-A</b>
+
+</dt><dd>
+позволяет изменить параметры ожидания для указанного сетевого устройства.
+</dd><dt>
+<b>autoneg</b>&nbsp;<b>on</b>|<b>off</b>
+
+</dt><dd>
+Включает (on) или отключает (off) режим авто-согласования (аutonegotiation), если он является
+доступным. Режим авто-согласования предполагает, что сетевое устройство само определяет
+присутствует ли двусторонний обмен и сколько мегабит он составляет. Например:
+</dd></dl>
+<p>
+
+<i># ethtool -A eth0 autoneg on</i>
+</p><p>
+
+<i># ethtool -a eth0 </i>
+<br>
+
+Pause parameters for eth0:
+<br>
+
+Autonegotiate:<tt>&nbsp;</tt>on<br>
+<br>
+
+(Авто-согласование: вкл.)
+<br>
+
+RX:<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>on<br>
+<br>
+
+TX:<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>on<br>
+</p><p>
+</p><dl compact="">
+<dt>
+<b>rx</b>&nbsp;<b>on</b>|<b>off</b>
+
+</dt><dd>
+Включает (on) или отключает (off) режим ожидания RX, если он является доступным.
+</dd><dt>
+<b>tx</b>&nbsp;<b>on</b>|<b>off</b>
+
+</dt><dd>
+Включает (on) или отключает (off) режим ожидания TX, если он является доступным.
+</dd><dt><b>-c</b>
+
+</dt><dd>
+запрашивает и отображает настройки объединённых параметров для указанного сетевого устройства.
+</dd><dt><b>-C</b>
+
+</dt><dd>
+позволяет изменить настройки объединённых параметров для указанного сетевого устройства.
+</dd><dt><b>-g</b>
+
+</dt><dd>
+запрашивает и отображает настройки параметров rx/tx для указанного сетевого устройства.
+Например:
+</dd></dl>
+<p>
+
+<i># ethtool -g eth0</i>
+<br>
+
+Ring parameters for eth0:
+<br>
+
+Pre-set maximums (Максимально возможные):
+<br>
+
+RX:<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>1024<br>
+<br>
+
+RX Mini:<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0<br>
+<br>
+
+RX Jumbo:<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0<br>
+<br>
+
+TX:<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>1024<br>
+<br>
+
+Current hardware settings (Текущие аппаратные установки):
+<br>
+
+RX:<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>64<br>
+<br>
+
+RX Mini:<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0<br>
+<br>
+
+RX Jumbo:<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0<br>
+<br>
+
+TX:<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>64<br>
+</p><p>
+</p><dl compact="">
+<dt><b>-G</b>
+
+</dt><dd>
+позволяет изменить настройки rx/tx ring параметров для указанного сетевого устройства.
+</dd><dt><b>rx</b><i>&nbsp;N</i>
+
+</dt><dd>
+позволяет изменить число ring подключений N для Rx ring. Например:
+</dd></dl>
+<p>
+
+<i># ethtool -G eth0 rx 1024</i>
+</p><p>
+</p><dl compact="">
+<dt><b>rx-mini</b><i>&nbsp;N</i>
+
+</dt><dd>
+позволяет изменить число ring подключений N для Rx Mini ring.
+</dd><dt><b>rx-jumbo</b><i>&nbsp;N</i>
+
+</dt><dd>
+позволяет изменить число ring подключений N для Rx Jumbo ring.
+</dd><dt><b>tx</b><i>&nbsp;N</i>
+
+</dt><dd>
+позволяет изменить число ring подключений N для Tx ring.
+</dd><dt><b>-i</b>
+
+</dt><dd>
+отображает ассоциированный с указанным сетевым устройством драйвер и его версию.
+Например:
+</dd></dl>
+<p>
+
+<i># ethtool -i eth0</i>
+<br>
+
+driver: e100
+<br>
+
+version: 2.3.38-k1
+<br>
+
+firmware-version: N/A
+<br>
+
+bus-info: 02:08.0
+</p><p>
+</p><dl compact="">
+<dt><b>-d</b>
+
+</dt><dd>
+получает и отображает дамп состояния регистров для указанного сетевого устройства.
+</dd><dt><b>-e</b>
+
+</dt><dd>
+получает и отображает дамп EEPROM (микросхема памяти) для указанного сетевого устройства
+(если EEPROM есть в данном сетевом устройстве).
+Если возможен низкоуровневый доступ (raw on), тогда выводятся низкоуровневые данные EEPROM.
+Указание длины (<i>length</i>) и смещения (<i>offset</i>) в параметрах позволяют получать дампы с
+определённой порцией данных EEPROM. По умолчанию отображается полный дамп вхождений EEPROM.
+Например:
+</dd></dl>
+<p>
+
+<i># ethtool -e eth0 raw off offset 30 length 10</i>
+<br>
+
+Offset<tt>&nbsp;</tt>Value<br>
+<br>
+
+--------<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>-----<br>
+<br>
+
+30<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0x00<br>
+<br>
+
+31<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0x00<br>
+<br>
+
+32<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0x00<br>
+<br>
+
+33<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0x00<br>
+<br>
+
+34<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0x00<br>
+<br>
+
+35<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0x00<br>
+<br>
+
+36<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0x00<br>
+<br>
+
+37<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0x00<br>
+<br>
+
+38<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0x00<br>
+<br>
+
+39<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>0x00<br>
+</p><p>
+</p><dl compact="">
+<dt><b>-k</b>
+
+</dt><dd>
+запрашивает и отображает информацию по контрольным суммам для указанного сетевого устройства.
+</dd><dt><b>-K</b>
+
+</dt><dd>
+позволяет изменить параметры контроля сумм для указанного сетевого устройства.
+</dd><dt>
+<b>rx</b>&nbsp;<b>on</b>|<b>off</b>
+
+</dt><dd>
+Настраивает контроль сумм для RX, если эта функция поддерживается сетевым устройством.
+</dd><dt>
+<b>tx</b>&nbsp;<b>on</b>|<b>off</b>
+
+</dt><dd>
+Настраивает контроль сумм для TX, если эта функция поддерживается сетевым устройством.
+</dd><dt>
+<b>sg</b>&nbsp;<b>on</b>|<b>off</b>
+
+</dt><dd>
+Настраивает режим "произвольной упаковки" (scatter-gather), если он поддерживается
+сетевым устройством.
+</dd><dt><b>-p</b>
+
+</dt><dd>
+позволяет инициировать (пометить) данное сетевое устройство таким образом, чтобы
+вы смогли наиболее легко, визуально отличить его от таких же других, рядом работающих устройств.
+Обычно этот параметр включает постоянное мигание одного или нескольких световых LED-индикаторов
+заданного сетевого устройства. После определения устройства, прервать работу команды
+<i># ethtool -p ethX</i> можно нажав &lt;Ctrl+c&gt;.
+</dd><dt><b>N</b>
+
+</dt><dd>
+Задаёт для параметра <i>p</i> длительность (в секундах) выполнения мигания. Например, для 30 секунд: 
+</dd></dl>
+<p>
+
+<i># ethtool -p eth0 30</i>
+</p><p>
+</p><dl compact="">
+<dt><b>-r</b>
+
+</dt><dd>
+перезапуск режима авто-согласования, если он доступен.
+</dd><dt><b>-S</b>
+
+</dt><dd>
+запрашивает и отображает для указанного сетевого устройства NIC- и драйвер-специфичную статистику.
+</dd><dt><b>-t</b>
+
+</dt><dd>
+с помощью соответствующего сетевому устройству драйвера, выполняет его само-тестирование.
+Возможные следующие режимы тестирования:
+</dd><dt>
+<b>offline</b>|<b>online</b>
+
+</dt><dd>
+, которые определяют тип теста: 
+<b>offline</b>
+
+(по умолчанию) означает выполнять полный комплекс тестов и в случае необходимости 
+в течении тестирования прерывать текущие операции адаптера.
+<b>online</b>
+
+означает выполнять сокращенные тесты не прерывая текущие операции адаптера.
+</dd><dt><b>-s</b>
+
+</dt><dd>
+параметр позволяет изменить некоторые или все установки для указанного сетевого устройства.
+Все следующие параметры применяются в том случае, если параметр
+<b>-s</b>
+
+был указан.
+</dd><dt>
+<b>speed</b>&nbsp;<b>10</b>|<b>100</b>|<b>1000</b>
+
+</dt><dd>
+Устанавливает скорость обмена данными в Мбит/сек. Возможные значения скорости, поддерживаемые
+данным сетевым устройством можно определить, вызвав <i> ethtool ethX</i>.
+</dd><dt>
+<b>duplex</b>&nbsp;<b>half</b>|<b>full</b>
+
+</dt><dd>
+Устанавливает полу- или полный режим двусторонней передачи данных.
+</dd><dt>
+<b>port</b>&nbsp;<b>tp</b>|<b>aui</b>|<b>bnc</b>|<b>mii</b>
+
+</dt><dd>
+Указывает порт для устройства.
+</dd><dt>
+<b>autoneg</b>&nbsp;<b>on</b>|<b>off</b>
+
+</dt><dd>
+Настраивает режим авто-согласования, если он поддерживается данным устройством.
+Обычно этот режим включен, но в случае возникновения проблем с некоторыми устройствами,
+вы можете его отключить.
+<br>
+
+Таким образом, решить проблему перенастройки режима работы сетевого устройства, например,
+сразу во время загрузки операционной системы можно, создав исполняемый файл-скрипт
+<br>
+
+<i>/etc/rc.d/rc.local</i>,
+<br>
+
+содержащий, к примеру, такие настройки:
+<br>
+
+#!/bin/sh
+<br>
+
+/usr/sbin/ethtool -s eth0 speed 10 duplex full autoneg off
+<br>
+
+----------
+</dd><dt><b>phyad</b><i>&nbsp;N</i>
+
+</dt><dd>
+PHY адрес.
+</dd><dt>
+<b>xcvr</b>&nbsp;<b>internal</b>|<b>external</b>
+
+</dt><dd>
+Позволяет задать тип приёмо-передатчика. В настоящее время могут быть указаны только
+внутренний (internal) и внешний (external) тип. В будущем, с появлением новых типов,
+они также будут здесь добавлены.
+</dd><dt><b>wol</b>&nbsp;<b>p</b>|<b>u</b>|<b>m</b>|<b>b</b>|<b>a</b>|<b>g</b>|<b>s</b>|<b>d</b>...
+
+</dt><dd>
+Устанавливает различные параметры "Пробуждения" (Wake-on-LAN) устройства. Не все устройства
+поддерживают эту возможность. Аргументом для этого параметра является строка символов, задающая
+активизируемые функции "Пробуждения":
+<dl compact=""><dt></dt><dd>
+
+<dl compact="">
+<dt><b>p</b>
+
+</dt><dd>
+при физической активности
+</dd><dt><b>u</b>
+
+</dt><dd>
+при получении unicast сообщения
+</dd><dt><b>m</b>
+
+</dt><dd>
+при получении multicast сообщения
+</dd><dt><b>b</b>
+
+</dt><dd>
+при получении broadcast сообщения
+</dd><dt><b>a</b>
+
+</dt><dd>
+при получении ARP запроса
+</dd><dt><b>g</b>
+
+</dt><dd>
+при получении MagicPacket(tm)
+</dd><dt><b>s</b>
+
+</dt><dd>
+Активировать SecureOn(tm) пароль для MagicPacket(tm)
+</dd><dt><b>d</b>
+
+</dt><dd>
+Отключить все функции "Пробуждения". Этот параметр очищает все предыдущие настройки
+"Пробуждения".
+
+</dd></dl>
+</dd></dl>
+
+</dd><dt><b>sopass <i>xx</i><b>:</b><i>yy</i><b>:</b><i>zz</i><b>:</b><i>aa</i><b>:</b><i>bb</i><b>:</b><i>cc</i></b></dt><dd>
+Устанавливает SecureOn(tm) пароль. Аргумент для этого параметра должен состоять из 6 байт
+в формате ethernet MAC (<i>xx</i><b>:</b><i>yy</i><b>:</b><i>zz</i><b>:</b><i>aa</i><b>:</b><i>bb</i><b>:</b><i>cc</i>).
+</dd><dt><b>msglvl</b><i>&nbsp;N</i>
+
+</dt><dd>
+Установка уровня информативности сообщений драйвера. Может быть задан различный уровень
+для каждого драйвера.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+Не поддерживаются (поддерживаются только некоторые) абсолютно все сетевые устройства.
+<a name="lbAG">&nbsp;</a>
+<h2>АВТОР</h2>
+
+<b>ethtool</b>
+
+была написана David Miller.
+<p>
+Изменения и улучшения добавлены: 
+Jeff Garzik, 
+Tim Hockin,
+Jakub Jelinek,
+Andre Majorel,
+Eli Kupermann.
+<a name="lbAH">&nbsp;</a>
+</p><h2>AVAILABILITY</h2>
+
+<b>ethtool</b>
+
+доступна через Web на сайте SourceForge
+<a href="http://sourceforge.net/projects/gkernel/">http://sourceforge.net/projects/gkernel/</a>
+
+<a name="lbAI">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+оригинального файла на английском ethtool.8.gz (2457 байт от 22.10.2002)
+(+примеры) выполнен Aleksander N.Gorohovski &lt;<a href="mailto:angel@feht.dgtu.donetsk.ua">angel@feht.dgtu.donetsk.ua</a>&gt; 01.05.2006.
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAG">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAH">AVAILABILITY</a></dt><dd>
+</dd><dt><a href="#lbAI">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ethtool" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

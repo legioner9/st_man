@@ -1,0 +1,557 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-49925874-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-49925874-3');
+  </script>
+
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <title>Git - git-gui Documentation</title>
+
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+  <link rel="stylesheet" media="screen" href="/assets/application-3fb605347038cd5206e27d1f90829d3159e0de904e21be188a31e8f8c27c42a8.css">
+  <script src="/assets/modernize-b3ebe0c31c24f230dc62179d3e1030d2e57a53b1668d9382c0a27dbd44a94beb.js"></script>
+  <!--[if (gte IE 6)&(lte IE 8)]>
+  <script src="/javascripts/selectivizr-min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body id="documentation">
+
+  <div class="inner">
+    <header>
+
+  <a href="/"><img src="/images/logo@2x.png" alt="Git" height="46" width="110"></a>
+  <span id="tagline">--everything-is-local</span>
+  <script type="text/javascript">
+    var taglines = ["fast-version-control","everything-is-local","distributed-even-if-your-workflow-isnt","local-branching-on-the-cheap","distributed-is-the-new-centralized"];
+    var tagline = taglines[Math.floor(Math.random() * taglines.length)];
+    document.getElementById('tagline').innerHTML = '--' + tagline;
+  </script>
+  <form id="search" action="/search/results">
+    <input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text">
+  </form>
+  <div id="search-results"></div>
+
+</header>
+
+  </div> <!-- .inner -->
+
+    <div class="inner">
+      <div id="content-wrapper">
+        <aside class="sidebar">
+  <nav>
+    <ul>
+      <li>
+        <a href="/about">About</a>
+        <ul class="">
+          <li>
+            <a href="/about">Branching and Merging</a>
+          </li>
+          <li>
+            <a href="/about/small-and-fast">Small and Fast</a>
+          </li>
+          <li>
+            <a href="/about/distributed">Distributed</a>
+          </li>
+          <li>
+            <a href="/about/info-assurance">Data Assurance</a>
+          </li>
+          <li>
+            <a href="/about/staging-area">Staging Area</a>
+          </li>
+          <li>
+            <a href="/about/free-and-open-source">Free and Open Source</a>
+          </li>
+          <li>
+            <a href="/about/trademark">Trademark</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="active" href="/doc">Documentation</a>
+        <ul class="expanded">
+          <li>
+            <a class="active" href="/docs">Reference</a>
+          </li>
+          <li>
+            <a href="/book">Book</a>
+          </li>
+          <li>
+            <a href="/videos">Videos</a>
+          </li>
+          <li>
+            <a href="/doc/ext">External Links</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/downloads">Downloads</a>
+        <ul class="">
+          <li>
+            <a href="/downloads/guis">GUI Clients</a>
+          </li>
+          <li>
+            <a href="/downloads/logos">Logos</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/community">Community</a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+        <div id="content">
+          
+  <div id="reference-version">
+    <a class="dropdown-trigger" id="reference-languages-trigger" data-panel-id="l10n-versions-dropdown" href="#">
+  English ▾</a>
+<div class="dropdown-panel right" id="l10n-versions-dropdown">
+  <header>Localized versions of <strong>git-gui</strong> manual</header>
+  <ol class="reference-previous-versions">
+      <li>
+        <a href="/docs/git-gui/en"><span class="version">English</span>
+        </a>
+        </li>
+      <li>
+        <a href="/docs/git-gui/pt_BR"><span class="version">Português (Brasil)</span>
+        </a>
+        </li>
+  </ol>
+  <footer>
+    Want to read in your language or fix typos?<br> <a href="https://github.com/jnavila/git-manpages-l10n">You can help translate this page</a>.
+  </footer>
+</div>
+
+    <a class="dropdown-trigger" id="reference-topics-trigger" data-panel-id="topics-dropdown" href="#">Topics ▾</a>
+<div class="dropdown-panel right" id="topics-dropdown">
+  <div class="three-column">
+    <div class="column-left">
+      <h3 class="setup">Setup and Config</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git">git</a></li>
+  <li><a href="/docs/git-config">config</a></li>
+  <li><a href="/docs/git-help">help</a></li>
+  <li><a href="/docs/git-bugreport">bugreport</a></li>
+</ul>
+
+      <h3 class="projects">Getting and Creating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-init">init</a></li>
+  <li><a href="/docs/git-clone">clone</a></li>
+</ul>
+
+      <h3 class="snapshotting">Basic Snapshotting</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-add">add</a></li>
+  <li><a href="/docs/git-status">status</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-commit">commit</a></li>
+  <li><a href="/docs/git-notes">notes</a></li>
+  <li><a href="/docs/git-restore">restore</a></li>
+  <li><a href="/docs/git-reset">reset</a></li>
+  <li><a href="/docs/git-rm">rm</a></li>
+  <li><a href="/docs/git-mv">mv</a></li>
+</ul>
+
+      <h3 class="branching">Branching and Merging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-branch">branch</a></li>
+  <li><a href="/docs/git-checkout">checkout</a></li>
+  <li><a href="/docs/git-switch">switch</a></li>
+  <li><a href="/docs/git-merge">merge</a></li>
+  <li><a href="/docs/git-mergetool">mergetool</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-stash">stash</a></li>
+  <li><a href="/docs/git-tag">tag</a></li>
+  <li><a href="/docs/git-worktree">worktree</a></li>
+</ul>
+
+      <h3 class="sharing">Sharing and Updating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-fetch">fetch</a></li>
+  <li><a href="/docs/git-pull">pull</a></li>
+  <li><a href="/docs/git-push">push</a></li>
+  <li><a href="/docs/git-remote">remote</a></li>
+  <li><a href="/docs/git-submodule">submodule</a></li>
+</ul>
+
+    </div>
+    <div class="column-middle">
+      <h3 class="inspection">Inspection and Comparison</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-show">show</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-difftool">difftool</a></li>
+  <li><a href="/docs/git-range-diff">range-diff</a></li>
+  <li><a href="/docs/git-shortlog">shortlog</a></li>
+  <li><a href="/docs/git-describe">describe</a></li>
+</ul>
+
+      <h3 class="patching">Patching</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-cherry-pick">cherry-pick</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-rebase">rebase</a></li>
+  <li><a href="/docs/git-revert">revert</a></li>
+</ul>
+
+      <h3 class="debugging">Debugging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-bisect">bisect</a></li>
+  <li><a href="/docs/git-blame">blame</a></li>
+  <li><a href="/docs/git-grep">grep</a></li>
+</ul>
+
+      <h3 class="email">Email</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-am">am</a></li>
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-format-patch">format-patch</a></li>
+  <li><a href="/docs/git-send-email">send-email</a></li>
+  <li><a href="/docs/git-request-pull">request-pull</a></li>
+</ul>
+
+      <h3 class="external">External Systems</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-svn">svn</a></li>
+  <li><a href="/docs/git-fast-import">fast-import</a></li>
+</ul>
+
+      <h3 class="server-admin">Server Admin</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-daemon">daemon</a></li>
+  <li><a href="/docs/git-update-server-info">update-server-info</a></li>
+</ul>
+
+    </div>
+    <div class="column-right">
+      <h3 class="guides">Guides</h3>
+<ul class="unstyled">
+  <li><a href="/docs/gitattributes">gitattributes</a></li>
+  <li><a href="/docs/gitcli">Command-line interface conventions</a></li>
+  <li><a href="/docs/giteveryday">Everyday Git</a></li>
+  <li><a href="/docs/gitfaq">Frequently Asked Questions (FAQ)</a></li>
+  <li><a href="/docs/gitglossary">Glossary</a></li>
+  <li><a href="/docs/githooks">Hooks</a></li>
+  <li><a href="/docs/gitignore">gitignore</a></li>
+  <li><a href="/docs/gitmodules">gitmodules</a></li>
+  <li><a href="/docs/gitrevisions">Revisions</a></li>
+  <li><a href="/docs/gitsubmodules">Submodules</a></li>
+  <li><a href="/docs/gittutorial">Tutorial</a></li>
+  <li><a href="/docs/gitworkflows">Workflows</a></li>
+  <li><a href="/docs/git#_guides">All guides...</a></li>
+</ul>
+
+      <h3 class="admin">Administration</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-clean">clean</a></li>
+  <li><a href="/docs/git-gc">gc</a></li>
+  <li><a href="/docs/git-fsck">fsck</a></li>
+  <li><a href="/docs/git-reflog">reflog</a></li>
+  <li><a href="/docs/git-filter-branch">filter-branch</a></li>
+  <li><a href="/docs/git-instaweb">instaweb</a></li>
+  <li><a href="/docs/git-archive">archive</a></li>
+  <li><a href="/docs/git-bundle">bundle</a></li>
+</ul>
+
+      <h3 class="plumbing">Plumbing Commands</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-cat-file">cat-file</a></li>
+  <li><a href="/docs/git-check-ignore">check-ignore</a></li>
+  <li><a href="/docs/git-checkout-index">checkout-index</a></li>
+  <li><a href="/docs/git-commit-tree">commit-tree</a></li>
+  <li><a href="/docs/git-count-objects">count-objects</a></li>
+  <li><a href="/docs/git-diff-index">diff-index</a></li>
+  <li><a href="/docs/git-for-each-ref">for-each-ref</a></li>
+  <li><a href="/docs/git-hash-object">hash-object</a></li>
+  <li><a href="/docs/git-ls-files">ls-files</a></li>
+  <li><a href="/docs/git-ls-tree">ls-tree</a></li>
+  <li><a href="/docs/git-merge-base">merge-base</a></li>
+  <li><a href="/docs/git-read-tree">read-tree</a></li>
+  <li><a href="/docs/git-rev-list">rev-list</a></li>
+  <li><a href="/docs/git-rev-parse">rev-parse</a></li>
+  <li><a href="/docs/git-show-ref">show-ref</a></li>
+  <li><a href="/docs/git-symbolic-ref">symbolic-ref</a></li>
+  <li><a href="/docs/git-update-index">update-index</a></li>
+  <li><a href="/docs/git-update-ref">update-ref</a></li>
+  <li><a href="/docs/git-verify-pack">verify-pack</a></li>
+  <li><a href="/docs/git-write-tree">write-tree</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+    <a class="dropdown-trigger" id="reference-versions-trigger" data-panel-id="previous-versions-dropdown" href="#">
+    Version 2.33.0
+ ▾ </a>
+<span class="light">git-gui last updated in 2.33.0</span>
+<div class="dropdown-panel left" id="previous-versions-dropdown">
+  <header>Changes in the <strong>git-gui</strong> manual</header>
+  <ol class="reference-previous-versions">
+        <li class="no-change"><span>2.24.1 → 2.33.0 no changes</span></li>
+        <li>
+        <a href="/docs/git-gui/2.24.0"><span class="version">2.24.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">11/04/19</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.13.7 → 2.23.4 no changes</span></li>
+        <li>
+        <a href="/docs/git-gui/2.12.5"><span class="version">2.12.5</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">09/22/17</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.10.5 → 2.11.4 no changes</span></li>
+        <li>
+        <a href="/docs/git-gui/2.9.5"><span class="version">2.9.5</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">07/30/17</em>
+        </a>
+        </li>
+    <li>&nbsp;</li>
+    <!-- <li><a class="more" href="#">See more previous releases →</a></li> -->
+  </ol>
+  <footer>
+    <p>Check your version of git by running</p>
+    <code class="command">git --version</code>
+  </footer>
+</div>
+
+  </div>
+
+  <div id="main">
+    <div class="sect1">
+<h2 id="_name"><a class="anchor" href="#_name"></a>NAME</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>git-gui - A portable graphical interface to Git</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<pre class="content"><em>git gui</em> [&lt;command&gt;] [arguments]</pre>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_description"><a class="anchor" href="#_description"></a>DESCRIPTION</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A Tcl/Tk based graphical user interface to Git.  <em>git gui</em> focuses
+on allowing users to make changes to their repository by making
+new commits, amending existing ones, creating branches, performing
+local merges, and fetching/pushing to remote repositories.</p>
+</div>
+<div class="paragraph">
+<p>Unlike <em>gitk</em>, <em>git gui</em> focuses on commit generation
+and single file annotation and does not show project history.
+It does however supply menu actions to start a <em>gitk</em> session from
+within <em>git gui</em>.</p>
+</div>
+<div class="paragraph">
+<p><em>git gui</em> is known to work on all popular UNIX systems, Mac OS X,
+and Windows (under both Cygwin and MSYS).  To the extent possible
+OS specific user interface guidelines are followed, making <em>git gui</em>
+a fairly native interface for users.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commands"><a class="anchor" href="#_commands"></a>COMMANDS</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-gui.txt-blame"> <a class="anchor" href="#Documentation/git-gui.txt-blame"></a>blame </dt>
+<dd>
+<p>Start a blame viewer on the specified file on the given
+version (or working directory if not specified).</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-gui.txt-browser"> <a class="anchor" href="#Documentation/git-gui.txt-browser"></a>browser </dt>
+<dd>
+<p>Start a tree browser showing all files in the specified
+commit.  Files selected through the
+browser are opened in the blame viewer.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-gui.txt-citool"> <a class="anchor" href="#Documentation/git-gui.txt-citool"></a>citool </dt>
+<dd>
+<p>Start <em>git gui</em> and arrange to make exactly one commit before
+exiting and returning to the shell.  The interface is limited
+to only commit actions, slightly reducing the application’s
+startup time and simplifying the menubar.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-gui.txt-version"> <a class="anchor" href="#Documentation/git-gui.txt-version"></a>version </dt>
+<dd>
+<p>Display the currently running version of <em>git gui</em>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-gui.txt-codegitguiblameMakefilecode"> <a class="anchor" href="#Documentation/git-gui.txt-codegitguiblameMakefilecode"></a><code>git gui blame Makefile</code> </dt>
+<dd>
+<p>Show the contents of the file <em>Makefile</em> in the current
+working directory, and provide annotations for both the
+original author of each line, and who moved the line to its
+current location.  The uncommitted file is annotated, and
+uncommitted changes (if any) are explicitly attributed to
+<em>Not Yet Committed</em>.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-gui.txt-codegitguiblamev0998Makefilecode"> <a class="anchor" href="#Documentation/git-gui.txt-codegitguiblamev0998Makefilecode"></a><code>git gui blame v0.99.8 Makefile</code> </dt>
+<dd>
+<p>Show the contents of <em>Makefile</em> in revision <em>v0.99.8</em>
+and provide annotations for each line.  Unlike the above
+example the file is read from the object database and not
+the working directory.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-gui.txt-codegitguiblame--line100Makefilecode"> <a class="anchor" href="#Documentation/git-gui.txt-codegitguiblame--line100Makefilecode"></a><code>git gui blame --line=100 Makefile</code> </dt>
+<dd>
+<p>Loads annotations as described above and automatically
+scrolls the view to center on line <em>100</em>.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-gui.txt-codegitguicitoolcode"> <a class="anchor" href="#Documentation/git-gui.txt-codegitguicitoolcode"></a><code>git gui citool</code> </dt>
+<dd>
+<p>Make one commit and return to the shell when it is complete.
+This command returns a non-zero exit code if the window was
+closed in any way other than by making a commit.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-gui.txt-codegitguicitool--amendcode"> <a class="anchor" href="#Documentation/git-gui.txt-codegitguicitool--amendcode"></a><code>git gui citool --amend</code> </dt>
+<dd>
+<p>Automatically enter the <em>Amend Last Commit</em> mode of
+the interface.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-gui.txt-codegitguicitool--nocommitcode"> <a class="anchor" href="#Documentation/git-gui.txt-codegitguicitool--nocommitcode"></a><code>git gui citool --nocommit</code> </dt>
+<dd>
+<p>Behave as normal citool, but instead of making a commit
+simply terminate with a zero exit code. It still checks
+that the index does not contain any unmerged entries, so
+you can use it as a GUI version of <a href="/docs/git-mergetool">git-mergetool[1]</a></p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-gui.txt-codegitcitoolcode"> <a class="anchor" href="#Documentation/git-gui.txt-codegitcitoolcode"></a><code>git citool</code> </dt>
+<dd>
+<p>Same as <code>git gui citool</code> (above).</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-gui.txt-codegitguibrowsermaintcode"> <a class="anchor" href="#Documentation/git-gui.txt-codegitguibrowsermaintcode"></a><code>git gui browser maint</code> </dt>
+<dd>
+<p>Show a browser for the tree of the <em>maint</em> branch.  Files
+selected in the browser can be viewed with the internal
+blame viewer.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_see_also"><a class="anchor" href="#_see_also"></a>SEE ALSO</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-gui.txt-ahrefdocsgitkgitk1a"> <a class="anchor" href="#Documentation/git-gui.txt-ahrefdocsgitkgitk1a"></a><a href="/docs/gitk">gitk[1]</a> </dt>
+<dd>
+<p>The Git repository browser.  Shows branches, commit history
+and file differences.  gitk is the utility started by
+<em>git gui</em>'s Repository Visualize actions.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_other"><a class="anchor" href="#_other"></a>Other</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>git gui</em> is actually maintained as an independent project, but stable
+versions are distributed as part of the Git suite for the convenience
+of end users.</p>
+</div>
+<div class="paragraph">
+<p>The official repository of the <em>git gui</em> project can be found at:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>https://github.com/prati0100/git-gui.git/</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git"><a class="anchor" href="#_git"></a>GIT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Part of the <a href="/docs/git">git[1]</a> suite</p>
+</div>
+</div>
+</div>
+  </div>
+
+        </div>
+      </div>
+      <footer>
+  <div class="site-source">
+    <a href="/site">About this site</a><br>
+    Patches, suggestions, and comments are welcome.
+  </div>
+  <div class="sfc-member">
+    Git is a member of <a href="/sfc">Software Freedom Conservancy</a>
+  </div>
+</footer>
+
+<script src="/assets/application-8f00caf205cd147207c24e44516f18312442fd845fad0725e748f19cad311d0d.js"></script>
+
+    </div>
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

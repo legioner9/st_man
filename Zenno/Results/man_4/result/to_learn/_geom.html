@@ -1,0 +1,464 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN geom (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, geom"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="geom" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">geom (4)</font><hr><li> <a href="/man.shtml?topic=geom&amp;category=4&amp;russian=1"><u>geom</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=geom&amp;category=4&amp;russian=0"><u>geom</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=geom&amp;category=8&amp;russian=1"><u>geom</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/geom.html"><u>geom</u></a> обнаружен в базе ключевых слов.</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>geom(4)</h1></td>
+<td><h2 align="center">Руководство по интерфейсам ядра FreeBSD</h2></td>
+<td><h1 align="right">geom(4)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+<p>GEOM -- модульный механизм преобразования запросов дискового ввода-вывода.</p>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+<p>Механизм GEOM (GEOM framework) предоставляет инфраструктуру, в которой "классы"
+могут выполнять преобразования запросов дискового ввода-вывода по пути от ядра
+до драйверов устройств и обратно.</p>
+
+<p>Преобразования в контексте GEOM могут быть в диапазоне от простого геометрического
+перемещения, выполняемого в типичных модулях разбиения диска на разделы 
+(disk partitioning modules) по алгоритмам RAID, и множественного разрешения имени
+устройства, до полной криптографической защиты сохраняемых данных.</p>
+
+<p>По сравнению с традиционным "управлением томами", GEOM отличается от большинства, а,
+в некоторых случаях, и всех прежних реализаций следующими характеристиками:</p>
+
+<ul>
+<li>Механизм GEOM - расширяемый. Написать новый класс преобразований - просто до
+тривиальности, и он станет полноправным компонентом механизма. Если кому-то по
+некоторой причине захочется монтировать дисковые пакеты IBM MVS, создать класс,
+распознающий и конфигурирующий их <i>виртуальное содержание</i> (VTOC information),
+будет элементарно.</li>
+
+<li>Механизм GEOM не привязан к определенной топологии. Большинство реализаций
+управления томами очень строго определяют возможное взаимодействие классов, и очень 
+часто предоставляется единственная фиксированная иерархия, например: поддиск - сплетение -
+том.</li>
+</ul>
+
+<p>Расширяемость означает, что новые преобразования обрабатываются точно так же,
+как и существующие.</p>
+
+<p>Фиксированные иерархии - это плохо, потому что они не позволяют эффективно выразить
+требуемую конфигурацию. В представленной выше фиксированной иерархии нельзя зеркалировать
+два физических диска, а затем разбить зеркало на поддиски. Вместо этого, придется
+создавать поддиски на каждом физическом томе, а затем объединять их в зеркало, что
+дает намного более сложную физическую конфигурацию. Механизму GEOM, с другой стороны,
+безразличен порядок выполнения преобразований,&nbsp;- не допускаются только
+циклы в графе.</p>
+
+<h2>ТЕРМИНОЛОГИЯ и ТОПОЛОГИЯ</h2>
+<p>Механизм Geom - объектно-ориентированный, поэтому терминология 
+формально и семантически во многом позаимствована из словаря объектно-ориентированного
+подхода:</p>
+
+<p>"Класс", представленный структурой данных <b>g_class</b>, реализует один
+определенный вид преобразования. Типичные примеры - классы для раздела диска MBR,
+метки диска BSD и массива RAID5.</p>
+
+<p>Экземпляр класса называется "geom" и представляется структурой данных <b>g_geom</b>.
+В типичной системе FreeBSD на платформе i386 будет один <b>geom</b> класса MBR для
+каждого диска.</p>
+
+<p>"Поставщик", представленный структурой данных <b>g_provider</b>,&nbsp;- это внешний
+интерфейс, через который <b>geom</b> предоставляет свои услуги. Поставщик - это "аналог
+диска, представленный специальным файлом в каталоге <b>/dev</b>", другими словами,&nbsp;-
+логический диск. У всех поставщиков есть три основных свойства: имя, размер сектора 
+и общий размер.</p>
+
+<p>"Потребитель" - это "черный ход", через который <b>geom</b> подключается к поставщику 
+другого <b>geom</b>, и через который посылаются запросы ввода-вывода.</p>
+
+<p>Между этими сущностями есть следующие топологические взаимоотношения:</p>
+<ul>
+<li>У класса есть ноль или более экземпляров <b>geom</b>.</li>
+<li>Каждый <b>geom</b> является экземпляром ровно одного класса.</li>
+<li>У каждого <b>geom</b> есть ноль или более потребителей.</li>
+<li>У каждого <b>geom</b> есть ноль или более поставщиков.</li>
+<li>Потребитель может быть подключен к одному поставщику или не подключен вообще.</li>
+<li>К поставщику может быть подключено сколько угодно потребителей.</li>
+</ul>
+
+<p>У всех объектов <b>geom</b> есть числовой ранг, используемый для выявления и предотвращения циклов в направленном ациклическом графе. Этот ранг присваивается 
+следующим образом:</p>
+<ol>
+<li>Объект <b>geom</b> без подключенных потребителей получает ранг 1</li>
+<li>Объект <b>geom</b> с подключенными потребителями получает ранг на единицу больше,
+чем максимальный ранг объектов <b>geoms</b>, к поставщикам которых подключены его потребители.</li>
+</ol>
+
+<h2>СПЕЦИАЛЬНЫЕ ТОПОЛОГИЧЕСКИЕ МАНЕВРЫ</h2>
+
+<p>Помимо непосредственного присоединения потребителя к поставщику и отключения,
+нарушающего связь, есть еще ряд специальных топологических маневров, упрощающих
+конфигурирование и увеличивающих общую гибкость.</p>
+
+<p><i>Проба</i> (TASTING) - это процесс, происходящий при создании нового класса или
+нового поставщика и дающий классу шанс автоматически сконфигурировать экземпляры
+для поставщиков, которые он распознает как свои. Типичный пример - класс разбиения диска
+на разделы MBR, который будет искать таблицу MBR в первом секторе и, если находит и
+успешно проверяет ее допустимость, будет создавать экземпляр <b>geom</b> для
+мультиплексирования в соответствии с содержимым MBR.</p>
+
+<p>Новый класс будет поочередно представляться всем существующим поставщикам, а новый
+поставщик&nbsp;- всем существующим классам.</p>
+
+<p>Что конкретно должен делать класс, определяя, надо ли ему принять представленного
+поставщика, не задается механизмом GEOM, но следующий набор вариантов точно имеет
+смысл:</p>
+<ul>
+<li>Проверить конкретные структуры данных на диске.</li>
+<li>Проверить свойства поставщика, например, размер сектора и размер носителя.</li>
+<li>Проверить значение ранга объекта <b>geom</b> поставщика.</li>
+<li>Проверить имя метода объекта <b>geom</b> поставщика.</li>
+</ul>
+
+<p><i>Отрыв</i> (ORPHANIZATION) - это процесс, с помощью которого поставщик удаляется,
+хотя потенциально еще используется.</p>
+
+<p>Когда объект <b>geom</b> отрывает поставщика, все последующие запросы ввода-вывода
+будут отвергаться ("bounce") поставщиком с кодом ошибки, который устанавливает объект 
+<b>geom</b>. Любые потребители, подключенные к поставщику, получат уведомление
+об отрыве, когда до них доберется цикл обработки событий, и в этом случае они могут
+выполнить соответствующее действие.</p>
+
+<p>Объект <b>geom</b>, возникший в результате обычной пробы, должен самоуничтожиться,
+если только он не может продолжать работу при отсутствии оторванного поставщика.
+Объекты <b>geom</b> типа секций диска должны поэтому самоуничтожиться, а объекты
+<b>geom</b> типа RAID5 или зеркала смогут продолжить работу, если только им хватает для
+этого оставшихся компонентов.</p>
+
+<p>Отрыв поставщика не обязательно приводит к немедленному изменению топологии: 
+присоединенные к нему потребители остаются присоединенными, открытые файлы - открытыми,
+а еще не выполненные запросы ввода-вывода - не выполненными.</p>
+
+<p>Типичный сценарий при этом такой:</p>
+<ul>
+<li>Драйвер устройства обнаруживает, что диск перестал работать и отрывает 
+соответствующего поставщика.</li>
+<li>Объекты <b>geom</b>, использующие этот диск, получают событие отрыва и, в свою очередь,
+отрывают своих поставщиков. Поставщики, к которым никто не присоединен, при этом
+обычно сразу самоликвидируются. Это процесс продолжается квази-рекурсивным образом, пока
+все соответствующие фрагменты дерева не узнают о сбое.</li>
+<li>Процесс распространения информации о сбое прекращается, когда достигает 
+объекта <b>geom_dev</b> наверху стека.</li>
+<li>Объект <b>geom_dev</b> вызовет <b>destroy_dev(9)</b>, чтобы остановить поступление
+запросов. Он будет ждать, пока все еще не выполненные запросы ввода-вывода (если
+они есть), не закончатся. Затем он явно все закроет (т.е. обнулит счетчики
+обращений), распространив это изменение по всему соответствующему поддереву.
+После этого он отключит и уничтожит свой объект <b>geom</b>.</li>
+<li>Объект <b>geom</b>, поставщик которого подключен, уничтожит поставщик,
+отключит и уничтожит его потребителей и, наконец, уничтожит его объект <b>geom</b>.</li>
+<li>Этот процесс продолжается дальше, пока не завершится очистка.</li>
+</ul>
+
+<p>Хотя такой подход кажется неоправданно вычурным (byzantine), он действительно
+обеспечивает максимальную гибкость и надежность обработки "исчезающих" устройств.</p>
+
+<p>Важно учитывать один абсолютно принципиальный нюанс: если драйвер устройства не
+завершит все запросы ввода-вывода, дерево не будет очищено (в оригинале - unravel).</p>
+
+<p><i>Порча</i> (SPOILING) - специальный случай отрыва, используемый для защиты от
+устаревания метаданных. Суть отражения будет проще понять на примере.</p>
+
+<p>Представьте себе диск, "da0", на базе которого <b>geom</b> класса MBR предоставляет
+секции "da0s1" и "da0s2", а на базе секции "da0s1" geom класса BSD предоставляет разделы
+от "da0s1a" до "da0s1e". Пусть объекты <b>geom</b> классов MBR и BSD были сконфигурированы
+автоматически на основе структур данных на носителях. Теперь представьте себе ситуацию,
+когда диск "da0" открыт на запись и эти структуры данных изменены или переписаны: теперь
+объекты <b>geom</b> будут работать с устаревшими метаданными, если только некая система
+уведомления не проинформирует их об этом.</p>
+
+<p>Чтобы избежать этой ситуации, когда происходит открытие устройства "da0" на запись,
+все подсоединенные потребители уведомляются об этом, и объекты <b>geom</b> вроде
+MBR и BSD, в результате, самоуничтожатся. Когда устройство "da0" снова будет
+закрыто, оно будет предлагаться для пробы и, если структуры данных для MBR 
+и BSD на диске еще есть, соответствующие объекты <b>geom</b> заново себя создадут.</p>
+
+<p>Теперь окончательное описание:</p>
+
+<p>Если был открыт любой файл, полный путь к которому проходит через модуль MBR 
+или BSD, этот модуль должен был быть открыт с установкой исключительного бита, что
+не позволяет в этом случае открывать устройство "da0" на запись, и наоборот,
+запрошенный исключительный бит не позволить открыть файл через объект <b>geom</b>
+класса MBR, пока устройство "da0" открыто на запись.</p>
+
+<p>Из этого также следует, что изменение размера открытых объектов <b>geom</b> 
+может быть выполнено только при их содействии.</p>
+
+<p>Наконец, порча происходит только когда счетчик количества записей с нулевого
+становится не нулевым, а повторная проба - только когда счетчик количества записей с 
+не нулевого становится нулевым.</p>
+
+<p><i>Вставка</i>/<i>удаление</i> (INSERT/DELETE) - это очень специальная операция,
+позволяющая создавать новый объект <b>geom</b> между потребителем и поставщиком,
+подсоединенными друг к другу, и снова удалять его.</p>
+
+<p>Чтобы понять необходимость этого, представьте себе поставщика, смонтированного
+как файловая система. Между потребителем объекта <b>geom</b> класса DEVFS и его
+поставщиком мы вставляем модуль зеркалирования, который конфигурируется с одной
+зеркальной копией и, следовательно, прозрачен для соответствующих запросов 
+ввода-вывода. Теперь можно сгенерировать зеркальную копию объекта <b>geom</b>,
+обеспечивающего зеркалирование, запросить синхронизацию и, наконец, 
+удалить первую зеркальную копию. Теперь мы, по сути, перенесли смонтированную 
+файловую систему с одного диска на другой, пока она использовалась. В этот
+момент объект <b>geom</b>, обеспечивающий зеркалирование, можно удалить&nbsp;-
+он выполнил свою функцию.</p>
+
+<p><i>Конфигурирование</i> (CONFIGURE) - это процесс выдачи инструкций администратором
+конкретному классу для создания экземпляра.	В данном случае, есть несколько способов
+выразить такое намерение: можно указать конкретного поставщика, с уровнем override,
+что вызовет, например, подсоединение модуля метки диска BSD к поставщику, который не
+показался подходящим в ходе пробы.</p>
+
+<p>Наконец, <i>ввод-вывод</i> (IO) - это причина, по которой все это вообще делается:
+эта операция связана с посылкой запросов ввода-вывода по графу.</p>
+
+<p><i>Запросы</i> ввода-вывода (I/O REQUESTS), представленные структурой <b>bio</b>,
+генерируются потребителем, ставятся на выполнение подсоединенным к нему поставщиком,
+и, когда будут выполнены, возвращаются потребителю.	Важно понимать, что структура
+<b>bio</b>, проходящая через поставщик некоторого объекта <b>geom</b> не "выходит
+с другой стороны". Даже простые преобразования, вроде выполняемых классами MBR и 
+BSD, будут клонировать структуру <b>bio</b>, изменять клон и ставить его на выполнение
+собственным потребителем. Учтите, что клонирование структуры <b>bio</b> не требует
+клонирования области фактических данных, указанной в запросе ввода-вывода.</p>
+
+<p>Всего механизм GEOM поддерживает четыре разных запроса ввода-вывода: <b>read</b>
+(чтение), <b>write</b> (запись), <b>delete</b> (удаление) и <b>get attribute</b>
+(получение атрибута).</p>
+
+<p>Назначение запросов чтения и записи понятно из названия.</p>
+
+<p>Удаление обозначает, что определенный диапазон данных больше не используется, и может
+быть стерт или освобожден, в зависимости от того, что поддерживает базовая технология
+хранения. Технологии вроде флэш-памяти могут решить стереть соответствующие блоки,
+прежде чем они снова будут выделены, а устройства с шифрованием могут заполнить диапазон
+случайными битами, чтобы уменьшить объем данных, по которым можно выполнить атаку.</p>
+
+<p>Важно понимать, что обозначение удаления - это не запрос, и нет никакой гарантии,
+что данные фактически будут стерты или сделаны недоступными, если только это не
+гарантируется конкретными объектами geom в графе. Если необходима семантика "безопасного
+удаления", необходимо добавить объект <b>geom</b>, преобразующий обозначение
+удаления в последовательность соответствующих запросов записи.</p>
+
+<p>Получение атрибута поддерживает проверку и обработку экстренных (out-of-band)
+атрибутов конкретного поставщика или пути. Атрибуты именуются текстовыми строками и
+будут описаны в соответствующем разделе далее.</p>
+
+<p>(продолжение последует, когда у автора отдохнут мозги и пальцы)</p>
+
+<h2><a name="history">ХРОНОЛОГИЯ</a></h2>
+
+<p>Это программное обеспечение было разработано для проекта FreeBSD Полом-Хёнингом
+Кампом (Poul-Henning Kamp) и лабораторией NAI Labs, исследовательским подразделением 
+по защите (Security Research Division) корпорации Network Associates, Inc.
+по контракту DARPA/SPAWAR N66001-01-C-8035 ("CBOSS"), в рамках исследовательской
+программы DARPA CHATS.</p>
+
+<p>Первым предшественником механизма GEOM была отвратительная поделка в Minix 1.2,
+которая никогда не распространялась. Ранняя попытка реализовать менее универсальную
+схему в ОС FreeBSD так и не закончилась успехом.</p>
+
+<h2><a name="authors">АВТОРЫ</a></h2>
+
+<p>Пол-Хёнинг Камп (Poul-Henning Kamp) &lt;phk@FreeBSD.org&gt;</p>
+
+<p align="center">FreeBSD 4.9, 27 марта 2002 года</p>
+
+<p align="center"><font size="-2">Copyleft (no c) - Fuck copyright! 
+2004 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="geom" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,718 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-49925874-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-49925874-3');
+  </script>
+
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <title>Git - git-sparse-checkout Documentation</title>
+
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+  <link rel="stylesheet" media="screen" href="/assets/application-3fb605347038cd5206e27d1f90829d3159e0de904e21be188a31e8f8c27c42a8.css">
+  <script src="/assets/modernize-b3ebe0c31c24f230dc62179d3e1030d2e57a53b1668d9382c0a27dbd44a94beb.js"></script>
+  <!--[if (gte IE 6)&(lte IE 8)]>
+  <script src="/javascripts/selectivizr-min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body id="documentation">
+
+  <div class="inner">
+    <header>
+
+  <a href="/"><img src="/images/logo@2x.png" alt="Git" height="46" width="110"></a>
+  <span id="tagline">--fast-version-control</span>
+  <script type="text/javascript">
+    var taglines = ["fast-version-control","everything-is-local","distributed-even-if-your-workflow-isnt","local-branching-on-the-cheap","distributed-is-the-new-centralized"];
+    var tagline = taglines[Math.floor(Math.random() * taglines.length)];
+    document.getElementById('tagline').innerHTML = '--' + tagline;
+  </script>
+  <form id="search" action="/search/results">
+    <input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text">
+  </form>
+  <div id="search-results"></div>
+
+</header>
+
+  </div> <!-- .inner -->
+
+    <div class="inner">
+      <div id="content-wrapper">
+        <aside class="sidebar">
+  <nav>
+    <ul>
+      <li>
+        <a href="/about">About</a>
+        <ul class="">
+          <li>
+            <a href="/about">Branching and Merging</a>
+          </li>
+          <li>
+            <a href="/about/small-and-fast">Small and Fast</a>
+          </li>
+          <li>
+            <a href="/about/distributed">Distributed</a>
+          </li>
+          <li>
+            <a href="/about/info-assurance">Data Assurance</a>
+          </li>
+          <li>
+            <a href="/about/staging-area">Staging Area</a>
+          </li>
+          <li>
+            <a href="/about/free-and-open-source">Free and Open Source</a>
+          </li>
+          <li>
+            <a href="/about/trademark">Trademark</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="active" href="/doc">Documentation</a>
+        <ul class="expanded">
+          <li>
+            <a class="active" href="/docs">Reference</a>
+          </li>
+          <li>
+            <a href="/book">Book</a>
+          </li>
+          <li>
+            <a href="/videos">Videos</a>
+          </li>
+          <li>
+            <a href="/doc/ext">External Links</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/downloads">Downloads</a>
+        <ul class="">
+          <li>
+            <a href="/downloads/guis">GUI Clients</a>
+          </li>
+          <li>
+            <a href="/downloads/logos">Logos</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/community">Community</a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+        <div id="content">
+          
+  <div id="reference-version">
+    <a class="dropdown-trigger" id="reference-languages-trigger" data-panel-id="l10n-versions-dropdown" href="#">
+  English ▾</a>
+<div class="dropdown-panel right" id="l10n-versions-dropdown">
+  <header>Localized versions of <strong>git-sparse-checkout</strong> manual</header>
+  <ol class="reference-previous-versions">
+      <li>
+        <a href="/docs/git-sparse-checkout/en"><span class="version">English</span>
+        </a>
+        </li>
+  </ol>
+  <footer>
+    Want to read in your language or fix typos?<br> <a href="https://github.com/jnavila/git-manpages-l10n">You can help translate this page</a>.
+  </footer>
+</div>
+
+    <a class="dropdown-trigger" id="reference-topics-trigger" data-panel-id="topics-dropdown" href="#">Topics ▾</a>
+<div class="dropdown-panel right" id="topics-dropdown">
+  <div class="three-column">
+    <div class="column-left">
+      <h3 class="setup">Setup and Config</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git">git</a></li>
+  <li><a href="/docs/git-config">config</a></li>
+  <li><a href="/docs/git-help">help</a></li>
+  <li><a href="/docs/git-bugreport">bugreport</a></li>
+</ul>
+
+      <h3 class="projects">Getting and Creating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-init">init</a></li>
+  <li><a href="/docs/git-clone">clone</a></li>
+</ul>
+
+      <h3 class="snapshotting">Basic Snapshotting</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-add">add</a></li>
+  <li><a href="/docs/git-status">status</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-commit">commit</a></li>
+  <li><a href="/docs/git-notes">notes</a></li>
+  <li><a href="/docs/git-restore">restore</a></li>
+  <li><a href="/docs/git-reset">reset</a></li>
+  <li><a href="/docs/git-rm">rm</a></li>
+  <li><a href="/docs/git-mv">mv</a></li>
+</ul>
+
+      <h3 class="branching">Branching and Merging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-branch">branch</a></li>
+  <li><a href="/docs/git-checkout">checkout</a></li>
+  <li><a href="/docs/git-switch">switch</a></li>
+  <li><a href="/docs/git-merge">merge</a></li>
+  <li><a href="/docs/git-mergetool">mergetool</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-stash">stash</a></li>
+  <li><a href="/docs/git-tag">tag</a></li>
+  <li><a href="/docs/git-worktree">worktree</a></li>
+</ul>
+
+      <h3 class="sharing">Sharing and Updating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-fetch">fetch</a></li>
+  <li><a href="/docs/git-pull">pull</a></li>
+  <li><a href="/docs/git-push">push</a></li>
+  <li><a href="/docs/git-remote">remote</a></li>
+  <li><a href="/docs/git-submodule">submodule</a></li>
+</ul>
+
+    </div>
+    <div class="column-middle">
+      <h3 class="inspection">Inspection and Comparison</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-show">show</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-difftool">difftool</a></li>
+  <li><a href="/docs/git-range-diff">range-diff</a></li>
+  <li><a href="/docs/git-shortlog">shortlog</a></li>
+  <li><a href="/docs/git-describe">describe</a></li>
+</ul>
+
+      <h3 class="patching">Patching</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-cherry-pick">cherry-pick</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-rebase">rebase</a></li>
+  <li><a href="/docs/git-revert">revert</a></li>
+</ul>
+
+      <h3 class="debugging">Debugging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-bisect">bisect</a></li>
+  <li><a href="/docs/git-blame">blame</a></li>
+  <li><a href="/docs/git-grep">grep</a></li>
+</ul>
+
+      <h3 class="email">Email</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-am">am</a></li>
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-format-patch">format-patch</a></li>
+  <li><a href="/docs/git-send-email">send-email</a></li>
+  <li><a href="/docs/git-request-pull">request-pull</a></li>
+</ul>
+
+      <h3 class="external">External Systems</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-svn">svn</a></li>
+  <li><a href="/docs/git-fast-import">fast-import</a></li>
+</ul>
+
+      <h3 class="server-admin">Server Admin</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-daemon">daemon</a></li>
+  <li><a href="/docs/git-update-server-info">update-server-info</a></li>
+</ul>
+
+    </div>
+    <div class="column-right">
+      <h3 class="guides">Guides</h3>
+<ul class="unstyled">
+  <li><a href="/docs/gitattributes">gitattributes</a></li>
+  <li><a href="/docs/gitcli">Command-line interface conventions</a></li>
+  <li><a href="/docs/giteveryday">Everyday Git</a></li>
+  <li><a href="/docs/gitfaq">Frequently Asked Questions (FAQ)</a></li>
+  <li><a href="/docs/gitglossary">Glossary</a></li>
+  <li><a href="/docs/githooks">Hooks</a></li>
+  <li><a href="/docs/gitignore">gitignore</a></li>
+  <li><a href="/docs/gitmodules">gitmodules</a></li>
+  <li><a href="/docs/gitrevisions">Revisions</a></li>
+  <li><a href="/docs/gitsubmodules">Submodules</a></li>
+  <li><a href="/docs/gittutorial">Tutorial</a></li>
+  <li><a href="/docs/gitworkflows">Workflows</a></li>
+  <li><a href="/docs/git#_guides">All guides...</a></li>
+</ul>
+
+      <h3 class="admin">Administration</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-clean">clean</a></li>
+  <li><a href="/docs/git-gc">gc</a></li>
+  <li><a href="/docs/git-fsck">fsck</a></li>
+  <li><a href="/docs/git-reflog">reflog</a></li>
+  <li><a href="/docs/git-filter-branch">filter-branch</a></li>
+  <li><a href="/docs/git-instaweb">instaweb</a></li>
+  <li><a href="/docs/git-archive">archive</a></li>
+  <li><a href="/docs/git-bundle">bundle</a></li>
+</ul>
+
+      <h3 class="plumbing">Plumbing Commands</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-cat-file">cat-file</a></li>
+  <li><a href="/docs/git-check-ignore">check-ignore</a></li>
+  <li><a href="/docs/git-checkout-index">checkout-index</a></li>
+  <li><a href="/docs/git-commit-tree">commit-tree</a></li>
+  <li><a href="/docs/git-count-objects">count-objects</a></li>
+  <li><a href="/docs/git-diff-index">diff-index</a></li>
+  <li><a href="/docs/git-for-each-ref">for-each-ref</a></li>
+  <li><a href="/docs/git-hash-object">hash-object</a></li>
+  <li><a href="/docs/git-ls-files">ls-files</a></li>
+  <li><a href="/docs/git-ls-tree">ls-tree</a></li>
+  <li><a href="/docs/git-merge-base">merge-base</a></li>
+  <li><a href="/docs/git-read-tree">read-tree</a></li>
+  <li><a href="/docs/git-rev-list">rev-list</a></li>
+  <li><a href="/docs/git-rev-parse">rev-parse</a></li>
+  <li><a href="/docs/git-show-ref">show-ref</a></li>
+  <li><a href="/docs/git-symbolic-ref">symbolic-ref</a></li>
+  <li><a href="/docs/git-update-index">update-index</a></li>
+  <li><a href="/docs/git-update-ref">update-ref</a></li>
+  <li><a href="/docs/git-verify-pack">verify-pack</a></li>
+  <li><a href="/docs/git-write-tree">write-tree</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+    <a class="dropdown-trigger" id="reference-versions-trigger" data-panel-id="previous-versions-dropdown" href="#">
+    Version 2.33.0
+ ▾ </a>
+<span class="light">git-sparse-checkout last updated in 2.33.0</span>
+<div class="dropdown-panel left" id="previous-versions-dropdown">
+  <header>Changes in the <strong>git-sparse-checkout</strong> manual</header>
+  <ol class="reference-previous-versions">
+        <li class="no-change"><span>2.33.0 no changes</span></li>
+        <li>
+        <a href="/docs/git-sparse-checkout/2.32.0"><span class="version">2.32.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+          </span>
+          <em class="date">06/06/21</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.28.1 → 2.31.1 no changes</span></li>
+        <li>
+        <a href="/docs/git-sparse-checkout/2.28.0"><span class="version">2.28.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">07/27/20</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.27.1 no changes</span></li>
+        <li>
+        <a href="/docs/git-sparse-checkout/2.27.0"><span class="version">2.27.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+          </span>
+          <em class="date">06/01/20</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.26.1 → 2.26.3 no changes</span></li>
+        <li>
+        <a href="/docs/git-sparse-checkout/2.26.0"><span class="version">2.26.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">03/22/20</em>
+        </a>
+        </li>
+    <li>&nbsp;</li>
+    <!-- <li><a class="more" href="#">See more previous releases →</a></li> -->
+  </ol>
+  <footer>
+    <p>Check your version of git by running</p>
+    <code class="command">git --version</code>
+  </footer>
+</div>
+
+  </div>
+
+  <div id="main">
+    <div class="sect1">
+<h2 id="_name"><a class="anchor" href="#_name"></a>NAME</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>git-sparse-checkout - Initialize and modify the sparse-checkout
+configuration, which reduces the checkout to a set of paths
+given by a list of patterns.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<pre class="content"><em>git sparse-checkout &lt;subcommand&gt; [options]</em></pre>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_description"><a class="anchor" href="#_description"></a>DESCRIPTION</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Initialize and modify the sparse-checkout configuration, which reduces
+the checkout to a set of paths given by a list of patterns.</p>
+</div>
+<div class="paragraph">
+<p>THIS COMMAND IS EXPERIMENTAL. ITS BEHAVIOR, AND THE BEHAVIOR OF OTHER
+COMMANDS IN THE PRESENCE OF SPARSE-CHECKOUTS, WILL LIKELY CHANGE IN
+THE FUTURE.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commands"><a class="anchor" href="#_commands"></a>COMMANDS</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-sparse-checkout.txt-emlistem"> <a class="anchor" href="#Documentation/git-sparse-checkout.txt-emlistem"></a><em>list</em> </dt>
+<dd>
+<p>Describe the patterns in the sparse-checkout file.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-sparse-checkout.txt-eminitem"> <a class="anchor" href="#Documentation/git-sparse-checkout.txt-eminitem"></a><em>init</em> </dt>
+<dd>
+<p>Enable the <code>core.sparseCheckout</code> setting. If the
+sparse-checkout file does not exist, then populate it with
+patterns that match every file in the root directory and
+no other directories, then will remove all directories tracked
+by Git. Add patterns to the sparse-checkout file to
+repopulate the working directory.</p>
+<div class="paragraph">
+<p>To avoid interfering with other worktrees, it first enables the
+<code>extensions.worktreeConfig</code> setting and makes sure to set the
+<code>core.sparseCheckout</code> setting in the worktree-specific config file.</p>
+</div>
+<div class="paragraph">
+<p>When <code>--cone</code> is provided, the <code>core.sparseCheckoutCone</code> setting is
+also set, allowing for better performance with a limited set of
+patterns (see <em>CONE PATTERN SET</em> below).</p>
+</div>
+<div class="paragraph">
+<p>Use the <code>--[no-]sparse-index</code> option to toggle the use of the sparse
+index format. This reduces the size of the index to be more closely
+aligned with your sparse-checkout definition. This can have significant
+performance advantages for commands such as <code>git status</code> or <code>git add</code>.
+This feature is still experimental. Some commands might be slower with
+a sparse index until they are properly integrated with the feature.</p>
+</div>
+<div class="paragraph">
+<p><strong>WARNING:</strong> Using a sparse index requires modifying the index in a way
+that is not completely understood by external tools. If you have trouble
+with this compatibility, then run <code>git sparse-checkout init --no-sparse-index</code>
+to rewrite your index to not be sparse. Older versions of Git will not
+understand the sparse directory entries index extension and may fail to
+interact with your repository until it is disabled.</p>
+</div>
+</dd>
+<dt class="hdlist1" id="Documentation/git-sparse-checkout.txt-emsetem"> <a class="anchor" href="#Documentation/git-sparse-checkout.txt-emsetem"></a><em>set</em> </dt>
+<dd>
+<p>Write a set of patterns to the sparse-checkout file, as given as
+a list of arguments following the <em>set</em> subcommand. Update the
+working directory to match the new patterns. Enable the
+core.sparseCheckout config setting if it is not already enabled.</p>
+<div class="paragraph">
+<p>When the <code>--stdin</code> option is provided, the patterns are read from
+standard in as a newline-delimited list instead of from the arguments.</p>
+</div>
+<div class="paragraph">
+<p>When <code>core.sparseCheckoutCone</code> is enabled, the input list is considered a
+list of directories instead of sparse-checkout patterns. The command writes
+patterns to the sparse-checkout file to include all files contained in those
+directories (recursively) as well as files that are siblings of ancestor
+directories. The input format matches the output of <code>git ls-tree --name-only</code>.
+This includes interpreting pathnames that begin with a double quote (") as
+C-style quoted strings.</p>
+</div>
+</dd>
+<dt class="hdlist1" id="Documentation/git-sparse-checkout.txt-emaddem"> <a class="anchor" href="#Documentation/git-sparse-checkout.txt-emaddem"></a><em>add</em> </dt>
+<dd>
+<p>Update the sparse-checkout file to include additional patterns.
+By default, these patterns are read from the command-line arguments,
+but they can be read from stdin using the <code>--stdin</code> option. When
+<code>core.sparseCheckoutCone</code> is enabled, the given patterns are interpreted
+as directory names as in the <em>set</em> subcommand.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-sparse-checkout.txt-emreapplyem"> <a class="anchor" href="#Documentation/git-sparse-checkout.txt-emreapplyem"></a><em>reapply</em> </dt>
+<dd>
+<p>Reapply the sparsity pattern rules to paths in the working tree.
+Commands like merge or rebase can materialize paths to do their
+work (e.g. in order to show you a conflict), and other
+sparse-checkout commands might fail to sparsify an individual file
+(e.g. because it has unstaged changes or conflicts).  In such
+cases, it can make sense to run <code>git sparse-checkout reapply</code> later
+after cleaning up affected paths (e.g. resolving conflicts, undoing
+or committing changes, etc.).</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-sparse-checkout.txt-emdisableem"> <a class="anchor" href="#Documentation/git-sparse-checkout.txt-emdisableem"></a><em>disable</em> </dt>
+<dd>
+<p>Disable the <code>core.sparseCheckout</code> config setting, and restore the
+working directory to include all files. Leaves the sparse-checkout
+file intact so a later <em>git sparse-checkout init</em> command may
+return the working directory to the same state.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sparse_checkout"><a class="anchor" href="#_sparse_checkout"></a>SPARSE CHECKOUT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>"Sparse checkout" allows populating the working directory sparsely.
+It uses the skip-worktree bit (see <a href="/docs/git-update-index">git-update-index[1]</a>) to tell
+Git whether a file in the working directory is worth looking at. If
+the skip-worktree bit is set, then the file is ignored in the working
+directory. Git will not populate the contents of those files, which
+makes a sparse checkout helpful when working in a repository with many
+files, but only a few are important to the current user.</p>
+</div>
+<div class="paragraph">
+<p>The <code>$GIT_DIR/info/sparse-checkout</code> file is used to define the
+skip-worktree reference bitmap. When Git updates the working
+directory, it updates the skip-worktree bits in the index based
+on this file. The files matching the patterns in the file will
+appear in the working directory, and the rest will not.</p>
+</div>
+<div class="paragraph">
+<p>To enable the sparse-checkout feature, run <code>git sparse-checkout init</code> to
+initialize a simple sparse-checkout file and enable the <code>core.sparseCheckout</code>
+config setting. Then, run <code>git sparse-checkout set</code> to modify the patterns in
+the sparse-checkout file.</p>
+</div>
+<div class="paragraph">
+<p>To repopulate the working directory with all files, use the
+<code>git sparse-checkout disable</code> command.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_full_pattern_set"><a class="anchor" href="#_full_pattern_set"></a>FULL PATTERN SET</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, the sparse-checkout file uses the same syntax as <code>.gitignore</code>
+files.</p>
+</div>
+<div class="paragraph">
+<p>While <code>$GIT_DIR/info/sparse-checkout</code> is usually used to specify what
+files are included, you can also specify what files are <em>not</em> included,
+using negative patterns. For example, to remove the file <code>unwanted</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>/*
+!unwanted</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cone_pattern_set"><a class="anchor" href="#_cone_pattern_set"></a>CONE PATTERN SET</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The full pattern set allows for arbitrary pattern matches and complicated
+inclusion/exclusion rules. These can result in O(N*M) pattern matches when
+updating the index, where N is the number of patterns and M is the number
+of paths in the index. To combat this performance issue, a more restricted
+pattern set is allowed when <code>core.sparseCheckoutCone</code> is enabled.</p>
+</div>
+<div class="paragraph">
+<p>The accepted patterns in the cone pattern set are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Recursive:</strong> All paths inside a directory are included.</p>
+</li>
+<li>
+<p><strong>Parent:</strong> All files immediately inside a directory are included.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In addition to the above two patterns, we also expect that all files in the
+root directory are included. If a recursive pattern is added, then all
+leading directories are added as parent patterns.</p>
+</div>
+<div class="paragraph">
+<p>By default, when running <code>git sparse-checkout init</code>, the root directory is
+added as a parent pattern. At this point, the sparse-checkout file contains
+the following patterns:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>/*
+!/*/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This says "include everything in root, but nothing two levels below root."</p>
+</div>
+<div class="paragraph">
+<p>When in cone mode, the <code>git sparse-checkout set</code> subcommand takes a list of
+directories instead of a list of sparse-checkout patterns. In this mode,
+the command <code>git sparse-checkout set A/B/C</code> sets the directory <code>A/B/C</code> as
+a recursive pattern, the directories <code>A</code> and <code>A/B</code> are added as parent
+patterns. The resulting sparse-checkout file is now</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>/*
+!/*/
+/A/
+!/A/*/
+/A/B/
+!/A/B/*/
+/A/B/C/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here, order matters, so the negative patterns are overridden by the positive
+patterns that appear lower in the file.</p>
+</div>
+<div class="paragraph">
+<p>If <code>core.sparseCheckoutCone=true</code>, then Git will parse the sparse-checkout file
+expecting patterns of these types. Git will warn if the patterns do not match.
+If the patterns do match the expected format, then Git will use faster hash-
+based algorithms to compute inclusion in the sparse-checkout.</p>
+</div>
+<div class="paragraph">
+<p>In the cone mode case, the <code>git sparse-checkout list</code> subcommand will list the
+directories that define the recursive patterns. For the example sparse-checkout
+file above, the output is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git sparse-checkout list
+A/B/C</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If <code>core.ignoreCase=true</code>, then the pattern-matching algorithm will use a
+case-insensitive check. This corrects for case mismatched filenames in the
+<em>git sparse-checkout set</em> command to reflect the expected cone in the working
+directory.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_submodules"><a class="anchor" href="#_submodules"></a>SUBMODULES</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If your repository contains one or more submodules, then submodules
+are populated based on interactions with the <code>git submodule</code> command.
+Specifically, <code>git submodule init -- &lt;path&gt;</code> will ensure the submodule
+at <code>&lt;path&gt;</code> is present, while <code>git submodule deinit [-f] -- &lt;path&gt;</code>
+will remove the files for the submodule at <code>&lt;path&gt;</code> (including any
+untracked files, uncommitted changes, and unpushed history).  Similar
+to how sparse-checkout removes files from the working tree but still
+leaves entries in the index, deinitialized submodules are removed from
+the working directory but still have an entry in the index.</p>
+</div>
+<div class="paragraph">
+<p>Since submodules may have unpushed changes or untracked files,
+removing them could result in data loss.  Thus, changing sparse
+inclusion/exclusion rules will not cause an already checked out
+submodule to be removed from the working copy.  Said another way, just
+as <code>checkout</code> will not cause submodules to be automatically removed or
+initialized even when switching between branches that remove or add
+submodules, using <code>sparse-checkout</code> to reduce or expand the scope of
+"interesting" files will not cause submodules to be automatically
+deinitialized or initialized either.</p>
+</div>
+<div class="paragraph">
+<p>Further, the above facts mean that there are multiple reasons that
+"tracked" files might not be present in the working copy: sparsity
+pattern application from sparse-checkout, and submodule initialization
+state.  Thus, commands like <code>git grep</code> that work on tracked files in
+the working copy may return results that are limited by either or both
+of these restrictions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_see_also"><a class="anchor" href="#_see_also"></a>SEE ALSO</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="/docs/git-read-tree">git-read-tree[1]</a>
+<a href="/docs/gitignore">gitignore[5]</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git"><a class="anchor" href="#_git"></a>GIT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Part of the <a href="/docs/git">git[1]</a> suite</p>
+</div>
+</div>
+</div>
+  </div>
+
+        </div>
+      </div>
+      <footer>
+  <div class="site-source">
+    <a href="/site">About this site</a><br>
+    Patches, suggestions, and comments are welcome.
+  </div>
+  <div class="sfc-member">
+    Git is a member of <a href="/sfc">Software Freedom Conservancy</a>
+  </div>
+</footer>
+
+<script src="/assets/application-8f00caf205cd147207c24e44516f18312442fd845fad0725e748f19cad311d0d.js"></script>
+
+    </div>
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

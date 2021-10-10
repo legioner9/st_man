@@ -1,0 +1,847 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN crontab (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, crontab"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="crontab" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">crontab (5)</font><hr><li> <a href="/man.shtml?topic=crontab&amp;category=1&amp;russian=4"><u>crontab</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=1&amp;russian=1"><u>crontab</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=1&amp;russian=0"><u>crontab</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=1&amp;russian=2"><u>crontab</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=1&amp;russian=5"><u>crontab</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=5&amp;russian=1"><u>crontab</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=crontab&amp;category=5&amp;russian=0"><u>crontab</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=5&amp;russian=2"><u>crontab</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=8&amp;russian=0"><u>crontab</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><br>BSD mandoc<br>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+
+
+<b>crontab</b>
+
+ - таблицы, управляющие работой демона cron
+
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Файл
+<b></b>
+
+
+содержит инструкции демону
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=8">cron</a>(8)
+
+
+в общей форме:
+запускать указанную команду в заданное время и в заданные дни.
+На компьютере обычно имеются общесистемный файл
+<b></b>
+
+
+( /etc/crontab ),
+
+
+
+и индивидуальные файлы
+<b></b>
+
+
+( /var/cron/tabs/&lt;имя-пользователя&gt; ) 
+
+
+
+для пользователей системы.
+Таким образом, команды в файле 
+<b></b>
+
+
+будут выполняться с правами этих пользователей
+<b></b>
+
+
+или, в случае общесистемного файла,
+с правами пользователя указанного в командной строке при запуске демона.
+У демонов Uucp и News обычно есть свои собственные 
+<b>crontab</b>
+
+ 
+устраняющие необходимость в явном запуске
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=su&amp;category=1">su</a>(1)
+
+
+в рамках команды 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=8">cron</a>(8).
+
+
+<p>
+
+Хотя 
+<b></b>
+
+
+по сути является обыкновенным текстовым файлом,
+он не должен редактироваться обычными средствами.
+Для создания, изменения и удаления 
+<b></b>
+
+
+следует использоваться специальную утилиту, 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crontab&amp;category=1">crontab</a>(1).
+
+
+</p><p>
+
+Пустые строки, ведущие пробелы и символы табуляции игнорируются.
+Строки, начинающиеся с символа 
+(`#'
+
+)
+
+ 
+считаются комментариями и игнорируются.
+Заметьте, что комментарии не допускаются в тех
+же строках, где расположены команды
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=8">cron</a>(8),
+
+
+так как они будут распознаны
+как части команды. По этой же причине комментарии не разрешены в 
+строках, задающих переменные среды.
+</p><p>
+
+Строка-директива в
+<b></b>
+
+
+представляет собой либо задание 
+переменной среды, либо команду 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=8">cron</a>(8)
+
+
+</p><p>
+
+<i>Задание переменной среды</i>
+
+</p><p>
+
+Можно определять среду (набор переменных среды),
+в которой будет выполняться команда
+<b>.</b>
+
+Задание переменной среды осуществляется в следующей форме:
+</p><p>
+
+
+</p><blockquote><tt>имя_переменной = значение</tt></blockquote>
+<p>
+
+где пробелы вокруг знака равенства
+(`='
+
+)
+
+необязательны, и любые пробелы после 
+Fa значения
+
+будут использованы как часть значения переменной
+Fa имя_переменной .
+
+Строка
+<i>значение</i>
+
+может быть заключена в кавычки (одинарные или двойные)
+для возможности сохранения пробелов в начале и конце.
+</p><p>
+
+Несколько переменных среды устанавливаются автоматически демоном
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=8">cron</a>(8).
+
+
+<b>SHELL</b>
+
+устанавливается в
+/bin/sh
+
+ 
+а 
+<b>LOGNAME</b>
+
+и 
+<b>HOME</b>
+
+определяются по файлу 
+/etc/passwd
+
+(в соответствии с владельцем 
+<b>crontab ).</b>
+
+
+
+Значения переменных
+<b>HOME</b>
+
+и 
+<b>SHELL</b>
+
+можно переопределить директивами
+<b>crontab</b>
+
+ 
+</p><p>
+
+В системах семейства BSD переменная 
+<b>LOGNAME</b>
+
+может называться 
+<b>USER</b>
+
+ 
+В 
+Ox <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=8">cron</a>(8)
+
+
+
+определяет обе переменные 
+<b>USER</b>
+
+и 
+<b>LOGNAME</b>
+
+(задавая им одинаковые значения).
+</p><p>
+
+В дополнение к 
+<b>LOGNAME </b>
+
+,
+<b>HOME </b>
+
+и 
+<b>SHELL</b>
+
+ 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=8">cron</a>(8)
+
+
+может использовать переменную 
+<b>MAILTO</b>
+
+в случаях если в данном 
+<b>crontab </b>
+
+была указана отправка почты.
+Если 
+<b>MAILTO</b>
+
+определена (и не пуста),
+электронная почта отправляется указанному в переменной пользователю.
+Если 
+<b>MAILTO</b>
+
+определена, но пустая,
+(<b>MAILTO = `,'
+
+</b>
+
+)
+
+электронная почта отправляться не будет.
+В противном случае, почта посылается владельцу
+<b>crontab</b>
+
+ 
+Эта переменная полезна при запуске команд от псевдопользователей,
+для которых не определены почтовые адреса в системе.
+</p><p>
+
+<i>Команды cron</i>
+
+</p><p>
+
+Формат команд 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=8">cron</a>(8)
+
+
+аналогичен стандарту V7 и является совместимым с ним.
+Каждая стока в системном
+<b></b>
+
+
+состоит из шести полей и команды:
+
+</p><blockquote>
+
+<i>минута</i>
+
+<i>час</i>
+
+<i>число</i>
+
+<i>месяц</i>
+
+<i>день_недели</i>
+
+<i>пользователь</i>
+
+<i>команда</i>
+
+</blockquote>
+
+<p>
+
+Каждая стока в пользовательском
+<b></b>
+
+
+состоит из пяти полей и команды:
+
+</p><blockquote>
+
+<i>минута</i>
+
+<i>час</i>
+
+<i>число</i>
+
+<i>месяц</i>
+
+<i>день_недели</i>
+
+<i>команда</i>
+
+</blockquote>
+
+<p>
+
+Поля отделяются друг от друга пробелами или символами табуляции.
+Команда может состоять из нескольких полей.
+Допустимые значения полей:
+</p><p>
+
+</p><dl compact="">
+<p>
+
+</p><dt><b>поле</b>
+</dt><dd>
+допустимые значение
+</dd><dt><b>-----</b>
+</dt><dd>
+--------------
+</dd><dt><b></b><i>минута</i>
+
+
+</dt><dd>
+* или 0-59
+</dd><dt><b></b><i>час</i>
+
+
+</dt><dd>
+* или 0-23
+</dd><dt><b></b><i>число</i>
+
+
+</dt><dd>
+* или 1-31
+</dd><dt><b></b><i>месяц</i>
+
+
+</dt><dd>
+*, 1-12 или имя месяца (см. ниже)
+</dd><dt><b></b><i>день-недели</i>
+
+
+</dt><dd>
+*, 0-7 или имя дня (воскресенье - это 0 и 7)
+</dd><dt><b></b><i>пользователь</i>
+
+
+</dt><dd>
+имя существующего пользователя
+</dd><dt><b></b><i>команда</i>
+
+
+</dt><dd>
+строка
+</dd></dl>
+<p>
+
+</p><p>
+
+Допустимо указание нескольких значений (и диапазонов через тире)
+через запятую.
+Примеры:
+``1 , 2 , 5 , 9''
+
+ 
+``0-4 , 8-12''
+
+ 
+</p><p>
+
+Диапазон указывается как два числа, разделенных дефисом.
+Указываемые числа включаются в диапазон.
+Например, значение поля
+Fa час
+
+8-11 приведёт к выполнению команды в 8, 9, 10 и 11 часов.
+</p><p>
+
+При указании диапазона можно пропускать некоторые его значения, указав шаг в форме 
+<b>/ </b><i>число</i>
+
+
+
+Например: 
+``0-23/2''
+
+для поля
+Fa час
+
+означает запуск команды через два часа
+(по стандарту V7 пришлось бы указывать
+``0,2,4,6,8,10,12,14,16,18,20,22 )''
+
+ 
+Шаг можно указывать также после звёздочки:
+``каждые два часа ''
+
+соответствует значению
+``*/2''
+
+ 
+</p><p>
+
+Звёздочка 
+(`*'
+
+)
+
+без шага соответствует полному диапазону значений.
+</p><p>
+
+Для задания полей 
+Fa месяц 
+
+и 
+Fa день_недели
+
+можно использовать имена.
+Указывайте первые три буквы нужного дня или месяца
+на английском, регистр букв не имеет значения.
+Диапазоны или списки имён не разрешены.
+</p><p>
+
+Поле 
+Fa команда
+
+(остаток строки) определяет запускаемую по расписанию команду.
+Вся оставшаяся часть строки до символа перевода строки или 
+символа %, будет выполнен вызов 
+/bin/sh
+
+или другой оболочки, определенной в переменной 
+<b>SHELL</b>
+
+в 
+<b>crontab</b>
+
+ 
+Знак процента
+(`%'
+
+)
+
+в команде (если он не экранирован обратной косой чертой
+(`\'
+
+)
+
+ 
+) будет соответствовать символу перевода строки и
+все данные после первого
+`%'
+
+<br>&nbsp;будут&nbsp;посланы&nbsp;для&nbsp;команды&nbsp;на&nbsp;стандартный&nbsp;ввод.
+</p><p>
+
+Демон 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=8">cron</a>(8)
+
+
+запускает команды когда значения полей 
+Fa минута ,
+
+Fa час ,
+
+Fa месяц
+
+<i>и </i>
+
+хотя бы одно из полей 
+Fa число 
+
+
+
+и
+Fa день_недели,
+
+совпадают с текущим временем (см. замечание ниже).
+Демон 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=8">cron</a>(8)
+
+
+сверяет директивы 
+<b></b>
+
+
+с текущим временем раз в минуту.
+</p><p>
+
+Замечание: день выполнения команды может быть задан в двух
+полях ---
+<i>число</i>
+
+и 
+<i>день_недели</i>
+
+ 
+Если оба поля определены (т.е не равны *),
+то команда будет запущена, когда
+<i>любое </i>
+
+поле совпадёт с текущим временем.
+Например, запись:
+</p><p>
+
+
+</p><blockquote><tt>30 4 1,15 * 5</tt></blockquote>
+<p>
+
+приведёт к выполнении команды в 4:30 по полуночи первого
+и пятнадцатого числа каждого месяца, плюс в каждую пятницу.
+</p><p>
+
+Вместо первых пяти полей допустимо указание одного из восьми специальных триггеров:
+</p><p>
+
+</p><dl compact="">
+<p>
+
+</p><dt><b>строка </b>
+</dt><dd>
+значение 
+</dd><dt><b>------</b>
+</dt><dd>
+-------
+</dd><dt><b>@reboot</b>
+</dt><dd>
+Выполнить команду один раз, при запуске  
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=8">cron</a>(8).
+
+
+</dd><dt><b>@yearly</b>
+</dt><dd>
+Выполнять команду каждое 1 января, "0 0 1 1 *".
+</dd><dt><b>@annually</b>
+</dt><dd>
+(эквивалентно @yearly).
+</dd><dt><b>@monthly</b>
+</dt><dd>
+Выполнять команду в начале каждого месяца, "0 0 1 * *".
+</dd><dt><b>@weekly</b>
+</dt><dd>
+Выполнять команду каждое воскресенье, "0 0 * * 0".
+</dd><dt><b>@daily</b>
+</dt><dd>
+Выполнять команду в полночь, "0 0 * * *".
+</dd><dt><b>@midnight</b>
+</dt><dd>
+(эквивалентно @daily).
+</dd><dt><b>@hourly</b>
+</dt><dd>
+Выполнять команду раз в час, "0 * * * *".
+</dd></dl>
+<p>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ПРИМЕРЫ</h2>
+
+
+<pre># использовать для запуска команд /bin/sh
+# не обращая внимание на то, что написано в /etc/passwd
+SHELL=/bin/sh
+# отправлять вывод выполнения команд по электронной почте пользователю `paul'
+# не обращая внимания на то, чей это crontab
+MAILTO=paul
+#
+# запускать пять минут пополуночи, каждый день
+5 0 * * *       $HOME/bin/daily.job &gt;&gt; $HOME/tmp/out 2&gt;&amp;1
+# запускать в 14:15 первого числа каждого месяца
+15 14 1 * *     $HOME/bin/monthly
+# запускать в 22.00 каждый рабочий день, назло Джо
+0 22 * * 1-5    mail -s "Уже 10 вечера" joe%Joe,%%Где твои дети?%
+23 0-23/2 * * * echo "запуск в 00:23, 2:23, 4:23 ..., каждый день"
+5 4 * * sun     echo "запуск в 4:05 каждое воскресенье"
+</pre>
+
+<a name="lbAE">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crontab&amp;category=1">crontab</a>(1),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=8">cron</a>(8)
+
+
+<a name="lbAF">&nbsp;</a>
+<h2>НЕСТАНДАРТНЫЕ ВОЗМОЖНОСТИ</h2>
+
+При задании дня недели, и 0 и 7 соответствуют воскресенью.
+BSD и ATT не поддерживают такое поведение.
+<p>
+
+Можно указывать одновременно и списки и диапазоны в одном и том же поле.
+``1-3,7-9''
+
+не будет принято
+cron
+
+
+систем ATT и BSD они допускают только либо 
+``1-3''
+
+ 
+либо
+``7,8,9''
+
+</p><p>
+
+Диапазоны можно указывать с пропусками,
+например
+``1-9/2''
+
+соответствует
+``1,3,5,7,9''
+
+ 
+</p><p>
+
+Допустимо указание месяцев или дней недели по имени.
+</p><p>
+
+В crontab можно задавать переменные среды. В BSD и ATT,
+среда для дочерних процессов определяется файлом /etc/rc
+</p><p>
+
+Вывод команд отсылается почтой владельцу файла crontab (в BSD это невозможно),
+а также может отправляться кому-либо другому (это невозможно в SysV), либо
+отправка может быть вообще отключена (это также невозможно в SysV).
+</p><p>
+
+Любая из команд с префиксом
+`@'
+
+может заменять первые пять полей файла.
+<a name="lbAG">&nbsp;</a>
+</p><h2>АВТОР</h2>
+
+An Paul Vixie Aq <a href="mailto:vixie@isc.org">vixie@isc.org</a>
+
+<p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+Николай Шафоростов &lt;<a href="mailto:shafff@ukr.net">shafff@ukr.net</a>&gt; 2007
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAE">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAF">НЕСТАНДАРТНЫЕ ВОЗМОЖНОСТИ</a></dt><dd>
+</dd><dt><a href="#lbAG">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAH">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="crontab" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,411 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN vzlist (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, vzlist"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="vzlist" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">vzlist (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=vzlist&amp;category=8&amp;russian=0"><u>vzlist</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+vzlist - вывод списка виртуальных сред.
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+vzlist [<b>-a</b>] [<b>-o</b> <i>имя</i>[,<i>имя</i>...]]
+<br>&nbsp;[<b>-s</b>&nbsp;[<i>-</i>]<i>имя</i>]&nbsp;[<b>-h</b>&nbsp;<i>шаблон</i>]
+<br>&nbsp;[<b>-H</b>]&nbsp;[<b>-S</b>]&nbsp;[<b>-n</b>]&nbsp;[<b>-N</b>&nbsp;&lt;<i>-шаблон</i>&gt;]&nbsp;
+<br>&nbsp;[<i>идентификатор</i>&nbsp;[<i>идентификатор</i>&nbsp;..]&nbsp;|&nbsp;<b>-1</b>]
+<p>
+
+vzlist <b>-L</b>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Эта программа используется для получения списка виртуальных сред. По
+умолчанию выводятся только работающие в данный момент виртуальные среды.
+Для того, чтобы получить только идентификаторы VE (один на строку),
+используйте <b>-1</b> в качестве значения идентификатора VE.
+<a name="lbAE">&nbsp;</a>
+<h2>ФЛАГИ</h2>
+
+<dl compact="">
+<dt><b>--all</b>, <b>-a</b></dt><dd>
+показать все VE.
+</dd><dt><b>--sort</b>, <b>-s</b></dt><dd>
+указывает порядок сортировки. '-' перед значением параметра обозначает
+сортировку в обратном направлении.
+</dd><dt><b>--hostname</b>, <b>-h</b>  &lt;<i>шаблон</i>&gt;</dt><dd>
+показать только те VE, для которых имя хоста соответствует
+указанному <i>шаблону</i>.
+Следующие символы подстановки могут быть использованы в шаблоне: <b>*</b>,
+<b>?</b>, <b>[]</b>. 
+Обратите внимание, что символы шаблона должны быть правильно экранированы,
+чтобы предотвратить их интерпретацию командной оболочкой.
+</dd><dt><b>--name</b>, <b>-n</b> </dt><dd>
+показывать имена VE.
+</dd><dt><b>--name_filter</b>, <b>-N</b>  &lt;<i>шаблон</i>&gt;</dt><dd>
+выводить только те VE, имена которых соответствуют <i>шаблону</i>.
+</dd><dt><b>--no-header</b>, <b>-H</b></dt><dd>
+не выводить заголовок
+</dd><dt><b>--stopped -S</b></dt><dd>
+показать только остановленные VE.
+</dd><dt><b>--list -L</b></dt><dd>
+показать все спецификаторы формата.
+<p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h3>СТАНДАРТНЫЕ СПЕЦИФИКАТОРЫ ФОРМАТА</h3>
+
+Следующие спецификаторы могут быть использованы для контролирования как формата
+вывода, так сортировки.
+<center><table border="">
+<tbody><tr valign="top"><td><b>Суффикс</b></td><td><b>Описание</b><br></td></tr>
+<tr valign="top"><td colspan="2"><hr></td></tr>
+<tr valign="top"><td><i><br>&nbsp;.m</i></td><td>наибольшее достигнутое значение (maxheld)<br></td></tr>
+<tr valign="top"><td><i><br>&nbsp;.b</i></td><td>барьер (barrier)<br></td></tr>
+<tr valign="top"><td><i><br>&nbsp;.l</i></td><td>квота (limit)<br></td></tr>
+<tr valign="top"><td><i><br>&nbsp;.f</i></td><td>число ошибок (failcnt)<br></td></tr>
+<tr valign="top"><td><i><br>&nbsp;.s</i></td><td>нестрогая квота (softlimit)<br></td></tr>
+<tr valign="top"><td><i><br>&nbsp;.h</i></td><td>строгая квота (hardlimit)<br></td></tr>
+</tbody></table></center>
+
+
+Пример:
+<br>
+
+<tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>vzlist -o veid,kmemsize,kmemsize.l -s kmemsize</tt><br>
+<center><table border="">
+<tbody><tr valign="top"><td><b>Полно</b></td><td><b>Кратко</b><br></td></tr>
+<tr valign="top"><td colspan="2"><hr></td></tr>
+<tr valign="top"><td><i>veid</i></td><td>VEID<br></td></tr>
+<tr valign="top"><td><i>hostname</i></td><td>HOSTNAME<br></td></tr>
+<tr valign="top"><td><i>name</i></td><td>NAME<br></td></tr>
+<tr valign="top"><td><i>ip</i></td><td>IP_ADDR<br></td></tr>
+<tr valign="top"><td><i>status</i></td><td>STATUS<br></td></tr>
+<tr valign="top"><td><i>kmemsize</i></td><td>KMEMSIZE<br></td></tr>
+<tr valign="top"><td><i>kmemsize.m</i></td><td>KMEMSIZE.M<br></td></tr>
+<tr valign="top"><td><i>kmemsize.b</i></td><td>KMEMSIZE.B<br></td></tr>
+<tr valign="top"><td><i>kmemsize.l</i></td><td>KMEMSIZE.L<br></td></tr>
+<tr valign="top"><td><i>kmemsize.f</i></td><td>KMEMSIZE.F<br></td></tr>
+<tr valign="top"><td><i>lockedpages</i></td><td>LOCKEDP<br></td></tr>
+<tr valign="top"><td><i>lockedpages.m</i></td><td>LOCKEDP.M<br></td></tr>
+<tr valign="top"><td><i>lockedpages.b</i></td><td>LOCKEDP.B<br></td></tr>
+<tr valign="top"><td><i>lockedpages.l</i></td><td>LOCKEDP.L<br></td></tr>
+<tr valign="top"><td><i>lockedpages.f</i></td><td>LOCKEDP.F<br></td></tr>
+<tr valign="top"><td><i>privvmpages</i></td><td>PRIVVMP<br></td></tr>
+<tr valign="top"><td><i>privvmpages.m</i></td><td>PRIVVMP.M<br></td></tr>
+<tr valign="top"><td><i>privvmpages.b</i></td><td>PRIVVMP.B<br></td></tr>
+<tr valign="top"><td><i>privvmpages.l</i></td><td>PRIVVMP.L<br></td></tr>
+<tr valign="top"><td><i>privvmpages.f</i></td><td>PRIVVMP.F<br></td></tr>
+<tr valign="top"><td><i>shmpages</i></td><td>SHMP<br></td></tr>
+<tr valign="top"><td><i>shmpages.m</i></td><td>SHMP.M<br></td></tr>
+<tr valign="top"><td><i>shmpages.b</i></td><td>SHMP.B<br></td></tr>
+<tr valign="top"><td><i>shmpages.l</i></td><td>SHMP.L<br></td></tr>
+<tr valign="top"><td><i>shmpages.f</i></td><td>SHMP.F<br></td></tr>
+<tr valign="top"><td><i>numproc</i></td><td>NPROC<br></td></tr>
+<tr valign="top"><td><i>numproc.m</i></td><td>NPROC.M<br></td></tr>
+<tr valign="top"><td><i>numproc.b</i></td><td>NPROC.B<br></td></tr>
+<tr valign="top"><td><i>numproc.l</i></td><td>NPROC.L<br></td></tr>
+<tr valign="top"><td><i>numproc.f</i></td><td>NPROC.F<br></td></tr>
+<tr valign="top"><td><i>physpages</i></td><td>PHYSP<br></td></tr>
+<tr valign="top"><td><i>physpages.m</i></td><td>PHYSP.M<br></td></tr>
+<tr valign="top"><td><i>physpages.b</i></td><td>PHYSP.B<br></td></tr>
+<tr valign="top"><td><i>physpages.l</i></td><td>PHYSP.L<br></td></tr>
+<tr valign="top"><td><i>physpages.f</i></td><td>PHYSP.F<br></td></tr>
+<tr valign="top"><td><i>vmguarpages</i></td><td>VMGUARP<br></td></tr>
+<tr valign="top"><td><i>vmguarpages.m</i></td><td>VMGUARP.M<br></td></tr>
+<tr valign="top"><td><i>vmguarpages.b</i></td><td>VMGUARP.B<br></td></tr>
+<tr valign="top"><td><i>vmguarpages.l</i></td><td>VMGUARP.L<br></td></tr>
+<tr valign="top"><td><i>vmguarpages.f</i></td><td>VMGUARP.F<br></td></tr>
+<tr valign="top"><td><i>oomguarpages</i></td><td>OOMGUARP<br></td></tr>
+<tr valign="top"><td><i>oomguarpages.m</i></td><td>OOMGUARP.M<br></td></tr>
+<tr valign="top"><td><i>oomguarpages.b</i></td><td>OOMGUARP.B<br></td></tr>
+<tr valign="top"><td><i>oomguarpages.l</i></td><td>OOMGUARP.L<br></td></tr>
+<tr valign="top"><td><i>oomguarpages.f</i></td><td>OOMGUARP.F<br></td></tr>
+<tr valign="top"><td><i>numtcpsock</i></td><td>NTCPSOCK<br></td></tr>
+<tr valign="top"><td><i>numtcpsock.m</i></td><td>NTCPSOCK.M<br></td></tr>
+<tr valign="top"><td><i>numtcpsock.b</i></td><td>NTCPSOCK.B<br></td></tr>
+<tr valign="top"><td><i>numtcpsock.l</i></td><td>NTCPSOCK.L<br></td></tr>
+<tr valign="top"><td><i>numtcpsock.f</i></td><td>NTCPSOCK.F<br></td></tr>
+<tr valign="top"><td><i>numflock</i></td><td>NFLOCK<br></td></tr>
+<tr valign="top"><td><i>numflock.m</i></td><td>NFLOCK.M<br></td></tr>
+<tr valign="top"><td><i>numflock.b</i></td><td>NFLOCK.B<br></td></tr>
+<tr valign="top"><td><i>numflock.l</i></td><td>NFLOCK.L<br></td></tr>
+<tr valign="top"><td><i>numflock.f</i></td><td>NFLOCK.F<br></td></tr>
+<tr valign="top"><td><i>numpty</i></td><td>NPTY<br></td></tr>
+<tr valign="top"><td><i>numpty.m</i></td><td>NPTY.M<br></td></tr>
+<tr valign="top"><td><i>numpty.b</i></td><td>NPTY.B<br></td></tr>
+<tr valign="top"><td><i>numpty.l</i></td><td>NPTY.L<br></td></tr>
+<tr valign="top"><td><i>numpty.f</i></td><td>NPTY.F<br></td></tr>
+<tr valign="top"><td><i>numsiginfo</i></td><td>NSIGINFO<br></td></tr>
+<tr valign="top"><td><i>numsiginfo.m</i></td><td>NSIGINFO.M<br></td></tr>
+<tr valign="top"><td><i>numsiginfo.b</i></td><td>NSIGINFO.B<br></td></tr>
+<tr valign="top"><td><i>numsiginfo.l</i></td><td>NSIGINFO.L<br></td></tr>
+<tr valign="top"><td><i>numsiginfo.f</i></td><td>NSIGINFO.F<br></td></tr>
+<tr valign="top"><td><i>tcpsndbuf</i></td><td>TCPSNDB<br></td></tr>
+<tr valign="top"><td><i>tcpsndbuf.m</i></td><td>TCPSNDB.M<br></td></tr>
+<tr valign="top"><td><i>tcpsndbuf.b</i></td><td>TCPSNDB.B<br></td></tr>
+<tr valign="top"><td><i>tcpsndbuf.l</i></td><td>TCPSNDB.L<br></td></tr>
+<tr valign="top"><td><i>tcpsndbuf.f</i></td><td>TCPSNDB.F<br></td></tr>
+<tr valign="top"><td><i>tcprcvbuf</i></td><td>TCPRCVB<br></td></tr>
+<tr valign="top"><td><i>tcprcvbuf.m</i></td><td>TCPRCVB.M<br></td></tr>
+<tr valign="top"><td><i>tcprcvbuf.b</i></td><td>TCPRCVB.B<br></td></tr>
+<tr valign="top"><td><i>tcprcvbuf.l</i></td><td>TCPRCVB.L<br></td></tr>
+<tr valign="top"><td><i>tcprcvbuf.f</i></td><td>TCPRCVB.F<br></td></tr>
+<tr valign="top"><td><i>othersockbuf</i></td><td>OTHSOCKB<br></td></tr>
+<tr valign="top"><td><i>othersockbuf.m</i></td><td>OTHSOCKB.M<br></td></tr>
+<tr valign="top"><td><i>othersockbuf.b</i></td><td>OTHSOCKB.B<br></td></tr>
+<tr valign="top"><td><i>othersockbuf.l</i></td><td>OTHSOCKB.L<br></td></tr>
+<tr valign="top"><td><i>othersockbuf.f</i></td><td>OTHSOCKB.F<br></td></tr>
+<tr valign="top"><td><i>dgramrcvbuf</i></td><td>DGRAMRRB<br></td></tr>
+<tr valign="top"><td><i>dgramrcvbuf.m</i></td><td>DGRAMRRB.M<br></td></tr>
+<tr valign="top"><td><i>dgramrcvbuf.b</i></td><td>DGRAMRRB.B<br></td></tr>
+<tr valign="top"><td><i>dgramrcvbuf.l</i></td><td>DGRAMRRB.L<br></td></tr>
+<tr valign="top"><td><i>dgramrcvbuf.f</i></td><td>DGRAMRRB.F<br></td></tr>
+<tr valign="top"><td><i>numothersock</i></td><td>NOTHSOCK<br></td></tr>
+<tr valign="top"><td><i>numothersock.m</i></td><td>NOTHSOCK.M<br></td></tr>
+<tr valign="top"><td><i>numothersock.b</i></td><td>NOTHSOCK.B<br></td></tr>
+<tr valign="top"><td><i>numothersock.l</i></td><td>NOTHSOCK.L<br></td></tr>
+<tr valign="top"><td><i>numothersock.f</i></td><td>NOTHSOCK.F<br></td></tr>
+<tr valign="top"><td><i>dcachesize</i></td><td>DCACHESZ<br></td></tr>
+<tr valign="top"><td><i>dcachesize.m</i></td><td>DCACHESZ.M<br></td></tr>
+<tr valign="top"><td><i>dcachesize.b</i></td><td>DCACHESZ.B<br></td></tr>
+<tr valign="top"><td><i>dcachesize.l</i></td><td>DCACHESZ.L<br></td></tr>
+<tr valign="top"><td><i>dcachesize.f</i></td><td>DCACHESZ.F<br></td></tr>
+<tr valign="top"><td><i>numfile</i></td><td>NFILE<br></td></tr>
+<tr valign="top"><td><i>numfile.m</i></td><td>NFILE.M<br></td></tr>
+<tr valign="top"><td><i>numfile.b</i></td><td>NFILE.B<br></td></tr>
+<tr valign="top"><td><i>numfile.l</i></td><td>NFILE.L<br></td></tr>
+<tr valign="top"><td><i>numfile.f</i></td><td>NFILE.F<br></td></tr>
+<tr valign="top"><td><i>numiptent</i></td><td>NIPTENT<br></td></tr>
+<tr valign="top"><td><i>numiptent.m</i></td><td>NIPTENT.M<br></td></tr>
+<tr valign="top"><td><i>numiptent.b</i></td><td>NIPTENT.B<br></td></tr>
+<tr valign="top"><td><i>numiptent.l</i></td><td>NIPTENT.L<br></td></tr>
+<tr valign="top"><td><i>numiptent.f</i></td><td>NIPTENT.F<br></td></tr>
+<tr valign="top"><td><i>diskspace</i></td><td>DQBLOCKS<br></td></tr>
+<tr valign="top"><td><i>diskspace.s</i></td><td>DQBLOCKS.S<br></td></tr>
+<tr valign="top"><td><i>diskspace.h</i></td><td>DQBLOCKS.H<br></td></tr>
+<tr valign="top"><td><i>diskinodes</i></td><td>DQINODES<br></td></tr>
+<tr valign="top"><td><i>diskinodes.s</i></td><td>DQINODES.S<br></td></tr>
+<tr valign="top"><td><i>diskinodes.h</i></td><td>DQINODES.H<br></td></tr>
+<tr valign="top"><td><i>laverage</i></td><td>LAVERAGE<br></td></tr>
+<tr valign="top"><td><i>cpulimit</i></td><td>CPULIM<br></td></tr>
+<tr valign="top"><td><i>cpuunits</i></td><td>CPUUNI<br></td></tr>
+</tbody></table></center>
+
+<a name="lbAG">&nbsp;</a>
+<h2>ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ</h2>
+
+Возвращает 0 при успешном завершении.
+<a name="lbAH">&nbsp;</a>
+<h2>АВТОРСКИЕ ПРАВА</h2>
+
+Copyright (C) 2000-2007, SWsoft. Распространяется на условиях GNU GPL.
+<a name="lbAI">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевод с английского Виктор Ерёмин &lt;<a href="mailto:ErV2005@rambler.ru">ErV2005@rambler.ru</a>&gt; 2007
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ФЛАГИ</a></dt><dd>
+<dl>
+<dt><a href="#lbAF">СТАНДАРТНЫЕ СПЕЦИФИКАТОРЫ ФОРМАТА</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAG">ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAH">АВТОРСКИЕ ПРАВА</a></dt><dd>
+</dd><dt><a href="#lbAI">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="vzlist" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

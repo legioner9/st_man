@@ -1,0 +1,885 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN lilo (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, lilo"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="lilo" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">lilo (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=lilo&amp;category=8&amp;russian=0"><u>lilo</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=lilo&amp;category=8&amp;russian=2"><u>lilo</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/lilo.html"><u>lilo</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+lilo - устанавливает загрузчик операционных систем
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+Основная функция:
+<p>
+
+<b> /sbin/lilo</b>
+
+- установить загрузчик
+</p><p>
+
+Часто используемые функции (более подробно см. ниже):
+</p><p>
+
+<b> /sbin/lilo -q</b>
+
+- запрос списка ядер операционных систем
+<br>
+
+<b> /sbin/lilo -T</b>
+
+- вывод подробной системной информации по интересующей теме
+<br>
+
+<b> /sbin/lilo -R</b>
+
+- для следующей загрузки системы одноразово установить, используемую по умолчанию строчку команды
+<br>
+
+<b> /sbin/lilo -A</b>
+
+- сделать активным или показать активный раздел диска
+<br>
+
+<b> /sbin/lilo -E</b>
+
+- редактировать заголовок или обновить растровый (bitmap) файл
+<br>
+
+<b> /sbin/lilo -M </b>
+
+- установить Главную Загрузочную Запись (MBR) на диск
+<br>
+
+<b> /sbin/lilo -I</b>
+
+- запросить название пути текущего ядра
+<br>
+
+<b> /sbin/lilo { -u|-U}</b>
+
+- убрать загрузчик LILO из MBR и восстановить прежний загрузчик
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<p>
+
+<b>lilo</b>
+
+устанавливает загрузчик (boot-менеджер) общего назначения под названием LILO, который при
+последующей перезагрузке компьютера позволит загрузить из разных разделов жесткого (жестких)
+дисков различные операционные системы (если они имеются):
+Linux, BSD, Unixware, OS/2, Windows 9x/Me/NT/2000/XP, PC/MS DOS :) и т.д.
+Обычно установка LILO осуществляется во время инсталляции ОС Linux. После следующего включения
+компьютера и соответственно старта LILO, классическим вариантом является появление
+приглашения <i>boot:</i>, которое ожидает, когда пользователь введёт имя загружаемого образа.
+Если в течении некоторого периода времени (это значение хранится в файле <i>/etc/lilo.conf</i>)
+пользователь не отвечает, загружается образ, принятый по умолчанию (также указан в <i>/etc/lilo.conf</i>).
+Если LILO применяется для загрузки OC Linux, можно указать одну или более опций для передачи их
+ядру Linux. Обычно в качестве опций указывают характеристики контроллера жесткого диска:
+адрес порта ввода/вывода,IRQ, DMA. Вообще команда <i>lilo</i> имеет огромное число опций.
+</p><p>
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОПЦИИ</h2>
+
+<dl compact="">
+<dt><b>-A </b><i>мастер-диск [ N ]</i>
+
+</dt><dd>
+Определяет какой раздел является активным на устройстве
+<i>мастер-диск</i>.
+
+Например:
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b># lilo -A /dev/hda</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b>/dev/hda1</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b># lilo -A /dev/hdb</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b>/dev/hdb1</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+Опция, содержащая номер <i>N</i> от 1 до 4, делает активным соответствующий раздел на ведущем
+(master) устройстве. Например:
+<br>
+
+<b># lilo -A '/dev/hda 2'</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b># lilo -A /dev/hda</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b>/dev/hda2</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+</dd></dl>
+
+</dd><dt><b>-b </b><i>bootdev</i>
+
+</dt><dd>
+Задает имя устройства загрузки, т.е. куда будет установлен загрузчик. Например,
+<i>"-b /dev/hda"</i> задает Главную Загрузочную Запись (MBR);
+<i>"-b /dev/sdb5"</i> задает первый расширенный раздел на втором SCSI диске.
+</dd><dt><b>-B </b><i>bitmap-файл</i>
+
+</dt><dd>
+Задает растровый образ в виде <i>bitmap-файл</i>, который появляется на мониторе в графическом
+режиме при включении компьютера.
+</dd><dt><b>-c</b>
+
+</dt><dd>
+Включить сжатие карты ОС. Это позволит объединить несколько запросов чтения из смежных секторов,
+что должно ускорить процесс загрузки (особенно с дискет).
+</dd><dt><b>-C </b><i>файл-настройки</i>
+
+</dt><dd>
+Использует указанный <i>файл-настройки</i> в качестве файла конфигурации. По умолчанию
+<b>lilo</b>
+
+читает инструкции и список ядер операционных систем из файла
+<i>/etc/lilo.conf</i>.
+
+</dd><dt><b>-d </b><i>задержка</i>
+
+</dt><dd>
+Задает <i>задержку</i> в децисекундах (20 = 2 сек) перед автоматической загрузкой
+первой операционной системы. Это позволит вам, в случае необходимости (когда имеется
+несколько операционных систем), прервать автозагрузку нажатием клавиши
+&lt;Shift&gt;, &lt;Alt&gt;, &lt;Ctrl&gt;, &lt;ScrollLock&gt; или &lt;CapsLock&gt; и задать иную ОС.
+После прерывания автозагрузки должно появится приглашение вида <i>boot:</i>,
+которое будет ожидать от пользователя ввода  имени загружаемого образа.
+Этот аргумент замещается установкой директивы
+<i>prompt</i>
+
+в <i>файле-настройки</i> (по умолчанию это <i>/etc/lilo.conf</i>).
+</dd><dt><b>-D </b><i>метка</i>
+
+</dt><dd>
+При загрузке по умолчанию, использовать ядро с заданной <i>меткой</i> вместо ядра, которое
+указано первым в списке.
+</dd><dt><b>-E </b><i>имя_файла.тип</i>
+
+</dt><dd>
+Если <b>.тип</b> является <b>.bmp</b>, тогда указанный файл рассматривается как растровый
+графический файл, который используется в директиве "bitmap=" <i>файла-настроек</i>. С помощью
+любого удобного графического редактора можно создать или изменить информацию в
+растровом (bitmap) файле для заголовка LILO.
+<p>
+Если <b>.тип</b> является <b>.dat</b>, тогда указанный файл рассматривается как 
+конфигурационный файл, задающий параметры растровой графики, которые трансформируются для
+заголовка LILO в растровый файл с тем же <i>именем_файла</i>.
+</p></dd><dt><b>-f </b><i>disk-tab</i>
+
+</dt><dd>
+Задаёт файл параметров геометрии диска. (По умолчанию это
+<i>/etc/disktab</i>.)
+
+</dd><dt><b>-F</b>
+
+</dt><dd>
+Отключить проверку загрузочного сектора для некоторых файловых систем
+(например, swap, XFS, ...), которые могут быть повреждены установкой LILO
+в первый сектор  раздела. Дело в том, что эти файловые системы используют
+первый сектор как суперблок. См. также описание опции "-P ignore",
+которая позволяет пропустить проверку данной таблицы разделов.
+</dd><dt><b>-g</b>
+
+</dt><dd>
+Указывает использовать геометрический адрес в виде цилиндр/головка/сектор диска. Её применение
+ограничено 1023 цилиндром включительно. Эта опция оставлена для совместимости со старыми
+версиями LILO.
+</dd><dt><b>-i </b><i>boot-loader</i>
+
+</dt><dd>
+В качестве загрузочного сектора использовать содержимое указанного файла <i>boot-loader</i>.
+(По умолчанию это
+<i>/boot/boot.b</i>.)
+
+</dd><dt><b>-I </b><i>метка</i><b>[i|r]</b>
+
+</dt><dd>
+Идентифицирует текущий образ ядра, заданный <i>меткой</i>. Метку запущенного (после загрузки системы)
+ядра можно найти в переменной окружения BOOT_IMAGE или в псевдо-файле `/proc/cmdline'.
+Команда с этой опцией выведет соответствующий полный путь и имя файла с ядром, файл раскладки
+(keytable) или инициализируемый в начале загрузки файл виртуального диска (ramdisk)
+(соответственно через опции "i", "k", "r"). Например:
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b># lilo -I 'linux-up i'</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b>/boot/vmlinuz-up</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b># lilo -I 'linux-up k'</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b>us.ktl</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b># lilo -I 'linux-up r'</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b>/boot/initrd-up.img</b>
+
+</dd></dl>
+
+</dd><dt><b>-l</b>
+
+</dt><dd>
+Указывает использовать 24-битную логическую (линейную) адресацию секторов вместо
+традиционной геометрической адресации цилиндр/головка/сектор диска.
+</dd><dt><b>-L</b>
+
+</dt><dd>
+Указывает использовать 32-битные Логические Адреса Блоков (LBA) вместо традиционных
+геометрических адресов в виде цилиндр/головка/сектор диска, тем самым, предоставляя
+доступ ко всем разделам диска с более чем 1024 цилиндрами.
+</dd><dt><b>-m </b><i>файл-карты</i>
+
+</dt><dd>
+Использовать альтернативный <i>файл-карту</i>, содержащий список ядер операционных систем, вместо
+используемого по умолчанию.
+</dd><dt><b>-M </b><i>мастер-диск [ mbr-файл ]</i>
+
+</dt><dd>
+Установить Главную Загрузочную Запись (MBR) на указанное устройство
+<i>мастер-диск</i>.
+
+В том случае, если не задан второй аргумент <i>mbr-файл</i>, новый MBR, по умолчанию,
+копируется из "mbr.b", который содержится внутри файла
+<i>/sbin/lilo</i>
+
+(версия 22.3). Основная таблица разделов на
+<i>мастер-диске</i>
+
+не изменяется. Если никакой серийный номер диска не указан, тогда создаётся произвольный номер,
+который и записывается в MBR.
+</dd><dt><b>-p</b>
+
+</dt><dd>
+Требует интерактивного ввода всей паролей, которые определены как
+<b> </b>
+
+в файле конфигурации.
+</dd><dt><b>-P </b><i>{fix|ignore}</i>
+
+</dt><dd>
+Исправить (<i>fix</i>) или пропустить (<i>ignore</i>) `поврежденные' таблицы разделов, т.е.
+таблицы с несоответствующими одна другой линейными адресами и адресами в виде цилиндр/головка/сектор.
+Вначале всегда пытайтесь выполнить
+<i>-P ignore</i>
+
+поскольку команда с опцией
+<i>-P fix</i>
+
+перезаписывает таблицу разделов, что при неблагоприятном исходе может привести к
+разрушению всех таблиц разделов на диске.
+Опция
+<i>-P ignore</i>
+
+используется также для отмены процедуры тестирования тех типов разделов, которые
+не допускают установку LILO в загрузочный сектор. Эта опция часто используется с опцией
+"-F", которая позволяет отключить проверку загрузочного сектора для некоторых файловых систем
+(например, swap, XFS, ...).
+</dd><dt><b>-q</b>
+
+</dt><dd>
+Выводить список ядер операционных систем (не только Linux), которые можно загрузить во время
+включения компьютера. Например:
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b># lilo -q</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>
+
+<b>linux-up *</b>
+
+<br>
+
+<b>failsafe</b>
+
+<br>
+
+<b>Windows</b>
+
+<br>
+
+<b>floppy</b>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+Этот список обычно хранится в файле 
+<i>/boot/map</i>,
+
+который для
+<b>lilo</b>
+
+является основным и содержит названия и расположение  ядра(ер) загрузки.
+Эта опция выводит только список названий. Для получения более детальной информации об установленном
+загрузчике используйте эту опцию с опцией <b>-v</b>.
+</dd></dl>
+
+</dd><dt><b>-r </b><i>корневой-каталог</i>
+
+</dt><dd>
+Выполняет команду <i>chroot</i>, передавая ей в качестве аргумента указанный <b>корневой-каталог</b>.
+Необходимость в этом может возникнуть при загрузке с компакт-диска или дискеты в случае восстановления
+операционной системы. Новый <b>корневой-каталог</b> должен содержать каталог
+<i>/dev</i>,
+
+а также может нуждаться в 
+<i>/boot</i>
+
+каталоге. Ему также может понадобится файл
+<i>/etc/lilo.conf</i>.
+
+<p>
+Эта опция используется сценарием
+<i>mkbootdisk</i>
+
+для создания загрузочной дискеты.
+</p></dd><dt><b>-R </b><i>строка команды</i>
+
+</dt><dd>
+Эта опция позволяет указать определенную <b>строку команды</b>, которая сработает при следующем
+запуске загрузчика. Потом загрузчик удалит эту строку. Фактически это одноразовая команда.
+lilo с этой опцией обычно используется в сценариях перезагрузки системы, сразу перед
+вызовом `shutdown -r'. Эта опция, указанная без аргументов, отменяет строки, помеченные как
+<i>lock</i> или <i>fallback</i>.
+</dd><dt><b>-s </b><i>save-file</i>
+
+</dt><dd>
+Когда команда
+<b>lilo</b>
+
+перезаписывает загрузочный сектор, она сохраняет резервную копию его прежнего содержимого в
+файле, имя которого обычно
+<i>/boot/boot.NNNN</i>,
+
+где NNNN означает соответствующее устройство. Эта опция позволяет указать альтернативный
+файл для резервной копии загрузочного сектора (или, вместе с опцией
+<b>-u</b>, позволяет указать из какого файла восстановить загрузочный сектор).
+</dd><dt><b>-S </b><i>save-file</i>
+
+</dt><dd>
+Обычно команда
+<b>lilo</b>
+
+не перезаписывает существующий файл резервной копии загрузочного сектора. Эта опция позволяет
+перезаписать его.
+</dd><dt><b>-t </b>
+
+</dt><dd>
+Выполняет только проверку (тест), не записывая реально вновь созданный загрузочный сектор
+или файл карты. Используйте совместно с опцией <b>-v</b> чтобы узнать, что в действительности
+<b>lilo</b>
+
+собирается сделать.
+</dd><dt><b>-T </b><i>опция</i>
+
+</dt><dd>
+Выводит системную информацию, часть которой берётся из системного BIOS.
+Эта возможность более удобна по сравнению с загрузкой диагностической дискеты LILO
+на проблемной системе.
+<i>опция</i>
+
+может принимать одно из следующих значений:
+</dd><dt></dt><dd>
+<pre>   help  - вывести список доступных опций диагностики
+   ChRul - вывести список типов разделов в зависимости от
+           правил смены (Change-Rules)
+   EBDA  - вывод информации об Extended BIOS Data Area
+   geom=&lt;диск&gt; вывод информации о геометрии диска, содержащейся в BIOS;
+           например, geom=0x80
+   geom  - вывести список о геометрии всех дисков
+   table=&lt;диск&gt; вывод информации об основной таблице разделов диска;
+           например, table=/dev/sda
+   video - вывести список графических режимов, которые доступны для
+           загрузчика
+</pre>
+
+</dd><dt><b>-u </b><i>[название-диска]</i>
+
+</dt><dd>
+Убрать загрузчик <i>lilo</i> из главной загрузочной записи и восстановить прежний загрузчик.
+С этой опцией могут использоваться опции '-s' и '-C'.
+Указывать <i>название-диска</i> не обязательно. Дополнительно происходит проверка 
+временной метки.
+</dd><dt><b>-U </b><i>[название-диска]</i>
+
+</dt><dd>
+Действует аналогично предыдущей опции, но не делается проверка временных меток.
+</dd><dt><b>-v</b>
+
+</dt><dd>
+Подробно информирует о происходящем. Указание от одно до пяти опций <b>-v</b>
+увеличивает уровень информативности. Можно использовать и такой вариант:
+<b>-v</b> <i>n</i> (где уровень информативности n=1..5).
+</dd><dt><b>-V</b>
+
+</dt><dd>
+Выводит информацию о номере версии программы.
+</dd><dt><b>-w</b>
+
+</dt><dd>
+Подавляет предупреждающие сообщения.
+</dd><dt><b>-x </b><i>опция</i>
+
+</dt><dd>
+Только для установленных RAID массивов. Для <b>опции</b> могут быть использованы следующие
+ключевые слова:
+<i>none</i>,
+
+<i>auto</i>,
+
+<i>mbr-only</i>
+
+или список дополнительных устройств загрузки (без пробелов между ними), указанных через запятую.
+</dd><dt><b>-X</b>
+
+</dt><dd>
+Зарезервировано LILO для внутреннего использования. Может приводить к различным результатам
+в зависимости от используемой версии LILO. Строка начинающаяся с "CFLAGS="
+будет содержать опции компилирования, которые были использованы для сборки данной версии LILO.
+</dd><dt><b>-z</b>
+
+</dt><dd>
+Когда используется совместно с опцией -M, выполняет очистку серийного номера устройства.
+Обычно используется при создании нового серийного номера устройства, как например:
+<pre>     lilo -z -M /dev/hda
+     lilo -M /dev/hda
+</pre>
+
+<br>
+
+</dd></dl>
+<p>
+
+Приведенные выше опции командной строки соответствуют следующим ключевым словам
+файла конфигурации, которые показаны ниже.
+</p><dl compact="">
+<dt></dt><dd>
+<table>
+<tbody><tr valign="top"><td>-b устройство_загрузки</td><td>boot=устройство_загрузки<br></td></tr>
+<tr valign="top"><td>-B файл.bmp</td><td>bitmap=файл.bmp<br></td></tr>
+<tr valign="top"><td>-c</td><td>compact<br></td></tr>
+<tr valign="top"><td>-d dsec</td><td>delay=dsec<br></td></tr>
+<tr valign="top"><td>-D метка</td><td>default=метка<br></td></tr>
+<tr valign="top"><td>-i загрузчик</td><td>install=загрузчик<br></td></tr>
+<tr valign="top"><td>-f файл</td><td>disktab=файл<br></td></tr>
+<tr valign="top"><td>-g</td><td>geometric<br></td></tr>
+<tr valign="top"><td>-l</td><td>linear<br></td></tr>
+<tr valign="top"><td>-L</td><td>lba32<br></td></tr>
+<tr valign="top"><td>-m файл_карты</td><td>map=файл_карты<br></td></tr>
+<tr valign="top"><td>-P fix</td><td>fix-table<br></td></tr>
+<tr valign="top"><td>-P ignore</td><td>ignore-table<br></td></tr>
+<tr valign="top"><td>-s файл</td><td>backup=файл<br></td></tr>
+<tr valign="top"><td>-S файл</td><td>force-backup=файл<br></td></tr>
+<tr valign="top"><td>-v [N]</td><td>verbose=N<br></td></tr>
+<tr valign="top"><td>-w</td><td>nowarn<br></td></tr>
+<tr valign="top"><td>-x опция</td><td>raid-extra-boot=опция<br></td></tr>
+</tbody></table>
+
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ОПЦИИ ЗАГРУЗКИ</h2>
+
+Опции описанные здесь могут быть указаны в командной строке во время загрузки образа ядра (OC Linux).
+Эти опции обрабатываются LILO, а после передачи ядру (за исключением некоторых) удаляются из
+командной строки.
+<p>
+
+</p><dl compact="">
+<dt><b>lock</b>
+
+</dt><dd>
+Блокирует использование командной строки, аналогично директиве 'lock', которую можно
+указать в файле конфигурации 'lilo.conf.'
+</dd><dt><b>mem=###[,K,M]</b>
+
+</dt><dd>
+Определяет максимальный объём оперативной памяти в системе. Объём указывается в байтах, килобайтах
+или мегабайтах. Эта опция не удаляется из командной строки и всегда передаётся в ядро.
+</dd><dt><b>nobd</b>
+
+</dt><dd>
+Не производить чтение данных о параметрах из BIOS. Эта опция зарезервирована для использования с
+не IBM-совместимыми BIOS-ми, которые "зависают" в начале загрузки после выдачи строк:
+<p>
+</p><pre>     Loading...............
+     BIOS data check 
+</pre>
+
+</dd><dt><b>vga=[ASK,EXT,EXTENDED,NORMAL]</b>
+
+</dt><dd>
+Позволяет переназначить (используемый по умолчанию) видео режим при загрузке ядра.
+<br>
+
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ОШИБКИ ЗАГРУЗКИ</h2>
+
+Процесс загрузки происходит в две стадии. Начальная стадия загрузки первого сектора
+осуществляется или средствами BIOS, или  загрузчиком, который находится в MBR. В дальнейшем
+программный код (содержащийся в этом секторе) уже сам выполняет загрузку ограниченного количества
+секторов загрузчика для второй стадии. Когда первая стадия загрузки LILO получает управление, на
+мониторе появляется первая буква "L". Затем он считывает сектора и настраивает их для передачи
+управления второй стадии загрузки. Здесь появляется буква "I". Если обнаруживается какой-нибудь
+сбой, например, ошибка чтения диска, будет выдан шестнадцатеричный код ошибки и предпринята попытка
+повторить операцию. Все шестнадцатеричные коды ошибок являются значениями, которые возвращает BIOS.
+Ошибки обнаруживаемые и связанные с lilo это - 40, 99 и 9A. Ниже приведена часть списка с
+некоторыми кодами ошибок:
+<br>
+
+<dl compact="">
+<dt></dt><dd>
+<table>
+<tbody><tr valign="top"><td>00  ошибок нет</td><td><br></td></tr>
+<tr valign="top"><td>01  неверная дисковая команда</td><td><br></td></tr>
+<tr valign="top"><td>0A  признак "битого" сектора</td><td><br></td></tr>
+<tr valign="top"><td>0B  признак "битой" дорожки</td><td><br></td></tr>
+<tr valign="top"><td>20  ошибка контроллера устройства</td><td><br></td></tr>
+<tr valign="top"><td>40  сбой позиционирования головки диска (BIOS)</td><td><br></td></tr>
+<tr valign="top"><td>40  номер цилиндра &gt;1023 (LILO)</td><td><br></td></tr>
+<tr valign="top"><td>99  недопустимый индексный сектора на второй стадии загрузки (LILO)</td><td><br></td></tr>
+<tr valign="top"><td>9A  не обнаружена загружаемая сигнатура на второй стадии загрузки (LILO)</td><td><br></td></tr>
+<tr valign="top"><td>AA  невозможно прочитать устройство</td><td><br></td></tr>
+<tr valign="top"><td>FF  заданное действие завершилось с ошибкой</td><td><br></td></tr>
+</tbody></table>
+
+<br>
+
+</dd></dl>
+<p>
+
+Ошибку с кодом 40 генерирует BIOS или LILO в процессе преобразования
+линейных (24-битовых) адресов дискового пространства в геометрические (C:H:S) адреса.
+Эта ошибка также может появится на старых системах, которые не поддерживают адресацию
+lba32 (32-битные адреса). Ошибки 99 и 9A обычно означают невозможность чтения файла карты
+(map-file, -m или map=), обычно из-за того, что LILO не был перезапущен после некоторых
+изменений в системе или из-за несогласованности в параметрах геометрии устройства, которые
+использует LILO (см. вывод команды lilo -v3) с реально установленными в BIOS (для устранения
+этой проблемы вам, возможно, понадобится один из дисков диагностики lilo, распространяемых с
+исходным кодом lilo).
+</p><p>
+Когда происходит передача управления от первой стадии загрузки второй, это сопровождается
+появлением на мониторе второй буквы "L". Последующая инициализация второй стадии, включая проверку
+"Таблицы Дескрипторов" - списка ядер или других загружаемых компонентов - сопровождается
+появлением завершающей буквы "O", в форме целого слова "LILO", которое состоит только из заглавных
+букв.
+</p><p>
+В течении всей второй стадии загрузки, сообщения об ошибках выводятся на английском языке,
+с помощью которых более или менее точно можно попытаться найти источник их появления.
+<br>
+
+<a name="lbAH">&nbsp;</a>
+</p><h2>НЕСОВМЕСТИМОСТИ</h2>
+
+<b>lilo</b>
+
+имеет проблемы с файловой системой
+<i>reiserfs</i>
+
+представленной в ядрах серии 2.2.x в том случае, когда файловая система
+монтируется без опции 'notail'. Эта несовместимость устранена
+в файловых системах reiserfs начиная с версии 3.6.18 и lilo версии 21.6.
+<p>
+Начиная с версии 22.0, устройства RAID массивов записывают загрузочную запись в
+таблицу разделов RAID. Во время записи MBR может возникнуть необходимость оставить
+RAID загружаемым при последующем восстановлении, однако, все предпринятые по умолчанию
+действия могут быть изменены. В такой ситуации, для создания архива совместимого с предыдущими
+версиями, используйте опцию `-x mbr-only'.
+</p><p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>ОШИБКИ</h2>
+
+Опции `backup' и `force-backup' файла конфигурации ещё не полностью реализованы правильно
+для установленных RAID массивов. Используйте стандартный механизм резервного копирования
+загрузочной записи, кажется, он работает без ошибок, и поэтому он должен быть использован.
+<a name="lbAJ">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fdisk&amp;category=8">fdisk</a>(8), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lilo.conf&amp;category=5">lilo.conf</a>(5), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mkrescue&amp;category=8">mkrescue</a>(8), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mkinitrd&amp;category=8">mkinitrd</a>(8).
+<p>
+В целом программа lilo сопровождается очень подробной документацией.
+(lilo 21)
+<a name="lbAK">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+Werner Almesberger &lt;<a href="mailto:almesber@lrc.epfl.ch">almesber@lrc.epfl.ch</a>&gt; (версии с 0 по 21)
+<br>
+
+John Coffman &lt;<a href="mailto:johninsd@san.rr.com">johninsd@san.rr.com</a>&gt; (версии с 21.2 по настоящую)
+
+<a name="lbAL">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+оригинального файла на английском lilo.8.gz (5524 байт от 25.06.2004)
+(+примеры) выполнен Aleksander N.Gorohovski &lt;<a href="mailto:angel@feht.dgtu.donetsk.ua">angel@feht.dgtu.donetsk.ua</a>&gt; 06.12.2005.
+Уточнения и правка Andrey Rahmatullin &lt;<a href="mailto:wrar-alt@mail.ru">wrar-alt@mail.ru</a>&gt;,
+Vitaly Lipatov &lt;<a href="mailto:lav@altlinux.ru">lav@altlinux.ru</a>&gt;
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">ОПЦИИ ЗАГРУЗКИ</a></dt><dd>
+</dd><dt><a href="#lbAG">ОШИБКИ ЗАГРУЗКИ</a></dt><dd>
+</dd><dt><a href="#lbAH">НЕСОВМЕСТИМОСТИ</a></dt><dd>
+</dd><dt><a href="#lbAI">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAK">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAL">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="lilo" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

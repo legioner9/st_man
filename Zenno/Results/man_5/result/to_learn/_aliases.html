@@ -1,0 +1,381 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN aliases (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, aliases"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="aliases" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">aliases (5)</font><hr><li> <a href="/man.shtml?topic=aliases&amp;category=4&amp;russian=4"><u>aliases</u></a> (4) <font color="#555555"> ( Solaris man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=aliases&amp;category=5&amp;russian=1"><u>aliases</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=aliases&amp;category=5&amp;russian=0"><u>aliases</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=aliases&amp;category=5&amp;russian=2"><u>aliases</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+aliases
+-
+формат базы данных псевдонимов для Postfix.
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+
+<pre></pre>
+
+<b>newaliases</b>
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+
+
+Таблица <b>aliases</b> обеспечивает общесистемный механизм 
+перенаправления почты локальных получателей. Перенаправления
+осуществляются агентом доставки <b>local</b> входящем в Postfix.
+<p>
+Обычно, таблица <b>aliases</b> составляется в виде текстового файла,
+который затем обрабатывается командой <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=postalias&amp;category=1">postalias</a></b>(1). Для
+быстрого поиска почтовой системой используется получаемый 
+индексированный файл в формате dbm или db. После изменений в 
+в базе данных псевдонимов выполните команду <b>newaliases</b> для
+создания нового индексированного файла.
+</p><p>
+Предполагается, что форматы входного и выходного файлов совместимы
+с Sendmail версии 8 и пригодны для использования в качестве
+таблиц NIS.
+</p><p>
+Пользователи могут управлять доставкой своей почты с помощью 
+настройки файлов <b>.forward</b> в своих домашних каталогах. Строки 
+в пользовательских файлах <b>.forward</b> имеют тот же синтаксис,
+что и правая сторона записей в <b>aliases</b>.
+</p><p>
+Формат входного файла базы данных псевдонимов следующий:
+</p><dl compact="">
+<dt>.</dt><dd>
+Определение псевдонима имеет вид
+<p>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<i>name</i>: <i>value1</i>, <i>value2</i>, <i>...</i>
+</p></dd><dt>.</dt><dd>
+Строки, начинающиеся с пробела, продолжают предыдущую строку.
+</dd><dt>.</dt><dd>
+Пустые строки игнорируются, как и строки, начинающиеся с `#'.
+</dd></dl>
+<p>
+
+<i>name</i> -- это локальный адрес (без доменной части). Если
+имя содержит специальные символы, такие как пробел, `#', `:',
+или `@', используйте двойные кавычки. Чтобы сделать поиск в 
+базе данных независимым от регистра, <i>name</i> переводится в
+нижний регистр.
+</p><p>
+</p><p>
+
+Кроме того, если существует псевдоним для <b>owner-</b><i>name</i>, то
+диагностика доставки направляется на этот адрес, а не автору. Обычно
+это используется для направления сообщений об ошибках доставки
+владельцу списка рассылки, который лучше разберётся с проблемами
+доставки по списку рассылки, чем автор не доставленного письма.
+</p><p>
+
+<i>value</i> содержит одно или более из следующих выражений:
+</p><dl compact="">
+<dt><i>address</i></dt><dd>
+Почта перенаправляется на <i>address</i>, удовлетворяющий 
+стандарту RFC 822.
+</dd><dt><i>/file/name</i></dt><dd>
+Почта добавляется к <i>/file/name</i>. Подробнее о доставке в
+файл смотрите в <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=local&amp;category=8">local</a></b>(8). Доставка не ограничивается 
+обычными файлами. Например, для удаления нежелательной почты
+направьте её в <b>/dev/null</b>.
+</dd><dt>|<i>command</i></dt><dd>
+Почта передаётся <i>command</i>'е. Команды, содержащие специальные
+символы, такие как пробелы, должны быть заключены в двойные 
+кавычки. Подробнее о доставке в команду смотрите в <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=local&amp;category=8">local</a></b>(8).
+<p>
+При сбое команды отправителю отправляется назад ограниченное 
+количество выходной информации команды. Ожидаемые исходящие коды
+статуса определены в файле <b>/usr/include/sysexits.h</b>.
+Например, для симуляции ошибки "user unknown" используйте
+<b>|"exit 67"</b>, а для реализации дорогой чёрной дыры -- 
+<b>|"exit 0"</b>.
+</p></dd><dt><b>:include:</b><i>/file/name</i></dt><dd>
+Почта направляется в пункты назначения, перечисленные в 
+указанном файле. Строки в файлах <b>:include:</b> имеют
+тот же синтаксис, что и правые части записей псевдонимов.
+<p>
+Пунктом назначения может быть любой из описанных в этом 
+руководстве. Однако по-умолчанию доставка для "|<i>command</i>" 
+и <i>/file/name</i> запрещена. Чтобы её разрешить, 
+отредактируйте конфигурационные параметры 
+<b>allow_mail_to_commands</b> и <b>allow_mail_to_files</b>.
+</p></dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>РАСШИРЕНИЕ АДРЕСА</h2>
+
+
+<pre></pre>
+
+Если поиск в базе данных псевдонимов ничего не дал, а локальная
+часть адреса получателя содержит дополнительный разделитель
+получателей (например, <i>user+foo</i>), поиск повторяется для
+не расширенного адреса (например, <i>user</i>).
+<a name="lbAF">&nbsp;</a>
+<h2>ПАРАМЕТРЫ КОНФИГУРАЦИИ</h2>
+
+
+<pre></pre>
+
+Для этой темы особенно уместны следующие параметры файла <b>main.cf</b>.
+Подробнее о синтаксисе и значениях по умолчанию смотрите в файле
+<b>main.cf</b> Postfix'а. После изменения конфигурации используйте
+команду <b>postfix reload</b>.
+<dl compact="">
+<dt><b>alias_maps</b></dt><dd>
+Список баз данных псевдонимов.
+</dd><dt><b>allow_mail_to_commands</b></dt><dd>
+Ограничивает использование доставки почты во внешние команды.
+</dd><dt><b>allow_mail_to_files</b></dt><dd>
+Ограничивает использование доставки почты во внешний файл.
+</dd><dt><b>expand_owner_alias</b></dt><dd>
+При доставке на псевдоним, имеющий сопутствующий псевдоним
+<b>owner-</b>, установить в конверте адрес отправителя в 
+соответствие с правой частью псевдонима owner, вместо левой 
+части адреса.
+</dd><dt><b>owner_request_special</b></dt><dd>
+Задаёт специальную обработку для адресов <b>owner-</b><i>xxx</i> и
+<i>xxx</i><b>-request</b>.
+</dd><dt><b>recipient_delimiter</b></dt><dd>
+Разделитель, отделяющий получателей в адресных расширениях.
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>СТАНДАРТЫ</h2>
+
+
+<pre>RFC 822 (ARPA Internet Text Messages)
+</pre>
+
+<a name="lbAH">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ</h2>
+
+
+<pre><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=local&amp;category=8">local</a>(8) - агент локальной доставки
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=postalias&amp;category=1">postalias</a>(1) - управление базой данных псевдонимов
+</pre><a name="lbAI">&nbsp;</a>
+<h2>ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ</h2>
+
+
+<pre></pre>
+
+С этим программным обеспечением должна поставляться лицензия от
+Secure Mailer.
+<a name="lbAJ">&nbsp;</a>
+<h2>ОБ АВТОРАХ</h2>
+
+
+<pre>Wietse Venema
+IBM T.J. Watson Research
+P.O. Box 704
+Yorktown Heights, NY 10598, USA
+
+Перевод:
+Alex Savvin &lt;<a href="mailto:savvin@mail.ru">savvin@mail.ru</a>&gt;, Dec 15, 2001
+
+</pre>
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">РАСШИРЕНИЕ АДРЕСА</a></dt><dd>
+</dd><dt><a href="#lbAF">ПАРАМЕТРЫ КОНФИГУРАЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAG">СТАНДАРТЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAI">ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ОБ АВТОРАХ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="aliases" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

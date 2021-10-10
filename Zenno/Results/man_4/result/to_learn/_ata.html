@@ -1,0 +1,371 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ata (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ata"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ata" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ata (4)</font><hr><li> <a href="/man.shtml?topic=ata&amp;category=4&amp;russian=1"><u>ata</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ata&amp;category=4&amp;russian=0"><u>ata</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=ata&amp;category=7&amp;russian=4"><u>ata</u></a> (7) <font color="#555555"> ( Solaris man: Макропакеты и соглашения )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>ata(4)</h1></td>
+<td><h2 align="center">Руководство по интерфейсам ядра FreeBSD</h2></td>
+<td><h1 align="right">ata(4)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+<p><b>ata</b>, <b>ar</b>, <b>acd</b>, <b>ad</b>, <b>afd</b>, <b>ast</b>&nbsp; - 
+универсальный драйвер контроллерра диска ATA/ATAPI</p>
+
+<h2><a name="synopsis">СИНТАКСИС</a></h2>
+
+<p>Для поддержки ATA/ATAPI на базе ISA:</p>
+<pre><b>device isa</b>
+<b>device ata</b>
+</pre>
+
+<p>В файле <b>/boot/device.hints</b>:</p>
+<pre><b>hint.ata.0.at="isa"</b>
+<b>hint.ata.0.port="0x1f0"</b>
+<b>hint.ata.0.irq="14"</b>
+<b>hint.ata.1.at="isa"</b>
+<b>hint.ata.1.port="0x170"</b>
+<b>hint.ata.1.irq="15"</b>
+</pre>
+
+<p>Для поддержки ATA/ATAPI на базе PC98:</p>
+<pre><b>device isa</b>
+<b>device ata</b>
+</pre>
+
+<p>В файле <b>/boot/device.hints</b>:</p>
+<pre><b>hint.atacbus.0.at="isa"</b>
+<b>hint.atacbus.0.port="0x640"</b>
+<b>hint.atacbus.0.irq="9"</b>
+</pre>
+
+<p>Для поддержки ATA/ATAPI на базе PCI:</p>
+<pre><b>device pci</b>
+<b>device ata</b>
+</pre>
+
+<p>Для поддержки ATA-совместимых дисков:</p>
+<pre><b>device atadisk</b>
+</pre>
+
+<p>Для поддержки программных RAID-массивов ATA:</p>
+<pre><b>device ataraid</b>
+</pre>
+
+<p>Для поддержки ATAPI CDROM, DVD и устройств записи CD/DVD:</p>
+<pre>device atapicd
+</pre>
+
+<p>Для поддержки дисководов дискет с инерфейсом ATAPI:</p>
+<pre>device atapifd
+</pre>
+
+<p>Для поддержки стримеров с интерфейсом ATAPI:</p>
+<pre>device atapist
+</pre>
+
+<p>Из загрузчика можно устанавливать следующие параметры настройки:</p>
+<dl>
+<dt><b>hw.ata.ata_dma</b></dt><dd>
+установить 1 для обеспечения доступа DMA, 0 - для PIO (по умолчанию, DMA).</dd>
+<dt><b>hw.ata.atapi_dma</b></dt><dd>
+установить 1 для обеспечения доступа DMA, 0 - для PIO (по умолчанию, PIO).</dd>
+<dt><b>hw.ata.wc</b></dt><dd>
+установить 1 для обеспечения кеширования записи, 0 - для отключения (по умолчанию,
+кеширование записи включено).<br> 
+ПРЕДУПРЕЖДЕНИЕ: кеширование записи может вызвать потерю данных при сбоях питания.</dd>
+</dl>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<p>Драйвер <b>ata</b> обеспечивает доступ к дискам ATA (IDE) и SerialATA, дисководам
+ATAPI CDROM/DVD, дисководам ZIP/LS120 ATAPI и стримерам ATAPI, подключенным к контроллерам,
+соответствующим стандартам ATA/ATAPI.</p>
+
+<p>В настоящее врремя поддерживаются контроллеры ATA/SATA на базе следующих чипов:</p>
+<table cellpadding="4" width="100%" border="0">
+<tbody><tr><td valign="top">Acard:</td><td>ATP850P, ATP860A, ATP860R, ATP865A, ATP865R</td></tr>
+<tr><td valign="top">ALI:</td><td>Aladdin (ALi5229)-совместимые чипы.</td></tr>
+<tr><td valign="top">AMD:</td><td>AMD756, AMD766, AMD768, AMD8111.</td></tr>
+<tr><td valign="top">CMD:</td><td>CMD646, CMD648, CMD649.</td></tr>
+<tr><td valign="top">Cyrix:</td><td>Cyrix 5530.</td></tr>
+<tr><td valign="top">Cypress:</td><td>Cypress 82C693.</td></tr>
+<tr><td valign="top"></td></tr><tr><td valign="top">HighPoint:</td><td>HPT302, HPT366, HPT366, HPT368,
+HPT370, HPT371, HPT372, HPT374.</td></tr>
+<tr><td valign="top">Intel:</td><td>PIIX, PIIX3, PIIX4, ICH, ICH0, ICH2, ICH3, ICH4,
+ICH5.</td></tr>
+<tr><td valign="top">National:</td><td>SC1100.</td></tr>
+<tr><td valign="top">nVidia:</td><td>nForce, nForce2, nForce3.</td></tr>
+<tr><td valign="top"></td></tr><tr><td valign="top">Promise:</td><td>PDC20246, PDC20262, PDC20263,
+PDC20265, PDC20267, PDC20268, PDC20269, PDC20270, PDC20271, PDC20275, PDC20276, PDC20277,
+PDC20318, PDC20319, PDC20371, PDC20375, PDC20376, PDC20377, PDC20378, PDC20379,
+PDC20617, PDC20618, PDC20619, PDC20620.</td></tr>
+<tr><td valign="top">ServerWorks:</td><td>ROSB4, CSB5, CSB6.</td></tr>
+<tr><td valign="top">Silicon Image:</td><td>SiI0680, SiI3112.</td></tr>
+<tr><td valign="top">SiS:</td><td>SIS5513, SIS530, SIS540, SIS550, SIS620, SIS630, SIS630S,
+SIS633, SIS635, SIS730, SIS733, SIS735, SIS745, SIS961, SIS962, SIS963</td></tr>
+<tr><td valign="top">VIA:</td><td>VT82C586, VT82C586B, VT82C596, VT82C596B, VT82C686,
+VT82C686A, VT82C686B, VT8231, VT8233, VT8233A, VT8233C, VT8235, VT8237.</td></tr>
+</tbody></table>
+
+<p>Неизвестные чипсеты ATA поддерживаются в режимах PIO и, если стандартные
+регистры основной шины DMA имеются и содержат допустимые настройки, режим DMA тоже
+включается, хотя максимальная скорость передачи ограничивается UDMA33, поскольку
+неизвестно, что может делать чипсет и как его программировать.</p>
+
+<p>Драйвер <b>ata</b> может менять режим передачи и другие параметры по ходу работы
+системы. См. <a href="/man.shtml?topic=atacontrol&amp;category=8"><b>atacontrol(8)</b></a>.</p>
+
+<p>Драйвер по умолчанию устанавливает максимальный режим передачи, поддерживаемый 
+устройством. Однако драйвер <b>ata</b> иногда предупреждает: "<b>DMA limited to
+UDMA33, non-ATA66 cable or device</b>". Это означает, что драйвер <b>ata</b> выявил,
+что требуемый шлейф из 80 проводников не обнаружен или не опознается, или что одно
+из подключенных устройств может работать не быстрее, чем в режиме UDMA2/ATA33.</p>
+
+<p>Устройства ATAPI по умолчанию поддерживаются в режиме PIO, поскольку часто
+возникают различные проблемы DMA, даже если устройство формально поддерживается в 
+этом режиме. Всегда можно попытаться установить режим DMA для устройства ATAPI
+с помощью программы <a href="/man.shtml?topic=atacontrol&amp;category=8"><b>atacontrol(8)</b></a>, но учтите,
+что ваше устройство моожет его не поддерживать и вся система может зависнуть,
+что приведет к потере данных.</p>
+
+<h2><a name="files">ФАЙЛЫ</a></h2>
+<dl>
+<dt><b>/dev/ad*</b></dt>
+<dd>специальные файлы устройств дисков ATA</dd>
+<dt><b>/dev/ar*</b></dt>
+<dd>специальные файлы устройств ATA RAID</dd>
+<dt><b>/dev/acd*</b></dt>
+<dd>специальные файлы устройств ATAPI CD-ROM</dd>
+<dt><b>/dev/afd*</b></dt>
+<dd>специальные файлы устройств дисководов дискет с интерфейсом ATAPI</dd>
+<dt><b>/dev/ast*</b></dt>
+<dd>специальные файлы устройств стримеров с интерфейсом ATAPI</dd>
+<dt><b>/sys/i386/conf/GENERIC</b></dt>
+<dd>пример универсального файла конфигурации ядра для систем на базе <b>ata</b></dd>
+</dl>
+
+<h2><a name="notes">ПРИМЕЧАНИЯ</a></h2>
+<p>Помните, что для поддержки режимов UDMA4/ATA66 и выше, необходимо использовать
+кабели из 80 проводников. Проверьте, что шлейфы - не длиннее 45 сантиметров. Для
+круглых кабелей ATA длина зависит от качества кабеля. Кабели SATA, в соответствии со
+спецификацией, могут быть длиной до 1 метра.</p>
+
+<p>Статическая нумерация устройств (которая включается с помощью опции ядра
+<b>ATA_STATIC_ID</b>) резервирует номер для каждого диска, который может быть
+потенциально подключен, даже если его нет. Это удобно для горячей замены,
+когда диски должны всегда представляться устройством с одним и тем же номером,
+независимо от порядка подключения.</p>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+<dl><dt></dt><dd>
+<a href="/man.shtml?topic=atacontrol&amp;category=8"><b>atacontrol(8)</b></a>, 
+<a href="/man.shtml?topic=burncd&amp;category=8"><b>burncd(8)</b></a>
+</dd></dl>
+
+<h2><a name="history">ИСТОРИЯ</a></h2>
+
+<p>Драйвер <b>ata</b> впервые появился в ОС FreeBSD 4.0.</p>
+
+<h2><a name="authors">АВТОРЫ</a></h2>
+
+<p>Сорен Шмидт (Soren Schmidt), &lt;sos@FreeBSD.org&gt;.</p>
+
+<p align="center">FreeBSD 4.9, 4 ноября 2003 года</p>
+
+<p align="center"><font size="-2">Copyleft (no c) - Fuck copyright! 
+2004 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ata" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

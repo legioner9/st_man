@@ -1,0 +1,416 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN su (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, su"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="su" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">su (8)</font><hr><li> <a href="/man.shtml?topic=su&amp;category=1&amp;russian=4"><u>su</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=su&amp;category=1&amp;russian=1"><u>su</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=su&amp;category=1&amp;russian=0"><u>su</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=su&amp;category=1&amp;russian=2"><u>su</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=su&amp;category=7&amp;russian=4"><u>su</u></a> (7) <font color="#555555"> ( Solaris man: Макропакеты и соглашения )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=su&amp;category=8&amp;russian=0"><u>su</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Команды сопровождения</h1></td>
+<td><h1 align="right">su(1M)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+
+<p><b>su</b> - стать суперпользователем или другим пользователем</p>
+
+<h2><a name="sinopsis">СИНТАКСИС</a></h2>
+<dl><dt></dt><dd><tt>
+	su [-] [<b>имя_пользователя</b> [<b>аргумент</b> ...  ]]
+</tt></dd></dl>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<p>Команда <b>su</b> позволяет пользователю выполнять команды от имени
+другого пользователя, не завершая текущий сеанс, или получить роль. 
+По умолчанию предполагается работа от имени пользователя <b>root</b> 
+(суперпользователя).</p>
+
+<p>Для использования <b>su</b> необходимо ввести соответствующий пароль 
+(если только команду не вызывает пользователь <b>root</b>). Если
+введен правильный пароль, <b>su</b> создает новый процесс командного
+интерпретатора, с такими же реальными и эффективными идентификаторами 
+пользователя и группы, а также списком дополнительных групп, что и у
+указанного пользователя. В качестве нового командного интерпретатора
+используется указанный в поле начальной программы записи файла <b>passwd</b>
+для соответствующего пользователя (см. <a href="/man.shtml?topic=passwd&amp;category=4"><b>passwd(4)</b></a>).
+Если командный интерпретатор там не указан, используется <b>/usr/bin/sh</b>
+(см. <a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>). Чтобы вернуться в прежний сеанс,
+введите символ конца файла, <b>EOF</b> (<b>Ctrl-D</b>) для завершения
+работы нового командного интерпретатора.</p>
+
+<p>Любые дополнительные <b>аргументы</b>, заданные в командной строке, 
+передаются новому командному интерпретатору. При использовании программ
+типа <b>sh</b>, если <b>аргумент</b> имеет вид <b>-c строка</b>, то
+<b>строка</b> выполняется интерпретатором как команда, а аргумент <b>-r</b>
+приводит к запуску ограниченного командного интерпретатора.</p>
+
+<p>Следующие утверждения верны, если в качестве начальной программы 
+в учетной записи пользователя задана <b>/usr/bin/sh</b> или пустая строка 
+(что означает стандартный командный интерпретатор <b>/usr/bin/sh</b>). Если первый
+аргумент <b>su</b> - дефис (<b>-</b>), среда будет установлена такой же,
+как при регистрации заданного пользователя. Иначе передается текущая
+среда, за исключением значения <b>$PATH</b>, которое задается переменными
+<b>PATH</b> и <b>SUPATH</b> в файле <b>/etc/default/su</b>. Кроме того, если задан
+аргумент дефис устанавливается идентификатор проекта пользователя. См.
+<a href="/man.shtml?topic=settaskid&amp;category=2"><b>settaskid(2)</b></a>.</p>
+
+<p>Все попытки стать другим пользователем с помощью команды <b>su</b> регистрируются
+в журнальном файле <b>/var/adm/sulog</b> 
+(см <a href="/man.shtml?topic=sulog&amp;category=4"><b>sulog(4)</b></a>).</p>
+
+<h2><a name="security">ЗАЩИТА</a></h2>
+
+<p>Команда <b>su</b> используется механизм <a href="/man.shtml?topic=pam&amp;category=3"><b>pam(3PAM)</b></a>
+для аутентификации, управления учетной записью и управления сеансом. Конфигурация модулей PAM, задаваемая в файле <b>/etc/pam.conf</b>, перечисляет модули,
+которые должны использоваться для команды <b>su</b>. Вот часть файла <b>pam.conf</b>
+с записями для <b>su</b>, задающими использование стандартного (UNIX)
+модуля аутентификации, управления учетной записью и сеансом.</p>
+
+<pre>su   auth   	required    /usr/lib/security/pam_unix.so.1
+su   account	required    /usr/lib/security/pam_unix.so.1
+su   session	required    /usr/lib/security/pam_unix.so.1
+</pre>
+
+<p>Если записей для службы <b>su</b> в этом файле нет, будут применяться записи
+для службы "<b>other</b>". Если перечислено несколько модулей аутентификации,
+у пользователя могут запрашивать несколько паролей.</p>
+
+<h2><a name="examples">ПРИМЕРЫ</a></h2>
+
+<h3>Пример 1: Работа от имени пользователя bin в прежней среде</h3>
+
+<p>Чтобы стать пользователем <b>bin</b>, сохранив прежнюю среду, выполните 
+команду:</p>
+
+<dl><dt></dt><dd><tt>
+example% su bin
+</tt></dd></dl>
+
+<h3>Пример 2: Работа от имени пользователя bin в его начальной среде</h3>
+
+<p>Чтобы стать пользователем <b>bin</b>, изменив среду так, как если бы он
+действительно зарегистрировался в системе, выполните команду:</p>
+
+<dl><dt></dt><dd><tt>
+example% su - bin
+</tt></dd></dl>
+
+<h3>Пример 3: Выполнение одной команды с правами и в среде пользователя bin</h3>
+
+<p>Чтобы выполнить команду во временной среде и с правами пользователя <b>bin</b>,
+введите:</p>
+
+<dl><dt></dt><dd><tt>
+example% su - bin -c "command args"
+</tt></dd></dl>
+
+<h2><a name="environment">ПЕРЕМЕННЫЕ СРЕДЫ</a></h2>
+
+<p>Переменные с префиксом <b>LD_</b> убраны из соображений защиты.
+Поэтому при выполнении <b>su  bin</b> в среде не останутся ранее
+экспортированные переменные с префиксом <b>LD_</b> при работе
+от имени <b>bin</b>.</p>
+
+<p>Если в среде не установлены какие-то из переменных <b>LC_*</b> 
+(<b>LC_CTYPE</b>, <b>LC_MESSAGES</b>, <b>LC_TIME</b>, <b>LC_COLLATE</b>,
+<b>LC_NUMERIC</b> и <b>LC_MONETARY</b>) 
+(см. <a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>), поведение
+команды <b>su</b> для соответствующих категорий локали определяется
+значением переменной среды <b>LANG</b>. Если установлена переменная
+<b>LC_ALL</b>, ее значение имеет приоритет и над значением
+<b>LANG</b>, и над значениями других переменных <b>LC_*</b>. Если ни
+одна из перечисленных переменных в среде не установлена, поведение
+<b>su</b> задает локаль "<b>C</b>" (американского стиля).</p>
+
+<dl>
+<dt><b>LC_CTYPE</b></dt><dd>
+Определяет, как <b>su</b> обрабатывает символы. Если переменная <b>LC_CTYPE</b>
+имеет допустимое значение, <b>su</b> может выдавать и обрабатывать
+текст и имена файлов, содержащие допустимые для этой локали символы.
+Команда <b>su</b> может выдавать и обрабатывать символы Extended Unix Code
+(EUC), каждый из которых может быть представлен как 1, 2 или 3 байта. 
+<b>su</b> также может обрабатывать символы EUC, занимающие 1, 2 или более
+символьных позиций. В локали "<b>C</b>" допустимы только символы
+кодовой страницы ISO 8859-1.
+<br><br></dd>
+<dt><b>LC_MESSAGES</b></dt><dd>
+Определяет, как выдаются выдаются диагностические и информационные сообщения.
+В частноти, язык и стиль сообщений, а такде допустимые формы утвердительного
+и отрицательного ответа. В локали "<b>C</b>" сообщения выдаются в стандартном
+виде, как представлены в самой программе (в большинстве случаев, на американском
+диалекте английского языка).
+</dd>
+</dl>
+
+<h2><a name="files">ФАЙЛЫ</a></h2>
+<dl>
+<dt><b>$HOME/.profile</b></dt>
+<dd>команды для <b>sh</b> и <b>ksh</b>, выполняемые при регистрации пользователя</dd>
+<dt><b>/etc/passwd</b></dt>
+<dd>файл паролей (учетных записей) системы</dd>
+<dt><b>/etc/profile</b></dt>
+<dd>общесистемные команды для <b>sh</b> и <b>ksh</b>, выполняемые при
+регистрации всех пользователей, использующих эти командные интерпретаторы
+в качестве начальных</dd>
+<dt><b>/var/adm/sulog</b></dt>
+<dd>файл журнала</dd>
+<dt><b>/etc/default/su</b></dt>
+<dd>файл стандартных параметров <b>su</b> со следующими параметрами:
+<dl>
+<dt><a name="SULOG"><b>SULOG</b></a></dt><dd>
+Если задан, все попытки выполнить команды от имени другого пользователя
+с помощью <b>su</b> регистрируются в указанном файле.</dd>
+<dt><a name="CONSOLE"><b>CONSOLE</b></a></dt><dd>
+Если задан, все попытки выполнить с помощью <b>su</b> команды от
+имени пользователя <b>root</b> регистрируются на консоли.</dd>
+<dt><a name="PATH"><b>PATH</b></a></dt><dd>
+Стандартный путь поиска выполняемых программ. (<b>/usr/bin:</b>)</dd>
+<dt><a name="SUPATH"><b>SUPATH</b></a></dt><dd>
+Стандартный путь поиска выполняемых программ для пользователя,
+пытающегося с помощью <b>su</b> выполнить команды от имени пользователя <b>root</b>.
+(<b>/usr/sbin:/usr/bin</b>)</dd>
+<dt><a name="SYSLOG"><b>SYSLOG</b></a></dt><dd>
+Определяет, должны ли все попытки вызова <b>su</b> регистрироваться
+с помощью средств <a href="/man.shtml?topic=syslog&amp;category=3"><b>syslog(3C)</b></a> <b>LOG_AUTH</b>.
+При попытке выполнения команд от имени <b>root</b> с помощью <b>su</b>
+генерируются сообщения <b>LOG_NOTICE</b>, при попытке выполнения команд
+от имени других пользователей генерируются сообщения <b>LOG_INFO</b>, а для
+нгеудавшихся попыток вызова <b>su</b> генерируются сообщения <b>LOG_CRIT</b>.</dd>
+<dt><a name="SLEEPTIME"><b>SLEEPTIME</b></a></dt><dd>
+Если задан, определяет количество секунд ожидания, прежде чем
+на экран выдается сообщение о неудачной попытке регистрации 
+(login  failure) и разрешается новая попытка. Стандартное значение - 4 секунды.
+Минимальное - 0 секунд, максимальное - 5 секунд.</dd>
+</dl>
+</dd></dl>
+
+<h2><a name="attributes">АТРИБУТЫ</a></h2>
+
+<p>Описание следующих атрибутов см. на странице справочного руководства
+<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>:</p>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWcsu</td></tr>
+</tbody></table>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=csh&amp;category=1"><b>csh(1)</b></a>,
+	<a href="/man.shtml?topic=env&amp;category=1"><b>env(1)</b></a>,
+	<a href="/man.shtml?topic=ksh&amp;category=1"><b>ksh(1)</b></a>,
+	<a href="/man.shtml?topic=login&amp;category=1"><b>login(1)</b></a>,
+	<a href="/man.shtml?topic=roles&amp;category=1"><b>roles(1)</b></a>,
+	<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>,
+	<a href="/man.shtml?topic=syslogd&amp;category=1"><b>syslogd(1M)</b></a>,
+	<a href="/man.shtml?topic=settaskid&amp;category=2"><b>settaskid(2)</b></a>,
+	<a href="/man.shtml?topic=pam&amp;category=3"><b>pam(3PAM)</b></a>,
+	<a href="/man.shtml?topic=syslog&amp;category=3"><b>syslog(3C)</b></a>,
+	<a href="/man.shtml?topic=pam.conf&amp;category=4"><b>pam.conf(4)</b></a>, 
+	<a href="/man.shtml?topic=passwd&amp;category=4"><b>passwd(4)</b></a>, 
+	<a href="/man.shtml?topic=profile&amp;category=4"><b>profile(4)</b></a>, 
+	<a href="/man.shtml?topic=sulog&amp;category=4"><b>sulog(4)</b></a>, 
+	<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>,
+	<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>, 
+	<a href="/man.shtml?topic=pam_unix&amp;category=5"><b>pam_unix(5)</b></a>
+</dd></dl>
+
+<p align="center">Последнее изменение: 27 января 2000 года</p>
+
+<p align="center"><font size="-2">
+Copyright 2002 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="su" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

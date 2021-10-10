@@ -1,0 +1,773 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN smbd (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, smbd"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="smbd" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">smbd (8)</font><hr><li> <a href="/man.shtml?topic=smbd&amp;category=1&amp;russian=4"><u>smbd</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=smbd&amp;category=8&amp;russian=0"><u>smbd</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+smbd - предоставляет клиентам сервисы SMB (иначе LanManager)
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>smbd</b>
+
+[
+<b>-D</b>
+
+] [
+<b>-a</b>
+
+] [
+<b>-d</b>
+
+<i>уровень_отладки</i>
+
+] [
+<b>-l</b>
+
+<i>файл_протоколирования</i>
+
+] [
+<b>-p</b>
+
+<i>номер_порта</i>
+
+] [
+<b>-O</b>
+
+<i>опции_socket'ов</i>
+
+] [
+<b>-s</b>
+
+<i>конфигурационный_файл</i>
+
+]
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Эта программа является частью пакета Samba.
+<p>
+<b>smbd</b>
+
+это сервер, которые может предоставлять сервисы SMB. Сервисами являются
+файловый сервер и сервер печати. Они предоставляются клиентам, которые
+используюьт SMB протокол. Этот протокол совместим с протоколом LanManager
+и с успехом может применятся клиентами LanManager. Сюда включаются
+MSCLIENT 3.0 для DOS, Windows for Workgroups, Windows 95, Windows NT,
+OS/2, DAVE для Macintosh, и smbfs для Linux.
+</p><p>
+Расширенное описание сервисов, которые может предоставлять сервер дано
+на страницах руководства, посвященных конфигурационному файлу Samba
+(смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smb.conf&amp;category=5">smb.conf</a></b>(5)).
+
+Текущая страница руководства не описывает сервисы, а делает акцент на
+административных аспектах запуска сервера.
+</p><p>
+Пожалуйста заметьте, что здесь отсутствует описание вопросов безопастности
+при запуске сервера, и что станица руководства
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smb.conf&amp;category=5">smb.conf</a></b>(5)
+
+обязательно должна быть внимательно прочитана перед тем как вы приступите
+к установке.
+</p><p>
+Когда клиент посылает серверу запрос создается сессия. Каждый клиент
+работает во время сессии с копией сервера. Эта копия затем обслуживает
+все соединения, которые установит клиент во время данной сессии. Когда все
+совединения данного клиента закрываются, копия сервера уничтожается.
+</p><p>
+Конфигурационный файл и любые файлы, которые он включает, автоматически
+перезагружаются каждую минуту, если они были изменены. Вы можете заставить
+<b>smbd</b>
+
+перезагрузить эти файлы, послав серверу сигнал SIGHUP. Перезагрузка
+конфигурационного файла не будет оказывать влияния на сервисы и соединения,
+которые в этот момент находятся в работе. Пользователь должен отсоединится
+от сервиса, но можно также убить smbd и запустить его снова.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОПЦИИ</h2>
+
+<b>-D</b>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+Если эта опция задана, то она заставляет сервер запустится в режиме демона.
+Это приводит к тому, что сервер будет работать в фоновом режиме, обрабатывая
+запросы, поступающие на соответствующий порт.
+<p>
+По умолчанию сервер НЕ запускается в режиме демона.
+</p></dd></dl>
+
+<p>
+<b>-a</b>
+
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+Если задана эта опция, то файлы протоколирования будут перезаписываться
+с каждым новым соединением. По умолчанию файлы протоколирования дополняются.
+</dd></dl>
+
+<p>
+<b>-d</b>
+
+<i>уровень_отладки</i>
+
+</p><dl compact=""><dt></dt><dd>
+<p>
+Уровень_отладки должен быть целым числом от 0 до 10.
+</p><p>
+Если данная опция не задана, то по умолчанию уровень_отладки выставляется в 0.
+Чем больше заданное значение, тем больше подробностей о работе сервера будет
+заносится в файлы протоколирования. При уровне 0 будут заносится только
+критические ошибки и важные предупреждения. Уровень 1 является самым удобным
+для повседневной работы - он генерирует дополнительную информацию об
+операциях обрывов соединений.
+</p><p>
+Уровни выше 1 будут генерировать соотвественно больше информации и должны
+использоваться только при возникновении проблем. Уровни выше 3 разрабатываются
+только для использования разработчиками и генерируют ОГРОМНОЕ количество
+информации, большая часть которой крайне специфична.
+</p></dd></dl>
+
+<p>
+<b>-l</b>
+
+<i>файл_протоколирования</i>
+
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+Если эта опция задана, то
+<i>файл_протоколирования</i>
+
+задает базовое имя файла, в который будет помещаться информация о работе
+сервера.
+<p>
+По умолчанию имя этого файла определяется во время компиляции.
+</p><p>
+Базовое имя используется для генерации реальных имен файлов протоколирования.
+Например, если задано базовое имя "log", то будут созданы следующие файлы:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+log.debug (содержащий отладочную информацию)
+<p>
+log.in (содержит входящие транзакции)
+</p><p>
+log.out (содержит выходящии транзакции)
+</p></dd></dl>
+
+<p>
+Сгенерированные файлы протоколирования никогда не удаляются сервером.
+</p></dd></dl>
+
+<p>
+<b>-O</b>
+
+<i>опции_socket'ов</i>
+
+</p><dl compact=""><dt></dt><dd>
+<p>
+Смотрите секцию ОПЦИИ SOCKET'ов в файле
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smb.conf&amp;category=5">smb.conf</a></b>(5).
+
+</p><p>
+</p></dd></dl>
+
+<b>-p</b>
+
+<i>номер_порта</i>
+
+<dl compact=""><dt></dt><dd>
+<p>
+значение номер_порта должно быть положительны целым числом.
+</p><p>
+По умолчанию оно установлено в 139.
+</p><p>
+Данный порт будет использоваться при установке соединения клиента с сервером.
+Стандартный (принятый) номер порта для сервера это 139. Если вы захотите
+запустить север от имени обычного пользователя (не root), то многие системы
+потребуют от вас использовать номер порта больше чем 1024 - попросите своего
+системного администратора помочь, в этой ситуации.
+</p><p>
+Обычно для сервера, который используется многиими клиентами, вы должны
+настроить порт, отличный от 139 и затребовать службу перенаправления
+информации на порт 139, подробности этого читайте в файле rfc1002.txt 
+в секции 4.3.5.
+</p><p>
+Данный параметр обычно не нуждается в изменении, за исключением описанной
+выше ситуации.
+</p></dd></dl>
+
+<p>
+<b>-s</b>
+
+<i>конфигурационный_файл</i>
+
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+По умолчанию имя конфигурационного файла определяется во время компиляции.
+<p>
+В этом файле задаются параметры необходимые серверу. Об этих параметрах,
+включая специфическую информацию такую как о файле printcap и другую
+можно прочитать на странице руководства
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smb.conf&amp;category=5">smb.conf</a></b>(5).
+
+</p></dd></dl>
+
+<a name="lbAF">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<p>
+<b>/etc/inetd.conf</b>
+
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+Если сервер запускается через inetd, то данный файл должен сожержать
+соответствующую информацию для запуска. Смотрите секцию
+"УСТАНОВКА" ниже.
+</dd></dl>
+
+<p>
+<b>/etc/rc</b>
+
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+(или любой другой сценарий инициализации вашей системы)
+<p>
+Если вы хотите запускать сервер как демон во время загрузки системы, то
+данный файл должен содержать соответствующую информацию для запуска.
+Смотрите секцию "УСТАНОВКА" ниже.
+</p></dd></dl>
+
+<p>
+<b>/etc/services</b>
+
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+Если запускать сервер через inetd, то этот файл должен содержать имя
+сервиса (т.е. netbios-ssn)  порт сервиса (т.е. 139) и тип протокола
+(т.е. tcp). Смотрите секцию "УСТАНОВКА" ниже.
+</dd></dl>
+
+<p>
+<b>/usr/local/samba/lib/smb.conf</b>
+
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+Этот файл описывает все сервисы сервера которые могут быть доступны
+для клиентов. Смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smb.conf&amp;category=5">smb.conf</a></b>(5)
+
+для подробностей.
+</dd></dl>
+
+<a name="lbAG">&nbsp;</a>
+<h2>ОГРАНИЧЕНИЯ</h2>
+
+<p>
+На некоторых системах
+<b>smbd</b>
+
+не может изменить обратно идентификатор пользователя на root после вызова
+setuid(). Такие системы называются "trapdoor" системами. Если у вас такая
+система, то вы не сможете осуществить соединение от клиента (такого как PC),
+так как нужно два разлиных пользователя. Попытка соединения второго
+пользователя будет приводит к сообщению "access denied" (в доступе отказано)
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</h2>
+
+<p>
+<b>PRINTER</b>
+
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+Если для сервиса печати не задано имя принтера, то многие системы будут
+использовать значение этой переменной (или имя "lp" если переменная не
+определена) как имя принтера. 
+</dd></dl>
+
+<a name="lbAI">&nbsp;</a>
+<h2>УСТАНОВКА</h2>
+
+Местоположение сервера и его файлов поддержки определяется индивидуально
+каждым системным администратором. По этому далее мы только советуем.
+<p>
+Рекомендуется серверную программу установить в каталог /usr/local/samba,
+или в любой другой, доступный на чтение всем, а на запись только 
+суперпользователю. Выполнение программы должно быть доступно всем,
+так как пользователи могут захотеть запустить сервер сами (в этом случае
+сервер будет, разумеется, выполняется с их уровнем привелегий). На
+программу-сервер НЕ должен быть установлен бит суперпользователя (setuid
+root). На некоторых системах может портребоваться установить для smbd
+идентификатор пустой группы. Это вызвано тем, что некоторые системы могут
+иметь брешь в безопастности, когда к демон-процессам может присоединится
+пользователь с отладчиком. Установка для smbd пустой группы может 
+закрыть эту брешь для дальнейшего использования. Данная брешь в безопастности
+и этот совет имели место быть в Linux, во время написания этого совета.
+Возможно такое и бывает только в Linux так как тестирование на других
+системах подобной дыры в безопастности не выявило.
+</p><p>
+Серверные файлы протоколирования должны быть помещены в каталог, доступный
+на запись и чтение только суперпользователю root, так как они могут содержать
+конфиденциальную информацию.
+</p><p>
+Конфигурационный файл должен быть помещен в каталог доступный на чтение и
+запись только суперпользователю, так как конфигурационный файл управляет
+безопастностью сервисов, предоставляемых сервером. Конфигурационный файл
+может быть сделан читаемым для всех, если вы так желаете, но это не очень
+хорошее решение и мы его не рекомендуем. Простой конфигурационный файл
+"smb.conf.sample" поставляется вместе с исходными текстами сервера - он
+может быть переименован в "smb.conf" и модифицирован под ваши требования.
+</p><p>
+Остаются следующие замечания:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<b>smbd</b>
+
+(серверная программа) установлена в /usr/local/samba/bin
+<p>
+smb.conf (конфигурационный файл) установлена в /usr/local/samba/lib
+</p><p>
+файлы протоколирования записаны в /var/adm/smblogs
+</p></dd></dl>
+
+<p>
+Сервер может быть запущен как демон пользователем или при загрузке системы,
+или может быть запущен через inetd. Если сервер запустить демоном, то он
+всегда будет готов для быстрого открытия сессии. Если сервер запустить
+через initd, то это даст возможность сэкономить память, а для повышения
+безопастности могут быть использованы такие утилиты как TCP-wrapper.
+</p><p>
+Когда вы решите как вам лучше запускать сервер, переходите к либо к
+секции "ЗАПУСК СЕРВЕРА КАК ДЕМОНА" или "ЗАПУСК СЕРВЕРА ПО ЗАПРОСУ".
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ЗАПУСК СЕРВЕРА КАК ДЕМОНА</h2>
+
+Для запуска сервера как демона из командной строки, просто добавте
+опцию
+<b>-D.</b>
+
+Ставить знак "&amp;" в конце командной строки не нужно.
+<p>
+Любой прользователь может запустить сервер как демон (если он имеет права
+на запуск, конечно). Это полезно для тестовых целей и может даже быть
+полезно для временной установки. Когда вы запускаете сервер таким образом,
+вы, однако, запускаете его с привелегиями того пользователя от имени
+которого вы произвели запуск.
+</p><p>
+Чтобы гаратированно запустить сервер как демон, во время загрузки машины
+и убедится, что он запущен с привелегиями суперпользователя, а также что
+он может обслуживать множество клиентов, вам необходимо модифицировать
+системные файлы запуска. Вам нужно вставить (например в /etc/rc) строку,
+описывающую номер порта, файл протоколирования, конфигурационный файл и
+уровень отладки, например:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+/usr/local/samba/bin/smbd -D -l /var/adm/smblogs/log -s /usr/local/samba/lib/smb.conf
+</dd></dl>
+
+<p>
+(Данная выше команда должна быть помещена в сценарий инициализации в
+одной строке. В завсимости от характеристик вашего терминала, вы можете
+неправильно увидеть эту строку на экране)
+</p><p>
+Если опции испольщуемые во время компиляции соответсвуют вашей системе,
+то все параметры за исключением необязательных: уровня отдаки и опции
+<b>-D</b>
+
+могут быть опущены. Смотрите секцию
+"ОПЦИИ" выше.
+</p><p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>ЗАПУСК СЕРВЕРА ПО ЗАПРОСУ</h2>
+
+Если ваша система использует демон inetd, вы можете запускать smbd с его
+помощью, когда клиентский процесс пытается установит соединение с smbd сервером.
+Для этого требует произвести некоторые изменения в файлах конфигурации
+inetd. Если вы не являетесь администратором, то попросите помочь вашего
+системного администратора модифицировать эти файлы.
+<p>
+Возможно, что вместе с
+<b>smbd</b>
+
+вы также захотите установить сервер
+<b>nmbd</b>
+
+- смотрите 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=nmbd&amp;category=8">nmbd</a></b>(8).
+
+</p><p>
+Сперва, убедитесь, что нужный порт описан в файле /etc/services. Рекомендуется
+испльзовать порт 139, если это возможно, однако можно использовать и любой
+другой.
+</p><p>
+Убедитесь, что в файле /etc/services есть следующая строка:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+netbios-ssn<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>139/tcp<br>
+</dd></dl>
+
+<p>
+Замечание для пользователей NIS/YP - вам может быть понадобится перестройка
+файла NIS service maps вместо правки файла /etc/services.
+</p><p>
+Далее, поместите необходимую строку в файл /etc/inetd.conf (если вы
+используете демон отличный от inetd, то должны настроить его сами).
+Заметим, что первая часть строки совпадает с именем сервиса в файле
+/etc/services. Подставте соответствующие значения для вашей системы
+в эту строку (смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=inetd&amp;category=8">inetd</a></b>(8)):
+
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+
+
+netbios-ssn stream tcp nowait root /usr/local/samba/bin/smbd -d1 
+-l/var/adm/smblogs/log -s/usr/local/samba/lib/smb.conf
+
+</dd></dl>
+
+<p>
+(Данная выше команда должна быть помещена в файл /etc/inetd.conf в
+одной строке. В завсимости от характеристик вашего терминала, вы можете
+неправильно увидеть эту строку на экране)
+</p><p>
+Заметим, что нет необходимости задавать номер порта здесь, даже если
+вы используете нестандартный порт.
+</p><p>
+И наконец, отредактируйте конфигурационный файл для предоставления
+клиентам необходимых сервисов. Для запуска сервера вам необходимы
+хотя бы два сервиса:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+[homes]
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;writable&nbsp;=&nbsp;yes
+</dd></dl>
+
+<p>
+[printers]
+</p><dl compact=""><dt></dt><dd>
+<br>&nbsp;writable&nbsp;=&nbsp;no
+<br>&nbsp;printable&nbsp;=&nbsp;yes
+<br>&nbsp;path&nbsp;=&nbsp;/tmp
+<br>&nbsp;public&nbsp;=&nbsp;yes
+</dd></dl>
+
+</dd></dl>
+
+<p>
+Это позволит вам соединятся с вашим домашним каталогом и печатать на любой
+принтер, который поддерживается данной машиной (с привелегиями пользователя).
+</p><p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>ПРОВЕРА ПРАВИЛЬНОСТИ УСТАНОВКИ</h2>
+
+Если сервер запускается как демон, запустите его перед проверкой. Если
+он запускается через inetd, то перезапустите систему или убейте и
+запустите снова inetd. Некоторые версии inetd могут перечитывать свой
+конфигурационный файл, если inetd послать сигнал HUP.
+<p>
+Если имя вашей машины, например, "fred" а ваше имя "mary", вы должны теперь
+иметь возможность присоединится к ресурсу "\\fred\mary".
+</p><p>
+Для предполагаемого теста и эксперимента с сервером, мы рекомендуем вам
+использовать программу smbclient (смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smbclient&amp;category=1">smbclient</a></b>(1)).
+
+</p><p>
+<a name="lbAM">&nbsp;</a>
+</p><h2>ВЕРСИЯ</h2>
+
+Данная страница руководства соответствует версии 1.9.00 пакета Samba,
+плюс некоторые заплаты. Это замечание дано для того, чтобы вы не удивлялись,
+если ваша версия программы имеет расширения или какие-либо отличия от
+того, что здесь описано. Пожалуйста отметьте эти отличии и вышлите нам.
+<p>
+<a name="lbAN">&nbsp;</a>
+</p><h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hosts_access&amp;category=5">hosts_access</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=inetd&amp;category=8">inetd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=nmbd&amp;category=8">nmbd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smb.conf&amp;category=5">smb.conf</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smbclient&amp;category=1">smbclient</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=testparm&amp;category=1">testparm</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=testprns&amp;category=1">testprns</a></b>(1)
+
+<b>rfc1001.txt</b>
+
+<b>rfc1002.txt</b>
+
+<p>
+<a name="lbAO">&nbsp;</a>
+</p><h2>ДИАГНОСТИКА</h2>
+
+[Эта секция находится в стадии разработки]
+<p>
+Большинство диагностических сообщений, которые выдает сервер записываются
+в файл протоколирования. Имя этого файла задается во время компиляции, но
+может быть перекрыто в командной строке.
+</p><p>
+Количество диагностических сообщений зависит от уровня отладки, который
+установлен для данного сервера. Если у вас возникли проблемы, установите
+уровень отладки в 3 и изучите файлы протоколирования.
+</p><p>
+Большинство сообщений интуитивно понятны. Однако, на время создания
+данной страницы руководства, исходный код еще сыроват, чтобы можно было
+гаратировать описание каждого диагностического сообщения. На этой стадии
+вам лучше изучить исходные тексты и проверить при выполнении каких условий
+выдается то или иное диагностическое сообщение.
+</p><p>
+<a name="lbAP">&nbsp;</a>
+</p><h2>СИГНАЛЫ</h2>
+
+В версии 1.9.18 и выше уровень отладки для smbd может быть увеличен посылкой
+smbd сигнала SIGUSR1 (kill -USR1 &lt;smbd-pid&gt;) и уменьшен посылкой сигнала 
+SIGUSR2 (kill -USR2 &lt;smbd-pid&gt;). Это позволяет гибко проводить диагностику
+в случае возникновения проблем и после их устранения вернуться на нормальный
+уровень отладки.
+<p>
+Note that as the signal handlers send a debug write, they are not
+re-entrant in smbd. This you should wait until smbd is in a state of
+waiting for an incoming smb before issuing them. It is possible to
+make the signal handlers safe by un-blocking the signals before the
+select call and re-blocking them after, however this would affect
+performance.
+</p><p>
+<a name="lbAQ">&nbsp;</a>
+</p><h2>БАГИ</h2>
+
+Неизвестны.
+<a name="lbAR">&nbsp;</a>
+<h2>CREDITS</h2>
+
+Первоначальный пакет Samba и сопутствующие утилиты создал
+Andrew Tridgell (<a href="mailto:samba-bugs@samba.anu.edu.au">samba-bugs@samba.anu.edu.au</a>). Andrew также является
+главным человеком, который поддерживает этот проект.
+<p>
+Смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smb.conf&amp;category=5">smb.conf</a></b>(5)
+
+на предмет полного списка участников проекта и подробностей о том, как
+отсылать сообщения об ошибках, комментарии и т.д.
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">ОГРАНИЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAH">ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAI">УСТАНОВКА</a></dt><dd>
+</dd><dt><a href="#lbAJ">ЗАПУСК СЕРВЕРА КАК ДЕМОНА</a></dt><dd>
+</dd><dt><a href="#lbAK">ЗАПУСК СЕРВЕРА ПО ЗАПРОСУ</a></dt><dd>
+</dd><dt><a href="#lbAL">ПРОВЕРА ПРАВИЛЬНОСТИ УСТАНОВКИ</a></dt><dd>
+</dd><dt><a href="#lbAM">ВЕРСИЯ</a></dt><dd>
+</dd><dt><a href="#lbAN">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAO">ДИАГНОСТИКА</a></dt><dd>
+</dd><dt><a href="#lbAP">СИГНАЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAQ">БАГИ</a></dt><dd>
+</dd><dt><a href="#lbAR">CREDITS</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="smbd" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

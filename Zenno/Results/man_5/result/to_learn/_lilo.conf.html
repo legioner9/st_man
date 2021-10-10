@@ -1,0 +1,726 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN lilo.conf (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, lilo.conf"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="lilo.conf" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">lilo.conf (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=lilo.conf&amp;category=5&amp;russian=0"><u>lilo.conf</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=lilo.conf&amp;category=5&amp;russian=2"><u>lilo.conf</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+lilo.conf - конфигурационный файл lilo
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<p>
+
+Файл
+<i>/etc/lilo.conf</i>
+
+по умолчанию считывается системным менеджером загрузки lilo (см. <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lilo&amp;category=8">lilo</a>(8)).
+</p><p>
+
+Он может выглядеть таким образом:
+</p><dl compact="">
+<dt></dt><dd>
+<pre>boot = /dev/hda
+delay = 40
+compact
+vga = normal
+root = /dev/hda1
+read-only
+image = /zImage-2.5.99
+        label = try
+image = /zImage-1.0.9
+        label = 1.0.9
+image = /tamu/vmlinuz
+        label = tamu
+        root = /dev/hdb2
+        vga = ask
+other = /dev/hda3
+        label = dos
+        table = /dev/hda
+</pre>
+
+</dd></dl>
+<p>
+
+Данный конфигурационный файл определяет, что lilo использует
+основную загрузочную запись (MBR) на устройстве /dev/hda.
+(Для знакомства с различными способами использования lilo и
+его работы с другими операционными системами смотрите файл user.tex
+из документации о lilo.)
+</p><p>
+
+В начале работы менеджер загрузки будет ожидать нажатия на
+клавишу Shift 4 секунды (40 децисекунд).
+Если на нее не нажимают, то начнет загружаться первый указанный
+образ ядра (/zImage-1.5.99, тот, который Вы, вероятнее всего, установили
+буквально пять минут назад).
+Если Вы нажали на Shift, то менеджер спросит, какой образ загружать.
+В случае, если Вы забыли возможные варианты загрузки, нажмите на
+[TAB] (или [?] - если клавиатура соответствует стандарту США), и Вам будет
+показано меню. Вы должны выбрать объект загрузки:
+новое ядро, старое (проверенное) ядро, ядро другой файловой системы
+(в случае, если Вы допустили какую-либо грубую ошибку при работе
+с обычной файловой системой), - или загружать другую операционную систему.
+В файле lilo.conf таким образом может быть указано до 16-и образов.
+</p><p>
+
+Как можно увидеть выше, конфигурационный файл начинается с некоторого числа
+общих параметров (верхние 6 строк в примере), сопровождаемых описаниями
+параметров разных образов. Параметры в описании каждого образа имеют
+приоритет над параметрами в общей секции.
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОБЩИЕ ОПЦИИ</h2>
+
+Существует множество подходящих для работы команд. Описания, приведенные ниже, 
+просто взяты из файла user.tex (только немного урезаны).
+<dl compact="">
+<dt><b>backup=</b><i>резервный_файл</i>
+
+</dt><dd>
+Копировать загрузочный сектор в файл
+<i>резервный_файл</i>
+
+(который может быть устройством, например,
+<i>/dev/null</i>)
+
+вместо
+<i>/boot/boot.NNNN</i>).
+
+</dd><dt><b>boot=</b><i>устройство</i><b>загрузки</b>
+
+</dt><dd>
+Устанавливает имя устройства (например, раздел жесткого диска), которое
+ссылается на загрузочный сектор. Если эта команда пропущена,
+то загрузочный сектор считывается с 
+устройства, которое в данный момент запущено
+как root, и, вероятнее всего, записывается на него.
+</dd><dt><b>change-rules</b>
+
+</dt><dd>
+Определяет, возможно ли изменить количество видимых разделов
+при загрузке (`скрытие' разделов). Смотрите секцию
+"Правила изменения типов разделов" в user.tex для знакомства с подробностями.
+</dd><dt><b>compact</b>
+
+</dt><dd>
+Пытается объединять запросы на чтение рядом расположенных секторов
+в единый запрос. Это очень уменьшает время загрузки и снижает объем карт (\map).
+Использование режима `compact' особенно рекомендуется при загрузке данных с дискет.
+</dd><dt><b>default=</b><i>название</i>
+
+</dt><dd>
+Использовать указанное название образа как выбираемое по умолчанию при
+загрузке. Если параметр `default' пропущен, то 
+в качестве него принимается первый образ, описанный в конфигурационном файле.
+</dd><dt><b>delay=</b><i>децисекунд</i>
+
+</dt><dd>
+Определяет количество десятых долей секунд, на которые менеджер
+загрузки приостанавливает запуск выбранного образа.
+Это бывает необходимо в системах, которые начинают загрузку с жесткого диска
+сразу после того, как клавиатура инициализирована.
+Менеджер загрузки не будет приостанавливать запуск, если
+параметр `delay' пропущен или установленное значение его равно нулю.
+</dd><dt><b>disk=</b><i>название_устройства</i>
+
+</dt><dd>
+Определяет нестандартные параметры указанному диску.
+Для знакомства с подробностями смотрите раздел "Геометрия диска" в user.tex.
+Особенно полезен параметр `bios='. Вообще, BIOS нумерует ваши диски 
+по порядку, например, 0x80, 0x81 и т.п., но, в целом, бывает невозможно 
+определить соответствие между дисками в Linux и дисками в BIOS
+(так как это зависит от настроек BIOS и от типа BIOS), так что если
+в системе есть нестандартные настройки, Вам будет необходимо установить
+соответствие между Linux-дисками и дисками BIOS. Например,
+<p>
+</p><pre>    disk=/dev/sda
+            bios=0x80
+    disk=/dev/hda
+            bios=0x81
+</pre>
+
+<p>
+определяет, что Ваш SCSI-диск является первым диском BIOS,
+а Ваш главный (первичный) IDE-диск является вторым диском BIOS.
+</p></dd><dt><b>disktab=</b><i>файл_disktab</i>
+
+</dt><dd>
+Определяет название таблицы дисковых параметров.
+Инсталлятор карты (\map installer) ищет файл
+<i>/etc/disktab</i>
+
+в случае, если параметр `disktab' пропущен.
+Использовать этот параметр не рекомендуется.
+</dd><dt><b>fix-table</b>
+
+</dt><dd>
+Данная опция позволяет lilo править 3D-адреса в таблице разделов. 
+Каждый элемент таблицы содержит 3D (сектор/головка/цилиндр) и линейные
+адреса первого и последнего секторов раздела. Если раздел
+не расположен в соответствии с цилиндрами и если какие-то другие
+операционные системы (например, PC/MS-DOS или OS/2) используют тот же диск,
+то это может изменить 3D-адреса. А lilo может сохранять свой
+сектор загрузки только в тех разделах, где оба типа адреса совпадают.
+Если установлен параметр `fix-table', то lilo может изменять
+(исправлять) некорректные 3D-адреса.
+ПРЕДУПРЕЖДЕНИЕ: данная опция не гарантирует, что другие операционные 
+системы не попытаются в дальнейшем изменить какие-либо адреса.
+Также есть вероятность, что внесенные изменения (после запуска
+данной опции) приведут к неожиданным побочным эффектам.
+Исправить ошибки можно будет с помощью программы,
+которая перераспределяет разделы на диске, выравнивая
+разделы в соответствии с цилиндрами.
+На некоторых дисках (например, на некоторых больших EIDE-дисках
+с системой переопределения адресов) при некоторых обстоятельствах,
+возможно, всегда будет происходить конфликт в адресах разделов между элементами 
+диска.
+</dd><dt><b>force-backup=</b><i>резервный_файл</i>
+
+</dt><dd>
+Работает так же, как `backup', но при этом 
+переписывает старую резервную копию, если она существует.
+</dd><dt><b>ignore-table</b>
+
+</dt><dd>
+указывает lilo на то, что следует игнорировать поврежденную таблицу разделов.
+</dd><dt><b>install=</b><i>сектор_загрузки</i>
+
+</dt><dd>
+Устанавливает указанный файл как новый сектор загрузки.
+Если `install' пропущено, то по умолчанию используется файл
+<i>/boot/boot.b</i>
+
+<br>&nbsp;.
+</dd><dt><b>linear</b>
+
+</dt><dd>
+Генерировать линейные адреса секторов вместо 3D-адреса 
+(сектор/головка/цилиндр). Линейные адреса преобразуются и
+не зависят от геометрии диска. Заметим, что загрузочные диски
+могут стать несовместимыми с другими системами, если использована опция `linear',
+так как сервисы BIOS, определяющие геометрию диска,
+ненадежно работают с флоппи-дисководами.
+При использовании `linear' с большими дисками,
+<i>/sbin/lilo</i>
+
+может создать ссылки на недоступные области диска, так как
+3D-адреса секторов перед загрузкой не до конца известны.
+</dd><dt><b>lock</b>
+
+</dt><dd>
+Включает автоматическое исполнение команд загрузки по умолчанию 
+для далее указанного образа загрузки. Таким образом,
+lilo "закрепляет" данный выбор до тех пор, пока он не 
+будет заново определен вручную.
+</dd><dt><b>map=</b><i>файл_карты</i><b>(\map-file)</b>
+
+</dt><dd>
+Определяет расположение файла карты. Если параметр `map' пропущен,
+то по умолчанию используется файл
+<i>/boot/map .</i>
+
+</dd><dt><b>message=</b><i>файл_сообщения</i>
+
+</dt><dd>
+определяет файл, содержащий сообщение, отображаемое перед приглашением
+загрузки. Во время ожидания нажатия клавиши [Shift] (после вывода
+строки "LILO ") на экран ничего не выводится.
+Символ FF сообщения([Ctrl L]) "очищает" экран.
+Размер файла сообщения ограничен до 65535-и байтов. 
+Файл карты (\map file) должен быть собран заново, если файл сообщений
+изменен или куда-то перемещен.
+</dd><dt><b>nowarn</b>
+
+</dt><dd>
+Не выводить предупреждения о возможных некорректных последствиях работы.
+</dd><dt><b>optional</b>
+
+</dt><dd>
+Определенный в этом случае параметр каждого образа `optional' (смотрите ниже)
+относится ко всем образам.
+</dd><dt><b>password=</b><i>пароль</i>
+
+</dt><dd>
+Определенный в данном случае параметр каждого образа `password=...' (смотрите ниже)
+относится ко всем образам.
+</dd><dt><b>prompt</b>
+
+</dt><dd>
+Принудительно выводит приглашение загрузки, не ожидая 
+никаких нажатий клавиатуры.
+Автоматическая перезагрузка невозможна,
+если `prompt' устанавлено, а `timeout' не включено.
+</dd><dt><b>restricted</b>
+
+</dt><dd>
+Определенный в данном случае параметр каждого образа `restricted' (смотрите ниже)
+относится ко всем образам.
+</dd><dt><b>serial=</b><i>параметры</i>
+
+</dt><dd>
+позволяет управлять операцией с помощью последовательной линии связи. Указанный
+последовательный порт инициализируется, и менеджер загрузки
+начинает принимать посредством этого порта и клавиатуры PC входящие данные.
+Отправка сигнала прерывания в последовательную линию осуществляется нажатием 
+клавиши [Shift] на консоли и служит для привлечения внимания
+менеджера загрузки.
+Все образы загрузки должны быть защищены паролем, если доступ 
+к последовательной линии менее безопасен, чем доступ к консоли,
+например, если линия подключена к модему. 
+Строка параметров имеет следующий вид:
+<p>
+</p><pre>    &lt;port&gt;[,&lt;bps&gt;[&lt;parity&gt;[&lt;bits&gt;]]]
+</pre>
+
+<p>
+&lt;port&gt;:  номер последовательного порта, начинающийся с нуля.
+0 соответсвует COM1, оно же является /dev/ttyS0 и т.п. 
+Могут быть использованы все четыре последовательных порта
+(если они существуют).
+</p><p>
+&lt;bps&gt;:  скорость передачи данных последовательного порта.
+Поддерживаются следующие скорости передачи:
+110, 150, 300, 600, 1200, 2400, 4800 и 9600 б/с.
+По умолчанию скорость устанавливается равной 2400 б/с.
+</p><p>
+&lt;parity&gt;:  проверка четности в последовательной линии.
+Менеджер загрузки игнорирует входящую четность и укорачивает 8-ой бит.
+Последующие символы (в верхнем или в нижнем регистре)
+используются для описания четности: "n"- для снятия проверки,
+"e" - для проверки четности,  "o" - для проверки нечетности.
+</p><p>
+&lt;bits&gt;:  количество битов в символе. Поддерживаются только 7 или 8 битов.
+По умолчанию принимается размер, равный 8-и битам, если проверка снята,
+и 7-и битам, если проверка нечетности или четности запущена.
+</p><p>
+Если запущен параметр `serial', то значение `delay' автоматически 
+увеличивается до 20-и.
+</p><p>
+Пример: serial=0,2400n8 инициализирует COM1 с параметрами по умолчанию.
+</p></dd><dt><b>timeout=</b><i>децисекунд</i>
+
+</dt><dd>
+устанавливает ограничение по времени (в десятых долях секунды)
+ввода команды с помощью клавиатуры. Если никаких клавиш в указанное 
+время не нажато, 
+то автоматически начинает запускаться первый образ. 
+Ввод пароля также отменяется, если пользователь слишком долго 
+не выполняет никаких операций. По умолчанию ограничение по времени бесконечно.
+</dd><dt><b>verbose=</b><i>уровень</i>
+
+</dt><dd>
+Запускает вывод большого количества сообщений при работе.
+Большие номера соответствуют большему количеству сообщений.
+Если в командной строке lilo дополнительно указан параметр -v , 
+то уровень, соответственно, увеличивается.
+Максимальный уровень вывода сообщений равен 5-и.
+</dd></dl>
+<p>
+
+Также такие параметры конфигурации ядра, как
+<b>append</b>, <b>ramdisk</b>, <b>read-only</b>, <b>read-write</b>, <b>root</b>
+
+и
+<b>vga</b>
+
+могут быть установлены в разделе общих параметров.
+Они используются по умолчанию, если дополнительно не указаны
+соответствующие образы загрузки в конфигурационных секциях.
+<a name="lbAE">&nbsp;</a>
+</p><h2>СЕКЦИИ ДЛЯ КАЖДОГО РАЗДЕЛА</h2>
+
+Секция для каждого раздела начинается со строки
+<p>
+</p><pre>    <b>image=</b><i>pathname</i>
+</pre>
+
+<p>
+(чтобы указать на файл или устройство, содержащее образ загрузки ядра Linux),
+либо со строки
+</p><p>
+</p><pre>    <b>other=</b><i>pathname</i>
+</pre>
+
+<p>
+для указания произвольной системы загрузки.
+</p><p>
+
+В первом случае, если строка <b>image</b> определяет загрузку с устройства,
+надо указать область секторов, которые должны отображаться, используя
+</p><dl compact="">
+<dt><b>range=</b><i>начало-конец</i>
+
+</dt><dd>
+</dd></dl>
+<p>
+
+Во втором случае (загрузка другой системы) можно указать еще три параметра:
+</p><dl compact="">
+<dt><b>loader=</b><i>последовательный_загрузчик</i><b>(\chain-loader)</b>
+
+</dt><dd>
+Данный параметр определяет последовательный загрузчик,
+который должен использоваться. По умолчанию используется файл
+<i>/boot/chain.b</i>.
+
+Последовательный загрузчик должен быть обязательно определен, если
+Вы хотите проделывать загрузку с устройства, отличного от первого жесткого
+диска или первого флоппи-дисковода.
+</dd><dt><b>table=</b><i>устройство</i>
+
+</dt><dd>
+Данный параметр определяет устройство, которое содержит таблицу разделов.
+Менеджер загрузки не передаст информацию об имеющихся разделах
+загружаемой операционной системе, если эта переменная пропущена.
+(Некоторые операционные системы имеют другие способы для определения 
+раздела, с которого они были запущены. Например, MS-DOS обычно сохраняет 
+геометрию загрузочного диска или раздела в своем загрузочном секторе).
+Заметим, что файл /sbin/lilo должен быть повторно запущен,
+если параметром `table' были изменены отображаемые ссылки в таблице разделов.
+</dd><dt><b>unsafe</b>
+
+</dt><dd>
+Не обращаться к загрузочному сектору во время создания карты (\map).
+Данный параметр снимает некоторые проверки, включая проверку 
+таблицы разделов. Если загрузочный сектор находится на
+флоппи-диске фиксированного формата, то использование параметра UNSAFE
+исключает необходимость устанавливать считываемый диск в дисковод
+во время запуска установки отображения. Параметры `unsafe' и `table' 
+являются взаимоисключающими, несовместимыми.
+</dd></dl>
+<p>
+
+В обоих случаях используются параметры, описанные ниже.
+</p><dl compact="">
+<dt><b>label=</b><i>название</i>
+
+</dt><dd>
+Менеджер загрузки использует имя файла (неполное)
+со спецификацией каждого образа для обозначения этого образа.
+С помощью изменения параметра `label' может быть использовано другое имя
+</dd><dt><b>alias=</b><i>название</i>
+
+</dt><dd>
+Может быть использовано и дополнительное название 
+одного образа, если определить его псевдоним.
+</dd><dt><b>lock</b>
+
+</dt><dd>
+(смотрите выше).
+</dd><dt><b>optional</b>
+
+</dt><dd>
+Пропустить образ, если он недоступен во время создания карты отображения.
+Это бывает полезно, когда нужно определять тестовые ядра, 
+которые в действительности не всегда существуют.
+</dd><dt><b>password=</b><i>пароль</i>
+
+</dt><dd>
+Защитить данный образ паролем.
+</dd><dt><b>restricted</b>
+
+</dt><dd>
+Пароль требуется только для загрузки образа, если в командной строке
+указаны дополнительные параметры (например, single).
+</dd></dl>
+<p>
+
+<a name="lbAF">&nbsp;</a>
+</p><h2>ОПЦИИ ЯДРА</h2>
+
+Если загружаемый образ является ядром Linux, 
+то ему можно передать некоторые параметры командной строки для запуска.
+<dl compact="">
+<dt><b>append=</b><i>строка</i>
+
+</dt><dd>
+Учитывать данную строку как параметр, передаваемый ядру.
+Это обычно используется для указания параметров аппаратных средств,
+которые не могут автоматически определяться,
+или для которых очень опасно применять разные "пробные" конфигурации.
+Пример:
+<p>
+</p><pre>     append = "hd=64,32,202"
+</pre>
+
+<p>
+</p></dd><dt><b>literal=</b><i>строка</i>
+
+</dt><dd>
+Действует как параметр `append', но при этом "очищает" все другие параметры
+(например, определения корневого устройства). 
+Так как при использовании параметра `literal' могут быть 
+непреднамеренно удалены крайне важные настройки, этот параметр
+не должен быть указан в разделе общих параметров.
+</dd><dt><b>ramdisk=</b><i>размер</i>
+
+</dt><dd>
+Параметр определяет размер дополнительного виртуального ОЗУ-диска.
+Значение "ноль" определяет, что ОЗУ-диск вообще не должен быть создан.
+Если этот параметр пропущен, то используется ОЗУ-диск с размером
+загружаемого образа.
+</dd><dt><b>read-only</b>
+
+</dt><dd>
+Параметр определяет, что корневая файловая система должна быть
+запущена с атрибутами "только для чтения".
+Обычно процедура загрузки системы  заново запускает корневую
+файловую систему с атрибутами "чтение и запись" 
+(например, после использования fsck).
+</dd><dt><b>read-write</b>
+
+</dt><dd>
+Параметр определяет, что корневая файловая система должна быть
+запущена с атрибутами "чтение и запись".
+</dd><dt><b>root=</b><i>корневое_устройство</i><b>(\root-device)</b>
+
+</dt><dd>
+Параметр определяет устройство, которое должно запускаться как корневое.
+Если использовано особое название
+<b>current</b>,
+
+то устанавливаемое корневое устройство представляет собой устройство, к которому
+в данный момент подключена корневая файловая система.
+Если была использована переменная 'root' с ключом -r , то
+соответствующее устройство будет запущено.
+Если переменная `root' пропущена, то используются
+настройки корневого устройства в образе ядра.
+Они устанавливаются во время компиляции с помощью переменной ROOT_DEV
+в Makefile ядра и могут позднее изменяться программой <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rdev&amp;category=8">rdev</a>(8).)
+</dd><dt><b>vga=</b><i>режим</i>
+
+</dt><dd>
+Определяет текстовый VGA-режим, который должен использоваться при загрузке.
+Могут использоваться следующие значения (регистр игнорируется):
+<p>
+<b>normal</b>:
+
+установить обычный текстовый режим 80x25.
+</p><p>
+<b>extended</b> (или <b>ext</b>):
+
+установить текстовый режим 80x50.
+</p><p>
+<b>ask</b>:
+
+остановиться (при загрузке) и спросить пользователя о его выборе.
+</p><p>
+&lt;число&gt;:  использовать соответствующий текстовый режим.
+Список возможных режимов можно получить, установив vga=ask и
+нажав [Enter] при загрузке.
+</p><p>
+Если данный параметр пропущен, то используются VGA-режимы,
+содержащиеся в выбранном образе ядра.
+Они устанавливаются во время компиляции с помощью переменной SVGA_MODE
+в Makefile ядра и могут позднее изменяться программой <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rdev&amp;category=8">rdev</a>(8).
+</p></dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lilo&amp;category=8">lilo</a>(8), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rdev&amp;category=8">rdev</a>(8).
+<br>
+
+К программе lilo прилагается очень подробная документация,
+и все описанное в этом файле является лишь кратким ее обзором.
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">ОБЩИЕ ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAE">СЕКЦИИ ДЛЯ КАЖДОГО РАЗДЕЛА</a></dt><dd>
+</dd><dt><a href="#lbAF">ОПЦИИ ЯДРА</a></dt><dd>
+</dd><dt><a href="#lbAG">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="lilo.conf" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,886 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ldap.conf (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ldap.conf"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ldap.conf" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ldap.conf (5)</font><hr><li> <a href="/man.shtml?topic=ldap.conf&amp;category=5&amp;russian=3"><u>ldap.conf</u></a> (5) <font color="#555555"> ( Разные man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ldap.conf&amp;category=5&amp;russian=0"><u>ldap.conf</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+ldap.conf, .ldaprc - конфигурационный файл/переменные окружения для LDAP-клиентов
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+/usr/local/etc/openldap/ldap.conf, ldaprc, .ldaprc, $LDAP&lt;option-name&gt;
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Если определена переменная окружения <b>LDAPNOINIT</b>,
+все заданные значения по умолчанию не применяются.
+<p>
+
+Конфигурационный файл
+<i>ldap.conf</i>
+
+используется для задания общесистемных значений по умолчанию,
+применяемых при запуске
+<i>ldap-клиентов</i>.
+
+</p><p>
+
+Пользователи могут создавать в своих домашних директориях
+опциональные конфигурационные файлы
+<i>ldaprc</i>
+
+или
+<i>.ldaprc</i>,
+
+которые будут использованы для переопределения
+значений по умолчанию из общесистемного файла.
+Кроме того, будут применяться значения из файла
+<i>ldaprc</i>
+
+в текущей рабочей директории.
+</p><p>
+
+</p><p>
+
+С помощью переменных окружения <b>LDAPCONF</b> и <b>LDAPRC</b>
+можно указать использование дополнительных конфигурационных файлов.
+В переменной <b>LDAPCONF</b> может быть задан путь к конфигурационному файлу.
+Этот путь может быть как абсолютным, так и относительным (от текущей рабочей директории).
+Если указывается переменная <b>LDAPRC</b>, то в ней должно быть задано имя файла
+в текущей рабочей директории или в домашней директории пользователя.
+</p><p>
+
+Для переопределения значений по умолчанию из файлов можно также использовать переменные окружения.
+Имя такой переменной представляет собой имя опции файла с добавлением префикса <b>LDAP</b>.
+Например, для определения опции <b>BASE</b> через окружение, нужное значение указывается в переменной
+<b>LDAPBASE</b>.
+</p><p>
+
+Некоторые опции может задавать только пользователь. Такие опции игнорируются при их указании в
+<i>ldap.conf</i>
+
+(или файле, заданном в переменной
+<b>LDAPCONF</b>).
+
+</p><p>
+
+Итак, файлы и переменные будут прочитаны в следующем порядке:
+</p><pre>    переменная              $LDAPNOINIT, и, если она не задана, то:
+    системный файл          /usr/local/etc/openldap/ldap.conf,
+    пользовательские файлы  $HOME/ldaprc,  $HOME/.ldaprc,  ./ldaprc,
+    системный файл          $LDAPCONF,
+    пользовательские файлы  $HOME/$LDAPRC, $HOME/.$LDAPRC, ./$LDAPRC,
+    переменные              $LDAP&lt;имя опции заглавными буквами&gt;.
+</pre>
+
+Более поздние в списке установки переопределяют более ранние.
+<a name="lbAE">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+Названия опций конфигурации нечувствительны к регистру символов;
+их значения, в зависимости от ситуации, могут быть чувствительны к регистру символов.
+<p>
+
+Пустые строки игнорируются.
+<br>
+
+Строки, начинающиеся с символа решётки (`#'), являются комментариями и игнорируются.
+</p><p>
+
+Значимые строки состоят из названия опции (последовательности непробельных символов,
+по традиции записываемых в верхнем регистре, хотя такое требование не выдвигается),
+за которым следует значение. Значение начинается с первого непробельного символа после названия опции
+и завершается в конце строки, либо перед первым пробельным символом последовательности пробельных символов,
+которыми завершается строка. Разбиение значения на составляющие, если таковые имеются,
+делегируется определённому для этой опции обработчику (обработчикам), опять же, при их наличии.
+Значения в кавычках, содержащие пробельные символы, могут быть некорректными,
+поскольку символ кавычек может стать частью значения. Например,
+</p><p>
+</p><pre>        # Неверно - ошибочные кавычки:
+        URI     "ldap:// ldaps://"
+
+        # Верно - разделённый пробелами список URI, без кавычек:
+        URI     ldap:// ldaps://
+
+        # Верно - синтаксис DN требует заключать в кавычки Example, Inc:
+        BASE    ou=IT staff,o="Example, Inc",c=US
+        # или:
+        BASE    ou=IT staff,o=Example2C Inc,c=US
+
+        # Неверно - комментарий на одной строке с опцией:
+        DEREF   never           # Never follow aliases
+</pre>
+
+<p>
+
+Строка не может быть длиннее значения LINE_MAX, которое должно превышать 2000 на всех платформах.
+Не предусмотрено механизмов разбиения длинной строки на несколько строк
+(как в целях повышения читабельности, так и в целях недопущения превышения указанного лимита).
+<a name="lbAF">&nbsp;</a>
+</p><h2>ОПЦИИ</h2>
+
+Опции конфигурации различного назначения:
+<dl compact="">
+<dt><b>URI &lt;ldap[si]://[name[:port]] ...&gt;</b>
+
+</dt><dd>
+Указывает URI (один или несколько) LDAP-сервера (серверов), к которым следует осуществлять подключение библиотеке
+<i>LDAP</i>.
+
+В качестве схемы в URI могут быть
+<b>ldap</b>,
+
+<b>ldaps</b>
+
+или
+<b>ldapi</b>,
+
+указывающие, соответственно, на подключения LDAP поверх TCP, LDAP поверх SSL (TLS) и LDAP поверх IPC
+(доменных сокетов UNIX). Каждое имя сервера может быть указано как доменное имя или как IP-адрес.
+Опционально, за именем сервера может следовать знак ':' и номер порта, на котором ожидает подключения LDAP-сервер.
+Если номер порта не указан, используется значение порта по умолчанию для конкретного вида схемы
+(389 для <a href="ldap://,">ldap://,</a> 636 для <a href="ldaps://).">ldaps://).</a> Для LDAP поверх IPC аргумент
+<b>name </b>
+
+представляет собой имя сокета, а аргумент
+<b>port</b>
+
+указывать нельзя; обратите внимание, что разделительные символы директорий должны быть закодированы в формате URL,
+как и все остальные символы, являющиеся специальными для URL; таким образом, сокет
+<p>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>/usr/local/var/ldapi<br>
+</p><p>
+должен быть указан как
+</p><p>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><a href="ldapi://%2Fusr%2Flocal%2Fvar%2Fldapi">ldapi://%2Fusr%2Flocal%2Fvar%2Fldapi</a><br>
+</p><p>
+В данной опции может быть предоставлен список URI, разделённых пробелами.
+</p></dd><dt><b>BASE &lt;base&gt;</b>
+
+</dt><dd>
+Определяет базовое DN, использующееся по умолчанию при выполнении операций ldap.
+Аргумент base должен быть указан как уникальное имя (Distinguished Name) в формате LDAP.
+</dd><dt><b>BINDDN &lt;dn&gt;</b>
+
+</dt><dd>
+Определяет DN подключения, использующееся по умолчанию при выполнении операций ldap.
+DN подключения должен быть указан как уникальное имя (Distinguished Name) в формате LDAP.
+<b>Эту опцию может задавать только пользователь.</b>
+
+</dd><dt><b>DEREF &lt;when&gt;</b>
+
+</dt><dd>
+Определяет, как будет осуществляться разыменование псевдонимов при выполнении поиска.
+В качестве аргумента
+<b>&lt;when&gt;</b>
+
+может быть указано одно из следующих ключевых слов:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>never</b>
+
+</dt><dd>
+Псевдонимы не разыменовываются никогда. Это значение по умолчанию.
+</dd><dt><b>searching</b>
+
+</dt><dd>
+Псевдонимы разыменовываются, если они встречаются в нижестоящих по отношению к базе поиска объектах,
+но не разыменовываются при нахождении самого объекта базы поиска.
+</dd><dt><b>finding</b>
+
+</dt><dd>
+Псевдонимы разыменовываются только при нахождении объекта базы поиска.
+</dd><dt><b>always</b>
+
+</dt><dd>
+Псевдонимы разыменовываются как при осуществлении поиска, так и при нахождении объекта базы поиска.
+</dd></dl>
+</dd></dl>
+
+</dd><dt></dt><dt><b>HOST &lt;name[:port] ...&gt;</b>
+
+</dt><dd>
+</dd><dd>
+Указывает имя (имена) LDAP-сервера (серверов), к которым следует осуществлять подключение библиотеке
+<i>LDAP</i>.
+
+Каждое имя сервера может быть указано как доменное имя или как IP-адрес.
+Опционально, за именем сервера может следовать знак ':' и номер порта, на котором ожидает подключения
+LDAP-сервер. В данной опции может быть предоставлен список хостов, разделённых пробелами. Опция
+<b>HOST</b>
+
+считается устаревшей в пользу
+<b>URI</b>.
+
+</dd><dt><b>NETWORK_TIMEOUT &lt;integer&gt;</b>
+
+</dt><dd>
+Указывает тайм-аут (в секундах), после которого вслед за вызовом <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a>(2),
+в случае отсутствия активности, возвращаются <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=poll&amp;category=2">poll</a>(2)/<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=select&amp;category=2">select</a>(2).
+</dd><dt><b>PORT &lt;port&gt;</b>
+
+</dt><dd>
+Определяет порт по умолчанию, используемый при соединении с LDAP-сервером (серверами).
+В качестве аргумента port указывается номер порта. Опция
+<b>PORT</b>
+
+считается устаревшей в пользу
+<b>URI.</b>
+
+</dd><dt><b>REFERRALS &lt;on/true/yes/off/false/no&gt;</b>
+
+</dt><dd>
+Указывает, должен ли клиент автоматически следовать по отсылкам, возвращаемым LDAP-серверами.
+Значение по умолчанию - on. Имейте ввиду, что инструменты командной строки, такие как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldapsearch&amp;category=1">ldapsearch</a></b>(1),
+
+всегда переопределяют эту опцию.
+
+
+
+</dd><dt><b>SIZELIMIT &lt;integer&gt;</b>
+
+</dt><dd>
+Определяет ограничение по размеру (указывается в количестве записей), которое следует использовать
+при выполнении поиска. В качестве аргумента должно быть неотрицательное целое число. Значение ноль (0) опции
+<i>SIZELIMIT</i> указывает на то, что ограничений по размеру при выполнении поиска не запрашивается.
+Помните, что сервер может также применять свои ограничения на количество записей,
+которые могут быть возвращены операцией поиска.
+</dd><dt><b>TIMELIMIT &lt;integer&gt;</b>
+
+</dt><dd>
+Определяет ограничение по времени (в секундах), которое следует использовать при выполнении поиска.
+В качестве аргумента должно быть неотрицательное целое число. Значение ноль (0) опции
+<i>TIMELIMIT</i> указывает на то, что ограничений по размеру при выполнении поиска не накладывается.
+Помните, что сервер может также применять свои ограничения на продолжительность выполнения операции поиска.
+</dd><dt><b>VERSION {2|3}</b>
+
+</dt><dd>
+Указывает, какую версию протокола LDAP следует использовать.
+</dd><dt><b>TIMEOUT &lt;integer&gt;</b>
+
+</dt><dd>
+Указывает тайм-аут (в секундах), после которого вызовы команд синхронного API LDAP,
+на которые не получены ответы, будут прерваны. Также используются для любых вызовов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap_result&amp;category=3">ldap_result</a></b>(3),
+
+в которых параметру timeout было задано значение NULL.
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ОПЦИИ SASL</h2>
+
+Если OpenLDAP собран с поддержкой Simple Authentication and Security Layer,
+можно определить дополнительные опции: 
+<dl compact="">
+<dt><b>SASL_MECH &lt;mechanism&gt;</b>
+
+</dt><dd>
+Указывает, какой механизм SASL следует использовать.
+<b>Эту опцию может задавать только пользователь.</b>
+
+</dd><dt><b>SASL_REALM &lt;realm&gt;</b>
+
+</dt><dd>
+Указывает SASL-realm.
+<b>Эту опцию может задавать только пользователь.</b>
+
+</dd><dt><b>SASL_AUTHCID &lt;authcid&gt;</b>
+
+</dt><dd>
+Указывает аутентификационную идентификационную сущность.
+<b>Эту опцию может задавать только пользователь.</b>
+
+</dd><dt><b>SASL_AUTHZID &lt;authcid&gt;</b>
+
+</dt><dd>
+Указывает прокси-авторизационную идентификационную сущность.
+<b>Эту опцию может задавать только пользователь.</b>
+
+</dd><dt><b>SASL_SECPROPS &lt;properties&gt;</b>
+
+</dt><dd>
+Определяет параметры безопасности Cyrus SASL. В аргументе 
+<b>&lt;properties&gt;</b>
+
+может быть указан разделённый запятыми список следующих параметров:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>none</b>
+
+</dt><dd>
+(без указания каких-либо других параметров) приводит к сбросу параметров по умолчанию
+("noanonymous,noplain").
+</dd><dt><b>noplain</b>
+
+</dt><dd>
+отключает механизмы, потенциально неустойчивые к простым пассивным атакам.
+</dd><dt><b>noactive</b>
+
+</dt><dd>
+отключает механизмы, потенциально неустойчивые к активным атакам.
+</dd><dt><b>nodict</b>
+
+</dt><dd>
+отключает механизмы, потенциально неустойчивые к простым атакам по словарю.
+</dd><dt><b>noanonymous</b>
+
+</dt><dd>
+отключает механизмы, поддерживающие анонимные соединения.
+</dd><dt><b>forwardsec</b>
+
+</dt><dd>
+требует обеспечения так называемой прямой секретности (forward secrecy) между сессиями.
+</dd><dt><b>passcred</b>
+
+</dt><dd>
+требует использования механизмов, осуществляющих передачу удостоверяющих данных клиента
+(и, для осуществления этого, разрешает механизмы, способные передавать удостоверяющие данные).
+</dd><dt><b>minssf=&lt;factor&gt; </b>
+
+</dt><dd>
+указывает минимально приемлемый
+<i>фактор силы безопасности (security strength factor)</i>
+
+в виде целого числа, приблизительно отражающего эффективную длину ключа, используемого для шифрования.
+0 (ноль) подразумевает отсутствие защиты, 1 подразумевает только защиту целостности данных,
+56 разрешает использование DES или других слабых шифров, 112 разрешает использование
+Triple DES и других сильных шифров, 128 разрешает использование RC4, Blowfish
+и других современных сильных шифров. Значение по умолчанию - 0.
+</dd><dt><b>maxssf=&lt;factor&gt; </b>
+
+</dt><dd>
+указывает максимально возможный
+<i>фактор силы безопасности (security strength factor)</i>
+
+в виде целого числа (смотрите описание опции
+<b>minssf</b>).
+
+Значение по умолчанию -
+<b>INT_MAX</b>.
+
+</dd><dt><b>maxbufsize=&lt;factor&gt; </b>
+
+</dt><dd>
+определяет максимально разрешённый размер буфера полученных уровней обеспечения безопасности.
+Значение 0 отключает уровни обеспечения безопасности. Значение по умолчанию - 65536.
+</dd></dl>
+</dd></dl>
+
+</dd><dt><b>SASL_NOCANON &lt;on/true/yes/off/false/no&gt;</b>
+
+</dt><dd>
+Не выполнять обратные DNS-запросы для поиска канонической формы имён хостов SASL. Значение по умолчанию - off.
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>ОПЦИИ GSSAPI</h2>
+
+Если OpenLDAP собран с поддержкой Generic Security Services Application Programming Interface,
+есть возможность определить дополнительные опции.
+<dl compact="">
+<dt><b>GSSAPI_SIGN &lt;on/true/yes/off/false/no&gt;</b>
+
+</dt><dd>
+Указывает, следует ли использовать подписи GSSAPI (GSS_C_INTEG_FLAG).
+Значение по умолчанию - off.
+</dd><dt><b>GSSAPI_ENCRYPT &lt;on/true/yes/off/false/no&gt;</b>
+
+</dt><dd>
+Указывает, следует ли использовать шифрование GSSAPI (GSS_C_INTEG_FLAG и GSS_C_CONF_FLAG).
+Значение по умолчанию - off.
+</dd><dt><b>GSSAPI_ALLOW_REMOTE_PRINCIPAL &lt;on/true/yes/off/false/no&gt;</b>
+
+</dt><dd>
+Указывает, следует ли основанной на GSSAPI аутентификации пытаться формировать
+имя целевого принципала из значений атрибутов ldapServiceName или dnsHostName
+записи RootDSE каталога, содержащего целевой объект. Значение по умолчанию - off.
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>ОПЦИИ TLS</h2>
+
+Если OpenLDAP собран с поддержкой Transport Layer Security, есть возможность определить
+дополнительные опции. Эти опции используются, когда при соединении выбран URI
+<b>ldaps://</b>
+
+(по умолчанию или явно), или когда приложение устанавливает TLS путём запроса операции LDAP StartTLS.
+<dl compact="">
+<dt><b>TLS_CACERT &lt;filename&gt;</b>
+
+</dt><dd>
+Указывает файл, содержащий сертификаты всех удостоверяющих центров (Certificate Authorities),
+которым доверяет клиент.
+</dd><dt><b>TLS_CACERTDIR &lt;path&gt;</b>
+
+</dt><dd>
+Указывает путь к директории, содержащей сертификаты всех удостоверяющих центров
+в отдельных файлах. Сертификаты, указанные в опции
+<b>TLS_CACERT</b>,
+
+всегда используются перед теми, путь к которым указан в опции
+<b>TLS_CACERTDIR</b>.
+
+Библиотека GnuTLS игнорирует эту опцию.
+<p>
+При использовании библиотеки Mozilla NSS аргумент &lt;path&gt; может содержать путь к базе данных
+сертификатов/ключей Mozilla NSS. Если аргумент &lt;path&gt; содержит пути и к базе данных
+сертификатов/ключей Mozilla NSS, и к файлам сертификатов удостоверяющих центров, OpenLDAP будет
+использовать базу данных сертификатов/ключей, а файлы сертификатов удостоверяющих центров
+проигнорирует.
+</p></dd><dt><b>TLS_CERT &lt;filename&gt;</b>
+
+</dt><dd>
+Указывает файл, содержащий сертификат клиента.
+<b>Эту опцию может задавать только пользователь.</b>
+
+<p>
+При использовании библиотеки Mozilla NSS и базы данных сертификатов/ключей (указанной в опции
+TLS_CACERTDIR), TLS_CERT определяет имя сертификата, который нужно использовать:
+</p><pre>        TLS_CERT Certificate for Sam Carter
+</pre>
+
+Если используется токен, отличный от встроенного внутреннего, сначала указывается имя этого
+токена, за которым следует двоеточие:
+<pre>        TLS_CERT my hardware device:Certificate for Sam Carter
+</pre>
+
+Для получения списка имён сертификатов используйте certutil -L:
+<pre>        certutil -d /path/to/certdbdir -L
+</pre>
+
+</dd><dt><b>TLS_KEY &lt;filename&gt;</b>
+
+</dt><dd>
+Указывает файл, содержащий закрытый ключ, соответствующий сертификату,
+хранящемуся в файле, указанном в опции
+<b>TLS_CERT</b>.
+
+В настоящее время данный закрытый ключ должен не иметь парольной защиты,
+поэтому критически важное значение имеет защита самого файла с ключом.
+<b>Эту опцию может задавать только пользователь.</b>
+
+<p>
+При использовании библиотеки Mozilla NSS, TLS_KEY указывает имя файла, содержащего пароль для ключа,
+соответствующего сертификату, указанному в опции TLS_CERT. Для отключения парольной защиты
+базы данных сертификатов/ключей можно использовать команду modutil. Например, если в опции
+TLS_CACERTDIR в качестве расположения базы данных сертификатов/ключей указано /home/scarter/.moznss,
+то для смены пароля на пустую строку используйте:
+</p><pre>        modutil -dbdir ~/.moznss -changepw 'NSS Certificate DB'
+</pre>
+
+Вы должны знать предыдущий пароль, если он был установлен. Предупреждение о запуске браузера следует
+проигнорировать. На запрос нового пароля нажмите 'Enter'.
+<p>
+</p></dd><dt><b>TLS_CIPHER_SUITE &lt;cipher-suite-spec&gt;</b>
+
+</dt><dd>
+Указывает допустимый набор шифров в порядке их предпочтения. Аргумент &lt;cipher-suite-spec&gt;
+должен представлять собой спецификацию шифров для используемой библиотеки TLS
+(OpenSSL, GnuTLS или Mozilla NSS). Примеры:
+<dl compact=""><dt></dt><dd>
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><i>OpenSSL:</i>
+
+</dt><dd>
+TLS_CIPHER_SUITE HIGH:MEDIUM:+SSLv2
+</dd><dt><i>GnuTLS:</i>
+
+</dt><dd>
+TLS_CIPHER_SUITE SECURE256:!AES-128-CBC
+</dd></dl>
+</dd></dl>
+
+<p>
+Для проверки того, какие шифры доступны в данной спецификации OpenSSL, используйте команду:
+</p><p>
+</p><pre>        openssl ciphers -v &lt;cipher-suite-spec&gt;
+</pre>
+
+<p>
+В GnuTLS доступные спецификации можно найти в man-странице
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gnutls-cli&amp;category=1">gnutls-cli</a></b>(1)
+
+(смотрите описание опции
+<b>--priority</b>).
+
+</p><p>
+В старых версиях библиотеки GnuTLS, где утилита gnutls-cli не поддерживала опции
+--priority, можно получить --- ограниченный --- список шифров командой:
+</p><p>
+</p><pre>        gnutls-cli -l
+</pre>
+
+<p>
+При использовании библиотеки Mozilla NSS применяются спецификации наборов шифров OpenSSL,
+которые транслируются в формат, используемый внутри библиотеки Mozilla NSS. Не существует
+простого способа получить список наборов шифров из командной строки. Полный список можно
+найти в исходном коде Mozilla NSS, файл sslinfo.c, структура
+</p><pre>        static const SSLCipherSuiteInfo suiteInfo[]
+</pre>
+
+</dd></dl>
+
+</dd><dt><b>TLS_PROTOCOL_MIN &lt;major&gt;[.&lt;minor&gt;]</b>
+
+</dt><dd>
+Указывает минимальную версию протокола SSL/TLS, которая будет использоваться для установки
+защищённого соединения. Если сервер не поддерживает как минимум данную версию протокола,
+переговоры SSL будут завершаться неудачей. Чтобы указать необходимость использования
+TLS 1.x или выше, задайте в качестве аргумента этой опции 3.(x+1), то есть при
+<p>
+</p><pre>        TLS_PROTOCOL_MIN 3.2
+</pre>
+
+<p>
+требуется использовать TLS 1.1. Если в качестве минимально допустимой указана та версия
+протокола, которая не поддерживается данной реализацией OpenLDAP, то в итоге будет
+требоваться та наибольшая версия протокола, которую OpenLDAP поддерживает.
+Библиотека GnuTLS игнорирует эту опцию.
+</p></dd><dt><b>TLS_RANDFILE &lt;filename&gt;</b>
+
+</dt><dd>
+Указывает файл, из которого будут получены случайные данные, в случаях,
+когда /dev/[u]random недоступен. Обычно задаёт имя сокета EGD/PRNGD.
+Для указания имени файла источника случайных данных также может быть использована
+переменная окружения RANDFILE. Библиотеки GnuTLS и Mozilla NSS игнорируют эту опцию.
+</dd><dt><b>TLS_REQCERT &lt;level&gt;</b>
+
+</dt><dd>
+Определяет, какие проверки требуется (и требуется ли вообще) выполнить с сертификатом сервера
+в сессии TLS. В качестве аргумента
+<b>&lt;level&gt;</b>
+
+может быть использовано одно из следующих ключевых слов:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>never</b>
+
+</dt><dd>
+Клиент не будет запрашивать или проверять какие-либо сертификаты сервера.
+</dd><dt><b>allow</b>
+
+</dt><dd>
+Сертификат сервера будет запрошен. Если сертификат не был предоставлен,
+сессия будет продолжена нормальным образом. Если же был предоставлен плохой сертификат,
+он будет проигнорирован и сессия будет продолжена нормальным образом.
+</dd><dt><b>try</b>
+
+</dt><dd>
+Сертификат сервера будет запрошен. Если сертификат не был предоставлен,
+сессия будет продолжена нормальным образом. Если же был предоставлен плохой сертификат,
+сессия будет немедленно завершена.
+</dd><dt><b>demand | hard</b>
+
+</dt><dd>
+Эти ключевые слова эквивалентны. Сертификат сервера будет запрошен.
+Если сертификат не был предоставлен либо был предоставлен плохой сертификат,
+сессия будет немедленно завершена. Данная настройка используется по умолчанию.
+</dd></dl>
+</dd></dl>
+
+</dd><dt><b>TLS_CRLCHECK &lt;level&gt;</b>
+
+</dt><dd>
+Определяет, следует ли использовать предоставляемые удостоверяющими центрами
+списки отзыва сертификатов (Certificate Revocation List, CRL) для проверки того,
+не был ли отозван сертификат сервера. Для использования данной опции требуется указание опции
+<b>TLS_CACERTDIR</b>.
+
+Библиотеки GnuTLS и Mozilla NSS игнорируют эту опцию. В качестве аргумента
+<b>&lt;level&gt;</b>
+
+может быть использовано одно из следующих ключевых слов:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>none</b>
+
+</dt><dd>
+Проверка CRL не выполняется.
+</dd><dt><b>peer</b>
+
+</dt><dd>
+Выполняется проверка только CRL удостоверяющего центра, выдавшего сертификат сервера.
+</dd><dt><b>all</b>
+
+</dt><dd>
+Выполняется проверка CRL всей цепочки сертификатов.
+</dd></dl>
+</dd></dl>
+
+</dd><dt><b>TLS_CRLFILE &lt;filename&gt;</b>
+
+</dt><dd>
+Указывает файл, содержащий список отозванных сертификатов, который нужно использовать для проверки
+того, не был ли отозван сертификат сервера. Эта опция поддерживается только библиотеками
+GnuTLS и Mozilla NSS.
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</h2>
+
+<dl compact="">
+<dt>LDAPNOINIT</dt><dd>
+сбросить все установки по умолчанию.
+</dd><dt>LDAPCONF</dt><dd>
+путь к конфигурационному файлу.
+</dd><dt>LDAPRC</dt><dd>
+имя альтернативного для ldaprc файла в директориях $HOME или $CWD.
+</dd><dt>LDAP&lt;option-name&gt;</dt><dd>
+задать (переопределить) опцию &lt;option-name&gt; как в файле ldap.conf.
+</dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt><i>/usr/local/etc/openldap/ldap.conf</i>
+
+</dt><dd>
+общесистемный файл конфигурации ldap
+</dd><dt><i>$HOME/ldaprc, $HOME/.ldaprc</i>
+
+</dt><dd>
+пользовательский файл конфигурации ldap
+</dd><dt><i>$CWD/ldaprc</i>
+
+</dt><dd>
+локальный файл конфигурации ldap
+</dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap&amp;category=3">ldap</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap_set_option&amp;category=3">ldap_set_option</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap_result&amp;category=3">ldap_result</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=openssl&amp;category=1">openssl</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sasl&amp;category=3">sasl</a></b>(3)
+
+<a name="lbAM">&nbsp;</a>
+<h2>АВТОР</h2>
+
+Kurt Zeilenga, Проект OpenLDAP
+<a name="lbAN">&nbsp;</a>
+<h2>ПРИЗНАНИЕ ЗАСЛУГ</h2>
+
+
+
+<b>Программное обеспечение OpenLDAP</b>
+
+разработано и поддерживается проектом OpenLDAP &lt;<a href="http://www.openldap.org/">http://www.openldap.org/</a>&gt;.
+<b>Программное обеспечение OpenLDAP</b>
+
+является производным от релиза 3.3 LDAP Мичиганского Университета.
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAF">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAG">ОПЦИИ SASL</a></dt><dd>
+</dd><dt><a href="#lbAH">ОПЦИИ GSSAPI</a></dt><dd>
+</dd><dt><a href="#lbAI">ОПЦИИ TLS</a></dt><dd>
+</dd><dt><a href="#lbAJ">ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAK">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAL">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAM">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAN">ПРИЗНАНИЕ ЗАСЛУГ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ldap.conf" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

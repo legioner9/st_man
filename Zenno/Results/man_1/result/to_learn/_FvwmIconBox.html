@@ -1,0 +1,600 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN FvwmIconBox (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, FvwmIconBox"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="FvwmIconBox" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">FvwmIconBox (1)</font><hr><li> <a href="/man.shtml?topic=FvwmIconBox&amp;category=1&amp;russian=4"><u>FvwmIconBox</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=FvwmIconBox&amp;category=1&amp;russian=0"><u>FvwmIconBox</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>НАЗВАНИЕ</h2>
+
+<p>
+FvwmIconBox - модуль FVWM iconbox
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>СИНТАКСИС</h2>
+
+<p>
+FvwmIconBox вызывается оконным менеджером fvwm и не будет работать при
+вызове его из командной строки.
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<p>
+Модуль FvwmIconBox предоставляет менеджер иконок. С
+помощью клавиатуры или мыши пользователь может выполнять
+такие операции, как свертка окна в иконку и развертка
+обратно, для каждой иконки, которую покажет модуль.
+</p><p>
+FvwmIconBox читает тот же самый файл .fvwmrc, который
+использует и fvwm при старте, и обрабатывает строки, начинающиеся
+с приставки *FvwmIconBox, в которых содержатся его
+конфигурационные параметры. Например, ``*FvwmIconBoxFore green''.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ПРАВА</h2>
+
+<p>
+Программа FvwmIconBox это оригинальная работа Nobutaka
+Suzuki.
+</p><p>
+Copyright 1994, Nobutaka Suzuki. Предоставляется без каких
+либо гарантий явных или неявных. Используйте эту программу
+на свой страх и риск. Даются права на использование данной
+программы в любых целях при условии сохранения данной
+секции об авторских правах.
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>Инициализация</h2>
+
+<p>
+Во время инициализации <i>FvwmIconBox</i> ищет
+свой конфигурационный файл. Этот конфигурационный
+файл является тем же самым файлом, который во время
+инициализации использует fvwm.
+</p><p>
+Если на исполняемый файл FvwmIconBox имеются ссылки с
+другим именем, т.е. ln -s FvwmIconBox MoreIconBox, то
+может быть запущен другой модуль с именем MoreIconBox,
+который будет полностью независим от конфигурации FvwmIconBox.
+Конфигурационные параметры для него при этом
+задаются просто заменой слова FvwmIconBox на MoreIconBox.
+Этот способ может быть использован несколько раз.
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>Вызов</h2>
+
+<p>
+FvwmIconBox может быть вызван командой `Module FvwmIconBox'
+из меню или по горячей клавише, которые задаются в
+файле .fvwmrc. Fvwm будет искать данный модуль в каталоге,
+заданном в команде конфигурации ModulePath.
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>Опции конфигурации</h2>
+
+<p>
+FvwmIconBox показывает иконки только при применении
+стиля NoIcon. Модуль читает файл .fvwmrc и читает свою
+конфигурацию из строк следующего вида:
+</p><p>
+</p><dl compact="">
+<dt>*FvwmIconBoxFore <i>цвет</i></dt><dd>
+<p>
+Предписывает модулю использовать указанный <i>цвет</i> вместо белого
+цвета для переднего плана окна. Эта опция действует
+только на цвет переднего плана иконки в формате
+bitmap, задаваемой в опции *FvwmIconBoxPixmap,
+которая описывается ниже.
+</p><p>
+</p></dd><dt>*FvwmIconBoxBack <i>цвет</i></dt><dd>
+<p>
+Предписывает модулю использовать указанный <i>цвет</i> вместо черного
+цвета для фона окна.
+</p><p>
+</p></dd><dt>*FvwmIconBoxIconFore <i>цвет</i></dt><dd>
+<p>
+Предписывает модулю использовать указанный <i>цвет</i> вместо черного
+цвета для текста невыбранной иконки.
+</p><p>
+</p></dd><dt>*FvwmIconBoxIconBack <i>цвет</i></dt><dd>
+<p>
+Предписывает модулю использовать указанный <i>цвет</i> вместо белого
+цвета для фона невыбранной иконки.
+</p><p>
+</p></dd><dt>*FvwmIconBoxIconHiFore <i>цвет</i></dt><dd>
+<p>
+Предписывает модулю использовать указанный <i>цвет</i> вместо черного
+цвета для текста выбранной иконки.
+</p><p>
+</p></dd><dt>*FvwmIconBoxIconHiBack <i>цвет</i></dt><dd>
+<p>
+Предписывает модулю использовать указанный <i>цвет</i> вместо белого
+цвета для фона выбранной иконки.
+</p><p>
+</p></dd><dt>*FvwmIconBoxPixmap <i>pixmap</i></dt><dd>
+<p>
+Предписывает модулю использовать рисунок <i>pixmap</i> для
+фонового рисунка окна.
+</p><p>
+</p></dd><dt>*FvwmIconBoxFont <i>имя_шрифта</i></dt><dd>
+<p>
+Предписывает модулю использовать шрифт <i>имя_шрифта</i> вместо
+шрифта fixed.
+</p><p>
+</p></dd><dt>*FvwmIconBoxSortIcons <i>опция</i></dt><dd>
+<p>
+Предписывает модулю сортировать все иконки в боксе в
+алфавитном порядке. В качестве <i>опции</i> можно задать <i>WindowName</i>,
+<i>IconName</i>, <i>ResClass</i> и <i>ResName</i>. Например, задание
+<i>ResClass</i> приведет к тому, что иконки сортируются по
+используемому ими строке класса-ресурса. Если в качестве
+<i>опции</i> заданы <i>ResClass</i> или <i>ResName</i>, то иконка, не имеющая
+свойства XA_WM_CLASS, рассматривается как
+"наименьший" элемент.
+</p><p>
+</p></dd><dt>*FvwmIconBoxPadding <i>число</i></dt><dd>
+<p>
+Задает количество точек между иконками. По
+умолчанию - 5.
+</p><p>
+</p></dd><dt>*FvwmIconBoxSBWidth <i>число</i></dt><dd>
+<p>
+Задает ширину горизонтальной и вертикальной полос
+прокрутки. По умолчанию - 9.
+</p><p>
+</p></dd><dt>*FvwmIconBoxPlacement <i>первичное вторичное</i></dt><dd>
+<p>
+Задает правила размещения иконки. <i>Первичное</i> и <i>вторичное</i>,
+могут быть <i>Top</i>, <i>Bottom</i>, <i>Left</i> и <i>Right</i>.
+Возможны следующие комбинации:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<p>
+</p><dl compact="">
+<dt><i>первичное </i></dt><dd><i>
+</i><p><i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;вторичное</i>
+</p><p>
+</p></dd><dt>Left </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top
+</p><p>
+</p></dd><dt>Left </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bottom
+</p><p>
+</p></dd><dt>Right </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top
+</p><p>
+</p></dd><dt>Right </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bottom
+</p><p>
+</p></dd><dt>Top </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left
+</p><p>
+</p></dd><dt>Top </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right
+</p><p>
+</p></dd><dt>Bottom </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left
+</p><p>
+</p></dd><dt>Bottom </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right
+</p><p>
+</p></dd></dl>
+</dd></dl>
+
+<p>
+При этом:
+</p><p>
+<i>Top:</i> Иконки размещаются сверху вниз.
+</p><p>
+<i>Bottom:</i> Иконки размещаются снизу вверх.
+</p><p>
+<i>Left:</i> Иконки размещаются слева направо.
+</p><p>
+<i>Right:</i> Иконки размещаются справа налево.
+</p><p>
+Например, когда размещение установлено в "Left
+Top", иконки помещаются слева направо и новая
+строка добавляется сверху вниз. По умолчанию
+установлено "Left Bottom".
+</p><p>
+</p></dd><dt>*FvwmIconBoxLines</dt><dd>
+<p>
+Задает количество иконок, помещенных в строку. Если
+<i>первичное</i> размещение - Left или Right, то это значение задает
+количество строк. Например, семь иконок помещаются
+в строку, если *FvwmIconBoxLines равно 7 и *FvwmIconBoxPlacement
+установлено в "Left Top". По умолчанию
+значение равно 6.
+</p><p>
+</p></dd><dt>*FvwmIconBoxHideSC <i>направление</i></dt><dd>
+<p>
+Задает неотображаемую полосу прокрутки. <i>Направление</i>
+может быть <i>Horizontal</i> или <i>Vertical</i>.
+</p><p>
+</p></dd><dt>*FvwmIconBoxGeometry <i>&lt;ширина&gt;x&lt;высота&gt;{+- }&lt;X&gt;{+- }&lt;Y&gt;</i></dt><dd>
+<p>
+Задает положение и/или размер FvwmIconBox. <i>Ширина</i> и
+<i>высота</i> измеряются в иконках, а не точках. По
+умолчанию значение равно 6x1+0+0.
+</p><p>
+</p></dd><dt>*FvwmIconBoxMaxIconSize <i>&lt;ширина&gt;x&lt;высота&gt;</i></dt><dd>
+<p>
+Задает максимальный размер иконки. Иконка
+больше этого размера обрезается до него. По
+умолчанию размеры установлены в 48x48. В
+частности, если высота равно 0, то сами иконки
+не отображаются, а будут отображены только метки
+этих иконок.
+</p><p>
+</p></dd><dt>*FvwmIconBoxMouse <i>Button Action Response[, Response]</i></dt><dd>
+<p>
+Предписывает модулю выполнить выполнить реакцию <i>Response</i>, когда при нажатии
+кнопки <i>Button</i> посылается действие <i>Action</i>. Возможные
+варианты <i>Response</i> - это встроенные команды Fvwm
+(такие как Iconify, Delete, Focus), а действия
+<i>Action</i> могут быть Click и DoubleClick.
+</p><p>
+</p></dd><dt>*FvwmIconBoxKey <i>Key Response[, Response]</i></dt><dd>
+<p>
+Предписывает модулю выполнить реакцию <i>Response</i> при нажатии
+клавиши <i>Key</i>. Возможные варианты <i>Response</i> - это
+встроенные команды Fvwm: <i>Next</i>, <i>Prev</i>, <i>Left</i>, <i>Right</i>,
+<i>Up</i>, и <i>Down</i>. При этом:
+</p><p>
+<i>Next:</i> Выбрать следующую иконку.
+</p><p>
+<i>Prev:</i> Выбрать предыдущую иконку.
+</p><p>
+<i>Left:</i> Переместить бегунок на горизонтальной полосе
+прокрутки влево (при этом иконки, соответственно, переместятся
+вправо).
+</p><p>
+<i>Right:</i> Переместить бегунок на горизонтальной полосе
+прокрутки вправо (при этом иконки, соответственно, переместятся
+влево).
+</p><p>
+<i>Up:</i> Переместить бегунок на вертикальной полосе
+прокрутки вверх (при этом иконки, соответственно, переместятся
+вниз).
+</p><p>
+<i>Down:</i> Переместить бегунок на вертикальной полосе
+прокрутки вниз (при этом иконки, соответственно, переместятся
+вверх).
+</p><p>
+</p></dd><dt>*FvwmIconBox <i>имя_окна файл_битовой_карты</i></dt><dd>
+<p>
+Задает битовую карту, которой будет изображено окно с именем
+<i>имя_окна</i>. Эта опция перекрывает
+аналогичную опцию в команде Style. Параметр <i>имя_окна</i> может быть
+именем окна, именем класса или именем ресурса. Параметр <i>имя_окна</i>
+может содержать "*" и "?". В параметре
+<i>файл_битовой_карты</i> можно указывать как абсолютное имя файла,
+так и имя относительно директориев, заданных командами IconPath или
+PixmapPath. Если <i>файл_битовой_карты</i> задан как "-",
+то иконка для окна, соответсвующего <i>имени_окна</i>, не будет показана.
+</p><p>
+</p></dd><dt>*FvwmIconBoxSetWMIconSize</dt><dd>
+<p>
+Предписывает модулю установить свойство XA_WM_ICON_SIZE
+главного окна как размер, который этот модуль хочет
+дать окнам иконок. Если вы показываете окна иконок
+не на в главном окне, а модулем, то вы должны
+указать эту опцию.
+</p><p>
+</p></dd><dt>*FvwmIconBoxHilightFocusWin</dt><dd>
+<p>
+Предписывает модулю выбрать иконку окна, которое
+получило фокус ввода клавиатуры. Цвета фона и
+переднего плана выбранной иконки будут такими как
+задано в командах *FvwmIconBoxIconHiFore и *FvwmIconBoxIconHiBack,
+соответственно.
+</p><p>
+</p></dd><dt>*FvwmIconBoxResolution <i>разрешение</i></dt><dd>
+<p>
+Если параметр <i>разрешение</i> имеет значение Desk, то модуль
+показывает только иконки на текущем десктопе. В
+данный момент Desk - это единственное значение,
+которое может принимать параметр <i>разрешение</i> :)
+</p><p>
+</p></dd><dt>*FvwmIconBoxFrameWidth <i>ширина1 ширина2</i></dt><dd>
+<p>
+Задает ширину рамки модуля. <i>Ширина1</i> соответствует
+расстоянию от внешнего бордюра до полосы прокрутки,
+а <i>width2</i> соответствует расстоянию от полосы
+прокрутки до внутреннего окна, отображающего
+иконки. По умолчанию установлены значения 8 и 6.
+</p><p>
+</p></dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>Простая конфигурация</h2>
+
+Следующий кусок из файла .fvwmrc описывает команды
+инициализации FvwmIconBox:
+<pre>
+############################################################
+# Note that icons are shown in the module
+#   only if NoIcon command is applied.
+Style     "*&amp;" NoIcon
+############################################################
+
+*FvwmIconBoxIconBack    #cfcfcf
+*FvwmIconBoxIconHiFore  black
+*FvwmIconBoxIconHiBack  LightSkyBlue
+*FvwmIconBoxBack        #5f9ea0
+#*FvwmIconBoxFore      blue
+*FvwmIconBoxGeometry    5x1+0+0
+*FvwmIconBoxMaxIconSize 64x38
+*FvwmIconBoxFont        -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
+*FvwmIconBoxSortIcons   IconName
+#*FvwmIconBoxSortIcons  ResClass
+*FvwmIconBoxPadding     4
+*FvwmIconBoxFrameWidth  9 7
+*FvwmIconBoxLines       10
+*FvwmIconBoxSBWidth     11
+*FvwmIconBoxPlacement   Left Top
+*FvwmIconBoxPixmap      fvwm.xpm
+#*FvwmIconBoxHideSC   Horizontal
+*FvwmIconBoxSetWMIconSize
+*FvwmIconBoxHilightFocusWin
+#*FvwmIconBoxResolution      Desk
+#
+# mouse bindings
+#
+*FvwmIconBoxMouse       1       Click           RaiseLower
+*FvwmIconBoxMouse       1       DoubleClick     Iconify
+*FvwmIconBoxMouse       2       Click           Iconify -1, Focus
+*FvwmIconBoxMouse       3       Click           Module FvwmIdent
+#
+# Key bindings
+#
+*FvwmIconBoxKey         r       RaiseLower
+*FvwmIconBoxKey         space   Iconify
+*FvwmIconBoxKey         d       Close
+#
+# FvwmIconBox built-in functions
+#
+*FvwmIconBoxKey         n       Next
+*FvwmIconBoxKey         p       Prev
+*FvwmIconBoxKey         h       Left
+*FvwmIconBoxKey         j       Down
+*FvwmIconBoxKey         k       Up
+*FvwmIconBoxKey         l       Right
+#
+# Icon file specifications
+#
+# Mostly, you don't have to specify icon files, as FvwmIconBox now
+# reads icon files specified in Style commands.
+#
+*FvwmIconBox            "Fvwm*"
+
+</pre>
+
+<p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2>АВТОР(Ы)</h2>
+
+<p>
+Nobutaka Suzuki (<i><a href="mailto:nobuta-s@is.aist-nara.ac.jp">nobuta-s@is.aist-nara.ac.jp</a></i>).
+</p><p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>Перевод</h2>
+
+<p>
+Перевел с английского Виктор Вислобоков (E-mail: <i><a href="mailto:victor_v@permonline.ru">victor_v@permonline.ru</a></i>,
+FIDO: 2:5054/<a href="mailto:69.34@Fidonet.org">69.34@Fidonet.org</a>).
+</p><p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ПРАВА</a></dt><dd>
+</dd><dt><a href="#lbAF">Инициализация</a></dt><dd>
+</dd><dt><a href="#lbAG">Вызов</a></dt><dd>
+</dd><dt><a href="#lbAH">Опции конфигурации</a></dt><dd>
+</dd><dt><a href="#lbAI">Простая конфигурация</a></dt><dd>
+</dd><dt><a href="#lbAJ">АВТОР(Ы)</a></dt><dd>
+</dd><dt><a href="#lbAK">Перевод</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="FvwmIconBox" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

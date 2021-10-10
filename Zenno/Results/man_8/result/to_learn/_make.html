@@ -1,0 +1,704 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN make (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, make"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="make" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">make (8)</font><hr><li> <a href="/man.shtml?topic=make&amp;category=1&amp;russian=4"><u>make</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=make&amp;category=1&amp;russian=1"><u>make</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=make&amp;category=1&amp;russian=0"><u>make</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=make&amp;category=1&amp;russian=2"><u>make</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=make&amp;category=1&amp;russian=5"><u>make</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=make&amp;category=8&amp;russian=0"><u>make</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>make(1)</h1></td>
+<td><h1 align="right">make(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p>make - сопровождение, обновление и пересоздание групп программ</p>
+
+<h2>СИНТАКСИС</h2>
+<dl><dt></dt><dd><tt>
+	make [-f <b>имя_файла</b>] [-BeiknpPqrstuw] [<b>имена</b>]
+</tt></dd></dl>
+
+<h2>ОПИСАНИЕ</h2>
+<p>Утилита <b>make</b> позволяет программисту сопровождать, обновлять и 
+пересоздавать группы компьютерных программ. <b>make</b> выполняет команды из 
+<i>файла управления проектом</i> (makefile) для обновления одного или нескольких 
+целевых <b>имен</b> (<b>имена</b> обычно представляют собой программы). Если опция <b>-f</b> 
+не указана, последовательно делаются попытки использовать <b>makefile</b>, <b>Makefile</b> 
+и файлы <i>системы управления исходным кодом</i> (Source Code Control System - 
+SCCS) <b>s.makefile</b> и <b>s.Makefile</b>. Если в качестве <b>makefile</b> указан <b>-</b>, берется 
+стандартный входной поток. Можно указывать несколько пар аргументов <b>-f 
+makefile</b>.</p>
+
+<p><b>make</b> обновляет цель, только если цели, от которых она зависит, более новые, 
+чем сама цель. Все необходимые для построения цели файлы рекурсивно 
+добавляются к списку целей. Отсутствующие файлы предполагаются 
+устаревшими.</p><p>
+
+</p><p>В файлы управления проектом можно включать следующий список директив, 
+изменяющих поведение <b>make</b>. Они используются в файлах управления 
+проектами как цели:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="20%"><b>.DEFAULT:</b></td><td>
+Если файл должен быть сделан, но для этого нет явных команд или 
+соответствующих правил построения, используются команды, 
+ассоциированные с целью <b>.DEFAULT</b>, если она существует.
+</td></tr>
+<tr><td valign="top"><b>.IGNORE:</b></td><td>
+Действует так же, как опция <a href="#i"><b>-i</b></a>.
+</td></tr>
+<tr><td valign="top"><b>.MUTEX:</b></td><td>
+Устанавливает последовательность обновления указанных целей (см. 
+подраздел <a href="#parallel">"<b>Параллельный make</b>"</a> ниже).
+</td></tr>
+<tr><td valign="top"><b>.PRECIOUS:</b></td><td>
+Цели, от которых зависит запись <b>.PRECIOUS</b>, не будут удалены при 
+выходе или нажатии клавиши выхода или прерывания.
+</td></tr>
+<tr><td valign="top"><b>.SILENT:</b></td><td>
+Действует так же, как опция <a href="#s"><b>-s</b></a>.
+</td></tr>
+</tbody></table>
+
+<p>Опции make перечислены ниже:</p>
+
+<table cellpacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="20%"><a name="B"><b>-B</b></a></td><td>
+Разбивать результаты выполнения параллельного <b>make</b> на 
+соответствующие блоки для удобства чтения.</td>
+</tr><tr><td valign="top"><a name="e"><b>-e</b></a></td><td>
+Переменные среды переопределяют присваивания в файлах 
+управления проектами.</td>
+</tr><tr><td valign="top"><a name="f"><b>-f имя_файла</b></a></td><td>
+Указывает имя файла управления проектом.</td>
+</tr><tr><td valign="top"><a name="i"><b>-i</b></a></td><td>
+Игнорировать коды ошибок, возвращаемые вызываемыми программами.</td>
+</tr><tr><td valign="top"><a name="k"><b>-k</b></a></td><td>
+Отказаться от обработки текущей записи, если она 
+закончилась неудачно, но продолжить обработку других 
+ветвей, не зависящих от этой записи.</td>
+</tr><tr><td valign="top"><a name="n"><b>-n</b></a></td><td>
+Режим без выполнения. Команды выдаются, но не 
+выполняются. Печатаются даже командные строки, 
+начинающиеся с <b>@</b>.</td>
+</tr><tr><td valign="top"><a name="p"><b>-p</b></a></td><td>
+Выдать полный набор макроопределений и описаний целей.</td>
+</tr><tr><td valign="top"><a name="P"><b>-P</b></a></td><td>
+Обновлять одновременно несколько целей. Количество 
+одновременно обновляемых целей определяется переменной 
+среды <b>PARALLEL</b> и наличием директив <b>.MUTEX</b> в файлах 
+управления проектами.</td>
+</tr><tr><td valign="top"><a name="q"><b>-q</b></a></td><td>
+Запрос. <b>make</b> возвращает нулевой или ненулевой код 
+возврата в зависимости от того, обновлен или нет целевой файл.</td>
+</tr><tr><td valign="top"><a name="r"><b>-r</b></a></td><td>
+Не использовать встроенные правила.</td>
+</tr><tr><td valign="top"><a name="s"><b>-s</b></a></td><td>
+"Молчаливый" режим. Не выдавать строки команд перед выполнением.</td>
+</tr><tr><td valign="top"><a name="t"><b>-t</b></a></td><td>
+Обновить дату последнего изменения ("затронуть" - <b>touch</b>) у 
+целевых файлов (тем самым они будут считаться 
+обновленными) вместо выполнения обычных команд.</td>
+</tr><tr><td valign="top"><a name="u"><b>-u</b></a></td><td>
+Безусловно пересоздать цели, игнорируя все временные отметки.</td>
+</tr><tr><td valign="top"><a name="w"><b>-w</b></a></td><td>
+Подавить выдачу предупреждений. Фатальные сообщения 
+по-прежнему будут выдаваться.</td>
+</tr></tbody></table>
+
+<h3>&nbsp;&nbsp;&nbsp;   Создание файла управления проектом (makefile)</h3>
+
+<p><i>Файл управления проектом</i>, указываемый в опции <b>-f</b> (или используемый по 
+умолчанию), - это файл специальной структуры, содержащий явные инструкции 
+по обновлению и пересозданию программ, а также последовательность записей, 
+определяющих зависимости. Первая строка записи представляет собой непустой 
+список целей через пробел, за которым идет двоеточие (<b>:</b>), а затем (возможно 
+пустой) список требуемых файлов или файлов, от которых зависит цель. Текст 
+после <b>;</b> и все последующие строки, начинающиеся с символа табуляции, 
+являются командами интерпретатора <b>shell</b>, которые необходимо выполнить для 
+обновления цели. Первая непустая строка, не начинающаяся с символа 
+табуляции или <b>#</b>, задает новую зависимость или определение макроса. Команды 
+интерпретатора <b>shell</b> можно переносить на следующую строку, указывая 
+<i>обратную косую</i> (<b>\</b>) перед переводом строки. Все введенное в команде (за 
+исключением начального символа табуляции) передается непосредственно 
+интерпретатору без изменений. Так,</p>
+<dl><dt></dt><dd><pre>echo a\
+b
+</pre></dd></dl>
+
+<p>выдаст</p>
+
+<dl><dt></dt><dd><pre>ab
+</pre></dd></dl>
+
+<p>точно так же, как и в командном интерпретаторе.</p>
+
+<p>Комментарии начинаются со знака <b>#</b> и продолжаются до перевода строки; при 
+этом в них включаются последовательности обратная косая-перевод строки.</p>
+
+<p>Следующий файл управления проектом утверждает, что <b>pgm</b> зависит от двух 
+файлов, <b>a.o</b> и <b>b.o</b>, которые, в свою очередь, зависят от соответствующих файлов 
+с исходным кодом (<b>a.c</b> и <b>b.c</b>) и общего заголовочного файла <b>incl.h</b>:</p>
+
+<dl><dt></dt><dd><pre>pgm: a.o b.o
+	cc a.o b.o -o pgm
+a.o: incl.h a.c
+	cc -c a.c
+b.o: incl.h b.c
+	cc -c b.c
+</pre></dd></dl>
+
+<p>Строки команд выполняются по очереди, каждая в отдельном командном 
+интерпретаторе. Чтобы указать, какой командный интерпретатор должна 
+использовать утилита <b>make</b> для выполнения команд, можно использовать 
+переменную среды <b>SHELL</b>. По умолчанию используется <b>/usr/bin/sh</b>. Первым 
+одним или двумя символами команды могут быть: <b>@</b>, <b>-</b>, <b>@-</b> или <b>-@</b>. Если указан 
+символ <b>@</b>, выдача команды подавляется. Если указан символ <b>-</b>, <b>make</b> игнорирует 
+ошибку. При выполнении каждая строка печатается, если только не указана 
+опция <a href="#s"><b>-s</b></a>, в файле управления проектом нет директивы <b>.SILENT:</b> и если 
+начальная последовательность символов команды не содержит символа <b>@</b>. 
+Опция <a href="#n"><b>-n</b></a> вызывает печать без выполнения; однако, если командная строка 
+содержит подстроку <b>$(MAKE)</b>, она всегда выполняется (см. обсуждение макроса 
+<b>MAKEFLAGS</b> в разделе <a href="#env">"<b>Среда</b>"</a> ниже). Опция <a href="#t"><b>-t</b></a>
+(затронуть) обновляет дату модификации файла, не выполняя никаких команд.</p>
+
+<p>Команды, возвращающие ненулевой код возврата, обычно прерывают работу 
+<b>make</b>. Если указана опция <a href="#i"><b>-i</b></a>, в файле управления проектом имеется запись 
+<b>.IGNORE:</b> или если начальная последовательность символов содержит символ <b>-</b>, 
+ошибка игнорируется. Если указана опция <a href="#k"><b>-k</b></a>, обработка текущей записи 
+прекращается, но продолжается для других ветвей, не зависящих от 
+соответствующей цели.</p>
+
+<p>Прерывание или выход ведет к удалению цели, если только цель не указана в 
+списке зависимостей директивы <b>.PRECIOUS</b>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  <a name="parallel">Параллельный make</a></h3>
+
+<p>Если утилита <b>make</b> вызывается с опцией <a href="#P"><b>-P</b></a>, она путается строить одновременно, 
+параллельно несколько целей. (Это делается с помощью стандартного 
+механизма многозадачности системы UNIX, который позволяет одновременно 
+выполнять несколько процессов.) Для файла управления проектом, показанного 
+в примере в предыдущем разделе, будут созданы процессы для параллельного 
+построения <b>a.o</b> и <b>b.o</b>. После завершения процессов будет построен файл <b>pgm</b>.</p>
+
+<p>Количество целей, которое <b>make</b> попытается построить параллельно, 
+определяется значением переменной среды <b>PARALLEL</b>. Если указана опция <a href="#P"><b>-P</b></a>, 
+но переменная <b>PARALLEL</b> не установлена, <b>make</b> будет пытаться построить не 
+более двух целей одновременно.</p>
+
+<p>Для указания определенной последовательности обновления целей можно 
+использовать директиву <b>.MUTEX</b>. Эта возможность пригодится, когда две или 
+более цели изменяют общий файл вывода, например, при добавлении модулей в 
+библиотеку или при создании промежуточного файла с одним и тем же именем, 
+как делают утилиты <b>lex</b> и <b>yacc</b>. Если бы файл управления проектом в примере из 
+предыдущего раздела содержал директиву .MUTEX вида</p>
+
+<dl><dt></dt><dd><pre>.MUTEX: a.o b.o
+</pre></dd></dl>
+
+<p>это не позволило бы make строить <b>a.o</b> и <b>b.o</b> параллельно.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   <a name="env">Среда</a></h3>
+
+<p>Утилита <b>make</b> читает переменные среды. Предполагается, что все переменные 
+являются определениями макросов, и они обрабатываются соответствующим 
+образом. Переменные среды обрабатываются до любого файла управления 
+проектом и после применения внутренних правил; поэтому определения 
+макросов в файле управления проектом имеют приоритет над переменными 
+среды. При указании опции <a href="#e"><b>-e</b></a> переменные среды имеют приоритет над 
+определениями макросов в файле управления проектом. Суффиксы и связанные 
+с ними правила в файле управления проектом имеют приоритет над 
+соответствующими суффиксами во встроенных правилах.</p>
+
+<p>Переменная среды <b>MAKEFLAGS</b> обрабатывается <b>make</b> как содержащая любые 
+допустимые опции (кроме <a href="#f"><b>-f</b></a>, <a href="#p"><b>-p</b></a> и <a href="#r"><b>-r</b></a>), определяемые в командной строке. Более 
+того, при вызове <b>make</b> проверяет наличие переменной в среде, помещает в нее 
+текущие опции и передает ее в вызовы команд. Таким образом, <b>MAKEFLAGS</b> 
+всегда содержит текущие введенные опции. Эта возможность оказалась очень 
+полезной для "супер-<b>make</b>ов". Фактически, как упоминалось выше, при 
+использовании опции <a href="#n"><b>-n</b></a> команда <b>$(MAKE)</b> все равно выполняется; таким 
+образом, можно выполнить <b>make -n</b> рекурсивно для всей программной системы, 
+чтобы увидеть, что будет выполняться. Такого результата можно достичь 
+потому, что опция <b>-n</b> помещается в <b>MAKEFLAGS</b> и передается последующим 
+вызовам <b>$(MAKE)</b>. Такое использование <b>make</b> представляет собой один из 
+способов отладки всех файлов управления для программного проекта без 
+фактического выполнения требуемых действий.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Включаемые файлы</h3>
+
+<p>Если в качестве первых семи символов строки в файле управления проектом 
+указана строка <b>include</b> и после нее идет пробел или символ табуляции, 
+предполагается, что остаток строки представляет собой имя файла, который и 
+будет прочитан текущим вызовом после подстановки макросов.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Макросы</h3>
+
+<p>Записи вида <b>строка1 = строка2</b> являются определениями макросов. <b>строка2</b> 
+определяется как все символы до символа комментария или незамаскированного 
+перевода строки. Последующие вхождения <b>$(строка1[:подст1=[подст2]])</b> 
+заменяются <b>строкой2</b>. Скобки необязательны, если используется 
+односимвольное имя макроса и нет последовательности подстановки. 
+Необязательная конструкция <b>:подст1=подст2</b> является <i>последовательностью 
+подстановки</i> (substitute sequence). Если она указана, все не перекрывающиеся 
+вхождения <b>подст1</b> в указанном макросе заменяются на <b>подст2</b>. Строки (для 
+подстановки такого рода) ограничиваются пробелами, символами табуляции и 
+перевода строки и началом строк. Пример использования последовательности 
+подстановки показан в разделе <a href="#libs">"<b>
+</b>"</a> ниже.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Внутренние макросы</h3>
+<p>Имеется пять поддерживаемых внутренне макросов, полезных при написании 
+правил построения целей.</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="5%"><b>$*</b></td><td>
+Макрос <b>$*</b> заменяется именем текущего файла из списка 
+зависимостей, от которого отброшен суффикс. Он заменяется 
+только в правилах вывода.</td></tr>
+<tr><td valign="top"><b>$@</b></td><td>
+Макрос <b>$@</b> заменяется на полное имя текущей цели. Он 
+заменяется только для явно указанных зависимостей.</td></tr>
+<tr><td valign="top"><b>$&lt;</b></td><td>
+Макрос <b>$&lt;</b> заменяется только для правил вывода или правила 
+<b>.DEFAULT</b>. Это модуль, устаревший по отношению к цели 
+(построенное имя файла, от которого зависит цель). Так, в 
+правиле <b>.c.o</b> макрос будет заменен на файл <b>.c</b>. Вот пример 
+построения оптимизированных файлов <b>.o</b> из файлов <b>.c</b>: 
+<dl><dt></dt><dd><pre>	.c.o: 
+		cc -c -O $*.c 
+</pre></dd></dl>
+
+<p>или: </p>
+
+<dl><dt></dt><dd><pre>	.c.o: 
+		cc -c -O $&lt;
+</pre></dd></dl>
+</td></tr>
+<tr><td valign="top"><b>$?</b></td><td>
+Макрос <b>$?</b> заменяется при обработке явных правил в файле 
+управления проектом. Это список необходимых файлов, 
+устаревших по отношению к цели, или, по сути, модулей, которые 
+необходимо перестроить.</td></tr>
+<tr><td valign="top"><b>$%</b></td><td>
+Макрос <b>$%</b> заменяется, только когда цель является элементом 
+архивной библиотеки вида <b>lib(file.o)</b>. В этом случае, <b>$@</b> 
+заменяется на библиотеку (<b>lib</b>), а <b>$%</b> заменяется на элемент 
+библиотеки, <b>file.o</b>.</td></tr>
+</tbody></table>
+
+<p>Четыре из пяти макросов имеют альтернативные формы. Если к любому из этих 
+четырех макросов добавляется прописная буква <b>D</b> или <b>F</b>, его значение 
+заменяется на полное имя каталога для <b>D</b> и только имя файла для <b>F</b>. Таким 
+образом, <b>$(@D)</b> ссылается на определяющую каталог часть строки <b>$@</b>. Если 
+определяющей каталог части нет, генерируется <b>./</b>. Альтернативной формы не 
+имеет только макрос <b>$?</b>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Суффиксы</h3>
+
+<p>Для определенных имен (например, заканчивающихся на <b>.o</b>) известны типичные 
+файлы, от которых они зависят (<i>исходные файлы</i>), такие как <b>.c</b>, <b>.s</b> и так далее. 
+Если в файле управления проектом нет команд обновления для такого файла и 
+если существует соответствующий исходный файл, он компилируется для 
+создания цели. В этом случае <b>make</b> использует правила вывода, позволяющие 
+строить файлы из других файлов путем проверки суффиксов и определения 
+подходящего внутреннего правила построения. В настоящее время 
+поддерживаются следующие стандартные правила вывода:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr>
+<td><b>.c</b></td>
+<td><b>.c~</b></td>
+<td><b>.f</b></td>
+<td><b>.f~</b></td>
+<td><b>.s</b></td>
+<td><b>.s~</b></td>
+<td><b>.sh</b></td>
+<td><b>.sh~</b></td>
+<td><b>.C</b></td>
+<td><b>.C~</b></td>
+</tr>
+<tr>
+<td><b>.c.a</b></td>
+<td><b>.c.o</b></td>
+<td><b>.c~.a</b></td>
+<td><b>.c~.c</b></td>
+<td><b>.c~.o</b></td>
+<td><b>.f.a</b></td>
+<td><b>.f.o</b></td>
+<td><b>.f~.a</b></td>
+<td><b>.f~.f</b></td>
+<td><b>.f ~.o</b></td>
+</tr>
+<tr>
+<td><b>.h~.h</b></td>
+<td><b>.l.c</b></td>
+<td><b>.l.o</b></td>
+<td><b>.l~.c</b></td>
+<td><b>.l~.l</b></td>
+<td><b>.l~.o</b></td>
+<td><b>.s.a</b></td>
+<td><b>.s.o</b></td>
+<td><b>.s~.a</b></td>
+<td><b>.s ~.o</b></td>
+</tr>
+<tr>
+<td><b>.s~.s</b></td>
+<td><b>.sh~.sh</b></td>
+<td><b>.y.c</b></td>
+<td><b>.y.o</b></td>
+<td><b>.y~.c</b></td>
+<td><b>.y~.o</b></td>
+<td><b>.y~.y</b></td>
+<td><b>.C.a</b></td>
+<td><b>.C.o</b></td>
+<td><b>.C ~.a</b></td>
+</tr>
+<tr>
+<td><b>.C~.C</b></td>
+<td><b>.C~.o</b></td>
+<td><b>.L.C</b></td>
+<td><b>.L.o</b></td>
+<td><b>.L~.C</b></td>
+<td><b>.L~.L</b></td>
+<td><b>.L~.o</b></td>
+<td><b>.Y.C</b></td>
+<td><b>.Y.o</b></td>
+<td><b>.Y ~.C</b></td>
+</tr>
+<tr>
+<td><b>.Y~.o</b></td>
+<td><b>.Y~.Y</b></td>
+<td><b>&nbsp;</b></td>
+<td><b>&nbsp;</b></td>
+<td><b>&nbsp;</b></td>
+<td><b>&nbsp;</b></td>
+<td><b>&nbsp;</b></td>
+<td><b>&nbsp;</b></td>
+<td><b>&nbsp;</b></td>
+<td><b>&nbsp;</b></td>
+</tr>
+</tbody></table>
+
+<p>Внутренние правила <b>make</b> содержатся в исходном файле <b>rules.c</b> программы 
+<b>make</b>. Эти правила можно изменить. Для получения скомпилированных в <b>make</b> 
+правил на любой машине в форме, подходящей для перекомпиляции, 
+используется следующая команда:</p>
+
+<dl><dt></dt><dd><pre>make -pf - 2&gt;/dev/null </pre></dd></dl>
+
+<p>Тильда в перечисленных выше правилах относится к файлу SCCS (см. 
+<a href="/man.shtml?topic=sccsfile&amp;category=4"><b>sccsfile(4)</b></a>). Так, правило 
+<b>.c~.o</b> преобразует исходный файл C из SCCS в 
+объектный файл (<b>.o</b>). Поскольку система управления исходным кодом SCCS 
+использует префикс <b>s.</b>, она несовместима с подходом <b>make</b>, основанном на 
+суффиксах. Тем не менее, с помощью тильды можно заменить ссылку на файл 
+ссылкой на соответствующий файл SCCS.</p>
+
+<p>Правило с единственным суффиксом (например, <b>.c</b>:) определяет, как построить <b>x</b> 
+из <b>x.c</b>. Фактически, второй суффикс пустой. Эта возможность пригодится для 
+построения целей из одного исходного файла, например, процедур командного 
+интерпретатора или простых программ на C.</p>
+
+<p>Дополнительные суффиксы указываются в виде списка зависимостей для 
+<b>.SUFFIXES</b>. Порядок здесь имеет значение: в качестве исходного файла 
+используется первое возможное имя, для которого существует как файл, так и 
+правило построения. По умолчанию используется список:</p>
+
+<dl><dt></dt><dd><pre>.SUFFIXES: .o .c .c~ .y .y~ .l .l~ .s .s~ .sh .sh~ .h .h~ 
+.f .f~ .C .C~ .Y .Y~ .L .L~
+</pre></dd></dl>
+
+<p>И в этом случае приведенная выше команда печати внутренних правил покажет 
+реализованный на данной машине список суффиксов. Несколько списков 
+суффиксов объединяются в один; <b>.SUFFIXES:</b> без списка зависимостей очищает 
+список суффиксов.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Правила вывода</h3>
+
+<p>Первый пример можно реализовать короче.</p>
+
+<dl><dt></dt><dd><pre>pgm: a.o b.o
+	cc a.o b.o -o pgm
+a.o b.o: incl.h
+</pre></dd></dl>
+
+<p>Такое сокращение возможно, потому что <b>make</b> имеет ряд внутренних правил 
+построения файлов. Пользователь может добавлять правила к этому списку, 
+просто задавая их в файле управления проектом.</p>
+
+<p>Некоторые макросы используются стандартными правилами вывода, чтобы 
+можно было включать дополнительные опции в результирующие команды. 
+Например, <b>CFLAGS</b>, <b>LFLAGS</b> и <b>YFLAGS</b> используются в качестве опций 
+компилятора для <a href="/man.shtml?topic=cc&amp;category=1"><b>cc(1)</b></a>, <a href="/man.shtml?topic=lex&amp;category=1">lex(1)</a> и <a href="/man.shtml?topic=yacc&amp;category=1">yacc(1)</a>, соответственно. Можно опять 
+порекомендовать описанный выше метод просмотра текущих правил.</p>
+
+<p>Поиском исходных файлов можно управлять. Правило создания файла с 
+суффиксом .o из файла с суффиксом .c задается как запись с .c.o: в качестве цели 
+и с пустым списком зависимостей. Команды интерпретатора shell, связанные с 
+целью, определяют правило создания файла .o из файла .c. Любая цель, не 
+содержащая наклонных и начинающаяся с точки рассматривается как правило, а 
+не как обычная цель.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  <a name="libs">Библиотеки</a></h3>
+<p>Если имя цели или одного из элементов списка зависимостей содержит круглые 
+скобки, считается, что это архивная библиотека, а строка в скобках ссылается на 
+элемент библиотеки. Так, <b>lib(file.o)</b> и <b>$(LIB)(file.o)</b> оба ссылаются на архивную 
+библиотеку, содержащую <b>file.o</b>. (В этом примере предполагается, что макрос 
+<b>LIB</b> предварительно определен.) Выражение <b>$(LIB)(file1.o file2.o)</b> недопустимо. 
+Правила, относящиеся к архивным библиотекам, имеют вид <b>.XX.a</b>, где <b>XX</b> - это 
+суффикс, из файла с которым должен строиться элемент архива. Неприятный 
+побочный эффект текущей реализации требует, чтобы <b>XX</b> отличался от 
+суффикса элемента архива. Поэтому нельзя, чтобы <b>lib(file.o)</b> зависел от <b>file.o</b> 
+явно. Чаще всего архивы создаются так, как показано ниже. Предполагается, что 
+все исходные файлы написаны на языке C:</p>
+<dl><dt></dt><dd><pre>lib:	lib(file1.o) lib(file2.o) lib(file3.o)
+	@echo lib is now up-to-date
+.c.a:
+	$(CC) -c $(CFLAGS) $&lt;
+	$(AR) $(ARFLAGS) $@ $(<f:.c=.o) rm="" -f="" $(<f:.c=".o)" <="" pre=""></f:.c=.o)></pre></dd></dl>
+
+<p>Фактически, правило <b>.c.a</b>, указанное выше, встроено в <b>make</b> и в этом примере не 
+обязательно. Ниже приведен более интересный, но и более ограниченный 
+пример конструкции создания архивной библиотеки:</p>
+
+<dl><dt></dt><dd><pre>lib:	lib(file1.o) lib(file2.o) lib(file3.o)
+	$(CC) -c $(CFLAGS) $(?:.o=.c)
+	$(AR) $(ARFLAGS) lib $?
+	rm $?
+	@echo lib is now up-to-date
+.c.a:;
+</pre></dd></dl>
+
+<p>Здесь использован режим подстановки при расширении макроса. По 
+определению <b>$?</b> является списком имен объектных файлов (в <b>lib</b>), исходные 
+тексты на C для которых устарели. Подстановка заменяет <b>.o</b> на <b>.c</b>. (К сожалению, 
+нельзя заменить на <b>.c~</b>; однако, такое преобразование может стать возможным в 
+дальнейшем.) Также обратите внимание на отключение правила <b>.c.a:</b>, которое 
+создавало бы объектные файлы один за другим. Эта конструкция существенно 
+ускоряет работу с архивными библиотеками. Такого типа конструкции 
+становятся очень громоздкими, если архивная библиотека содержит смесь 
+программ на ассемблере и на C.</p>
+
+<h2>ФАЙЛЫ</h2>
+<dl>
+<dt><b>[Mm]akefile</b></dt><dd></dd>
+<dt><b>s.[Mm]akefile</b></dt><dd></dd>
+<dt><b>/usr/bin/sh</b></dt><dd></dd>
+<dt><b>/usr/lib/locale/локаль/LC_MESSAGES/uxepu</b></dt>
+	<dd>файл сообщений для используемого языка (См. <b>LANG</b> в <a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>.)</dd>
+</dl>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=cc&amp;category=1"><b>cc(1)</b></a>,
+	<a href="/man.shtml?topic=cd&amp;category=1"><b>cd(1)</b></a>,
+	<a href="/man.shtml?topic=fprintf&amp;category=3"><b>fprintf(3S)</b></a>,
+	<a href="/man.shtml?topic=lex&amp;category=1"><b>lex(1)</b></a>,
+	<a href="/man.shtml?topic=sccsfile&amp;category=4"><b>sccsfile(4)</b></a>,
+	<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>,
+	<a href="/man.shtml?topic=yacc&amp;category=1"><b>yacc(1)</b></a>
+</dd></dl>
+
+<h2>ПРИМЕЧАНИЯ</h2>
+<p>Некоторые команды возвращают ненулевой код не тогда, когда нужно; чтобы 
+обойти это, используйте <a href="#i"><b>-i</b></a> или префикс <b>-</b> в строке команды.</p>
+
+<p>Файлы с именами, содержащими символы <b>=</b>, <b>:</b> и <b>@</b>, не будут правильно 
+обрабатываться. Команды, непосредственно выполняемые командным 
+интерпретатором, в частности <b>cd(1)</b>, действуют в <b>make</b> только в пределах 
+строки. Синтаксис <b>lib(file1.o file2.o file3.o)</b> недопустим. Нельзя строить <b>lib(file.o)</b> 
+из <b>file.o</b>.</p>
+
+<p align="center"><font size="-2">Copyright 1994 Novell, Inc.<br>
+Copyright 2000 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="make" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

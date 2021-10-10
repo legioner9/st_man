@@ -1,0 +1,337 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN sftp (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, sftp"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="sftp" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">sftp (1)</font><hr><li> <a href="/man.shtml?topic=sftp&amp;category=1&amp;russian=4"><u>sftp</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=sftp&amp;category=1&amp;russian=1"><u>sftp</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=sftp&amp;category=1&amp;russian=0"><u>sftp</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=sftp&amp;category=1&amp;russian=2"><u>sftp</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+<b>sftp</b> - Программа защищённой передачи файлов.
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+
+<b>sftp</b> [<b>-vC1</b>] [<b>-b</b> <i>batchfile</i>] [<b>o</b> <i>ssh_option</i>] [<b>-s</b> <i>subsystem</i> | <i>sftp_server</i>] [<b>-B</b> <i>buffer_size</i>] [<b>-F</b> <i>ssh_config</i>] [<b>-P</b> <i>sftp_server path</i>] [<b>-R</b> <i>num_requests</i>] [<b>-S</b> <i>program</i>] <i>host</i>
+
+
+<b>sftp</b> [[<i>user</i>@]<i>host</i>[:<i>file</i>[<i>file</i>]]]
+
+
+<b>sftp</b> [[<i>user</i>@]<i>host</i>[:<i>dir</i>[<i>/</i>]]]
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<b>sftp</b>, это интерактивная программа для передачи файлов, похожая на <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ftp&amp;category=1">ftp</a>(1), которая осуществляет все операции через зашифрованные средства передачи <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ssh&amp;category=1">ssh</a>(1). <b>sftp</b> также может использовать много таких возможностей ssh, как аутентификация с публичным ключем и сжатие. <b>sftp</b> подключается и регистрируется на указанном <i>host</i>, а затем переходит в интерактивный командный режим.
+<dl compact="">
+<dt>Другой вариант использования позволяет получать файлы автоматически, если используется не интерактивная аутентификация; в противном случае это становится возможно после того, как осуществлена интерактивная аутентификация.</dt><dd>
+</dd><dt>Ещё один способ позволяет sftp-клиенту начать работу в заданном удалённом каталоге.</dt><dd>
+</dd></dl>
+<p>
+
+Распознаются следующие опции:
+</p><dl compact="">
+<dt><b>-b</b> <i>batchfile</i></dt><dd>
+Пакетный режим прочитывает набор команд вместо <i>stdin</i> из входного <i>batchfile</i>. Так как данная опция подразумевает недостаток внимания со стороны пользователя, то должна использоваться в сочетании с не интерактивной аутентификацией. При обнаружении ошибок в выполнении любой из следующих команд: <b>get</b>, <b>put</b>, <b>rename</b>, <b>ln</b>, <b>rm</b>, <b>mkdir</b>, <b>chdir</b>, <b>ls</b>, <b>lchdir</b>, <b>chmod</b>, <b>chown</b>, <b>chgrp</b>, <b>lpwd</b> и <b>lmkdir</b>, <b>sftp</b> прервёт свою работу. Отмены выполнения, вследствие возникновения ошибки, можно избежать, предварив команду символом "-" (например, -rm /tmp/blah* ).
+</dd><dt><b>-o</b> <i>ssh_option</i></dt><dd>
+Может быть использована для передачи опций, в формате используемом в <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ssh_config&amp;category=5">ssh_config</a>(5), напрямую к <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ssh&amp;category=1">ssh</a>(1). Полезно для указания опций для которых отсутствует отдельный флаг командной строки <b>sftp</b>. Например, для указания альтернативного порта используйте: <b>sftp -oPort=24</b>.
+</dd><dt><b>-s</b> <i>subsystem</i> | <i>sftp_server</i></dt><dd>
+Указывает подсистему SSH2 или путь для sftp-сервера на удалённой машине. Указание пути полезно при использовании sftp поверх протокола версии 1 или когда удалённый <b>sshd</b> не имеет сконфигурированной sftp-подсистемы.
+</dd><dt><b>-v</b></dt><dd>
+Повышает уровень отладки. Этот параметр также передается к ssh.
+</dd><dt><b>-B</b> <i>buffer_size</i></dt><dd>
+Задаёт размер буфера, который используется <b>sftp</b> при передаче файлов. Буферы большего размера требуют меньше обращений туда и обратно за счёт более высокого потребления памяти. Значение по умолчанию 32768 байт.
+<b>-С</b>
+Задействует сжатие (при помощи флага ssh <b>-С</b>).
+</dd><dt><b>-F</b> <i>ssh_config</i></dt><dd>
+Задаёт альтернативный пользовательский файл конфигурации для <b>ssh</b>. Эта опция передаётся к ssh напрямую.
+</dd><dt><b>-P</b> <i>sftp_server path</i></dt><dd>
+Подключает напрямую к локальному серверу <b>sftp</b> (скорее, чем через <b>ssh</b>). Эта опция полезна для отладки клиента и сервера.
+</dd><dt><b>-R</b> <i>num_requests</i></dt><dd>
+Указывает, как много запросов может выделяться в любой момент. Увеличение этого может слегка повысить скорость передачи файлов, но вызовет большее потребление памяти. По умолчанию выделяется 16 запросов.
+</dd><dt><b>-S</b> <i>program</i></dt><dd>
+Имя программы (<i>program</i>), используемой для шифрования соединения. Программа должна распознавать опции <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ssh&amp;category=1">ssh</a>(1).
+</dd><dt><b>-1</b></dt><dd>
+Указывает использовать протокол версии 1.
+</dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>ИНТЕРАКТИВНЫЕ КОМАНДЫ</h2>
+
+Пребывая в интерактивном режиме <b>sftp</b> понимает набор команд, аналогичный командам <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ftp&amp;category=1">ftp</a>(1). Команды являются нечувствительными к регистру букв, и имена путей, если они содержат пробелы, могут быть заключены в кавычки.
+<dl compact="">
+<dt><b>bye</b></dt><dd>
+Выйти из sftp.
+</dd><dt><b>cd</b> <i>path</i></dt><dd>
+Изменит удаленный каталог к <i>path</i>.
+</dd><dt><b>lcd</b> <i>path</i></dt><dd>
+Изменит локальный каталог к <i>path</i>.
+</dd><dt><b>chgrp</b> <i>grp</i> <i>path</i></dt><dd>
+Изменяет идентификатор группы файла <i>path</i> в значение <i>grp</i>. <i>grp</i> должен быть цифровым GID.
+</dd><dt><b>chmod</b> <i>mode</i> <i>path</i></dt><dd>
+Изменяет права доступа файла <i>path</i> в <i>mode</i>.
+</dd><dt><b>chown</b> <i>own</i> <i>path</i></dt><dd>
+Изменяет владельца группы файла <i>path</i> в значение <i>own</i>. <i>own</i> должен быть цифровым UID.
+</dd><dt><b>exit</b></dt><dd>
+Выйти из sftp.
+</dd><dt><b>get</b> [<i>flags</i>] <i>remote_path</i> [<i>local_path</i>]</dt><dd>
+Получает <i>remote_path</i> и сохраняет его на локальной машине. Если имя локального пути не указано, то ему назначается имя, аналогичное имени на удаленной машине. Если указан флаг <b>-P</b>, то будут скопированы полные права доступа и время доступа к файлу.
+</dd><dt><b>help</b></dt><dd>
+Печатает справочную информацию.
+</dd><dt><b>lls</b> [<i>ls-options</i> [<i>path</i>]]</dt><dd>
+Отображает либо содержимое локального каталога <i>path</i>, либо текущего каталога, если <i>path</i> не указан.
+</dd><dt><b>lmkdir</b> <i>path</i></dt><dd>
+Создать локальный каталог указанный в <i>path</i>.
+</dd><dt><b>ln</b> <i>oldpath</i> <i>newpath</i></dt><dd>
+Создать символическую ссылку от <i>oldpath</i> к <i>newpath</i>.
+</dd><dt><b>lpwd</b></dt><dd>
+Сообщить имя локального рабочего каталога.
+</dd><dt><b>ls</b> [<i>flags</i>] [<i>path</i>]</dt><dd>
+Отображает либо содержимое каталога <i>path</i> на удаленной машине, либо текущего каталога, если <i>путь</i> не указан. Если указан флаг <b>-l</b>, то отображается дополнительная информация, включая права доступа и права владения.
+</dd><dt><b>lumask</b> <i>umask</i></dt><dd>
+Установить локальную umask в значение <i>umask</i>.
+</dd><dt><b>mkdir</b> <i>path</i></dt><dd>
+Создать удаленный каталог заданный в <i>path</i>.
+</dd><dt><b>progress</b></dt><dd>
+Отобразить индикатор прогресса.
+</dd><dt><b>put</b> [<i>flags</i>] <i>local-path</i> [<i>remote-path</i>]</dt><dd>
+Переносит <i>local-path</i> и сохраняет его на удаленной машине. Если имя пути на удаленной машине не указано, то будет назначено тоже-самое имя, как на локальной машине. Если указан флаг <b>-P</b>, то будут скопированы полные права доступа и время доступа к файлу.
+</dd><dt><b>pwd</b></dt><dd>
+Показать имя удаленного рабочего каталога.
+</dd><dt><b>quit</b></dt><dd>
+Выйти из sftp.
+</dd><dt><b>rename</b> <i>oldpath</i> <i>newpath</i></dt><dd>
+Переименовать удаленный файл из <i>oldpath</i> в <i>newpath</i>.
+</dd><dt><b>rmdir</b> <i>path</i></dt><dd>
+Переместить удаленный каталог указанный в <i>path</i>.
+</dd><dt><b>rm</b> <i>путь</i></dt><dd>
+Удалить удаленный файл указанный в <i>пути</i>.
+</dd><dt><b>symlink</b> <i>oldpath</i> <i>newpath</i></dt><dd>
+Создать символическую ссылку из <i>oldpath</i> к <i>newpath</i>.
+</dd><dt><b>version</b></dt><dd>
+Показать версию <b>sftp</b>-протокола.
+</dd><dt><b>!</b> <i>command</i></dt><dd>
+Выполнить команду в локальной оболочке.
+</dd><dt><b>!</b></dt><dd>
+Выйти в локальную оболочку.
+</dd><dt><b>?</b></dt><dd>
+Синоним для help.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>АВТОРЫ</h2>
+
+Damien Miller &lt;<a href="mailto:djm@mindrot.org">djm@mindrot.org</a>&gt;
+<p>
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+Перевод с английского: Александр Блохин &lt;<a href="mailto:sass@altlinux.ru">sass@altlinux.ru</a>&gt;
+<a name="lbAH">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=scp&amp;category=1">scp</a>(1), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ssh&amp;category=1">ssh</a>(1), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ssh-add&amp;category=1">ssh-add</a>(1), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ssh-keygen&amp;category=1">ssh-keygen</a>(1), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ssh_config&amp;category=5">ssh_config</a>(5), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sftp-server&amp;category=8">sftp-server</a>(8), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8)
+<p>
+
+T. Ylonen and S. Lehtinen, <i>SSH File Transfer Protocol</i>, draft-ietf-secsh-filexfer-00.txt, January 2001.
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ИНТЕРАКТИВНЫЕ КОМАНДЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">ПЕРЕВОД</a></dt><dd>
+</dd><dt><a href="#lbAH">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="sftp" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

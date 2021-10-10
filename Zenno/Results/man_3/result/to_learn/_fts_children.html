@@ -1,0 +1,1357 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN fts_children (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, fts_children"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="fts_children" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">fts_children (3)</font><hr><li> <a href="/man.shtml?topic=fts_children&amp;category=3&amp;russian=1"><u>fts_children</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=fts_children&amp;category=3&amp;russian=0"><u>fts_children</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=fts_children&amp;category=3&amp;russian=2"><u>fts_children</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><br>BSD mandoc<br>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+
+
+<b>fts</b>
+
+ 
+<b>fts_open</b>
+
+ 
+<b>fts_read</b>
+
+ 
+<b>fts_children</b>
+
+ 
+<b>fts_set</b>
+
+ 
+<b>fts_close </b>
+
+ - просмотр файловой иерархии
+
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+Fd #include &lt;<a href="file:/usr/include/sys/types.h">sys/types.h</a>&gt;
+
+Fd #include &lt;<a href="file:/usr/include/sys/stat.h">sys/stat.h</a>&gt;
+
+Fd #include &lt;<a href="file:/usr/include/fts.h">fts.h</a>&gt;
+
+<p>
+<b>FTS * </b>
+<br>
+
+fts_open (char * const *path_argv int options int (*compar)(const FTSENT **, const FTSENT **));<br>
+
+</p><p>
+<b>FTSENT *</b>
+<br>
+
+fts_read (FTS *ftsp);<br>
+
+</p><p>
+<b>FTSENT *</b>
+<br>
+
+fts_children (FTS *ftsp int options);<br>
+
+</p><p>
+<b>int</b>
+<br>
+
+fts_set (FTS *ftsp FTSENT *f int options);<br>
+
+</p><p>
+<b>int</b>
+<br>
+
+fts_close (FTS *ftsp);<br>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Функции 
+<b>fts</b>
+
+созданы для просмотра файловой иерархии
+<b>UNIX . </b>
+
+Сразу должно быть видно, что функция
+fts_open ();<br>
+
+возвращает "имя" файловой иерархии, которое затем 
+используется другими функциями
+<b>fts</b>
+
+ 
+Функция 
+fts_read ();<br>
+
+возвращает указатель на структуру, описывающую один из файлов
+в файловой системе. Функция
+fts_children ();<br>
+
+возвращает указатель на связанный список структур, каждая из которых
+описывает один из файлов, содержащихся в каталоге иерархии. В общем
+случае, каталоги обходятся двумя разными путями - в прямом порядке
+(перед тем, как обработаны их потомки), и в обратном порядке (после
+того, как обработаны все потомки каталога). Файлы обрабатываются только
+один раз. Возможен "логический" просмотр иерархии, когда игнорируются
+символьные ссылки, и "физический", когда осуществляется следование по
+символьным ссылкам; также следование можно упорядочить, или осуществлять
+перемещения беспорядочно, по частям.
+<p>
+
+Определены две структуры (типа typedef) в include-файле
+Aq Pa fts.h .
+
+Первая - структура 
+Fa FTS ,
+
+представляющая собственно иерархию файлов. Вторая - структура
+Fa FTSENT ,
+
+представляющая иерархию файлов в файлах. Обычно, стуктура
+Fa FTSENT
+
+возвращается для каждого файла в файловой иерархии.
+В этом руководстве понятия "файл" и "структура FTSENT" в общем взаимозаменяемы.
+Структура 
+Fa FTSENT
+
+содержит по меньшей мере следующие поля, подробнее описанные ниже:
+
+</p><pre>typedef struct _ftsent {
+        u_short fts_info;               /* флаги для структуры FTSENT */
+        char *fts_accpath;              /* путь доступа */
+        char *fts_path;                 /* начальный путь */
+        short fts_pathlen;              /* strlen(fts_path) */
+        char *fts_name;                 /* имя файла */
+        short fts_namelen;              /* strlen(fts_name) */
+        short fts_level;                /* глубина (от -1 до N) */
+        int fts_errno;                  /* номер ошибки в файле (file errno) */
+        long fts_number;                /* местное числовое значение */
+        void *fts_pointer;              /* местный адрес */
+        struct ftsent *fts_parent;      /* родительский каталог */
+        struct ftsent *fts_link;        /* структура следующего файла */
+        struct ftsent *fts_cycle;       /* циклическая структура */
+        struct stat *fts_statp;         /* информация о <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stat&amp;category=2">stat</a>(2) */
+} FTSENT;
+</pre>
+
+<p>
+
+Эти поля определяются таким образом:
+</p><dl compact="">
+<p>
+
+</p><dt><b>Fa </b>fts_info
+
+
+</dt><dd>
+Один из последующих флагов описывает возвращенное значение стурктуры
+Fa FTSENT
+
+и файла, который ею характеризуется.
+За исключением каталогов, в которых нет ошибок
+(<b>FTS_D</b>
+
+)
+
+ 
+все эти элементы являются терминалом, то есть они не будут повторно
+обходиться, а их потомки не будут обходиться вообще.
+<dl compact="">
+<p>
+
+</p><dt><b>FTS_D</b>
+
+
+</dt><dd>
+Каталог, посещаемый в прямом порядке.
+</dd><dt><b>FTS_DC</b>
+
+
+</dt><dd>
+Каталог, вызвавший зацикливание по дереву. (Поле 
+Fa fts_cycle
+
+структуры
+Fa FTSENT
+
+будет заполнено.)
+</dd><dt><b>FTS_DEFAULT</b>
+
+
+</dt><dd>
+Любая структура
+Fa FTSENT , 
+
+представляющая тип файла, неявно описанного одним из значений
+Fa fts_info .
+
+</dd><dt><b>FTS_DNR</b>
+
+
+</dt><dd>
+Каталог, который не может быть прочитан.
+Это значение возвращается при ошибке, и поле
+Fa fts_errno
+
+будет заполнено тем, что вызвало ошибку.
+</dd><dt><b>FTS_DOT</b>
+
+
+</dt><dd>
+Файл, названный
+`.'
+
+или
+`..'
+
+который не был определен как файловое имя в
+fts_open ();<br>
+
+(см.
+<b>FTS_SEEDOT )</b>
+
+ 
+</dd><dt><b>FTS_DP</b>
+
+
+</dt><dd>
+Каталог, посещаемый в обратном порядке. Содержимое структуры
+Fa FTSENT
+
+будет неизменно, как если-бы он посещался в прямом порядке, то есть с полем
+Fa fts_info , 
+
+установленным в 
+<b>FTS_D</b>
+
+ 
+</dd><dt><b>FTS_ERR</b>
+
+
+</dt><dd>
+Это значение возвращается при ошибке, и поле
+Fa fts_errno
+
+будет заполнено тем, что вызвало ошибку.
+</dd><dt><b>FTS_F</b>
+
+
+</dt><dd>
+Простой файл.
+</dd><dt><b>FTS_NS</b>
+
+
+</dt><dd>
+Файл, для которого нет доступной информации 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stat&amp;category=2">stat</a>(2).
+
+
+Содержимое поля
+Fa fts_statp
+
+не определено.
+Это значение возвращается при ошибке, и поле
+Fa fts_errno
+
+будет заполнено тем, что вызвало ошибку.
+</dd><dt><b>FTS_NSOK</b>
+
+
+</dt><dd>
+Файл, для которого информация о 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stat&amp;category=2">stat</a>(2)
+
+
+не была запрошена. Содержимое поля
+Fa fts_statp
+
+не определено.
+</dd><dt><b>FTS_SL</b>
+
+
+</dt><dd>
+Символьная ссылка.
+</dd><dt><b>FTS_SLNONE</b>
+
+
+</dt><dd>
+Символьная ссылка, указывающая на несуществующий объект.
+Содержимое поля
+Fa fts_statp
+
+определяет ссылку на информацию о свойствах файла для самой символьной ссылки.
+</dd></dl>
+<p>
+
+</p></dd><dt><b>Fa </b>fts_accpath
+
+
+</dt><dd>
+Путь к файлу относительно текущего каталога.
+</dd><dt><b>Fa </b>fts_path
+
+
+</dt><dd>
+Путь к файлу относительно начального каталога.
+Этот путь содержит в себе (как приставку) путь, определенный в
+fts_open (.);<br>
+
+</dd><dt><b>Fa </b>fts_pathlen
+
+
+</dt><dd>
+Длина строки, на которую ссылается
+Fa fts_path .
+
+</dd><dt><b>Fa </b>fts_name
+
+
+</dt><dd>
+Имя файла.
+</dd><dt><b>Fa </b>fts_namelen
+
+
+</dt><dd>
+Длина строки, на которую ссылается
+Fa fts_name .
+
+</dd><dt><b>Fa </b>fts_level
+
+
+</dt><dd>
+Глубина погружения в дерево иерархии, пронумерованная от -1 до N,
+на которой был обнаружен файл. Структура 
+Fa FTSENT ,
+
+представляющая родительский каталог относительно начальной точки поиска,
+обозначена как -1, а структура
+Fa FTSENT
+
+для самой начальной точки поиска обозначена как 0.
+</dd><dt><b>Fa </b>fts_errno
+
+
+</dt><dd>
+До возврата структуры
+Fa FTSENT
+
+от функций
+fts_children ();<br>
+
+или
+fts_read (, );<br>
+
+с его полем
+Fa fts_info , 
+
+установленным в
+<b>FTS_DNR</b>
+
+ 
+<b>FTS_ERR</b>
+
+или
+<b>FTS_NS</b>
+
+ 
+поле
+Fa fts_errno
+
+содержит значение внешней переменной
+<i>errno , </i>
+
+обозначающей причину ошибки. В другом случае, содержание поля
+Fa fts_errno
+
+не определено.
+</dd><dt><b>Fa </b>fts_number
+
+
+</dt><dd>
+Это поле создано для использования приложениями и не модифицируется функциями 
+<b>fts</b>
+
+ 
+При инициализации оно устанавливается в 0.
+</dd><dt><b>Fa </b>fts_pointer
+
+
+</dt><dd>
+Это поле создано для использования приложениями и не модифицируется функциями
+<b>fts</b>
+
+ 
+При инициализации оно устанавливается в 
+<b>NULL</b>
+
+ 
+</dd><dt><b>Fa </b>fts_parent
+
+
+</dt><dd>
+Указатель на структуру
+Fa FTSENT , 
+
+обращающейся в иерархии к файлу непосредственно над текущим файлом, то
+есть к каталогу, членом которого является текущий файл. Родительский
+каталог начальной точки поиска также может быть доступен, правда только
+при условии, что поля
+Fa fts_level ,
+
+Fa fts_number
+
+и
+Fa fts_pointer
+
+будут проинициализированы.
+</dd><dt><b>Fa </b>fts_link
+
+
+</dt><dd>
+До возврата от функции
+fts_children (, );<br>
+
+поле
+Fa fts_link
+
+указывает на следующую структуру в связанном списке содержимого каталога
+(заканчивавающихся NULL). Иначе, содержимое поля 
+Fa fts_link
+
+не определено.
+</dd><dt><b>Fa </b>fts_cycle
+
+
+</dt><dd>
+Если каталог вызывает зацикливание по иерархии (смотри
+<b>FTS_DC ),</b>
+
+либо из-за жесткой связи между двумя каталогами, либо символьной сслыкой,
+указывающей на каталог, то поле
+Fa fts_cycle
+
+структуры будет указывать на структуру
+Fa FTSENT
+
+в иерархии, которая ссылается на такой-же файл, что и текущая структура
+Fa FTSENT .
+
+Иначе, содержимое поля 
+Fa fts_cycle
+
+не определено.
+</dd><dt><b>Fa </b>fts_statp
+
+
+</dt><dd>
+Указатель на
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stat&amp;category=2">stat</a>(2),
+
+
+информацию о файле.
+</dd></dl>
+<p>
+
+</p><p>
+
+Единственный буфер, используемый для всех путей всех файлов в иерархии.
+Следовательно, поля
+Fa fts_path
+
+и
+Fa fts_accpath
+
+должны быть 
+<b>NULL -terminated</b>
+
+
+
+<i>только</i>
+
+для файлов, к которым чаще всего обращается
+fts_read (.);<br>
+
+Для использования этих полей для обращения к любым файлам,
+представленных другими структурами
+Fa FTSENT
+
+необходимо, чтобы буфер пути был изменен,
+используя информацию, содержащуюся в поле 
+Fa fts_pathlen
+
+структуры
+Fa FTSENT .
+
+Любое изменение должно быть обратно восстановлено перед
+дальнейшими попытками вызыва
+fts_read (.);<br>
+
+Поле
+Fa fts_name
+
+всегда
+<b>NULL -terminated.</b>
+
+
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>FTS_OPEN</h2>
+
+Функция
+fts_open ();<br>
+
+указывает на массив символьных указателей, обозначающих один или
+несколько путей, образующих логическую файловую иерархию, по которой
+идет поиск. Массив должен заканчиваться указателем на
+<b>NULL</b>
+
+ 
+<p>
+
+Из нескольких существующих параметров хотя-бы один (либо
+<b>FTS_LOGICAL</b>
+
+либо
+<b>FTS_PHYSICAL</b>
+
+ 
+должен быть указан.
+С помощью
+<i>or </i><b>параметрам присваиваются значения:</b>
+
+
+
+</p><dl compact="">
+<p>
+
+</p><dt><b>FTS_COMFOLLOW</b>
+
+
+</dt><dd>
+Этот параметр принуждает перемещаться по любой символьной ссылке, определенной
+как корневой путь, несмотря на то, определен или нет флаг
+<b>FTS_LOGICAL</b>
+
+ 
+</dd><dt><b>FTS_LOGICAL</b>
+
+
+</dt><dd>
+Этот параметр принуждает функции
+<b>fts</b>
+
+выдавать структуру
+Fa FTSENT
+
+для целей символьной ссылки вместо самой символьной ссылки.
+Если этот флаг включен, то единственные символьные ссылки,
+для которых приложениям выдаются структуры
+Fa FTSENT
+
+- это ссылки, указывающие на несуществуюшие файлы.
+Также
+<b>FTS_LOGICAL</b>
+
+или
+<b>FTS_PHYSICAL</b>
+
+<i>должны</i>
+
+присутствовать для работы функции
+fts_open (.);<br>
+
+</dd><dt><b>FTS_NOCHDIR</b>
+
+
+</dt><dd>
+Для оптимизации работы функции
+<b>fts</b>
+
+меняют каталоги, по которым они следуют по файловой иерархии. Это имеет
+один побочный эффект - приложения не могут точно определять, что они
+находятся в одном каталоге во время перемещения по дереву. Флаг
+<b>FTS_NOCHDIR</b>
+
+выключает такую оптимизацию, и функции
+<b>fts</b>
+
+не будут при нем менять текущий каталог. Обратите внимание, что
+приложения сами не должны изменять свой текущий каталог и пытаться
+получить доступ к файлам, пока не указан флаг
+<b>FTS_NOCHDIR</b>
+
+и функции 
+fts_open ();<br>
+
+не переданы абсолютные пути в качестве параметров.
+</dd><dt><b>FTS_NOSTAT</b>
+
+
+</dt><dd>
+По умолчанию, возвращаемые структуры
+Fa FTSENT
+
+обращаются к информации о файлах (поле
+Fa statp ) 
+
+в каждом просмотренном файле.
+Данный параметр снимает это требование (для оптимизации процесса),
+позволяя функциям
+<b>fts</b>
+
+установить поле
+Fa fts_info
+
+в значение
+<b>FTS_NSOK</b>
+
+и оставлять содержание поля 
+Fa statp
+
+неопределенным.
+</dd><dt><b>FTS_PHYSICAL</b>
+
+
+</dt><dd>
+Этот параметр принуждает функции
+<b>fts</b>
+
+выдавать структуру
+Fa FTSENT
+
+самих символьных ссылкок вместо файлов, на которые они указывают. Если
+этот флаг установлен, то для всех символьных ссылок в файловой иерархии
+их структуры
+Fa FTSENT
+
+возвращаются приложениям. Также
+<b>FTS_LOGICAL</b>
+
+или
+<b>FTS_PHYSICAL</b>
+
+<i>должны</i>
+
+присутствовать для работы функции
+fts_open (.);<br>
+
+</dd><dt><b>FTS_SEEDOT</b>
+
+
+</dt><dd>
+По умолчанию, до тех пор, пока не указаны как параметры пути к
+fts_open (,);<br>
+
+любые файлы с именами
+`.'
+
+или
+`..'
+
+, 
+обнаруженные в файловой иерархии, игнорируются.
+Данный флаг принуждает фукнции
+<b>fts</b>
+
+возвращать структуры
+Fa FTSENT
+
+для таких файлов.
+</dd><dt><b>FTS_XDEV</b>
+
+
+</dt><dd>
+Этот флаг предотвращает
+<b>fts</b>
+
+от вхождения в каталоги, которые имеют номер устройства, отличный от
+файла, с которого началось погружение.
+</dd></dl>
+<p>
+
+</p><p>
+
+Параметр
+compar ();<br>
+
+задает определяемую пользователем функцию, которая используется для
+упорядочивания прохождения по иерархии. Ему требуется два указателя на
+указатели к структурам
+Fa FTSENT
+
+как параметры, и он должен возвращать отрицательное значение, ноль, или
+положительное число для того, чтобы показать, расположен ли файл, на
+который указывает первый параметр, перед (относительно текущего
+упорядочивания), на одном уровне, или после файла, на который указывает
+второй параметр. Поля
+Fa fts_accpath ,
+
+Fa fts_path
+
+и
+Fa fts_pathlen
+
+структуры 
+Fa FTSENT
+
+могут быть
+<i>никогда</i>
+
+не использованы в таком сравнении.
+Если поле
+Fa fts_info
+
+установлено в
+<b>FTS_NS</b>
+
+или 
+<b>FTS_NSOK</b>
+
+ 
+то поле
+Fa fts_statp
+
+может не использоваться.
+Если параметр
+compar ();<br>
+
+установлен в
+<b>NULL</b>
+
+ 
+то порядок прохождения каталогов определяется
+параметрами, указанными в
+Fa path_argv
+
+для корневого пути, и в порядке, перечисленном в каталоге
+для всего остального.
+<a name="lbAF">&nbsp;</a>
+</p><h2>FTS_READ</h2>
+
+Функция
+fts_read ();<br>
+
+возвращает уаказатель на структуру
+Fa FTSENT , 
+
+описывающую файл в иерархии. Каталоги (корректно считываемые и не
+образующие зацикливаний), посещаются как минимум дважды - первый раз в
+прямом прохождении, и второй раз в обратном. Все остальные файлы
+посещаются минимум один раз. (Жесткие связи между каталогами, не
+образующие зацикливаний, или символьные ссылки на символьные ссылки
+приведут к тому, что файлы будут посещаться более чем один раз, а
+каталоги - более чем два раза.)
+<p>
+
+Когда все члены иерархии возвращены,
+fts_read ();<br>
+
+возвращает 
+<b>NULL</b>
+
+и устанавливает внешнюю переменную
+<i>errno</i>
+
+в 0.
+Если происходит ошибка, не имеющая отношения к файлу в иерархии,
+fts_read ();<br>
+
+возвращает
+<b>NULL</b>
+
+и устанавливает соответсвенно
+<i>errno</i>
+
+в некоторое значение.
+Если происходит ошибка, связанная с возвращенным файлом, то
+возвращается указатель на структуру
+Fa FTSENT , 
+
+а
+<i>errno</i>
+
+может быть установлен в какое-то значение, а может и не быть (см.
+Fa fts_info ) .
+
+</p><p>
+
+Структура 
+Fa FTSENT , 
+
+возвращаемая
+fts_read ();<br>
+
+может быть переписана после вызова
+fts_close ();<br>
+
+в том же файловом потоке иерархии, или, после вызова
+fts_read ();<br>
+
+в том же файловом потоке иерархии, пока они не представляют файл
+типа "каталог", в этом случае они не будут переписаны до вызова
+fts_read ();<br>
+
+после того, как структура
+Fa FTSENT
+
+будет возвращена функцией
+fts_read ();<br>
+
+в прямом порядке.
+<a name="lbAG">&nbsp;</a>
+</p><h2>FTS_CHILDREN</h2>
+
+Фукнция
+fts_children ();<br>
+
+возвращает указатель на структуру
+Fa FTSENT , 
+
+описывающую первый член связанного списка файлов в каталоге, 
+(оканчивающихся NULL и представленных структурой
+Fa FTSENT ), 
+
+наиболее часто возвращаемых
+fts_read (.);<br>
+
+Список связан через поле
+Fa fts_link
+
+структуры
+Fa FTSENT , 
+
+и упорядочен определенной пользователем функцией сравнения, если таковая
+существует. Регулярные вызовы
+fts_children ();<br>
+
+будут пополнять этот связанный список.
+<p>
+
+В особом случае, если
+fts_read ();<br>
+
+еще не вызывалась для иерархии, то
+fts_children ();<br>
+
+возвратит указатель на файлы в
+логическом каталоге, что соответствует 
+fts_open (,);<br>
+
+т.е. параметры, переданные функции
+fts_open (.);<br>
+
+Иначе, если структура
+Fa FTSENT , 
+
+слишком часто возвращаемая функцией
+fts_read ();<br>
+
+не каталог, посещаемый в прямом порядке, и не пустой каталог (не
+содержащий файлов), то
+fts_children ();<br>
+
+возвратит
+<b>NULL</b>
+
+и установит
+<i>errno</i>
+
+в ноль.
+Если произойдет сбой, то
+fts_children ();<br>
+
+возвратит
+<b>NULL</b>
+
+и соответственно установит
+<i>errno</i>
+
+в нужное значение.
+</p><p>
+
+Структура
+Fa FTSENT , 
+
+возвращаемая
+fts_children (, );<br>
+
+может быть переписана после вызова
+fts_children (,);<br>
+
+fts_close ();<br>
+
+или
+fts_read ();<br>
+
+в том же файловом потоке иерархии.
+</p><p>
+
+<i>Параметр</i>
+
+должен быть установлен в следующих значений:
+</p><dl compact="">
+<p>
+
+</p><dt><b>FTS_NAMEONLY</b>
+
+
+</dt><dd>
+Тут необходимы только имена файлов.
+Содержимое всех полей в возвращаемом связанном
+списке структур неопределено, за исключением полей
+Fa fts_name
+
+и
+Fa fts_namelen .
+
+</dd></dl>
+<p>
+
+<a name="lbAH">&nbsp;</a>
+</p><h2>FTS_SET</h2>
+
+Функция
+fts_set ();<br>
+
+позволяет приложениям пользователя определять, обрабатывать или нет дальше файл
+Fa f
+
+в потоке
+Fa ftsp .
+
+Функция
+fts_set ();<br>
+
+возвращает 0 в случае успеха, и -1 в случае, если произошла ошибка.
+<i>Параметр</i>
+
+должен быть установлен в одно из следующих значений:
+<dl compact="">
+<p>
+
+</p><dt><b>FTS_AGAIN</b>
+
+
+</dt><dd>
+Повторно посетить файл; файл любого типа может быть повторно посещен.
+Последующий вызов
+fts_read ();<br>
+
+возвратит файл, к которому идет обращение. Поля
+Fa fts_stat
+
+и
+Fa fts_info
+
+структуры будут переинициализированы в этот момент, но никакие поля
+больше не должны будут меняться. Эта опция значима только для наиболее
+часто возвращаемых файлов от 
+fts_read (.);<br>
+
+Обычно используют ее для посещения каталогов в обратном порядке, тогда
+она принуждает повторно посетить каталог (в прямом и обратном порядке),
+а также все его потомки.
+</dd><dt><b>FTS_FOLLOW</b>
+
+
+</dt><dd>
+Ссылочный файл должен быть символьной ссылкой. Если ссылочный файл - один
+из наиболее часто возвращаемых
+fts_read (,);<br>
+
+то следующий вызов
+fts_read ();<br>
+
+возвратит файл с полями
+Fa fts_info
+
+и
+Fa fts_statp ,
+
+повторно инициализированными, для показа цели символьной ссылки вместо
+самой символьной ссылки. Если ссылочный файл - один из наиболее часто
+возвращаемых
+fts_children (,);<br>
+
+то поля
+Fa fts_info
+
+и
+Fa fts_statp
+
+структуры, при возврате от
+fts_read (,);<br>
+
+будут показывать цель символьной ссылки вместо самой символьной ссылки.
+В любом случае, если цель символьной ссылки не существует, то поля
+возвращаемой структуры не будут меняться, а поле
+Fa fts_info
+
+будет установлено в 
+<b>FTS_SLNONE</b>
+
+ 
+<p>
+
+Если цель ссылки - каталог, то возврат прямого прохождения,
+сопровождаемый возвратом всех его потомков, сопровождаемый возвратом в
+обратном порядке, закончен.
+</p></dd><dt><b>FTS_SKIP</b>
+
+
+</dt><dd>
+Никакие потомки данного файла не посещены.
+Файл может быть одним из наиболее часто возвращаемых либо структурой
+fts_children ();<br>
+
+либо
+fts_read (.);<br>
+
+</dd></dl>
+<p>
+
+<a name="lbAI">&nbsp;</a>
+</p><h2>FTS_CLOSE</h2>
+
+Функция
+fts_close ();<br>
+
+закрывает поток файловой иерархии
+Fa ftsp
+
+и восстанавливает текущий каталог в каталог, откуда был вызван
+fts_open ();<br>
+
+для октрытия
+Fa ftsp .
+
+Функция
+fts_close ();<br>
+
+возвращает 0 в случае успеха, и -1 в случае ошибки.
+<a name="lbAJ">&nbsp;</a>
+<h2>СООБЩЕНИЕ ОБ ОШИБКАХ</h2>
+
+В случае неудачного завершения функции
+fts_open ();<br>
+
+переменная
+<i>errno</i>
+
+будет приравнена к одному коду ошибки из библиотеке функций
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a>(2)
+
+
+и
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=malloc&amp;category=3">malloc</a>(3).
+
+
+<p>
+
+В случае неудачного завершения функции
+fts_close ();<br>
+
+переменная
+<i>errno</i>
+
+будет установлена в одно из обозначений ошибок из библиотеке функций
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chdir&amp;category=2">chdir</a>(2)
+
+
+и
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=close&amp;category=2">close</a>(2).
+
+
+</p><p>
+
+В случае неудачного завершения функций
+fts_read ();<br>
+
+и
+fts_children ();<br>
+
+переменная
+<i>errno</i>
+
+будет установлена в одно из обозначений ошибок из библиотеки функций
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chdir&amp;category=2">chdir</a>(2),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=malloc&amp;category=3">malloc</a>(3),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=opendir&amp;category=3">opendir</a>(3),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=readdir&amp;category=3">readdir</a>(3)
+
+
+и
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stat&amp;category=2">stat</a>(2).
+
+
+</p><p>
+
+Кроме того, в случае неудачного завершения функций
+fts_children (,);<br>
+
+fts_open ();<br>
+
+и
+fts_set ();<br>
+
+переменная
+<i>errno</i>
+
+будет установлена в одно из следующих значений:
+</p><dl compact="">
+<p>
+
+</p><dt><b>Bq </b>Er EINVAL
+
+
+
+</dt><dd>
+Параметры были неправильными.
+</dd></dl>
+<p>
+
+<a name="lbAK">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=find&amp;category=1">find</a>(1),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chdir&amp;category=2">chdir</a>(2),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stat&amp;category=2">stat</a>(2),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=qsort&amp;category=3">qsort</a>(3)
+
+
+<a name="lbAL">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+BSD 4.4. Ожидается, что утилита
+<b>fts</b>
+
+будет включена в дальнейшей версии
+St -p1003.1-88 .
+
+<a name="lbAM">&nbsp;</a>
+<h2>ДОСТУПНОСТЬ</h2>
+
+Эти функции доступны в версиях Linux от glibc2.
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">FTS_OPEN</a></dt><dd>
+</dd><dt><a href="#lbAF">FTS_READ</a></dt><dd>
+</dd><dt><a href="#lbAG">FTS_CHILDREN</a></dt><dd>
+</dd><dt><a href="#lbAH">FTS_SET</a></dt><dd>
+</dd><dt><a href="#lbAI">FTS_CLOSE</a></dt><dd>
+</dd><dt><a href="#lbAJ">СООБЩЕНИЕ ОБ ОШИБКАХ</a></dt><dd>
+</dd><dt><a href="#lbAK">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAL">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAM">ДОСТУПНОСТЬ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="fts_children" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

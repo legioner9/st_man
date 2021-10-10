@@ -1,0 +1,731 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN packet (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, packet"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="packet" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">packet (7)</font><hr><li> <a href="/man.shtml?topic=packet&amp;category=4&amp;russian=2"><u>packet</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=packet&amp;category=7&amp;russian=0"><u>packet</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=packet&amp;category=7&amp;russian=2"><u>packet</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li><font color="#555555">Ключ <a href="/keywords/packet.html"><u>packet</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+packet, PF_PACKET - пакетный интерфейс уровня устройств.
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<pre><b>#include &lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;</b>
+<br>
+<b>#include &lt;<a href="file:/usr/include/features.h">features.h</a>&gt;   /* for the glibc version number */</b>
+<br>
+<b>#if __GLIBC__ &gt;= 2 &amp;&amp; __GLIBC_MINOR &gt;= 1 </b>
+<br>
+<b>#include &lt;<a href="file:/usr/include/netpacket/packet.h">netpacket/packet.h</a>&gt;</b>
+<br>
+<b>#include &lt;<a href="file:/usr/include/net/ethernet.h">net/ethernet.h</a>&gt;       /* the L2 protocols */</b>
+<br>
+<b>#else</b>
+<br>
+<b>#include &lt;<a href="file:/usr/include/asm/types.h">asm/types.h</a>&gt;</b>
+<br>
+<b>#include &lt;<a href="file:/usr/include/linux/if_packet.h">linux/if_packet.h</a>&gt;</b>
+<br>
+<b>#include &lt;<a href="file:/usr/include/linux/if_ether.h">linux/if_ether.h</a>&gt;     /* The L2 protocols */ </b>
+<br>
+<b>#endif</b>
+
+
+<b>packet_socket = socket(PF_PACKET, int </b><i>socket_type</i><b>, int protocol</b><i>);</i>
+</pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Пакетные сокеты используются для отправления или приема пакетов на уровне<br>
+драйвера устройства (Уровень 2 OSI). Это позволяет пользователю реализовывать в
+пространстве пользователя протокольные модули над физическим уровнем.
+<p>
+
+<i>socket_type</i>
+
+равен либо
+<b>SOCK_RAW </b>
+
+для raw-пакетов (включая заголовок установки соединения), либо
+<b>SOCK_DGRAM</b>
+
+для подготовленных пакетов без заголовка уровня соединения. Информация
+заголовка уровня соединения в общем формате предоставлена в
+<b>sockaddr_ll</b>.
+
+<i>protocol </i>
+
+- номер протокола в соответствии с IEEE 802.3 в сетевом порядке байтов. Список
+возможных протоколов приведен в файле
+<b>&lt;<a href="file:/usr/include/linux/if_ether.h">linux/if_ether.h</a>&gt; </b>
+
+Если protocol содержит значение
+<b>htons(ETH_P_ALL)</b>,
+
+то программой будут приниматься все протоколы.
+Все входящие пакеты этого типа протокола будут передаваться пакетному сокету до
+того, как они будут переданы протоколам, реализованным в ядре.
+</p><p>
+
+Открывать пакетные сокеты могут лишь процессы с идентификатором эффективного
+пользователя, равным нулю, или имеющие возможность
+<b>CAP_NET_RAW</b>.
+
+</p><p>
+
+Пакеты
+<b>SOCK_RAW</b>
+
+передаются драйверу устройства и принимаются от него без всяких изменений
+данных пакета. При получении пакета адрес обрабатывается и передается в
+стандартной структуре адреса
+<b>sockaddr_ll</b>.
+
+При передаче пакета буфер пользователя должен содержать заголовок физического
+уровня. Пакет передается без изменений драйверу сетевого интерфейса, указанному
+в адресе назначения. Hекоторые драйверы устройств всегда добавляют к заголовку
+и другие заголовки.
+<b>SOCK_RAW</b>
+
+похож, но не совместим с устаревшим
+<b>SOCK_PACKET</b>
+
+для Linux 2.0.
+</p><p>
+
+<b>SOCK_DGRAM </b>
+
+работает на несколько более высоком уровне. Физический заголовок удаляется
+перед тем, как пакет отправляется пользователю. Пакеты, посылаемые через пакетный сокет
+<b>SOCK_DGRAM</b>,
+
+получают перед постановкой в очередь подходящий заголовок физического уровня в
+соответствии с информацией об адресе назначения из
+<b>sockaddr_ll</b>.
+
+</p><p>
+
+По умолчанию, все пакеты указанного типа протокола передаются пакетному сокету.
+Для получения пакетов только определенного интерфейса используйте
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bind&amp;category=2">bind</a></b>(2)<b>:</b>
+
+это соединит пакетный сокет с интерфейсом, адрес которого указывается в
+структуре
+<b>struct sockaddr_ll</b>.
+
+Для соединения используются только поля адреса
+<b>sll_protocol </b>
+
+и
+<b>sll_ifindex</b>.
+
+</p><p>
+
+Операция 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2)
+
+с пакетными сокетами не поддерживается.
+</p><p>
+
+Когда флаг
+<b>MSG_TRUNC</b>
+
+передается
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvmsg&amp;category=2">recvmsg</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recv&amp;category=2">recv</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvfrom&amp;category=2">recvfrom</a></b>(2),
+
+то всегда возвращается действительная текущая длина пакета, даже
+если она больше, чем буфер.
+</p><p>
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>ТИПЫ АДРЕСОВ</h2>
+
+sockaddr_ll является не зависимым от устройства адресом физического уровня.
+<dl compact=""><dt></dt><dd>
+<pre>
+struct sockaddr_ll {
+    unsigned short  sll_family;    /* Всегда AF_PACKET */
+    unsigned short  sll_protocol;  /* Протокол физического уровня */
+    int             sll_ifindex;   /* Hомер интерфейса */
+    unsigned short  sll_hatype;    /* Тип заголовка */
+    unsigned char   sll_pkttype;   /* Тип пакета */
+    unsigned char   sll_halen;     /* Длина адреса */ 
+    unsigned char   sll_addr[8];   /* Адрес физического уровня */
+};
+
+</pre>
+
+</dd></dl>
+
+<b>sll_protocol </b>
+
+- тип стандартного протокола ethernet в сетевом порядке байтов,
+определенный в файле
+<b>linux/if_ether.h</b>.
+
+Он определяет протокол сокета по умолчанию.
+<b>sll_ifindex</b>
+
+- индекс интерфейса (см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netdevice&amp;category=7">netdevice</a></b>(7));
+
+0 соответствует любому интерфейсу (возможно только для bind).
+<b>sll_hatype </b>
+
+- тип ARP, определенный в файле 
+<b>linux/if_arp.h</b>.
+
+<b>sll_pkttype </b>
+
+содержит тип пакета. Возможные типы:
+<b>PACKET_HOST</b>
+
+для пакетов, направляемых в локальную машину;
+<b>PACKET_BROADCAST</b>
+
+для широковещательной передачи пакета физического уровня;
+<b>PACKET_MULTICAST</b>
+
+для пакета, передаваемого по много адрес физического уровня;
+<b>PACKET_OTHERHOST</b>
+
+для пакета на другую машину, перехваченного драйвером устройства в
+режиме прослушивания (promiscuous);
+<b>PACKET_OUTGOING</b>
+
+для пакетов, исходящих с локальной машины, запетленной на пакетный сокет. Эти
+типы имеют значение только для приема.
+<b>sll_addr</b>
+
+и
+<b>sll_halen</b>
+
+содержат адрес физического уровня (например IEEE 802.3) и его длину. Точная
+интерпретация зависит от устройства.
+Когда вы посылаете покеты, то достаточно определить только
+<b>sll_family</b>,
+
+<b>sll_addr</b>,
+
+<b>sll_halen</b>,
+
+<b>sll_ifindex</b>.
+
+Остальные поля должны быть равны 0.
+<b>sll_hatype</b>
+
+и
+<b>sll_pkttype</b>
+
+определяются для вас по принимаемым пакетам.
+Для привязки используются только
+<b>sll_protocol</b>
+
+и
+<b>sll_ifindex.</b>
+
+<p>
+
+<a name="lbAF">&nbsp;</a>
+</p><h2>ОПЦИИ СОКЕТОВ</h2>
+
+Пакетные сокеты могут быть использованы для настройки многоадресного вещания
+физического уровня и режима прослушивания. Это делается с помощью вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setsockopt&amp;category=2">setsockopt</a></b>(2)
+
+на пакетный сокет с SOL_PACKET и одной из опций: 
+<b>PACKET_ADD_MEMBERSHIP </b>
+
+для добавления соединения (binding), или
+<b>PACKET_DROP_MEMBERSHIP</b>
+
+для отмены.
+Оба требуют в качестве аргумента структуру
+<b>packet_mreq</b>:
+
+<dl compact=""><dt></dt><dd>
+<pre>
+struct packet_mreq
+{
+    int             mr_ifindex;    /* индекс интерфейса */
+    unsigned short  mr_type;       /* действие */
+    unsigned short  mr_alen;       /* длина адреса */
+    unsigned char   mr_address[8]; /* адрес физического уровня */ 
+};
+
+</pre>
+
+</dd></dl>
+
+<b>mr_ifindex</b>
+
+содержит индекс интерфейса, состояние которого необходимо изменить.
+Параметр
+<b>mr_type</b>
+
+указывает тип выполняемого действия.
+<b>PACKET_MR_PROMISC</b>
+
+разрешает прием всех пакетов с общего носителя - этот режим часто называют
+"режимом прослушивания" (``promiscuous mod''),
+<b>PACKET_MR_MULTICAST </b>
+
+соединяет (bind) сокет с многоадресной группой физического уровня, указанной в
+<b>mr_address</b>
+
+и
+<b>mr_alen</b>,
+
+а
+<b>PACKET_MR_ALLMULTI</b>
+
+указывает сокету принимать все многоадресные пакеты, приходящие на интерфейс.
+<p>
+
+В дополнение ко всему, для этих целей могут быть использованы традиционные
+ioctl-вызовы:
+<b>SIOCSIFFLAGS</b>,
+
+<b>SIOCADDMULTI</b>,
+
+<b>SIOCDELMULTI</b>.
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>СИСТЕМНЫЕ ВЫЗОВЫ</h2>
+
+<b>SIOCGSTAMP</b>
+
+может быть использован для получения временных меток последнего принятого
+пакета. Аргументом является структура
+<b>struct timeval</b>.
+
+<p>
+
+Кроме того, возможно использование всех стандартынх вызовов ioctl, определенных в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netdevice&amp;category=7">netdevice</a></b>(7)
+
+и 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7).
+
+<a name="lbAH">&nbsp;</a>
+</p><h2>ОБРАБОТКА ОШИБОК</h2>
+
+Пакетные сокеты не обрабатывают ошибки за исключением тех, которые возникают при
+передаче пакета драйверу устройства. Они не имеют понятия об отложенной обработке ошибок.
+<a name="lbAI">&nbsp;</a>
+<h2>СОВМЕСТИМОСТЬ</h2>
+
+В Linux 2.0 единственным способом получить пакетный сокет был вызов
+<b>socket(PF_INET, SOCK_PACKET, </b><i>protocol</i><b>)</b>.
+
+Этот способ все еще поддерживается, но использовать его настоятельно не рекомендуется. 
+Основное отличие между этими двумя способами состоит в том, что
+<b>SOCK_PACKET</b>
+
+использует старую структуру
+<b>struct sockaddr_pkt</b>
+
+для указания интерфейса, а она не обеспечивает физический уровень независимостью.
+<dl compact=""><dt></dt><dd>
+<pre>
+struct sockaddr_pkt
+{
+    unsigned short  spkt_family;
+    unsigned char   spkt_device[14];
+    unsigned short  spkt_protocol;
+};
+
+</pre>
+
+</dd></dl>
+
+<b>spkt_family </b>
+
+содержит тип устройства, 
+<b>spkt_protocol </b>
+
+является типом протокола IEEE 802.3 в соответствии с
+<b>&lt;<a href="file:/usr/include/sys/if_ether.h">sys/if_ether.h</a>&gt;</b>,
+
+а
+<b>spkt_device </b>
+
+- это имя устройства в виде строки, оканчивающейся нулем, например, eth0.
+<p>
+
+Эта структура устарела и не должна быть указана в новом коде.
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ЗАМЕЧАНИЯ</h2>
+
+В переносимых программах рекомендуется использовать
+<b>PF_PACKET</b>
+
+с помощью 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pcap&amp;category=3">pcap</a></b>(3);
+
+хотя это относится только к вспомогательному набору возможностей
+<b>PF_PACKET</b>.
+
+<p>
+
+Пакетные сокеты
+<b>SOCK_DGRAM</b>
+
+не пытаются создать или обработать заголовок IEEE 802.2 LLC для кадров IEEE 802.3.
+Если в качестве протокола для отправки указан
+<b>ETH_P_802_3</b>,
+
+ядро создает кадр 802.3 и заполняет поле длины; пользователь должен
+указать заголовок LLC для того, чтобы получить полностью соответствующий стандарту
+пакет. Входящие пакеты 802.3 не мультиплексируются по полям DSAP/SSAP; вместо
+этого они предоставляются пользователю как протокол
+<b>ETH_P_802_2</b>
+
+с заголовком LLC. Поэтому подключиться (to bind) к
+<b>ETH_P_802_3</b>
+
+невозможно; вместо этого подключайтесь к 
+<b>ETH_P_802_2 </b>
+
+и выполняйте мультиплексирование протокола сами. По умолчанию для отправки
+используется стандартная инкапсуляция Ethernet DIX со вставленным протоколом.
+</p><p>
+
+Пакетные сокеты не обрабатываются входящими и исходящими правилами сетевого
+экрана.
+<a name="lbAK">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>ENETDOWN</b>
+
+</dt><dd>
+Интерфейс неактивен. 
+</dd><dt><b>ENOTCONN</b>
+
+</dt><dd>
+Hе передан адрес интерфейса.
+</dd><dt><b>ENODEV</b>
+
+</dt><dd>
+Hеизвестное имя устройства или индекс интерфейса,
+указанные в адресе интерфейса.
+</dd><dt><b>EMSGSIZE</b>
+
+</dt><dd>
+Размер пакета больше, чем размер интерфейса MTU.
+</dd><dt><b>ENOBUFS</b>
+
+</dt><dd>
+Hедостаточно памяти для размещения в ней пакета.
+</dd><dt><b>EFAULT</b>
+
+</dt><dd>
+Пользователь передал неправильный адрес памяти.
+</dd><dt><b>EINVAL</b>
+
+</dt><dd>
+Hеверный аргумент.
+</dd><dt><b>ENXIO</b>
+
+</dt><dd>
+Адрес интерфейса содержит неправильный индекс интерфейса.
+</dd><dt><b>EPERM</b>
+
+</dt><dd>
+Пользователь не имеет прав на выполнение этой операции.
+</dd><dt><b>EADDRNOTAVAIL</b>
+
+</dt><dd>
+Передан неизвестный адрес многоадресной группы.
+</dd><dt><b>ENOENT</b>
+
+</dt><dd>
+Пакет не получен.
+</dd></dl>
+<p>
+
+Дополнительные ошибки могут генерироваться низкоуровенвым драйвером.
+<a name="lbAL">&nbsp;</a>
+</p><h2>ВЕРСИИ</h2>
+
+<b>PF_PACKET </b>
+
+появился в Linux 2.2. Ранние версии Linux поддерживали только
+<b>SOCK_PACKET.</b>
+
+<a name="lbAM">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+glibc 2.1 не имеет определения 
+<b>SOL_PACKET.</b>
+
+Рекомендуемое решение:
+<dl compact=""><dt></dt><dd>
+<pre>#ifndef SOL_PACKET
+#define SOL_PACKET 263
+#endif
+</pre>
+
+</dd></dl>
+
+Это поправка внесена в более поздние версии и не встречается в системах lic5.
+<p>
+
+Обработка IEEE 802.2/803.3 LLC должна считаться ошибкой.
+</p><p>
+
+Фильтры сокетов не описаны.
+Расширение
+<i>MSG_TRUNC</i>
+
+для recvmsg является очень плохо сделанной правкой и должна быть заменена
+на управляющее сообщение. На данный момент нет иного выхода,
+кроме как определение настоящего адреса назначения пакета по SOCK_DGRAM.
+</p><p>
+
+<a name="lbAN">&nbsp;</a>
+</p><h2>БЛАГОДАРНОСТИ</h2>
+
+Эта страница руководства была написана Энди Клином (Andi Kleen) при участии
+Мэтью Вилкокса (Matthew Wilcox).
+PF_PACKET в Linux 2.2 (на основе кода Алана Кокса (Alan Cox) и др.) 
+был реализован Алексеем Кузнецовым (Alexey Kuznetsov).
+<a name="lbAO">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=2">socket</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=raw&amp;category=7">raw</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pcap&amp;category=3">pcap</a></b>(3)
+
+<p>
+
+RFC 894 создана для стандарта инкапсуляции IP Ethernet.
+</p><p>
+
+RFC 1700 создана для инкапсуляци IEEE 802.3 IP.
+</p><p>
+
+Файл 
+linux/if_ether.h
+создан для протоколов физического уровня.
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ТИПЫ АДРЕСОВ</a></dt><dd>
+</dd><dt><a href="#lbAF">ОПЦИИ СОКЕТОВ</a></dt><dd>
+</dd><dt><a href="#lbAG">СИСТЕМНЫЕ ВЫЗОВЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">ОБРАБОТКА ОШИБОК</a></dt><dd>
+</dd><dt><a href="#lbAI">СОВМЕСТИМОСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAK">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAL">ВЕРСИИ</a></dt><dd>
+</dd><dt><a href="#lbAM">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAN">БЛАГОДАРНОСТИ</a></dt><dd>
+</dd><dt><a href="#lbAO">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="packet" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

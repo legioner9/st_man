@@ -1,0 +1,751 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN creat (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, creat"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="creat" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">creat (2)</font><hr><li> <a href="/man.shtml?topic=creat&amp;category=2&amp;russian=4"><u>creat</u></a> (2) <font color="#555555"> ( Solaris man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=creat&amp;category=2&amp;russian=1"><u>creat</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=creat&amp;category=2&amp;russian=0"><u>creat</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=creat&amp;category=2&amp;russian=2"><u>creat</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=creat&amp;category=3&amp;russian=5"><u>creat</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+open, creat - открывают и, по возможности, создают файл или устройство
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<pre><b>#include &lt;<a href="file:/usr/include/sys/types.h">sys/types.h</a>&gt;</b>
+<b>#include &lt;<a href="file:/usr/include/sys/stat.h">sys/stat.h</a>&gt;</b>
+<b>#include &lt;<a href="file:/usr/include/fcntl.h">fcntl.h</a>&gt;</b>
+
+<b>int open(const char *</b><i>pathname</i><b>, int </b><i>flags</i><b>);</b>
+<b>int open(const char *</b><i>pathname</i><b>, int </b><i>flags</i><b>, mode_t </b><i>mode</i><b>);</b>
+<b>int creat(const char *</b><i>pathname</i><b>, mode_t </b><i>mode</i><b>);</b>
+</pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Вызов
+<b>open()</b>
+
+используется, чтобы преобразовать путь к файлу в описатель файла
+(небольшое неотрицательно целое число, которое используется с вызовами
+<b>read</b>, <b>write</b> и т.п. при последующем вводе-выводе).
+
+Если системный вызов завершается успешно, возвращенный файловый
+описатель является наименьшим описателем, который еще не
+открыт процессом. В результате этого вызова появляется новый открытый
+файл, не разделяемый никакими процессами (разделяемые открытые файлы
+могут возникнуть, когда посылается системный вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fork&amp;category=2">fork</a></b>(2)).
+
+Новый описатель файла будет оставаться открытым при выполнении функции
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=exec&amp;category=2">exec</a></b>(2)
+
+(смотри описание
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2)).
+
+Указатель устанавливается в начале файла.
+Параметр
+<i>flags</i>
+
+- это флаги
+<b>O_RDONLY</b>, <b>O_WRONLY</b> или <b>O_RDWR</b>,
+
+открывающие файлы "только для чтения", "только для записи" и для чтения
+и записи соответственно, которые собрираются с помощью побитовой операции
+OR
+
+из таких значений, как:
+<dl compact="">
+<dt><b>O_CREAT</b>
+
+</dt><dd>
+(если файл не существует, то он будет создан.
+Владелец (идентификатор пользователя) файла устанавливается в значение
+эффективного идентификатора пользователя процесса. Группа (идентификатор
+группы) устанавливается либо в значение эффективного идентификатора группы
+процесса, либо в значение идентификатора группы родительского каталога
+(зависит от типа файловой системы, параметров подсоединения (mount) и
+режима родительского каталога, см. например, параметры подсоединения
+<i>bsdgroups</i>
+
+и
+<i>sysvgroups</i>
+
+файловой системы ext2, как описано в руководстве
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=8">mount</a></b>(8)).);
+
+</dd><dt><b>O_EXCL</b>
+
+</dt><dd>
+(Если он используется совместно с
+<b>O_CREAT</b>,
+
+то при наличии уже созданного файла вызов
+<b>open</b>
+
+завершится с ошибкой. В этом состоянии, при существующей символьной ссылке
+не обращается внимание, на что она указывает.);
+</dd><dt><b>O_EXCL</b>
+
+</dt><dd>
+(Оно не работает в файловых системах NFS, а в программах, использующих 
+этот флаг для блокировки, возникнет "race condition".
+Решение для атомарной блокировки файла: создать файл с
+уникальным именем в той же самой файловой системе (это имя может
+содержать, например, имя машины и идентификатор процесса),
+используя
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=link&amp;category=2">link</a></b>(2),
+
+чтобы создать ссылку на файл блокировки.  Если <b>link()</b> возвращает
+значение 0, значит, блокировка была успешной. В противном случае используйте
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stat&amp;category=2">stat</a></b>(2),
+
+чтобы убедиться, что количество ссылок на уникальный файл возросло до
+двух. Это также означает, что блокировка была успешной);
+</dd><dt><b>O_NOCTTY</b>
+
+</dt><dd>
+(если
+<i>pathname</i>
+
+указывает на терминальное устройство --- см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tty&amp;category=4">tty</a></b>(4)
+
+---, то оно не станет терминалом управления процесса, даже если
+процесс такового не имеет);
+</dd><dt><b>O_TRUNC</b>
+
+</dt><dd>
+(если файл уже существует, он является обычным файлом и
+режим позволяет записывать в этот файл (т.е. установлено O_RDWR или O_WRONLY),
+то его длина будет урезана до нуля. Если файл является каналом FIFO или 
+терминальным устройством, то этот флаг игнорируется. Иначе действие флага
+O_TRUNC не определено.
+</dd><dt><b>O_APPEND</b>
+
+</dt><dd>
+(Файл открывается в режиме добавления. Перед каждой операцией
+<b>write</b>
+
+файловый указатель будет устанавливаться в конце файла, как если бы
+использовался
+<b>lseek</b>);
+
+<b>O_APPEND</b>
+
+(может привести к повреждению файлов в системе NFS, если
+несколько процессов одновременно добавляют данные в один файл.  Это
+происходит из-за того, что NFS не поддерживает добавление в файл данных,
+поэтому ядро на машине-клиенте должно эмулировать эту поддержку);
+</dd><dt><b>O_NONBLOCK</b> или <b>O_NDELAY</b>
+
+</dt><dd>
+(если возможно, то файл открывается в режиме non-blocking. Ни
+<b>open</b>,
+
+ни другие последующие операции над возвращаемым описателем файла не
+заставляют вызывающий процесс ждать. Для работы с каналами FIFO см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fifo&amp;category=4">fifo</a></b>(4).
+
+Этот режим не оказывает никакого действия на не-FIFO файлы.);
+</dd><dt><b>O_SYNC</b>
+
+</dt><dd>
+(Файл открывается в режиме синхронного ввода-вывода. Все вызовы
+<b>write</b>
+
+для соответствующего описателя файла блокируют вызывающий процесс до
+тех пор, пока данные не будут физически записаны.
+<i>Однако, Вам необходимо прочитать раздел ОГРАНИЧЕНИЯ);</i>
+
+</dd><dt><b>O_NOFOLLOW</b>
+
+</dt><dd>
+(если <i>pathname</i> - это символьная ссылка, то
+<b>open</b>
+
+содержит код ошибки. Это расширение FreeBSD, которое было
+добавлено в Linux версии 2.1.126.  Все прочие символьные ссылки
+в имени будут обработаны как обычно. Заголовочные файлы из glibc
+версии 2.0.100 (и более поздних) содержат определение этого флага;
+<i>ядра версий, более ранних, чем 2.1.126, игнорируют этот флаг</i>);
+</dd><dt><b>O_DIRECTORY</b>
+
+</dt><dd>
+(Если <i>pathname</i> не является каталогом, то
+<b>open</b>
+
+укажет на ошибку. Этот флаг используется только в Linux и
+был добавлен к ядру 2.1.126, чтобы избежать проблем с
+"отказом от обслуживания", если
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=opendir&amp;category=2">opendir</a></b>(2)
+
+был вызван для канала FIFO или ленточного устройства. Этот флаг не
+следует использовать вне реализации
+<b>opendir</b>
+
+);
+</dd><dt><b>O_LARGEFILE</b>
+
+</dt><dd>
+(На 32-битных системах, поддерживающих файловые системы (Large), этот
+флаг позволяет открывать файлы, длина которых больше 31-ого бита.
+</dd></dl>
+<p>
+
+Некоторые из вышеописанных флагов могут быть изменены с помощью
+<b>fctnl</b>
+
+после открытия файла.
+Аргумент
+<i>mode</i>
+
+задает права доступа, которые используются в случае создания нового файла.
+Они модифицируются обычным способом, с помощью
+<b>umask</b>
+
+процесса; права доступа созданного файла равны
+<b>(mode &amp; ~umask)</b>.
+
+Обратите внимание, что этот режим применяется только к правам создаваемого файла;
+<b>open</b>
+
+создает файл только для чтения, но может вернуть дескриптор с установленными флагами
+для чтения и записи.
+</p><p>
+
+Следующие символьные константы можно использовать в
+<i>mode</i>:
+
+</p><dl compact="">
+<dt><b>S_IRWXU</b>
+
+</dt><dd>
+(00700 пользователь (владелец файла) имеет права на чтение, запись и
+выполнение
+<br>&nbsp;файла);
+</dd><dt><b>S_IRUSR (S_IREAD)</b>
+
+</dt><dd>
+(00400 пользователь имеет права на чтение файла);
+</dd><dt><b>S_IWUSR (S_IWRITE)</b>
+
+</dt><dd>
+(00200 пользователь имеет права на запись информации в файл);
+</dd><dt><b>S_IXUSR (S_IEXEC)</b>
+
+</dt><dd>
+(00100 пользователь имеет права на выполнение файла);
+</dd><dt><b>S_IRWXG</b>
+
+</dt><dd>
+(00070 группа имеет права на чтение, выполнение файла и запись в него информации);
+</dd><dt><b>S_IRGRP</b>
+
+</dt><dd>
+(00040 группа имеет права на чтение файла);
+</dd><dt><b>S_IWGRP</b>
+
+</dt><dd>
+(00020 группа имеет права на запись информации в файл);
+</dd><dt><b>S_IXGRP</b>
+
+</dt><dd>
+(00010 группа имеет права на выполнение
+<br>&nbsp;файла);
+</dd><dt><b>S_IRWXO</b>
+
+</dt><dd>
+(00007 все остальные имеют права на чтение, выполнение файла и запись в него информации);
+</dd><dt><b>S_IROTH</b>
+
+</dt><dd>
+(00004 все остальные имеют права на чтение файла);
+</dd><dt><b>S_IWOTH</b>
+
+</dt><dd>
+(00002 все остальные имеют права на запись информации в файл);
+</dd><dt><b>S_IXOTH</b>
+
+</dt><dd>
+(00001 все остальные имеют права на выполнение
+<br>&nbsp;файла).
+</dd></dl>
+<p>
+
+<i>mode</i>
+
+всегда должен быть указан при использовании
+<b>O_CREAT</b>;
+
+во всех остальных случаях этот параметр игнорируется.
+<b>creat</b>
+
+эквивалентен
+<b>open</b>
+
+с
+<i>flags</i>,
+
+которые равны
+<b>O_CREAT</b> | <b>O_WRONLY</b> | <b>O_TRUNC</b>.
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+<b>open</b> и <b>creat</b>
+
+возвращают новый описатель файла или -1 в случае ошибки (в
+этом случае
+<br>&nbsp;значение&nbsp;переменной
+<i>errno</i>
+
+устанавливается должным образом). Заметьте, что
+<b>open</b>
+
+может открывать файлы устройств, но
+<b>creat</b>
+
+не может создавать их, поэтому используйте для создания функцию
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mknod&amp;category=2">mknod</a></b>(2).
+
+<p>
+
+В файловых системах NFS, в которых идентификаторы
+пользователей могут быть преобразованы,
+<b>open</b>
+
+может вернуть файловый описатель, но, например,
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+вернет ошибку
+<b>EACCES</b>
+
+из-за того, что клиент выполняет команду
+<b>open</b>,
+
+проверяя права доступа (а преобразование идентификаторов производится
+сервером при запросах на чтение и запись).
+</p><p>
+Если создается файл, то его время последнего доступа, создания и модификации
+устанавливаются в значение текущего времени, а также устанавливаются поля времени
+модификации и создания родительского каталога.
+Иначе, если файл изменяется с флагом O_TRUNC, то его время создания
+и время изменения устанавливаются в значение текущего времени.
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>EEXIST</b>
+
+</dt><dd>
+<i>pathname</i>
+
+уже существует, но были использованы
+<b>O_CREAT</b> и <b>O_EXCL</b>.
+
+</dd><dt><b>EISDIR</b>
+
+</dt><dd>
+Тип доступа подразумевает запись, а
+<i>pathname</i>
+
+указывает на каталог,
+(то есть установлены
+<b>O_WRONLY</b>
+
+или
+<b>O_RDWR</b>).
+
+</dd><dt><b>EACCES</b>
+
+</dt><dd>
+Запрошенный доступ к файлу не разрешен, или один из каталогов в
+<i>pathname</i>
+
+не позволяет поиск (выполнение) файла, файл еще не существует, или
+доступ для записи в родительский каталог не разрешен.
+</dd><dt><b>ENAMETOOLONG</b>
+
+</dt><dd>
+<i>pathname</i>
+
+является слишком длинным.
+</dd><dt><b>ENOENT</b>
+
+</dt><dd>
+O_CREAT не установлен, а указанный файл не существует.
+Или не существует каталог в пути
+<i>pathname</i>,
+
+или он является неверной символьной ссылкой.
+</dd><dt><b>ENOTDIR</b>
+
+</dt><dd>
+Компонент, который обозначен как каталог в
+<i>pathname</i>,
+
+таковым не является, или был указан флаг
+<b>O_DIRECTORY</b>,
+
+а
+<i>pathname</i>
+
+не является каталогом.
+</dd><dt><b>ENXIO</b>
+
+</dt><dd>
+Установлены O_NONBLOCK | O_WRONLY,
+файл является каналом FIFO, но нет процессов, которые открыли этот
+канал для чтения. Возможно также, что файл является файлом
+устройства, но соответствующее устройство не установлено.
+</dd><dt><b>ENODEV</b>
+
+</dt><dd>
+<i>pathname</i>
+
+ссылается на файл устройства, но соответствующего устройства не
+существует.
+(Это ошибка в ядре Linux: должен возвращаться параметр ENXIO).
+</dd><dt><b>EROFS</b>
+
+</dt><dd>
+Был запрошен доступ к записи, а
+<i>pathname</i>
+
+ссылается на файл, находящийся в системе, предназначенной
+только для чтения.
+</dd><dt><b>ETXTBSY</b>
+
+</dt><dd>
+<i>pathname</i>
+
+ссылается на файл, который в настоящее время исполняется,
+и был запрошен доступ к записи.
+</dd><dt><b>EFAULT</b>
+
+</dt><dd>
+<i>pathname</i>
+
+указывает на каталог за пределами доступного адресного пространства.
+</dd><dt><b>ELOOP</b>
+
+</dt><dd>
+Слишком много символьных ссылок 
+составляют
+<i>pathname</i>,
+
+или был указан флаг
+<b>O_NOFOLLOW</b>,
+
+а
+<i>pathname</i>
+
+является символьной ссылкой.
+</dd><dt><b>ENOSPC</b>
+
+</dt><dd>
+<i>pathname</i>
+
+должен был указать на устройство, в котором отсутствует место для нового файла.
+</dd><dt><b>ENOMEM</b>
+
+</dt><dd>
+Недостаточно памяти в системе.
+</dd><dt><b>EMFILE</b>
+
+</dt><dd>
+Процесс уже открыл максимально допустимое количество файлов.
+</dd><dt><b>ENFILE</b>
+
+</dt><dd>
+Достигнут предел общего количества файлов, открытых в
+системе.
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+SVr4, SVID, POSIX, X/OPEN, BSD 4.3.
+Флаги
+<b>O_NOFOLLOW</b>
+
+и
+<b>O_DIRECTORY</b>
+
+являются специфичными для системы Linux.
+Они могут опреляться макросом
+<b>_GNU_SOURCE</b>.
+
+<p>
+Эффект (неопределенный изначально) от
+<b>O_RDONLY | O_TRUNC</b>
+
+отличается в разных реализациях. Во многих системах файл
+в действительности обрезается.
+
+
+
+</p><p>
+
+Флаг
+<b>O_DIRECT</b>
+
+был представлен в SGI IRIX, где он имеет похожие ограничения
+по принаджености, как и в Linux. IRIX также имеет вызов <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a>(2)
+для очередей с выравниванием и размерами. FreeBSD 4.x имеет
+флаг с таким же именем, но без ограничений на выравнивание.
+В Linux была добавлена поддержка с ядра версии 2.4.10.
+Старые ядра Linux просто игнорируют этот флаг.
+<a name="lbAH">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+"Меня всего беспокоило кое-что относительно O_DIRECT - то, что
+вообще в целом этот интерфейс просто идиотичен. Создается
+впечатление, что он как-бы был создан сумасшедшей обезьяной для
+работы с высокими материями, управляющими разумом." -- Linus
+<p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ И ОГРАНИЧЕНИЯ</h2>
+
+В протоколе, по которому работает NFS, существует множество
+недоработок, оказывающих влияние на
+<b>O_SYNC</b> и <b>O_NDELAY</b>.
+
+POSIX предоставляет три разных варианта синхронного ввода-вывода,
+соответствующего флагам
+<b>O_SYNC</b>, <b>O_DSYNC</b> и <b>O_RSYNC</b>.
+
+В настоящее время (версия 2.1.130) все флаги являются похожими на флаги Linux.
+<a name="lbAJ">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=close&amp;category=2">close</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=link&amp;category=2">link</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mknod&amp;category=2">mknod</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=2">mount</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stat&amp;category=2">stat</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=umask&amp;category=2">umask</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=unlink&amp;category=2">unlink</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=2">socket</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fopen&amp;category=3">fopen</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fifo&amp;category=4">fifo</a></b>(4)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAG">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAH">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAI">НАЙДЕННЫЕ ОШИБКИ И ОГРАНИЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="creat" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

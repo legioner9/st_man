@@ -1,0 +1,334 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN shutdown (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, shutdown"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="shutdown" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">shutdown (1)</font><hr><li> <a href="/man.shtml?topic=shutdown&amp;category=1&amp;russian=4"><u>shutdown</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=shutdown&amp;category=1&amp;russian=0"><u>shutdown</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=shutdown&amp;category=2&amp;russian=1"><u>shutdown</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=shutdown&amp;category=2&amp;russian=0"><u>shutdown</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=shutdown&amp;category=2&amp;russian=2"><u>shutdown</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=shutdown&amp;category=3&amp;russian=4"><u>shutdown</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=shutdown&amp;category=3&amp;russian=5"><u>shutdown</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=shutdown&amp;category=8&amp;russian=1"><u>shutdown</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=shutdown&amp;category=8&amp;russian=2"><u>shutdown</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>shutdown(1M)</h1></td>
+<td><h1 align="right">shutdown(1M)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>shutdown</b> - остановка системы, изменение состояния системы</p>
+
+<h2>СИНТАКСИС</h2>
+<dl><dt></dt>
+  <dd><tt>
+shutdown [-y] [-g<b>период_ожидания</b> [-i<b>начальное_состояние</b>]
+  </tt></dd>
+</dl>
+
+<h2>ОПИСАНИЕ</h2>
+
+<p>Эта команда выполняется привилегированным пользователем для изменения 
+состояния машины. В большинстве случаев, она используется для перехода из 
+<i>многопользовательского режима</i> (состояние 2) в другое состояние (см. ниже).</p>
+
+<p>По умолчанию, команда переводит систему в состояние 0: состояние, в котором 
+безопасно отключать питание. Это состояние называется <i>состоянием останова</i> 
+(shutdown state).</p>
+
+<p>Команда посылает предупреждающее сообщение и окончательное сообщение 
+перед началом реальных действий по останову. <b>shutdown</b> берет стандартное 
+значение <b>периода_ожидания</b> после каждого из этих сообщений из файла 
+<b>/etc/default/shutdown</b>, если он существует. Значение <b>периода_ожидания</b> 
+зависит от реализации. Если <b>shutdown</b> не может найти файл или не может 
+прочитать значение, она выдает предупреждение и устанавливает период 
+ожидания в 60 секунд. По умолчанию, команда запрашивает подтверждения, 
+прежде чем начинать остановку демонов и прекращение процессов. Опции 
+команды используются следующим образом:</p>
+<dl>
+<dt><a name="y"><b>-y</b></a></dt><dd><a name="y">
+заранее утвердительно отвечать на запросы подтверждения так, что 
+команда может работать без вмешательства пользователя. 
+Устанавливается стандартный <b>период_ожидания</b> между 
+предупреждающим и окончательным сообщениями. Еще один 
+<b>период_ожидания</b> устанавливается между окончательным сообщением и 
+подтверждением.
+<br><br></a></dd><a name="y">
+</a><dt><a name="y"></a><a name="g"><b>-gпериод_ожидания</b></a></dt><dd><a name="g">
+позволяет привилегированному пользователю изменять стандартный 
+<b>период_ожидания</b>.
+<br><br></a></dd><a name="g">
+</a><dt><a name="g"></a><a name="i"><b>-iначальное_состояние</b></a></dt><dd><a name="i">
+задает состояние, в которое будет переведен процесс <b>init</b> после 
+предупреждений, если они выдаются. По умолчанию используется 
+системное состояние 0.
+</a></dd><a name="i">
+</a></dl><a name="i">
+
+<p>Другие состояния системы определяются следующим образом:</p>
+</a><dl><a name="i">
+</a><dt><a name="i"></a><a name="0"><b>Состояние 0:</b></a></dt><dd><a name="0">
+Останавливает машину так, чтобы можно было безопасно отключить 
+питание. Если такая возможность поддерживается, указывает машине 
+самой отключить питание. (Для этого вызывается процедура <b>rc0</b>.)
+<br><br></a></dd><a name="0">
+</a><dt><a name="0"></a><a name="1"><b>Состояние 1:</b></a></dt><dd><a name="1">
+Состояние 1 называется <i>административным</i>. Файловые системы, 
+необходимые для многопользовательской работы, смонтированы, и 
+можно использовать регистрационные имена, требующие доступа к 
+многопользовательским файловым системам. Когда система переходит из 
+режима <i>микропрограммного обеспечения</i> (firmware mode) в состояние 1, 
+активна только консоль; многопользовательские службы (состояние 2) 
+недоступны. Когда система переходит из состояния 2 в состояние 1, 
+некоторые службы останавливаются и некоторые процессы 
+прекращаются; в остальном система продолжает работать как в 
+состоянии 2. (Для этого вызывается процедура <b>rc1</b>.)
+<br><br></a></dd><a name="1">
+</a><dt><a name="1"></a><a name="s"><b>Состояние s, S:</b></a></dt><dd><a name="s">
+Состояние <b>s</b> (или <b>S</b>) называется <i>однопользовательским</i>. При переходе в 
+это состояние все пользовательские процессы останавливаются, а 
+файловые системы, необходимые для многопользовательской работы, 
+демонтируются. После этого доступ к системе возможен только с 
+консоли; регистрационные имена, требующие доступа к 
+пользовательским файловым системам, использовать нельзя. Переводите 
+систему в это состояние для установки или удаления программного 
+обеспечения или для резервного копирования, восстановления или 
+проверки файловой системы. Система переходит в состояние <b>s</b> 
+автоматически, когда файловая система <b>/usr</b> повреждена и не может быть 
+восстановлена. Набор файловых систем, смонтированных при работе 
+системы в состоянии <b>s</b> не всегда один и тот же; то, какие файловые 
+системы смонтированы, зависит от метода перевода системы в состояние 
+<b>s</b> и действующих в организации правил администрирования.
+<br><br></a></dd><a name="s">
+</a><dt><a name="s"></a><a name="5"><b>Состояние 5:</b></a></dt><dd><a name="5">
+Останавливает операционную систему и переходит в режим 
+<i>микропрограммного обеспечения</i> (firmware mode), если процессор 
+(система) его поддерживает. Если режим микропрограммного 
+обеспечения поддерживается: (а) выполняются специальные команды и 
+программы firmware, находящиеся в NVRAM, такие как создание 
+ключевой дискеты, и (б) выполняются программы, находящиеся в 
+файловой системе <b>/stand</b> под управлением NVRAM, например, 
+запускается <b>/stand/unix</b> для перезагрузки системы. Если режим 
+микропрограммного обеспечения не поддерживается, система 
+останавливается, так что можно отключить питание. Если такая 
+возможность поддерживается, машина сама отключает питание. (Для 
+этого вызывается процедура <b>rc0</b>.) См. "</a><a href="#0"><b>Состояние 0</b></a>".
+<br><br></dd>
+<dt><a name="6"><b>Состояние 6:</b></a></dt><dd><a name="6">
+Останавливает и перезагружает операционную систему в состояние, 
+определяемое записью <b>initdefault</b> в файле <b>/etc/inittab</b>. При 
+необходимости, конфигурирует перед перезагрузкой новый загружаемый 
+образ ядра операционной системы. (Поскольку для обеспечения обратной 
+совместимости <b>rc6</b> связана с <b>rc0</b>, для этого вызывается процедура <b>rc0</b>.)
+</a></dd><a name="6">
+</a></dl><a name="6">
+
+<h2>ФАЙЛЫ</h2>
+<dl><dt></dt><dd><b>
+/etc/default/shutdown
+</b></dd></dl>
+
+<h2>ПРИМЕЧАНИЯ</h2>
+
+<p><b>shutdown(1M)</b> ведет себя по-разному в зависимости от количества 
+зарегистрированных пользователей. Если в системе работает несколько 
+пользователей, выдается три сообщения, предупреждающее, окончательное и 
+подтверждение, с <b>периодом_ожидания</b> между выдачей этих сообщений. Если 
+зарегистрирован только пользователь, выполняющий команду <b>shutdown</b>, или 
+если <b>период_ожидания</b> равен 0, никакие сообщения не выдаются.</p>
+
+<h2>ССЫЛКИ</h2>
+</a><dl><a name="6"><dt></dt></a><dd><a name="6">
+	</a><a href="/man.shtml?topic=init&amp;category=1"><b>init(1M)</b></a>,
+	<a href="/man.shtml?topic=inittab&amp;category=4"><b>inittab(4)</b></a>,
+	<a href="/man.shtml?topic=rc&amp;category=1"><b>rc0(1M)</b></a>,
+	<a href="/man.shtml?topic=rc&amp;category=2"><b>rc2(1M)</b></a>
+</dd></dl>
+
+<p align="center"><font size="-2">Copyright 1994 Novell, Inc.<br>
+Copyright 2000 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="shutdown" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

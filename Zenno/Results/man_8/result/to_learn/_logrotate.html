@@ -1,0 +1,451 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN logrotate (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, logrotate"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="logrotate" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">logrotate (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=logrotate&amp;category=8&amp;russian=0"><u>logrotate</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=logrotate&amp;category=8&amp;russian=2"><u>logrotate</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+logrotate - обращение, сжатие, и отправление электронной почтой файлов системных сообщений
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>logrotate</b> [-dv] [-f|--force] [-s|--state <i>файл</i>] <i>файл_конфигурации</i>+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<b>logrotate</b> разработан для облегчения администрирования систем, которые порождают большое количество файлов журналов происходящих в системе событий. Утилита предоставляет автоматическое обращение, сжатие, удаление и отправление по электронной почте журналов системы. Каждый файл журнала сообщений может обрабатываться ежедневно, еженедельно, ежемесячно, либо когда увеличится в размерах выше указанного предела.
+
+Обычно <b>logrotate</b> выполняется в порядке ежедневного задания службы cron. В течении одного дня он не будет несколько раз изменять файл журнала сообщений, если критерий обработки для этого журнала не основан на размере файла и <b>logrotate</b> не запускается каждый день многократно; если не применяется опция <b>-f</b> или <b>-force</b>. 
+
+В командной строке может быть задано любое количество конфигурационных файлов. Каждый последующий конфигурационный файл может переназначить настройки заданные в предыдущих файлах; таким образом, для <b>logrotate</b> важен порядок следования файлов конфигурации.
+Широко распространено применение единственного конфигурационного файла, включающего в себя другие используемые файлы настроек. О том, как это осуществить с помощью директивы <b>include</b>, смотрите ниже. Если в командной строке задан каталог, то все файлы, находящиеся в этом каталоге, используются в качестве конфигурационных.
+
+Если аргументы командной строки не заданы, то <b>logrotate</b> выведет информацию о версии программы, авторских правах и краткую справку об использовании. В случае возникновения любых ошибок при обработке журналов <b>logrotate</b> закончит работу с ненулевым значением кода возврата.
+<p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОПЦИИ</h2>
+
+<dl compact="">
+<dt><b>-d</b></dt><dd>
+Активирует режим отладки, в котором включена и опция <b>-v</b> (действия программы сопровождаются выводом подробной информации). В режиме отладки файлы системных сообщений, а также файл состояния <b>logrotate</b>, не подвергаются изменениям со стороны утилиты.
+<p>
+</p></dd><dt><b>-f, --force</b></dt><dd>
+Принуждает <b>logrotate</b> произвести обращение журналов, даже если сама программа не считает это необходимым. Иногда это полезно после добавления новых записей в <b>logrotate</b> или если старый файл журнала был удалён вручную; таким образом будут созданы новые файлы и журналирование будет корректно продолжено.
+<p>
+</p></dd><dt><b>-m, --mail</b> &lt;<i>команда</i>&gt;</dt><dd>
+Указывает <b>logrotate</b>, какую команду использовать для отправки журналов по электронной почте. Эта команда может принять два аргумента: 1) тема письма и 2) получатель. Команда должна читать сообщение со стандартного входа и отсылать его электронной почтой получателю. Командой по умолчанию является <b>/bin/mail -s</b>.
+<p>
+</p></dd><dt><b>-s, --state</b> &lt;<i>файл</i>&gt;</dt><dd>
+Предписывает <b>logrotate</b> использовать альтернативный файл состояния. Это полезно, если  logrotate запускается от имени разных пользователей для разных наборов файлов системных сообщений. Файл состояния по умолчанию -- <b>/var/lib/logrotate/status</b>.
+<p>
+</p></dd><dt><b>--usage</b></dt><dd>
+Выводит краткую справку об использовании.
+<p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ФАЙЛ КОНФИГУРАЦИИ</h2>
+
+<p>
+Всю необходимую информацию для обращения файлов журналов <b>logrotate</b> извлекает из группы конфигурационных файлов, заданных в командной строке. Каждый файл конфигурации может установить глобальные опции (вместе с тем, локальные значения опций переопределяют глобальные, а последующие определения замещают предыдущие) и определить обрабатываемый файл журнала. Простой конфигурационный файл содержит примерно следующее:
+</p><p>
+</p><pre>
+# пример файла настроек logrotate
+compress
+
+/var/log/messages {
+    rotate 5
+    weekly
+    postrotate
+                              /sbin/killall -HUP syslogd
+    endscript
+}
+
+"/var/log/httpd/access.log" /var/log/httpd/error.log {
+    rotate 5
+    mail <a href="mailto:my@example.com">my@example.com</a>
+    size=100k
+    sharedscripts
+    postrotate
+                              /sbin/killall -HUP httpd
+    endscript
+}
+
+/var/log/news/* {
+    monthly
+    rotate 2
+    olddir /var/log/news/old
+    missingok
+    postrotate
+                              kill -HUP `cat /var/run/inn.pid`
+    endscript
+    nocompress
+}
+</pre>
+
+<p>
+
+Первые несколько строк устанавливают глобальные опции; в данном примере после обращения журналы сжимаются. Стоит отметить, что вставлять комментарии в файл конфигурации можно в любой строке, первый символ которой, не являющийся пробелом -- это символ "#".
+</p><p>
+Следующий раздел этого конфигурационного файла определяет обращение файла системных сообщений <i>/var/log/messages</i>. Журнал пройдёт через пятинедельный цикл обращений, прежде чем будет удалён. После обращения (циклического сдвига) журнала, но перед сжатием старого (сдвинутого) журнала, будет выполнена команда <i>/sbin/killall -HUP syslogd</i>.
+</p><p>
+В следующем разделе определяются параметры обращения для <i>/var/log/httpd/access.log</i> и <i>/var/log/httpd/error.log</i>.
+Эти файлы будут циклически сдвинуты по достижению размера в 100 Кб, а старые файлы журналов будут извлечены из архивов и отправлены электронной почтой на адрес <a href="mailto:my@example.com">my@example.com</a> после 5 обращений (циклических сдвигов), прежде чем будут удалены. Параметр <b>sharedscripts</b> означает, что скрипт <b>postrotate</b> будет выполнятся только один раз, а не после обработки каждого файла. Заметьте, что двойные кавычки вокруг первого имени файла в начале раздела, позволяют logrotate обращаться с именами файлов журналов, содержащими пробелы. Поддерживаются обычные правила цитирования командной оболочки shell с употреблением символов ', " и \.
+</p><p>
+В последнем разделе определены параметры для все файлов, находящихся в <i>/var/log/news</i>. Обращение всех файлов производится ежемесячно. Это предусматривает единые указания для обращения, и в случае возникновения ошибки при обработке больше чем одного файла сжатие файлов журналов не будет произведено.
+</p><p>
+Далее представлена информация о директивах, которые могут быть указаны в конфигурационном файле <b>logrotate</b>:
+</p><p>
+</p><dl compact="">
+<dt><b>compress</b></dt><dd>
+Старые версии файлов журналов будут сжаты (по умолчанию <b>gzip</b>). См. также <b>nocompress</b>. 
+<p>
+</p></dd><dt><b>compresscmd</b></dt><dd>
+Позволяет указать команду для сжатия файлов журналов. По умолчанию <b>gzip</b>.  См. также <b>compress</b>.
+<p>
+</p></dd><dt><b>uncompresscmd</b></dt><dd>
+Директива позволяет указать команду для декомпрессии файлов журналов. По умолчанию <b>gunzip</b>.
+<p>
+</p></dd><dt><b>compressext</b></dt><dd>
+Если используется сжатие, определяет расширение сжатых файлов журналов. По умолчанию определяется из настроек команды сжатия.
+<p>
+</p></dd><dt><b>compressoptions</b></dt><dd>
+Программе сжатия может быть передана опция командной строки, если та их использует. 
+Стандартно для <b>gzip</b> применяется "-9" (максимальное сжатие).
+<p>
+</p></dd><dt><b>copy</b></dt><dd>
+Создать копию файла журнала, не изменяя оригинал вовсе.
+Этот параметр может быть использован, например, для создания моментального снимка (среза) текущего файла журнала, или когда некоторой другой утилите требуется обрезать или подчистить файл. При использовании этого параметра не имеет силы директива <b>create</b>, так как старый файл журнала остаётся на своём месте.
+<p>
+</p></dd><dt><b>copytruncate</b></dt><dd>
+После создания копии, обрезать исходный файл журнала взамен перемещения старого файла журнала и создания нового. Это может найти применение в том случае, когда некоторой программе нельзя указать закрыть её журнал, и таким образом можно постоянно продолжать запись (добавление) в существующий файл журнала. Примите во внимание, что хотя между копированием файла и его обрезанием очень маленький промежуток времени, некоторая часть журналируемых данных может быть потеряна.
+При использовании этого параметра, не имеет силы директива <b>create</b>, так как старый файл журнала остаётся на своём месте.
+<p>
+</p></dd><dt><b>create </b><i>режим</i> <i>владелец</i> <i>группа</i></dt><dd>
+Непосредственно после обращения (перед выполнением скрипта <b>postrotate</b>) создать файл журнала (с тем же именем, что и только что сдвинутый журнал).
+Аргумент <i>режим</i> определяет режим доступа к файлу журнала в восьмеричном виде (единообразный с <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chmod&amp;category=2">chmod</a>(2)</b>), <i>владелец</i> определяет имя пользователя, владеющего создаваемым файлом журнала, и <i>группа</i> определяет группу, к которой будет принадлежать файл журнала. Любые из этих атрибутов могут быть опущены; в этом случае вместо них для нового файла будут использованы атрибуты, имеющие те же значения, что и первоначальный файл журнала. Этот параметр может быть отключен использованием директивы <b>nocreate</b>.
+<p>
+</p></dd><dt><b>daily</b></dt><dd>
+Ежедневное обращение файлов журналов.
+<p>
+</p></dd><dt><b>delaycompress</b></dt><dd>
+Отложить сжатие предыдущего файла журнала до следующего циклического сдвига.
+Эта директива имеет силу только в комбинации с <b>compress</b>.
+Это может быть использовано в том случае, если некой программе нельзя указать закрыть её файл журнала, и таким образом, можно некоторое время продолжать запись в предыдущий файл журнала.
+<p>
+</p></dd><dt><b>extension </b><i>расширение</i></dt><dd>
+Файлы журналов после обращение получат заданное <i>расширение</i>. Если используется сжатие, то после указанного <i>расширения</i> программа сжатия добавит ещё одно (обычно <b>.gz</b>).
+<p>
+</p></dd><dt><b>ifempty</b></dt><dd>
+Сдвигать файл журнала, даже если он пустой; это поведение можно изменить, применив директиву <b>notifempty</b> (по умолчанию активна <b>ifempty</b>).
+<p>
+</p></dd><dt><b>include </b><i>файл_или_каталог</i></dt><dd>
+Читает файл, переданный в качестве аргумента, так, как будто он включен построчно в тело конфигурационного файла с того места, где указана директива <b>include</b>. Если задан каталог, то содержащиеся в нём файлы будут прочитаны в алфавитном порядке, прежде чем переданы на обработку для включения. Файлы, не являющиеся обычными (такие как каталоги и именованные каналы), а также файлы, оканчивающиеся запрещёнными расширениями (определёнными параметром <b>tabooext</b>) -- будут проигнорированы. Директива <b>include</b> не может использоваться внутри определения файла журнала.
+<p>
+</p></dd><dt><b>mail </b><i>адрес</i></dt><dd>
+По окончании цикла обращения журнал будет отправлен электронной почтой на <i>адрес</i>. Если для отдельных журналов это не требуется, то можно применить директиву <b>nomail</b>.
+<p>
+</p></dd><dt><b>mailfirst</b></dt><dd>
+При использовании команды <b>mail</b>, посылать только что сдвинутый файл, а не закончивший цикл обращения файл журнала.
+<p>
+</p></dd><dt><b>maillast</b></dt><dd>
+При использовании команды <b>mail</b>, посылать не только что сдвинутый файл, а закончивший цикл обращения файл журнала (это задано по умолчанию).
+<p>
+</p></dd><dt><b>missingok</b></dt><dd>
+В случае отсутствия файла журнала перейти к обработке следующего не выдавая сообщения об ошибке. См. также <b>nomissingok</b>.
+<p>
+</p></dd><dt><b>monthly</b></dt><dd>
+<b>logrotate</b> будет сдвигать файлы журналов раз в месяц (обычно первого числа каждого месяца).
+<p>
+</p></dd><dt><b>nocompress</b></dt><dd>
+Не сжимать с помощью <b>gzip</b> старые версии файлов журналов. См. также <b>compress</b>. 
+<p>
+</p></dd><dt><b>nocopy</b></dt><dd>
+Не копировать исходный файл журнала и оставить его в штатном местоположении (это переопределяет параметр <b>copy</b>).
+<p>
+</p></dd><dt><b>nocopytruncate</b></dt><dd>
+После создания копии, не обрезать исходный файл журнала в его штатном местоположении (это переопределяет параметр <b>copytruncate</b>).
+<p>
+</p></dd><dt><b>nocreate</b></dt><dd>
+Не создавать новый файл журнала (это переопределяет директиву <b>create</b>).
+<p>
+</p></dd><dt><b>nodelaycompress</b></dt><dd>
+Не откладывать сжатие сдвинутого файла журнала до следующего цикла обращения (это переопределяет директиву <b>delaycompress</b>).
+<p>
+</p></dd><dt><b>nomail</b></dt><dd>
+Не отправлять старые файлы журналов почтой.
+<p>
+</p></dd><dt><b>nomissingok</b></dt><dd>
+Если файл журнала не существует, выдать ошибку. Это установлено по умолчанию.
+<p>
+</p></dd><dt><b>noolddir</b></dt><dd>
+После обращения, журналы остаются в том же каталоге, где расположены текущие журналы (это переопределяет директиву <b>olddir</b>).
+<p>
+</p></dd><dt><b>nosharedscripts</b></dt><dd>
+Выполнять скрипты <b>prerotate</b> и <b>postrotate</b> для каждого обработанного журнала (это поведение задано по умолчанию, его можно переопределить параметром <b>sharedscripts</b>).
+<p>
+</p></dd><dt><b>notifempty</b></dt><dd>
+Не сдвигать журнал, если он пуст (это переопределяет параметр <b>ifempty</b>).
+<p>
+</p></dd><dt><b>olddir </b><i>directory</i></dt><dd>
+Переместить сдвинутые журналы в <i>каталог</i>. Заданный <i>каталог</i> должен размещаться на том же физическом устройстве, что и обращаемый файл журнала. При использовании этого параметра все старые версии журнала будут попадать в <i>каталог</i>. Этот параметр может быть переопределён параметром <b>noolddir</b>.
+<p>
+</p></dd><dt><b>postrotate</b>/<b>endscript</b></dt><dd>
+Строки с директивами, находящиеся между <b>postrotate</b> и <b>endscript</b> (которые сами должны располагаться на отдельных строках), будут выполнены после обращения журнала. Эти директивы могут находиться только внутри определения файла журнала.
+См. также <b>prerotate</b>.
+<p>
+</p></dd><dt><b>prerotate</b>/<b>endscript</b></dt><dd>
+Строки с директивами, находящиеся между <b>prerotate</b> и <b>endscript</b> (которые сами должны располагаться на отдельных строках), будут выполнены перед обращением журнала и только в случае если журнал действительно будет сдвинут. Эти директивы могут находиться только внутри определения файла журнала. См. также <b>postrotate</b>.
+<p>
+</p></dd><dt><b>rotate </b><i>раз</i></dt><dd>
+Файл журнала будет сдвинут заданное количество <i>раз</i>, прежде чем будет удалён или послан по электронной почте на адрес, указанный в директиве <b>mail</b>. Если указано 0 <i>раз</i>, то старый журнал вместо обращения будет удалён.
+<p>
+</p></dd><dt><b>size </b><i>размер</i></dt><dd>
+Файлы журналов будут сдвинуты, когда станут больше указанного <i>размера</i> в байтах. Если <i>размер</i> оканчивается символом <i>M</i>, то размер интерпретируется в мегабайтах. Если использовать <i>k</i>, то можно задать размер в килобайтах. Таким образом, директивы <b>size 100</b>, <b>size 100k</b>, и <b>size 100M</b> являются верными.
+<p>
+</p></dd><dt><b>sharedscripts</b></dt><dd>
+Обычно скрипты <b>prescript</b> и <b>postscript</b> выполняются для каждого обрабатываемого журнала; это значит, что один и то же скрипт может выполняться несколько раз для одной конфигурационной записи, которая охватывает множество файлов (как в примере /var/log/news/*). Если параметр <b>sharedscript</b> указан, то скрипты будут выполнены только один раз, вне зависимости от количества журналов, подходящих под заданный шаблон. Однако если ни один из журналов, соответствующих шаблону, не требует обращения, то скрипты не будут выполнены вовсе. Этот параметр переопределяет директиву <b>nosharedscripts</b>.
+<p>
+</p></dd><dt><b>start </b><i>число</i></dt><dd>
+Заданное число -- то, с которого начнётся счёт обращений. Например, если указать 0, после первого обращения (сдвига оригинального файла журнала) журналам будет присвоено расширение .0. Если указать 9, файлы журналов будут создаваться с расширением .9, пропустив 0-8.  Файлы по-прежнему будут обращаться (сдвигаться) столько раз, сколько указано в директиве <b>count</b>.
+<p>
+</p></dd><dt><b>tabooext</b> [+] <i>список_расширений</i></dt><dd>
+Изменяет текущий список запрещённых расширений (см. <b>include</b>). Если списку расширений предшествует знак +, то этот список прибавится к текущему, иначе заместит его. При первоначальном запуске список содержит следующие расширения: .rpmorig, .rpmsave, ,v, .swp, .rpmnew и ~.
+<p>
+</p></dd><dt><b>weekly</b></dt><dd>
+Файлы журналов будут сдвинуты, если текущий день недели меньше дня недели, в который произошло последнее обращение журнала, или если с тех пор прошло больше недели. Это почти то же самое, что и обращение журналов по понедельникам, но работает лучше, если <i>logrotate</i> не запускается каждую ночь.
+<p>
+</p></dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+
+<dl compact="">
+<dt><i>/var/lib/logrotate/status</i></dt><dd>
+Файл состояния по умолчанию.
+</dd><dt><i>/etc/logrotate.conf</i></dt><dd>
+Параметры конфигурации.
+<p>
+</p></dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gzip&amp;category=1">gzip</a></i>(1)
+
+<p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+<pre>Erik Troan &lt;<a href="mailto:ewt@redhat.com">ewt@redhat.com</a>&gt;
+Preston Brown &lt;<a href="mailto:pbrown@redhat.com">pbrown@redhat.com</a>&gt;
+</pre>
+
+<a name="lbAJ">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Василий Коломеец (Vasily Kolomeets) &lt;<a href="mailto:boojuman@gmail.com">boojuman@gmail.com</a>&gt; 15.11.2005
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">ФАЙЛ КОНФИГУРАЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAG">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAI">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="logrotate" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

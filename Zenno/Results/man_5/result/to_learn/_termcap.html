@@ -1,0 +1,681 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN termcap (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, termcap"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="termcap" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">termcap (5)</font><hr><li> <a href="/man.shtml?topic=termcap&amp;category=3&amp;russian=1"><u>termcap</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=termcap&amp;category=5&amp;russian=1"><u>termcap</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=termcap&amp;category=5&amp;russian=0"><u>termcap</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=termcap&amp;category=5&amp;russian=2"><u>termcap</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+termcap - база данных терминальных параметров 
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+База данных termcap - это устаревший метод описания возможностей
+алфавитно-цифровых терминалов и принтеров. Она оставлена лишь
+для обеспечения совместимости со старыми программами; новые программы
+должны использовать базу данных
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=terminfo&amp;category=5">terminfo</a></b>(5)
+
+и соответствующие ей библиотеки.
+<p>
+
+<b>/etc/termcap</b>
+
+- это ASCII-файл (исходный текст базы данных), содержащий
+список параметров, принадлежащих различным типам терминала. Программы могут читать
+содержимое termcap для того, чтобы распознавать управляющие последовательности,
+необходимые для контроля за визуальными атрибутами терминала.
+Другие свойства терминалов контролируются stty. База данных termcap
+проиндексирована в соответствии с переменной окружения TERM.
+</p><p>
+
+Записи termcap должны быть расположены в одной логической строке, в которой
+\
+' используется для "склеивания" физических строк. Поля разделяются символом
+`:'.  Первое поле каждой записи начинается с крайней левой колонки
+и содержит список названий терминала, разделенных '|'.
+</p><p>
+
+Первое "подполе" может содержать краткое название терминала, состоящее
+из двух символов (это касается записей termcap в BSD версий 4.3 и более ранних).
+Это имя может состоять из прописных и строчных букв. В записях
+termcap BSD версии 4.4 это поле не учитывается.
+</p><p>
+
+Второе "подполе" (на самом деле, первое, только в формате BSD 4.4) 
+содержит название терминала,
+используемое в переменной окружения TERM. Оно должно быть написано
+строчными буквами.
+Различающиеся аппаратные возможности должны отмечаться при помощи
+суффикса, добавляемого к названию терминала через дефис.
+Смотрите пример, приведенный ниже. Обычные суффиксы: - w (ширина
+терминала больше 80-и символов), am (автоматические границы),
+nam (нет автоматических границ) и rv (инверсный видеодисплей).
+Третье "подполе" содержит длинное описательное название записи termcap.
+</p><p>
+
+Последующие поля содержат параметры терминала; любые строки, являющиеся
+продолжением записи, должны начинаться с одного символа табуляции.
+</p><p>
+
+Несмотря на то, что порядок задания параметров не определен, рекомендуется
+сначала задавать переключатели, затем числовые и только после них
+строковые параметры терминала. Каждая группа должна быть отсортирована в
+алфавитном порядке, без учета регистра. Параметры похожих свойств терминала
+должны быть написаны в одной строке.
+</p><p>
+
+</p><pre>Пример:
+
+Заголовок: vt|vt101|Терминал DEC VT 101 в 80-символьном режиме:\
+Заголовок: Vt|vt101-w|Терминал DEC VT 101 в 132-символьном режиме:\
+Переключатели: :bs:\
+Числовые: :co#80:\
+Строковые: :sr=\E[H:\
+</pre><a name="lbAD">&nbsp;</a>
+<h3>Параметры-переключатели</h3>
+
+<pre>5i      Принтер не отражает "эхо" на экране
+am      Автоматические границы (автоматический перенос строки)
+bs      Control-H (десят. 8) - забой
+bw      Забой на левой границе возвращает Вас к правой границе предыдущей строки
+da      Дисплей удерживается над экраном
+db      Дисплей удерживается под экраном
+eo      Пробел удаляет все символы с позиции курсора
+es      Управляющие последовательности и специальные символы действуют в строке состояния
+gn      Стандартное устройство
+hc      Этот терминал является печатным
+HC      Курсор плохо виден не в нижней строке
+hs      Терминал имеет строку состояния
+hz      Ошибка Hazeltine: терминал не печатает символы тильды
+in      Терминал использует символы null вместо пробелов для заполнения пустых мест
+km      Терминал имеет клавишу Meta
+mi      Курсор передвигается в режиме вставки
+ms      Курсор передвигается в режиме выделения/подчеркивания
+NP      Нет символа pad
+NR      ti не реверсирует состояние te
+nx      Заполнения нет, необходимо использовать XON/XOFF
+os      Терминал может печатать символы поверх существующих
+ul      Терминал может подчеркивать, но не может печатать расположенные поверх символы
+xb      Ошибка Beehive: f1 посылает ESCAPE, f2 посылает ^C
+xn      Ошибка, связанная с переводом строки
+xo      Терминал использует протокол xon/xoff
+xs      Текст, выведенный поверх выделенного, также будет выделен
+xt      Ошибка Teleray: "разрушающая" табуляция и неправильный режим выделения
+</pre>
+
+<a name="lbAE">&nbsp;</a>
+<h3>Числовые параметры</h3>
+
+<pre>co      Количество колонок
+dB      Задержка в миллисекундах при печати забоя на печатных терминалах
+dC      Задержка в миллисекундах при печати возврата каретки на печатных терминалах
+dF      Задержка в миллисекундах при печати перевода формата на печатных терминалах
+dN      Задержка в миллисекундах при печати перевода строки на печатных терминалах
+dT      Задержка в миллисекундах при печати символа остановки табулятора на печатных терминалах
+dV      Задержка в миллисекундах при печати символа остановки вертикального табулятора на печатных терминалах
+it      Расстояние между позициями табуляции
+lh      Высота меток
+lm      Количество строк в памяти
+lw      Ширина меток
+li      Количество строк
+Nl      Количество меток
+pb      Минимальная скорость при заполнении
+sg      Проблема с выделением
+ug      Проблема с подчеркиванием
+vt      Виртуальный номер терминала
+ws      Ширина строки состояния, если она отличается от ширины экрана
+</pre>
+
+<a name="lbAF">&nbsp;</a>
+<h3>Строковые параметры</h3>
+
+<pre>!1      клавиша shift+save (рег+запись)
+!2      клавиша shift+suspend (рег+приостановить)
+!3      клавиша shift+undo (рег+отменить)
+#1      клавиша shift+help (рег+помощь)
+#2      клавиша shift+home (рег+начало)
+#3      клавиша shift+input (рег+ввод)
+#4      клавиша shift+курсор влево
+%0      клавиша redo (вернуть)
+%1      клавиша help (помощь)
+%2      клавиша mark (отметка)
+%3      клавиша message (сообщение)
+%4      клавиша move (перемещение)
+%5      клавиша next-object (следующий объект)
+%6      клавиша open (открыть)
+%7      клавиша options (опции)
+%8      клавиша previous-object (предыдущий объект)
+%9      клавиша print (печать)
+%a      клавиша shift+message (рег+сообщение)
+%b      клавиша shift+move (рег+перемещение)
+%c      клавиша shift+next (рег+следующий)
+%d      клавиша shift+options (рег+опции)
+%e      клавиша shift+previous (рег+предыдущий)
+%f      клавиша shift+print (рег+печать)
+%g      клавиша shift+redo (рег+вернуть)
+%h      клавиша shift+replace (рег+заменить)
+%i      клавиша shift+курсор вправо
+%j      клавиша shift+resume (рег+возобновить)
+&amp;0      клавиша shift+cancel (рег+отменить)
+&amp;1      клавиша reference (ссылка)
+&amp;2      клавиша refresh (обновить)
+&amp;3      клавиша replace (заменить)
+&amp;4      клавиша restart (перезапустить)
+&amp;5      клавиша resume (возобновить)
+&amp;6      клавиша save (сохранить)
+&amp;7      клавиша suspend (приостановить)
+&amp;8      клавиша undo (отменить)
+&amp;9      клавиша shift+begin (рег+начало)
+*0      клавиша shift+find (рег+поиск)
+*1      клавиша shift+command (рег+команда)
+*2      клавиша shift+copy (рег+копировать)
+*3      клавиша shift+create (рег+создать)
+*4      клавиша shift+delete character (рег+удалить символ)
+*5      клавиша shift+delete line (рег+удалить строку)
+*6      клавиша select (выбор)
+*7      клавиша shift+end (рег+конец)
+*8      клавиша shift+clear line (рег+"очистить" строку)
+*9      клавиша shift+exit (рег+выход)
+@0      клавиша find (искать)
+@1      клавиша begin (начать)
+@2      клавиша cancel (отменить)
+@3      клавиша close (закрыть)
+@4      клавиша command (задать команду)
+@5      клавиша copy (копировать)
+@6      клавиша create (создать)
+@7      клавиша end (конец)
+@8      клавиша enter/send (ввод/послать)
+@9      клавиша exit (выход)
+al      Вставить одну строку
+AL      Сдвинуть %1 строк
+ac      Пары символов для преобразования псевдографики
+ae      Конец альтернативного набора символов
+as      Начало альтернативного набора символов, содержащего символы псевдографики
+bc      Забой, если он не равен ^H
+bl      Звуковой сигнал
+bt      Возврат к предыдущей позиции табуляции
+cb      "Очистка" от начала строки до курсора
+cc      Символ простой команды
+cd      "Очистка" до конца экрана
+ce      "Очистка" до конца строки
+ch      Переместить курсор на колонку %1
+cl      "Очистка" экрана и перевод курсора в его начало
+cm      Переместить курсор в ряд %1 и колонку %2 (на экране)
+CM      Переместить курсор в ряд %1 и колонку %2 (в памяти)
+cr      Возврат каретки
+cs      Прокрутить область со строки %1 до строки %2
+ct      "Очистить" табуляцию
+cv      Переместить курсор вертикально в строку %1
+dc      Удалить один символ
+DC      Удалить %1 символов
+dl      Удалить одну строку
+DL      Удалить %1 строк
+dm      Начало режима удаления
+do      Курсор вниз на одну строку
+DO      Курсор вниз на #1 строк
+ds      Запретить строку состояния
+eA      Разрешить альтернативный набор символов
+ec      Очистить %1 символов, начиная с курсора
+ed      Завершение режима удаления
+ei      Завершение режима вставки
+ff      Символ перевода формата на печатных терминалах
+fs      Возвратить курсор на прежнюю позицию после перехода к строке состояния
+F1      Строка, посылаемая функциональной клавишей f11
+F2      Строка, посылаемая функциональной клавишей f12
+F3      Строка, посылаемая функциональной клавишей f13
+...     ...
+F9      Строка, посылаемая функциональной клавишей f19
+FA      Строка, посылаемая функциональной клавишей f20
+FB      Строка, посылаемая функциональной клавишей f21
+...     ...
+FZ      Строка, посылаемая функциональной клавишей f45
+Fa      Строка, посылаемая функциональной клавишей f46
+Fb      Строка, посылаемая функциональной клавишей f47
+...     ...
+Fr      Строка, посылаемая функциональной клавишей f63
+hd      Переместить курсор на полстроки вниз
+ho      Переместить курсор в начало строки
+hu      Переместить курсор на полстроки вверх
+i1      Инициализационная строка номер 1 при входе в систему
+i3      Инициализационная строка номер 3 при входе в систему
+is      Инициализационная строка номер 2 при входе в систему
+ic      Вставить один символ
+IC      Вставить %1 символов
+if      Файл инициализации
+im      Начало режима вставки
+ip      Добавлять время вставки и специальные символы после вставки
+iP      Программа инициализации
+K1      Левая верхняя клавиша на дополнительной клавиатуре
+K2      Центральная клавиша на дополнительной клавиатуре
+K3      Верхняя правая клавиша на дополнительной клавиатуре
+K4      Нижняя левая клавиша на дополнительной клавиатуре
+K5      Нижняя правая клавиша на дополнительной клавиатуре
+k0      Функциональная клавиша 0
+k1      Функциональная клавиша 1
+k2      Функциональная клавиша 2
+k3      Функциональная клавиша 3
+k4      Функциональная клавиша 4
+k5      Функциональная клавиша 5
+k6      Функциональная клавиша 6
+k7      Функциональная клавиша 7
+k8      Функциональная клавиша 8
+k9      Функциональная клавиша 9
+k;      Функциональная клавиша 10
+ka      Клавиша "очистки" всех табуляций
+kA      Клавиша вставки строки
+kb      Клавиша забоя
+kB      Клавиша обратной табуляция
+kC      Клавиша "очистки" экрана
+kd      Клавиша 'курсор вниз'
+kD      Клавиша удаления одного символа в позиции курсора
+ke      Отключить дополнительную клавиатуру
+kE      Клавиша "очистки" до конца строки
+kF      Клавиша прокрутки вперед/вниз
+kh      Клавиша "курсор в начало строки"
+kH      Клавиша "Cursor hown down"
+kI      Клавиша вставки символа/включения режима вставки
+kl      Клавиша "курсор влево"
+kL      Клавиша удаления строки
+kM      Клавиша выхода из режима вставки
+kN      Клавиша "следующая страница"
+kP      Клавиша "предыдущая страница"
+kr      Клавиша "курсор вправо"
+kR      Клавиша прокрутки назад/вверх
+ks      Включить дополнительную клавиатуру
+kS      Клавиша "очистки" до конца экрана
+kt      Клавиша "очистки" этой табуляции
+kT      Клавиша установки табуляции
+ku      Клавиша "курсор вверх"
+l0      Название нулевой функциональной клавиши, если оно не равно f0
+l1      Название первой функциональной клавиши, если оно не равно f1
+l2      Название второй функциональной клавиши, если оно не равно f2
+...     ...
+la      Название десятой функциональной клавиши, если оно не равно f10
+le      Курсор влево на один символ
+ll      Переместить курсор в левый нижний угол экрана
+LE      Курсор влево на %1 символов
+LF      Выключить метки
+LO      Включить метки
+mb      Мигающий шрифт
+MC      "Очистить" необязательные границы
+md      Жирный шрифт
+me      Отключить все режимы типов: so, us, mb, md и mr
+mh      Начало режима половинной яркости
+mk      "Темный" режим (символы невидимы)
+ML      Задать левую необязательную границу
+mm      Включить meta-режим терминала
+mo      Отключить meta-режим терминала
+mp      Включить защищенные атрибуты
+mr      Инверсный шрифт
+MR      Задать правую необязательную границу
+nd      Курсор вправо на один символ
+nw      Команда возврата каретки
+pc      Символ заполнения
+pf      Выключить принтер
+pk      Запрограммировать клавишу %1 на отправку строки %2, как будто она набрана пользователем
+pl      Запрограммировать клавишу %1 на исполнение строки %2 в локальном режиме
+pn      Запрограммировать метку %1 на вывод строки %2
+po      Включить принтер
+pO      Включить принтер на %1 (&lt;256) байтов
+ps      Распечатать содержимое экрана на принтере
+px      Запрограммировать клавишу %1 на отправку строки %2 на компьютер
+r1      Первая строка сброса, возвращающая нормальный режим терминала
+r2      Вторая строка сброса, возвращающая нормальный режим терминала
+r3      Третья строка сброса, возвращающая нормальный режим терминала
+RA      Запретить автоматические границы
+rc      Восстановить сохраненное положение курсора
+rf      Имя файла со строкой сброса
+RF      Запрос ввода с терминала
+RI      Курсор вправо на %1 символов
+rp      Повторить символ %1 %2 раз
+rP      Заполнение после отправки символа в режиме замены
+rs      Строка сброса
+RX      Отключить контроль потока XON/XOFF
+sa      Установить атрибуты %1 %2 %3 %4 %5 %6 %7 %8 %9
+SA      Разрешить автоматические границы
+sc      Сохранить позицию курсора
+se      Конец режима выделения
+sf      Нормальная прокрутка на одну строку
+SF      Нормальная прокрутка на %1 строк
+so      Начало режима выделения
+sr      Обратная прокрутка
+SR      Обратная прокрутка на %1 строк
+st      Установить остановку табулятора во всех рядах этой колонки
+SX      Включить контроль потока XON/XOFF
+ta      Переместиться на следующую аппаратную позицию табуляции
+tc      Прочитать описание терминала из другой записи
+te      Конец программы, использующей перемещение курсора
+ti      Начало программы, использующей перемещение курсора
+ts      Переместить курсор в колонку %1 строки состояния
+uc      Подчеркнуть символ под курсором и переместить курсор вправо
+ue      Завершить подчеркивание
+up      Переместить курсор на строку вверх
+UP      Переместить курсор на %1 строк вверх
+us      Начать подчеркивание
+vb      Визуальный сигнал
+ve      Обычный курсор
+vi      Курсор невидим
+vs      Выделенный курсор
+wi      Задать размер окна со строки %1 по %2 и с колонки %3 по %4
+XF      Символ XOFF, если он не равен ^S
+</pre>
+
+<p>
+
+Существует несколько способов определения управляющих кодов
+в строковых параметрах:
+</p><p>
+
+обычные символы, кроме '^','\' и '%', говорят сами за себя;
+</p><p>
+
+
+</p><p>
+
+\x соответствует специальному символу. x может быть следующим:
+</p><dl compact=""><dt></dt><dd>
+E Escape (27)
+<br>
+
+n Перевод строки (10)
+<br>
+
+r Возврат каретки (13)
+<br>
+
+t Табуляция (9)
+<br>
+
+b Забой (8)
+<br>
+
+f Перевод формата (12)
+<br>
+
+0 Null.  \xxx означает символ с с восьмеричным кодом xxx.
+</dd></dl>
+
+<dl compact="">
+<dt>i</dt><dd>
+Увеличить параметр на 1
+</dd><dt>r</dt><dd>
+Возможность одного параметра
+</dd><dt>+</dt><dd>
+Добавить значение следующего символа к этому параметру и произвести двоичный вывод
+</dd><dt>2</dt><dd>
+Произвести ASCII-вывод этого параметра с полем из 2-х символов
+</dd><dt>d</dt><dd>
+Произвести ASCII-вывод этого параметра с полем из 3-х символов
+</dd><dt>%</dt><dd>
+Напечатать символ'%'
+</dd></dl>
+<p>
+
+Если Вы используете двоичный вывод, то Вы должны избегать использования
+символа null, так как он означает конец строки. Вам также надо
+"очистить" расширение табулятора, если в двоичном выводе будет
+присутствовать символ табуляции.
+</p><dl compact="">
+<dt>Внимание:</dt><dd>
+описанные выше метасимволы могут быть неправильными. Они описывают termcap
+Minix, который может быть несовместимым с Linux termcap.
+</dd></dl>
+<p>
+
+Символы псведографики определяются при помощи трех строковых параметров:
+</p><dl compact="">
+<dt>as</dt><dd>
+начало альтернативного набора символов;
+</dd><dt>ae</dt><dd>
+окончание альтернативного набора символов;
+</dd><dt>ac</dt><dd>
+пары символов. Первый символ - это имя символа псевдографики, а второй -
+его определение.
+</dd></dl>
+<p>
+
+Доступны следующие имена:
+</p><p>
+</p><pre>+       стрелка вправо (&gt;)
+,       стрелка влево (&lt;)
+.       стрелка вниз (v)
+0       полный квадрат (#)
+I       решетка (#)
+-       стрелка вверх (^)
+'       ромб (+)
+a       шахматная доска (:)
+f       градус (')
+g       плюс-минус (#)
+h       квадрат (#)
+j       правый нижний угол (+)
+k       правый верхний угол (+)
+l       левый верхний угол (+)
+m       левый нижний угол (+)
+n       крест (+)
+o       верхняя горизонтальная линия (-)
+q       средняя горизонтальная линия (-)
+s       нижняя горизонтальная линия (_)
+t       ответвление влево (+)
+u       ответвление вправо (+)
+v       ответвление вниз (+)
+w       ответвление вверх (+)
+x       вертикальная линия (|)
+~       параграф (???)
+</pre>
+
+<p>
+Значения, указанные в скобках, используются curses по умолчанию, если
+эти параметры отсутствуют.
+<a name="lbAG">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=termcap&amp;category=3">termcap</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=curses&amp;category=3">curses</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=terminfo&amp;category=5">terminfo</a></b>(5)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAD">Параметры-переключатели</a></dt><dd>
+</dd><dt><a href="#lbAE">Числовые параметры</a></dt><dd>
+</dd><dt><a href="#lbAF">Строковые параметры</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAG">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="termcap" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

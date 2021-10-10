@@ -1,0 +1,669 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-49925874-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-49925874-3');
+  </script>
+
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <title>Git - gitcvs-migration Documentation</title>
+
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+  <link rel="stylesheet" media="screen" href="/assets/application-3fb605347038cd5206e27d1f90829d3159e0de904e21be188a31e8f8c27c42a8.css">
+  <script src="/assets/modernize-b3ebe0c31c24f230dc62179d3e1030d2e57a53b1668d9382c0a27dbd44a94beb.js"></script>
+  <!--[if (gte IE 6)&(lte IE 8)]>
+  <script src="/javascripts/selectivizr-min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body id="documentation">
+
+  <div class="inner">
+    <header>
+
+  <a href="/"><img src="/images/logo@2x.png" alt="Git" height="46" width="110"></a>
+  <span id="tagline">--local-branching-on-the-cheap</span>
+  <script type="text/javascript">
+    var taglines = ["fast-version-control","everything-is-local","distributed-even-if-your-workflow-isnt","local-branching-on-the-cheap","distributed-is-the-new-centralized"];
+    var tagline = taglines[Math.floor(Math.random() * taglines.length)];
+    document.getElementById('tagline').innerHTML = '--' + tagline;
+  </script>
+  <form id="search" action="/search/results">
+    <input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text">
+  </form>
+  <div id="search-results"></div>
+
+</header>
+
+  </div> <!-- .inner -->
+
+    <div class="inner">
+      <div id="content-wrapper">
+        <aside class="sidebar">
+  <nav>
+    <ul>
+      <li>
+        <a href="/about">About</a>
+        <ul class="">
+          <li>
+            <a href="/about">Branching and Merging</a>
+          </li>
+          <li>
+            <a href="/about/small-and-fast">Small and Fast</a>
+          </li>
+          <li>
+            <a href="/about/distributed">Distributed</a>
+          </li>
+          <li>
+            <a href="/about/info-assurance">Data Assurance</a>
+          </li>
+          <li>
+            <a href="/about/staging-area">Staging Area</a>
+          </li>
+          <li>
+            <a href="/about/free-and-open-source">Free and Open Source</a>
+          </li>
+          <li>
+            <a href="/about/trademark">Trademark</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="active" href="/doc">Documentation</a>
+        <ul class="expanded">
+          <li>
+            <a class="active" href="/docs">Reference</a>
+          </li>
+          <li>
+            <a href="/book">Book</a>
+          </li>
+          <li>
+            <a href="/videos">Videos</a>
+          </li>
+          <li>
+            <a href="/doc/ext">External Links</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/downloads">Downloads</a>
+        <ul class="">
+          <li>
+            <a href="/downloads/guis">GUI Clients</a>
+          </li>
+          <li>
+            <a href="/downloads/logos">Logos</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/community">Community</a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+        <div id="content">
+          
+  <div id="reference-version">
+    <a class="dropdown-trigger" id="reference-languages-trigger" data-panel-id="l10n-versions-dropdown" href="#">
+  English ▾</a>
+<div class="dropdown-panel right" id="l10n-versions-dropdown">
+  <header>Localized versions of <strong>gitcvs-migration</strong> manual</header>
+  <ol class="reference-previous-versions">
+      <li>
+        <a href="/docs/gitcvs-migration/en"><span class="version">English</span>
+        </a>
+        </li>
+  </ol>
+  <footer>
+    Want to read in your language or fix typos?<br> <a href="https://github.com/jnavila/git-manpages-l10n">You can help translate this page</a>.
+  </footer>
+</div>
+
+    <a class="dropdown-trigger" id="reference-topics-trigger" data-panel-id="topics-dropdown" href="#">Topics ▾</a>
+<div class="dropdown-panel right" id="topics-dropdown">
+  <div class="three-column">
+    <div class="column-left">
+      <h3 class="setup">Setup and Config</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git">git</a></li>
+  <li><a href="/docs/git-config">config</a></li>
+  <li><a href="/docs/git-help">help</a></li>
+  <li><a href="/docs/git-bugreport">bugreport</a></li>
+</ul>
+
+      <h3 class="projects">Getting and Creating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-init">init</a></li>
+  <li><a href="/docs/git-clone">clone</a></li>
+</ul>
+
+      <h3 class="snapshotting">Basic Snapshotting</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-add">add</a></li>
+  <li><a href="/docs/git-status">status</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-commit">commit</a></li>
+  <li><a href="/docs/git-notes">notes</a></li>
+  <li><a href="/docs/git-restore">restore</a></li>
+  <li><a href="/docs/git-reset">reset</a></li>
+  <li><a href="/docs/git-rm">rm</a></li>
+  <li><a href="/docs/git-mv">mv</a></li>
+</ul>
+
+      <h3 class="branching">Branching and Merging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-branch">branch</a></li>
+  <li><a href="/docs/git-checkout">checkout</a></li>
+  <li><a href="/docs/git-switch">switch</a></li>
+  <li><a href="/docs/git-merge">merge</a></li>
+  <li><a href="/docs/git-mergetool">mergetool</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-stash">stash</a></li>
+  <li><a href="/docs/git-tag">tag</a></li>
+  <li><a href="/docs/git-worktree">worktree</a></li>
+</ul>
+
+      <h3 class="sharing">Sharing and Updating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-fetch">fetch</a></li>
+  <li><a href="/docs/git-pull">pull</a></li>
+  <li><a href="/docs/git-push">push</a></li>
+  <li><a href="/docs/git-remote">remote</a></li>
+  <li><a href="/docs/git-submodule">submodule</a></li>
+</ul>
+
+    </div>
+    <div class="column-middle">
+      <h3 class="inspection">Inspection and Comparison</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-show">show</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-difftool">difftool</a></li>
+  <li><a href="/docs/git-range-diff">range-diff</a></li>
+  <li><a href="/docs/git-shortlog">shortlog</a></li>
+  <li><a href="/docs/git-describe">describe</a></li>
+</ul>
+
+      <h3 class="patching">Patching</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-cherry-pick">cherry-pick</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-rebase">rebase</a></li>
+  <li><a href="/docs/git-revert">revert</a></li>
+</ul>
+
+      <h3 class="debugging">Debugging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-bisect">bisect</a></li>
+  <li><a href="/docs/git-blame">blame</a></li>
+  <li><a href="/docs/git-grep">grep</a></li>
+</ul>
+
+      <h3 class="email">Email</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-am">am</a></li>
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-format-patch">format-patch</a></li>
+  <li><a href="/docs/git-send-email">send-email</a></li>
+  <li><a href="/docs/git-request-pull">request-pull</a></li>
+</ul>
+
+      <h3 class="external">External Systems</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-svn">svn</a></li>
+  <li><a href="/docs/git-fast-import">fast-import</a></li>
+</ul>
+
+      <h3 class="server-admin">Server Admin</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-daemon">daemon</a></li>
+  <li><a href="/docs/git-update-server-info">update-server-info</a></li>
+</ul>
+
+    </div>
+    <div class="column-right">
+      <h3 class="guides">Guides</h3>
+<ul class="unstyled">
+  <li><a href="/docs/gitattributes">gitattributes</a></li>
+  <li><a href="/docs/gitcli">Command-line interface conventions</a></li>
+  <li><a href="/docs/giteveryday">Everyday Git</a></li>
+  <li><a href="/docs/gitfaq">Frequently Asked Questions (FAQ)</a></li>
+  <li><a href="/docs/gitglossary">Glossary</a></li>
+  <li><a href="/docs/githooks">Hooks</a></li>
+  <li><a href="/docs/gitignore">gitignore</a></li>
+  <li><a href="/docs/gitmodules">gitmodules</a></li>
+  <li><a href="/docs/gitrevisions">Revisions</a></li>
+  <li><a href="/docs/gitsubmodules">Submodules</a></li>
+  <li><a href="/docs/gittutorial">Tutorial</a></li>
+  <li><a href="/docs/gitworkflows">Workflows</a></li>
+  <li><a href="/docs/git#_guides">All guides...</a></li>
+</ul>
+
+      <h3 class="admin">Administration</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-clean">clean</a></li>
+  <li><a href="/docs/git-gc">gc</a></li>
+  <li><a href="/docs/git-fsck">fsck</a></li>
+  <li><a href="/docs/git-reflog">reflog</a></li>
+  <li><a href="/docs/git-filter-branch">filter-branch</a></li>
+  <li><a href="/docs/git-instaweb">instaweb</a></li>
+  <li><a href="/docs/git-archive">archive</a></li>
+  <li><a href="/docs/git-bundle">bundle</a></li>
+</ul>
+
+      <h3 class="plumbing">Plumbing Commands</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-cat-file">cat-file</a></li>
+  <li><a href="/docs/git-check-ignore">check-ignore</a></li>
+  <li><a href="/docs/git-checkout-index">checkout-index</a></li>
+  <li><a href="/docs/git-commit-tree">commit-tree</a></li>
+  <li><a href="/docs/git-count-objects">count-objects</a></li>
+  <li><a href="/docs/git-diff-index">diff-index</a></li>
+  <li><a href="/docs/git-for-each-ref">for-each-ref</a></li>
+  <li><a href="/docs/git-hash-object">hash-object</a></li>
+  <li><a href="/docs/git-ls-files">ls-files</a></li>
+  <li><a href="/docs/git-ls-tree">ls-tree</a></li>
+  <li><a href="/docs/git-merge-base">merge-base</a></li>
+  <li><a href="/docs/git-read-tree">read-tree</a></li>
+  <li><a href="/docs/git-rev-list">rev-list</a></li>
+  <li><a href="/docs/git-rev-parse">rev-parse</a></li>
+  <li><a href="/docs/git-show-ref">show-ref</a></li>
+  <li><a href="/docs/git-symbolic-ref">symbolic-ref</a></li>
+  <li><a href="/docs/git-update-index">update-index</a></li>
+  <li><a href="/docs/git-update-ref">update-ref</a></li>
+  <li><a href="/docs/git-verify-pack">verify-pack</a></li>
+  <li><a href="/docs/git-write-tree">write-tree</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+    <a class="dropdown-trigger" id="reference-versions-trigger" data-panel-id="previous-versions-dropdown" href="#">
+    Version 2.14.6
+ ▾ </a>
+<span class="light">gitcvs-migration last updated in 2.33.0</span>
+<div class="dropdown-panel left" id="previous-versions-dropdown">
+  <header>Changes in the <strong>gitcvs-migration</strong> manual</header>
+  <ol class="reference-previous-versions">
+        <li class="no-change"><span>2.13.7 → 2.33.0 no changes</span></li>
+        <li>
+        <a href="/docs/gitcvs-migration/2.12.5"><span class="version">2.12.5</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">09/22/17</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.11.4 no changes</span></li>
+        <li>
+        <a href="/docs/gitcvs-migration/2.10.5"><span class="version">2.10.5</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">09/22/17</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.3.10 → 2.9.5 no changes</span></li>
+        <li>
+        <a href="/docs/gitcvs-migration/2.2.3"><span class="version">2.2.3</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">09/04/15</em>
+        </a>
+        </li>
+    <li>&nbsp;</li>
+    <!-- <li><a class="more" href="#">See more previous releases →</a></li> -->
+  </ol>
+  <footer>
+    <p>Check your version of git by running</p>
+    <code class="command">git --version</code>
+  </footer>
+</div>
+
+  </div>
+
+  <div id="main">
+    <div class="sect1">
+<h2 id="_name"><a class="anchor" href="#_name"></a>NAME</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>gitcvs-migration - Git for CVS users</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<pre class="content"><em>git cvsimport</em> *</pre>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_description"><a class="anchor" href="#_description"></a>DESCRIPTION</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Git differs from CVS in that every working tree contains a repository with
+a full copy of the project history, and no repository is inherently more
+important than any other.  However, you can emulate the CVS model by
+designating a single shared repository which people can synchronize with;
+this document explains how to do that.</p>
+</div>
+<div class="paragraph">
+<p>Some basic familiarity with Git is required. Having gone through
+<a href="/docs/gittutorial">gittutorial[7]</a> and
+<a href="/docs/gitglossary">gitglossary[7]</a> should be sufficient.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_developing_against_a_shared_repository"><a class="anchor" href="#_developing_against_a_shared_repository"></a>Developing against a shared repository</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Suppose a shared repository is set up in /pub/repo.git on the host
+foo.com.  Then as an individual committer you can clone the shared
+repository over ssh with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git clone foo.com:/pub/repo.git/ my-project
+$ cd my-project</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and hack away.  The equivalent of <em>cvs update</em> is</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git pull origin</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which merges in any work that others might have done since the clone
+operation.  If there are uncommitted changes in your working tree, commit
+them first before running git pull.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <em>pull</em> command knows where to get updates from because of certain
+configuration variables that were set by the first <em>git clone</em>
+command; see <code>git config -l</code> and the <a href="/docs/git-config">git-config[1]</a> man
+page for details.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>You can update the shared repository with your changes by first committing
+your changes, and then using the <em>git push</em> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git push origin master</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>to "push" those commits to the shared repository.  If someone else has
+updated the repository more recently, <em>git push</em>, like <em>cvs commit</em>, will
+complain, in which case you must pull any changes before attempting the
+push again.</p>
+</div>
+<div class="paragraph">
+<p>In the <em>git push</em> command above we specify the name of the remote branch
+to update (<code>master</code>).  If we leave that out, <em>git push</em> tries to update
+any branches in the remote repository that have the same name as a branch
+in the local repository.  So the last <em>push</em> can be done with either of:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git push origin
+$ git push foo.com:/pub/project.git/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>as long as the shared repository does not have any branches
+other than <code>master</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setting_up_a_shared_repository"><a class="anchor" href="#_setting_up_a_shared_repository"></a>Setting Up a Shared Repository</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We assume you have already created a Git repository for your project,
+possibly created from scratch or from a tarball (see
+<a href="/docs/gittutorial">gittutorial[7]</a>), or imported from an already existing CVS
+repository (see the next section).</p>
+</div>
+<div class="paragraph">
+<p>Assume your existing repo is at /home/alice/myproject.  Create a new "bare"
+repository (a repository without a working tree) and fetch your project into
+it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ mkdir /pub/my-repo.git
+$ cd /pub/my-repo.git
+$ git --bare init --shared
+$ git --bare fetch /home/alice/myproject master:master</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, give every team member read/write access to this repository.  One
+easy way to do this is to give all the team members ssh access to the
+machine where the repository is hosted.  If you don’t want to give them a
+full shell on the machine, there is a restricted shell which only allows
+users to do Git pushes and pulls; see <a href="/docs/git-shell">git-shell[1]</a>.</p>
+</div>
+<div class="paragraph">
+<p>Put all the committers in the same group, and make the repository
+writable by that group:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ chgrp -R $group /pub/my-repo.git</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Make sure committers have a umask of at most 027, so that the directories
+they create are writable and searchable by other group members.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_importing_a_cvs_archive"><a class="anchor" href="#_importing_a_cvs_archive"></a>Importing a CVS archive</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+These instructions use the <code>git-cvsimport</code> script which ships with
+git, but other importers may provide better results. See the note in
+<a href="/docs/git-cvsimport">git-cvsimport[1]</a> for other options.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>First, install version 2.1 or higher of cvsps from
+<a href="https://github.com/andreyvit/cvsps">https://github.com/andreyvit/cvsps</a> and make
+sure it is in your path.  Then cd to a checked out CVS working directory
+of the project you are interested in and run <a href="/docs/git-cvsimport">git-cvsimport[1]</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git cvsimport -C &lt;destination&gt; &lt;module&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This puts a Git archive of the named CVS module in the directory
+&lt;destination&gt;, which will be created if necessary.</p>
+</div>
+<div class="paragraph">
+<p>The import checks out from CVS every revision of every file.  Reportedly
+cvsimport can average some twenty revisions per second, so for a
+medium-sized project this should not take more than a couple of minutes.
+Larger projects or remote repositories may take longer.</p>
+</div>
+<div class="paragraph">
+<p>The main trunk is stored in the Git branch named <code>origin</code>, and additional
+CVS branches are stored in Git branches with the same names.  The most
+recent version of the main trunk is also left checked out on the <code>master</code>
+branch, so you can start adding your own changes right away.</p>
+</div>
+<div class="paragraph">
+<p>The import is incremental, so if you call it again next month it will
+fetch any CVS updates that have been made in the meantime.  For this to
+work, you must not modify the imported branches; instead, create new
+branches for your own changes, and merge in the imported branches as
+necessary.</p>
+</div>
+<div class="paragraph">
+<p>If you want a shared repository, you will need to make a bare clone
+of the imported directory, as described above. Then treat the imported
+directory as another development clone for purposes of merging
+incremental imports.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced_shared_repository_management"><a class="anchor" href="#_advanced_shared_repository_management"></a>Advanced Shared Repository Management</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Git allows you to specify scripts called "hooks" to be run at certain
+points.  You can use these, for example, to send all commits to the shared
+repository to a mailing list.  See <a href="/docs/githooks">githooks[5]</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can enforce finer grained permissions using update hooks.  See
+<a href="/docs/howto/update-hook-example">Controlling access to branches using
+update hooks</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_providing_cvs_access_to_a_git_repository"><a class="anchor" href="#_providing_cvs_access_to_a_git_repository"></a>Providing CVS Access to a Git Repository</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is also possible to provide true CVS access to a Git repository, so
+that developers can still use CVS; see <a href="/docs/git-cvsserver">git-cvsserver[1]</a> for
+details.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_alternative_development_models"><a class="anchor" href="#_alternative_development_models"></a>Alternative Development Models</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>CVS users are accustomed to giving a group of developers commit access to
+a common repository.  As we’ve seen, this is also possible with Git.
+However, the distributed nature of Git allows other development models,
+and you may want to first consider whether one of them might be a better
+fit for your project.</p>
+</div>
+<div class="paragraph">
+<p>For example, you can choose a single person to maintain the project’s
+primary public repository.  Other developers then clone this repository
+and each work in their own clone.  When they have a series of changes that
+they’re happy with, they ask the maintainer to pull from the branch
+containing the changes.  The maintainer reviews their changes and pulls
+them into the primary repository, which other developers pull from as
+necessary to stay coordinated.  The Linux kernel and other projects use
+variants of this model.</p>
+</div>
+<div class="paragraph">
+<p>With a small group, developers may just pull changes from each other’s
+repositories without the need for a central maintainer.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_see_also"><a class="anchor" href="#_see_also"></a>SEE ALSO</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="/docs/gittutorial">gittutorial[7]</a>,
+<a href="/docs/gittutorial-2">gittutorial-2[7]</a>,
+<a href="/docs/gitcore-tutorial">gitcore-tutorial[7]</a>,
+<a href="/docs/gitglossary">gitglossary[7]</a>,
+<a href="/docs/giteveryday">giteveryday[7]</a>,
+<a href="/docs/user-manual">The Git User’s Manual</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git"><a class="anchor" href="#_git"></a>GIT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Part of the <a href="/docs/git">git[1]</a> suite</p>
+</div>
+</div>
+</div>
+  </div>
+
+        </div>
+      </div>
+      <footer>
+  <div class="site-source">
+    <a href="/site">About this site</a><br>
+    Patches, suggestions, and comments are welcome.
+  </div>
+  <div class="sfc-member">
+    Git is a member of <a href="/sfc">Software Freedom Conservancy</a>
+  </div>
+</footer>
+
+<script src="/assets/application-8f00caf205cd147207c24e44516f18312442fd845fad0725e748f19cad311d0d.js"></script>
+
+    </div>
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

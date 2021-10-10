@@ -1,0 +1,739 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN syslog.conf (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, syslog.conf"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="syslog.conf" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">syslog.conf (5)</font><hr><li> <a href="/man.shtml?topic=syslog.conf&amp;category=4&amp;russian=4"><u>syslog.conf</u></a> (4) <font color="#555555"> ( Solaris man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=syslog.conf&amp;category=4&amp;russian=0"><u>syslog.conf</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=syslog.conf&amp;category=5&amp;russian=1"><u>syslog.conf</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=syslog.conf&amp;category=5&amp;russian=0"><u>syslog.conf</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=syslog.conf&amp;category=5&amp;russian=2"><u>syslog.conf</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+syslog.conf - <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a>(8) 
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Файл
+<i>syslog.conf</i>
+
+является главным конфигурационным файлом для демона
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8)
+
+, выполняющего журналирование системных сообщений на *nix системах.
+Этот файл определяет правила для журналирования. Для описания особых
+возможностей смотрите руководство по
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sysklogd&amp;category=8">sysklogd</a></b>(8)<b>.</b>
+
+<p>
+Каждое правило представляет из себя два поля: поле
+<i>селектора</i>
+
+и поле 
+<i>действия .</i>
+
+Эти два поля разделены одним (или более) пробелом или символом
+табуляции. Поле селектора описывает шаблон, определяющий над какими
+сообщениями (они задаются службами и приоритетами), надлежит выполнять
+определенные действия.
+</p><p>
+Строки начинающиеся с символа `#' и пустые строки игнорируются.
+</p><p>
+Эта версия 
+<b>syslogd</b>
+
+понимает расширенный синтаксис: одно правило может быть разделено на
+несколько строк, если строка правила заканчивается символом `\'.
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>СЕЛЕКТОРЫ</h2>
+
+Поле селектора, в свою очередь, тоже состоит из двух частей:
+<i>служба</i>
+
+и
+<i>приоритет</i>,
+
+разделенных точкой (`.').
+Обе части не чувствительны к регистру и могут быть заданы также в виде
+десятичных чисел, но не делайте этого. И службы, и приоритеты описаны в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></b>(3).
+
+Указанные ниже имена описаны в
+<i>/usr/include/syslog.h</i>,
+
+в виде
+<b>LOG_</b>-значений<b>.</b>
+
+<p>
+<i>Служба </i>
+
+задается одним из следующих ключевых слов:
+<b>auth</b>, <b>authpriv</b>, <b>cron</b>, <b>daemon</b>, <b>kern</b>, <b>lpr</b>, 
+
+<b>mail</b>, <b>mark</b>, <b>news</b>, <b>security</b> (тоже что и <b>auth</b>), 
+
+<b>syslog</b>, <b>user</b>, <b>uucp</b> и <b>local0</b> ... <b>local7</b>.
+
+Ключевое слово
+<b>security</b>
+
+больше не должно использоваться, а
+<b>mark</b>
+
+предназначено только для внутреннего использования и не указывается для 
+приложений - хотя вы можете задать такие сообщения для
+перенаправления. 
+<i>Служба</i>
+
+определяет подсистемы, которые генерируют сообщение, т.е. все почтовые
+программы, конечно, если они используют syslog, журналируют сообщения c
+указанием почтовой службы
+<b></b>(<b>LOG_MAIL</b>)<b>.</b>
+
+</p><p>
+<i>Прироритет</i>
+
+задается одним из следующих ключевых слов (в порядке возрастания серьезности):
+<b>debug</b>, <b>info</b>, <b>notice</b>, <b>warning</b>, <b>warn</b> (тоже что и 
+
+<b>warning</b>), <b>err</b>, <b>error</b> (тоже что и <b>err</b>), <b>crit</b>, 
+
+<b>alert</b>, <b>emerg</b>, <b>panic</b> (тоже что и <b>emerg</b>).
+
+Ключевые слова
+<b>error</b>, <b>warn</b> и <b>panic</b>
+
+устарели и не должны больше использоваться.
+<i>Приоритет</i>
+
+определяет серьезность сообщения.
+</p><p>
+Поведение оригинального BSD syslogd такое, что все сообщения
+определенного приоритета и выше журналируются в соответствии с заданным
+действием. Поведение этой версии 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8)
+
+такое же, но с некоторыми дополнениями.
+</p><p>
+Дополнительно к указанным выше именам,
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8)
+
+понимает следующие расширения: `*' обозначает все службы или все
+приоритеты, в зависимости от того, где используется (до или после точки
+`.'). Ключевое слово
+<b>none</b>
+
+означает отсутствие приоритета для данной службы.
+</p><p>
+Вы можете задать несколько служб в одном правиле для одного и того же
+приоритета, используя `,'. Запомните, что при использовании такой записи из шаблона
+извлекается только та часть, которая отвечает за службу, а часть,
+которая отвечает за приоритет, игнорируется.
+</p><p>
+Для одного 
+<i>действия</i>
+
+может быть задано несколько селекторов с использованием `;'.
+Запомните, что каждый селектор в поле 
+<i>селектор</i>
+
+может перезаписать предшествующие. Используя это поведение, вы можете
+исключать некоторые приоритеты из шаблона.
+</p><p>
+Эта версия 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8)
+
+расширяет синтаксис оригинальной версии BSD, что делает его
+использование более интуитивно понятным. Вы можете перед каждым
+приоритетом ставить `=' (равенство), чтобы определить только один
+приоритет, а не любой из тех, что выше. Вы можете также (использовать
+оба символа корректно) перед приоритетом ставить `!' (инвертирование),
+чтобы игнорировать все приоритеты, которые совпадают с указанным или выше
+него. Если вы используете оба расширения, то `!' должен быть перед
+`=' (не равно) - просто интуитивно используйте их.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ДЕЙСТВИЯ</h2>
+
+Поле действия в правиле описывает абстрактный термин `logfile'.
+Необязательно, чтобы `logfile' был реальным файлом. 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8)
+
+предоставляет следующие действия:
+<p>
+<a name="lbAF">&nbsp;</a>
+</p><h3>Обычный файл</h3>
+
+Обычно сообщения журналируются в реальных файлах. Файл должен быть задан
+с полным путем, начинающимся с `/'.
+<p>
+Вы можете перед каждым действием указывать `-', чтобы не допускать
+синхронизации файла после каждого добавления записи в журнал. Заметьте,
+что вы можете потерять информацию, если система рухнет сразу после
+попытки записи. Тем не менее, это может дать вам небольшой прирост в
+производительности, особенно, если вы запускаете программы, которые
+выполняют журналирование очень часто.
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h3>Именованные каналы</h3>
+
+Эта версия 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8)
+
+поддерживает вывод журналируемых сообщений в именованные каналы (fifo).
+Fifo или именованный канал может быть использован как пункт назначения,
+посредством добавления символа `|' перед именем файла. Это удобно
+использовать для отладки. Заметьте, что перед тем как 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8)
+
+будет запущен, fifo должен быть создан с помощью команды 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mkfifo&amp;category=1">mkfifo</a></b>(1)<b>.</b>
+
+<p>
+<a name="lbAH">&nbsp;</a>
+</p><h3>Терминал и консоль</h3>
+
+Если файл, который вы задаете, является tty, выполняется специальная
+tty-обработка. Тоже самое и с 
+<i>/dev/console</i>.
+
+<p>
+<a name="lbAI">&nbsp;</a>
+</p><h3>Удаленный узел</h3>
+
+Эта версия
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8)
+
+полностью поддерживает удаленное журналирование, т.е. может посылать
+сообщения на удаленную систему, где запущен 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8)
+
+и принимать сообщения с удаленных систем. В свою очередь, удаленная
+система не будет пересылать сообщения снова, она просто будет
+журналировать их локально. Чтобы дать возможность удаленно журналировать
+сообщения на другой системе, указывайте `@' перед именем системы.
+<p>
+Используя эту возможность, вы можете контролировать все syslog сообщения
+на одной системе, если все другие машины будут удаленно выполнять
+журналирование на нее. Это позволяет уменьшить стоимость
+администрирования.
+</p><p>
+<a name="lbAJ">&nbsp;</a>
+</p><h3>Список пользователей</h3>
+
+Обычно критичные сообщения также направляются пользователю `root'. Вы можете
+задать список пользователей, которые будут получать сообщения, просто
+указав имена этих пользователей. Чтобы задать несколько пользователей,
+разделите их `,'. Если они зарегистрированы (совершили вход в
+систему), то получат сообщение. Не думаю, что письмо будет послано - уже
+может быть слишком поздно.
+<p>
+<a name="lbAK">&nbsp;</a>
+</p><h3>Каждый зарегистрированный (вошедший в систему)</h3>
+
+Аварийные сообщения часто идут ко всем пользователям, находящимся сейчас
+на системе, для того, чтобы уведомить их в том, что нечто странное
+происходит с системой. Чтобы задать такое поведение, используйте
+возможности 
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=wall&amp;category=1">wall</a></i>(1)<i>,</i>
+
+посредством использования `*'.
+<p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>ПРИМЕРЫ</h2>
+
+Здесь приведено несколько примеров, частично взятых с реально
+существующих систем и конфигураций. Надеюсь, они сделают ненужными все
+вопросы по настройке, если нет - напишите мне (Joey).
+<dl compact="">
+<dt></dt><dd>
+<pre># Хранить все критические сообщения в critical
+#
+*.=crit;kern.none            /var/adm/critical
+</pre>
+
+</dd></dl>
+<p>
+
+Сохранит все сообщения с приоритетом 
+<b>crit</b>
+
+в файле 
+<i>/var/adm/critical</i>,
+
+за исключением сообщений ядра.
+</p><p>
+</p><dl compact="">
+<dt></dt><dd>
+<pre># Сначала сообщения ядра сохраняются в файле kernel,
+# но критичные сообщения (и выше) также будут
+# отправлены на другую систему и на консоль
+#
+kern.*                       /var/adm/kernel
+kern.crit                    @finlandia
+kern.crit                    /dev/console
+kern.info;kern.!err          /var/adm/kernel-info
+</pre>
+
+</dd></dl>
+<p>
+
+Первое правило направляет все сообщения от службы kernel в файл
+<i>/var/adm/kernel</i>.
+
+</p><p>
+Вторая - направляет все сообщения ядра с приоритетом 
+<b>crit</b>
+
+и выше на удаленную систему finlandia. Это может быть полезно в случае,
+когда система рухнет и диск получит неисправимые ошибки и у вас может
+не быть возможности прочитать сохраненные сообщения. Но если они также
+будут и на удаленной машине, то вы можете попытаться выяснить причину
+сбоя.
+</p><p>
+Третье правило направляет эти сообщения к консоли, таким образом,
+человек, работающий непосредственно на машине, тоже получит их.
+</p><p>
+Четвертая строка говорит демону syslogd сохранять все сообщения ядра,
+которые приходят с приоритетами от
+<b>info</b> и до <b>warning</b>,
+
+в файле 
+<i>/var/adm/kernel-info</i>.
+
+Все остальные (от
+<i>err</i>
+
+и выше) не будут сохранены.
+</p><p>
+</p><dl compact="">
+<dt></dt><dd>
+<pre># tcpwrapper посылает в журнал записи с mail.info, мы
+# показываем все соединения на tty12
+#
+mail.=info                   /dev/tty12
+</pre>
+
+</dd></dl>
+<p>
+
+Отправляет все сообщения, использующие 
+<b>mail.info</b> (в тексте программы это выглядит как <b>LOG_MAIL</b> | <b>LOG_INFO</b>),
+
+в  
+<i>/dev/tty12</i>-
+
+двенадцатую консоль. К примеру, tcpwrapper
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcpd&amp;category=8">tcpd</a></b>(8)
+
+использует такие сообщения по умолчанию.
+</p><p>
+</p><dl compact="">
+<dt></dt><dd>
+<pre># Сохраняет все сообщения, касающиеся почты в файле
+#
+mail.*;mail.!=info           /var/adm/mail
+</pre>
+
+</dd></dl>
+<p>
+
+Этот шаблон выискивает все сообщения, пришедшие от службы 
+<b>mail ,</b>
+
+исключая сообщения с приоритетом
+<b>info .</b>
+
+Эти сообщения будут сохранены в файле 
+<i>/var/adm/mail</i>.
+
+</p><p>
+</p><dl compact="">
+<dt></dt><dd>
+<pre># Журналировать все сообщения mail.info и news.info в файле info
+#
+mail,news.=info              /var/adm/info
+</pre>
+
+</dd></dl>
+<p>
+
+Извлекает все сообщения, пришедшие либо с 
+<b>mail.info</b> , либо с <b>news.info</b>,
+
+и сохраняет их в файле
+<i>/var/adm/info</i>.
+
+</p><p>
+</p><dl compact="">
+<dt></dt><dd>
+<pre># Журналировать сообщения info и notice в файле messages
+#
+*.=info;*.=notice;\
+        mail.none  /var/log/messages
+</pre>
+
+</dd></dl>
+<p>
+
+Это позволяет демону 
+<b>syslogd</b>
+
+журналировать все сообщения, пришедшие либо с приоритетом
+<b>info</b> , либо с приоритетом <b>notice</b>,
+
+в файл 
+<i>/var/log/messages</i>,
+
+за исключением тех сообщений, которые используют службу 
+<b>mail .</b>
+
+</p><p>
+</p><dl compact="">
+<dt></dt><dd>
+<pre># Журналировать информационные сообщения в файл messages
+#
+*.=info;\
+        mail,news.none       /var/log/messages
+</pre>
+
+</dd></dl>
+<p>
+
+Это правило указывает 
+<b>syslogd</b>
+
+журналировать все сообщения, пришедшие с приоритетом 
+<b>info ,</b>
+
+в файл
+<i>/var/log/messages</i>.
+
+Но сообщения, пришедшие со служб либо 
+<b>mail</b> , либо <b>news</b>,
+
+не будут сохранены.
+</p><p>
+</p><dl compact="">
+<dt></dt><dd>
+<pre># Аварийные сообщения будут показаны, используя wall
+#
+*.=emerg                     *
+</pre>
+
+</dd></dl>
+<p>
+
+Это правило говорит демону 
+<b>syslogd</b>
+
+выводить все аварийные сообщения всем пользователям, которые в текущий
+момент находятся в системе.
+</p><p>
+</p><dl compact="">
+<dt></dt><dd>
+<pre># Сообщения с приоритетом alert будут направлены оператору.
+#
+*.alert                      root,joey
+</pre>
+
+</dd></dl>
+<p>
+
+Это правило направляет все сообщения с приоритетом 
+<b>alert</b>
+
+или выше на терминалы операторов, т.е. пользователям `root' и
+`joey', если они вошли в систему.
+</p><p>
+</p><dl compact="">
+<dt></dt><dd>
+<pre>*.*                          @finlandia
+</pre>
+
+</dd></dl>
+<p>
+
+Это правило перенаправляет все сообщения на удаленную систему с
+именем finlandia. Это полезно в случае кластера машин, когда все syslog
+сообщения будут храниться только на одной машине.
+</p><p>
+<a name="lbAM">&nbsp;</a>
+</p><h2>РАЗЛИЧИЯ В СИНТАКСИСЕ КОНФИГУРАЦИОННОГО ФАЙЛОВ</h2>
+
+<b>Syslogd</b>
+
+в своем конфигурационном файле использует синтаксис немного отличающийся
+от синтаксиса, используемого в оригинальной версии BSD. Изначально все
+сообщения определенного приоритета и выше него пересылались в журнал.
+Модификаторы `=', `!' и `-' были добавлены, чтобы сделать 
+<b>syslogd</b>
+
+более гибким и чтобы описывать правила в интуитивно понятной
+форме.
+<p>
+Оригинальный BSD syslogd не принимает пробелы как разделители между
+полем селектора и полем действия.
+</p><p>
+<a name="lbAN">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+
+<dl compact="">
+<dt><i>/etc/syslog.conf</i>
+
+</dt><dd>
+Конфигурационный файл для
+<b>syslogd</b>
+
+<p>
+</p></dd></dl>
+<a name="lbAO">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+Эффект от использования нескольких селекторов не всегда интуитивно
+понятен. К примеру, `mail.crit,*.err' будет отбирать сообщения от
+`mail' служб с приоритетом `err' и выше, а не с приоритетом `crit'
+и выше.
+<p>
+<a name="lbAP">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sysklogd&amp;category=8">sysklogd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=klogd&amp;category=8">klogd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=logger&amp;category=1">logger</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=2">syslog</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></b>(3)
+
+<p>
+<a name="lbAQ">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+Из исходных кодов BSD Greg Wettstein (<a href="mailto:greg@wind.enjellic.com">greg@wind.enjellic.com</a>) портировал
+оригинальный 
+<b>syslogd</b>
+
+под Linux. Martin Schulze (<a href="mailto:joey@linux.de">joey@linux.de</a>) исправил некоторые ошибки и
+добавил новую функциональность.
+<p>
+<a name="lbAR">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+Перевод с английского Alexander Kolotov (<a href="mailto:alexandr.kolotov@gmail.com">alexandr.kolotov@gmail.com</a>)
+2007
+<p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">СЕЛЕКТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAE">ДЕЙСТВИЯ</a></dt><dd>
+<dl>
+<dt><a href="#lbAF">Обычный файл</a></dt><dd>
+</dd><dt><a href="#lbAG">Именованные каналы</a></dt><dd>
+</dd><dt><a href="#lbAH">Терминал и консоль</a></dt><dd>
+</dd><dt><a href="#lbAI">Удаленный узел</a></dt><dd>
+</dd><dt><a href="#lbAJ">Список пользователей</a></dt><dd>
+</dd><dt><a href="#lbAK">Каждый зарегистрированный (вошедший в систему)</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAL">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAM">РАЗЛИЧИЯ В СИНТАКСИСЕ КОНФИГУРАЦИОННОГО ФАЙЛОВ</a></dt><dd>
+</dd><dt><a href="#lbAN">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAO">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAP">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAQ">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAR">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="syslog.conf" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

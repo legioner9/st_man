@@ -1,0 +1,671 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN console_ioctl (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, console_ioctl"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="console_ioctl" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">console_ioctl (4)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=console_ioctl&amp;category=4&amp;russian=0"><u>console_ioctl</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=console_ioctl&amp;category=4&amp;russian=2"><u>console_ioctl</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+console ioctl - ioctl для консольных терминалов и виртуальных консолей
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Поддерживаются Linux-ориентированные запросы <b>ioctl()</b>.  
+Каждый запрос определяется третьим аргументом, далее именуемым <i>argp</i>.
+<dl compact="">
+<dt><b>KDGETLED</b></dt><dd>
+Получить состояние индикаторов. <i>argp</i> указывает на длинное целое (long int). Младшие 
+три бита <i>*argp</i> устанавливают состояние индикаторов следующим образом:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;LED_CAP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x04&nbsp;&nbsp;&nbsp;индикатор&nbsp;caps&nbsp;lock
+<br>&nbsp;&nbsp;&nbsp;&nbsp;LEC_NUM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x02&nbsp;&nbsp;&nbsp;индикатор&nbsp;num&nbsp;lock
+<br>&nbsp;&nbsp;&nbsp;&nbsp;LED_SCR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x01&nbsp;&nbsp;&nbsp;индикатор&nbsp;scroll&nbsp;lock
+</dd><dt><b>KDSETLED</b></dt><dd>
+Устанавливает состояние индикаторов. Состояние индикаторов устанавливается в соответствии с 
+тремя младшими битами <i>argp</i>. Однако, если установлен старший бит, индикаторы 
+возвращаются в исходное состояние: отображают статус функций клавиатуры caps lock, num lock 
+и scroll lock.
+</dd></dl>
+<p>
+
+До появления ядра 1.1.54 индикаторы состояния отражали только состояние флагов клавиатуры, 
+которые также могли быть изменены KDGETLED/KDSETLED. После появления 1.1.54 они могли отображать 
+уже произвольную информацию, но по умолчанию показывали флаги клавиатуры. Описанные ниже 
+два запроса ioctl используются для доступа к флагам клавиатуры.
+</p><dl compact="">
+<dt><b>KDGKBLED</b></dt><dd>
+Считывает флаги клавиатуры: CapsLock, NumLock, ScrollLock (не индикаторы).
+<i>argp</i> указывает на символ (char), который получает состояния флагов.
+Младшие три бита (маска 0x7) получают текущее состояние флагов, следующие три
+бита (маска 0x70) присваивают устанавливаемое состояние флагам по умолчанию. 
+(Со времени появления ядра 1.1.54).
+</dd><dt><b>KDSKBLED</b></dt><dd>
+Устанавливает флаги клавиатуры: CapsLock, NumLock, ScrollLock (не индикаторы).
+<i>argp</i> содержит требуемые состояния флагов.
+Три младших бита (маска 0x7) содержит состояния флагов, следующие три бита (маска 0x70)
+содержат состояния флагов по умолчанию. (Со времени появления ядра 1.1.54).
+</dd><dt><b>KDGKBTYPE</b></dt><dd>
+Считывает тип клавиатуры. Возвращается значение, равное KB_101, определено как 0x02.
+</dd><dt><b>KDADDIO</b></dt><dd>
+Добавляет порт ввода/вывода (I/O) как допустимый. Эквивалентно вызову ioperm(arg,1,1).
+</dd><dt><b>KDDELIO</b></dt><dd>
+Удаляет порт ввода/вывода (I/O) как недопустимый. Эквивалентно вызову ioperm(arg,1,0).
+</dd><dt><b>KDENABIO</b></dt><dd>
+Разрешает ввод/вывод на видеокарту. Эквивалентно вызову ioperm(0x3b4, 0x3df-0x3b4+1, 1).
+</dd><dt><b>KDDISABIO</b></dt><dd>
+Запрещает ввод/вывод на видеокарту. Эквивалентно вызову ioperm(0x3b4, 0x3df-0x3b4+1, 0).
+</dd><dt><b>KDSETMODE</b></dt><dd>
+Установить текстовый/графический режим. <i>argp</i> содержит одно из двух значений:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;KD_TEXT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00
+<br>&nbsp;&nbsp;&nbsp;&nbsp;KD_GRAPHICS&nbsp;&nbsp;&nbsp;0x01
+</dd><dt><b>KDGETMODE</b></dt><dd>
+Устанавливает режим (текстовый/графический). <i>argp</i> указывает на длинное целое, 
+которому присваивается одно из вышеперечисленных устанавливаемых значений.
+</dd><dt><b>KDMKTONE</b></dt><dd>
+Генерирует тон заданной длительности.  
+Младшие 16 битов <i>argp</i> задают частоту тона (период в тактах), старшие 16 битов 
+устанавливают его длительность в мсек. Если длительность равна нулю, звук выключается.
+Управление возвращается 
+немедленно. Например, <i>argp</i> = (125&lt;&lt;16) + 0x637 определяет звук, обычно 
+связанный с ctrl-G. (Работает с 0.99pl1; не работает в 2.1.49-50).
+</dd><dt><b>KIOCSOUND</b></dt><dd>
+Начинает и останавливает генерацию звука. Младшие 16 битов <i>argp</i> определяют период 
+в тактах (то есть <i>argp</i> = 1193180/частота). Значение <i>argp</i> = 0 выключает звук. 
+В обоих случаях управление возвращается немедленно.
+</dd><dt><b>GIO_CMAP</b></dt><dd>
+Считывает текущую цветовую карту по умолчанию из ядра. <i>argp</i> указывает на массив
+из 48-и байтов. (Со времени появления ядра 1.3.3).
+</dd><dt><b>PIO_CMAP</b></dt><dd>
+Изменяет цветовую карту по умолчанию для текстового режима.  <i>argp</i> указывает на массив из 48-и 
+байтов, который содержит, по порядку, значения красного, зеленого и синего для 
+16-и доступных экранных цветов: 0 - составляющая выключена, 255 - полная интенсивность. 
+Цвета по умолчанию, по порядку: black, dark red, dark green, brown, dark blue, dark purple, 
+dark cyan, light grey, dark grey, bright red, bright green, yellow, bright blue,
+bright purple, bright cyan и white.  (Со времени появления ядра 1.3.3).
+</dd><dt><b>GIO_FONT</b></dt><dd>
+Получить экранный шрифт (256 символов) в расширенной форме. <i>argp</i> указывает на массив из 
+8192 байтов. Возвращает код ошибки <b>EINVAL</b>, если текущий загруженный шрифт содержит 
+512 символов или консоль находится не в текстовом режиме.
+</dd><dt><b>GIO_FONTX</b></dt><dd>
+Считывает экранный шрифт и связанную с ним информацию. <i>argp</i> указывает на структуру
+consolefontdesc (смотри <b>PIO_FONTX</b>). При вызове поле <i>charcount</i> должно иметь 
+максимальное число символов в качестве установленного значения, которое помещается в буфер, 
+указываемый как 
+<i>chardata</i>. При возврате <i>charcount</i> и <i>charheight</i> содержат полученную 
+информацию о текущем загруженном  шрифте, массив <i>chardata</i> содержит данные шрифта,
+если начальное значение <i>charcount</i> показывало доступное пространство; в противном 
+случае буфер остается неизменным и установленное значение <i>errno</i> равно <b>ENOMEM</b>. 
+(Со времени появления ядра 1.3.1).
+</dd><dt><b>PIO_FONT</b></dt><dd>
+Устанавливает экранный шрифт в объеме 256 символов. Шрифт загружается в знакогенератор EGA/VGA. 
+<i>argp</i> указывает на карту размером 8192 байта (32 байта на символ).
+Только первые <i>N</i> из них используются для шрифта 8x<i>N</i> (0 &lt; <i>N</i> &lt;= 32).
+Этот вызов также отменяет установленные соответствия символов Unicode шрифту.
+</dd><dt><b>PIO_FONTX</b></dt><dd>
+Устанавливает экранный шрифт и соответствующую информацию для изображения. <i>argp</i> 
+указывает на структуру:
+<pre>struct consolefontdesc {
+   u_short <i>charcount</i>;  /* число символов в шрифте (256 или 512) */
+   u_short <i>charheight</i>; /* число линий сканирования символа (1-32) */
+   char *<i>chardata</i>;     /* данные шрифта в расширенной форме */
+};
+</pre>
+
+Если требуется, соответственно изменяются размеры экрана и <b>SIGWINCH</b> 
+посылается соответствующим процессам. Этот вызов также отменяет установленные 
+соответствия символов Unicode и шрифта. (Со времени появления ядра 1.3.1).
+</dd><dt><b>PIO_FONTRESET</b></dt><dd>
+Пересылает экранный шрифт, размер и соответствие символов Unicode шрифту в установки по 
+умолчанию при загрузке. <i>argp</i> не используется, но установленное значение ее
+должно быть <b>NULL</b>, чтобы эта версия была совместима с будущими версиями Linux.  
+(Со времени появления ядра 1.3.28).
+</dd><dt><b>GIO_SCRNMAP</b></dt><dd>
+Считывает разметку экрана из ядра. <i>argp</i> указывает на область размером E_TABSZ, которая
+заполняется позициями символов шрифта, используемыми при отображении. Вызов возвращает бесполезную 
+информацию, если текущий загруженный шрифт содержит более 256 символов.
+</dd><dt><b>GIO_UNISCRNMAP</b></dt><dd>
+Считывает полное экранное соответствие символов Unicode шрифту из ядра. <i>argp</i> 
+указывает на область размером E_TABSZ*sizeof(unsigned short), которая заполняется представлением 
+в Unicode каждого символа. Специальный набор Unicode, начинающийся с U+F000, 
+используется для представления перевод символов ``напрямую в шрифт''. 
+(Со времени появления ядра 1.3.1).
+</dd><dt><b>PIO_SCRNMAP</b></dt><dd>
+Загружает ``определенную пользователем'' (четвертую) таблицу, которая отображает байты в
+символах на экране консоли из ядра. <i>argp</i> указывает на область размером E_TABSZ.
+</dd><dt><b>PIO_UNISCRNMAP</b></dt><dd>
+Загружает ``определенную пользователем'' (четвертую) таблицу из ядра, которая переводит байты в
+символы Unicode, преобразующиеся затем в экранные символы согласно текущей загруженной карте 
+соответствия символов Unicode и шрифта. Специальные коды Unicode, начинающиеся с U+F000, 
+могут использоваться для прямого перевода байтов в символы шрифта.  (Со времени появления 
+ядра 1.3.1).
+</dd><dt><b>GIO_UNIMAP</b></dt><dd>
+Проверяет соответствие символов Unicode шрифту из ядра. <i>argp</i> указывает на структуру
+<pre>struct unimapdesc {
+        u_short <i>entry_ct</i>;
+        struct unipair *<i>entries</i>;
+};
+</pre>
+
+где <i>entries</i> указывает на массив структур
+<pre>struct unipair {
+        u_short <i>unicode</i>;
+        u_short <i>fontpos</i>;
+};
+</pre>
+
+(Со времени появления ядра 1.1.92).
+</dd><dt><b>PIO_UNIMAP</b></dt><dd>
+Помещает соответствие символов Unicode и экранного шрифта в ядро. <i>argp</i> указывает 
+на структуру unimapdesc. (Со времени появления ядра 1.1.92).
+</dd><dt><b>PIO_UNIMAPCLR</b></dt><dd>
+Сбрасывает таблицу знакогенератора (возможно использовать алгоритм хэширования). 
+<i>argp</i> указывает на структуру
+<pre>struct unimapinit {
+      u_short <i>advised_hashsize</i>;  /* 0, если не использовать */
+      u_short <i>advised_hashstep</i>;  /* 0, если не использовать */
+      u_short <i>advised_hashlevel</i>; /* 0, если не использовать */
+};
+</pre>
+
+(Со времени появления ядра 1.1.92).
+</dd><dt><b>KDGKBMODE</b></dt><dd>
+Считывает текущий режим клавиатуры.  <i>argp</i> указывает на длинное целое 
+(long), устанавливаемое значение которого равно одному из:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;K_RAW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;K_XLATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x01&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;K_MEDIUMRAW&nbsp;&nbsp;&nbsp;0x02&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;K_UNICODE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x03
+</dd><dt><b>KDSKBMODE</b></dt><dd>
+Устанавливает текущий режим клавиатуры. 
+<i>argp</i> - длинное целое (long), равное одному из значений, указанных выше.
+</dd><dt><b>KDGKBMETA</b></dt><dd>
+Считывает режим обработки метаклавиш. <i>argp</i> указывает на 
+длинное целое (long), устанавливаемое значение которого равно одному из:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;K_METABIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x03&nbsp;&nbsp;&nbsp;установить&nbsp;старший&nbsp;бит&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;K_ESCPREFIX&nbsp;&nbsp;&nbsp;0x04&nbsp;&nbsp;&nbsp;префикс&nbsp;escape
+</dd><dt><b>KDSKBMETA</b></dt><dd>
+Устанавливает режим обработки метаклавиш.
+<i>argp</i> - длинное целое (long), равное одному из значений, указанных выше.
+</dd><dt><b>KDGKBENT</b></dt><dd>
+Считывает одну запись из таблицы трансляции клавиш (код клавиши для кода действия).  
+<i>argp</i> указывает на структуру
+<pre>struct kbentry {
+    u_char <i>kb_table</i>;
+    u_char <i>kb_index</i>;
+    u_short <i>kb_value</i>;
+};
+</pre>
+
+с двумя первыми полями, установленные значения которых представляют собой: 
+<i>kb_table</i> - выбранную таблицу клавиш (0 &lt;= <i>kb_table</i> &lt; MAX_NR_KEYMAPS),
+<i>kb_index</i> - код клавиши (0 &lt;= <i>kb_index</i> &lt; NR_KEYS).  
+<i>kb_value</i>, которой присваивается соответствующий код действия или K_HOLE, если нет такой 
+клавиши, или K_NOSUCHMAP, если значение <i>kb_table</i> неверно.
+</dd><dt><b>KDSKBENT</b></dt><dd>
+Делает запись в таблице трансляции клавиш. <i>argp</i> указывает на структуру kbentry.
+</dd><dt><b>KDGKBSENT</b></dt><dd>
+Считывает запись строки одной функциональной клавиши. <i>argp</i> указывает на структуру
+<pre>struct kbsentry {
+    u_char <i>kb_func</i>;
+    u_char <i>kb_string</i>[512];
+};
+</pre>
+
+<i>kb_string</i> равна строке, заканчивающейся нулем и соответствующей 
+коду действия функциональной клавиши <i>kb_func</i>.
+</dd><dt><b>KDSKBSENT</b></dt><dd>
+Делает запись строки одной функциональной клавиши. <i>argp</i> 
+указывает на структуру kbsentry.
+</dd><dt><b>KDGKBDIACR</b></dt><dd>
+Считывает таблицу акцентов ядра. <i>argp</i> указывает на структуру
+<pre>struct kbdiacrs { 
+    unsigned int <i>kb_cnt</i>;
+    struct kbdiacr <i>kbdiacr</i>[256];
+};
+</pre>
+
+где <i>kb_cnt</i> - это число записей в массиве, каждая из которых является структурой
+struct kbdiacr { u_char <i>diacr</i>, <i>base</i>, <i>result</i>;
+};
+</dd><dt><b>KDGETKEYCODE</b></dt><dd>
+Считывает запись таблицы кодов клавиш ядра (сканкоды - коды клавиш).  
+<i>argp</i> указывает на структуру
+<pre>struct kbkeycode { unsigned int <i>scancode</i>, <i>keycode</i>; };
+</pre>
+
+<i>keycode</i> устанавливается в соответствии с заданным <i>scancode</i>.
+(Допускается 89 &lt;= <i>scancode</i> &lt;= 255. Для сканкодов 1 &lt;= <i>scancode</i> &lt;= 88, 
+<i>keycode</i>==<i>scancode</i>). (Со времени появления ядра 1.1.63).
+</dd><dt><b>KDSETKEYCODE</b></dt><dd>
+Производит запись в таблицу кодов клавиш ядра. <i>argp</i> указывает на структуру kbkeycode.
+(Со времени появления ядра 1.1.63).
+</dd><dt><b>KDSIGACCEPT</b></dt><dd>
+Вызываемый процесс показывает свою готовность к приему сигнала <i>argp</i>, если он генерируется
+нажатием соответствующей комбинации клавиш. (1 &lt;= <i>argp</i> &lt;= NSIG).  
+(Смотри функцию spawn_console() в linux/drivers/char/keyboard.c).
+</dd><dt><b>VT_OPENQRY</b></dt><dd>
+Возвращает первую доступную (неоткрытую) консоль.
+<i>argp</i> указывает на целое (int), устанавливаемое значение которого равно номеру виртуального 
+терминала 
+(1 &lt;= <i>*argp</i> &lt;= MAX_NR_CONSOLES).
+</dd><dt><b>VT_GETMODE</b></dt><dd>
+Считывает режим активного виртуального терминала. <i>argp</i> указывает на структуру
+<pre>struct vt_mode {
+   char <i>mode</i>;    /* режим терминала */
+   char <i>waitv</i>;   /* при установленном; остановка при записи, если терминал неактивен */
+   short <i>relsig</i>; /* сигнал для восстановления при освобождении */
+   short <i>acqsig</i>; /* сигнал для восстановления при захвате */
+   short <i>frsig</i>;  /* не используется (устанавливается равным нулю) */
+};
+</pre>
+
+
+<i>mode</i> приобретает одно из устанавливаемых значений: 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;VT_AUTO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;автоматическое&nbsp;переключение&nbsp;виртуального&nbsp;терминала
+<br>&nbsp;&nbsp;&nbsp;&nbsp;VT_PROCESS&nbsp;&nbsp;&nbsp;&nbsp;переключение&nbsp;контролирует&nbsp;процесс
+<br>&nbsp;&nbsp;&nbsp;&nbsp;VT_ACKACQ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;подтверждение&nbsp;переключения
+</dd><dt><b>VT_SETMODE</b></dt><dd>
+Устанавливает режим активного виртуального терминала. <i>argp</i> указывает на структуру vt_mode.
+</dd><dt><b>VT_GETSTATE</b></dt><dd>
+Считывает общую информацию о состоянии виртуального терминала. <i>argp</i> указывает на структуру
+<pre>struct vt_stat {
+    ushort <i>v_active</i>;  /* активный виртуальный терминал */
+    ushort <i>v_signal</i>;  /* посылаемый сигнал */
+    ushort <i>v_state</i>;   /* битовая маска виртуального терминала */
+};
+</pre>
+
+Для каждого используемого виртуального терминала устанавливается соответствующий бит 
+в поле <i>v_state</i>. (В версиях с 1.0 до 1.1.92).
+</dd><dt><b>VT_RELDISP</b></dt><dd>
+Освобождает дисплей.
+</dd><dt><b>VT_ACTIVATE</b></dt><dd>
+Переключается на виртуальный терминал <i>argp</i> (1 &lt;= <i>argp</i> &lt;= MAX_NR_CONSOLES).
+</dd><dt><b>VT_WAITACTIVE</b></dt><dd>
+Ожидает, пока виртуальный терминал <i>argp</i> не станет активным.
+</dd><dt><b>VT_DISALLOCATE</b></dt><dd>
+Освобождает выделенную виртуальному терминалу <i>argp</i> память.
+(Со времени появления ядра 1.1.54).
+</dd><dt><b>VT_RESIZE</b></dt><dd>
+Устанавливает представление размера экрана в ядре. <i>argp</i> указывает на структуру
+<pre>struct vt_sizes {
+    ushort <i>v_rows</i>;       /* число строк */
+    ushort <i>v_cols</i>;       /* число колонок */
+    ushort <i>v_scrollsize</i>; /* больше не используется */
+};
+</pre>
+
+Этот вызов не изменяет видеорежим.
+Смотрите руководство <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=resizecons&amp;category=8">resizecons</a>(8). (Со времени появления ядра 1.1.54). 
+</dd><dt><b>VT_RESIZEX</b></dt><dd>
+Устанавливает значение различных параметров экрана в ядре. <i>argp</i> указывает на структуру
+<pre>struct vt_consize {
+     ushort <i>v_rows</i>;  /* число строк */
+     ushort <i>v_cols</i>;  /* число колонок */
+     ushort <i>v_vlin</i>;  /* число строк экрана в пикселях */
+     ushort <i>v_clin</i>;  /* число строк в пикселях на символ */
+     ushort <i>v_vcol</i>;  /* число колонок экрана в пикселях */
+     ushort <i>v_ccol</i>;  /* число колонок в пикселях на символ */
+};
+</pre>
+
+Любому параметру может быть присвоено установленное нулевое значение, то есть
+он может быть оставлен ``без изменений'', но, если 
+установлено несколько параметров, они должны быть согласованы. Этот вызов не 
+изменяет видеорежим. Смотрите руководство <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=resizecons&amp;category=8">resizecons</a>(8). 
+(Со времени появления ядра 1.3.3).
+</dd></dl>
+<p>
+
+Действие следующих ioctl зависит от первого байта структуры, указываемой <i>argp</i>,
+далее называемого <i>subcode</i>. Доступны только суперпользователю или владельцу
+текущего tty.
+</p><dl compact="">
+<dt><b>TIOCLINUX, subcode=0</b></dt><dd>
+Выгружает дамп экрана.
+Исчезло в 1.1.92.  (В ядре 1.1.92 и более поздних версий используется чтение из /dev/vcsN 
+или /dev/vcsaN).  
+</dd><dt><b>TIOCLINUX, subcode=1</b></dt><dd>
+Считывает информацию о задании. Исчезло в 1.1.92.
+</dd><dt><b>TIOCLINUX, subcode=2</b></dt><dd>
+Производит выделение блока.
+<i>argp</i> указывает на структуру
+<br>&nbsp;&nbsp;&nbsp;struct&nbsp;{char&nbsp;<i>subcode</i>;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;short&nbsp;<i>xs</i>,&nbsp;<i>ys</i>,&nbsp;<i>xe</i>,&nbsp;<i>ye</i>;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;short&nbsp;<i>sel_mode</i>;
+<br>&nbsp;&nbsp;&nbsp;}
+<i>xs</i> и <i>ys</i> - начальные колонка и строка. <i>xe</i> и <i>ye</i> - конечные колонка и строка. 
+(Левый верхний угол - строка = колонке = 1).
+<i>sel_mode</i> равен нулю для выделения "символ за символом", единице для выделения 
+"слово за словом" или двум для выделения "строки за строкой". Выделенные символы подсвечиваются 
+и сохраняются в статическом массиве sel_buffer, определенном в devices/char/console.c.
+</dd><dt><b>TIOCLINUX, subcode=3</b></dt><dd>
+Вставляет выделенный блок.
+Символы в буфере выделения записываются в <i>fd</i>.
+</dd><dt><b>TIOCLINUX, subcode=4</b></dt><dd>
+Выводит экран из режима энергосбережения.
+</dd><dt><b>TIOCLINUX, subcode=5</b></dt><dd>
+Устанавливает содержимое 256-битной таблицы определения символов в "word" для выделения
+"слово за словом". (Со времени появления ядра 1.1.32).
+</dd><dt><b>TIOCLINUX, subcode=6</b></dt><dd>
+<i>argp</i> указывает на символ (char), который устанавливает значение 
+переменной ядра <i>shift_state</i>. (Со времени появления ядра 1.1.32).
+</dd><dt><b>TIOCLINUX, subcode=7</b></dt><dd>
+<i>argp</i> указывает на символ (char), который устанавливает значение переменной 
+ядра <i>report_mouse</i>.  (Со времени появления ядра 1.1.33).
+</dd><dt><b>TIOCLINUX, subcode=8</b></dt><dd>
+Выгружает ширину и высоту экрана, позицию курсора и все пары символ-атрибут.
+(Только в версиях с 1.1.67 по 1.1.91. В ядре 1.1.92 и более поздних версий используется 
+чтение из /dev/vcsa*).
+</dd><dt><b>TIOCLINUX, subcode=9</b></dt><dd>
+Восстанавливает ширину и высоту экрана, позицию курсора и все пары символ-атрибут.
+(Только в версиях с 1.1.67 по 1.1.91. В ядре 1.1.92 и более поздних версий используется 
+запись в /dev/vcsa*).
+</dd><dt><b>TIOCLINUX, subcode=10</b></dt><dd>
+Обработчик функций энергосбережения для нового поколения мониторов.  
+Режим погашения экрана VESA устанавливается равным <i>argp</i>[1], который определяет тип гашения:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>0</i>:&nbsp;гашение&nbsp;экрана&nbsp;запрещено.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>1</i>:&nbsp;текущие&nbsp;установки&nbsp;регистров&nbsp;видеоадаптера&nbsp;сохраняются,&nbsp;когда&nbsp;контроллер&nbsp;
+программируется на выключение вертикальной синхронизации. Происходит перевод монитора в 
+режим "резерв". Если на мониторе есть таймер Off_Mode, то он может в итоге сам выключить питание.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>2</i>:&nbsp;текущие&nbsp;установки&nbsp;сохраняются,&nbsp;когда&nbsp;и&nbsp;вертикальная,&nbsp;и&nbsp;
+горизонтальная развертки отключаются. Происходит перевод в режим "выключено". 
+Если на мониторе нет таймера Off_Mode или Вы хотите отключить питание 
+сразу же по истечении времени blank_timer, Вы можете выбрать эту опцию.  
+(<i>Внимание:</i> частое выключение питания может повредить монитор.)  
+(Со времени появления ядра 1.1.76).
+</dd></dl>
+<a name="lbAD">&nbsp;</a>
+<h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+При нормальном завершении работы возвращается 0, а при ошибке возвращается
+значение -1 и переменной <i>errno</i> присваивается соответствующий код ошибки.
+<a name="lbAE">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<i>errno</i> может принимать следующие значения:
+<dl compact="">
+<dt><b>EBADF</b>
+
+</dt><dd>
+(неверный описатель файла);
+</dd><dt><b>ENOTTY</b>
+
+</dt><dd>
+(описатель файла не связан со специальным 
+символьным устройством, или заданный запрос не может быть выполнен);
+</dd><dt><b>EINVAL</b>
+
+</dt><dd>
+(описатель файла или <i>argp</i> неверен);
+</dd><dt><b>EPERM</b>
+
+</dt><dd>
+(ошибка доступа).
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ПРЕДУПРЕЖДЕНИЯ</h2>
+
+Не рассматривайте эту страницу руководства как документацию об ioctl консоли 
+Linux. Она предназначена только для любознательных как альтернатива  
+исходных текстов. Ioctl - неописанные ранее возможности Linux,  
+которые могут изменяться без предупреждения. 
+На самом деле, это руководство более или менее полно описывает параметры ядра версии 1.1.94; 
+они несколько отличаются от параметров ядра более ранних версий.
+Очень часто ioctl вводится для совместной работы ядра с какой-либо 
+конкретной программой (fdisk, hdparm, setserial, tunelp, loadkeys, 
+selection, setfont и т.д.), и его поведение изменяется по требованию этой программы.
+Программы, использующие такие ioctl, не могут быть перенесены в другие версии
+Unix, не будут работать в старых версиях Linux и могут не работать в будущих версия Linux.
+Рекомендуется работать с функциями POSIX.
+<a name="lbAG">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=kbd_mode&amp;category=1">kbd_mode</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=loadkeys&amp;category=1">loadkeys</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dumpkeys&amp;category=1">dumpkeys</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mknod&amp;category=1">mknod</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setleds&amp;category=1">setleds</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setmetamode&amp;category=1">setmetamode</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ioperm&amp;category=2">ioperm</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=execve&amp;category=2">execve</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=termios&amp;category=3">termios</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=console&amp;category=4">console</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=console_codes&amp;category=4">console_codes</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mt&amp;category=4">mt</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sd&amp;category=4">sd</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tty&amp;category=4">tty</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ttys&amp;category=4">ttys</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vcs&amp;category=4">vcs</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vcsa&amp;category=4">vcsa</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=charsets&amp;category=7">charsets</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mapscrn&amp;category=8">mapscrn</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setfont&amp;category=8">setfont</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=resizecons&amp;category=8">resizecons</a></b>(8),
+
+<i>/usr/include/linux/kd.h</i>,
+
+<i>/usr/include/linux/vt.h</i>
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAE">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРЕДУПРЕЖДЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="console_ioctl" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

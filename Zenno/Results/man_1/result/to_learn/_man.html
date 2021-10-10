@@ -1,0 +1,788 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN man (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, man"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="man" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">man (1)</font><hr><li> <a href="/man.shtml?topic=man&amp;category=1&amp;russian=4"><u>man</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=man&amp;category=1&amp;russian=1"><u>man</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=man&amp;category=1&amp;russian=0"><u>man</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=man&amp;category=1&amp;russian=2"><u>man</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=man&amp;category=1&amp;russian=5"><u>man</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=man&amp;category=5&amp;russian=4"><u>man</u></a> (5) <font color="#555555"> ( Solaris man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=man&amp;category=7&amp;russian=1"><u>man</u></a> (7) <font color="#555555"> ( FreeBSD man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=man&amp;category=7&amp;russian=0"><u>man</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=man&amp;category=7&amp;russian=2"><u>man</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li><font color="#555555">Ключ <a href="/keywords/man.html"><u>man</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+man - форматирует и отображает страницы электронного справочника man
+<br>
+
+manpath - определяет пути поиска страниц руководства
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>man </b>
+
+[<b>-acdfFhkKtwW</b>]
+
+[<b>--path</b>]
+
+[<b>-m</b>
+
+<i>система ] </i>
+
+[<b>-p</b>
+
+<i>строка ] </i>
+
+[<b>-C</b>
+
+<i>файл_конфигурации ] </i>
+
+[<b>-M</b>
+
+<i>список_путей ]</i>
+
+[<b>-P</b>
+
+<i>пейджер ] </i>
+
+[<b>-S</b>
+
+<i>список_разделов ] </i>
+
+[<i>раздел</i>]
+
+<i>имя ...</i>
+
+<p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<b>man</b>
+
+форматирует и отображает страницы электронного справочника. Если вы укажите
+<i>раздел</i>,
+
+то
+<b>man</b>
+
+будет искать только в этом разделе руководства.
+<i>имя</i>
+
+это имя страницы руководства, которое обычно является именем команды, функции, или файла.  
+Однако, если
+<i>имя</i>
+
+содержит наклонную черту
+(<b>/</b>)<b>,</b>
+
+то 
+<b>man </b>
+
+интерпретирует это как обращение к конкретному файлу, так что вы можете выполнять
+<b>man ./foo.5</b>
+
+или
+<b>man /cd/foo/bar.1.gz</b>.
+
+<p>
+
+Описание того, где 
+<b>man</b>
+
+ищет страницы руководства, смотрите ниже.
+<br>&nbsp;
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОПЦИИ</h2>
+
+<dl compact="">
+<dt><b>-C  файл_конфигурации</b>
+
+</dt><dd>
+Указать файл конфигурации для использования; по умолчанию это
+<b>/etc/man.conf</b>.
+
+(См.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=man.conf&amp;category=5">man.conf</a></b>(5).)
+
+</dd><dt><b>-M  путь</b>
+
+</dt><dd>
+Определить список каталогов для поиска страниц руководства. Каталоги разделяются двоеточиями. Пустой список каталогов равнозначен неупотреблению
+<b>-M</b>
+
+вовсе.  Смотрите
+<b>ПУТИ ПОИСКА СТРАНИЦ РУКОВОДСТВА</b>.
+
+</dd><dt><b>-P  пейджер</b>
+
+</dt><dd>
+Назначить используемый пейджер.
+Это опция переназначает переменную окружения
+<b>MANPAGER</b>,
+
+которая в свою очередь переназначает переменную
+<b>PAGER</b>.
+
+По умолчанию,
+<b>man</b>
+
+использует
+<b>/usr/bin/less -isR</b>.
+
+</dd><dt><b>-S  список_разделов</b>
+
+</dt><dd>
+Список разделов руководства разделённых двоеточиями, в которых осуществляется поиск.
+Эта опция переопределяет переменную окружения
+<b>MANSECT.</b>
+
+</dd><dt><b>-a</b>
+
+</dt><dd>
+По умолчанию после вывода первой найденной страницы руководства,
+<b>man</b>
+
+завершит работу. Применение это опции вынудит
+<b>man</b>
+
+показать не только первую, а все страницы справочника подходящие под заданное
+<b>имя.</b>
+
+</dd><dt><b>-c</b>
+
+</dt><dd>
+Переформатировать исходную страницу руководства, даже если существует актуальная отформатированная страница.
+Это может понадобиться, если раньше страница была отформатирована для экрана с другим количеством колонок, или повреждена.
+</dd><dt><b>-d</b>
+
+</dt><dd>
+В действительности не показывает страницы справочника, но печатает отладочную информацию как при осуществлении вывода страниц.
+</dd><dt><b>-D</b>
+
+</dt><dd>
+Показывает и страницу и отладочную информацию.
+</dd><dt><b>-f</b>
+
+</dt><dd>
+Равнозначно команде
+<b>whatis</b>.
+
+</dd><dt><b>-F</b> или <b>--preformat</b>
+
+</dt><dd>
+Форматирование без отображения.
+</dd><dt><b>-h</b>
+
+</dt><dd>
+Выводит справку по опциям командной строки и завершает работу.
+</dd><dt><b>-k</b>
+
+</dt><dd>
+То же что и команда
+<b>apropos</b>.
+
+</dd><dt><b>-K</b>
+
+</dt><dd>
+Поиск заданной строки во *всех* страницах справочника. Предупреждение: возможно этот процесс будет очень долгим! Здесь может помочь указание раздела. (Просто для приблизительной оценки, на моей машине это работает примерно 500 страниц в минуту.)
+</dd><dt><b>-m  system</b>
+
+</dt><dd>
+Задать для поиска альтернативный набор страниц справочника, находящийся на системе с указанным именем.
+</dd><dt><b>-p  string</b>
+
+</dt><dd>
+Назначить выполнение ряда препроцессоров перед
+<b>nroff</b>
+
+или
+<b>troff</b>.
+
+Не всё инсталляции имеют полный набор препроцессоров. Несколько препроцессоров и буквы для их обозначения:
+eqn (e), grap (g), pic (p), tbl (t), vgrind (v), refer (r).
+Эта опция переопределяет переменную окружения
+<b>MANROFFSEQ</b>.
+
+</dd><dt><b>-t</b>
+
+</dt><dd>
+Использует
+<b>/usr/bin/groff -Tps -mandoc</b>
+
+для форматирования страницы справочника, без вывода на 
+<b>stdout.</b>
+
+Возможно перед печатью на принтере вывод
+<b>/usr/bin/groff -Tps -mandoc</b>
+
+понадобится пропустить через некоторые фильтры.
+</dd><dt><b>-w </b>или --path
+
+</dt><dd>
+Не отображает страницы справочника, но печатает местонахождение(я) тех файлов, что были бы отформатированы и показаны. Если аргумент не задан: выводит (на stdout) список каталогов в которых
+<b>man</b>
+
+осуществляет поиск страниц руководства. Если
+<b>manpath</b>
+
+это ссылка на man, то "manpath" равноценно "man --path".
+</dd><dt><b>-W</b>
+
+</dt><dd>
+Подобно -w, но печатает по одному имени файла на строку без дополнительной информации. Это полезно в командах shell, например,
+
+<b>man -aW man | xargs ls -l</b>
+
+
+<p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>СТРАНИЦЫ CAT</h2>
+
+В целях экономии времени затрачиваемого на форматирование, man будет пытаться сохранить форматированные страницы руководства для последующих вызовов.
+Традиционно, форматированные версии страниц из ДИРЕКТОРИЯ/manX сохраняются в ДИРЕКТОРИЯ/catX, однако можно настроить в
+<b>/etc/man.conf</b>
+
+другое соответствие между каталогами man и cat.
+Сохранение страниц cat не будет происходить, если требуемый каталог cat не существует.
+Не будут сохраняться страницы cat и при их форматировании под строки длинной не равной 80 символам.
+Не сохраняются страницы cat и при наличии в man.conf строки содержащей NOCACHE.
+<p>
+
+Есть возможность, с помощью suid сделать
+<b>man</b>
+
+исполняемым от имени пользователя man. Тогда, если каталогом cat владеет пользователь
+man и права доступа к нему установлены в 0755 (запись разрешена только пользователю man), и файлы cat также принадлежат пользователю man, с установленными правами доступа к ним в режиме 0644 или 0444 (их изменение доступно только пользователю man, или никому вообще), то обычный пользователь не сможет изменить страницы cat или поместить другие файлы в каталог cat. Если
+<b>man</b>
+
+не выполняет suid, в таком случае для предоставления возможности всем пользователям сохранения отформатированных страниц каталог cat должен иметь права доступа 0777.
+</p><p>
+
+Опция
+<b>-c</b>
+
+вынуждает переформатировать страницу, даже если существует ранее использовавшаяся страница cat.
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>ПУТИ ПОИСКА СТРАНИЦ РУКОВОДСТВА</h2>
+
+Для поиска страниц руководства,
+<b>man</b>
+
+использует составной метод, основанный на опциях вызова и переменных окружения, файле настроек 
+<b>/etc/man.conf</b>,
+
+а также некоторых встроенных соглашениях и эвристике.
+<p>
+
+Прежде всего, если
+<i>имя</i>
+
+аргумента передаваемого 
+<b>man</b>
+
+содержит наклонную черту
+(<b>/</b>),
+
+<b>man</b>
+
+принимает его как указание на файл,
+и не осуществляет поиск.
+</p><p>
+
+Однако в обычном случае, где
+<i>имя</i>
+
+не включает наклонной черты,
+<b>man</b>
+
+ищет в ряде каталогов файл, содержащий страницы руководства для указанной темы.
+</p><p>
+
+Если вы зададите опцию
+<b>-M </b><i>список_путей</i><b>,</b>
+
+то
+<i>список_путей </i>
+
+это разделённый двоеточиями список каталогов в которых 
+<b>man </b>
+
+осуществит поиск.
+</p><p>
+
+Если вы не укажите
+<b>-M</b>,
+
+но установите переменную окружения
+<b>MANPATH</b>,
+
+<b>man</b>
+
+использует значение переменной как список каталогов для поиска.
+</p><p>
+
+Если вы не определите списка особых путей поиска с помощью
+<b>-M</b>
+
+или
+<b>MANPATH</b>,
+
+<b>man</b>
+
+осуществит поиск по своему списку путей, основанному на содержании файла конфигурации
+<b>/etc/man.conf</b>.
+
+Каталоги, заявленные в переменной
+<b>MANPATH</b>
+
+в конфигурационном файле, включаются в пути поиска.
+</p><p>
+
+Более того, определение
+<b>MANPATH_MAP </b>
+
+добавляет каталоги для поиска в зависимости от вашей настройки путей поиска команд
+(т.е. вашей переменной окружения
+<b>PATH</b>).
+
+Для каждого каталога который может быть определён в настройке пути поиска команд,
+<b>MANPATH_MAP</b>
+
+устанавливает каталог который может быть добавлен в пути поиска файлов страниц справочника.
+<b>man</b>
+
+читает значение переменной 
+<b>PATH</b>
+
+и добавляет соответствующие каталоги в пути поиска файлов страниц справочника. Таким образом, при должном использовании
+<b>MANPATH_MAP</b>,
+
+когда вы вызываете команду
+<b>man xyz</b>,
+
+вы получаете страницу руководства для программы, выполняемой вызовом команды
+<b>xyz</b>.
+
+</p><p>
+
+Кроме того, для каждого каталога в пути поиска команды (будем называть его "каталог команд"), для которого
+<i>не</i>
+
+определена 
+<b>MANPATH_MAP</b>,
+
+<b>man</b>
+
+автоматически ищет поблизости каталог со страницами руководства, а именно в подкаталоге каталога команд или родительском каталоге для каталога команд.
+</p><p>
+
+Объявлением переменной
+<b>NOAUTOPATH</b>
+
+включенной в
+<b>/etc/man.conf</b>,
+
+вы можете отключить автоматический поиск "поблизости".
+</p><p>
+
+В каждом каталоге находящемся в списке пути поиска как описано выше,
+<b>man</b>
+
+ищет файл с именем
+<i>тема</i>.<i>раздел</i>,
+
+суффикс номера раздела и возможный суффикс сжатия необязательны.
+Если такой файл не найден, то поиск продолжается в любых подкаталогах с именем
+<b>man</b><i>N</i>
+
+или 
+<b>cat</b><i>N</i><b>,</b>
+
+где
+<i>N</i>
+
+это номер раздела руководства.
+Если файл найден в каталоге
+<b>cat</b><i>N</i><b>,</b>
+
+<b>man</b>
+
+предполагает, что это форматированная страница руководства (страница cat). Иначе,
+<b>man</b>
+
+считает её не форматированной. Как в том, так и в другом случае, если имя файла имеет суффикс сжатия (например,
+<b>.gz</b>),
+
+<b>man</b>
+
+считает, что файл сжат.
+</p><p>
+
+Если вы хотите знать где (или если)
+<b>man</b>
+
+нашёл страницу руководства для заданной темы, используйте опцию
+<b>--path </b>(<b>-w</b>).
+
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>ОКРУЖЕНИЕ</h2>
+
+<dl compact="">
+<dt><b>MANPATH</b>
+
+</dt><dd>
+Если переменная
+<b>MANPATH</b>
+
+установлена, то
+<b>man</b>
+
+использует её для поиска страниц руководства. Она переопределяет файл настроек и автоматический путь поиска, но сама переопределяется заданием опции
+<b>-M</b>.
+
+Смотрите 
+<b>ПУТИ ПОИСКА СТРАНИЦ РУКОВОДСТВА</b>.
+
+</dd><dt><b>MANPL</b>
+
+</dt><dd>
+Если
+<b>MANPL</b>
+
+установлена, то её значение используется как длина страницы для вывода.
+Иначе, вся страница руководства будет представлена одной (длинной) страницей.
+<b>MANROFFSEQ</b>
+
+Если установлена
+<b>MANROFFSEQ</b>,
+
+то её значение используется для определения препроцессоров для выполнения перед запуском
+<b>nroff</b>
+
+или
+<b>troff</b>.
+
+По умолчанию, перед
+<b>nroff</b>,
+
+страница пропускаются через препроцессор tbl.
+</dd><dt><b>MANSECT</b>
+
+</dt><dd>
+Если установлена переменная
+<b>MANSECT</b>,
+
+то её значение определяет раздел, в котором будет осуществляться поиск.
+</dd><dt><b>MANWIDTH</b>
+
+</dt><dd>
+Если
+<b>MANWIDTH</b>
+
+установлена, то её значение используется как ширина страниц для вывода.
+В противном случае, вывод страниц может выйти за ширину экрана.
+</dd><dt><b>MANPAGER</b>
+
+</dt><dd>
+Если переменная
+<b>MANPAGER</b>
+
+установлена, то её значение используется как имя программы, выполняемой для отображения страницы руководства. Если не установлена, тогда будет использована переменная
+<b>PAGER</b>.
+
+Если она также не установлена, то будет применена команда
+<b>/usr/bin/less -isR.</b>
+
+</dd><dt><b>LANG</b>
+
+</dt><dd>
+Если установлена переменная
+<b>LANG</b>,
+
+то её значение определяет имя подкаталога, где страницы справочника ищутся в первую очередь. Так, команда 'LANG=ru man 1 foo' побудит man искать страницу руководства foo в .../ru/man1/foo.1,
+и если этот файл не будет найден, то в .../man1/foo.1,
+где ... это каталог из пути поиска.
+</dd><dt><b>NLSPATH, LC_MESSAGES, LANG</b>
+
+</dt><dd>
+Переменные окружения
+<b>NLSPATH</b>
+
+и
+<b>LC_MESSAGES</b>
+
+(или
+<b>LANG</b>,
+
+если последняя не установлена)
+играют свою роль в определении каталога сообщений.
+(Исключая сообщения на английском, которые в компилированы в man, поэтому каталог сообщений для английского языка не требуется.)
+Учтите, что такие программы как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=col&amp;category=1">col</a>(1)</b>
+
+вызываемые man также используют LC_CTYPE.
+</dd><dt><b>PATH</b>
+
+</dt><dd>
+<b>PATH</b>
+
+помогает определить пути поиска файлов со страницами руководства. Смотрите
+<b>ПУТИ ПОИСКА СТРАНИЦ РУКОВОДСТВА</b>.
+
+</dd><dt><b>SYSTEM</b>
+
+</dt><dd>
+<b>SYSTEM</b>
+
+используется для задания альтернативного имени системы (для использования с опцией
+<b>-m</b>).
+
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apropos&amp;category=1">apropos</a>(1)</b>,
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=whatis&amp;category=1">whatis</a>(1)</b>,
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=less&amp;category=1">less</a>(1)</b>,
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=groff&amp;category=1">groff</a>(1)</b>,
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=man.conf&amp;category=5">man.conf</a>(5)</b>.
+
+<a name="lbAJ">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+Опция
+<b>-t</b>
+
+работает только если установлена программа, подобная troff.
+<br>
+
+Если вы видите мигающие \255 или &lt;AD&gt; знака переноса,
+добавьте в своё окружение 'LESSCHARSET=latin1'.
+<a name="lbAK">&nbsp;</a>
+<h2>СОВЕТЫ</h2>
+
+Если вы добавите следующую строку
+<p>
+<br>&nbsp;&nbsp;(global-set-key&nbsp;[(f1)]&nbsp;(lambda&nbsp;()&nbsp;(interactive)&nbsp;(manual-entry&nbsp;(current-word))))
+</p><p>
+в ваш файл
+<i>.emacs</i>,
+
+то нажатие клавиши F1 будет открывать страницу справочника по библиотечной функции, на название которой указывает курсор.
+</p><p>
+
+Чтобы получить простую текстовую версию страницы руководства, без символов возврата и подчёркивания, попробуйте команду вида
+</p><p>
+<br>&nbsp;&nbsp;#&nbsp;man&nbsp;foo&nbsp;|&nbsp;col&nbsp;-b&nbsp;&gt;&nbsp;foo.mantxt
+</p><p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+Василий Коломеец (Vasily Kolomeets) &lt;<a href="mailto:boojuman@gmail.com">boojuman@gmail.com</a>&gt;
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">СТРАНИЦЫ CAT</a></dt><dd>
+</dd><dt><a href="#lbAG">ПУТИ ПОИСКА СТРАНИЦ РУКОВОДСТВА</a></dt><dd>
+</dd><dt><a href="#lbAH">ОКРУЖЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAI">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAK">СОВЕТЫ</a></dt><dd>
+</dd><dt><a href="#lbAL">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="man" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

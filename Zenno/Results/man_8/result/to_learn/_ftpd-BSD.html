@@ -1,0 +1,1063 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ftpd-BSD (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ftpd-BSD"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ftpd-BSD" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ftpd-BSD (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=ftpd-BSD&amp;category=8&amp;russian=0"><u>ftpd-BSD</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><br>BSD mandoc<br>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+
+
+<b>ftpd</b>
+
+ - Сервер Internet File Transfer Protocol
+
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>ftpd</b>
+
+[-<b>AdDhlMPSU</b>
+
+]
+
+[-<b>T </b><i>maxtimeout</i>
+
+
+
+]
+
+[-<b>t </b><i>timeout</i>
+
+
+
+]
+
+[-<b>u </b><i>mask</i>
+
+
+
+]
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<b>Ftpd</b>
+
+- это серверный процесс Internet File Transfer Protocol'а.
+Сервер использует протокол
+<b>TCP</b>
+
+и слушает порт, определённый спецификацией сервиса
+``ftp''
+
+; смотри
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=services&amp;category=5">services</a>(5).
+
+
+<p>
+
+Доступные опции:
+</p><dl compact="">
+<p>
+
+</p><dt><b>-A</b>
+
+
+</dt><dd>
+Разрешает только анонимные ftp соединения или бюджеты, перечисленные в
+/etc/ftpchroot
+
+ 
+Другие попытки соединения будут отвергнуты.
+</dd><dt><b>-d</b>
+
+
+</dt><dd>
+Информация отладки записывается в syslog с помощью LOG_FTP.
+</dd><dt><b>-D</b>
+
+
+</dt><dd>
+Если указан этот параметр, то 
+<b>ftpd</b>
+
+отделится от командной оболочки и станет демоном, принимая соединения на порту FTP
+и создавая наследующие процессы (child processes) для управления
+этими соединениями. Такой запуск создает меньшую нагрузку, чем запуск 
+<b>ftpd</b>
+
+из
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=inetd&amp;category=8">inetd</a>(8)
+
+
+и, следовательно, полезен на загруженных серверах для уменьшения нагрузки.
+</dd><dt><b>-h</b>
+
+
+</dt><dd>
+Для пассивных соединений сервер будет использовать порты данных в верхнем 
+диапазоне портов. Этот диапазон определяется в &lt;<a href="file:/usr/include/netinet/in.h">netinet/in.h</a>&gt; переменными
+<b>IPPORT_HIFIRSTAUTO</b>
+
+и
+<b>IPPORT_HILASTAUTO</b>
+
+ 
+В
+Ox они установлены как 49152 и 65535 соответственно.
+
+</dd><dt><b>-l</b>
+
+
+</dt><dd>
+Каждая успешная и прерванная
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ftp&amp;category=1">ftp</a>(1)
+
+
+сессия регистрируется с помощью syslog посредством LOG_FTP. Если
+этот параметр указан дважды, то также будут регистрироваться операции 
+копирования, записи, добавления, удаления, создания каталога,
+удаления каталога и переименования вместе со своими аргументами - именами файлов.
+</dd><dt><b>-M</b>
+
+
+</dt><dd>
+Разрешен режим multihomed (много домашних каталогов). Вместо простого 
+использования
+~ftp
+
+для анонимных передач, используется каталог, соответствующий полностью 
+заданному имени IP-адреса, к которому подключился клиент, и расположенный 
+внутри
+~ftp
+
+ 
+</dd><dt><b>-p</b>
+
+
+</dt><dd>
+Запретить ftp-соединения в пассивном режиме. Полезно, если вы находитесь за
+межсетевым экраном, который отвергает соединения на порты с произвольно высокими 
+номерами. Многие ftp-клиенты пытаются соединиться с сервером сначала в пассивном
+режиме и не всегда корректно, что заставляет сервер отвергать соединения на порт
+к которому он просил клиента подключиться.
+</dd><dt><b>-P</b>
+
+
+</dt><dd>
+Разрешает недопустимые номера портов или адреса для команды PORT,
+инициализирующей соединения. По умолчанию
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ftpd&amp;category=8">ftpd</a>(8)
+
+
+нарушает RFC и, таким образом, выдает команду PORT на незарезервированные
+порты и требует, чтобы он использовал тот же адрес источника, с которого
+поступило соединение. Это предотвращает "FTP bounce attack" против сервисов
+на обеих машинах.
+</dd><dt><b>-S</b>
+
+
+</dt><dd>
+При использовании данного параметра
+<b>ftpd</b>
+
+регистрирует все анонимные скачивания в файле
+/var/log/ftpd
+
+ 
+если этот файл существует.
+</dd><dt><b>-U</b>
+
+
+</dt><dd>
+Каждая конкурирующая 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ftp&amp;category=1">ftp</a>(1)
+
+
+сессия регистрируется в файле
+/var/run/utmp
+
+ 
+позволяя увидеть их такой команде как
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=who&amp;category=1">who</a>(1).
+
+
+</dd><dt><b>-T </b><i>maxtimeout</i>
+
+
+
+</dt><dd>
+Клиент также может требовать разные периоды таймаута; опцией
+-<b>T</b>
+
+можно установить максимально разрешенный период длительностью
+<i>maxtimeout</i>
+
+секунд. По умолчанию ограничение - 2 часа.
+</dd><dt><b>-t </b><i>timeout</i>
+
+
+
+</dt><dd>
+Длительность таймаута неактивности установить в
+<i>timeout</i>
+
+секунд (по умолчанию - 15 минут).
+</dd><dt><b>-u </b><i>mask</i>
+
+
+
+</dt><dd>
+Установить umask равную
+<i>mask </i>
+
+вместо 027 по умолчанию. Кроме этого, запрещается chmod.
+</dd></dl>
+<p>
+
+</p><p>
+
+Для запрета ftp-доступа можно использовать файл
+/etc/nologin
+
+ 
+Если файл существует,
+<b></b>
+
+
+выводит его и выходит. Если существует файл
+/etc/ftpwelcome
+
+ 
+то
+<b></b>
+
+
+печатает его перед выводом сообщения
+``ready''
+
+ 
+Если существует файл
+/etc/motd
+
+ 
+то
+<b></b>
+
+
+печатает его после успешной регистрации. Если в каталоге
+существует файл
+.message
+
+ 
+то
+<b></b>
+
+
+выводит его при входе в каталог.
+</p><p>
+
+В настоящее время ftp-сервер поддерживает следующие ftp-запросы.
+Регистр запросов игнорируется.
+</p><dl compact="">
+<p>
+
+</p><dt><b>Запрос Ta </b><b>Описание</b>
+
+
+
+</dt><dd>
+</dd><dt><b>ABOR Ta </b>прервать предыдущую команду
+
+
+</dt><dd>
+</dd><dt><b>ACCT Ta </b>задать бюджет пользователя (игнорируется)
+
+
+</dt><dd>
+</dd><dt><b>ALLO Ta </b>разместить хранилище - allocate storage (бессмысленно)
+
+
+</dt><dd>
+</dd><dt><b>APPE Ta </b>добавить в файл
+
+
+</dt><dd>
+</dd><dt><b>CDUP Ta </b>перейти в каталог верхнего уровня
+
+
+</dt><dd>
+</dd><dt><b>CWD Ta </b>сменить рабочий каталог
+
+
+</dt><dd>
+</dd><dt><b>DELE Ta </b>удалить файл
+
+
+</dt><dd>
+</dd><dt><b>HELP Ta </b>вывод справочной информации
+
+
+</dt><dd>
+</dd><dt><b>LIST Ta </b>получить список файлов в каталоге (``<b>ls -lgA</b>
+
+''
+
+)
+
+
+
+</dt><dd>
+</dd><dt><b>MKD Ta </b>создать каталог
+
+
+</dt><dd>
+</dd><dt><b>MDTM Ta </b>показать время последней модификации файла
+
+
+</dt><dd>
+</dd><dt><b>MODE Ta </b>определить тип пересылки данных <i>mode</i>
+
+
+
+</dt><dd>
+</dd><dt><b>NLST Ta </b>получить список имен файлов в каталоге
+
+
+</dt><dd>
+</dd><dt><b>NOOP Ta </b>ничего не делать
+
+
+</dt><dd>
+</dd><dt><b>PASS Ta </b>указать пароль
+
+
+</dt><dd>
+</dd><dt><b>PASV Ta </b>приготовиться к пересылке сервер-серверу
+
+
+</dt><dd>
+</dd><dt><b>PORT Ta </b>задать порт подключения данных
+
+
+</dt><dd>
+</dd><dt><b>PWD Ta </b>сообщить текущий рабочий каталог
+
+
+</dt><dd>
+</dd><dt><b>QUIT Ta </b>прервать сессию
+
+
+</dt><dd>
+</dd><dt><b>REST Ta </b>продолжить незавершенную пересылку
+
+
+</dt><dd>
+</dd><dt><b>RETR Ta </b>принять файл
+
+
+</dt><dd>
+</dd><dt><b>RMD Ta </b>удалить каталог
+
+
+</dt><dd>
+</dd><dt><b>RNFR Ta </b>указать имя файла rename-from
+
+
+</dt><dd>
+</dd><dt><b>RNTO Ta </b>указать имя файла rename-to
+
+
+</dt><dd>
+</dd><dt><b>SITE Ta </b>нестандартные команды (см. следующий раздел)
+
+
+</dt><dd>
+</dd><dt><b>SIZE Ta </b>вернуть размер файла
+
+
+</dt><dd>
+</dd><dt><b>STAT Ta </b>вернуть статус сервера
+
+
+</dt><dd>
+</dd><dt><b>STOR Ta </b>сохранить файл
+
+
+</dt><dd>
+</dd><dt><b>STOU Ta </b>сохранить файл с уникальным именем
+
+
+</dt><dd>
+</dd><dt><b>STRU Ta </b>определить тип пересылки данных <i>structure</i>
+
+
+
+</dt><dd>
+</dd><dt><b>SYST Ta </b>сообщить тип операционной системы сервера
+
+
+</dt><dd>
+</dd><dt><b>TYPE Ta </b>определить тип пересылаемых данных <i>type</i>
+
+
+
+</dt><dd>
+</dd><dt><b>USER Ta </b>указать имя пользователя
+
+
+</dt><dd>
+</dd><dt><b>XCUP Ta </b>перейти в каталог верхнего уровня (deprecated)
+
+
+</dt><dd>
+</dd><dt><b>XCWD Ta </b>сменить рабочий каталог (deprecated)
+
+
+</dt><dd>
+</dd><dt><b>XMKD Ta </b>создать каталог (deprecated)
+
+
+</dt><dd>
+</dd><dt><b>XPWD Ta </b>сообщить текущий рабочий каталог (deprecated)
+
+
+</dt><dd>
+</dd><dt><b>XRMD Ta </b>удалить каталог (deprecated)
+
+
+</dt><dd>
+</dd></dl>
+<p>
+
+</p><p>
+
+Следующие нестандартные или
+<b>UNIX-вые</b>
+
+команды поддерживаются запросом SITE.
+</p><p>
+
+</p><dl compact="">
+<p>
+
+</p><dt><b>Запрос Ta </b><b>Описание</b>
+
+
+
+</dt><dd>
+</dd><dt><b>UMASK Ta </b>сменить, напр., ``SITE UMASK 002''
+
+
+</dt><dd>
+</dd><dt><b>IDLE Ta </b>установить idle-timer, напр., ``SITE IDLE 60''
+
+
+</dt><dd>
+</dd><dt><b>CHMOD Ta </b>сменить mode файла, напр., ``SITE CHMOD 755 filename''
+
+
+</dt><dd>
+</dd><dt><b>HELP Ta </b>получить справочную информацию.
+
+
+</dt><dd>
+</dd></dl>
+<p>
+
+</p><p>
+
+Остальные ftp-запросы, определенные в Internet RFC 959, распознаются,
+но не реализованы.
+MDTM и SIZE в RFC 959 не определены, но появятся в следующих обновлениях
+FTP RFC.
+</p><p>
+
+Ftp-сервер прервет активную передачу файла только если
+перед командой ABOR в командном потоке Telnet будет переданы сигналы
+Telnet "Interrupt Process" (IP) и Telnet "Synch", как описано в 
+Internet RFC 959.
+Если во время передачи данных после Telnet IP и Synch получена команда
+STAT,
+будет возвращен статус передачи.
+</p><p>
+
+<b>Ftpd</b>
+
+интерпретирует имена файлов в соответствии с соглашениями
+``globbing''
+
+ 
+используемыми
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=csh&amp;category=1">csh</a>(1).
+
+
+Это позволяет пользователям использовать метасимволы
+``<b>*?[]{}~</b>
+
+''
+
+ 
+</p><p>
+
+<b>Ftpd</b>
+
+аутентифицирует пользователей в соответствии с пятью правилами.
+</p><p>
+
+</p><ol><p>
+
+</p><li>
+
+Регистрационное имя должно быть в базе данных паролей,
+/etc/pwd.db
+
+ 
+и не должно иметь нулевой пароль.
+В этом случае пароль должен быть указан клиентом до того, как могут
+быть выполненые любые файловые операции. Если у пользователя имеется
+ключ S/Key, то ответ успешной команды USER будет содержать вызов S/Key.
+Клиент может в команде PASS ответить либо стандартным паролем, либо 
+одноразовым паролем S/Key. Сервер автоматически определит тип полученного
+пароля и выполнит соответствующую аутентификацию. Подробнее по S/Key 
+аутентификации смотрите в 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=skey&amp;category=1">skey</a>(1)
+
+
+S/Key является торговой маркой Bellcore.
+</li><li>
+
+Регистрационное имя не должно быть указано в файле
+/etc/ftpusers
+
+ 
+</li><li>
+
+Пользователь должен иметь стандартный shell, возвращаемый
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getusershell&amp;category=3">getusershell</a>(3).
+
+
+</li><li>
+
+Если имя пользователя указано в файле
+/etc/ftpchroot
+
+ 
+то корень сессии будет переключен в каталог пользователя с помощью
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chroot&amp;category=2">chroot</a>(2),
+
+
+как для бюджета пользователя
+``anonymous''
+
+или
+``ftp''
+
+(см. следующую тему). Однако пользователь все-равно должен ввести пароль.
+Эта особенность предназначена как компромис между полностью анонимным
+и полностью привилегированным бюджетами. Бюджет пользователя должен быть настроен также, как
+для анонимного пользователя.
+</li><li>
+
+Если имя пользователя - 
+``anonymous''
+
+или
+``ftp''
+
+ 
+то в файле паролей должен присутствовать бюджет анонимного ftp
+(пользователь
+``ftp )''
+
+ 
+В этом случае регистрация пользователя разрешена при указании любого пароля
+(по традиции в качестве пароля должен указываться email-адрес пользователя).
+</li></ol><p>
+
+</p><p>
+
+В последнем случае
+<b>ftpd</b>
+
+предпринимает специальные действия для ограничения доступа клиенту.
+Сервер выполняет
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chroot&amp;category=2">chroot</a>(2)
+
+
+в домашний каталог пользователя
+``ftp''
+
+ 
+Для того, чтобы система не была взломана, рекомендуется тщательно разрабатывать
+поддерево
+``ftp''
+
+ 
+следуя таким правилам:
+</p><dl compact="">
+<p>
+
+</p><dt><b>~ftp
+
+</b>
+</dt><dd>
+Установите владельцем домашнего каталога 
+``root''
+
+и сделайте недоступным на запись для всех (mode 555).
+</dd><dt><b>~ftp/bin
+
+</b>
+</dt><dd>
+Установите владельцем этого каталога
+``root''
+
+и сделайте недоступным на запись для всех (mode 511).
+Этот каталог не обязательный, если у вас нет команд, которые
+мог бы выполнить анонимный ftp пользователь (команда 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ls&amp;category=1">ls</a>(1)
+
+
+является встроенной).
+Все программы в этом каталоге должны иметь mode 111 (только выполнение).
+</dd><dt><b>~ftp/etc
+
+</b>
+</dt><dd>
+Установите владельцем этого каталога
+``root''
+
+и сделайте недоступным на запись для всех (mode 511).
+Файлы pwd.db (смотрите
+pwd_mkdb8)
+
+
+и
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=group&amp;category=5">group</a>(5)
+
+
+должны присутствовать, чтобы команда
+ls
+
+
+могла выводить имена владельцем, а не номера.
+Поле пароля в
+pwd.db
+
+
+не используется и не должно содержать реальных паролей.
+При наличии файла
+motd
+
+ 
+он будет распечатываться после успешной регистрации.
+Эти файлы должны иметь mode 444.
+</dd><dt><b>~ftp/pub
+
+</b>
+</dt><dd>
+Установите для этого каталога mode 555 и владельца
+``root''
+
+ 
+Это традиционное место, где хранятся файлы, публично доступные для
+копирования.
+</dd></dl>
+<p>
+
+</p><p>
+
+Если регистрация в файл
+/var/log/ftpd
+
+разрешена, информация будет записана в следующем виде:
+</p><p>
+
+</p><dl compact="">
+<p>
+
+</p><dt><b>time</b>
+</dt><dd>
+Время и дата получения файлов в формате
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ctime&amp;category=3">ctime</a>(3).
+
+
+</dd><dt><b>elapsed time</b>
+</dt><dd>
+Время копирования, в секундах.
+</dd><dt><b>remote host</b>
+</dt><dd>
+Удаленная машина (или IP-адрес).
+</dd><dt><b>bytes</b>
+</dt><dd>
+Количество переданных байт.
+</dd><dt><b>path</b>
+</dt><dd>
+Полный путь (относительно ftp chroot каталога) переданного файла.
+</dd><dt><b>type</b>
+</dt><dd>
+Тип передачи - либо
+``a''
+
+для ASCII, либо
+``b''
+
+для binary.
+</dd><dt><b>unused</b>
+</dt><dd>
+Неиспользуемое поле, содержащее для совместимости
+``*''
+
+ 
+</dd><dt><b>unused</b>
+</dt><dd>
+Неиспользуемое поле, содержащее для совместимости
+``o''
+
+ 
+</dd><dt><b>user type</b>
+</dt><dd>
+Тип пользователя - либо
+``a''
+
+для anonymous, либо
+``r''
+
+для реального пользователя (всегда должен быть анонимным).
+</dd><dt><b>name</b>
+</dt><dd>
+Либо регистрационное имя системы, либо значение 
+``email address''
+
+ 
+если пользователь анонимный.
+</dd><dt><b>unused</b>
+</dt><dd>
+Неиспользуемое поле, содержащее для совместимости
+``0''
+
+ 
+</dd><dt><b>real name</b>
+</dt><dd>
+Регистрационное имя в системе, если соединение не анонимное или
+``*''
+
+ 
+если анонимное.
+</dd><dt><b>virtual host</b>
+</dt><dd>
+Виртуальная машина, с которой было выполнено соединение.
+</dd></dl>
+<p>
+
+</p><p>
+
+Хотя имеются поля для регистрационной информации реальных пользователей,
+этот файл используется только для анонимных сеансов передачи. Неиспользуемые поля
+существуют только для совместимости с другими
+<b>ftpd</b>
+
+реализациями.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<p>
+
+</p><dt><b>/etc/ftpusers
+
+</b>
+</dt><dd>
+Список нежелательных/запрещенных пользователей.
+</dd><dt><b>/etc/ftpchroot
+
+</b>
+</dt><dd>
+Список обычных пользователей, для которых нужно выполнить chroot.
+</dd><dt><b>/etc/ftpwelcome
+
+</b>
+</dt><dd>
+Приветствие.
+</dd><dt><b>/etc/motd
+
+</b>
+</dt><dd>
+Приветствие после регистрации.
+</dd><dt><b>/etc/nologin
+
+</b>
+</dt><dd>
+Наличие этого файла влечёт за собою отказ в доступе с одновременной распечаткой его содержимого.
+</dd><dt><b>/var/run/utmp
+
+</b>
+</dt><dd>
+Список пользователей в системе.
+</dd><dt><b>/var/run/ftpd.pid
+
+</b>
+</dt><dd>
+Id процесса, если запущен в режиме демона.
+</dd><dt><b>/var/log/ftpd
+
+</b>
+</dt><dd>
+Файл журнала регистрации событий для анонимных пользователей.
+</dd></dl>
+<p>
+
+<a name="lbAF">&nbsp;</a>
+</p><h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ftp&amp;category=1">ftp</a>(1),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=skey&amp;category=1">skey</a>(1),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=who&amp;category=1">who</a>(1),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getusershell&amp;category=3">getusershell</a>(3),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a>(8)
+
+
+<a name="lbAG">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+Для создания подключений с привилегированными номерами портов сервер
+должен выполняться от имени суперпользователя. Он устанавливает 
+действующий ID зарегистрированного пользователя, возвращаясь в
+режим суперпользователя только для привязки адресов к доменным подключениям.
+Возможные прорехи в безопасности были очень тщательно изучены, но, 
+возможно, не полностью.
+<a name="lbAH">&nbsp;</a>
+<h2>ИСТОРИЯ</h2>
+
+Команда
+<b></b>
+
+
+появилась в
+BSD 4.2
+ 
+<a name="lbAI">&nbsp;</a>
+<h2>ПРАВА</h2>
+
+Copyright (c) 1985, 1988, 1991, 1993
+<p>
+
+The Regents of the University of California.  All rights reserved.
+
+Fl P
+</p><p>
+
+Перевод - Александр Саввин, <a href="mailto:savvin@mail.ru">savvin@mail.ru</a>, (c) 2001
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAG">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAH">ИСТОРИЯ</a></dt><dd>
+</dd><dt><a href="#lbAI">ПРАВА</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ftpd-BSD" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

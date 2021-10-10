@@ -1,0 +1,388 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN reboot (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, reboot"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="reboot" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">reboot (2)</font><hr><li> <a href="/man.shtml?topic=reboot&amp;category=1&amp;russian=4"><u>reboot</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=reboot&amp;category=2&amp;russian=1"><u>reboot</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=reboot&amp;category=2&amp;russian=0"><u>reboot</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=reboot&amp;category=2&amp;russian=2"><u>reboot</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=reboot&amp;category=3&amp;russian=4"><u>reboot</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=reboot&amp;category=8&amp;russian=1"><u>reboot</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=reboot&amp;category=8&amp;russian=2"><u>reboot</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+reboot - перезагружает систему и разрешает/запрещает использование
+клавиш Ctrl-Alt-Del для перезагрузки
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+В libc4 и libc5 библиотечный и системный вызовы идентичны;
+в ядрах версии 2.1.30 и последующих есть символьные имена
+LINUX_REBOOT_*, относящиеся к константам, а также появился
+четвертый параметр
+<p>
+<b>#include &lt;<a href="file:/usr/include/unistd.h">unistd.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/linux/reboot.h">linux/reboot.h</a>&gt;</b>
+
+</p><p>
+<b>int reboot(int </b><i>magic</i><b>, int </b><i>magic2</i><b>, int </b><i>flag</i><b>, void *</b><i>arg</i><b>);</b>
+
+</p><p>
+В glibc некоторым константам присвоены символьные имена RB_*,
+а библиотечный вызов является 1-аргументной оболочкой трехаргументного
+системного вызова:
+</p><p>
+<b>#include &lt;<a href="file:/usr/include/unistd.h">unistd.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/sys/reboot.h">sys/reboot.h</a>&gt;</b>
+
+</p><p>
+<b>int reboot(int </b><i>flag</i><b>);</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Функция
+<b>reboot</b>
+
+перезагружает систему или разрешает/запрещает использование для
+перезагрузки специального сочетания клавиш (по умолчанию это
+Ctrl-Alt-Delete; это сочетание можно изменить при помощи
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=loadkeys&amp;category=1">loadkeys</a></b>(1)).
+
+<p>
+
+Системный вызов вернет ошибку (EINVAL), если
+<i>magic</i>
+
+не равен LINUX_REBOOT_MAGIC1 (т.е., 0xfee1dead) и
+<i>magic2</i>
+
+не равен LINUX_REBOOT_MAGIC2 (т.е., 672274793).
+Однако, в версии 2.1.17 ядра и более поздних в качестве значения
+<i>magic2</i>
+
+можно использовать LINUX_REBOOT_MAGIC2A (т.е., 85072278),
+а в версии 2.1.97 и более поздних - LINUX_REBOOT_MAGIC2B (369367448);
+шестнадцатеричные значения этих констант говорят сами за себя.
+Параметр
+<i>flag</i>
+
+может принимать следующие значения:
+</p><dl compact="">
+<dt><b>LINUX_REBOOT_CMD_RESTART</b>
+
+</dt><dd>
+(RB_AUTOBOOT, 0x1234567).
+На консоль выводится сообщение `Restarting system.', и сразу выполняется
+перезагрузка системы.
+Если вызову этой функции не предшествует команда
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sync&amp;category=2">sync</a></b>(2),
+
+то данные будут потеряны.
+</dd><dt><b>LINUX_REBOOT_CMD_HALT</b>
+
+</dt><dd>
+(RB_HALT_SYSTEM, 0xcdef0123 версии 1.1.76 ядра и более поздних).
+На консоль выводится сообщение `System halted.', и система останавливается.
+Управление передается монитору в ПЗУ, если таковой имеется.
+Если вызову этой функции не предшествует
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sync&amp;category=2">sync</a></b>(2),
+
+то данные будут потеряны.
+</dd><dt><b>LINUX_REBOOT_CMD_POWER_OFF</b>
+
+</dt><dd>
+(0x4321fedc в ядре версии 2.1.30 и более поздних).
+На консоль выводится сообщение 'Power down.', система останавливается,
+и у системы отключаются все источники питания, если это возможно.
+Если вызову этой функции не предшествует
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sync&amp;category=2">sync</a></b>(2),
+
+то данные будут потеряны.
+</dd><dt><b>LINUX_REBOOT_CMD_RESTART2</b>
+
+</dt><dd>
+(0xa1b2c3d4; версия ядра 2.1.30 и более поздние).
+На консоль выводится сообщение `Restarting system with command '%s'', и
+немедленно выполняется перезагрузка системы (с использованием командной строки,
+заданной в
+<i>arg</i>).
+
+Если вызову этой функции не предшествует
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sync&amp;category=2">sync</a></b>(2),
+
+то данные будут потеряны.
+</dd><dt><b>LINUX_REBOOT_CMD_CAD_ON</b>
+
+</dt><dd>
+(RB_ENABLE_CAD, 0x89abcdef).
+Разрешить использование сочетания клавиш для перезагрузки.
+Это означает, что сочетание клавиш CAD приведет к немедленному
+выполнению LINUX_REBOOT_CMD_RESTART.
+</dd><dt><b>LINUX_REBOOT_CMD_CAD_OFF</b>
+
+</dt><dd>
+(RB_DISABLE_CAD, 0).
+Запретить использование сочетания клавиш для перезагрузки системы.
+Сочетание клавиш CAD приведет к тому, что
+init (процесс 1) получит сигнал SIGINT, после чего этот процесс может
+произвести все необходимые действия (послать сигналы процессам,
+выполнить команду sync, перезагрузиться).
+</dd></dl>
+<p>
+
+Эту функцию может вызывать только суперпользователь.
+</p><p>
+
+Конкретное действие описанных выше команд зависит от архитектуры системы.
+Что касается i386, то дополнительный аргумент в данное время
+не работает (2.1.122), а тип перезагрузки можно задать с помощью
+командной строки ядра `reboot=...', определив, будет ли перезагрузка "горячей"
+или "холодной", а также выполнить ее при помощи процессора или BIOS.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+При удачном завершении вызова возвращаемое значение равно нулю. При ошибке возвращается
+-1, а переменной
+<i>errno</i>
+
+присваивается номер ошибки.
+<a name="lbAF">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>EINVAL</b>
+
+</dt><dd>
+Неправильны "волшебные" числа или параметр <i>flag</i>.
+</dd><dt><b>EPERM</b>
+
+</dt><dd>
+Несуперпользователь пытается выполнить функцию
+<b>reboot</b>.
+
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+<b>reboot</b>
+
+это функция, специфичная для Linux. Не рекомендуется
+использовать ее в программах, которые должны быть переносимыми 
+в другие системы.
+<a name="lbAH">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sync&amp;category=2">sync</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bootparam&amp;category=7">bootparam</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ctrlaltdel&amp;category=8">ctrlaltdel</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=halt&amp;category=8">halt</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=reboot&amp;category=8">reboot</a></b>(8)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAG">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="reboot" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,809 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN slapo-accesslog (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, slapo-accesslog"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="slapo-accesslog" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">slapo-accesslog (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=slapo-accesslog&amp;category=5&amp;russian=0"><u>slapo-accesslog</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+slapo-accesslog - наложение slapd ведения журнала доступа.
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+/usr/local/etc/openldap/slapd.conf
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Наложение ведения журнала доступа может быть использовано для сбора информации о всех обращениях
+к заданной базе данных в другой базе данных. Это позволяет изучать действия, производимые с
+заданной базой данных, с помощью обычных LDAP-запросов, вместо просмотра простых локальных
+текстовых log-файлов. С помощью параметров конфигурации можно настроить подмножества типов операций
+для помещения в журнал, а также автоматическое удаление старых записей из базы данных журнала.
+Записи журнала строятся на объектных классах и атрибутах из набора схемы данных audit (смотрите ниже),
+чтобы их можно было просматривать в читабельном варианте как в виде LDIF, так и в неоформленном виде.
+<a name="lbAE">&nbsp;</a>
+<h2>КОНФИГУРАЦИЯ</h2>
+
+Приводимые параметры
+<b>slapd.conf</b>
+
+применяются к наложению ведения журнала доступа. Они должны указываться после директивы
+<b>overlay</b>.
+
+<dl compact="">
+<dt><b>logdb &lt;suffix&gt;</b>
+
+</dt><dd>
+Указывает суффикс базы данных, которая будет использоваться для хранения записей журнала. Определение
+указываемой базы данных должно также присутствовать в конфигурации. Настройки контроля доступа базы
+данных журнала должны предотвращать общий доступ к ней. Корневую запись (суффикс) базы данных
+журнала наложение создаст автоматически. Записи журнала будут создаваться как непосредственные
+дочерние записи по отношению к корневой записи.
+</dd><dt><b>logops &lt;operations&gt;</b>
+
+</dt><dd>
+Указывает, сведения об операциях какого типа заносить в журнал. Корректные типы операций: abandon,
+add, bind, compare, delete, extended, modify, modrdn, search и unbind.
+Также имеются псевдонимы для общепринятых наборов операций:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>writes</b>
+
+</dt><dd>
+add, delete, modify, modrdn
+</dd><dt><b>reads</b>
+
+</dt><dd>
+compare, search
+</dd><dt><b>session</b>
+
+</dt><dd>
+abandon, bind, unbind
+</dd><dt><b>all</b>
+
+</dt><dd>
+все операции
+</dd></dl>
+</dd></dl>
+
+</dd><dt><b>logbase &lt;operations&gt; &lt;baseDN&gt;</b>
+
+</dt><dd>
+Указывает набор операций, сведения о которых будут помещаться в журнал, если эти операции выполняются
+над записями из определённого поддерева базы данных. Типы операций те же, что и для директивы
+<b>logops</b>,
+
+в качестве разделителя для них используется символ вертикальной черты '|'.
+</dd><dt><b>logold &lt;filter&gt;</b>
+
+</dt><dd>
+Указывает фильтр для поиска совпадений среди записей, над которыми выполняются операции
+Delete или Modify. Если запись соответствует фильтру, старое содержимое записи помещается
+в журнал вместе с текущим запросом.
+</dd><dt><b>logoldattr &lt;attr&gt; ...</b>
+
+</dt><dd>
+Указывает список атрибутов, старое содержимое которых будет всегда помещаться в журнал при запросах
+Modify и ModRDN. Обычно в журнал помещается только содержимое тех атрибутов, которые были реально
+изменены; по умолчанию для запросов ModRDN старые атрибуты в журнал не помещаются.
+</dd><dt><b>logpurge &lt;age&gt; &lt;interval&gt;</b>
+
+</dt><dd>
+Указывает максимальный возраст записей журнала, которые будут храниться в базе данных, а также
+как часто будет выполняться сканирование базы данных для поиска устаревших записей. Оба аргумента
+<b>age</b>
+
+и
+<b>interval</b>
+
+указываются как период времени в днях, часах, минутах и секундах. Формат промежутка времени:
+[ddd+]hh:mm[:ss], где часы и минуты являются обязательными полями, а дни и секунды - опциональными.
+Все числовые поля, за  исключением поля дней, которое может состоять из произвольного количества цифр,
+но не больше пяти, должны состоять ровно из двух цифр. Например,
+<dl compact=""><dt></dt><dd>
+<dl compact=""><dt></dt><dd>
+
+<dl compact="">
+<dt>logpurge 2+00:00 1+00:00</dt><dd>
+</dd></dl>
+</dd></dl>
+
+
+говорит о том, что база данных журнала должна будет сканироваться в поисках устаревших записей
+каждый день, при этом записи старше двух дней будут удалены. Если механизм манипуляции данными
+базы данных журнала поддерживает упорядоченное индексирование атрибутов с синтаксисом generalizedTime,
+определение индекса eq для атрибута
+<b>reqStart</b>
+
+существенно повысит производительность операции удаления.
+</dd></dl>
+
+</dd><dt><b>logsuccess TRUE | FALSE</b>
+
+</dt><dd>
+Если этот параметр установлен в TRUE, то записи журнала будут генерироваться только для успешно
+выполненных запросов, то есть запросов, в ответ на которые был возвращён результирующий код 0
+(LDAP_SUCCESS). Если этот параметр установлен в FALSE, то записи журнала будут генерироваться
+для всех запросов, независимо от того, были ли они выполнены успешно, или нет.
+Значение по умолчанию - FALSE.
+<p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ПРИМЕРЫ</h2>
+
+<p>
+
+</p><pre>        database bdb
+        suffix dc=example,dc=com
+        ...
+        overlay accesslog
+        logdb cn=log
+        logops writes reads
+        logbase search|compare ou=testing,dc=example,dc=com
+        logold (objectclass=person)
+
+        database bdb
+        suffix cn=log
+        ...
+        index reqStart eq
+        access to *
+          by dn.base="cn=admin,dc=example,dc=com" read
+</pre>
+
+<p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>НАБОР СХЕМЫ ДАННЫХ</h2>
+
+Наложение
+<b>accesslog</b>
+
+использует описанный далее набор схемы данных "audit", разработанный специально для баз данных
+<b>accesslog</b>,
+
+и не предназначенный для использования где-либо ещё. Также следует отметить, что работа над этим набором схемы
+<i>ещё&nbsp;не&nbsp;окончена</i>,
+
+так что в него ещё могут быть внесены изменения. Данный набор схемы загружается автоматически наложением
+<b>accesslog</b>.
+
+<p>
+Набор включает несколько объектных классов и связанных с ними типов атрибутов, описанных ниже.
+</p><p>
+Основной объектный класс -
+<b>auditObject</b>,
+
+от которого наследуются два дополнительных объектных класса
+<b>auditReadObject</b>
+
+и
+<b>auditWriteObject</b>.
+
+От этих классов далее наследуются объектные классы для каждого типа операций LDAP. Такая иерархия
+объектных классов разработана для обеспечения гибкого и эффективного поиска по журналу как
+по конкретным типам операций, так и по более обобщённой классификации. Определение объектного класса
+<b>auditObject</b>:
+
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4203.666.11.5.2.1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;'auditObject'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'OpenLDAP&nbsp;request&nbsp;auditing'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;top&nbsp;STRUCTURAL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MUST&nbsp;(&nbsp;reqStart&nbsp;$&nbsp;reqType&nbsp;$&nbsp;reqSession&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MAY&nbsp;(&nbsp;reqDN&nbsp;$&nbsp;reqAuthzID&nbsp;$&nbsp;reqControls&nbsp;$&nbsp;reqRespControls&nbsp;$
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reqEnd&nbsp;$&nbsp;reqResult&nbsp;$&nbsp;reqMessage&nbsp;$&nbsp;reqReferral&nbsp;)&nbsp;)
+</dd></dl>
+
+
+Имейте ввиду, что все OID, используемые в наборе схемы данных журналирования, в настоящий момент
+принадлежат ветке OpenLDAP Experimental. Ожидается, что в будущем они будут перемещены в ветку Standard.
+<p>
+Обзор типов атрибутов:
+<b>reqStart</b>
+
+и
+<b>reqEnd</b>
+
+предназначены для хранения времени начала и конца операции, соответственно.
+Они используют синтаксис generalizedTime. Атрибут
+<b>reqStart</b>
+
+также используется для формирования RDN каждой записи журнала.
+</p><p>
+Атрибут
+<b>reqType</b>
+
+- это простая строка, содержащая тип операции, сведения о которой сохраняются в журнал, например
+<b>add</b>,
+
+<b>delete</b>,
+
+<b>search</b>
+
+и т.д. Для расширенных операций тип также включает OID расширенной операции, например
+<b>extended(1.1.1.1)</b>.
+
+</p><p>
+Атрибут
+<b>reqSession</b>
+
+- это идентификатор, форма которого зависит от реализации, общий для всех операций в рамках одной
+сессии LDAP. В настоящее время это внутренний идентификатор соединения slapd,
+сохраняющийся в виде десятичного числа.
+</p><p>
+Атрибут
+<b>reqDN</b>
+
+- это уникальное имя distinguishedName целевой записи операции. Например, для запроса Bind это
+Bind DN, для запроса Add это DN добавляемой записи, для запроса Search это DN базы поиска.
+</p><p>
+Атрибут
+<b>reqAuthzID</b>
+
+- это уникальное имя distinguishedName пользователя, выполняющего операцию. Обычно это имя, которое
+связывается с сессией в её начале посредством выполнения запроса Bind (если он выполнялся),
+однако оно может быть изменено при различных условиях.
+</p><p>
+В атрибутах
+<b>reqControls</b>
+
+и
+<b>reqRespControls</b>
+
+содержатся любые элементы управления, посылаемые клиентом при запросе и возвращаемые сервером в
+ответе, соответственно. Значения атрибутов представляют собой неинтерпретируемую строку октетов.
+</p><p>
+Атрибут
+<b>reqResult</b>
+
+- это цифровой результирующий код LDAP для выполненной операции, который отражает либо её успешное
+завершение, либо код конкретной ошибки LDAP. Код ошибки может сопровождаться текстовым сообщением,
+которое помещается в атрибут
+<b>reqMessage</b>.
+
+</p><p>
+Атрибут
+<b>reqReferral</b>
+
+содержит любые отсылки, которые были возвращены с результатом запроса.
+</p><p>
+В объектных классах, специфичных для операций, определяются дополнительные атрибуты,
+в которых помещаются параметры, связанные с конкретной операцией:
+</p><p>
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4203.666.11.5.2.4
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;'auditAbandon'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Abandon&nbsp;operation'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;auditObject&nbsp;STRUCTURAL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MUST&nbsp;reqId&nbsp;)
+</dd></dl>
+
+
+Для операции
+<b>Abandon</b>
+
+атрибут
+<b>reqId</b>
+
+содержит идентификатор сообщения того запроса, от выполнения которого требовалось отказаться.
+<p>
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4203.666.11.5.2.5
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;'auditAdd'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Add&nbsp;operation'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;auditWriteObject&nbsp;STRUCTURAL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MUST&nbsp;reqMod&nbsp;)
+</dd></dl>
+
+
+Объектный класс операции
+<b>Add</b>
+
+наследуется от класса
+<b>auditWriteObject</b>.
+
+Классы операций Add и Modify очень похожи. В атрибут
+<b>reqMod</b>
+
+помещаются все атрибуты оригинальной добавляемой записи (в случае операции Modify - все атрибуты,
+модификация которых была произведена). Формат значений атрибута
+<b>reqMod</b>:
+
+<dl compact=""><dt></dt><dd>
+
+<dl compact="">
+<dt>attribute:&lt;+|-|=|#&gt; [ value]</dt><dd>
+</dd></dl>
+</dd></dl>
+
+
+
+Здесь знак '+' указывает на добавление значения (add), знак '-' - на удаление (delete),
+знак '=' - на замену (replace), а знак '#' - на инкремент (increment).
+Для операции Add все значения в атрибуте reqMod будут иметь знак '+'.
+
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4203.666.11.5.2.6
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;'auditBind'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Bind&nbsp;operation'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;auditObject&nbsp;STRUCTURAL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MUST&nbsp;(&nbsp;reqVersion&nbsp;$&nbsp;reqMethod&nbsp;)&nbsp;)
+</dd></dl>
+
+
+Объектный класс операции
+<b>Bind</b>
+
+включает атрибут
+<b>reqVersion</b>,
+
+в котором содержится версия протокола LDAP, указанная в запросе Bind, а также атрибут
+<b>reqMethod</b>,
+
+в котором содержится метод Bind, используемый в запросе Bind. В качестве метода может быть строка
+<b>SIMPLE</b>
+
+для подсоединений LDAP Simple Bind, либо
+<b>SASL(&lt;mech&gt;)</b>
+
+для подсоединений SASL Bind. Обратите внимание, что если данное наложение настроено не на
+глобальном уровне, в журнал попадут только подсоединения Simple Bind, в которых используются
+DN из текущей базы данных.
+<p>
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4203.666.11.5.2.7
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;'auditCompare'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Compare&nbsp;operation'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;auditObject&nbsp;STRUCTURAL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MUST&nbsp;reqAssertion&nbsp;)
+</dd></dl>
+
+
+Для операции
+<b>Compare</b>
+
+атрибут
+<b>reqAssertion</b>
+
+содержит утверждение значения атрибута (Attribute Value Assertion), используемое в запросе Compare.
+<p>
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4203.666.11.5.2.8
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;'auditDelete'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Delete&nbsp;operation'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;auditWriteObject&nbsp;STRUCTURAL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MAY&nbsp;reqOld&nbsp;)
+</dd></dl>
+
+
+Для операции
+<b>Delete</b>
+
+не требуется дополнительных параметров. Однако, опциональный атрибут
+<b>reqOld</b>
+
+может использоваться для сохранения содержимого записи перед её удалением. Формат значений атрибута
+<b>reqOld</b>:
+
+<dl compact=""><dt></dt><dd>
+
+<dl compact="">
+<dt>attribute: value</dt><dd>
+</dd></dl>
+</dd></dl>
+
+
+Атрибут
+<b>reqOld</b>
+
+присутствует, только если удаляемая запись соответствует фильтру в параметре конфигурации
+<b>logold</b>.
+
+<p>
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4203.666.11.5.2.9
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;'auditModify'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Modify&nbsp;operation'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;auditWriteObject&nbsp;STRUCTURAL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MAY&nbsp;reqOld&nbsp;MUST&nbsp;reqMod&nbsp;)
+</dd></dl>
+
+
+Запись операции
+<b>Modify</b>
+
+содержит описание произведённых модификаций в атрибуте
+<b>reqMod</b>,
+
+формат значений которого уже описан ранее в пояснениях к объектному классу операции Add. Опционально
+в этой записи может сохраняться предыдущее содержимое модифицированных атрибутов в атрибуте
+<b>reqOld</b>,
+
+формат значений которого уже описан выше в пояснениях к объектному классу операции Delete. Атрибут
+<b>reqOld</b>
+
+присутствует, только если модифицируемая запись соответствует фильтру в параметре конфигурации
+<b>logold</b>.
+
+<p>
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4203.666.11.5.2.10
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;'auditModRDN'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'ModRDN&nbsp;operation'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;auditWriteObject&nbsp;STRUCTURAL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MUST&nbsp;(&nbsp;reqNewRDN&nbsp;$&nbsp;reqDeleteOldRDN&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MAY&nbsp;(&nbsp;reqNewSuperior&nbsp;$&nbsp;reqOld&nbsp;)&nbsp;)
+</dd></dl>
+
+
+Объектный класс операции
+<b>ModRDN</b>
+
+использует атрибут
+<b>reqNewRDN</b>
+
+для сохранения нового RDN запроса. Атрибут
+<b>reqDeleteOldRDN</b>
+
+- это логическое значение (синтаксис Boolean); если оно установлено в
+<b>TRUE</b>,
+
+старое RDN было удалено из записи, а если в
+<b>FALSE</b>,
+
+старое RDN было сохранено. В атрибуте
+<b>reqNewSuperior</b>
+
+сохраняется DN новой родительской записи, если таковая была указана в запросе. Атрибут
+<b>reqOld</b>
+
+присутствует, только если модифицируемая запись соответствует фильтру в параметре конфигурации
+<b>logold</b>
+
+и содержит атрибуты из списка в параметре конфигурации
+<b>logoldattr</b>.
+
+<p>
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4203.666.11.5.2.11
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;'auditSearch'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Search&nbsp;operation'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;auditReadObject&nbsp;STRUCTURAL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MUST&nbsp;(&nbsp;reqScope&nbsp;$&nbsp;reqDerefAliases&nbsp;$&nbsp;reqAttrsOnly&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MAY&nbsp;(&nbsp;reqFilter&nbsp;$&nbsp;reqAttr&nbsp;$&nbsp;reqEntries&nbsp;$&nbsp;reqSizeLimit&nbsp;$
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reqTimeLimit&nbsp;)&nbsp;)
+</dd></dl>
+
+
+Объектный класс операции
+<b>Search</b>
+
+использует атрибут
+<b>reqScope</b>
+
+для хранения диапазона оригинального поискового запроса и использует значения,
+определённые для формата LDAP URL, например,
+<b>base</b>,
+
+<b>one</b>,
+
+<b>sub</b>
+
+или
+<b>subord</b>.
+
+Атрибут
+<b>reqDerefAliases</b>
+
+принимает одно из значений
+<b>never</b>,
+
+<b>finding</b>,
+
+<b>searching</b>
+
+или
+<b>always</b>,
+
+означающих, каким образом во время поиска будут обрабатываться псевдонимы. Атрибут
+<b>reqAttrsOnly</b>
+
+- это логическое значение (синтаксис Boolean); если оно установлено в
+<b>TRUE</b>,
+
+запрашивались только имена атрибутов, а если в
+<b>FALSE</b>,
+
+атрибуты запрашивались вместе с их значениями. Атрибут
+<b>reqFilter</b>
+
+содержит фильтр, использовавшийся в поисковом запросе. В атрибуте
+<b>reqAttr</b>
+
+перечисляются запрашиваемые атрибуты, если таковые указывались при запросе. Атрибут
+<b>reqEntries</b>
+
+- целое число, означающее количество записей, которые были возвращены на данный поисковый запрос.
+Атрибуты
+<b>reqSizeLimit</b>
+
+и
+<b>reqTimeLimit</b>
+
+показывают, какие ограничения были запрошены клиентом для данной операции поиска.
+<p>
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4203.666.11.5.2.12
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;'auditExtended'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Extended&nbsp;operation'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;auditObject&nbsp;STRUCTURAL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MAY&nbsp;reqData&nbsp;)
+</dd></dl>
+
+
+Объектный класс операции
+<b>Extended</b>
+
+представляет расширенную операцию LDAP. Как было сказано выше, в атрибут
+<b>reqType</b>
+
+родительского класса включается актуальный OID операции. Если с запросом предоставлялась какая-либо
+дополнительная информация, она будет помещена в атрибут
+<b>reqData</b>
+
+как неинтерпретируемая строка октетов.
+<p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПРИМЕЧАНИЯ</h2>
+
+Журнал доступа, реализуемый данным наложением, может использоваться для различных других задач,
+например, в качестве журнала изменений (ChangeLog) для механизма репликации,
+а также для ведения журналов в целях безопасности или аудита.
+<p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt>/usr/local/etc/openldap/slapd.conf</dt><dd>
+конфигурационный файл slapd по умолчанию.
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-config&amp;category=5">slapd-config</a></b>(5).
+
+<p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>ПРИЗНАНИЕ ЗАСЛУГ</h2>
+
+
+Данный модуль написан в 2005 году. Автор - Howard Chu из Symas Corporation.
+<p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">КОНФИГУРАЦИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">НАБОР СХЕМЫ ДАННЫХ</a></dt><dd>
+</dd><dt><a href="#lbAH">ПРИМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAI">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAK">ПРИЗНАНИЕ ЗАСЛУГ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="slapo-accesslog" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

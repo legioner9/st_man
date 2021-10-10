@@ -1,0 +1,452 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN regex (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, regex"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="regex" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">regex (7)</font><hr><li> <a href="/man.shtml?topic=regex&amp;category=1&amp;russian=4"><u>regex</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=regex&amp;category=3&amp;russian=1"><u>regex</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=regex&amp;category=3&amp;russian=0"><u>regex</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=regex&amp;category=3&amp;russian=2"><u>regex</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=regex&amp;category=5&amp;russian=4"><u>regex</u></a> (5) <font color="#555555"> ( Solaris man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=regex&amp;category=7&amp;russian=0"><u>regex</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=regex&amp;category=7&amp;russian=2"><u>regex</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li><font color="#555555">Ключ <a href="/keywords/regex.html"><u>regex</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+regex - регулярные выражения стандарта POSIX 1003.2 
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Регулярные выражения (``РВ'')
+стандарта POSIX 1003.2 могут быть двух видов:
+новые РВ (по сути, это вызовы
+<i>egrep</i>;
+
+версия #1003.2 называет их еще ``дополнительными'' РВ)
+и абсолютные РВ (по сути, вызовы
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ed&amp;category=1">ed</a></b>(1);
+
+стандарт 1003.2 называет их еще ``основными'' РВ).
+Абсолютные РВ существуют в старых программах для совместимости их с предыдущими
+программными версиями (они будут подробнее рассмотрены в конце этого документа).
+1003.2 не разъясняет некоторые вопросы синтаксиса РВ;
+знаком`(!)' отмечается описание функций, которые не могут быть внесены
+в другие версии 1003.2).
+<p>
+
+Новые РВ -одна(!) или более "непустых"(!) <i>ветвей</i>,
+разделенных `|'.
+Эта большая ветвь ведет поиск любых соответствий одной из своих ветвей.
+</p><p>
+
+Ветвь состоит из одной(!) или более <i>частей</i>.
+Ветвь сначала ведет поиск соответствий первой, затем второй (и т.д.) ее частям.
+</p><p>
+
+Часть - это <i>атом</i>, за которым может следовать
+символ(!) `*', `+', `?', или <i>интервал</i>.
+Если за атомом следует символ `*', это означает, что данный атом может
+повторяться 0 или более раз.
+Если за атомом следует символ `+', это означает, что данный атом может
+повторяться 1 или более раз.
+Если за атомом следует символ `?', это означает, что данный атом может 
+повторяться 0 или 1 раз.
+</p><p>
+
+<i>Интервал</i> - это символ `{', после которого стоит положительное целое
+десятичное число, за которым может следовать символ `,', далее, возможно,
+находится еще одно положительное целое десятичное число, и в конце интервала
+обязательно стоит символ `}'. Число должно находиться в промежутке от нуля до
+RE_DUP_MAX (255(!)) включительно, а если это два числа, то первое не должно
+превышать второе. Атом с интервалом, в котором есть одно число <i>i</i> и нет
+запятой, ведет поиск  последовательности  только с числом <i>i</i>.
+Атом с интервалом, содержащим число <i>i</i> и запятую, ведет поиск
+чисел, соответствующих числу <i>i</i> и другим числам данного атома.
+Атом с интервалом, содержащим два числа <i>i</i> и <i>j</i>, ведет поиск 
+числовых соответствий в диапазоне от <i>i</i> до <i>j</i> включительно.
+</p><p>
+
+Атом - это регулярное выражение, заключенное в `()' (соответствующее
+регулярному выражению), пустые скобки `()' (соответствуют
+нулевой строке)(!), <i>выражение в квадратных скобках </i> (см. ниже), `.'
+(соответствует любому одному символу), `^' (соответствует пустой строке в
+начале строки), `$' (соответствует пустой строке в конце строки), символ
+`\' со следующим после него одним из символов `^.[$()|*+?{\'
+(соответствует этому символу, как он есть), символ `\' с последующим
+символом, отличным от предыдущих (!) (соответствует этим символам, как они есть,
+как если бы `\' не применялся(!)); or a single character with no
+other significance (matching that character).
+Символ `{' с последующим символом, не являющимся цифрой, соответствует
+символу, а не началу интервала(!).
+Нельзя заканчивать РВ символом `\'.
+</p><p>
+
+<i>Выражение в квадратных скобках</i> является списком символов, заключенных
+в `[]'.
+Оно соответствует любому отдельному символу из списка.
+Если список начинается с `^',
+то он соответствует любому отдельному символу
+(см. ниже) <i>не</i> из приведенного списка.
+Если два символа в списке разделены `-', то это 
+сокращение означает полный <i>интервал</i> символов, заключенных в 
+эти два (включая и их), например, `[0-9]' в кодах ASCII соответствует
+любой десятичной цифре.
+Нельзя (!) для двух интервалов иметь один и тот же общий символ,
+например, `a-c-e'.
+Эти интервалы, по возможности, не должны использоваться в переносимых программах.
+</p><p>
+
+Для того, чтобы включить в список символ `]' , Вам следует поставить его в
+начало списка (после символа `^', если он присутствует).
+Для того, чтобы включить в список символ `-', поставьте его первым  или
+последним в интервале символов.
+Для того, чтобы обозначить символом `-' начало интервала,
+заключите его в `[.' и `.]'.
+За исключением некоторых комбинаций, использующих `[' (см. следующие части),
+все другие специальные символы, включая `\', теряют их особое
+назначение в квадратных скобках.
+</p><p>
+
+Если внутри квадратных скобок элемент сортировки
+заключен в `[.' и `.]', то он обозначает последовательность символов как
+один элемент сортировки.
+Последовательностью называется элемент списка внутри квадратных скобок.
+Таким образом, выражение в скобках, содержащее многосимвольный элемент сортировки,  
+может соответствовать более чем одному символу;
+например, если последовательность содержит элемент сортировки `ch',
+то РВ `[[.ch.]]*c' соответствует первым пяти символам последовательности
+`chchcc'.
+</p><p>
+
+В квадратных скобках элемент сортировки, заключенный в `[=' и
+`=]', означает класс эквивалентности, то есть последовательность символов 
+элемента сортировки, эквивалентных ему и включающих его самого в эту последовательность.
+(Если нет больше эквивалентных элементов сортировки,
+то это аналогично выражению, заключенному в `[.' и `.]').
+Например, если o и  являются членами эквивалентного класса,
+то `[[=o=]]', `[[==]]', и `[o]' являются синонимами.
+Класс эквивалентности не(!) может служить границей интервала.
+</p><p>
+
+Выражение в  квадратных скобках, название <i>класса символов</i>, заключенное в
+`[:' и `:]', означает список всех символов, принадлежащих классу.
+Существуют стандартные классы символов:
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>
+alnum digitpunct
+alpha graphspace
+blank lowerupper
+cntrl printxdigit
+</pre>
+
+</dd></dl>
+
+<p>
+
+Эти классы определяются в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=wctype&amp;category=3">wctype</a></b>(3).
+
+В локали могут быть определены свои классы.
+Класс символов не может использоваться как граница интервала.
+</p><p>
+
+Есть два особых случая(!) выражений в квадратных скобках:
+выражение `[[:&lt;:]]' и `[[:&gt;:]]' соответствует пустой строке
+в начале и конце слова соответственно.
+Слово определяется как последовательность символов, входящих в это
+слово, и отсутствие символов до и после этой последовательности.
+Словесные символы входят в класс символов
+<i>alnum</i>
+
+(это определяется в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=wctype&amp;category=3">wctype</a></b>(3)),
+
+куда входит еще и подчеркивание.
+Это совместимое, но не описываемое в POSIX 1003.2 дополнение,
+поэтому оно используется в программах, предназначенных для переноса 
+на другие платформы (с соответствующим предупреждением).
+</p><p>
+
+В случае, если РВ совпадает более чем с одной подстрокой данной строки,
+то оно считается совпадающим с первой подстрокой данной строки.
+Если РВ совпадает более чем с одной подстрокой строки, то она совпадет с
+самой длинной подстрокой.
+"Подвыражения" так же соответствуют самой длинной совпадающей подстроке, 
+полное соответствие должно быть наиболее длинным, а сами "подвыражения" в РВ 
+для получения приоритета должны стоять перед остальными.
+Высокоуровневые подвыражения имеют приоритет над низкоуровневыми.
+</p><p>
+
+Длина совпадений измеряется в символах, а не в элементах сортировки.
+пустая строка считается длиннее несовпадений.
+Например,
+`bb*' совпадает с тремя средними символами `abbbc',
+`(wee|week)(knights|nights)' подходит ко всем десяти символам `weeknights',
+а когда `(.*).*' сравнивается с `abc', "подвыражение" в скобках
+совпадает со всеми тремя символами; при сравнении
+`(a*)*' с `bc' получается, что РВ и "подвыражение" в скобках соответствуют пустой строке.
+</p><p>
+
+Если совпадение указано независимо от его регистра, то получится, что
+все совпадения независимо от регистра будут правильными.
+Когда буква присутствует в различных регистрах вне квадратных скобок, то
+она трансформируется в выражение в квадратных скобках, содержащее оба регистра, 
+например, `x' становится `[xX]'.
+Если буква уже заключена в скобки, то к ней добавляется и другой регистр,
+например, `[x]' становится `[xX]', а  `[^x]' превращается в `[^xX]'.
+</p><p>
+
+Конкретного ограничения длины РВ не существует.
+Однако, в программах, предназначенных для переноса на другую платформу
+не следует использовать РВ более 256 байтов.
+</p><p>
+
+Абсолютные (``основные'') РВ отличаются друг от друга по нескольким аспектам.
+`|', `+', и `?' используются как обычные символы.
+Для обозначения границ интервалов используются `\{' и `\}',
+а `{' и `}' сами по себе являются обычными символами.
+Для обособления "подвыражений" используются `\(' и `\)',
+а `(' и `)' сами по себе являются обычными символами.
+`^' является обычным символом за исключением того случая, когда символ стоит 
+в начале РВ или (!) в начале выражения, в круглых скобках,
+`$' является обычным символом, кроме того случая, когда символ стоит
+в конце РВ или (!) в конце выражения, в круглых скобках,
+символ `*' является обычным, если он стоит в начале РВ или в начале
+"подвыражения", заключенного в круглые скобки
+(после возможного служебного символа `^').
+И, в дополнение, существует еще один тип атома: <i>обратная ссылка</i>:
+`\' с последующей за ней цифрой <i>d</i>, не равной нулю,
+и соответствует той самой последовательности, что и 
+подвыражение <i>d</i> в скобках 
+(число означает порядковый номер подвыражений, заключенных в круглые скобки,
+при считывании его слева направо),
+таким образом, например,  `\([bc]\)\1' соответствует `bb' или `cc', но не `bc'.
+<a name="lbAD">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=regex&amp;category=3">regex</a></b>(3)
+
+<p>
+
+POSIX 1003.2, глава 2.8 (Regular Expression Notation).
+<a name="lbAE">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Не рекомендуется использовать два типа РВ.
+<p>
+
+Имеющаяся в данный момент документация о 1003.2 указывает, что символ `)' при
+отсутствии `(' считается обычным; это опечатка, поэтому данные
+символы следует читать наоборот.
+</p><p>
+
+Обратные ссылки так же не рекомендуется применять, так как они не имеют
+подробного определения и в связи с этим создают путаницу
+(например,`a\(\(b\)*\2\)*d' соответствует `abbbd'?).
+</p><p>
+
+Определение соответствия разных регистров в 1003.2 тоже очень туманное.
+Определение типа ``один регистр замещает все остальные'', по мнению
+некоторых специалистов, не является правильным.
+</p><p>
+
+Синтаксические знаки для разделения слов очень неудобны и не имеют смысла.
+<a name="lbAF">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+Эта страница документа Henry Spencer's regex package.
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAF">АВТОРЫ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="regex" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

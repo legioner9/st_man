@@ -1,0 +1,945 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN telnet (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, telnet"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="telnet" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">telnet (1)</font><hr><li> <a href="/man.shtml?topic=telnet&amp;category=1&amp;russian=4"><u>telnet</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=telnet&amp;category=1&amp;russian=1"><u>telnet</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=telnet&amp;category=1&amp;russian=0"><u>telnet</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=telnet&amp;category=1&amp;russian=2"><u>telnet</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li><font color="#555555">Ключ <a href="/keywords/telnet.html"><u>telnet</u></a> обнаружен в базе ключевых слов.</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>telnet(1)</h1></td>
+<td><h1 align="right">telnet(1) </h1></td>
+</tr>
+</tbody></table>
+<!-- END OF MAN PAGE HEADER -->
+
+<h2>НАЗВАНИЕ
+</h2><p><b>telnet</b> - пользовательский интерфейс к удаленной системе,
+использующий протокол TELNET
+</p>
+<h2>СИНТАКСИС
+</h2><dl><dt></dt>
+  <dd><tt>
+        telnet [-8][-E][-L][-a][-d][-e <b>управляющий_символ</b>]
+        [-l <b>пользователь</b>] [-n <b>файл_трассировки</b>]
+        [-r][<b>хост</b> [<b>порт</b>]]
+   </tt> </dd>
+</dl>
+
+<h2>ОПИСАНИЕ
+</h2><p>Команда <b>telnet</b> используется для связи с другим хостом по протоколу
+TELNET.
+</p>
+<h3>&nbsp;&nbsp;&nbsp;Файлы
+</h3><dl>
+        <dt><tt>$HOME/.telnetrc
+</tt></dt>              <dd>настраиваемые пользователем параметры запуска <b>telnet</b>
+</dd>   <dt><tt>/usr/lib/locale/локаль/LC_MESSAGES/uxtelnet
+</tt></dt>              <dd>файл сообщений для текущего языка
+                (См. <b>LANG</b> в <a href="/man.shtml?topic=environ&amp;category=1"><b>environ(5)</b></a>.)
+</dd></dl>
+
+<h3>&nbsp;&nbsp;&nbsp;Переменные среды
+</h3><p>Команда <b>telnet</b> использует как минимум следующие переменные среды:
+<b>HOME</b>, <b>SHELL</b>, <b>USER</b>, <b>DISPLAY</b> и <b>TERM</b>.
+Другие переменные среды
+можно передать на удаленный компьютер с помощью опции TELNET
+ENVIRON.
+</p>
+<h2>ИСПОЛЬЗОВАНИЕ
+</h2><p>Если команда <b>telnet</b> вызвана без аргумента хоста, она входит в
+командный режим, что показывает приглашение <tt>telnet&gt;</tt>. В этом режиме
+<b>telnet</b> воспринимает и выполняет перечисленные ниже команды. Если
+<b>telnet</b> вызвана с аргументами, она выполнит команду <a href="#open"><b>open</b></a>
+(см. описание
+команд <b>telnet</b> ниже) с этими аргументами.
+</p>
+<h3>&nbsp;&nbsp;&nbsp;Опции
+</h3><p><b>telnet</b> воспринимает следующие опции:
+</p>
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td width="30%"><b>-8
+</b></td>       <td>Использование восьмибитовой передачи
+        данных. Это приведет к попытке установить
+        опцию BINARY для входных и выходных
+        данных.
+</td></tr>
+<tr><td width="30%"><b>-E
+</b></td>       <td>Прекращает распознавание любого символа как
+        управляющего.
+</td></tr>
+<tr><td width="30%"><b>-L
+</b></td>       <td>Использование восьмибитовой передачи
+        выходных данных. Это приводит к попытке
+        установки опции BINARY для выходных
+        данных.</td></tr>
+
+<tr><td width="30%"><b>-a
+</b></td>       <td>Автоматическая регистрация в удаленной
+        системе. Если удаленная система воспринимает
+        опцию ENVIRON, переменная <b>USER</b> будет
+        передана удаленной системе. Эта опция также
+        может использоваться с командой <a href="#open"><b>open</b></a>.
+</td></tr>
+<tr><td width="30%"><b>-d
+</b></td>       <td>Переключает отладку на уровне сокетов
+        (пригодится только привилегированному
+        пользователю). Устанавливает начальное
+        значение переключателя отладки в TRUE.
+</td></tr>
+<tr><td width="30%"><b>-e  [ упр_символ ]
+</b></td>       <td>Устанавливает начальный управляющий символ
+        TELNET в <b>упр_символ</b>. Если <b>упр_символ</b> -
+        пустая строка (""), то предопределенного
+        управляющего символа не будет.
+</td></tr>
+<tr><td width="30%"><b>-l пользователь
+</b></td>       <td>При подключении к удаленной системе,
+        воспринимающей опцию ENVIRON,
+        пользователь будет послан удаленной системе
+        в качестве значения переменной <b>USER</b>. Эта
+        опция также может использоваться с командой
+        <a href="#open"><b>open</b></a>.
+</td></tr>
+<tr><td width="30%"><b>-n файл_трассировки
+</b></td>       <td>Открывает <b>файл_трассировки</b> для записи
+        трассировочной информации. (См. описание
+        команды <a href="#settrace"><b>set tracefile</b></a> ниже.)
+</td></tr>
+<tr><td width="30%"><b>-r
+</b></td>       <td>Использует пользовательский интерфейс,
+        аналогичный <a href="/man.shtml?topic=rlogin&amp;category=1"><b>rlogin(1)</b></a>. В этом режиме
+        управляющим символом является тильда ("<b>~</b>"),
+        если другой символ не указан опцией <b>-e</b>.
+</td></tr>
+<tr><td width="30%"><b>host
+</b></td>       <td>Показывает официальное имя хоста: псевдоним
+        или Internet-адрес удаленного хоста.
+</td></tr>
+<tr><td width="30%"><b>port
+</b></td>       <td>Показывает номер порта (т.е., адрес
+        приложения). Если номер порта не указан при
+        запуске программы, используется стандартный
+        номер порта TELNET.
+</td></tr></tbody></table>
+
+<p>После установки (открытия) соединения, TELNET переходит в "режим
+ввода". TELNET попытается установить опцию LINEMODE (построчный
+режим). Если это не удастся сделать, TELNET перейдет в один из двух
+режимов ввода: либо в <i>"посимвольный" режим</i> ("character at a time"
+mode), либо в <i>"старый построчный" режим</i> ("old line by line" mode), в
+зависимости от того, какой из них поддерживается удаленной системой.
+</p>
+<p>Когда опция LINEMODE установлена, обработка символов будет
+выполняться на локальной системе, но под управлением удаленной
+системы. Когда редактирование ввода или отображение символов
+необходимо отключить, удаленная система передаст эту информацию.
+Удаленная система также передаст изменения любых специальных
+символов, произошедшие на удаленной системе, так, чтобы они могли
+быть выполнены на локальной системе.
+</p>
+<p>В "посимвольном" режиме основная часть введенного текста будет
+незамедлительно посылаться на удаленный хост для обработки.
+</p>
+<p>В "старом построчном" режиме текст будет отображаться локально, но
+(обычно) только законченные строки будут посылаться на удаленный
+хост. Для включения и отключения режима локального отображения
+можно использовать "локальный символ отображения" ("local echo
+character", первоначально - "<b>^E</b>"), его имеет смысл использовать только
+для ввода паролей, чтобы пароль не отображался.
+</p>
+<p>Если опция LINEMODE установлена или переключатель
+<a href="#localchars"><b>localchars</b></a> имеет
+значение TRUE (это значение устанавливается по умолчанию для
+"старого построчного" режима; см. ниже), пользовательские символы
+<b>quit</b>, <b>intr</b> и <b>flush</b> будут перехватываться локально и посылаться как
+последовательности протокола TELNET на удаленную машину. Если
+когда-либо ранее была установлена опция LINEMODE, то вводимые
+пользователем символы <b>susp</b> и <b>eof</b> тоже будут посылаться как
+последовательности протокола TELNET; <b>quit</b> будет посылаться как
+TELNET ABORT, а не как BREAK. Имеются опции (см. переключатели
+<a href="#autoflush"><b>autoflush</b></a> и <a href="#autosynch"><b>autosynch</b></a> ниже),
+при установке которых данное действие
+подавляет весь дальнейший вывод на терминал (пока удаленный хост не
+подтвердит прием последовательности TELNET) и подавляет
+предыдущий ввод с терминала (в случае <b>quit</b> и <b>intr</b>).
+</p>
+<p>После соединения с удаленным хостом в командный режим <b>telnet</b>
+ можно войти, введя "управляющий символ" TELNET (изначально - "<b>^[</b>").
+</p>
+<p>При работе в командном режиме поддерживаются обычные соглашения
+по редактированию для терминала.
+</p>
+<h3>&nbsp;&nbsp;&nbsp;Команды
+</h3><p>Поддерживаются следующие команды TELNET, причем можно набирать
+только начальную часть команды, достаточную для ее однозначного
+определения (это же истинно и для аргументов команд
+<a href="#mode"><b>mode</b></a>, <a href="#set"><b>set</b></a>,
+<a href="#toggle"><b>toggle</b></a>, <a href="#unset">
+<b>unset</b></a>, <a href="#slc"><b>slc</b></a>, <a href="#environ"><b>environ</b></a> и
+<a href="#display"><b>display</b></a>).
+</p>
+<dl>
+<dt><a name="close"><b>close
+</b></a></dt><dd>Закрывает сеанс TELNET и возвращается в командный режим.
+</dd>
+<dt><a name="display"><b>display аргумент ...
+</b></a></dt><dd>Показывает значения всех или некоторых установок и
+переключателей.
+</dd>
+<dt><a name="mode"><b>mode тип
+</b></a></dt><dd>
+В зависимости от состояния сеанса TELNET, аргумент <b>тип</b> может
+иметь одно из представленных ниже значений. У удаленного
+хоста будет запрошено разрешение на переход в требуемый
+режим. Если удаленный хост способен перейти в этот режим, он
+перейдет в него.
+<p></p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td width="20%"><b>character
+</b></td>       <td>Отключить опцию TELNET LINEMODE; или,
+        если удаленная сторона не понимает опцию
+        LINEMODE, перейти в "посимвольный" режим.
+</td></tr>
+<tr><td width="20%"><b>line
+</b></td>       <td>Включить опцию TELNET LINEMODE; или,
+        если удаленная сторона не понимает опцию
+        TELNET LINEMODE, попытаться перейти в
+        старый построчный" режим.
+</td></tr>
+<tr><td width="20%"><b>isig
+</b></td></tr><tr><td width="20%"><b>-isig
+</b></td>       <td>Попытаться включить (отключить) режим
+        TRAPSIG опции TELNET LINEMODE. Для
+        этого необходимо, чтобы опция LINEMODE
+        была включена.
+</td></tr>
+<tr><td width="20%"><b>edit
+</b></td></tr><tr><td width="20%"><b>-edit
+</b></td>       <td>Попытаться включить (отключить) режим EDIT
+        опции LINEMODE. Для этого необходимо,
+        чтобы опция LINEMODE была включена.
+</td></tr>
+<tr><td width="20%"><b>softtabs
+</b></td></tr><tr><td width="20%"><b>-softtabs
+</b></td>       <td>Попытаться включить (отключить) режим
+        SOFT_TAB опции LINEMODE. Для этого
+        необходимо, чтобы опция LINEMODE была
+        включена.
+</td></tr>
+<tr><td width="20%"><b>lopenxso
+</b></td></tr><tr><td width="20%"><b>-lopenxso</b></td>
+        <td>Попытаться включить (отключить) режим
+        LIT_ECHO опции LINEMODE. Для этого
+        необходимо, чтобы опция LINEMODE была
+        включена.
+</td></tr>
+<tr><td width="20%"><b>?
+</b></td>       <td>Выдать справочную информацию по команде
+        <b>mode</b>.</td></tr>
+</tbody></table>
+</dd>
+
+<dt><a name="open"><b>open [ -l пользователь ] [ -a ] хост [[-]порт ]
+</b></a></dt><dd>Открывает соединение с указанным <b>хостом</b>. Учтите, что наличие
+или отсутствие пробелов в синтаксисе команды существенно.
+Если номер порта не указан, <b>telnet</b> попытается связаться с
+сервером TELNET на стандартном порту. Хост можно указывать
+как по имени (см. <a href="/man.shtml?topic=hosts&amp;category=4"><b>hosts(4)</b></a>), так и в виде адреса Internet в
+"точечной записи" (см. <a href="/man.shtml?topic=inet&amp;category=3"><b>inet(3N)</b></a>).
+
+<p>Можно использовать опцию <b>-l</b> или <b>-a</b> для задания имени
+пользователя, которое будет передано удаленной системе через
+опцию ENVIRON.
+</p>
+<p>При подключении к нестандартному порту, <b>telnet</b> не будет
+автоматически инициировать никакие опции TELNET. Если перед
+номером порта указан знак минус, начальное согласование опций
+будет выполняться следующим образом: После установки
+соединения будет открыт файл <b>.telnetrc</b> в начальном каталоге
+пользователя. Строки, начинающиеся с <b>#</b>, рассматриваются как
+комментарии; пустые строки будут проигнорированы. Строки,
+начинающиеся не с пробелов, считаются началом записи о
+машине. Первой в строке идет имя машины, к которой
+подключается данный хост. Остаток строки - и последующие
+строки, начинающиеся с пробела - рассматриваются как команды
+<b>telnet</b> и будут выполнены, как если бы они были введены
+пользователем в ответ на командное приглашение <b>telnet</b>.
+</p></dd>
+<dt><b>quit
+</b></dt><dd>Закрывает любой открытый сеанс TELNET и завершает работу
+программы <b>telnet</b>. При работе в командном режиме, ввод символа
+конца файла (<b>EOF</b>) также приведет к закрытию сеанса и
+завершению работы.
+</dd>
+<dt><a name="send"><b>send аргументы
+</b></a></dt><dd>Посылает одну (или несколько) последовательностей специальных
+символов на удаленный хост. Можно указывать следующие
+аргументы (в одной команде можно указывать несколько
+аргументов):
+<p></p>
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td width="20%"><a name="send_abort"><b>abort
+</b></a></td>   <td>Посылает последовательность TELNET
+        ABORT (прекратить процессы).
+</td></tr>
+<tr><td width="20%"><a name="send_ao"><b>ao
+</b></a></td>   <td>Посылает последовательность TELNET
+        AO (Abort Output - прекратить выдачу),
+        которая должна привести к подавлению
+        выдачи выходных данных удаленной
+        машиной на терминал пользователя.
+</td></tr>
+<tr><td width="20%"><a name="send_ayt"><b>ayt
+</b></a></td>   <td>Посылает последовательность TELNET
+        AYT (Are You There? - ты жива?);
+        удаленная система может ответить на это
+        обращение, а может и не отвечать.
+</td></tr>
+<tr><td width="20%"><a name="send_brk"><b>brk
+</b></a></td>   <td>Посылает последовательность TELNET
+        BRK (BReaK - прервать), которая может
+        иметь значение для удаленной системы.
+</td></tr>
+<tr><td width="20%"><a name="send_ec"><b>ec
+</b></a></td>   <td>Посылает последовательность TELNET EC
+        (Erase Character - стереть символ),
+        которая должна привести к стиранию
+        последнего введенного символа удаленной
+        системой.
+</td></tr>
+<tr><td width="20%"><a name="send_el"><b>el
+</b></a></td>   <td>Посылает последовательность TELNET EL
+        (Erase Line - стереть строку), которая
+        должна привести к стиранию вводимой
+        строки удаленной системой.
+</td></tr>
+<tr><td width="20%"><a name="send_eof"><b>eof
+</b></a></td>   <td>Посылает последовательность TELNET
+        EOF (End Of File - конец файла).
+</td></tr>
+<tr><td width="20%"><a name="send_eor"><b>eor
+</b></a></td>   <td>Посылает последовательность TELNET
+        EOR (End of Record - конец записи).</td></tr>
+
+<tr><td width="20%"><a name="send_escape"><b>escape
+</b></a></td>   <td>Посылает текущий управляющий символ
+        TELNET (изначально - "<b>^[</b>").
+</td></tr>
+<tr><td width="20%"><a name="send_ga"><b>ga
+</b></a></td>   <td>Посылает последовательность TELNET
+        GA (Go Ahead - продолжай), которая,
+        скорее всего, не существенна для
+        удаленной системы.
+</td></tr>
+<tr><td width="20%"><a name="send_getstatus"><b>getstatus
+</b></a></td>   <td>Если удаленная сторона поддерживает
+        команду TELNET STATUS, <b>getstatus</b>
+        пошлет запрос на выдачу сервером
+        текущего статуса опций.
+</td></tr>
+<tr><td width="20%"><a name="send_ip"><b>ip
+</b></a></td>   <td>Посылает последовательность TELNET IP
+        (Interrupt Process - прервать процесс),
+        которая должна привести к прекращению
+        удаленной системой текущего
+        выполняемого процесса.
+</td></tr>
+<tr><td width="20%"><a name="send_nop"><b>nop
+</b></a></td>   <td>Посылает последовательность TELNET
+        NOP (No OPeration - нет операции).
+</td></tr>
+<tr><td width="20%"><a name="send_susp"><b>susp
+</b></a></td>   <td>Посылает последовательность TELNET
+        SUSP (SUSPend process - приостановить
+        процесс).
+</td></tr>
+<tr><td width="20%"><a name="send_synch"><b>synch
+</b></a></td>   <td>Посылает последовательность TELNET
+        SYNCH. Эта последовательность приводит
+        к тому, что удаленная система
+        отбрасывает всю уже набранную (но еще
+        не прочитанную) информацию. Эта
+        последовательность посылается как
+        срочные данные (urgent data) TCP (и
+        может не сработать, если удаленная
+        система - 4.2 BSD; если
+        последовательность не сработала, на
+        терминал может быть выдан символ "<b>|</b>" в
+        нижнем регистре).
+</td></tr>
+<tr><td width="20%"><b>?
+</b></td>       <td>Выдает справочную информацию по
+        команде <b>send</b>.
+</td></tr></tbody></table>
+</dd>
+
+<dt><a name="set"><b>set аргумент значение
+</b></a></dt>
+<dt><a name="unset"><b>unset аргумент значение
+</b></a></dt><dd>
+Команда <b>set</b> устанавливает любой из многочисленных переменных
+TELNET указанное значение или значение <b>TRUE</b>. Специальное
+значение <b>off</b> отключает функцию, связанную с данной переменной;
+это эквивалентно использованию команды <b>unset</b>. Команда <b>unset</b>
+отключит (или установит в <b>FALSE</b>) любые указанные функции.
+Значения переменных можно получить с помощью команды
+<a href="#display"><b>display</b></a>. Переменные, которые можно установить или сбросить, но
+не переключить, перечислены ниже. Кроме того, любая из
+переменных для команды <a href="#toggle"><b>toggle</b></a>, может быть явно включена или
+отключена с помощью команд <b>set</b> и <b>unset</b>.
+<p></p>
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td width="20%"><a name="set_echo"><b>echo
+</b></a></td>   <td>Это значение (первоначально, "<b>^E</b>"), которое, при
+        вводе в "построчном" режиме, включает локальное
+        отображение введенных символов (для нормальной
+        обработки) или отключает отображение (например,
+        для ввода пароля).
+</td></tr>
+<tr><td width="20%"><a name="set_eof"><b>eof
+</b></a></td>   <td>Если <b>telnet</b> работает в режиме LINEMODE или в
+        "старом построчном" режиме, ввод этого символа в
+        качестве первого символа строки приведет к его
+        посылке удаленной системе. Первоначальным
+        значением символа <b>EOF</b> является символ конца
+        файла (<b>eof</b>) терминала.
+</td></tr>
+<tr><td width="20%"><a name="set_erase"><b>erase
+</b></a></td>   <td>Если <b>telnet</b> находится в режиме <b>localchars</b> (см.
+        <a href="#localchars"><b>toggle localchars</b></a> ниже) и работает в "посимвольном"
+        режиме, то при вводе этого символа удаленной
+        системе посылается последовательность TELNET
+        EC (см. <a href="#send_ec"><b>send ec</b></a> выше). Первоначальным значением
+        символа <b>erase</b> является символ стирания (erase)
+        терминала.
+</td></tr>
+<tr><td width="20%"><a name="set_escape"><b>escape
+</b></a></td>   <td>Это управляющий символ TELNET (первоначально,
+        "<b>^[</b>"), вызывающий переход в командный режим
+        TELNET, когда пользователь подключен к
+        удаленной системе.
+</td></tr>
+<tr><td width="20%"><a name="set_flushoutput"><b>flushoutput
+</b></a></td>   <td>Если telnet находится в режиме <b>localchars</b> (см.
+        <a href="#localchars"><b>toggle localchars</b></a> ниже) и введен символ
+        <b>flushoutput</b>,
+ на удаленный хост посылается последовательность
+        TELNET AO (см. <a href="#send_ao"><b>send ao</b></a> выше). В качестве
+        начального значения для <i>символа сброса</i> (flush
+        character) берется символ сброса терминала.
+</td></tr>
+<tr><td width="20%"><a name="set_intr"><b>interrupt
+</b></a></td>   <td>Если <b>telnet</b> находится в режиме <b>localchars</b> (см.
+        <a href="#localchars"><b>toggle localchars</b></a> ниже) и введен
+        <i>символ прерывания</i>
+        (interrupt character), на удаленный хост посылается
+        последовательность TELNET IP (см. <a href="#send_ip"><b>send ip</b></a> выше).
+        В качестве начального значения для символа
+        прерывания берется символ <b>intr</b> терминала.
+</td></tr>
+<tr><td width="20%"><a name="set_kill"><b>kill
+</b></a></td>   <td>Если <b>telnet</b> находится в режиме <b>localchars</b> (см.
+        <a href="#localchars"><b>toggle localchars</b></a> ниже) и работает в "посимвольном"
+        режиме, то при вводе этого символа удаленной
+        системе посылается последовательность <a href="#send_el"><b>TELNET
+        EL</b></a>. В качестве начального значения символа <b>kill</b>
+        берется символ <b>kill</b> терминала.
+</td></tr>
+<tr><td width="20%"><a name="set_lnext"><b>lnext
+</b></a></td>   <td>Если <b>telnet</b> работает в режиме LINEMODE или в
+        "старом построчном" режиме, этот символ
+        устанавливается в качестве символа <b>lnext</b> для
+        терминала. В качестве начального значения для
+        символа <b>lnext</b> берется символ <b>lnext</b> терминала.
+</td></tr>
+<tr><td width="20%"><a name="set_quit"><b>quit
+</b></a></td>   <td>Если <b>telnet</b> находится в режиме <b>localchars</b> (см.
+        <a href="#localchars"><b>toggle localchars</b></a> ниже) и введен символ <b>quit</b>, на
+        удаленный хост посылается последовательность
+        TELNET BRK (см. <a href="#send_brk"><b>send brk</b></a> выше). В качестве
+        начального значения для символа <b>quit</b> берется
+        символ <b>quit</b> терминала.
+</td></tr>
+<tr><td width="20%"><a name="set_reprint"><b>reprint
+</b></a></td>   <td>Если <b>telnet</b> работает в режиме LINEMODE или в
+        "старом построчном" режиме, этот символ
+        устанавливается в качестве символа <b>reprint</b> для
+        терминала. В качестве начального значения для
+        символа <b>reprint</b> берется символ <b>reprint</b> терминала.
+</td></tr>
+<tr><td width="20%"><a name="set_start"><b>start
+</b></a></td>   <td>Если включена опция TELNET TOGGLE-FLOW-
+CONTROL,        этот символ устанавливается в качестве
+        символа <b>start</b> для терминала. В качестве начального
+        значения для символа <b>start</b> берется символ <b>start</b>
+        терминала.
+</td></tr>
+<tr><td width="20%"><a name="set_stop"><b>stop
+</b></a></td>   <td>Если включена опция TELNET TOGGLE-FLOW-
+CONTROL,        этот символ устанавливается в качестве
+        символа <b>stop</b> для терминала. В качестве начального
+        значения для символа <b>stop</b> берется символ <b>stop</b>
+        терминала.
+</td></tr>
+<tr><td width="20%"><a name="set_susp"><b>susp
+</b></a></td>   <td>Если <b>telnet</b> находится в режиме <b>localchars</b> или если
+        включен режим LINEMODE и введен символ
+        <b>suspend</b>, на удаленный хост посылается
+        последовательность TELNET SUSP (см. <a href="#send_susp"><b>send susp</b>
+</a>    выше). В качестве начального значения для символа
+        <b>suspend</b> берется символ <b>suspend</b> терминала.
+</td></tr>
+<tr><td width="20%"><a name="set_tracefile"><b>tracefile
+</b></a></td>   <td>В этот файл будут записываться результаты,
+        сгенерированные командой <a href="#netdata"><b>netdata</b></a>.
+</td></tr>
+<tr><td width="20%"><a name="set_worderase"><b>worderase
+</b></a></td>   <td>Если <b>telnet</b> работает в режиме LINEMODE или в
+        "старом построчном" режиме, этот символ
+        устанавливается в качестве <i>символа стирания слова</i>
+        (worderase character) для терминала. В качестве
+        начального значения символа стирания слова
+        берется символ стирания слова терминала.
+</td></tr>
+<tr><td width="20%"><b>?
+</b></td>       <td>Выдает список допустимых команд <b>set</b> и <b>unset</b>.
+</td></tr>
+</tbody></table>
+</dd>
+
+<dt><a name="slc"><b>slc состояние
+</b></a></dt><dd>
+Команда <b>slc</b> (Set Local Characters - установить локальные
+символы) используется для установки (или изменения) состояния
+специальных символов, когда включена опция TELNET
+LINEMODE. <i>Специальными</i> называются символы, преобразуемые
+в командные последовательности TELNET (например, <b>ip</b> или <b>quit</b>)
+или символы редактирования строк (например, <b>erase</b> и <b>kill</b>). По
+умолчанию, экспортируются "локальные специальные символы".
+<p></p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td width="20%"><b>export
+</b></td>       <td>Перейти на локальные стандартные значения для
+        "специальных символов". Локальными стандартными
+        значениями являются значения для локального
+        терминала на момент запуска <b>telnet</b>.
+</td></tr>
+<tr><td width="20%"><b>import
+</b></td>       <td>Перейти на удаленные стандартные значения для
+        "специальных символов". Удаленными стандартными
+        значениями являются значения специальных
+        символов удаленной системы на момент установки
+        соединения TELNET.
+</td></tr>
+<tr><td width="20%"><b>check
+</b></td>       <td>Проверить текущие установки для "специальных
+        символов". От удаленной стороны запрашивается
+        посылка всех текущих установок специальных
+        символов; если имеются различия по сравнению с
+        локальной стороной, локальная сторона переходит
+        на набор удаленных значений.
+</td></tr>
+<tr><td width="20%"><b>?</b></td>
+        <td>Выдать справочную информацию по команде <b>slc</b>.
+</td></tr>
+</tbody></table>
+</dd>
+
+<dt><b>environ аргументы [ ... ]
+</b></dt><dd>
+Команда <b>environ</b> используется для работы с переменными,
+которые могут быть посланы с помощью опции TELNET
+ENVIRON. Начальный набор переменных берется из среды
+пользователя, причем экспортируются только переменные <b>USER</b> и
+<b>DISPLAY</b>.
+
+<p>Допустимы следующие аргументы команды <b>environ</b>:
+</p>
+        <dl>    <dt><b>define переменная значение
+</b></dt>               <dd>Определяет <b>переменную</b> с указанным <b>значением</b>. Все
+                определяемые с помощью этой команды переменные
+                автоматически экспортируются. Значение можно брать в
+                одиночные или двойные кавычки, что позволяет включать в
+                него пробелы и символы табуляции.
+</dd>
+        <dt><b>undefine переменная
+</b></dt>               <dd>Удаляет указанную <b>переменную</b> из списка переменных
+                среды.
+</dd>
+        <dt><b>export переменная
+</b></dt>               <dd>Помечает указанную <b>переменную</b> как подлежащую
+                экспортированию на удаленную сторону.
+</dd>
+        <dt><b>unexport переменная
+</b></dt>               <dd>Помечает указанную <b>переменную</b> как не подлежащую
+                экспортированию, если только она не будет явно запрошена
+                удаленной стороной.
+</dd>
+        <dt><b>list
+</b></dt>               <dd>Выдает текущий набор переменных среды. Те, что
+                помечены <b>*</b>, будут посылаться автоматически; все
+                остальные переменные будут посланы только в ответ на
+                запрос.
+</dd>
+        <dt><b>?</b></dt>
+                <dd>Выдает справочную информацию по команде <b>environ</b>.
+</dd>   </dl>
+</dd>
+
+<dt><a name="toggle"><b>toggle аргументы [ ... ]
+</b></a></dt><dd>
+Переключает различные флаги (со значения TRUE на FALSE и
+наоборот), управляющие реакцией TELNET на определенные
+события. Эти флаги можно явно установить в TRUE или FALSE с
+помощью рассмотренных выше команд <b>set</b> и <b>unset</b>. В команде
+можно указывать несколько аргументов. Состояние этих флагов
+можно узнать с помощью команды <a href="#display"><b>display</b></a>.
+Допустимы следующие
+аргументы:
+<p></p>
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td width="20%"><a name="autoflush"><b>autoflush
+</b></a></td>   <td>Если флаги <b>autoflush</b> и <b>localchars</b> имеют значение
+        TRUE, то при выявлении символов <b>ao</b> или <b>quit</b>
+        (после их преобразования в последовательности
+        TELNET, как описано выше), <b>telnet</b> отказывается
+        показывать на терминале пользователя любые
+        данные до тех пор, пока удаленная система не
+        подтвердит (через опцию TELNET TIMING MARK),
+        что она обработала эти последовательности
+        TELNET. Начальное значение этого переключателя -
+        TRUE, если пользователь терминала не выполнял
+        команду <b>stty noflsh</b>, и FALSE в противном случае
+        (см. <a href="/man.shtml?topic=stty&amp;category=1"><b>stty(1)</b></a>).
+</td></tr>
+<tr><td width="20%"><a name="autosynch"><b>autosynch
+</b></a></td>   <td>Если флаги <b>autosynch</b> и <b>localchars</b> имеют значение
+        TRUE, то при вводе одного из символов <b>intr</b> или
+        <b>quit</b> (см. описание символов <a href="#set_intr"><b>intr</b></a>
+        и <a href="#set_quit"><b>quit</b></a> в разделе
+        команды <b>set</b> выше) после соответствующей
+        последовательности TELNET будет послана
+        последовательность TELNET SYNCH. В результате
+        удаленная система должна будет отбросить весь
+        предыдущий ввод, пока обе последовательности
+        TELNET не будут прочитаны и обработаны.
+        Начальное значение этого переключателя - FALSE.
+</td></tr>
+<tr><td width="20%"><a name="binary"><b>binary
+</b></a></td>   <td>Включает или отключает опцию TELNET BINARY
+        как для входных, так и для выходных данных.
+</td></tr>
+<tr><td width="20%"><a name="inbinary"><b>inbinary
+</b></a></td>   <td>Включает или отключает опцию TELNET BINARY
+        для входных данных.
+</td></tr>
+<tr><td width="20%"><a name="outbinary"><b>outbinary
+</b></a></td>   <td>Включает или отключает опцию TELNET BINARY
+        для выходных данных.
+</td></tr>
+<tr><td width="20%"><a name="crlf"><b>crlf
+</b></a></td>   <td>Если значение этого переключателя - TRUE, то
+        возвраты кареток будут посылаться как &lt;CR&gt;&lt;LF&gt;.
+        Если же он имеет значение FALSE, то возвраты
+        кареток будут посылаться как &lt;CR&gt;&lt;NUL&gt;.
+        Начальное значение этого переключателя - FALSE.
+</td></tr>
+<tr><td width="20%"><a name="crmod"><b>crmod
+</b></a></td>   <td>Переключает режим возврата каретки. Когда этот
+        режим включен, большинство символов возврата
+        каретки, полученных с удаленного хоста, будет
+        преобразовано в возврат каретки (Carriage Return),
+        за которым идет перевод строки (Line Feed). Этот
+        режим не влияет на символы, вводимые
+        пользователем, - только на получаемые с
+        удаленного хоста. Этот режим не особенно нужен,
+        если только удаленный хост не посылает всегда
+        только возвраты каретки и никогда - переводы
+        строк. Начальное значение этого переключателя -
+        FALSE.
+</td></tr>
+<tr><td width="20%"><a name="debug"><b>debug
+</b></a></td>   <td>Переключает режим отладки на уровне сокетов
+        (пригодится только привилегированному
+        пользователю). Начальное значение этого
+        переключателя - FALSE.
+</td></tr>
+<tr><td width="20%"><a name="localchars"><b>localchars
+</b></a></td>   <td>Если этот переключатель имеет значение TRUE,
+        символы <a href="#set_flush"><b>flush</b></a>, <a href="#set_intr"><b>interrupt</b></a>,
+        <a href="#set_quit"><b>quit</b></a>, <a href="#set_erase"><b>erase</b></a> и <a href="#set_kill"><b>kill</b></a> (см.
+        описание <a href="#set"><b>set</b></a> выше) распознаются локально и
+        преобразуются в (будем надеяться)
+        соответствующие управляющие последовательности
+        TELNET (<b>ao</b>, <b>ip</b>, <b>brk</b>, <b>ec</b> и <b>el</b>, соответственно; см.
+        описание <a href="#send"><b>send</b></a> выше). Начальное значение этого
+        переключателя - TRUE в "старом построчном"
+        режиме и FALSE в "посимвольном" режиме.
+<br>    &nbsp;<br>
+
+                Когда включена опция LINEMODE, значение
+        <b>localchars</b> игнорируется и предполагается всегда
+        истинным. Если опция LINEMODE включалась, <b>quit</b>
+        будет посылаться как <b>abort</b>; <b>eof</b> и <b>suspend</b> будут
+        посылаться как <b>eof</b> и <b>susp</b>; (см. описание <a href="#send"><b>send</b></a> выше).
+</td></tr>
+<tr><td width="20%"><a name="netdata"><b>netdata
+</b></a></td>   <td>Переключает показ всех сетевых данных (в
+        шестнадцатиричном формате). Начальное значение
+        этого переключателя - FALSE.
+</td></tr>
+<tr><td width="20%"><a name="options"><b>options
+</b></a></td>   <td>Переключает показ определенной внутренней
+        обработки протокола <b>telnet</b>, связанной с опциями
+        TELNET. Начальное значение этого переключателя -
+        FALSE.
+</td></tr>
+<tr><td width="20%"><a name="prettydump"><b>prettydump
+</b></a></td>   <td>Если включен переключатель <a href="#netdata"><b>netdata</b></a> и включен
+        <b>prettydump</b>, результат работы команды <b>netdata</b>
+        будет преобразован в более удобный для
+        пользователя формат. Между символами в
+        результатах будут вставлены пробелы, а начало
+        любой управляющей последовательности TELNET
+        будет помечено звездочкой ('<b>*</b>'), чтобы легче было
+        их найти.
+</td></tr>
+<tr><td width="20%"><b>?</b></td>
+        <td>Показывает допустимые команды <b>toggle</b>.
+</td></tr>
+</tbody></table>
+</dd>
+
+<dt><b>Ctrl-z
+</b></dt><dd>Приостанавливает <b>telnet</b>. Эта команда будет работать, только
+если пользователь использует командный интерпретатор <a href="/man.shtml?topic=csh&amp;category=1"><b>csh(1)</b></a>
+или <a href="/man.shtml?topic=ksh&amp;category=1"><b>ksh(1)</b></a>.
+</dd>
+<dt><b>! [ команда ]
+</b></dt><dd>Выполняет одиночную команду в <i>порожденном командном
+интерпретаторе</i> (subshell) на локальной системе. Если команда не
+указана, будет вызван интерактивный порожденный
+интерпретатор.
+</dd>
+<dt><b>status
+</b></dt><dd>Показывает текущий статус <b>telnet</b>, в том числе сервер, с которым
+соединена программа, и текущий режим.
+</dd>
+<dt><b>? [ команда ]
+</b></dt><dd>Показывает справку. Если <b>команда</b> не указана, <b>telnet</b> выведет
+краткое описание основных своих команд. Если команда указана,
+<b>telnet</b> выдаст справочную информацию по этой команде.
+</dd>
+</dl>
+
+<h3>&nbsp;&nbsp;&nbsp;Предупреждения
+</h3><p>На некоторых удаленных системах необходимо вручную отключать
+команду <a href="#set_echo"><b>echo</b></a> при работе в "старом построчном" режиме.
+</p>
+При работе в "старом построчном" режиме или в режиме LINEMODE,
+символ конца файла (<b>eof</b>) терминала распознается (и посылается
+удаленной системе) только когда он является первым символом в строке.
+
+<h2>ССЫЛКИ
+</h2><dl><dt></dt><dd>
+        <a href="/man.shtml?topic=hosts&amp;category=4"><b>hosts(4)</b></a>,
+        <a href="/man.shtml?topic=inet&amp;category=7"><b>inet(7)</b></a>,
+        <a href="/man.shtml?topic=rlogin&amp;category=1"><b>rlogin(1)</b></a>,
+        <a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>,
+        <a href="/man.shtml?topic=stty&amp;category=1"><b>stty(1)</b></a>
+ </dd></dl>
+
+
+<!-- START OF MAN PAGE FOOTER --><p align="center"><font size="-2">Copyright 1994 Novell, Inc.
+<br>Copyright 1999 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="telnet" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

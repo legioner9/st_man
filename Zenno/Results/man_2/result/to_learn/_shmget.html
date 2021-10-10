@@ -1,0 +1,550 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN shmget (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, shmget"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="shmget" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">shmget (2)</font><hr><li> <a href="/man.shtml?topic=shmget&amp;category=2&amp;russian=4"><u>shmget</u></a> (2) <font color="#555555"> ( Solaris man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=shmget&amp;category=2&amp;russian=1"><u>shmget</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=shmget&amp;category=2&amp;russian=0"><u>shmget</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=shmget&amp;category=2&amp;russian=2"><u>shmget</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=shmget&amp;category=3&amp;russian=5"><u>shmget</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+shmget -  присваивает идентификатор разделяемому сегменту памяти
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+
+<b>#include &lt;<a href="file:/usr/include/sys/ipc.h">sys/ipc.h</a>&gt;</b>
+
+<p>
+<b>#include &lt;<a href="file:/usr/include/sys/shm.h">sys/shm.h</a>&gt;</b>
+
+</p><p>
+<b>int shmget(key_t </b><i>key</i><b>, int </b><i>size</i><b>, int </b><i>shmflg</i><b>);</b>
+
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<b>shmget()</b>
+
+возвращает идентификатор разделяемому сегменту памяти,
+соответствующий значению аргумента
+<i>key</i>.
+
+Создается новый разделяемый сегмент памяти с размером
+<i>size</i>(
+
+округленным до размера, кратного
+<b>PAGE_SIZE</b>),
+
+если значение
+<i>key</i>
+
+равно
+<b>IPC_PRIVATE</b>
+
+или если значение
+<i>key</i>
+
+не равно
+<b>IPC_PRIVATE</b>
+
+и нет идентификатора, соответствующего
+<i>key</i>;
+
+причем, выражение
+<i>shmflg</i><b>&amp;IPC_CREAT</b>
+
+истинно.
+Поле
+<p>
+
+<i>shmflg</i>
+
+состоит из:
+</p><dl compact="">
+<dt><b>IPC_CREAT</b>
+
+</dt><dd>
+служит для создания нового сегмента. Если этого флага нет, то функция 
+<b>shmget()</b>
+
+будет искать сегмент, соответствующий ключу <i>key</i> и затем проверит,
+имеет ли пользователь права на доступ к сегменту.
+</dd><dt><b>IPC_EXCL</b>
+
+</dt><dd>
+используется совместно с <b>IPC_CREAT</b> для того, чтобы не создавать 
+существующий сегмент заново. 
+</dd><dt><b>mode_flags (младшие 9 битов)</b>
+
+</dt><dd>
+указывают на права хозяина, группы и др.
+В данный момент права системой не используются.
+</dd></dl>
+<p>
+
+Если создается новый сегмент, то права доступа копируются из
+<i>shmflg</i>
+
+в 
+<i>shm_perm</i>,
+
+являющийся членом структуры
+<i>shmid_ds</i>,
+
+которая определяет сегмент.
+Структура <i>shmid_ds</i> имеет такую форму:
+</p><p>
+
+
+</p><pre>struct shmid_ds {
+    struct ipc_perm shm_perm;    /* права операции */ 
+    int             shm_segsz;   /* размер сегмента (в байтах) */ 
+    time_t          shm_atime;   /* время последнего подключения */ 
+    time_t          shm_dtime;   /* время последнего отключения */ 
+    time_t          shm_ctime;   /* время последнего изменения */ 
+    unsigned short  shm_cpid;    /* идентификатор процесса создателя */ 
+    unsigned short  shm_lpid;    /* идентификатор последнего пользователя */ 
+    short           shm_nattch;  /* количество подключений */ 
+};
+</pre>
+
+
+<p>
+
+
+</p><pre>struct ipc_perm {
+    key_t  key; 
+    ushort uid;   /* действующие идентификаторы владельца и группы euid и egid */ 
+    ushort gid; 
+    ushort cuid;  /* действующие идентификаторы создателя euid и egid */ 
+    ushort cgid; 
+    ushort mode;  /* младшие 9 битов <i>shmflg</i> */ 
+    ushort seq;   /* номер последовательности */ 
+};
+</pre>
+
+<p>
+
+When creating a new shared memory segment, 
+the system call initializes the <i>shmid_ds</i> data structure 
+</p><p>
+При создании нового сегмента разделяемой памяти
+системный вызов инициализирует структуру данных <i>shmid_ds</i>
+следующим образом:
+устанавливаемые значения
+</p><dl compact="">
+<dt></dt><dd>
+<b>shm_perm.cuid</b>
+
+и
+<b>shm_perm.uid</b>
+
+становятся равными значению идентификатора эффективного пользователя вызывающего процесса.
+</dd><dt></dt><dd>
+<b>shm_perm.cgid</b>
+
+и
+<b>shm_perm.gid</b>
+
+устанавливаются равными идентификатору эффективной группы пользователей вызывающего
+процесса.
+</dd><dt></dt><dd>
+Младшим 9-и битам 
+<b>shm_perm.mode</b>
+
+присваивается значение младших 9-и битов
+<i>shmflg</i>.
+
+</dd><dt></dt><dd>
+<b>shm_segsz</b>
+
+присваивается значение
+<i>size.</i>
+
+Устанавливаемое значение
+</dd><dt></dt><dd>
+<b>shm_lpid</b>,
+
+<b>shm_nattch</b>,
+
+<b>shm_atime</b>
+
+и
+<b>shm_dtime</b>
+
+становится равным
+<b>нулю.</b>
+
+</dd><dt></dt><dd>
+<b>shm_ctime</b>
+
+устанавливается на текущее время.
+</dd></dl>
+<p>
+
+Если сегмент уже существет, то права доступа подтверждаются, а проверка производится для 
+того, чтобы убедиться, что сегмент не помечен на удаление.
+</p><p>
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>СИСТЕМНЫЕ ВЫЗОВЫ</h2>
+
+<dl compact="">
+<dt><b>fork()</b>
+
+</dt><dd>
+После выполнения команды
+<b>fork()</b>
+
+дочерний процесс наследует подключаемые к нему разделяемые сегменты памяти.
+</dd><dt><b>exec()</b>
+
+</dt><dd>
+После выполнения команды
+<b>exec()</b>
+
+все подключаемые к процессу разделяемые сегменты памяти отключаются от него, 
+но не удаляются.
+</dd><dt><b>exit()</b>
+
+</dt><dd>
+По завершении
+<b>exit()</b>
+
+все подключенные разделяемые сегменты памяти отключаются (но не удаляются).
+</dd></dl>
+<p>
+
+<a name="lbAF">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+При удачном завершении вызова возвращается идентификатор сегмента
+<i>shmid</i>,
+
+и -1 при ошибке.
+<a name="lbAG">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+При ошибке переменная 
+<b>errno</b>
+
+приобретает одно из следующих значений:
+<dl compact="">
+<dt><b>EINVAL</b>
+
+</dt><dd>
+если создается новый сегмент, а <i>size</i> &lt; <b>SHMMIN</b>  или
+<i>size</i> &gt; <b>SHMMAX</b>, либо новый сегмент не был создан.
+Сегмент с данным ключем существует, но <i>size</i> больше чем размер этого сегмента.
+</dd><dt><b>EEXIST</b>
+
+</dt><dd>
+если значение 
+<b>IPC_CREAT | IPC_EXCL</b>
+
+было указано, а сегмент уже существует.
+</dd><dt><b>ENOSPC</b>
+
+</dt><dd>
+если все возможные идентификаторы сегментов уже распределены
+<b></b>(<b>SHMMNI</b>)
+
+или если размер выделяемого сегмента превысит системные лимиты 
+<b></b>(<b>SHMALL</b>).
+
+</dd><dt><b>ENOENT</b>
+
+</dt><dd>
+если не существует сегмента для ключа <i>key</i>, а значение
+<b>IPC_CREAT</b>
+
+не указано.
+</dd><dt><b>EACCES</b>
+
+</dt><dd>
+если у пользователя нет прав доступа к сегменту разделяемой памяти.
+</dd><dt><b>ENOMEM</b>
+
+</dt><dd>
+если в памяти нет свободного для сегмента пространства.
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+<b>IPC_PRIVATE</b>
+
+является не полем, а типом
+<b>key_t</b>.
+
+Если это специфическое значение используется для
+<i>key</i>,
+
+то системный вызов игнорирует все, кроме 9-и младших битов
+<i>shmflg</i>,
+
+и создает новый сегмент разделяемой памяти.
+<p>
+
+Ниже приведены ограничения для сегментов разделяемой памяти, которые могут отразиться 
+на вызове
+<b>shmget</b>.
+
+</p><dl compact="">
+<dt><b>SHMALL</b>
+
+</dt><dd>
+Максимальное количество страниц разделяемой памяти зависит от настроек системы.
+</dd><dt><b>SHMMAX</b>
+
+</dt><dd>
+Максимальный размер сегмента в байтах зависит от системных настроек (обычно это 4M).
+</dd><dt><b>SHMMIN</b>
+
+</dt><dd>
+Минимальный размер сегмента в байтах зависит от системных настроек (обычно он равен 
+одному байту, поэтому 
+<b>PAGE_SIZE</b>
+
+яляется минимальным эффективным размером).
+</dd><dt><b>SHMMNI</b>
+
+</dt><dd>
+Максимальное количество сегментов разделяемой памяти зависит от настроек системы 
+(сейчас оно равно 4096, было 128 до версии Linux 2.3.99).
+</dd></dl>
+<p>
+
+От настроек не зависит количество сегментов, подключаемых процессом
+(<b>SHMSEG</b>).
+
+<a name="lbAI">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Выбор названия IPC_PRIVATE был неудачен, и IPC_NEW
+более понятно поясняет смысл функции.
+<a name="lbAJ">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+SVr4, SVID.  SVr4 описывает дополнительное условие ошибки EEXIST.
+До версии 2.3.30 Linux будет возвращать EIDRM для
+<b>shmget</b>
+
+на сегменте разделяемой памяти, назначенного на удаление.
+<a name="lbAK">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ftok&amp;category=3">ftok</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ipc&amp;category=5">ipc</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=shmctl&amp;category=2">shmctl</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=shmat&amp;category=2">shmat</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=shmdt&amp;category=2">shmdt</a></b>(2)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">СИСТЕМНЫЕ ВЫЗОВЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAH">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAI">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAK">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="shmget" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

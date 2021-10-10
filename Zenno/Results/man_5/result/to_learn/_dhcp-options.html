@@ -1,0 +1,1180 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN dhcp-options (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, dhcp-options"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="dhcp-options" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">dhcp-options (5)</font><hr><li> <a href="/man.shtml?topic=dhcp-options&amp;category=5&amp;russian=1"><u>dhcp-options</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=dhcp-options&amp;category=5&amp;russian=0"><u>dhcp-options</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=dhcp-options&amp;category=5&amp;russian=2"><u>dhcp-options</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<p>
+</p><p>
+</p><p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>ИМЯ</h2>
+
+<p>
+dhcp-options - Параметры конфигурации DHCP
+</p><p>
+
+Протокол DHCP позволяет клиентам получать параметры с сервера, описывающие конфигурацию сети
+и сервисы доступные клиенту. При настройке <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd&amp;category=8">dhcpd</a>(8)</b>
+параметры задаются в файле конфигурации <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd.conf&amp;category=5">dhcpd.conf</a>(5)</b>
+Синтаксис используемых параметров, их названия и формат описаны в этом документе.
+</p><p>
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>ОПИСАНИЕ ПАРАМЕТРОВ</h2>
+
+<p>
+</p><p>
+
+Параметры в DHCP описываются с помощью ключевого слова <i>option</i>
+и следующих за ним названий параметра и его значения. Названия параметров и их формат
+описаны ниже. Нет необходимости указывать все параметры при конфигурации, достаточно указать
+только те что действительно необходимы. 
+</p><p>
+</p><p>
+
+Значения параметров могут быть в нескольких форматах:
+</p><p>
+
+</p><p>
+<b>ip-address</b> - значения могут быть представлены в виде IP-адреса или как доменное имя. В случае когда 
+указывается доменное имя, необходимо убедиться что оно соответствует единственному IP-адресу.
+</p><p>
+</p><p>
+
+</p><p>
+<b>int32</b>
+значение является 32-битным целым со знаком.
+</p><p>
+<b>uint32</b>
+значение является 32-битным целым без знака.
+</p><p>
+<b>int16</b> и <b>uint16</b>
+значение может быть 16-битным целым со знаком или без, соответственно.
+</p><p>
+<b>int8</b> и <b>uint8</b>
+значение может быть 8-битным целым со знаком или без, соответственно.
+Unsigned 8-bit integers are also sometimes referred to as octets.
+</p><p>
+</p><p>
+
+<b>string</b>
+значение являющееся строкой NVT ASCII, которая должна быть заключена в двойные кавычки. Например, для указания 
+имени домена используется следующая форма:
+</p><p>
+</p><p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option&nbsp;domain-name&nbsp;&amp;quot;isc.org&amp;quot;;
+</p><p>
+</p><p>
+</p><p>
+
+<b>flag</b>
+Булевский параметр, имеющий значение &amp;quot;true&amp;quot; или &amp;quot;fasle&amp;quot; (ну или &amp;quot;on&amp;quot; / &amp;quot;off&amp;quot;
+<br>&nbsp;-&nbsp;как&nbsp;вам&nbsp;больше&nbsp;нравиться)&nbsp;
+</p><p>
+</p><p>
+
+<b>data-string</b>
+параметр является строкой NVT ASCII, заключенной в двойные кавычки, или последовательность октетов в шестнадцатеричном
+формате, разделенных двоеточиями. На пример:
+</p><p>
+</p><p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option&nbsp;dhcp-client-identifier&nbsp;&amp;quot;CLIENT-FOO&amp;quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;или&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option&nbsp;dhcp-client-identifier&nbsp;43:4c:49:45:54:2d:46:4f:4f;
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+Информация о различных параметрах приведенная ниже, взята из последних
+документов IETF описывающих DHCP. Параметры названия которых не перечислены
+могут быть определены в форме: 
+option-<i>nnn</i>, где  <i>nnn</i> десятичный код параметра, далее может
+следовать строка в двойных кавычках или последовательность шестнадцатеричных значений, разделенных двоеточиями.
+На пример:
+</p><p>
+
+</p><p>
+</p><p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option&nbsp;option-133&nbsp;&amp;quot;my-option-133-text&amp;quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option&nbsp;option-129&nbsp;1:54:c9:2b:47;
+</p><p>
+</p><p>
+</p><p>
+
+В виду того что демону dhcpd не известен формат этих параметров - проверка их правильности не производиться.
+</p><p>
+</p><p>
+
+Стандартными параметрами являются следующие:
+</p><p>
+</p><p>
+
+</p><p>
+<b>option subnet-mask </b><i>ip-address</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Задает маску подсети клиента, согласно RFC 950. В случае если параметр не указан, dhcpd использует
+значение маски подсети в которой находится используемый сервером адрес. 
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option time-offset </b><i>int32</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Задает значение смещения времени на клиенте относительно Coordinated Universal Time (UTC), в секундах.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option routers </b><i>ip-address</i> [<b>,</b> <i>ip-address</i>...]<b>;</b>
+</p><p>
+
+</p><p>
+Список IP адресов маршрутизаторов для клиентской сети. Маршрутизаторы должны быть перечислены
+в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+<b>option time-servers </b><i>ip-address</i> [, <i>ip-address</i>...]<b>;</b>
+</p><p>
+</p><p>
+
+Список серверов времени, соответствующих RFC 868, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option ien116-name-servers</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...];
+</p><p>
+</p><p>
+
+Список IEN 116 name servers доступных для клиента.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option domain-name-servers</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...]<b>;</b>
+</p><p>
+</p><p>
+
+Список DNS серверов (STD 13, RFC 1035), доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option log-servers</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...]<b>;</b>
+</p><p>
+</p><p>
+
+Список MIT-LCS UDP log servers, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option cookie-servers</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...]<b>;</b>
+</p><p>
+</p><p>
+
+Список cookie-серверов соответствующих RFC 865, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option lpr-servers</b> <i>ip-address </i> [<b>,</b> <i>ip-address</i>...]<b>;</b>
+</p><p>
+</p><p>
+
+Список принт-серверов соответствующих RFC 1179, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option impress-servers</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...]<b>;</b>
+</p><p>
+</p><p>
+
+Список Imagen Impress серверов, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option resource-location-servers</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...]<b>;</b>
+</p><p>
+</p><p>
+
+Список Resource Location серверов соответствующих RFC 887, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option host-name</b> <i>string</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Параметр задает имя клиента. Имя может быть или не быть дополнено именем домена (предпочтительнее
+использовать параметр domain-name для указания имени домена)
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option boot-size</b> <i>uint16</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Задает размер (в 512-байтных блоках) загрузочного образа для клиента.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option merit-dump</b> <i>string</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Позволяет задать путь к файлу, куда будет сброшен дамп, в случае краха клиента.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option domain-name</b> <i>string</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Параметр задает доменное имя, которое клиенты используют при запросах к DNS, при разрешении имен.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option swap-server</b> <i>ip-address</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Задает адрес клиентского swap сервера.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option root-path</b> <i>string</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Параметр задает путь к клиентскому корневому каталогу.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option ip-forwarding</b> <i>flag</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Параметр определяет возможность пересылки пакетов на клиенте.
+Значение 0 означает запрет пересылки, 1 - разрешает пересылку пакетов.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option non-local-source-routing</b> <i>flag</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Значение параметра определяет возможность пересылки датаграмм с non-local source routes.
+Значение 0 означает запрет на пересылку таких датаграмм, а значение 1 разрешает их пересылку.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option policy-filter</b> <i>ip-address ip-address</i> [<b>,</b> <i>ip-address ip-address</i>...]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies policy filters for non-local source routing.
+The filters consist of a list of IP addresses and masks which specify
+destination/mask pairs with which to filter incoming source routes.
+</p><p>
+
+</p><p>
+Any source routed datagram whose next-hop address does not match one
+of the filters should be discarded by the client.
+</p><p>
+
+</p><p>
+See STD 3 (RFC1122) for further information.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option max-dgram-reassembly</b> <i>uint16</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies the maximum size datagram that the client
+should be prepared to reassemble.  The minimum value legal value is
+576.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option default-ip-ttl</b> <i>uint8;</i>
+</p><p>
+</p><p>
+</p><p>
+
+Значение которое на клиенте будет использовано по умолчанию для TTL в исходящих датаграммах.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option path-mtu-aging-timeout</b> <i>uint32</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies the timeout (in seconds) to use when aging Path
+MTU values discovered by the mechanism defined in RFC 1191.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option path-mtu-plateau-table</b> <i>uint16</i> [<b>,</b> <i>uint16</i>...]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies a table of MTU sizes to use when performing
+Path MTU Discovery as defined in RFC 1191.  The table is formatted as
+a list of 16-bit unsigned integers, ordered from smallest to largest.
+The minimum MTU value cannot be smaller than 68.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option interface-mtu</b> <i>uint16</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies the MTU to use on this interface.   The minimum
+legal value for the MTU is 68.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option all-subnets-local</b> <i>flag</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies whether or not the client may assume that all
+subnets of the IP network to which the client is connected use the
+same MTU as the subnet of that network to which the client is
+directly connected.  A value of 1 indicates that all subnets share
+the same MTU.  A value of 0 means that the client should assume that
+some subnets of the directly connected network may have smaller MTUs.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option broadcast-address</b> <i>ip-address</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Параметр задает широковещательный адрес клиентской подсети. Корректные значения широковещательных
+адресов указаны в секции 3.2.1.3 of STD 3 (RFC1122).
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option perform-mask-discovery</b> <i>flag</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Указывает должен ли клиент определять маску подсети посредством запросов ICMP.
+Значение 0 указывает что клиент не должен выполнять процедуру определения маски,
+1 разрешает клиенту определять маску подсети используя ICMP.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option mask-supplier</b> <i>flag</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies whether or not the client should respond to
+subnet mask requests using ICMP.  A value of 0 indicates that the
+client should not respond.  A value of 1 means that the client should
+respond.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option router-discovery</b> <i>flag</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies whether or not the client should solicit
+routers using the Router Discovery mechanism defined in RFC 1256.
+A value of 0 indicates that the client should not perform
+router discovery.  A value of 1 means that the client should perform
+router discovery.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option router-solicitation-address</b> <i>ip-address</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies the address to which the client should transmit
+router solicitation requests.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option static-routes</b> <i>ip-address ip-address</i> [<b>,</b> <i>ip-address ip-address</i>...]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies a list of static routes that the client should
+install in its routing cache.  If multiple routes to the same
+destination are specified, they are listed in descending order of
+priority.
+</p><p>
+
+</p><p>
+The routes consist of a list of IP address pairs.  The first address
+is the destination address, and the second address is the router for
+the destination.
+</p><p>
+
+</p><p>
+The default route (0.0.0.0) is an illegal destination for a static
+route.  To specify the default route, use the
+<b>routers</b>
+</p><p>
+option.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option trailer-encapsulation</b> <i>flag</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies whether or not the client should negotiate the
+use of trailers (RFC 893 [14]) when using the ARP protocol.  A value
+of 0 indicates that the client should not attempt to use trailers.  A
+value of 1 means that the client should attempt to use trailers.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option arp-cache-timeout</b> <i>uint32</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies the timeout in seconds for ARP cache entries.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option ieee802-3-encapsulation</b> <i>flag</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies whether or not the client should use Ethernet
+Version 2 (RFC 894) or IEEE 802.3 (RFC 1042) encapsulation if the
+interface is an Ethernet.  A value of 0 indicates that the client
+should use RFC 894 encapsulation.  A value of 1 means that the client
+should use RFC 1042 encapsulation.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option default-tcp-ttl</b> <i>uint8</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies the default TTL that the client should use when
+sending TCP segments.  The minimum value is 1.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option tcp-keepalive-interval</b> <i>uint32</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies the interval (in seconds) that the client TCP
+should wait before sending a keepalive message on a TCP connection.
+The time is specified as a 32-bit unsigned integer.  A value of zero
+indicates that the client should not generate keepalive messages on
+connections unless specifically requested by an application.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option tcp-keepalive-garbage</b> <i>flag</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies the whether or not the client should send TCP
+keepalive messages with a octet of garbage for compatibility with
+older implementations.  A value of 0 indicates that a garbage octet
+should not be sent. A value of 1 indicates that a garbage octet
+should be sent.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option nis-domain</b> <i>string</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies the name of the client's NIS (Sun Network
+Information Services) domain.  The domain is formatted as a character
+string consisting of characters from the NVT ASCII character set.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option nis-servers</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...
+</p><p>
+]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies a list of IP addresses indicating NIS servers
+available to the client.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option ntp-servers</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...
+</p><p>
+]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies a list of IP addresses indicating NTP (RFC 1035)
+servers available to the client. 
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option netbios-name-servers</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+Задает список серверов имен NetBIOS (NBNS), соответствующих RFC 1001/1002
+Сервера должны быть перечислены в порядке предпочтительности.
+Сервера имен NetBIOS так же известны как сервера WINS. 
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option netbios-dd-server</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...
+</p><p>
+]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+The NetBIOS datagram distribution server (NBDD) option specifies a
+list of RFC 1001/1002 NBDD servers.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option netbios-node-type</b> <i>uint8</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+Параметр позволяет сконфигурировать тип узла, т.е. способ разрешения имен
+клиентами NetBIOS over TCP/IP. 
+</p><p>
+
+Возможные значения параметра:
+</p><p>
+
+</p><p>
+</p><p>
+<i>1</i>
+</p><p>
+</p><p>
+B-node (Broadcast): Разрешение имен с помощью широковещательных запросов, WINS не используется.
+<i>2</i>
+</p><p>
+</p><p>
+P-node (Peer): Используется только WINS.
+<i>4</i>
+</p><p>
+</p><p>
+M-node (Mixed): Смешанный тип, сначала используется широковещательный запрос, затем в случае неудачи - WINS
+<i>8</i>
+</p><p>
+</p><p>
+H-node (Hybrid): Смешанный наоборот :)  WINS, а затем broadcast.
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option</b>
+</p><p>
+<b>netbios-scope</b>
+</p><p>
+<i>string</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+The NetBIOS scope option specifies the NetBIOS over TCP/IP scope
+parameter for the client as specified in RFC 1001/1002. See RFC1001,
+RFC1002, and RFC1035 for character-set restrictions.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option font-servers</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...
+</p><p>
+]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies a list of X Window System Font servers available
+to the client.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option x-display-manager</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...
+</p><p>
+]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies a list of systems that are running the X Window
+System Display Manager and are available to the client. 
+Адреса должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option dhcp-client-identifier</b> <i>data-string</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option can be used to specify the a DHCP client identifier in a
+host declaration, so that dhcpd can find the host record by matching
+against the client identifier.
+</p><p>
+</p><p>
+<b>option nisplus-domain</b> <i>string</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies the name of the client's NIS+ domain.  The
+domain is formatted as a character string consisting of characters
+from the NVT ASCII character set.
+</p><p>
+</p><p>
+<b>option nisplus-servers</b> <i>ip-address</i> [<b>,</b> <i>ip-address</i>...
+</p><p>
+]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+Список серверов NIS+, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option tftp-server-name</b> <i>string</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option is used to identify a TFTP server and, if supported by the
+client, should have the same effect as the <b>server-name</b>
+declaration.   BOOTP clients are unlikely to support this option.
+Some DHCP clients will support it, and others actually require it.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option bootfile-name</b> <i>string</i><b>;</b>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+This option is used to identify a bootstrap file.  If supported by the
+client, it should have the same effect as the <b>filename</b>
+declaration.  BOOTP clients are unlikely to support this option.  Some
+DHCP clients will support it, and others actually require it.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option mobile-ip-home-agent</b> <i>ip-address</i> [<b>,</b>
+</p><p>
+<i>ip-address</i>... ]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+This option specifies a list of IP addresses indicating mobile IP
+home agents available to the client.  Agents should be listed in
+order of preference, although normally there will be only one such
+agent.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option smtp-server</b> <i>ip-address</i> [<b>,</b>
+</p><p>
+<i>ip-address</i>... ]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+Список SMTP серверов, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option pop-server</b> <i>ip-address</i> [<b>,</b>
+</p><p>
+<i>ip-address</i>... ]<b>;</b>
+</p><p>
+</p><p>
+
+Список POP серверов, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option nntp-server</b> <i>ip-address</i> [<b>,</b>
+</p><p>
+<i>ip-address</i>... ]<b>;</b>
+</p><p>
+</p><p>
+
+Список NNTP серверов, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option www-server</b> <i>ip-address</i> [<b>,</b>
+</p><p>
+<i>ip-address</i>... ]<b>;</b>
+</p><p>
+</p><p>
+
+Список WWW серверов, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option finger-server</b> <i>ip-address</i> [<b>,</b>
+</p><p>
+<i>ip-address</i>... ]<b>;</b>
+</p><p>
+</p><p>
+
+Список Finger серверов, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option irc-server</b> <i>ip-address</i> [<b>,</b>
+</p><p>
+<i>ip-address</i>... ]<b>;</b>
+</p><p>
+</p><p>
+
+Список IRC серверов, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option streettalk-server</b> <i>ip-address</i> [<b>,</b>
+</p><p>
+<i>ip-address</i>... ]<b>;</b>
+</p><p>
+</p><p>
+
+Список StreetTalk серверов, доступных клиенту.
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+<b>option streetalk-directory-assistance-server</b> <i>ip-address</i> [<b>,</b>
+</p><p>
+<i>ip-address</i>... ]<b>;</b>
+</p><p>
+</p><p>
+
+</p><p>
+The StreetTalk Directory Assistance (STDA) server option specifies a
+list of STDA servers available to the client.  
+Сервера должны быть перечислены в порядке предпочтительности.
+</p><p>
+</p><p>
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<p>
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd.conf&amp;category=5">dhcpd.conf</a>(5), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd.leases&amp;category=5">dhcpd.leases</a>(5),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd&amp;category=8">dhcpd</a>(8),
+RFC2132, RFC2131.
+</p><p>
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+Сервер <b>dhcpd (8)</b>
+написан Ted Lemon &lt;<a href="mailto:mellon@vix.com">mellon@vix.com</a>&gt;
+по контракту с Vixie Labs. Финансирование осуществлялось ISC. Информацию об ISC можно найти их сайте в интернет: 
+<b><a href="http://www.isc.org/isc.">http://www.isc.org/isc.</a></b>
+<p>
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+Перевод выполнен Лаптевым Андреем - 
+&lt;<a href="mailto:lantan@chat.ru">lantan@chat.ru</a>&gt;
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ ПАРАМЕТРОВ</a></dt><dd>
+</dd><dt><a href="#lbAD">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="dhcp-options" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

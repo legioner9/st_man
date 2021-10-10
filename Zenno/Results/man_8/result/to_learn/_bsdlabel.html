@@ -1,0 +1,446 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN bsdlabel (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, bsdlabel"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="bsdlabel" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">bsdlabel (8)</font><hr><li> <a href="/man.shtml?topic=bsdlabel&amp;category=8&amp;russian=1"><u>bsdlabel</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=bsdlabel&amp;category=8&amp;russian=0"><u>bsdlabel</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>bsdlabel(8)</h1></td>
+<td><h2 align="center">Руководство системного администратора FreeBSD</h2></td>
+<td><h1 align="right">bsdlabel(8)</h1></td>
+</tr>
+</tbody></table>
+				
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+<p><b>bsdlabel</b> -- чтение и запись метки диска</p>
+
+<h2><a name="synopsis">SYNOPSIS</a></h2>
+<dl><dt></dt><dd><tt>
+bsdlabel [-A] <b>диск</b><br>
+bsdlabel -w [-An] [-B [-b <b>boot</b>]] [-m <b>машина</b>] <b>диск</b> [<b>тип</b>]<br>
+bsdlabel -e [-An] [-B [-b <b>boot</b>]] [-m <b>машина</b>] <b>диск</b><br>
+bsdlabel -R [-An] [-B [-b <b>boot</b>]] [-m <b>машина</b>] <b>диск</b> <b>файл_прототип</b>
+</tt></dd></dl>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+<p>Утилита <b>bsdlabel</b> устанавливает, проверяет или изменяет метку BSD на разделе диска.
+Кроме того, <b>bsdlabel</b> может устанавливать код начальной загрузки.</p>
+
+<h3>&nbsp;&nbsp;Имя дискового устройства</h3>
+<p>При указании устройства префикс <b>/dev/</b> можно не указывать; утилита <b>bsdlabel</b> 
+автоматически будет его добавлять.</p>
+
+<h3>&nbsp;&nbsp;Общие опции</h3>
+<p>Опция <b>-A</b> разрешает обработку исторических частей метки BSD. Если эта опция не 
+указана, для этих полей устанавливаются подходящие значения.</p>
+
+<p>Опция <b>-n</b> останавливает программу <b>bsdlabel</b> непосредственно перед изменением
+диска, и выдает результаты вместо того, чтобы их записывать.</p>
+
+<p>Аргумент <b>-m машина</b> требует от утилиты <b>bsdlabel</b> использовать структуру,
+подходящую для указанной <b>машины</b>.</p>
+
+<h3>&nbsp;&nbsp;Чтение метки диска</h3>
+<p>Для проверки метки на диске используйте утилиту <b>bsdlabel</b> без опций:</p>
+<pre>bsdlabel [-A] [-m <b>машина</b>] <b>диск</b>
+</pre>
+<p>Параметр <b>диск</b> задает диск, который нас интересует, и может иметь вид <b>da0</b> 
+или <b>/dev/da0</b>. Представленная команда выдаст информацию о структуре раздела.</p>
+
+<h3>&nbsp;&nbsp;Запись стандартной метки</h3>
+<p>Для записи стандартной метки используйте форму:</p>
+<pre>bsdlabel -w [-An] [-m <b>машина</b>] <b>диск</b> [<b>тип</b>]
+</pre>
+<p>Если <b>тип</b> диска указан, будет использована запись с соответствующим именем
+из файла <a href="/man.shtml?topic=disktab&amp;category=5"><b>disktab(5)</b></a>; в противном случае используется
+стандартная структура диска.</p>
+
+<h3>&nbsp;&nbsp;Редактирование существующей метки диска</h3>
+<p>Для редактирования существующей метки диска используйте форму:</p>
+<pre>bsdlabel -e [-An] [-m <b>машина</b>] <b>диск</b>
+</pre>
+<p>Эта команда открывает метку диска в стандартном редакторе, а когда редактор завершает
+работу, метка проверяется и, если она корректна, записывается на диск.</p>
+
+<h3>&nbsp;&nbsp;Восстановление метки диска из файла</h3>
+<p>Для восстановления метки диска из файла используйте форму:</p>
+<pre>bsdlabel -R [-An] [-m <b>машина</b>] <b>диск</b> <b>файл_прототип</b>
+</pre>
+<p>Утилита <b>bsdlabel</b> может восстановить метку диска, которая была ранее сохранена
+в файле в текстовом формате. Файл-прототип, использованный для создания метки, должен
+быть в том же формате, что и выдаваемый при чтении или редактировании метки. 
+Комментарии начинаются символом '<b>#</b>' и продолжаются до конца строки.</p>
+
+<h3>&nbsp;&nbsp;Установка начальных загрузчиков</h3>
+<p>Если указан аргумент <b>-B</b>, код начальной загрузки будет читаться из файла <b>/boot/boot</b> 
+и записываться на диск. Аргумент <b>-b boot</b> позволяет использовать другой файл.</p>
+
+<h2><a name="files">ФАЙЛЫ</a></h2>
+<dl>
+<dt><b>/boot/boot</b></dt><dd>
+Стандартный образ загрузки.</dd>
+<dt><b>/etc/disktab</b></dt><dd>
+Файл описания диска.</dd>
+</dl>
+
+<h2>ФОРМАТ СОХРАНЕННОГО ФАЙЛА</h2>
+
+<p>Утилита <b>bsdlabel</b> использует текстовую версию метки при проверке, редактировании или
+восстановлении метки диска. Формат ее следующий:</p>
+
+<pre>8 partitions:
+#      size	     offset    fstype   [fsize bsize bps/cpg]
+a:	   81920	      0    4.2BSD    1024  8192    16
+b:	  160000	  81920    swap
+c:   1173930	      0    unused	 0     0	 # "raw" part, don't edit
+</pre>
+<p>Если указана опция <b>-A</b>, используется следующий формат:</p>
+<pre># /dev/da1c:
+type: SCSI
+disk: da0s1
+label:
+flags:
+bytes/sector: 512
+sectors/track: 51
+tracks/cylinder: 19
+sectors/cylinder: 969
+cylinders: 1211
+sectors/unit: 1173930
+rpm: 3600
+interleave: 1
+trackskew: 0
+cylinderskew: 0
+headswitch: 0		 # milliseconds
+track-to-track seek: 0  # milliseconds
+drivedata: 0
+
+8 partitions:
+#      size	     offset    fstype   [fsize bsize bps/cpg]
+a:	   81920	      0    4.2BSD    1024  8192    16
+b:	  160000	  81920    swap
+c:   1173930	      0    unused	 0     0	 # "raw" part, don't edit
+</pre>
+<p>Строки, начинающиеся символом '<b>#</b>', являются комментариями.</p>
+
+<p>Таблица разделов может включать до 8 записей. Она содержит следующую информацию:</p>
+<dl>
+<dt><b>#</b></dt><dd>
+Идентификатор раздела - одна буква в диапазоне от '<b>a</b>' до '<b>h</b>'. По соглашению
+раздел '<b>c</b>' зарезервирован для описания всего диска.
+<br><br></dd>
+<dt><b>size</b></dt><dd>
+Размер раздела в секторах, <b>K</b> (килобайтах - 1024 байта), <b>M</b> (мегабайтах - 1024*1024
+байта), <b>G</b> (гигабайтах - 1024*1024*1024 байта), <b>%</b> (процент свободного места за вычетом
+всех разделов фиксированного размера, кроме раздела '<b>c</b>') или <b>*</b> (все
+оставшееся свободное место за исключением разделов фиксированного размера и разделов, размер которых
+задан в процентах). Для раздела '<b>c</b>' размер <b>*</b> означает весь диск. Единицы
+измерения <b>K</b>, <b>M</b> и <b>G</b> можно указывать и в нижнем регистре. Размер и единица
+измерения должны задаваться без пробелов, одним словом.
+
+<p>Пример: <b>2097152</b>, <b>1G</b>, <b>1024M</b> и <b>1048576K</b> все задают один и тот же
+размер (при размере сектора 512 байтов).</p>
+</dd>
+<dt><b>offset</b></dt><dd>
+Смещение начала раздела от начала диска, в секторах, или <b>*</b>, требующая от <b>bsdlabel</b>
+вычислить соответствующее смещение для использования (конец предыдущего раздела плюс один,
+игнорируя раздел '<b>c</b>'. Для раздела '<b>c</b>', <b>*</b> будет интерпретироваться как
+смещение 0.
+<br><br></dd>
+<dt><b>fstype</b></dt><dd>
+Описывает назначение раздела. Пример показывает все используемые сейчас типы разделов. Для
+файловых систем UFS и разделов <a href="/man.shtml?topic=ccd&amp;category=4"><b>ccd(4)</b></a> используйте тип <b>4.2BSD</b>.
+Для дисков Vinum используйте тип <b>vinum</b>. Также используются типы <b>swap</b> (область подкачки)
+и <b>unused</b> (не используемый раздел). По договоренности, раздел '<b>c</b>' представляет
+всю <i>секцию</i> (slice) и должен быть типа <b>unused</b>, хотя утилита <b>bsdlabel</b> 
+выполнение этой договоренности и не проверяет. Утилита <b>bsdlabel</b> также знает и ряд других
+типов разделов, которые сейчас не используются. (Подробнее см. определения, начиная с <b>FS_UNUSED</b>,
+в заголовочном файле <b>&lt;sys/disklabel.h&gt;</b>.)
+<br><br></dd>
+<dt><b>fsize</b></dt><dd>
+Только для файловых систем <b>4.2BSD</b> и <b>LFS</b>, - размер фрагмента.
+Стандартные значения: 1024 - для разделов менее 1 Гбайта, 4096 - для разделов размером 1 Гбайт и более.
+<br><br></dd>
+<dt><b>bsize</b></dt><dd>
+Только для файловых систем <b>4.2BSD</b> и <b>LFS</b>, - размер блока. Стандартные значения:
+8192 - для разделов менее 1 Гбайта, 16384 - для разделов размером 1 Гбайт и более.
+<br><br></dd>
+<dt><b>bps/cpg</b></dt><dd>
+Для файловых систем типа <b>4.2BSD</b>, - количество цилиндров в группе. Для файловых систем <b>LFS</b>,&nbsp;-
+значение сдвига сегмента (segment shift value). По умолчанию - 16 для разделов размером меньше 1 Гбайта и
+64 для разделов размером 1 Гбайт и более.</dd>
+</dl>
+
+<h2><a name="examples">ПРИМЕРЫ</a></h2>
+<pre>	   bsdlabel da0s1
+</pre>
+<p>Выдать метку первой секции диска <b>da0</b>, которой соответствует устройство <b>/dev/da0s1</b>.</p>
+<pre>	   bsdlabel da0s1 &gt; savedlabel
+</pre>
+<p>Записать текущую метку (in-core label) для устройства <b>da0s1</b> в файл <b>savedlabel</b>.
+Этот файл можно использовать с опцией <b>-R</b> для восстановления метки в дальнейшем.</p>
+<pre>	   bsdlabel -w /dev/da0s1
+</pre>
+<p>Создать метку для диска <b>da0s1</b>.</p>
+<pre>	   bsdlabel -e da0s1
+</pre>
+<p>Прочитать метку для <b>da0s1</b>, отредактировать ее и установить на диск результат.</p>
+<pre>	   bsdlabel -e -n da0s1
+</pre>
+<p>Прочитать метку с диска <b>da0s1</b>, отредактировать и показать, какой ( в секторах) будет
+новая метка. Новая метка не устанавливается, ни в памяти, ни на диске.</p>
+<pre>	   bsdlabel -w da0s1
+</pre>
+<p>Записать стандартную метку на диск <b>da0s1</b>. Для редактирования разделов и
+информации о типах файловых систем используется другая команда&nbsp;- <b>bsdlabel -e</b>.</p>
+<pre>	   bsdlabel -R da0s1 savedlabel
+</pre>
+<p>Восстановить в памяти и на диске метку для <b>da0s1</b> на базе информации в файле <b>savedlabel</b>.</p>
+<pre>	   bsdlabel -R -n da0s1 label_layout
+</pre>
+<p>Выдать вид метки для <b>da0s1</b> при использовании структуры разделов, указанной в файле
+<b>label_layout</b>. Это полезно для определения того, сколько всего места будут занимать
+разделы, размер которых задан с помощью <b>%</b> или <b>*</b>.</p>
+<pre>	   bsdlabel -B da0s1
+</pre>
+<p>Установить новую загрузочную запись (bootstrap) на <b>da0s1</b>. Код загрузки берется из
+файла <b>/boot/boot</b>.</p>
+<pre>	   bsdlabel -w -B -b newboot /dev/da0s1
+</pre>
+<p>Установить новую метку и загрузочную запись. Код загрузки берется из файла <b>newboot</b> 
+в текущем рабочем каталоге.</p>
+<pre>	   dd if=/dev/zero of=/dev/da0 bs=512 count=32
+	   fdisk -BI da0
+	   dd if=/dev/zero of=/dev/da0s1 bs=512 count=32
+	   bsdlabel -w -B da0s1
+	   bsdlabel -e da0s1
+</pre>
+<p>Полностью "стереть" прежнюю информацию на диске, создавая новый загрузочный диск с таблицей
+разделов DOS, содержащей одну секцию, занимающую весь диск. Проинициализировать метку этой
+секции и отредактировать ее. Команды <a href="/man.shtml?topic=dd&amp;category=1"><b>dd(1)</b></a>&nbsp;- не обязательны, 
+но могут понадобиться для некоторых версий BIOS, чтобы они могли правильно распознать диск.</p>
+
+<p>Вот пример метки диска, использующий разные единицы измерения для разделов (<b>%</b>, <b>M</b>,
+<b>G</b> и <b>*</b>), которую можно задать в исходном файле для команды
+"<b>bsdlabel -R ad0s1c файл_новой_метки</b>":</p>
+
+<pre>     # /dev/ad0s1c:
+
+	 8 partitions:
+	 #	  size	 offset    fstype   [fsize bsize bps/cpg]
+	 a:	  400M	    0	   4.2BSD    4096 16384	  75	 # (Cyl.    0 - 812*)
+	 b:	    1G	    *	   swap
+	 c:	   *	    *	   unused
+	 e: 204800	    *	   4.2BSD
+	 f:	    5g	    *	   4.2BSD
+	 g:	   *	    *	   4.2BSD
+</pre>
+
+<h2><a href="see_also">ССЫЛКИ</a></h2>
+<dl><dt></dt><dd>
+    <a href="/man.shtml?topic=ccd&amp;category=4"><b>ccd(4)</b></a>,
+    <a href="/man.shtml?topic=geom&amp;category=4"><b>geom(4)</b></a>,
+    <a href="/man.shtml?topic=md&amp;category=4"><b>md(4)</b></a>,
+    <a href="/man.shtml?topic=disktab&amp;category=5"><b>disktab(5)</b></a>,
+    <a href="boot0cfg8.html"><b>boot0cfg(8)</b></a>,   
+    <a href="/man.shtml?topic=fdisk&amp;category=8"><b>fdisk(8)</b></a>
+</dd></dl>
+
+<h2><a name="diagnostics">ДИАГНОСТИКА</a></h2>
+
+<p>Драйверы устройств ядра не позволяют уменьшать размер раздела диска или изменять
+смещение раздела, пока он открыт.</p>
+
+<p align="center">FreeBSD 4.9  15 марта 2003 года</p>
+
+<p align="center"><font size="-2">Copyleft (no c) - Fuck copyright! 2004 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="bsdlabel" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,813 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN dpkg (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, dpkg"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="dpkg" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">dpkg (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=dpkg&amp;category=1&amp;russian=0"><u>dpkg</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=dpkg&amp;category=1&amp;russian=2"><u>dpkg</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=dpkg&amp;category=8&amp;russian=0"><u>dpkg</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=dpkg&amp;category=8&amp;russian=2"><u>dpkg</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/dpkg.html"><u>dpkg</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+dpkg -- менеджер пакетов Debian
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>dpkg</b> [<i>параметры</i>] <i>действие</i>
+<a name="lbAD">&nbsp;</a>
+<h2>ПРЕДУПРЕЖДЕНИЕ</h2>
+
+Это руководство предназначено для пользователей, желающих более подробно
+ознакомиться с параметрами командной строки <b>dpkg</b> и состояниями пакетов:
+здесь это описано более детально, чем в <b>dpkg --help</b>.
+<p>
+Это руководство <i>не</i> следует использовать сопровождающим пакетов, которые
+хотят понять, как <b>dpkg</b> будет устанавливать их пакеты. Описание того, что
+делает <b>dpkg</b> при установке и удалении пакетов особенно не полно.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<b>dpkg</b> is a tool to install, build, remove and manage Debian packages. The
+primary and more user-friendly front-end for <b>dpkg</b> is
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dselect&amp;category=1">dselect</a></b>(1). <b>dpkg</b> itself is controlled entirely via command line
+parameters, which consist of exactly one action and zero or more
+options. The action-parameter tells <b>dpkg</b> what to do and options control
+the behavior of the action in some way.
+<p>
+<b>dpkg</b> can be also be used as a front-end to <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dpkg-deb&amp;category=1">dpkg-deb</a></b>(1).  The following
+are <b>dpkg-deb</b> actions, and if they are encountered, <b>dpkg</b> just runs
+<b>dpkg-deb</b> with the parameters given to it:
+</p><pre>    <b>-b</b>, <b>--build</b>,
+    <b>-c</b>, <b>--contents</b>,
+    <b>-I</b>, <b>--info</b>,
+    <b>-f</b>, <b>--field</b>,
+    <b>-e</b>, <b>--control</b>,
+    <b>-x</b>, <b>--extract</b>,
+    <b>-X</b>, <b>--vextract</b> и
+    <b>--fsys-tarfile</b>.
+</pre>
+
+Все эти действия описаны в <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dpkg-deb&amp;category=1">dpkg-deb</a></b>(1).
+<a name="lbAF">&nbsp;</a>
+<h2>ИНФОРМАЦИЯ О ПАКЕТАХ</h2>
+
+<b>dpkg</b> управляет некоторой полезной информацией о доступных пакетах. Эта
+информация делится на три класса: <b>состояния</b>, <b>выбранные состояния</b> и
+<b>флаги</b>. Предполагается, что в большинстве случаев эта информация
+изменяется с помощью <b>dselect</b>.
+<a name="lbAG">&nbsp;</a>
+<h3>СОСТОЯНИЯ ПАКЕТА</h3>
+
+<dl compact="">
+<dt><b>installed</b></dt><dd>
+Пакет распакован и успешно настроен.
+</dd><dt><b>half-installed</b></dt><dd>
+Установка пакета была запущена, но не закончена по какой-либо причине.
+</dd><dt><b>not-installed</b></dt><dd>
+Пакет в системе не установлен.
+</dd><dt><b>unpacked</b></dt><dd>
+Пакет распакован, но не настроен.
+</dd><dt><b>half-configured</b></dt><dd>
+Пакет распакован и настройка была запущена, но пока ещё не завершена по
+какой-либо причине.
+</dd><dt><b>config-files</b></dt><dd>
+В системе остались только конфигурационные файлы пакета.
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h3>ВЫБРАННЫЕ СОСТОЯНИЯ ПАКЕТА</h3>
+
+<dl compact="">
+<dt><b>install</b></dt><dd>
+Пакет выбран для установки.
+</dd><dt><b>deinstall</b></dt><dd>
+Пакет выбран для удаления (т.е. будут удалены все файлы, кроме
+конфигурационных).
+</dd><dt><b>purge</b></dt><dd>
+Пакет выбран для полной очистки (т.е. будут удалены абсолютно все файлы,
+включая конфигурационные).
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h3>ФЛАГИ ПАКЕТА</h3>
+
+<dl compact="">
+<dt><b>hold</b></dt><dd>
+Пакет помечен как <b>зафиксированный</b> и не обрабатывается <b>dpkg</b>, только
+если не указан параметр <b>--force-hold</b>.
+</dd><dt><b>reinst-required</b></dt><dd>
+Пакет, помеченный как <b>reinst-required</b>, является сломанным и требует
+переустановки. Такие пакеты не могут быть удалены, пока не указан параметр
+<b>--force-reinstreq</b>.
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>ДЕЙСТВИЯ</h2>
+
+<dl compact="">
+<dt><b>dpkg -i</b> | <b>--install</b> <i>имя файла пакета</i>...</dt><dd>
+Установить заданный пакет. Если указан параметр <b>--recursive</b> или <b>-R</b>, то
+вместо <i>имени файла пакета</i> должен быть указан каталог.
+<p>
+Установка состоит из следующих шагов:
+<br>
+
+</p><p>
+<b>1.</b> Извлечение управляющих файлов нового пакета.
+<br>
+
+</p><p>
+<b>2.</b> Если другая версия этого пакета была установлена ранее, то запускается
+сценарий <i>prerm</i> из старого пакета.
+<br>
+
+</p><p>
+<b>3.</b> Запускается сценарий <i>preinst</i>, если он есть в пакете.
+<br>
+
+</p><p>
+<b>4.</b> Распаковываются новые файлы, в тоже самое время сохраняя старые, чтобы
+если что-то пойдет не так, можно было их восстановить.
+<br>
+
+</p><p>
+<b>5.</b> Если ранее была установлена другая версия этого пакета, то запускается
+сценарий <i>postrm</i> для старого пакета. Заметим, что этот сценарий
+запускается после сценария <i>preinst</i> нового пакета, потому что новые файлы
+записываются в то же самое время, когда удаляются старые.
+<br>
+
+</p><p>
+<b>6.</b> Настройка пакета. Смотрите описание <b>--configure</b>, где приведена
+подробная информация об этом шаге.
+</p></dd><dt><b>dpkg --unpack </b><i>имя файла пакета</i>...</dt><dd>
+Распаковать пакет, но не настраивать. Если указан параметр <b>--recursive</b>
+или <b>--R</b>, то вместо <i>имени файла пакета</i> должен быть указан каталог.
+</dd><dt><b>dpkg --configure </b><i>имя пакета</i> ... | <b>-a</b> | <b>--pending</b></dt><dd>
+Повторно настроить распакованный пакет. Если вместо <i>имени пакета</i> задан
+параметр <b>-a</b> или <b>--pending</b>, то все распакованные, но не настроенные
+пакеты будут настроены.
+<p>
+Настройка состоит из следующих шагов:
+<br>
+
+</p><p>
+<b>1.</b> Распаковка конфигурационных файлов, в то же самое время сохраняя
+старые конфигурационные файлы, чтобы можно было восстановить их, если что-то
+пойдет не так.
+<br>
+
+</p><p>
+<b>2.</b> Запуск сценария <i>postinst</i>, если он есть в пакете.
+</p></dd><dt><b>dpkg -r</b> | <b>--remove</b> | <b>-P</b> | <b>--purge </b><i>имя пакета</i> ... | <b>-a</b> | <b>--pending</b></dt><dd>
+Удалить установленный пакет. Если указан параметр <b>-r</b> или <b>--remove</b> то
+удаляется всё, кроме конфигурационных файлов. Это позволяет избежать
+переконфигурации пакета, если он будет повторно установлен у
+будущем. (Конфигурационные файлы -- это те, что указаны в управляющем файле
+<i>debian/confiles</i>). Если указан параметр <b>-P</b> или <b>--purge</b> то удаляется
+всё, включая конфигурационные файлы. Если вместо <i>имени пакета</i> задан
+параметр <b>-a</b> или <b>--pending,</b> то все распакованные пакеты, но отмеченные
+в файле <i>/var/lib/dpkg/status</i> для удаления или полной очистки,
+соответственно, удаляются или полностью очищаются.
+<p>
+Удаление пакета состоит из следующих шагов:
+<br>
+
+</p><p>
+<b>1.</b> Запуск сценария <i>prerm</i>
+<br>
+
+</p><p>
+<b>2.</b> Удаление установленных фалов
+<br>
+
+</p><p>
+<b>3.</b> Запуск сценария <i>postrm</i>
+<br>
+
+</p></dd><dt><b>dpkg --update-avail</b> | <b>--merge-avail </b> I &lt;файл Packages&gt;</dt><dd>
+Обновить информацию <b>dpkg</b> и <b>dselect</b> о доступных пакетах. Действие
+<b>--merge-avail</b> комбинирует старую информацию с информацией из <i>файла
+Packages</i>. Действие <b>--update-avail</b> перезаписывает старую информацию
+информацией из <i>файла Packages</i>. <i>Файл Packages</i> распространяется с Debian
+под именем <i>Packages</i>. <b>dpkg</b> хранит информацию о доступных пакетах в
+файле <i>/var/lib/dpkg/available</i>.
+<p>
+Для упрощения процедуры получения и обновления файла <i>available</i> можно
+использовать команду <b>dselect update</b>.
+</p></dd><dt><b>dpkg -A</b> | <b>--record-avail</b> <i>имя файла пакета</i> ...</dt><dd>
+Обновить информацию <b>dpkg</b> и <b>dselect</b> о доступных пакетах информацией из
+пакета <i>имя файла пакета</i>. Если задан параметр <b>--recursive</b> или <b>-R</b>, то
+вместо <i>имени файла пакета</i> должен быть указан каталог.
+</dd><dt><b>dpkg --forget-old-unavail</b></dt><dd>
+Забыть о неустановленных недоступных пакетах.
+</dd><dt><b>dpkg --clear-avail</b></dt><dd>
+Очистить имеющуюся информацию о том, какие пакеты доступны.
+</dd><dt><b>dpkg -C</b> | <b>--audit</b></dt><dd>
+Найти пакеты, которые были установлены в системе только частично. <b>dpkg</b>
+посоветует, что делать, чтобы восстановить их работоспособность.
+</dd><dt><b>dpkg --get-selections</b> [<i>шаблон имени пакета</i>...]</dt><dd>
+Get list of package selections, and write it to stdout. Without a pattern,
+packages marked with state purge will not be shown.
+</dd><dt><b>dpkg --set-selections</b></dt><dd>
+Установить список выбранных пакетов, принимая его со стандартного
+ввода. Этот файл должен быть в формате '&lt;пакет&gt;
+&lt;состояние&gt;', где состоянием может быть install, hold, deinstall или
+purge. Допускаются пустые строки и строки комментариев (начинающиеся с #).
+</dd><dt><b>dpkg --clear-selections</b></dt><dd>
+Set the requested state of every non-essential package to deinstall.  This
+is intended to be used immediately before --set-selections, to deinstall any
+packages not in list given to --set-selections.
+</dd><dt><b>dpkg --yet-to-unpack</b></dt><dd>
+Найти пакеты, выбранные для установки, но по какой-то причине ещё не
+установленные.
+</dd><dt></dt><dt><b>dpkg --print-architecture</b></dt><dd>
+</dd><dd>
+Print architecture of packages <b>dpkg</b> installs (for example, "i386").
+</dd><dt><b>dpkg --compare-versions </b><i>ver1 op ver2</i></dt><dd>
+Сравнить номера версий, используя <i>op</i> в качестве бинарного
+оператора. <b>dpkg</b> возвращает код успешного завершения (нуль), если
+указанное условие удовлетворяется, или неудачу (не-нуль) в противном
+случае. Есть две группы операторов, которые работают по-разному при
+отсутствующем параметре <i>ver1</i> или <i>ver2</i>. Операторы <b>lt le eq ne ge gt</b>
+считают отсутствующий номер версии более ранним, чем любой другой. Операторы
+<b>lt-nl le-nl ge-nl gt-nl</b> считают отсутствующий номер версии более поздним,
+чем любой другой. Операторы <b>&lt; &lt;&lt; &lt;= = &gt;= &gt;&gt;
+&gt;</b> используются только для совместимости с синтаксисом файла control.
+</dd><dt><b>dpkg --command-fd &lt;n&gt;</b></dt><dd>
+Принимает серию команд из входного файлового дескриптора
+<b>&lt;n&gt;</b>. Замечание: дополнительные параметры, заданные в командной
+строке, а также через этот дескриптор, не сбрасываются для последующих
+команд, выполняющихся далее в этом запуске.
+</dd><dt><b>dpkg --help</b></dt><dd>
+Вывести небольшую подсказку.
+</dd><dt><b>dpkg --force-help</b></dt><dd>
+Вывести подсказку о параметрах <b>--force-</b><i>что-нибудь</i>.
+</dd><dt><b>dpkg -Dh </b>|<b> --debug=help</b></dt><dd>
+Вывести подсказку о параметрах отладки.
+</dd><dt><b>dpkg --licence</b> | <b>dpkg --license</b></dt><dd>
+Показать лицензию <b>dpkg</b>.
+</dd><dt><b>dpkg --version</b></dt><dd>
+Показать информацию о версии <b>dpkg</b>.
+</dd><dt><b>dpkg-deb actions</b></dt><dd>
+Смотрите <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dpkg-deb&amp;category=1">dpkg-deb</a></b>(1) для более подробной информации о нижеследующих
+действиях.
+<p>
+</p><pre><b>dpkg -b</b> | <b>--build</b> <i>каталог</i> [<i>имя файла</i>]
+    Собирает deb пакет.
+<b>dpkg -c</b> | <b>--contents</b> <i>имя файла</i>
+    Показывает содержимое deb пакета.
+<b>dpkg -e</b> | <b>--control</b> <i>имя файла</i> [<i>каталог</i>]
+    Извлекает управляющую информацию из пакета.
+<b>dpkg -x</b> | <b>--extract</b> <i>имя файла</i> &lt;каталог&gt;
+    Извлекает файлы, содержащиеся в данном пакете.
+<b>dpkg -f</b> | <b>--field</b>  <i>имя файла</i> [<i>управляющее-поле</i>] ...
+    Показывает управляющее(ие) поле(я) пакета.
+<b>dpkg --fsys-tarfile</b> <i>имя файла</i>
+    Выдает на стандартный вывод tar-файл с файловой
+    системой из указанного пакета Debian.
+<b>dpkg -I</b> | <b>--info</b> <i>имя файла</i> [<i>файл control</i>]
+    Выдает информацию о данном пакете.
+<b>dpkg -X</b> | <b>--vextract</b> <i>имя файла</i> <i>каталог</i>
+    Извлекает и выдает имена файлов, содержащиеся в пакете.
+</pre>
+
+<p>
+</p></dd><dt><b>dpkg-query actions</b></dt><dd>
+Смотрите <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dpkg-query&amp;category=1">dpkg-query</a></b>(1) для более подробной информации о нижеследующих
+действиях.
+<p>
+</p><pre>
+<b>dpkg -l</b> | <b>--list </b> <i>шаблон имени пакета</i> ...
+    Показывает пакеты, соответствующие данному шаблону.
+<b>dpkg -s</b> | <b>--status </b> <i>имя пакета</i> ...
+    Сообщает о состоянии указанного пакета.
+<b>dpkg -L</b> | <b>--listfiles</b> <i>имя пакета</i> ...
+    Показывает файлы, установленные в системе из пакета с указанным именем.
+<b>dpkg -S</b> | <b>--search</b> <i>шаблон имени файла</i> ...
+    Ищет в установленных пакетах имя файла по заданному шаблону.
+<b>dpkg -p</b> | <b>--print-avail</b> I &lt;имя пакета&gt;
+    Выводит детальную информацию о <i>пакете</i>, которую извлекает
+    из файла <i>/var/lib/dpkg/available</i>.
+</pre>
+
+</dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h2>ПАРАМЕТРЫ</h2>
+
+Все параметры можно указывать как в командной строке, так и в
+конфигурационном файле <b>dpkg</b> -- <i>/etc/dpkg/dpkg.cfg</i>. Каждая строка в
+конфигурационном файле должна быть либо параметром (в точности как в
+командной строке, но без начальных дефисов), либо комментарием (если
+начинается с <b>#</b>).
+<br>
+
+<dl compact="">
+<dt><b>--abort-after=</b><i>число</i></dt><dd>
+Change after how many errors <b>dpkg</b> will abort. The default is 50.
+</dd><dt><b>-B</b>|<b>--auto-deconfigure</b></dt><dd>
+При удалении пакета есть вероятность, что есть другой установленный пакет
+зависящий от удаляемого пакета. Указание этого параметра приведёт к
+автоматической деконфигурации пакета, который зависит от удаляемого пакета.
+</dd><dt><b>-D</b><i>octal</i><b> | --debug=</b><i>octal</i></dt><dd>
+Switch debugging on. <i>octal</i> is formed by bitwise-orring desired values
+together from the list below (note that these values may change in future
+releases). <b>-Dh</b> or <b>--debug=help</b> display these debugging values.
+<p>
+Маска   Описание
+<br>&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;Основная&nbsp;полезная&nbsp;информация&nbsp;по&nbsp;ходу&nbsp;выполнения
+<br>&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;Вызов&nbsp;и&nbsp;состояния&nbsp;скриптов&nbsp;поддержки
+<br>&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;Вывод&nbsp;по&nbsp;каждому&nbsp;обработанному&nbsp;файлу
+<br>&nbsp;&nbsp;100&nbsp;&nbsp;&nbsp;Подробный&nbsp;вывод&nbsp;по&nbsp;каждому&nbsp;обработанному&nbsp;файлу
+<br>&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;Вывод&nbsp;по&nbsp;каждому&nbsp;конфигурационному&nbsp;файлу
+<br>&nbsp;&nbsp;200&nbsp;&nbsp;&nbsp;Подробный&nbsp;вывод&nbsp;по&nbsp;каждому&nbsp;конфигурационному&nbsp;файлу
+<br>&nbsp;&nbsp;&nbsp;40&nbsp;&nbsp;&nbsp;Зависимости&nbsp;и&nbsp;конфликты
+<br>&nbsp;&nbsp;400&nbsp;&nbsp;&nbsp;Подробное&nbsp;освещение&nbsp;зависимостей&nbsp;и&nbsp;конфликтов
+<br>&nbsp;1000&nbsp;&nbsp;&nbsp;Подробная&nbsp;ерунда,&nbsp;например&nbsp;о&nbsp;каталоге&nbsp;dpkg/info
+<br>&nbsp;2000&nbsp;&nbsp;&nbsp;Невероятное&nbsp;количество&nbsp;ерунды
+</p></dd><dt><b>--force-</b><i>things</i> | <b>--no-force-</b><i>things</i> | <b>--refuse-</b><i>things</i></dt><dd>
+<p>
+Принудительно выполнять или же отказываться выполнять (<b>no-force</b> и
+<b>--refuse</b> означают одно и то же) те или иные вещи. <i>things</i> -- это список
+через запятую элементов описанных далее). <b>--force-help</b> выдает сообщение,
+описывающие их. Элементы, обозначенные звёздочкой (*), принудительно
+выполняются по умолчанию.
+</p><p>
+<i>Предупреждение: Эти параметры предназначены только для использования
+экспертами. Использование без полного понимания их действия может нарушить
+работоспособность всей системы.</i>
+</p><p>
+<b>all</b>: Turns on (or off) all force options.
+</p><p>
+<b>downgrade</b>(*): Установить пакет, даже если уже установлена его более новая
+версия.
+</p><p>
+<i>Предупреждение: На данный момент dpkg не выполняет проверку зависимостей
+при переходе на более старую версию и поэтому не предупредит если это
+поломает зависимости с остальными пакетами. Это может иметь серьёзные
+последствия: замена на более старую версию системных компонентов первой
+необходимости может привести к полной неработоспособности
+системы. Использовать осторожно.</i>
+</p><p>
+<b>configure-any</b>: Настроить также все распакованные, но ненастроенные
+пакеты, от которых зависит текущий пакет.
+</p><p>
+<b>hold</b>: Обрабатывать даже пакеты, помеченные как "зафиксированные".
+</p><p>
+<b>remove-reinstreq</b>: Удалить пакет, даже если он сломан и отмечен как
+требующий переустановки. Это может, например, привести к тому, что части
+пакета останутся в системе, а <b>dpkg</b> про них забудет.
+</p><p>
+<b>remove-essential</b>: Удалить, даже если это пакет первой необходимости
+(имеет приоритет "Essential"). Эти пакеты в основном содержат базовые
+команды Unix. Удаление такого пакета может привести к потере
+работоспособности системы, так что используйте данный параметр осторожно.
+</p><p>
+<b>depends</b>: Превратить проблемы с зависимостями в предупреждения.
+</p><p>
+<b>depends-version</b>: Не обращать внимание на версии при проверке
+зависимостей.
+</p><p>
+<b>conflicts</b>: Установить, даже если пакет конфликтует с другим пакетом. Это
+опасно, так как обычно приводит к перезаписи некоторых файлов.
+</p><p>
+<b>confmiss</b>: Всегда устанавливать пропущенный конфигурационный файл. Это
+опасно, так как не будут сохранены изменения (удаление) файла.
+</p><p>
+<b>confnew</b>: Если конфигурационный файл был изменён, то всегда устанавливать
+новую версию без запроса подтверждения, если не задан также параметр
+<b>--force-confdef</b>, при котором предпочтение отдаётся действию по умолчанию.
+</p><p>
+<b>confold</b>: Если конфигурационный файл был изменён, всегда сохранять старую
+версию без запроса подтверждения, если не задан также параметр
+<b>--force-confdef</b>, при котором предпочтение отдаётся действию по умолчанию.
+</p><p>
+<b>confdef</b>: Если конфигурационный файл был изменён, всегда выбирать действие
+по умолчанию. Если такового нет, то спросить у пользователя, если не задан
+параметр <b>--force-confnew</b> или <b>--force-confold</b> (в этом случае
+соответствующий параметр используется для выяснения, что именно нужно
+делать).
+</p><p>
+<b>overwrite</b>: Перезаписать файл из одного пакета файлом из другого пакета.
+</p><p>
+<b>overwrite-dir</b>: Перезаписать каталог из одного пакета файлом из другого.
+</p><p>
+<b>overwrite-diverted</b>: Перезаписать файл с изменённым
+расположением(diverted) его неизменённой версией.
+</p><p>
+<b>architecture</b>: Обрабатывать даже пакеты с неправильной архитектурой.
+</p><p>
+<b>bad-path</b>: В <b>PATH</b> отсутствуют важные программы, поэтому могут
+возникнуть проблемы.
+</p><p>
+<b>not-root</b>: Попытаться установить или удалить пакет, даже если не нет прав
+суперпользователя.
+</p><p>
+<b>bad-verify</b>: Устанавливать пакет, даже если он не прошёл проверку
+подлинности.
+</p><p>
+</p></dd><dt><b>--ignore-depends</b>=<i>пакет</i>,...</dt><dd>
+Игнорировать проверку зависимостей для указанных пакетов (на самом деле,
+проверка выполняется, но выдаются только предупреждения о конфликтах и
+ничего более).
+</dd><dt><b>--new</b> | <b>--old</b></dt><dd>
+Выбрать, соответственно, новый или старый формат пакета. Это параметр
+программы <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dpkg-deb&amp;category=1">dpkg-deb</a></b>(1).
+</dd><dt><b>--nocheck</b></dt><dd>
+Не читать и не проверять содержимое файла control при создании пакета. Это
+параметр программы <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dpkg-deb&amp;category=1">dpkg-deb</a></b>(1).
+</dd><dt><b>--no-act</b> | <b>--dry-run</b> | <b>--simulate</b></dt><dd>
+Делать всё, что необходимо, но не записывать на диск изменения. Он
+используется для того, чтобы посмотреть, что произошло бы при выполнении
+указанного действия, но при этом ничего не меняется.
+<p>
+Убедитесь, что указали <b>--no-act</b> перед действием, или у вас могут
+получиться нежелаемые результаты. (например, <b>dpkg --purge foo --no-act</b>
+сперва выполнит полное удаление пакета foo, а затем будет пытаться полностью
+удалить пакет --no-act, хотя вы ожидали, что ничего выполнено не будет)
+</p></dd><dt><b>-R</b> | <b>--recursive</b></dt><dd>
+Рекурсивная обработать все файлы, отвечающие шаблону <b>*.deb</b>, которые
+найдены в заданных каталогах и во всех их подкаталогах. Этот параметр можно
+использовать вместе с действиями <b>-i</b>, <b>-A</b>, <b>--install</b>, <b>--unpack</b> и
+<b>--avail</b>.
+</dd><dt><b>-G</b></dt><dd>
+Don't install a package if a newer version of the same package is already
+installed. This is an alias of <b>--refuse-downgrade</b>.
+</dd><dt><b>--root=</b><i>dir</i> | <b>--admindir=</b><i>dir</i> | <b>--instdir=</b><i>dir</i></dt><dd>
+Change default directories. <b>admindir</b> defaults to <i>/var/lib/dpkg</i> and
+contains many files that give information about status of installed or
+uninstalled packages, etc. <b>instdir</b> defaults to <i>/</i> and refers to the
+directory where packages are to be installed. <b>instdir</b> is also the
+directory passed to <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chroot&amp;category=2">chroot</a></b>(2) before running package's installation
+scripts, which means that the scripts see <b>instdir</b> as a root directory. 
+Changing <b>root</b> changes <b>instdir</b> to <i>dir</i> and <b>admindir</b> to
+<i>dir</i><b>/var/lib/dpkg</b>.
+</dd><dt><b>-O</b> | <b>--selected-only</b></dt><dd>
+Обрабатывать только пакеты, выбранные для установки. Такой выбор делается
+программой <b>dselect</b> или же самой программой <b>dpkg</b> при работе с
+пакетами. Например, когда пакет удаляется, он будет помечен для удаления.
+</dd><dt><b>-E</b> | <b>--skip-same-version</b></dt><dd>
+Не устанавливать пакет, если та же версия этого пакета уже установлена.
+</dd><dt><b>--status-fd </b><i>&lt;n&gt;</i></dt><dd>
+Send package status info to file descriptor <i>&lt;n&gt;</i>. This can be
+given multiple times. Status updates are of the form `status: &lt;pkg&gt;:
+&lt;pkg state&gt;'.  Errors are reported as `status: &lt;pkg&gt;: error:
+extend-error-message'.  Configuration file conflicts are reported as
+`status: conffile-prompt: conffile : 'current-conffile' 'new-conffile'
+useredited distedited'.
+</dd><dt><b>--log=</b><i>имя файла</i></dt><dd>
+Log status change updates and actions to <i>filename</i>, instead of the default
+<i>/var/log/dpkg.log</i>. If this option is given multiple times, the last
+filename is used. Log messages are of the form `YYYY-MM-DD HH:MM:SS status
+&lt;state&gt; &lt;pkg&gt; &lt;installed-version&gt;' for status change
+updates; `YYYY-MM-DD HH:MM:SS &lt;action&gt; &lt;pkg&gt;
+&lt;installed-version&gt; &lt;available-version&gt;' for actions where
+<i>&lt;action&gt;</i> is one of install, upgrade, remove, purge; and
+`YYYY-MM-DD HH:MM:SS conffile &lt;filename&gt; &lt;decision&gt;' for
+conffile changes where <i>&lt;decision&gt;</i> is either install or keep.
+</dd><dt><b>--no-debsig</b></dt><dd>
+Не пытаться проверять подпись пакета.
+</dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt><i>/etc/dpkg/dpkg.cfg</i></dt><dd>
+Файл конфигурации с параметрами по умолчанию.
+</dd><dt><i>/var/log/dpkg.log</i></dt><dd>
+Файл журнала по умолчанию (смотрите <i>/etc/dpkg/<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dpkg.cfg&amp;category=5">dpkg.cfg</a></i>(5) и параметр
+<b>--log</b>).
+
+Остальные файлы перечислены с указанием их каталогов по умолчанию, смотрите
+параметр <b>admindir</b>, чтобы узнать, как изменить местоположение этих файлов.
+</dd><dt><i>/var/lib/dpkg/available</i></dt><dd>
+Список доступных пакетов.
+</dd><dt><i>/var/lib/dpkg/status</i></dt><dd>
+Состояния доступных пакетов. Этот файл содержит информацию о том, помечен ли
+пакет для удаления или нет, установлен он или нет, и т.д. Смотрите раздел
+<b>ИНФОРМАЦИЯ О ПАКЕТАХ</b>, где приведена подробная информация.
+
+Нижеследующие файлы являются компонентами бинарного пакета. Смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=deb&amp;category=5">deb</a></b>(5), где приведена подробная информация:
+</dd><dt><i>control</i></dt><dd>
+</dd><dt><i>conffiles</i></dt><dd>
+</dd><dt><i>preinst</i></dt><dd>
+</dd><dt><i>postinst</i></dt><dd>
+</dd><dt><i>prerm</i></dt><dd>
+</dd><dt><i>postrm</i></dt><dd>
+</dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h2>ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</h2>
+
+<dl compact="">
+<dt><b>DPKG_NO_TSTP</b></dt><dd>
+Если она определена, то <b>dpkg</b> при запуске оболочки не приостанавливает
+себя, а создаёт новый процесс.
+</dd><dt><b>SHELL</b></dt><dd>
+The program <b>dpkg</b> will execute when starting a new shell.
+</dd><dt><b>COLUMNS</b></dt><dd>
+Задаёт количество колонок текста, используемых программой <b>dpkg</b> при
+форматировании текста. В настоящий момент используется только с параметром
+<b>-l</b>.
+</dd></dl>
+<a name="lbAN">&nbsp;</a>
+<h2>ПРИМЕРЫ</h2>
+
+To list packages related to the editor <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vi&amp;category=1">vi</a></b>(1):
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>dpkg&nbsp;-l&nbsp;aq*vi*aq</b>
+<br>
+
+<p>
+To see the entries in <i>/var/lib/dpkg/available</i> of two packages:
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>dpkg&nbsp;--print-avail&nbsp;elvis&nbsp;vim&nbsp;|&nbsp;less</b>
+<br>
+
+</p><p>
+Вручную просмотреть список пакетов:
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>less&nbsp;/var/lib/dpkg/available</b>
+<br>
+
+</p><p>
+Удалить установленный пакет elvis:
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>dpkg&nbsp;-r&nbsp;elvis</b>
+<br>
+
+</p><p>
+Чтобы установить пакет, сначала нужно найти его в архиве или на CDROM. Файл
+"available" показывает, что пакет vim находится в секции "editors"
+("редакторы"):
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>cd&nbsp;/cdrom/hamm/hamm/binary/editors</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>dpkg&nbsp;-i&nbsp;vim_4.5-3.deb</b>
+<br>
+
+</p><p>
+Получить локальную копию состояний выбранных пакетов:
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>dpkg&nbsp;--get-selections&nbsp;&gt;myselections</b>
+<br>
+
+</p><p>
+Вы можете перенести этот файл на другой компьютер и установить его там с
+помощью:
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>dpkg&nbsp;--clear-selections</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>dpkg&nbsp;--set-selections&nbsp;&lt;myselections</b>
+<br>
+
+</p><p>
+Заметим, что при этом ничего не будет ни установлено, ни удалено, просто
+будут заданы состояния запрошенных пакетов. Для того, чтобы на самом деле
+скачать и установить запрошенные пакеты, вам понадобится другая
+программа. Например, запустите <b>dselect</b> и выберите "Установить".
+</p><p>
+Обычно <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dselect&amp;category=8">dselect</a></b>(8) предоставляет более удобный способ изменить состояния
+выбранных пакетов.
+<br>
+
+<a name="lbAO">&nbsp;</a>
+</p><h2>ДОПОЛНИТЕЛЬНАЯ ФУНКЦИОНАЛЬНОСТЬ</h2>
+
+Дополнительная функциональность может быть получена установкой любых
+следующих пакетов: <i>apt</i>, <i>aptitude</i> и <i>debsums</i>.
+<a name="lbAP">&nbsp;</a>
+<h2>SEE ALSO</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dselect&amp;category=1">dselect</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dpkg-deb&amp;category=1">dpkg-deb</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dpkg-query&amp;category=1">dpkg-query</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=deb&amp;category=5">deb</a></b>(5),
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=deb-control&amp;category=5">deb-control</a></b>(5), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dpkg.cfg&amp;category=5">dpkg.cfg</a></b>(5) и <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dpkg-reconfigure&amp;category=8">dpkg-reconfigure</a></b>(8).
+<a name="lbAQ">&nbsp;</a>
+<h2>ОШИБКИ РЕАЛИЗАЦИИ</h2>
+
+<b>--no-act</b> обычно дает меньше информации, чем могло бы быть полезным.
+<a name="lbAR">&nbsp;</a>
+<h2>АВТОРЫ</h2>
+
+<pre>Смотрите файл <i>/usr/share/doc/dpkg/THANKS</i>, где приведён список тех, кто участвовал в разработке <b>dpkg</b>.
+</pre>
+
+<a name="lbAS">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевёл с английского Виктор Вислобоков &lt;<a href="mailto:victor_v@permonline.ru">victor_v@permonline.ru</a>&gt;
+Обновление и корректура: Alexey Mahotkin &lt;<a href="mailto:alexm@hsys.msk.ru">alexm@hsys.msk.ru</a>&gt;.
+Юрий Козлов &lt;<a href="mailto:y_kozlov@chat.ru">y_kozlov@chat.ru</a>&gt;.
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ПРЕДУПРЕЖДЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAF">ИНФОРМАЦИЯ О ПАКЕТАХ</a></dt><dd>
+<dl>
+<dt><a href="#lbAG">СОСТОЯНИЯ ПАКЕТА</a></dt><dd>
+</dd><dt><a href="#lbAH">ВЫБРАННЫЕ СОСТОЯНИЯ ПАКЕТА</a></dt><dd>
+</dd><dt><a href="#lbAI">ФЛАГИ ПАКЕТА</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAJ">ДЕЙСТВИЯ</a></dt><dd>
+</dd><dt><a href="#lbAK">ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAL">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAM">ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAN">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAO">ДОПОЛНИТЕЛЬНАЯ ФУНКЦИОНАЛЬНОСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAP">SEE ALSO</a></dt><dd>
+</dd><dt><a href="#lbAQ">ОШИБКИ РЕАЛИЗАЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAR">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAS">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="dpkg" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

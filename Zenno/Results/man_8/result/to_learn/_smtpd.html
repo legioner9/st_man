@@ -1,0 +1,530 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN smtpd (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, smtpd"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="smtpd" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">smtpd (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=smtpd&amp;category=8&amp;russian=0"><u>smtpd</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=smtpd&amp;category=8&amp;russian=2"><u>smtpd</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+smtpd
+-
+SMTP-сервер Postfix
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+
+<pre><b>smtpd</b> [обычные параметры демона Postfix]
+</pre><a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+
+
+Сервер SMTP принимает запросы на сетевое соединение и выполняет
+ноль или более SMTP транзакций на одно соединение. Каждое
+принятое сообщение пропускается через демон <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cleanup&amp;category=8">cleanup</a></b>(8) и
+помещается в очередь <b>incoming</b> в виде одного файла очереди. 
+Для работы в этом режиме программа ожидает запуска от менеджера
+процессов <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=master&amp;category=8">master</a></b>(8).
+<p>
+Кроме того, сервер SMTP использует установленное соединение со
+стандартным вводом и помещает сообщения непосредственно в очередь
+<b>maildrop</b>. В этом, так называемом одиноком (stand-alone),
+режиме сервер SMTP может принять почту во время остановки
+почтовой системы.
+</p><p>
+Сервер SMTP применяет различные политики к запросам на соединение
+и к параметрам, указываемым с командами <b>HELO, ETRN, MAIL FROM, 
+VRFY</b> и <b>RCPT TO</b>. Подробнее они описаны ниже и в 
+конфигурационном файле <b>main.cf</b>.
+<a name="lbAE">&nbsp;</a>
+</p><h2>БЕЗОПАСНОСТЬ</h2>
+
+
+<pre></pre>
+
+Сервер SMTP умеренно влияет на безопасность. По сети он общается 
+с клиентами SMTP и серверами DNS. Сервер SMTP можно запускать в
+изолированной среде выполнения с фиксированным низким приоритетом.
+<a name="lbAF">&nbsp;</a>
+<h2>СТАНДАРТЫ</h2>
+
+
+<pre>RFC 821  (Протокол SMTP)
+RFC 1123 (Требования к машине)
+RFC 1651 (Расширения службы SMTP)
+RFC 1652 (8bit-MIME транспорт)
+RFC 1854 (SMTP Pipelining)
+RFC 1870 (Объявление размера сообщения)
+RFC 1985 (Команда ETRN)
+RFC 2554 (Команда AUTH)
+RFC 2821 (Протокол SMTP)
+</pre><a name="lbAG">&nbsp;</a>
+<h2>ДИАГНОСТИКА</h2>
+
+
+
+Проблемы и транзакции регистрируются в <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8).
+<p>
+В зависимости от установки параметра <b>notify_classes</b>,
+постмастер уведомляется об возвратах, проблемах протокола,
+нарушениях политики и других затруднениях.
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПАРАМЕТРЫ КОНФИГУРАЦИИ</h2>
+
+
+<pre></pre>
+
+Для этой программы особо актуальны следующие параметры в <b>main.cf</b>.
+Подробнее о синтаксисе и значениях по умолчанию смотрите в файле 
+<b>main.cf</b>. После изменения конфигурации выполните команду
+<b>postfix reload</b>.
+<a name="lbAI">&nbsp;</a>
+<h2>УПРАВЛЕНИЕ СОВМЕСТИМОСТЬЮ</h2>
+
+
+
+<dl compact="">
+<dt><b>strict_rfc821_envelopes</b></dt><dd>
+Запрещает адресацию конверта в стиле, отличном от RFC 821.
+Например, разрешить форматы адреса в стиле RFC 822 с комментариями,
+как делает Sendmail.
+<p>
+</p></dd><dt><b>broken_sasl_auth_clients</b></dt><dd>
+Поддержка старых клиентов Microsoft, в которых неверно реализован 
+протокол AUTH и которые ожидают в ответ на EHLO "250 AUTH=list"
+вместо "250 AUTH list".
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>УПРАВЛЕНИЕ ПРОВЕРКОЙ СОДЕРЖАНИЯ</h2>
+
+<dl compact="">
+<dt><b>content_filter</b></dt><dd>
+Имя транспорта почтовой доставки, который фильтрует почту и который
+либо возвращает почту, либо помещает результат обратно в Postfix.
+Этот параметр имеет тот же синтаксис, что и правая часть в таблице 
+transport.
+</dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h2>УПРАВЛЕНИЕ АУТЕНТИФИКАЦИЕЙ</h2>
+
+<dl compact="">
+<dt><b>enable_sasl_authentication</b></dt><dd>
+Разрешает по-сессионную аутентификацию, как для RFC 2554 (SASL).
+Эта возможность доступна в том случае, если она выбрана во время
+сборки программы и разрешена во время выполнения.
+</dd><dt><b>smtpd_sasl_local_domain</b></dt><dd>
+Имя локальной области аутентификации.
+</dd><dt><b>smtpd_sasl_security_options</b></dt><dd>
+Ноль или более из следующего:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>noplaintext</b></dt><dd>
+Запрещает методы аутентификации, использующие пароли передаваемые открытым текстом.
+</dd><dt><b>noactive</b></dt><dd>
+Запрещает методы аутентификации, подверженные не словарным активным
+атакам.
+</dd><dt><b>nodictionary</b></dt><dd>
+Запрещает методы аутентификации, подверженные пассивным словарным 
+атакам.
+</dd><dt><b>noanonymous</b></dt><dd>
+Запрещает анонимное подключение.
+</dd></dl>
+</dd></dl>
+
+</dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h2>РАЗНОЕ</h2>
+
+
+
+<dl compact="">
+<dt><b>always_bcc</b></dt><dd>
+Адрес для отправки копии каждого сообщения, входящего в систему.
+</dd><dt><b>command_directory</b></dt><dd>
+Расположение команд поддержки Postfix (по умолчанию:
+<b>$program_directory</b>).
+</dd><dt><b>debug_peer_level</b></dt><dd>
+Повышение уровня подробности журналирования при совпадении
+удалённой машины с шаблоном в параметре <b>debug_peer_list</b>.
+</dd><dt><b>debug_peer_list</b></dt><dd>
+Список шаблонов доменов или сетей. Когда удалённая машина совпадает
+с шаблоном, уровень подробности журналирования увеличивается на
+величину, указанную в параметре <b>debug_peer_level</b>.
+</dd><dt><b>error_notice_recipient</b></dt><dd>
+Получатель уведомлений об ошибках протокола/политики/ресурса/программы.
+</dd><dt><b>hopcount_limit</b></dt><dd>
+Ограничение на количество заголовков сообщения <b>Received:</b>.
+</dd><dt><b>local_recipient_maps</b></dt><dd>
+Список таблиц с именами пользователей, которые локальны для 
+<b>$myorigin</b> или <b>$inet_interfaces</b>. Если этот параметр
+определён, то сервер SMTP отвергает письма для неизвестных 
+локальных пользователей.
+</dd><dt><b>notify_classes</b></dt><dd>
+Список классов ошибок. Наиболее интересны:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>policy</b></dt><dd>
+При нарушении клиентом любой политики отправить постмастеру
+письмо с описанием всей SMTP сессии.
+</dd><dt><b>protocol</b></dt><dd>
+При нарушении клиентом SMTP протокола или выдаче не поддерживаемой
+команды отправить постмастеру письмо с описанием всей SMTP сессии.
+</dd></dl>
+</dd></dl>
+
+</dd><dt><b>smtpd_banner</b></dt><dd>
+Текст, следуемый за кодом состояния <b>220</b> в приветственном
+баннере SMTP.
+</dd><dt><b>smtpd_recipient_limit</b></dt><dd>
+Ограничивает количество получателей одного сообщения, для которого 
+сервер SMTP может выполнить доставку.
+</dd><dt><b>smtpd_timeout</b></dt><dd>
+Ограничение времени на посылку ответа сервера и приёма запроса клиента.
+</dd><dt><b>soft_bounce</b></dt><dd>
+Сменить жёсткие (5xx) ответы отказа на мягкие (4xx) ответы 
+отказа. Может быть полезно в целях тестирования.
+</dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h2>УПРАВЛЕНИЕ РЕСУРСАМИ</h2>
+
+
+
+<dl compact="">
+<dt><b>line_length_limit</b></dt><dd>
+Ограничение количества памяти в байтах, используемой для обработки
+частично введённых строк.
+</dd><dt><b>message_size_limit</b></dt><dd>
+Ограничение полного размера сообщения в байтах, включая дисковое
+хранилище информации для конверта.
+</dd><dt><b>queue_minfree</b></dt><dd>
+Минимальное количество свободного места в байтах в файловой
+системе очереди SMTP-сервера для получения любого письма в принципе.
+</dd></dl>
+<a name="lbAN">&nbsp;</a>
+<h2>TARPITTING</h2>
+
+
+
+<dl compact="">
+<dt><b>smtpd_error_sleep_time</b></dt><dd>
+Время ожидания в секундах перед отправкой ответа ошибки сервера
+4xx или 5xx.
+</dd><dt><b>smtpd_soft_error_limit</b></dt><dd>
+При выполнении клиентом SMTP указанного количества ошибок, сделать
+паузу на <i>error_count</i> секунд перед возобновлением ответов на 
+любые запросы клиента.
+</dd><dt><b>smtpd_hard_error_limit</b></dt><dd>
+Отключиться после того, как клиент сделает указанное количество ошибок.
+</dd><dt><b>smtpd_junk_command_limit</b></dt><dd>
+Ограничение на количество неосновных команд, таких как NOOP, VRFY, 
+ETRN или RSET, которые клиент может сделать в сессии SMTP до того, 
+как он будет штрафоваться tarpit задержками.
+</dd></dl>
+<a name="lbAO">&nbsp;</a>
+<h2>УПРАВЛЯЮЩИЕ ОГРАНИЧЕНИЯ UCE</h2>
+
+
+
+<dl compact="">
+<dt><b>smtpd_client_restrictions</b></dt><dd>
+Ограничение на виды клиентов, которые могут подключиться к
+этой почтовой системе.
+</dd><dt><b>smtpd_helo_required</b></dt><dd>
+Требовать, чтобы клиент представлялся в начале SMTP сессии.
+</dd><dt><b>smtpd_helo_restrictions</b></dt><dd>
+Ограничение на допустимые имена машин-клиентов в командах
+<b>HELO</b> и <b>EHLO</b>.
+</dd><dt><b>smtpd_sender_restrictions</b></dt><dd>
+Ограничения на допустимые адреса отправителей в командах 
+<b>MAIL FROM</b>.
+</dd><dt><b>smtpd_recipient_restrictions</b></dt><dd>
+Ограничения на допустимые адреса получателей в командах
+<b>RCPT TO</b>.
+</dd><dt><b>smtpd_etrn_restrictions</b></dt><dd>
+Ограничения на допустимые имена доменов в командах 
+<b>ETRN</b> и на клиентов, которые могут выполнять команды
+<b>ETRN</b>.
+</dd><dt><b>allow_untrusted_routing</b></dt><dd>
+Разрешить ненадёжным клиентам указывать адреса с маршрутизацией 
+отправителя. Включение этого параметра открывает опасные цикличные пересылки, 
+запутывая надёжные резервные MX хосты.
+</dd><dt><b>smtpd_restriction_classes</b></dt><dd>
+Объявляет имя нулевого или более числа параметров, содержащих 
+список UCE ограничений. Затем имена этих параметров можно 
+использовать вместо списков ограничений, которые они представляют.
+</dd><dt><b>maps_rbl_domains</b></dt><dd>
+Список DNS доменов, публикующих адреса машин в чёрном списке.
+</dd><dt><b>relay_domains</b></dt><dd>
+Ограничение на домены или сети, для и от которых эта почтовая
+система будет пересылкой.
+</dd></dl>
+<a name="lbAP">&nbsp;</a>
+<h2>УПРАВЛЯЮЩИЕ ОТВЕТЫ UCE</h2>
+
+
+
+<dl compact="">
+<dt><b>access_map_reject_code</b></dt><dd>
+Ответ сервера при нарушении клиентом ограничения доступа к базе 
+данных.
+</dd><dt><b>invalid_hostname_reject_code</b></dt><dd>
+Ответ сервера при нарушении клиентом ограничения 
+<b>reject_invalid_hostname</b>.
+</dd><dt><b>maps_rbl_reject_code</b></dt><dd>
+Ответ сервера при нарушении клиентом ограничения
+<b>maps_rbl_domains</b>.
+</dd><dt><b>reject_code</b></dt><dd>
+Код ответа при совпадении клиента с ограничением <b>reject</b>.
+</dd><dt><b>relay_domains_reject_code</b></dt><dd>
+Ответ сервера при попытках клиента нарушить политику пересылки почты.
+</dd><dt><b>unknown_address_reject_code</b></dt><dd>
+Ответ сервера при нарушении клиентом ограничения 
+<b>reject_unknown_address</b>.
+</dd><dt><b>unknown_client_reject_code</b></dt><dd>
+Ответ сервера, при нарушении клиентом без адреса, для замены
+имени ограничения <b>reject_unknown_clients</b>.
+</dd><dt><b>unknown_hostname_reject_code</b></dt><dd>
+Ответ сервера при нарушении клиентом ограничения
+<b>reject_unknown_hostname</b>.
+</dd></dl>
+<a name="lbAQ">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ</h2>
+
+
+<pre><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cleanup&amp;category=8">cleanup</a>(8) - канонизация сообщения
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=master&amp;category=8">master</a>(8) - менеджер процессов
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a>(8) - системное журналирование
+</pre><a name="lbAR">&nbsp;</a>
+<h2>ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ</h2>
+
+
+<pre></pre>
+
+С данным программным обеспечением должна поставлять лицензия от
+Secure Mailer.
+<a name="lbAS">&nbsp;</a>
+<h2>ОБ АВТОРАХ</h2>
+
+
+<pre>Wietse Venema
+IBM T.J. Watson Research
+P.O. Box 704
+Yorktown Heights, NY 10598, USA
+
+Перевод:
+Alex Savvin &lt;<a href="mailto:savvin@mail.ru">savvin@mail.ru</a>&gt;, Jan 02, 2002
+
+</pre>
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">БЕЗОПАСНОСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAF">СТАНДАРТЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">ДИАГНОСТИКА</a></dt><dd>
+</dd><dt><a href="#lbAH">ПАРАМЕТРЫ КОНФИГУРАЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAI">УПРАВЛЕНИЕ СОВМЕСТИМОСТЬЮ</a></dt><dd>
+</dd><dt><a href="#lbAJ">УПРАВЛЕНИЕ ПРОВЕРКОЙ СОДЕРЖАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAK">УПРАВЛЕНИЕ АУТЕНТИФИКАЦИЕЙ</a></dt><dd>
+</dd><dt><a href="#lbAL">РАЗНОЕ</a></dt><dd>
+</dd><dt><a href="#lbAM">УПРАВЛЕНИЕ РЕСУРСАМИ</a></dt><dd>
+</dd><dt><a href="#lbAN">TARPITTING</a></dt><dd>
+</dd><dt><a href="#lbAO">УПРАВЛЯЮЩИЕ ОГРАНИЧЕНИЯ UCE</a></dt><dd>
+</dd><dt><a href="#lbAP">УПРАВЛЯЮЩИЕ ОТВЕТЫ UCE</a></dt><dd>
+</dd><dt><a href="#lbAQ">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAR">ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAS">ОБ АВТОРАХ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="smtpd" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,424 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN apt-get (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, apt-get"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="apt-get" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">apt-get (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=apt-get&amp;category=8&amp;russian=0"><u>apt-get</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=apt-get&amp;category=8&amp;russian=2"><u>apt-get</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+apt-get - утилита управления APT -- интерфейс командной строки
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>apt-get</b> [<i>опции</i>] [<i>команда</i>] [<i>пакет ...</i>]
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<b>apt-get</b> это инструмент командной строки для управления пакетами и может рассматриваться как пользовательский интерфейс к <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt&amp;category=8">apt</a>(8)</b>.
+<dl compact="">
+<dt><i>командами</i> служат:</dt><dd>
+</dd><dt>o<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>update</dt><dd>
+</dd><dt>o<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>upgrade</dt><dd>
+</dd><dt>o<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>dselect-upgrade [1]</dt><dd>
+</dd><dt>o<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>dist-upgrade</dt><dd>
+</dd><dt>o<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>install пакет1 [пакет2] [...]</dt><dd>
+</dd><dt>o<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>remove пакет1 [пакет2] [...]</dt><dd>
+</dd><dt>o<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>source пакет1 [пакет2] [...]</dt><dd>
+</dd><dt>o<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>check</dt><dd>
+</dd><dt>o<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>clean</dt><dd>
+</dd><dt>o<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>autoclean</dt><dd>
+</dd><dt>Если не используется одна из опций, -h или --help, то должна быть указана одна из команд, перечисленных выше.</dt><dd>
+</dd><dt>Примечание: [1] - только для систем на базе Debian.</dt><dd>
+</dd><dt><b>update</b> </dt><dd>
+<b>update</b> используется для повторной синхронизации файлов описаний пакетов с их источником. Описания доступных пакетов будут получены из источников, указанных в <b>/etc/apt/sources.list</b>. Например, при использовании архива Debian, эта команда разыскивает и просматривает файлы <b>Packages.gz</b>, таким образом становится доступной информация о новых и обновлённых пакетах. Перед <b>upgrade</b> и <b>dist-upgrade</b> всегда должно выполняться <b>update</b>. Пожалуйста помните, что индикатор прогресса показывает не точную информацию, поскольку размер файлов пакетов заранее не известен.<br>
+</dd><dt><b>upgrade</b></dt><dd>
+<b>upgrade</b> используется для установки новейших версий всех установленных пакетов системы из источников, указанных в <b>/etc/apt/sources.list</b>. Будут разысканы новейшие версии установленных в настоящий момент пакетов и произведено обновление; ни в коем случае не будет удалено ни одного установленного пакета или установлено нового пакета, не имеющего уже установленной в системе предыдущей версии. Текущие версии установленных в настоящий момент пакетов, если они не могут быть обновлены новыми версиями без изменения статуса других пакетов, будут оставлены в неизменном виде. Для того, чтобы <b>apt-get</b> узнал о существовании доступных новых версиях пакетов, данной команде должна предшествовать команда <b>update</b>.
+</dd><dt><b>dselect-upgrade</b></dt><dd>
+<b>dselect-upgrade</b> используется совместно с традиционным инструментом управления пакетов в Debian GNU/Linux - <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dselect&amp;category=8">dselect</a>(8)</b>. <b>dselect-upgrade</b> следует изменениям, которые делает <b>dselect</b> с полем <i>Status</i> доступных пакетов и выполняет действие, необходимое для реализации этого состояния (например, удаление старых и установка новых пакетов).
+</dd><dt><b>dist-upgrade</b></dt><dd>
+<b>dist-upgrade</b>, в дополнение выполняет функцию <b>upgrade</b>, а также разумно управляет изменением зависимостей с новыми версиями пакетов; <b>apt-get</b> имеет "умную" систему разрешения конфликтов и она будет  в случае необходимости пытаться произвести обновление наиболее важных пакетов за счет менее важных. Файл <b>/etc/apt/sources.list</b> содержит список источников для получения пакетов, из которых будут получены файлы пакетов.
+</dd><dt><b>install</b></dt><dd>
+<b>install</b> устанавливает один или более <i>пакетов</i> отмеченных к установке. Каждый <i>пакет</i> - это имя пакета, а не полное имя файла, содержащее этот пакет (например, в системе Debian GNU/Linux, в качестве пакета может быть указано имя <i>ldso</i>, а не <i>ldso_1.9.6-2.deb</i>). Все пакеты, требуемые заданным пакетом (пакетами) отмеченными к установке, также будут получены и установлены. Файл <b>/etc/apt/sources.list</b> используется для определения местонахождения нужных пакетов. Если к имени пакета добавляется символ переноса (без разделяющего пробела), то заданный пакет будет удален, если он установлен. Эта особенность может быть использована для перекрытия решения, сделанного системой разрешения конфликтов apt-get.
+</dd><dt></dt><dd>
+Если нет пакетов, совпадающих с заданным выражением и выражение содержит один из символов '.', '?' или '*', то оно рассматривается как шаблон для регулярных выражений POSIX и уже этот шаблон применяется ко всем именам пакетов в базе данных. Любые совпадающие с шаблоном пакеты будут затем установлены (или удалены). Заметим, что к примеру, подстрока 'lo*' совпадает с 'how-lo' и 'lowest'. Если это нежелательно, предваряйте их символом '^'.
+</dd><dt><b>remove</b></dt><dd>
+<b>remove</b> идентична <b>install</b> за исключением того, что пакеты вместо установки удаляются. Если к имени пакета добавляется знак плюс (без разделяющего пробела), то указанные пакеты будут установлены.
+</dd><dt><b>source</b></dt><dd>
+<b>source</b> принуждает получать пакеты с исходными текстами. APT проверит доступные пакеты на предмет получения их исходных текстов. Затем он ищет и копирует в текущий каталог новейшую доступную версию этих исходных текстов. Пакеты исходных текстов обслуживаются отдельно от бинарных через ввод строк <b>deb-src</b> или <b>rpm-src</b> в файл <b>/etc/apt/sources.list</b>. Предполагается, что для получения исходных текстов, вы будете использовать источник, отличный от того, из которого вы получаете готовые пакеты. Если задана опция --compile, то пакет с исходными текстами будет скомпилирован в бинарный deb-пакет с помощью утилиты dpkg-buildpackage или, на системах использующих RPM, при помощи rpm -ba будет собран бинарный пакет. Если задана опция --download-only, то пакет с исходными текстами не будет распакован.
+</dd><dt></dt><dd>
+Заметим, что пакеты с исходными текстами не отслеживаются как бинарные пакеты, они существуют только в текущем каталоге, что очень похоже на простое выкачивание архивов исходных текстов .ta r.gz.
+</dd><dt><b>check</b></dt><dd>
+<b>check</b> - это диагностический инструмент; он обновляет кэш пакетов и проверяет пакеты, которые недо-установлены в силу каких-либо причин.
+</dd><dt><b>clean</b></dt><dd>
+<b>clean</b> очищает локальное хранилище полученных файлов пакетов. Команда удаляет все, но оставляет файлы из <b>/var/cache/apt/archives/</b> и <b>/var/cache/apt/archives/partial/</b>. Когда <b>APT</b> используется как один из методов <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dselect&amp;category=8">dselect</a>(8)</b>, <b>clean</b> запускается автоматически. Те, кто не пользуется dselect, для освобождения места на диске могут время от времени использовать <b>apt-get clean</b>.
+</dd><dt><b>autoclean</b></dt><dd>
+Как и <b>clean</b>, <b>autoclean</b> очищает локальное хранилище полученных файлов пакетов. Отличие состоит в том, что эта команда удаляет только те файлы пакетов, которые больше не могут быть получены и использованы. Это позволяет обслуживать кэш в течении длительного периода без потери контроля над ним.
+</dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>ОПЦИИ</h2>
+
+Все опции командной строки могут быть установлены при помощи файла настроек; описания показывают какой элемент настройки надо установить. Для логических опций вы можете перекрыть файл с настройками используя конструкцию вида <b>-f-</b>, <b>--no-f</b>, <b>-f=no</b> или некоторые другие вариации.
+<dl compact="">
+<dt><b>-d, --download-only</b></dt><dd>
+Только выкачивать; файлы пакетов будут только выкачиваться, но не будут
+распаковываться и устанавливаться.
+<br>
+
+Элемент настройки: <b>APT::Get::Download-Only</b>.
+</dd><dt><b>-f, --fix-broken</b></dt><dd>
+Править; попытка исправить систему с нарушенными зависимостями. Данная опция, когда используется при операциях установки и удаления, может опускать некоторые пакеты, чтобы позволить APT решить проблему. Любой указанный пакет должен полностью исправлять проблему. Данная опция иногда необходима при запуске APT в первый раз; APT сам не позволяет нарушенным зависимостям пакетов существовать в системе. Возможно, что структура зависимостей в системе может быть нарушена и требовать исправления вручную (что обычно достигается использованием dselect или dpkg --remove для удаления некоторых пакетов). Использование данной опции вместе с -m в некоторых ситуациях приведет к выводу сообщения об ошибке.
+<br>
+
+Элемент настройки: <b>APT::Get::Fix-Broken</b>.
+</dd><dt><b>-h, --help</b></dt><dd>
+Помощь; выдать подсказку и завершить работу.
+</dd><dt><b>-v, --version</b></dt><dd>
+Сообщить версию программы.
+</dd><dt><b>-m, --ignore-missing, --fix-missing</b></dt><dd>
+Игнорировать отсутствующие пакеты; Если пакеты не могут быть получены или их полная проверка после получения окончилось неудачно (поврежденный файл пакета), то состояние пакета возвращается к предыдущему и результат обрабатывается. Использование этой опции совместно с -f в некоторых случаях может привести к ошибке. Если какой-либо пакет выбирается к установке (например, если он указан в командной строке) и он не может быть получен, то без каких-либо сообщений будет восстановлено исходное состояние.
+<br>
+
+Элемент настройки: <b>APT::Get::ignore-missing</b>.
+</dd><dt><b>--no-download</b></dt><dd>
+Запрещает получение пакетов. Лучше всего использовать вместе с --ignore-missing для того, чтобы заставить APT использовать только те .deb файлы, которые уже получены.
+<br>
+
+Элемент настройки: <b>APT::Get::No-Download</b>.
+</dd><dt><b>-q, --quiet</b></dt><dd>
+Производится вывод годный для протоколирования, в котором опускаются индикаторы хода выполнения задачи. Указание большего числа опций -q приведет к более урезанному выводу, максимально вы можете указать их в два раза. Вы также можете использовать конструкцию <b>-q=#</b> для установки нужного вам количества сообщений вывода, перекрывая файл с настройками. Заметим, что уровень 2 неявно включает -y, вы никогда не должны использовать -qq без модификатора, который запрещает действия, такого как -d, --print-uris или -s, поскольку APT может сделать что-либо неожиданное для вас.
+<br>
+
+Элемент настройки: <b>quiet</b>.
+</dd><dt><b>-s, --simulate, --just-print, --dry-run, --recon, --no-act</b></dt><dd>
+Не выполнять никаких действий; выполняет симуляцию событий, который должны происходить, но которые реально не будут выполнены и не изменят состояние системы.
+<br>
+
+Элемент настройки: <b>APT::Get::Simulate</b>. 
+</dd><dt></dt><dd>
+В режиме симуляции на экран будут выведены серии строк, которые будут отображать операции dpkg, Настройка (Conf), Удаление (Remv), Распаковка (Inst). В квадратных скобках будут указаны пакеты, которые недо-установлены по каким-либо причинам вместе со списком (или без него) заключенных в квадратные скобки причин.
+</dd><dt><b>-y, --yes, --assume-yes</b></dt><dd>
+Автоматически отвечать "да" в ответ на запрос программы; на все запросы, которые будет выводить программа будет автоматически выдаваться ответ "да". При возникновении нежелательной ситуации, как то: изменения пакета в состоянии удержания или удаления необходимого для работы системы пакета, <b>apt-get</b> будет аварийно завершать свою работу.
+<br>
+
+Элемент настройки: <b>APT::Get::Assume-Yes</b>.
+</dd><dt><b>-u, --show-upgraded</b></dt><dd>
+Показать обновленные пакеты; Выдает список всех пакетов, которые были обновлены. 
+<br>
+
+Элемент настройки: <b>APT::Get::Show-Upgraded</b>.
+</dd><dt><b>-b, --compile, --build</b></dt><dd>
+Компилировать пакеты исходных текстов после их получения.
+<br>
+
+Элемент настройки: <b>APT::Get::Compile</b>.
+</dd><dt><b>--ignore-hold</b></dt><dd>
+Игнорировать состояние удержания. Это заставит <b>apt-get</b> игнорировать состояние удержания в котором находится пакет. Это может быть полезным совместно с командой <b>dist-upgrade</b> для перекрытия большого числа нежелательных пакетов в состоянии удержания.
+<br>
+
+Элемент настройки: <b>APT::Ignore-Hold</b>.
+</dd><dt><b>--no-upgrade</b></dt><dd>
+Не производить обновлений пакетов; Когда эта опция используется совместно с командой <b>install</b> то <b>no-upgrade</b> предотвратит обновление уже установленных пакетов. 
+<br>
+
+Элемент настройки: <b>APT::Get::no-upgrade</b>.
+</dd><dt><b>--force-yes</b></dt><dd>
+Принудительное выполнение заданной операции не взирая ни на что. Это опасная опция, которая заставит apt продолжать выполнение операции без каких-либо диалогов с пользователем, даже если возникнет потенциальная возможность ошибки. Она не должна использоваться кроме как в специальных ситуациях. Использование <b>force-yes</b> потенциально способно уничтожить вашу систему! 
+<br>
+
+Элемент настройки: <b>APT::Get::force-yes</b>.
+</dd><dt><b>--print-uris</b></dt><dd>
+Вместо копирования файлов для установки будут печататься их URI. Каждый URI будет иметь путь, имя файла, размер и ожидаемый хэш md5. Заметим, что выводимое имя файл не всегда совпадает с именем файла на удаленном сайте. Опция также работает и с командой <b>source</b>.
+<br>
+
+Элемент настройки: <b>APT::Get::Print-URIs</b>.
+</dd><dt><b>--purge</b></dt><dd>
+Использовать purge (зачистку) вместо remove (удаления) для всех пакетов, которые будут удалены. Эта опция не имеет эффекта на системах использующих RPM.
+<br>
+
+Элемент настройки: <b>APT::Get::Purge</b>.
+</dd><dt><b>--reinstall</b></dt><dd>
+Переустановить пакеты, которые уже являются новейшими версиями.
+</dd><dt><b>--list-cleanup</b></dt><dd>
+Данная опция по умолчанию включена, используйте <b>--no-list-cleanup</b> для ее выключения. Когда <b>apt-get</b> будет автоматически управлять содержимым /var/lib/apt/lists чтобы убедиться, что устаревшие файлы удалены. Выключите данную опцию, если вы часто изменяете ваш список источников.
+<br>
+
+Элемент настройки: <b>APT::Get::List-Cleanup</b>
+</dd><dt><b>--trivial-only</b></dt><dd>
+Выполняет только тривиальные операции. Логически это может быть отнесено к --assume-yes, только --assume-yes будет выдавать ответ "да" на любое приглашение, а --trivial-only будет отвечать "нет".
+<br>
+
+Элемент настройки: <b>APT::Get::Trivial-Only</b>
+</dd><dt><b>--no-remove</b></dt><dd>
+Если какие-либо пакеты отмечены к удалению, то <b>apt-get</b> немедленно, без вопросов, завершит работу.
+<br>
+
+Элемент настройки: <b>APT::Get::No-Remove</b>
+</dd><dt><b>--diff-only</b>, <b>--tar-only</b></dt><dd>
+Получить только diff- или tar-файл из архива исходных текстов.
+<br>
+
+Элемент настройки: <b>APT::Get::Diff-Only</b>
+</dd><dt><b>-c, --config-file</b></dt><dd>
+Файл с настройками; Задать файл с настройками. <b>apt-get</b> будет читать файл с настройками по умолчанию и затем указанный файл с настройками.
+<br>
+
+Смотри синтаксис в <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt.conf&amp;category=5">apt.conf</a>(5)</b>.
+</dd><dt><b>-o, --option</b></dt><dd>
+Установить опцию настройки; Она будет установлена определенной опцией настройки. Синтаксис такой:
+<pre> 
+-o Foo::Bar=bar
+</pre>
+
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt>o</dt><dd>
+/etc/apt/sources.list 
+источники для получения пакетов
+</dd><dt></dt><dd>
+</dd><dt>o</dt><dd>
+/var/cache/apt/archives/
+область хранения полученных файлов
+</dd><dt></dt><dd>
+</dd><dt>o</dt><dd>
+/var/cache/apt/archives/partial/
+область хранения получаемых файлов
+</dd><dt></dt><dd>
+</dd><dt>o</dt><dd>
+/var/state/apt/lists/
+область хранения информации о состоянии каждого ресурса пакетов, заданного
+в списке источников
+</dd><dt></dt><dd>
+</dd><dt>o</dt><dd>
+/var/state/apt/lists/partial/
+временная область хранения информации в процессе скачивания
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt-cache&amp;category=8">apt-cache</a>(8)</b>, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dpkg&amp;category=8">dpkg</a>(8)</b>, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dselect&amp;category=8">dselect</a>(8)</b>, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sources.list&amp;category=5">sources.list</a>(5)</b>, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt.conf&amp;category=5">apt.conf</a>(5)</b>, <b>The APT Users Guide in /usr/doc/apt/</b>
+<a name="lbAH">&nbsp;</a>
+<h2>ДИАГНОСТИКА </h2>
+
+<b>apt-get</b> возвращает ноль при нормальной работе и десятичную 100 при ошибке.
+<a name="lbAI">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+Смотри <a href="http://bugs.debian.org/apt.">http://bugs.debian.org/apt.</a> Если вы хотите отправить отчет об ошибке
+в <b>apt-cache</b>, пожалуйста смотрите <b>/usr/doc/debian/bug-reporting.txt</b>
+или команду <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bug&amp;category=1">bug</a>(1)</b>. Если вы используете систему базирующуюся на RPM, то в этом случае, пожалуйста,  воспользуйтесь <a href="http://distro.conectiva.com.br">http://distro.conectiva.com.br</a> /bugzilla/.
+<a name="lbAJ">&nbsp;</a>
+<h2>АВТОР</h2>
+
+<b>apt-get</b> была написана командой APT &lt;<a href="mailto:apt@packages.debian.org">apt@packages.debian.org</a>&gt; и портирован на системы базирующиеся на RPM Alfredo K. Kojima, &lt;<a href="mailto:kojima@conectiva.com.br">kojima@conectiva.com.br</a> &gt;, из Conectiva S.A.
+<a name="lbAK">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевод с английского сделал Виктор Вислобоков &lt;<a href="mailto:victor_v@permonline.ru">victor_v@permonline.ru</a>&gt;
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAH">ДИАГНОСТИКА </a></dt><dd>
+</dd><dt><a href="#lbAI">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAK">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="apt-get" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

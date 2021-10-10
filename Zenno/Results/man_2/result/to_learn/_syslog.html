@@ -1,0 +1,415 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN syslog (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, syslog"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="syslog" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">syslog (2)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=syslog&amp;category=2&amp;russian=0"><u>syslog</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=syslog&amp;category=2&amp;russian=2"><u>syslog</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=syslog&amp;category=3&amp;russian=4"><u>syslog</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=syslog&amp;category=3&amp;russian=1"><u>syslog</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=syslog&amp;category=3&amp;russian=0"><u>syslog</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=syslog&amp;category=3&amp;russian=2"><u>syslog</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=syslog&amp;category=3&amp;russian=5"><u>syslog</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+syslog, klogctl - читает и/или очищает кольцевой буфер сообщений ядра,
+устанавливает console_loglevel
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<pre>/* Интерфейс glibc */
+<br>
+<b>#include &lt;<a href="file:/usr/include/sys/klog.h">sys/klog.h</a>&gt;</b>
+
+<b>int klogctl(int </b><i>type</i><b>, char *</b><i>bufp</i><b>, int </b><i>len</i><b>);</b>
+
+/* Непосредственно системный вызов */
+<br>
+<b>#include &lt;<a href="file:/usr/include/unistd.h">unistd.h</a>&gt;</b>
+<br>
+<b>#include &lt;<a href="file:/usr/include/linux/unistd.h">linux/unistd.h</a>&gt;</b>
+
+<b>_syscall3(int, syslog, int, type, char *, bufp, int, len);</b>
+
+<b>int syslog(int </b><i>type</i><b>, char *</b><i>bufp</i><b>, int </b><i>len</i><b>);</b>
+</pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Если вам необходима функция libc
+<b>syslog()</b>,
+
+(которая описывает
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8)),
+
+то смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></b>(3).
+
+Системный вызов с этим именем предназначен для управления буфером
+<i>printk()</i>
+
+ядра, glibc версия этой функции называется
+<b>klogctl()</b>.
+
+<p>
+Параметр <i>type</i> определяет действие выполняемое этой функцией.
+</p><p>
+Вырезка из файла
+<i>kernel/printk.c</i>:
+
+</p><pre>/*
+ * Команды sys_syslog:
+ *
+ *      0 -- Закрыть системный журнал. В настоящий момент не работает.
+ *      1 -- Открыть системный журнал. В настоящий момент не работает.
+ *      2 -- Прочитать содержимое журнала.
+ *      3 -- Прочитать до 4-х Кб последних сообщений ядра из кольцевого буфера.
+ *      4 -- Прочитать и очистить до 4-х Кб последних сообщений ядра из кольцевого буфера
+ *      5 -- Очистить кольцевой буфер.
+ *      6 -- Запретить вывод printk на консоль
+ *      7 -- Разрешить вывод printk на консоль
+ *      8 -- Установить уровень сообщений, выводимых на консоль
+ *      9 -- Возврат числа непрочитанных символов в буфере журнала
+ */
+</pre>
+
+Несуперпользовательским процессам разрешено вызывать только
+функцию номер 3.
+(Функция 9 была добавлена в 2.4.10.)
+<p>
+<b>Буфер системного журнала</b>
+
+<br>
+
+В ядре существует кольцевой буфер длиной LOG_BUF_LEN
+(4096, начиная с ядра 1.3.54: 8192, начиная с 2.1.113: 16384l
+в последних ядрах размер может быть изменен при сборке ядра),
+где содержатся сообщения ядра, представленные в виде параметра к
+функции <i>printk</i>() (независимо от их уровня журналирования).
+</p><p>
+Системный вызов
+<b>syslog</b>
+
+(2,<i>buf</i>,<i>len</i>)
+
+ожидает появления сообщения в буфере и затем записывает максимум
+<i>len</i> байтов в буфер <i>buf</i>. После этого она возвращает
+количество прочитанных байтов. Байты, прочитанные из журнала, исчезают
+из буфера: информацию в нем можно прочесть только один раз.
+Эта функция исполняется при чтении пользовательской программой
+файла
+<i>/proc/kmsg</i>.
+
+Системный вызов
+<b>syslog</b>
+
+(3,<i>buf</i>,<i>len</i>)
+
+читает последние <i>len</i> байтов из буфера журнала (не разрушая его),
+но не больше, чем было записано в буфер с момента вызова команды
+"очистка кольцевого буфера" (которая на самом деле буфер не очищает).
+Этот вызов возвращает количество прочитанных байтов.
+Системный вызов
+<b>syslog</b>
+
+(4,<i>buf</i>,<i>len</i>)
+
+выполняет то же самое, но еще вызывает команду
+"очистка кольцевого буфера".
+Системный вызов
+<b>syslog</b>
+
+(5,<i>dummy</i>,<i>idummy</i>)
+
+просто исполняет команду "очистка кольцевого буфера".
+<b>Уровень сообщений ядра в журнале</b>
+
+<br>
+
+Функция ядра <i>printk</i>() выводит сообщение на консоль только
+в том случае, если его уровень меньше
+<i>console_loglevel</i>
+
+(по умолчанию установленное значение которого равно DEFAULT_CONSOLE_LOGLEVEL (7), но
+это значение будет равно 10-и, если командная строка ядра
+содержит слово `debug', и 15-и в случае ошибки ядра;
+эти значения не имеют большого смысла и аналогичны 8-и).
+Значение переменной (из диапазона от единицы до восьми) устанавливается системным
+вызовом
+<b>syslog</b>
+
+(8,<i>dummy</i>,<i>value</i>).
+
+Системные вызовы
+<b>syslog</b>
+
+(<i>type</i>,<i>dummy</i>,<i>idummy</i>)<i>при</i>условии,<i>что</i>
+
+<i>type</i> равно 6-и или 7-и, устанавливают это значение равным единице
+(только при критических сообщениях ядра) или 7-и (при всех сообщениях, кроме
+отладочных) соответственно.
+Каждая строка текста в сообщении имеет свой уровень. Этот уровень
+равен DEFAULT_MESSAGE_LOGLEVEL - 1 (6), если только строка не начинается с &lt;d&gt;,
+где <i>d</i> - это цифра в диапазоне от единицы до 7-и: в этом случае
+уровень равен <i>d</i>. Значения уровня заданы в
+<i>&lt;<a href="file:/usr/include/linux/kernel.h">linux/kernel.h</a>&gt;</i>
+
+следующим образом:
+</p><pre>#define KERN_EMERG    "&lt;0&gt;"  /* система не пригодна к использованию */
+#define KERN_ALERT    "&lt;1&gt;"  /* необходимо немедленно принять меры   */
+#define KERN_CRIT     "&lt;2&gt;"  /* критическая ошибка                   */
+#define KERN_ERR      "&lt;3&gt;"  /* ошибка                               */
+#define KERN_WARNING  "&lt;4&gt;"  /* предупреждение                       */
+#define KERN_NOTICE   "&lt;5&gt;"  /* обычное, но важное событие           */
+#define KERN_INFO     "&lt;6&gt;"  /* информационное сообщение             */
+#define KERN_DEBUG    "&lt;7&gt;"  /* отладочное сообщение                 */
+</pre>
+
+<a name="lbAE">&nbsp;</a>
+<h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+При удачном завершении, если <i>type</i> равен 2-м,3-м или 4-м, функция
+возвращает количество прочитанных байтов или 0 в ином случае.
+При ошибке возвращается
+-1, а переменной
+<i>errno</i>
+
+присваивается номер ошибки.
+<a name="lbAF">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>EPERM</b>
+
+</dt><dd>
+Процесс, не имеющий прав суперпользователя, пытался изменить
+console_loglevel или очистить кольцевой буфер сообщений ядра.
+</dd><dt><b>EINVAL</b>
+
+</dt><dd>
+Неправильные параметры.
+</dd><dt><b>ERESTARTSYS</b>
+
+</dt><dd>
+Системный вызов был прерван сигналом, и ничего не было прочитано.
+(Может быть замечено только при трассировке.)
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+Этот системный вызов предназначен только для работы в Linux.
+<a name="lbAH">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+С самого начала многим не нравилось то, что вызов ядра и библиотечная
+функция, имеющие одинаковые имена, делают совершенно разные вещи.
+В libc4 и libc5 номер этого вызова определялся как
+<b>SYS_klog</b>.
+
+В glibc 2.0 он получил имя
+<b>klogctl</b>.
+
+<p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></b>(3)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAG">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAH">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAI">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="syslog" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

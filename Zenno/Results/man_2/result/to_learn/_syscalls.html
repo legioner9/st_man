@@ -1,0 +1,438 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN syscalls (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, syscalls"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="syscalls" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">syscalls (2)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=syscalls&amp;category=2&amp;russian=0"><u>syscalls</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=syscalls&amp;category=2&amp;russian=2"><u>syscalls</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+none - список всех системных вызовов
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+Системные вызовы Linux 2.0.
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+В Linux 2.0.34 существует 164 системных вызова, перечисленных в
+<i>/usr/include/asm/unistd.h</i>.
+
+Эта страница содержит их список (с ссылками, если вы используете навигатор).
+<p>
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=_llseek&amp;category=2">_llseek</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=_newselect&amp;category=2">_newselect</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=_sysctl&amp;category=2">_sysctl</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=access&amp;category=2">access</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=acct&amp;category=2">acct</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=adjtimex&amp;category=2">adjtimex</a>(2),
+afs_syscall,
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=alarm&amp;category=2">alarm</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bdflush&amp;category=2">bdflush</a>(2),
+break,
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=brk&amp;category=2">brk</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chdir&amp;category=2">chdir</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chmod&amp;category=2">chmod</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chown&amp;category=2">chown</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chroot&amp;category=2">chroot</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=clone&amp;category=2">clone</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=close&amp;category=2">close</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=creat&amp;category=2">creat</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=create_module&amp;category=2">create_module</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=delete_module&amp;category=2">delete_module</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dup&amp;category=2">dup</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dup2&amp;category=2">dup2</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=execve&amp;category=2">execve</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=exit&amp;category=2">exit</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fchdir&amp;category=2">fchdir</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fchmod&amp;category=2">fchmod</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fchown&amp;category=2">fchown</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fdatasync&amp;category=2">fdatasync</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=flock&amp;category=2">flock</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fork&amp;category=2">fork</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fstat&amp;category=2">fstat</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fstatfs&amp;category=2">fstatfs</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fsync&amp;category=2">fsync</a>(2),
+ftime,
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ftruncate&amp;category=2">ftruncate</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=get_kernel_syms&amp;category=2">get_kernel_syms</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getdents&amp;category=2">getdents</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getegid&amp;category=2">getegid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=geteuid&amp;category=2">geteuid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getgid&amp;category=2">getgid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getgroups&amp;category=2">getgroups</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getitimer&amp;category=2">getitimer</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getpgid&amp;category=2">getpgid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getpgrp&amp;category=2">getpgrp</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getpid&amp;category=2">getpid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getppid&amp;category=2">getppid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getpriority&amp;category=2">getpriority</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getrlimit&amp;category=2">getrlimit</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getrusage&amp;category=2">getrusage</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getsid&amp;category=2">getsid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gettimeofday&amp;category=2">gettimeofday</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getuid&amp;category=2">getuid</a>(2),
+gtty,
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=idle&amp;category=2">idle</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=init_module&amp;category=2">init_module</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ioctl&amp;category=2">ioctl</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ioperm&amp;category=2">ioperm</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=iopl&amp;category=2">iopl</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ipc&amp;category=2">ipc</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=kill&amp;category=2">kill</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=link&amp;category=2">link</a>(2),
+lock,
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lseek&amp;category=2">lseek</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lstat&amp;category=2">lstat</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mkdir&amp;category=2">mkdir</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mknod&amp;category=2">mknod</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mlock&amp;category=2">mlock</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mlockall&amp;category=2">mlockall</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mmap&amp;category=2">mmap</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=modify_ldt&amp;category=2">modify_ldt</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=2">mount</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mprotect&amp;category=2">mprotect</a>(2),
+mpx,
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mremap&amp;category=2">mremap</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=msync&amp;category=2">msync</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=munlock&amp;category=2">munlock</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=munlockall&amp;category=2">munlockall</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=munmap&amp;category=2">munmap</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=nanosleep&amp;category=2">nanosleep</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=nice&amp;category=2">nice</a>(2),
+oldfstat, oldlstat, oldolduname, oldstat, olduname,
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pause&amp;category=2">pause</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=personality&amp;category=2">personality</a>(2),
+phys,
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pipe&amp;category=2">pipe</a>(2),
+prof, profil,
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ptrace&amp;category=2">ptrace</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=quotactl&amp;category=2">quotactl</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=readdir&amp;category=2">readdir</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=readlink&amp;category=2">readlink</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=readv&amp;category=2">readv</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=reboot&amp;category=2">reboot</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rename&amp;category=2">rename</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rmdir&amp;category=2">rmdir</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_get_priority_max&amp;category=2">sched_get_priority_max</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_get_priority_min&amp;category=2">sched_get_priority_min</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_getparam&amp;category=2">sched_getparam</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_getscheduler&amp;category=2">sched_getscheduler</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_rr_get_interval&amp;category=2">sched_rr_get_interval</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_setparam&amp;category=2">sched_setparam</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_setscheduler&amp;category=2">sched_setscheduler</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_yield&amp;category=2">sched_yield</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=select&amp;category=2">select</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setdomainname&amp;category=2">setdomainname</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setfsgid&amp;category=2">setfsgid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setfsuid&amp;category=2">setfsuid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setgid&amp;category=2">setgid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setgroups&amp;category=2">setgroups</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sethostname&amp;category=2">sethostname</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setitimer&amp;category=2">setitimer</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setpgid&amp;category=2">setpgid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setpriority&amp;category=2">setpriority</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setregid&amp;category=2">setregid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setreuid&amp;category=2">setreuid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setrlimit&amp;category=2">setrlimit</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setsid&amp;category=2">setsid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=settimeofday&amp;category=2">settimeofday</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setuid&amp;category=2">setuid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setup&amp;category=2">setup</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sgetmask&amp;category=2">sgetmask</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigaction&amp;category=2">sigaction</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=signal&amp;category=2">signal</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigpending&amp;category=2">sigpending</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigprocmask&amp;category=2">sigprocmask</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigreturn&amp;category=2">sigreturn</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigsuspend&amp;category=2">sigsuspend</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socketcall&amp;category=2">socketcall</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ssetmask&amp;category=2">ssetmask</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stat&amp;category=2">stat</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=statfs&amp;category=2">statfs</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stime&amp;category=2">stime</a>(2),
+stty,
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=swapoff&amp;category=2">swapoff</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=swapon&amp;category=2">swapon</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=symlink&amp;category=2">symlink</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sync&amp;category=2">sync</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sysfs&amp;category=2">sysfs</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sysinfo&amp;category=2">sysinfo</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=2">syslog</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=time&amp;category=2">time</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=times&amp;category=2">times</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=truncate&amp;category=2">truncate</a>(2),
+ulimit,
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=umask&amp;category=2">umask</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=umount&amp;category=2">umount</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=uname&amp;category=2">uname</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=unlink&amp;category=2">unlink</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=uselib&amp;category=2">uselib</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ustat&amp;category=2">ustat</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=utime&amp;category=2">utime</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vhangup&amp;category=2">vhangup</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vm86&amp;category=2">vm86</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=wait4&amp;category=2">wait4</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=waitpid&amp;category=2">waitpid</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a>(2),
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=writev&amp;category=2">writev</a>(2).
+</p><p>
+Пять указанных далее вызовов устарели:
+oldfstat, oldlstat, oldolduname, oldstat и olduname
+(см. <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=obsolete&amp;category=2">obsolete</a>(2)),-
+и 11 еще не реализованы:
+afs_syscall, break, ftime, gtty, lock, mpx, phys, prof, profil,
+stty and ulimit (см. <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=unimplemented&amp;category=2">unimplemented</a>(2)).
+Однако, <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ftime&amp;category=3">ftime</a>(3), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=profil&amp;category=3">profil</a>(3) и <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ulimit&amp;category=3">ulimit</a>(3) существуют
+в виде библиотечных функций.
+Слот phys в версиях ядра 2.1.116 и более поздних используется umount2;
+phys никогда не будет включен в какие-либо версии.
+Грубо говоря, код, относящийся к системному вызову
+под номером __NR_xxx, заданный в
+<i>/usr/include/asm/unistd.h</i>,
+
+находится в исходных текстах процедуры
+<i>sys_xxx()</i>.
+
+(Соответствующая таблица для i386 находится в файле
+<i>/usr/src/linux/arch/i386/kernel/entry.S</i>).
+
+Правда, существует много исключений из этого правила,
+в основном, из-за того, что старые системные
+вызовы заменены на новые.
+Ниже описаны детали, касающиеся ядра Linux 2.0.34.
+Определения __NR_oldstat и __NR_stat ссылаются на функции
+sys_stat() и sys_newstat(), что справедливо также для
+<i>fstat</i>
+
+и
+<i>lstat</i>.
+
+Аналогичным образом определения __NR_oldolduname, __NR_olduname и
+__NR_uname ссылаются на sys_olduname(), sys_uname()
+и sys_newuname().
+Таким образом, __NR_stat и __NR_uname всегда ссылаются на
+новую версию системного вызова, а старые существуют
+для обеспечения совместимости новой версии с предыдущими.
+Это не касается
+<i>select</i>
+
+и
+<i>mmap</i>.
+
+Они используют пять(или больше) параметров и вызывают проблемы
+при передаче параметров в i386. Таким образом, в то время, как
+в других архитектурах sys_select() и sys_mmap() соответствовали
+__NR_select и __NR_mmap, в i386 они соответствовали old_select()
+и old_mmap(); это процедуры, использующие указатель на блок
+параметров. В настоящий момент передача пяти параметров уже не 
+составляет проблемы и существует __NR__newselect (используемый в
+libc 6), который ссылается на sys_select().
+У двух других системных вызовов, __NR__llseek и __NR__sysctl,
+отсутствует дополнительный знак подчеркивания sys_llseek() и sys_sysctl().
+Также существует __NR_readdir, относящийся к old_readdir(),
+который может прочитать максимум одну запись из каталога
+за один раз и который сейчас заменен на sys_getdents().
+И еще: системный вызов 166, соответствующий sys_vm86(),
+вообще не имеет символьного имени. Эта версия заменила
+sys_vm86old() с номером __NR_vm86.
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="syscalls" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,553 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN sched_setscheduler (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, sched_setscheduler"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="sched_setscheduler" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">sched_setscheduler (2)</font><hr><li> <a href="/man.shtml?topic=sched_setscheduler&amp;category=2&amp;russian=1"><u>sched_setscheduler</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=sched_setscheduler&amp;category=2&amp;russian=0"><u>sched_setscheduler</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=sched_setscheduler&amp;category=2&amp;russian=2"><u>sched_setscheduler</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=sched_setscheduler&amp;category=3&amp;russian=4"><u>sched_setscheduler</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=sched_setscheduler&amp;category=3&amp;russian=5"><u>sched_setscheduler</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+sched_setscheduler, sched_getscheduler - устанавливает или получает
+алгоритм планировщика (и его параметры)
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/sched.h">sched.h</a>&gt;</b>
+
+<p>
+<b>int sched_setscheduler(pid_t </b><i>pid</i><b>, int </b><i>policy</i><b>,</b>
+
+<b>const struct sched_param *</b><i>p</i><b>);</b>
+
+</p><p>
+<b>int sched_getscheduler(pid_t </b><i>pid</i><b>);</b>
+
+</p><p>
+</p><pre>
+<b>struct sched_param {
+    ...
+    int </b><i>sched_priority</i><b>;
+    ...
+};
+
+</b></pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<b>sched_setscheduler</b>
+
+устанавливает алгоритм и параметры планирования процесса с номером
+<i>pid</i>. Если <i>pid</i> равен нулю, то будет задан алгоритм вызывающего
+процесса. Тип и значение аргумента <i>p</i> зависят от алгоритма
+планирования. В настоящее время в Linux поддерживаются следующие виды
+планирования:
+<i>SCHED_FIFO</i>,
+
+<i>SCHED_RR</i>,
+
+и 
+<i>SCHED_OTHER</i>;
+
+их работа описана ниже.
+<b>sched_getscheduler</b>
+
+получает алгоритм диспетчеризации процесса с номером <i>pid</i>.
+Если <i>pid</i> равен нулю, то возвращается алгоритм планирования
+вызывающего процесса.
+<p>
+<a name="lbAE">&nbsp;</a>
+</p><h3>Алгоритмы диспетчеризации</h3>
+
+Диспетчер - это часть ядра, отвечающая за распределение процессорного
+времени между процессами. Диспетчер ядра предоставляет процессам три
+алгоритма планировщика: один для обычных процессов и два для
+процессов реального времени. Каждому процессу присваивается статический
+приоритет <i>sched_priority</i>, который можно изменить только при помощи
+системных вызовов. В принципе, диспетчер хранит в памяти
+списки всех работающих процессов для каждого возможного значения
+<i>sched_priority</i>, а это значение может находиться в интервале от
+0 до 99. Для того, чтобы определить, какой процесс будет работать
+следующим, диспетчер Linux ищет непустой список с наибольшим статическим
+приоритетом и запускает первый процесс из этого списка. Алгоритм планирования
+определяет, как процесс будет добавлен в список с тем же
+статическим приоритетом и как он будет перемещаться внутри этого списка.
+<i>SCHED_OTHER</i> - это используемый по умолчанию алгоритм со стандартным
+разделением времени, с которым работает большинство процессов.
+<i>SCHED_FIFO</i> и <i>SCHED_RR</i> предназначены для процессов,
+зависящих от возникновения задержек, которым необходим более четкий контроль 
+над порядком исполнения процессов. Статический приоритет процессов
+с алгоритмом <i>SCHED_OTHER</i> равен нулю, а статические приоритеты
+процессов с алгоритмами <i>SCHED_FIFO</i> и
+<i>SCHED_RR</i> могут находиться в диапазоне от 1 до 99.
+Статический приоритет, больший, чем 0, может быть установлен только
+у суперпользовательских процессов, то есть только эти процессы
+могут иметь алгоритм планировщика <i>SCHED_FIFO</i> или
+<i>SCHED_RR</i>. Для того, чтобы узнать возможный диапазон
+значений статических приоритетов данного алгоритма планировщика,
+необходимо использовать функции <b>sched_get_priority_min</b> и
+<b>sched_get_priority_max</b>. Это может понадобиться в переносимых
+в другие системы программах для того, чтобы они соответствовали
+стандарту POSIX.1b.
+Планирование является упреждающим: если процесс с большим
+статическим приоритетом готов к запуску, то текущий процесс будет
+приостановлен и помещен в соответствующий список ожидания.
+Алгоритм планирования определяет лишь поведение процесса
+в списке работающих процессов с тем же статическим приоритетом.
+<p>
+<a name="lbAF">&nbsp;</a>
+</p><h3>SCHED_FIFO: планировщик FIFO (First In-First Out)</h3>
+
+Алгоритм <i>SCHED_FIFO</i> можно использовать только со значениями статического
+приоритета, большими нуля. Это означает, что если процесс с алгоритмом
+<i>SCHED_FIFO</i> готов к работе, то он сразу запустится, а все
+обычные процессы с алгоритмом <i>SCHED_OTHER</i> будут приостановлены.
+<i>SCHED_FIFO</i> - это простой алгоритм без квантования времени.
+Процессы, работающие согласно алгоритму <i>SCHED_FIFO</i> подчиняются следующим
+правилам: процесс с алгоритмом <i>SCHED_FIFO</i>, приостановленный другим
+процессом с большим приоритетом, останется в начале очереди процессов с
+равным приоритетом, и его исполнение будет продолжено сразу после того, как
+закончатся процессы с большими приоритетами. Когда процесс с алгоритмом
+<i>SCHED_FIFO</i> готов к работе, он помещается в конец очереди
+процессов с тем же приоритетом. Вызов функции <b>sched_setscheduler</b> или
+<b>sched_setparam</b> , который посылается процессом под номером <i>pid</i> 
+с алгоритмом <i>SCHED_FIFO</i> приведет к тому, что процесс будет перемещен 
+в конец очереди процессов с тем же приоритетом. 
+Как следствие, он может очистить текущий запущенный процесс, если
+он имеет такой же приоритет.
+(POSIX 1003.1 определяет, что процесс должен перейти в конец списка).
+
+
+Процесс, вызывающий <b>sched_yield</b>,
+также будет помещен в конец списка. Других способов перемещения процесса с
+алгоритмом <i>SCHED_FIFO</i> в очереди процессов с одинаковыми статическим
+приоритетом не существует. Процесс с алгоритмом <i>SCHED_FIFO</i> работает
+до тех пор, пока не будет заблокирован запросом на ввод/вывод,
+приостановлен процессом с большим статическим приоритетом или не вызовет
+<b>sched_yield</b>.
+<p>
+<a name="lbAG">&nbsp;</a>
+</p><h3>SCHED_RR: циклический алгоритм планировщика</h3>
+
+<i>SCHED_RR</i> - это небольшое дополнение к алгоритму <i>SCHED_FIFO</i>.
+Все, относящееся к алгоритму <i>SCHED_FIFO</i>, справедливо и для
+<i>SCHED_RR</i> за исключением того, что каждому процессу разрешено
+работать непрерывно не дольше некоторого времени, называемого карусельным
+квантом. Если процесс с алгоритмом <i>SCHED_RR</i> работал столько же или
+дольше, чем квант, то он помещается в конец очереди процессов с тем же
+приоритетом. Процесс с алгоритмом <i>SCHED_RR</i>, приостановленный
+процессом с большим приоритетом, возобновляя работу, использует остаток
+своего кванта. Длину этого кванта можно узнать, вызвав функцию
+<b>sched_rr_get_interval</b>.
+<a name="lbAH">&nbsp;</a>
+<h3>SCHED_OTHER: стандартный алгоритм планировщика с разделением времени</h3>
+
+Алгоритм <i>SCHED_OTHER</i> можно использовать только со значениями
+статического приоритета, равными нулю.
+<i>SCHED_OTHER</i> - это стандартный алгоритм диспетчеризации Linux с
+разделением времени, предназначенный для процессов, не требующих
+специальных механизмов реального времени со статическими приоритетами.
+Порядок предоставления процессорного времени процессам со статическим
+приоритетом, равным нулю, основывается на динамических приоритетах,
+существующих только внутри этого списка. Динамический приоритет основан на
+уровне nice (установленном при помощи системных вызовов <b>nice</b> или
+<b>setpriority</b>) и увеличивается с каждым квантом времени, при котором
+процесс был готов к работе, но ему было отказано в этом планировщиком. 
+Это приводит к тому, что, рано или поздно, всем процессам с приоритетом
+<i>SCHED_OTHER</i> выделяется процессорное время.
+
+
+<p>
+<a name="lbAI">&nbsp;</a>
+</p><h3>Время ответа</h3>
+
+Блокированный процесс с высоким приоритетом, ожидающий ввода/вывода,
+освобождает достаточно много процессорного времени до того, как снова
+начнет работать. Авторы драйверов устройств могут сделать так, что это
+время будет использоваться значительно эффективнее, если будет запущен
+"медленный" обработчик прерываний.
+
+
+<a name="lbAJ">&nbsp;</a>
+<h3>Разное</h3>
+
+Дочерние процессы наследуют алгоритм диспетчеризации и его
+параметры после
+<b>fork</b>.
+
+Обычно процессам реального времени необходимо блокировать
+рабочие области памяти, для того чтобы избежать задержек
+при страничном обмене. Это можно сделать при помощи функций
+<b>mlock </b>
+
+или 
+<b>mlockall</b>.
+
+Неблокируемый бесконечный цикл в процессе, работающем с алгоритмом
+<i>SCHED_FIFO</i> или <i>SCHED_RR</i>, может заблокировать все процессы с
+меньшим приоритетом, поэтому разработчик таких программ должен всегда
+оставлять на одном из терминалов консоли оболочку, имеющую больший
+статический приоритет, чем приоритет тестируемой программы. Это поможет (в случае
+неполадок) прекратить работу отлаживаемого приложения реального времени,
+которое работает не так, как ожидается. Процессы с алгоритмами
+<i>SCHED_FIFO</i> и <i>SCHED_RR</i> могут полностью заблокировать работу
+других процессов, поэтому в Linux только процессы суперпользователя могут
+иметь алгоритмы диспетчеризации, отличные от <i>SCHED_OTHER</i>.
+В POSIX-системах, в которых существуют функции
+<b>sched_setscheduler</b>
+
+и
+<b>sched_getscheduler</b>,
+
+в &lt;<a href="file:/usr/include/unistd.h">unistd.h</a>&gt; задается определение
+<i>_POSIX_PRIORITY_SCHEDULING</i>.
+
+<p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+При удачном завершении вызова
+<b>sched_setscheduler</b>
+
+возвращает 0.  
+При удачном завершении
+<b>sched_getscheduler</b>
+
+возвращает алгоритм планировщика процесса (неотрицательное целое число).
+При ошибке возвращается
+-1, а переменной
+<i>errno</i>
+
+присваивается номер ошибки.
+<a name="lbAL">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>ESRCH</b>
+
+</dt><dd>
+Процесса с номером <i>pid</i> не существует.
+</dd><dt><b>EPERM</b>
+
+</dt><dd>
+Процесс не имеет достаточных прав для вызова функции.
+Эффективный идентификатор пользователя процесса, вызывающего
+<b>sched_setscheduler</b>,
+
+должен быть равен либо эффективному или обычному идентификатору
+пользователя процесса с номером
+<i>pid</i>,
+
+либо быть суперпользовательским.
+</dd><dt><b>EINVAL</b>
+
+</dt><dd>
+Неизвестен алгоритм планировщика <i>policy</i>, или параметр <i>p</i> не
+соответствует этому алгоритму.
+</dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+POSIX.1b (бывший POSIX.4)
+<a name="lbAN">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+В linux-1.3.81 алгоритм <i>SCHED_RR</i> еще не полностью
+протестирован, и может работать не совсем так, как описано
+в требованиях POSIX.1b.
+<a name="lbAO">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Стандартный Linux - это операционная система общего
+назначения. Она может работать как с фоновыми процессами,
+так и с интерактивными приложениями и "мягкими" приложениями
+реального времени (приложениями, которым
+<i>желательно</i>,
+
+чтобы задержки и интервалы времени выдерживались).
+Эта страница предназначена именно для этих приложений.
+<p>
+
+Стандартный Linux
+<i>не</i>
+
+предназначается для работы "жестких" приложений реального времени,
+то есть тех приложений, которым
+<i>необходимо</i>,
+
+чтобы задержки и интервалы времени (обычно значительно меньше секунды)
+выдерживались очень точно, в противном случае это приведет к сбою системы.
+Как и во всех других операционных системах общего назначения,
+ставка в Linux делается на среднюю производительность,
+а не на минимальную.
+Минимальная производительность Linux при работе с прерываниями
+значительно ниже средней. Различные блокировки ядра (например
+в многопроцессорных системах) вызывают продолжительные задержки в работе.
+Для Linux существует множество способов уменьшения среднего времени ожидания
+за счет увеличения периода времени в худшем случае.
+Во многих ситуациях именно это и необходимо пользователю,
+но если Вы хотите написать "жесткую" программу  реального
+времени, то используйте дополнения, такие, как RTLinux
+(<a href="http://www.rtlinux.org),">http://www.rtlinux.org),</a> или используйте
+другую операционную систему, предназначенную для
+"жестких" приложений реального времени.
+<a name="lbAP">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_setaffinity&amp;category=2">sched_setaffinity</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_getaffinity&amp;category=2">sched_getaffinity</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_setparam&amp;category=2">sched_setparam</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_getparam&amp;category=2">sched_getparam</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_yield&amp;category=2">sched_yield</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_get_priority_max&amp;category=2">sched_get_priority_max</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_get_priority_min&amp;category=2">sched_get_priority_min</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sched_rr_get_interval&amp;category=2">sched_rr_get_interval</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=nice&amp;category=2">nice</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setpriority&amp;category=2">setpriority</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getpriority&amp;category=2">getpriority</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mlockall&amp;category=2">mlockall</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=munlockall&amp;category=2">munlockall</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mlock&amp;category=2">mlock</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=munlock&amp;category=2">munlock</a></b>(2)
+
+<p>
+
+<i>Programming for the real world - POSIX.4</i>
+
+by Bill O. Gallmeister, O'Reilly &amp; Associates, Inc., ISBN 1-56592-074-0
+<br>
+
+<i>IEEE Std 1003.1b-1993</i>
+
+(Стандарт POSIX.1b)
+<br>
+
+<i>ISO/IEC 9945-1:1996</i>
+
+это новая версия стандарта POSIX.1 1996-ого года, содержащая собранные
+воедино POSIX.1(1990), POSIX.1b(1993), POSIX.1c(1995) и POSIX.1i(1995).
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAE">Алгоритмы диспетчеризации</a></dt><dd>
+</dd><dt><a href="#lbAF">SCHED_FIFO: планировщик FIFO (First In-First Out)</a></dt><dd>
+</dd><dt><a href="#lbAG">SCHED_RR: циклический алгоритм планировщика</a></dt><dd>
+</dd><dt><a href="#lbAH">SCHED_OTHER: стандартный алгоритм планировщика с разделением времени</a></dt><dd>
+</dd><dt><a href="#lbAI">Время ответа</a></dt><dd>
+</dd><dt><a href="#lbAJ">Разное</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAK">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAL">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAM">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAN">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAO">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAP">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="sched_setscheduler" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

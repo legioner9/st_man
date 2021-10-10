@@ -1,0 +1,517 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN slapo-retcode (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, slapo-retcode"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="slapo-retcode" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">slapo-retcode (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=slapo-retcode&amp;category=5&amp;russian=0"><u>slapo-retcode</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+slapo-retcode - наложение генерации результирующих кодов для slapd
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+/usr/local/etc/openldap/slapd.conf
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Наложение
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8)
+
+<b>retcode</b>
+
+полезно для тестирования поведения клиентов при возникновении сгенерированных сервером ошибочных или
+необычных ответов, например, кодов ошибок, отсылок, чрезмерного времени отклика и т.п.
+<p>
+Ошибочные ответы генерируются в соответствии с различными стратегиями.
+</p><p>
+
+Согласно первой стратегии, все операции, нацеленные на определённое конфигурируемое поддерево,
+приводят к поиску объекта, связанного с запрашиваемым DN, и проверке этого объекта на наличие данных
+кода возврата: кода ответа, а также опциональных полей (текстового сообщения, настраиваемой задержки,
+поля matched DN и, если код ответа был "referral", отсылки (или списка отсылок)).
+</p><p>
+
+В файле <b>retcode.conf</b> представлены широко известные коды ответов из документов, определяющих
+стандарты. Этот файл может быть включён после инициализации экземпляра данного наложения.
+</p><p>
+
+Во втором режиме при возвращении в качестве промежуточных ответов на поисковый запрос объектов,
+построенных на объектных классах, унаследованных от <b>errAbsObject</b>, таких как <b>errObject</b>
+или <b>errAuxObject</b>, они преобразуются в ответ, обусловленный содержимым этих объектов.
+</p><p>
+
+В третьем режиме в базе данных, к которой применяется наложение, ищутся объекты, построенные на
+объектных классах, унаследованных от <b>errAbsObject</b>; в случае нахождения таких объектов, их
+содержимое используется для вычисления соответствующего ответа.
+</p><p>
+
+Данное поведение отключается путём использования элемента управления <b>manageDSAit</b> (RFC 3296);
+в этом случае результирующий объект, независимо от того, присутствует ли он в каталоге, динамически
+генерируется наложением или содержится в запросе, обрабатывается как обычно.
+</p><p>
+
+Специфичные для наложения
+<b>retcode</b>
+
+директивы конфигурации должны иметь префикс
+<b>retcode-</b>,
+
+во избежание конфликтов с директивами базы данных, к которой применяется это наложение, или с другими
+наложениями, применяемыми к той же базе данных. Для конфигурации наложения могут быть использованы
+следующие директивы:
+</p><dl compact="">
+<dt><b>retcode-parent &lt;DN&gt;</b>
+
+</dt><dd>
+Эта директива определяет родительское DN поддерева, где будут находиться динамически сгенерированные
+записи. Если она не задана, используется суффикс базы данных, к которой применяется наложение.
+</dd><dt>
+
+<b>retcode-item &lt;RDN&gt; &lt;errCode&gt; [op=&lt;oplist&gt;] [text=&lt;message&gt;]</b>
+
+<b>[ref=&lt;referral&gt;] [sleeptime=&lt;sec&gt;] [matched=&lt;DN&gt;]</b>
+
+<b>[unsolicited=&lt;OID&gt;[:&lt;data&gt;]] [flags=[pre|post-]disconnect[,...]]</b>
+
+<dl compact=""><dt></dt><dd>
+Динамически сгенерированная запись, расположенная в поддереве <b>retcode-parent</b>. В качестве
+<b>errCode</b> указывается номер кода ответа; он может задаваться в любом формате, который поддерживает
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=strtol&amp;category=3">strtol</a></b>(3).
+
+Опциональное поле <b>oplist</b> представляет собой список операций, вызов которых приведёт к генерации
+кода ответа; при его отсутствии действие директивы распространяется на все операции. Параметр
+<b>matched</b> представляет собой "совпавшее" DN, которое будет возвращено вместе с ошибкой, а
+параметр <b>text</b> - опциональное диагностическое сообщение. Параметр <b>ref</b> разрешено использовать
+только для кода возврата <b>referral</b>. Задание параметра <b>sleeptime</b> приведёт к тому, что
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8)
+
+выполнит задержку перед обработкой операции на указанное количество секунд. Параметр <b>unsolicited</b>
+может быть использован для возврата определённых в RFC 4511 сообщений произвольных уведомлений; если
+указанный в этом параметре <b>OID</b> отличен от "0", генерируется расширенный ответ с добавлением
+опциональных данных <b>data</b>. Если в параметре <b>flags</b> содержится <b>disconnect</b> или
+<b>pre-disconnect</b>,
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8)
+
+выполнит внезапное разъединение без отправки уведомления; при <b>post-disconnect</b> разъединение
+произойдёт непосредственно после отправки положенного ответа.
+</dd></dl>
+
+</dt><dt><b>retcode-indir</b>
+
+</dt><dd>
+Включает использование хранимых в каталоге объектов с объектным классом errAbsObject. Это может
+привести к большому количеству излишней нагрузки на каталог.
+</dd><dt><b>retcode-sleep [-]&lt;n&gt;</b>
+
+</dt><dd>
+Определяет время задержки в секундах перед фактической обработкой какой-либо операции. Если указано
+отрицательное число, в качестве времени задержки используется случайное количество секунд в
+промежутке от нуля до абсолютного значения аргумента данной директивы.
+<p>
+</p></dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>НАБОР СХЕМЫ ДАННЫХ</h2>
+
+Наложение
+<b>retcode</b>
+
+использует описанный ниже набор схемы данных "return code". Этот набор схемы специально разработан
+для использования с данным наложением и для других целей не предназначен. Также имейте ввиду, что
+работа над этим набором схемы <i>продолжается</i>, и потому изменения могут вноситься без уведомления.
+Набор схемы автоматически загружается наложением.
+<p>
+Данный набор схемы включает несколько объектных классов и связанных с ними типов атрибутов, которые
+описаны ниже.
+</p><p>
+</p><p>
+
+Код ошибки:
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4203.666.11.4.1.1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;(&nbsp;'errCode'&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'LDAP&nbsp;error&nbsp;code'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ORDERING&nbsp;integerOrderingMatch
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+
+Операции, которые запускают возврат кода ответа:
+</p><dl compact=""><dt></dt><dd>
+( 1.3.6.1.4.1.4203.666.11.4.1.2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;(&nbsp;'errOp'&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Operations&nbsp;the&nbsp;errObject&nbsp;applies&nbsp;to'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;caseIgnoreMatch
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUBSTR&nbsp;caseIgnoreSubstringsMatch
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.15&nbsp;)
+</dd></dl>
+
+<p>
+
+Текстовое сообщение:
+</p><dl compact=""><dt></dt><dd>
+( 1.3.6.1.4.1.4203.666.11.4.1.3
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;(&nbsp;'errText'&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'LDAP&nbsp;error&nbsp;textual&nbsp;description'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;caseIgnoreMatch
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUBSTR&nbsp;caseIgnoreSubstringsMatch
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.15
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+
+Время задержки, по прошествии которой ответ фактически возвращается клиенту:
+</p><dl compact=""><dt></dt><dd>
+( 1.3.6.1.4.1.4203.666.11.4.1.4
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;(&nbsp;'errSleepTime'&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Time&nbsp;to&nbsp;wait&nbsp;before&nbsp;returning&nbsp;the&nbsp;error'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+
+Возвращаемое клиенту "совпавшее" DN:
+</p><dl compact=""><dt></dt><dd>
+( 1.3.6.1.4.1.4203.666.11.4.1.5
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;(&nbsp;'errMatchedDN'&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Value&nbsp;to&nbsp;be&nbsp;returned&nbsp;as&nbsp;matched&nbsp;DN'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;distinguishedNameMatch
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.12
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+
+</p><dd>OID, который требуется вернуть в качестве OID расширенного ответа в определённых в RFC 4511 ответах
+произвольных уведомлений (при значении "0" генерируется стандартный ответ, в котором идентификатор
+сообщения messageID установлен в 0):
+<dl compact=""><dt></dt><dd>
+( 1.3.6.1.4.1.4203.666.11.4.1.6
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;(&nbsp;'errUnsolicitedOID'&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'OID&nbsp;to&nbsp;be&nbsp;returned&nbsp;within&nbsp;unsolicited&nbsp;response'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;objectIdentifierMatch
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.38
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+
+Строка октетов, которую требуется вернуть в качестве данных в определённом в RFC 4511 ответе
+произвольного уведомления:
+</p><dl compact=""><dt></dt><dd>
+( 1.3.6.1.4.1.4203.666.11.4.1.7
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;(&nbsp;'errUnsolicitedData'&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Data&nbsp;to&nbsp;be&nbsp;returned&nbsp;within&nbsp;unsolicited&nbsp;response'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.40
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+
+Если значение этого атрибута TRUE,
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8)
+
+производит внезапное отключение без уведомления; если FALSE, он отключается по мере необходимости
+после отправки ответа:
+</p><dl compact=""><dt></dt><dd>
+( 1.3.6.1.4.1.4203.666.11.4.1.8
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;(&nbsp;'errDisconnect'&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;DESC&nbsp;'Disconnect&nbsp;without&nbsp;notice'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.7
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+
+Абстрактный класс, наличие которого вызывает срабатывание наложения:
+</p><dl compact=""><dt></dt><dd>
+( 1.3.6.1.4.1.4203.666.11.4.3.0
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;(&nbsp;'errAbsObject'&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;top&nbsp;ABSTRACT
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MUST&nbsp;(&nbsp;errCode&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MAY&nbsp;(&nbsp;cn&nbsp;$&nbsp;description&nbsp;$&nbsp;errOp&nbsp;$&nbsp;errText&nbsp;$&nbsp;errSleepTime
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$&nbsp;errMatchedDN&nbsp;)&nbsp;)
+</dd></dl>
+
+<p>
+
+Автономный структурный объектный класс для объекта данных, специально созданного для возврата
+ответного сообщения:
+</p><dl compact=""><dt></dt><dd>
+( 1.3.6.1.4.1.4203.666.11.4.3.1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;(&nbsp;'errObject'&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;errAbsObject&nbsp;STRUCTURAL&nbsp;)
+</dd></dl>
+
+<p>
+
+Вспомогательный объектный класс, предназначенный для изменения поведения существующих объектов:
+</p><dl compact=""><dt></dt><dd>
+( 1.3.6.1.4.1.4203.666.11.4.3.2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;(&nbsp;'errAuxObject'&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;errAbsObject&nbsp;AUXILIARY&nbsp;)
+</dd></dl>
+
+<p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>ПРИМЕР</h2>
+
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>overlay         retcode
+retcode-parent  "ou=RetCodes,dc=example,dc=com"
+
+# retcode.conf можно найти в директории tests/data/ дерева исходных кодов
+include         ./retcode.conf
+
+# Подождать 10 секунд, затем вернуть success (0x00)
+retcode-item    "cn=Success after 10 seconds" 0x00 sleeptime=10
+# Подождать 10 секунд, затем вернуть timelimitExceeded (0x03)
+retcode-item    "cn=Timelimit after 10 seconds" 0x03 sleeptime=10
+</pre>
+
+</dd></dl>
+
+<p>
+
+</p><p>
+
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt>/usr/local/etc/openldap/slapd.conf</dt><dd>
+конфигурационный файл slapd по умолчанию.
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-config&amp;category=5">slapd-config</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8).
+
+Наложение
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-retcode&amp;category=5">slapo-retcode</a></b>(5)
+
+поддерживает динамическую конфигурацию через
+<b>back-config</b>.
+
+<a name="lbAI">&nbsp;</a>
+<h2>ПРИЗНАНИЕ ЗАСЛУГ</h2>
+
+
+Этот модуль был написан в 2005 году Pierangelo Masarati для SysNet.
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">НАБОР СХЕМЫ ДАННЫХ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРИМЕР</a></dt><dd>
+</dd><dt><a href="#lbAG">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAI">ПРИЗНАНИЕ ЗАСЛУГ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="slapo-retcode" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</dd></body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,781 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN xxd (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, xxd"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="xxd" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">xxd (1)</font><hr><li> <a href="/man.shtml?topic=xxd&amp;category=1&amp;russian=4"><u>xxd</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=xxd&amp;category=1&amp;russian=0"><u>xxd</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=xxd&amp;category=1&amp;russian=2"><u>xxd</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+<i>xxd</i>
+
+- создаёт представление файла в виде шестнадцатеричных кодов или выполняет
+обратное преобразование.
+<a name="lbAC">&nbsp;</a>
+<h2>КОМАНДНАЯ СТРОКА</h2>
+
+<b>xxd</b>
+
+-h[elp]
+<br>
+
+<b>xxd</b>
+
+[ключи] [входной_файл [выходной_файл]]
+<br>
+
+<b>xxd</b>
+
+-r[evert] [ключи] [входной_файл [выходной_файл]]
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<i>xxd</i>
+
+создаёт представление указанного файла или данных, прочитанных из потока
+стандартного ввода, в виде шестнадцатеричных кодов. Эта команда также может
+выполнить обратное преобразование заданных шестнадцатеричными кодами данных
+в исходный бинарный формат.
+Подобно командам
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=uuencode&amp;category=1">uuencode</a>(1)</b>
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=uudecode&amp;category=1">uudecode</a>(1),</b>
+
+она позволяет выполнять преобразование бинарных данных в ASCII-код, 
+который можно передавать по электронной почте, однако, помимо этого, программа
+xxd позволяет выполнять декодирование в поток стандартного вывода,
+а также может применяться для создания заплаток для бинарных файлов.
+<a name="lbAE">&nbsp;</a>
+<h2>КЛЮЧИ ЗАПУСКА</h2>
+
+Если
+<i>входной_файл</i>
+
+не задан, то соответствующие данные читаются из потока стандартного ввода.
+В случае, если в качестве
+<i>входного_файла</i>
+
+используется символ
+`<b>-</b>',
+
+источником данных также выступает поток стандартного ввода.
+В том случае, если не указан
+<i>выходной_файл</i>
+
+(или вместо него используется символ
+`<b>-</b>'
+
+), результат преобразования направляется в поток стандартного вывода.
+<p>
+
+Обратите внимание, что используется "ленивый" алгоритм разбора ключей, который не
+проверяет более одной буквы ключа, если в этом ключе не используется параметр.
+Пробелы между единственным символом ключа и соответствующим параметром не являются
+обязательными. Параметры ключей могут быть заданы с использованием десятичного,
+шестнадцатеричного или восьмеричного формата.
+Таким образом, ключи
+<b>-c8</b>,
+
+<b>-c 8</b>,
+
+<b>-c 010</b>
+
+и
+<b>-cols 8</b>
+
+являются равнозначными.
+</p><p>
+
+</p><dl compact="">
+<dt><i>-a</i> | <i>-autoskip</i>
+
+</dt><dd>
+Включает автоматический пропуск: вместо последовательности
+нулевых строк используется одиночный символ '*'. По умолчанию
+не применяется.
+</dd><dt><i>-b</i> | <i>-bits</i>
+
+</dt><dd>
+Вместо шестнадцатеричного кода используются биты (двоичные цифры).
+При использовании этого ключа вместо обычного шестнадцатеричного представления
+октетов используются наборы из восьми символов "1" и "0". Каждая строка
+предваряется номером строки в шестнадцатеричном виде, а завершается символьным 
+представлением (в виде ascii или ebcdic). Ключи -r, -p, -i в этом режиме
+не работают.
+</dd><dt><i>-c кол </i>|<i> -cols кол</i>
+
+</dt><dd>
+Задаёт количество октетов
+&lt;<i>кол</i>&gt;,
+
+которое выводится на каждой строке. По умолчанию используется значение 16 
+(-i: 12, -ps: 30, -b: 6). 
+Максимально допустимое значение: 256.
+</dd><dt><i>-E</i> | <i>-EBCDIC</i>
+
+</dt><dd>
+Изменяет способ кодирования символов в правой колонке с ASCII на EBCDIC. Этот ключ
+не изменяет шестнадцатеричное представление. Данный ключ не имеет смысла,
+если используются ключи -r, -p или -i.
+</dd><dt><i>-g байт </i>|<i> -groupsize байт</i>
+
+</dt><dd>
+Позволяет выполнять группировку указанного количества
+&lt;<i>байтов</i>&gt;
+
+(две шестнадцатеричные цифры или восемь битов), отделяя группы друг от друга пробелами.
+Значение
+<i>-g 0 </i>
+
+применяется для отказа от использования группировки.
+По умолчанию используется значение
+&lt;<i>байт</i>&gt; равное <i>2</i>
+
+в обычном режиме и <i>1</i> в битовом режиме. Группировка не применяется
+в режимах postscript и include.
+</dd><dt><i>-h</i> | <i>-help</i>
+
+</dt><dd>
+Выводит справку по доступным ключам командной строки и завершает работу программы.
+Создание шестнадцатеричного представления не выполняется.
+</dd><dt><i>-i</i> | <i>-include</i>
+
+</dt><dd>
+Позволяет создавать вывод в стиле подключаемых заголовочных файлов языка C.
+Вывод содержит полноценное определение статического массива данных, имя которого
+соответствует имени входного файла, если xxd не считывает данные из потока стандартного
+ввода.
+</dd><dt><i>-l длина </i>|<i> -len длина</i>
+
+</dt><dd>
+Завершает работу после записи заданного в параметре
+&lt;<i>длина</i>&gt;
+
+количества октетов.
+</dd><dt><i>-p</i> | <i>-ps</i> | <i>-postscript</i> | <i>-plain</i>
+
+</dt><dd>
+Использует непрерывный формат вывода шестнадцатеричного кода, 
+известный как "простой" стиль или стиль "postscript".
+</dd><dt><i>-r</i> | <i>-revert</i>
+
+</dt><dd>
+Изменяет смысл операции на противоположный: позволяет выполнять преобразование 
+шестнадцатеричного представления в бинарный код (или применять результат в качестве заплаты).
+Если вывод происходит не в поток стандартного вывода, то xxd выполняет добавление кода 
+к соответствующему файлу. При использовании комбинации ключей
+<i>-r -p</i>
+
+происходит чтение "простого" шестнадцатеричного представления без использования
+информации о номерах строк и какого-либо специального раскроя колонок. Пробелы 
+и символы новой строки могут встречаться в любом месте исходных данных.
+</dd><dt><i>-seek смещение</i>
+
+</dt><dd>
+При использовании после ключа
+<i>-r</i>
+
+: добавлять указанное
+&lt;<i>смещение</i>&gt;
+
+к файловым позициям, обнаруженным в исходных данных.
+</dd><dt><i>-s [+][-]seek</i>
+
+</dt><dd>
+Начинает работу с указанного абсолютного (или относительного)
+&lt;<i>смещения</i>&gt;
+
+в байтах во входном_файле.
+<i>+ </i>указывает, что смещение является относительным по отношению
+к текущей файловой позиции в потоке стандартного ввода (бессмысленно, если чтение
+происходит не из потока стандартного ввода). <i>- </i>указывает, что должно быть прочитано
+указанное количество символов от конца ввода (либо, если сочетается с <i> + </i>: 
+перед текущей позиции файла в потоке стандартного ввода).
+Если ключ -s не используется, то xxd начинает работу от текущей позиции в файле.
+</dd><dt><i>-u</i>
+
+</dt><dd>
+Использует шестнадцатеричные цифры в верхнем регистре. По умолчанию используются цифры в
+нижнем регистре символов.
+</dd><dt><i>-v</i> | <i>-version</i>
+
+</dt><dd>
+Отображает информацию о версии программы.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ПОДВОДНЫЕ КАМНИ</h2>
+
+<p>
+
+<i>xxd -r</i>
+
+обладает встроенным интеллектом для распознавания информации о номерах строк.
+Если возможен поиск по входному файлу, то номера строк в начале каждой строки
+шестнадцатеричного представления могут быть неупорядоченными, некоторые строки могут
+быть пропущены или пересекаться друг с другом. В этих случаях xxd использует
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lseek&amp;category=2">lseek</a>(2) для перехода к следующей позиции. Если поиск по входному файлу 
+невозможен, то допустимы только пропуски строк, которые заполняются нулевыми 
+байтами.
+</p><p>
+
+<i>xxd -r</i>
+
+никогда не выводит сообщений об ошибках. Мусор пропускается молча.
+</p><p>
+
+При редактировании шестнадцатеричных представлений бинарных файлов обращайте 
+внимание, что 
+<i>xxd -r</i>
+
+пропускает в строке ввода любые данные после прочтения достаточного количества 
+колонок шестнадцатеричных данных (см. ключ -c). Это означает, что изменения,
+внесенные в колонки с печатными символами ascii (или ebcdic), всегда игнорируются.
+При обратном преобразовании шестнадцатеричного представления в стиле
+postscript с помощью команды xxd -r -p количество колонок не учитывается. 
+В этом случае распознаются все символы, которые похожи на пары шестнадцатеричных цифр.
+</p><p>
+
+Обратите внимание на различие между командами
+</p><p>
+
+<i>% xxd -i файл</i>
+</p><p>
+
+и
+</p><p>
+
+<i>% xxd -i &lt; файл</i>
+</p><p>
+
+Команда
+<i>xxd -s +seek</i>
+
+может отличаться от
+<i>xxd -s seek,</i>
+
+поскольку для того, чтобы "отмотать" данные на входе назад, используется вызов <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lseek&amp;category=2">lseek</a>(2).
+При использовании `+' поведение будет отличаться, если входные данные
+поступают с потока стандартного ввода, а позиция в файле стандартного ввода не находится
+в начале файла к тому моменту, когда программа xxd запущена и приступает к чтению ввода.
+Нижеследующие примеры помогут прояснить (или ещё больше запутать!) ситуацию...
+</p><p>
+
+Отмотка назад потока стандартного ввода; необходимо, поскольку 'cat' уже выполнила
+чтение до конца потока стандартного ввода:
+</p><p>
+
+<i>% sh -c 'cat &gt; plain_copy; xxd -s 0 &gt; hex_copy' &lt; file
+</i></p><p><i>
+
+Вывод шестнадцатеричного представления от позиции в файле 0x480 
+(= 1024+128).
+Символ `+' означает "относительно текущей позиции", таким образом `128' добавляется
+к первому килобайту, где завершает работу dd:
+</i></p><p><i>
+
+% sh -c 'dd of=plain_snippet bs=1k count=1; xxd -s +128 &gt; hex_snippet' &lt; file
+</i></p><p><i>
+
+Вывод шестнадцатеричного представления от позиции в файле 0x100 
+(= 1024-768):
+</i></p><p><i>
+
+% sh -c 'dd of=plain_snippet bs=1k count=1; xxd -s +-768 &gt; hex_snippet' &lt; file
+</i></p><p><i>
+
+В то же время, следует заметить, что подобные ситуации встречаются довольно редко,
+так что символ `+' обычно не используется. Автор предпочитает наблюдать за работой 
+xxd с помощью <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=strace&amp;category=1">strace</a>(1) или <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=truss&amp;category=1">truss</a>(1) в тех случаях, когда применяется ключ
+-s.
+</i><a name="lbAG">&nbsp;</a>
+</p><h2>ПРИМЕРЫ</h2>
+
+<p>
+
+<br>
+
+Вывести всё, кроме первых трёх строк (0x30 байтов) файла
+<b>file</b>
+
+:
+</p><p>
+
+<i>% xxd -s 0x30 file
+</i></p><p><i>
+
+<br>
+
+Вывести три строки (0x30 байтов) от конца файла
+</i><b>file</b>
+
+:
+</p><p>
+
+<i>% xxd -s -0x30 file
+</i></p><p><i>
+
+<br>
+
+Вывести 120 байтов в виде непрерывного шестнадцатеричного представления
+по 20 октетов в строке:
+</i></p><p><i>
+
+% xxd -l 120 -ps -c 20 xxd.1</i>
+<br>
+
+2e544820585844203120224d616e75616c207061
+<br>
+
+676520666f7220787864220a2e5c220a2e5c2220
+<br>
+
+32317374204d617920313939360a2e5c22204d61
+<br>
+
+6e207061676520617574686f723a0a2e5c222020
+<br>
+
+2020546f6e79204e7567656e74203c746f6e7940
+<br>
+
+7363746e7567656e2e7070702e67752e6564752e
+<br>
+
+</p><p>
+
+<br>
+
+Вывести первые 120 байтов этой страницы справочника по 12 октетов в строке:
+</p><p>
+
+<i>% xxd -l 120 -c 12 xxd.1</i>
+<br>
+
+0000000: 2e54 4820 5858 4420 3120 224d  .TH XXD 1 "M
+<br>
+
+000000c: 616e 7561 6c20 7061 6765 2066  anual page f
+<br>
+
+0000018: 6f72 2078 7864 220a 2e5c 220a  or xxd"..\".
+<br>
+
+0000024: 2e5c 2220 3231 7374 204d 6179  .\" 21st May
+<br>
+
+0000030: 2031 3939 360a 2e5c 2220 4d61   1996..\" Ma
+<br>
+
+000003c: 6e20 7061 6765 2061 7574 686f  n page autho
+<br>
+
+0000048: 723a 0a2e 5c22 2020 2020 546f  r:..\"    To
+<br>
+
+0000054: 6e79 204e 7567 656e 7420 3c74  ny Nugent &lt;t
+<br>
+
+0000060: 6f6e 7940 7363 746e 7567 656e  <a href="mailto:ony@sctnugen">ony@sctnugen</a>
+<br>
+
+000006c: 2e70 7070 2e67 752e 6564 752e  .ppp.gu.edu.
+</p><p>
+
+<br>
+
+Показать дату из файла xxd.1:
+</p><p>
+
+<i>% xxd -s 0x28 -l 12 -c 12 xxd.1</i>
+<br>
+
+0000028: 3231 7374 204d 6179 2031 3939  21st May 199
+</p><p>
+
+<br>
+
+Скопировать
+<b>входной_файл</b>
+
+в
+<b>выходной_файл</b>
+
+с добавлением 100 байтов со значением 0x00 в начало файла:
+</p><p>
+
+<i>% xxd входной_файл | xxd -r -s 100 &gt; выходной_файл</i>
+<br>
+
+</p><p>
+
+<br>
+
+Заменить дату в файле xxd.1:
+</p><p>
+
+<i>% echo '0000029: 3574 68' | xxd -r - xxd.1</i>
+<br>
+
+<i>% xxd -s 0x28 -l 12 -c 12 xxd.1</i>
+<br>
+
+0000028: 3235 7468 204d 6179 2031 3939  25th May 199
+</p><p>
+
+<br>
+
+Создать 65537-байтный файл, все байты которого имеют значение
+0x00, кроме последнего байта, который должен иметь значение 'A'
+(0x41):
+</p><p>
+
+<i>% echo '010000: 41' | xxd -r &gt; file</i>
+</p><p>
+
+<br>
+
+Создать шестнадцатеричное представление этого файла с 
+использованием автоматического пропуска:
+</p><p>
+
+<i>% xxd -a -c 12 file</i>
+<br>
+
+0000000: 0000 0000 0000 0000 0000 0000  ............
+<br>
+
+*
+<br>
+
+000fffc: 0000 0000 40                   ....A
+</p><p>
+
+Создать 1-байтный файл, содержащий символ 'A'.
+Число после '-r -s' добавляется к номерам строк, найденным в файле;
+иначе говоря, предшествующие байты пропускаются:
+</p><p>
+
+<i>% echo '010000: 41' | xxd -r -s -0x10000 &gt; file</i>
+</p><p>
+
+xxd можно использовать в качестве фильтра в редакторе, например в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vim&amp;category=1">vim</a>(1),</b>
+
+чтобы создать шестнадцатеричное представление области между
+отметками `a' и `z':
+</p><p>
+
+<i>:'a,'z!xxd</i>
+</p><p>
+
+Вы можете использовать xxd в качестве фильтра в редакторе, например в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vim&amp;category=1">vim</a>(1),</b>
+
+для восстановления данных из шестнадцатеричного представления
+между отметками `a' и `z':
+</p><p>
+
+<i>:'a,'z!xxd -r</i>
+</p><p>
+
+Вы можете использовать xxd в качестве фильтра в редакторе, например в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vim&amp;category=1">vim</a>(1),</b>
+
+для восстановления данных из единственной строки
+шестнадцатеричного представления. Поместите курсор в соответствующую строку
+и наберите
+</p><p>
+
+<i>!!xxd -r</i>
+</p><p>
+
+Чтобы прочитать единственный символ из канала связи:
+</p><p>
+
+<i>% xxd -c1 &lt; /dev/term/b &amp;</i>
+<br>
+
+<i>% stty &lt; /dev/term/b -echo -opost -isig -icanon min 1</i>
+<br>
+
+<i>% echo -n foo &gt; /dev/term/b</i>
+</p><p>
+
+<a name="lbAH">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+Программа xxd завершает работу со следующими значениями:
+<dl compact="">
+<dt>0</dt><dd>
+Ошибки не обнаружены.
+</dd><dt>-1</dt><dd>
+Операция не поддерживается (выполнение
+<i>xxd -r -i</i>
+
+пока невозможно).
+</dd><dt>1</dt><dd>
+Ошибка при разборе ключей командной строки.
+</dd><dt>2</dt><dd>
+Проблемы во входном файле.
+</dd><dt>3</dt><dd>
+Проблемы в выходном файле.
+</dd><dt>4,5</dt><dd>
+Желательная позиция поиска недостижима.
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=uuencode&amp;category=1">uuencode</a>(1), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=uudecode&amp;category=1">uudecode</a>(1), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=patch&amp;category=1">patch</a>(1)
+<br>
+
+<a name="lbAJ">&nbsp;</a>
+<h2>ПРЕДУПРЕЖДЕНИЕ</h2>
+
+Странность этой программы соответствует особенностям мозга её создателя.
+Используйте её на свой страх и риск. Копируйте файлы, отслеживайте
+вызовы, становитесь волшебником.
+<br>
+
+<a name="lbAK">&nbsp;</a>
+<h2>ВЕРСИЯ</h2>
+
+Эта страница справочника документирует xxd версии 1.7.
+<a name="lbAL">&nbsp;</a>
+<h2>АВТОР</h2>
+
+<br>
+
+(c) 1990-1997 Юрген Вайгерт (Juergen Weigert)
+<br>
+
+&lt;<a href="mailto:jnweiger@informatik.uni-erlangen.de">jnweiger@informatik.uni-erlangen.de</a>&gt;
+<p>
+
+Вы можете свободно распространять программу со ссылкой на меня.
+<br>
+
+Если использование этой программы принесло вам какой-то доход,
+поделитесь со мной.
+<br>
+
+Если вы потеряли деньги, то я тут не причём.
+</p><p>
+
+Первый вариант страницы справочника написан Тони Наджентом (Tony Nugent)
+<br>
+
+&lt;<a href="mailto:tony@sctnugen.ppp.gu.edu.au">tony@sctnugen.ppp.gu.edu.au</a>&gt; &lt;<a href="mailto:T.Nugent@sct.gu.edu.au">T.Nugent@sct.gu.edu.au</a>&gt;
+<br>
+
+Небольшие изменения внесены Брамом Мооленааром (Bram Moolenaar).
+Страница отредактирована Юргеном Вайгертом (Juergen Weigert).
+</p><p>
+
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">КОМАНДНАЯ СТРОКА</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">КЛЮЧИ ЗАПУСКА</a></dt><dd>
+</dd><dt><a href="#lbAF">ПОДВОДНЫЕ КАМНИ</a></dt><dd>
+</dd><dt><a href="#lbAG">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAI">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ПРЕДУПРЕЖДЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAK">ВЕРСИЯ</a></dt><dd>
+</dd><dt><a href="#lbAL">АВТОР</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="xxd" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

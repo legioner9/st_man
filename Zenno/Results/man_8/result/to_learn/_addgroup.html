@@ -1,0 +1,482 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN addgroup (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, addgroup"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="addgroup" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">addgroup (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=addgroup&amp;category=8&amp;russian=0"><u>addgroup</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>NAME</h2>
+<pre>adduser, addgroup - добавляют пользователя или группу в систему
+<a name="lbAC">&nbsp;</a>
+</pre><h2>СИНТАКСИС</h2>
+
+<b>adduser</b> [параметры] [--home КАТ] [--shell|-s ОБОЛОЧКА] [--no-create-home]
+[--uid ID] [--firstuid ID] [--lastuid ID] [--ingroup ГРУППА | --gid ID]
+[--disabled-password] [--disabled-login] [--gecos GECOS]
+[--add_extra_groups] пользователь
+<p>
+
+<b>adduser</b> --system [параметры] [--home КАТ] [--shell ОБОЛОЧКА]
+[--no-create-home] [--uid ID] [--group | --ingroup ГРУППА | --gid ID]
+[--disabled-password] [--disabled-login] [--gecos GECOS] пользователь
+</p><p>
+
+<b>addgroup</b> [параметры] [--gid ID] группа
+</p><p>
+
+<b>addgroup</b> --system [параметры] [--gid ID] группа
+</p><p>
+
+<b>adduser</b> [параметры] пользователь группа
+<a name="lbAD">&nbsp;</a>
+</p><h3>ОБЩИЕ ПАРАМЕТРЫ</h3>
+
+<br>
+
+[--quiet] [--debug] [--force-badname] [--help|-h] [--version] [--conf ФАЙЛ]
+<a name="lbAE">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<p>
+
+<b>adduser</b> и <b>addgroup</b> добавляют пользователей и группы в систему, исходя
+из параметров, заданных в командной строке и информации из файла
+<i>/etc/adduser.conf</i>. Они являются дружественными интерфейсами к программам
+<b>groupadd</b> и <b>usermod</b>, выбирают согласованные с политикой Debian значения
+UID и GID, создают домашний каталог с начальными настройками, запускают
+определённый сценарий, и обладают другими возможностями. <b>adduser</b> и
+<b>addgroup</b> могут быть запущены в одном из пяти режимов:
+<a name="lbAF">&nbsp;</a>
+</p><h3>Добавление обычного пользователя</h3>
+
+При запуске с двумя аргументами и без параметров <b>--system</b> или <b>--group</b>,
+<b>adduser</b> добавляет обычного пользователя.
+<p>
+<b>adduser</b> выберет первый доступный UID из диапазона обычных пользователей,
+заданного в файле настройки.  UID может быть изменён с помощью параметра
+<b>--uid</b>.
+</p><p>
+Диапазон, задаваемый файлом настройки, может быть изменён с помощью
+параметров <b>--firstuid</b> и <b>--lastuid.</b>
+</p><p>
+По умолчанию, каждый пользователь в Debian GNU/Linux входит в
+соответствующую группу с тем же именем. Объединение пользователей в группы
+позволяет групповую запись в каталог, что легко достигается посредством
+помещения соответствующих пользователей в новую группу, установкой
+set-group-ID бита на каталог и проверкой того, что все пользователи
+используют значение umask со значением 002. Если параметру <b>USERGROUPS</b>
+присвоить значение <i>no</i>, то все GID пользователей будут устанавливаться в
+<b>USERS_GID</b>.  Группы пользователей также могут быть изменены из командной
+строки с помощью параметров <b>--gid</b> или <b>--ingroup</b>, которые задают группу
+по id или по имени соответственно. Также, пользователей можно добавить в
+одну или более групп указанных в adduser.conf или установкой
+ADD_EXTRA_GROUPS равной 1 в adduser.conf, или указав --add_extra_groups в
+командной строке.
+</p><p>
+<b>adduser</b> создаёт домашний каталог в соответствии со значениями <b>DHOME</b>,
+<b>GROUPHOMES</b> и <b>LETTERHOMES</b>. Домашний каталог может быть изменён из
+командной строки с помощью параметра <b>--home</b>, а оболочка с помощью
+<b>--shell</b>. На домашнем каталоге устанавливается Set-group-ID бит, если
+<b>USERGROUPS</b> равно <i>yes</i>, и поэтому любые файлы, создаваемые в домашнем
+каталоге пользователя, будут иметь правильную группу.
+</p><p>
+<b>adduser</b> копирует файлы из <b>SKEL</b> в домашний каталог, запрашивает
+информацию для finger (gecos) и пароль. Gecos также может быть задан с
+помощью параметра <b>--gecos</b>. При задании параметра <b>--disabled-login</b>,
+учётная запись будет создана, но пока не будет определён пароль, доступ
+через неё останется заблокированным. При задании параметра
+<b>--disabled-password</b> пароль не нужен, но вход в систему всё равно возможен
+(например с помощью SSH RSA ключей).
+</p><p>
+Если файл <b>/usr/local/sbin/adduser.local</b> существует, то он будет выполнен
+после создания учётной записи пользователя, чтобы выполнить все локальные
+настройки. Аргументы передаваемые <b>adduser.local</b>:
+<br>
+
+имя_пользователя uid gid домашний_каталог
+<br>
+
+Значение переменной среды VERBOSE устанавливается по следующему правилу:
+</p><dl compact="">
+<dt>0, если указан --quiet</dt><dd>
+</dd><dt>1, если не указан --quiet или --debug</dt><dd>
+</dd><dt>2, если указан --debug</dt><dd>
+<p>
+(Это же правило применяется к переменной DEBUG, но DEBUG лучше не
+использовать, так как она будет удалена в следующей версии adduser.)
+</p><p>
+</p></dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h3>Добавление системного пользователя</h3>
+
+При запуске с одним параметром без аргументов и параметром <b>--system</b>,
+<b>adduser</b> добавляет системного пользователя. Если пользователь с тем же
+именем уже существует, то adduser завершает работу с выдачей предупреждения.
+<p>
+<b>adduser</b> выберет первый доступный UID из диапазона системных
+пользователей, заданного в файле настройки. UID может быть изменён с помощью
+параметра <b>--uid</b>.
+</p><p>
+По умолчанию, системные пользователи помещаются в группу <b>nogroup</b>. Чтобы
+поместить нового системного пользователя в уже существующую группу,
+используйте параметры <b>--gid</b> или <b>--ingroup</b>. Чтобы поместить нового
+системного пользователя в новую группу с тем же ID, используйте параметр
+<b>--group</b>.
+</p><p>
+Домашний каталог создаётся по тем же правилам что и для обычных
+пользователей. Новый системный пользователь имеет оболочку <i>/bin/false</i>
+(если не указан параметр <b>--shell</b>) и заблокированный пароль. Начальные
+файлы настроек не копируются.
+<a name="lbAH">&nbsp;</a>
+</p><h3>Добавление пользовательской группы</h3>
+
+Если <b>adduser</b> вызывается с параметром <b>--group</b> и без параметра
+<b>--system</b> или имеет соответствующее название <b>addgroup</b>, то добавляется
+пользовательская группа.
+<p>
+GID будет выбран из диапазона пользовательских UIDS, заданного в файле
+настройки. GID может быть изменён с помощью параметра <b>--gid</b>.
+</p><p>
+Группа создаётся без пользователей.
+<a name="lbAI">&nbsp;</a>
+</p><h3>Добавление системной группы</h3>
+
+Если <b>addgroup</b> вызывается с параметром <b>--system</b>, то добавляется
+системная группа.
+<p>
+GID будет выбран из диапазона системных GID, заданных в файле настройки. GID
+может быть установлен принудительно с помощью параметра <b>--gid</b>.
+</p><p>
+Группа создаётся без пользователей.
+<a name="lbAJ">&nbsp;</a>
+</p><h3>Добавление существующего пользователя в существующую группу</h3>
+
+При запуске с двумя аргументами, <b>adduser</b> добавляет существующего
+пользователя в существующую группу.
+<a name="lbAK">&nbsp;</a>
+<h2>ПАРАМЕТРЫ</h2>
+
+<dl compact="">
+<dt><b>--conf ФАЙЛ</b></dt><dd>
+Использовать ФАЙЛ вместо <i>/etc/adduser.conf</i>.
+</dd><dt><b>--disabled-login</b></dt><dd>
+Не запускать passwd для задания пароля. Пользователь не сможет использовать
+свою учётную запись, пока его пароль не установлен.
+</dd><dt><b>--disabled-password</b></dt><dd>
+То же что и --disabled-login, но вход в систему возможен(например, с помощью
+ключей SSH RSA), но не использующих парольную аутентификацию.
+</dd><dt><b>--force-badname</b></dt><dd>
+By default, user and group names are checked against the configurable
+regular expression <b>NAME_REGEX</b> (or <b>NAME_REGEX</b> if <b>--system</b> is
+specified)  specified in the configuration file. This option forces
+<b>adduser</b> and <b>addgroup</b> to apply only a weak check for validity of the
+name.
+</dd><dt><b>--gecos GECOS</b></dt><dd>
+Set the gecos field for the new entry generated.  <b>adduser</b> will not ask
+for finger information if this option is given.
+</dd><dt><b>--gid ID</b></dt><dd>
+При создании группы этот параметр задает её идентификатор. При создании
+пользователя этот параметр помещает пользователя в группу с этим номером.
+</dd><dt><b>--group</b></dt><dd>
+При совместном использовании с <b>--system</b>, создаётся группа с тем же именем
+и ID как и у системного пользователя. Если же <b>--system</b> не задана, то
+создаётся группа с указанным именем. Это является действием по умолчанию,
+если программа вызывается как <b>addgroup</b>.
+</dd><dt><b>--help</b></dt><dd>
+Показать краткую инструкцию.
+</dd><dt><b>--home КАТ</b></dt><dd>
+Использовать КАТ в качестве домашнего каталога пользователя, а не как
+задаётся по умолчанию в файле настроек.  Если каталог не существует, то он
+будет создан и будут скопированы начальные файлы настроек.
+</dd><dt><b>--shell ОБОЛОЧКА</b></dt><dd>
+Использовать ОБОЛОЧКУ в качестве регистрационной оболочки, а не как задано
+по умолчанию в файле настроек.
+</dd><dt><b>--ingroup ГРУППА</b></dt><dd>
+Add the new user to GROUP instead of a usergroup or the default group
+defined by <b>USERS_GID</b> in the configuration file.
+</dd><dt><b>--no-create-home</b></dt><dd>
+Не создавать домашний каталог, даже если он не существует.
+</dd><dt><b>--quiet</b></dt><dd>
+Не выводить информационные сообщения, показывать только предупреждения и
+ошибки.
+</dd><dt><b>--debug</b></dt><dd>
+Показывать отладочную информацию, очень полезно, если вы хотите понять в чём
+проблема у adduser.
+</dd><dt><b>--system</b></dt><dd>
+Create a system user or group.
+</dd><dt><b>--uid ID</b></dt><dd>
+Force the new userid to be the given number.  <b>adduser</b> will fail if the
+userid is already taken.
+</dd><dt><b>--firstuid ID</b></dt><dd>
+Override the first uid in the range that the uid is chosen from (overrides
+<b>FIRST_UID</b> specified in the configuration file).
+</dd><dt><b>--lastuid ID</b></dt><dd>
+Override the last uid in the range that the uid is chosen from ( <b>LAST_UID</b>
+)
+</dd><dt><b>--add_extra_groups</b></dt><dd>
+Add new user to extra groups defined in the configuration file.
+</dd><dt><b>--version</b></dt><dd>
+Показать номер версии и информацию об авторском праве.
+<p>
+</p></dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h2>EXIT VALUES</h2>
+
+<p>
+</p><dl compact="">
+<dt><b>0</b></dt><dd>
+The user exists as specified. This can have 2 causes: The user was created
+by adduser or the user was already present on the system before adduser was
+invoked. Invoking adduser a second time with the same parameters as before
+also returns 0.
+</dd><dt><b>1</b></dt><dd>
+Creating the user or group failed because it was already present with other
+UID/GID than specified. The username or groupname was rejected because of a
+mismatch with the configured regular expressions, see
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=adduser.conf&amp;category=5">adduser.conf</a>(5). Adduser has been aborted by a signal.
+<br>
+
+Or for many other yet undocumented reasons which are printed to console
+then.
+<p>
+</p></dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt>/etc/adduser.conf</dt><dd>
+Default configuration file for adduser and addgroup
+</dd></dl>
+<a name="lbAN">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=adduser.conf&amp;category=5">adduser.conf</a>(5), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=deluser&amp;category=8">deluser</a>(8), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=useradd&amp;category=8">useradd</a>(8), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=groupadd&amp;category=8">groupadd</a>(8), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=usermod&amp;category=8">usermod</a>(8), Debian
+Policy 9.2.2.
+<p>
+<a name="lbAO">&nbsp;</a>
+</p><h2>АВТОРСКОЕ ПРАВО</h2>
+
+Copyright (C) 1997, 1998, 1999 Guy Maor. Modifications by Roland
+Bauerschmidt and Marc Haber. Additional patches by Joerg Hoh and Stephen
+Gran.
+<br>
+
+Copyright (C) 1995 Ted Hajek, с большими заимствованиями из оригинального
+Debian <b>adduser</b>
+<br>
+
+Copyright (C) 1994 Ian Murdock. <b>adduser</b> это свободное ПО; смотрите
+условия копирования в Универсальной Общественной Лицензии GNU версии 2 или
+более новой.  Не предоставляется <i>никаких</i> гарантий.
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">NAME</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+<dl>
+<dt><a href="#lbAD">ОБЩИЕ ПАРАМЕТРЫ</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAE">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAF">Добавление обычного пользователя</a></dt><dd>
+</dd><dt><a href="#lbAG">Добавление системного пользователя</a></dt><dd>
+</dd><dt><a href="#lbAH">Добавление пользовательской группы</a></dt><dd>
+</dd><dt><a href="#lbAI">Добавление системной группы</a></dt><dd>
+</dd><dt><a href="#lbAJ">Добавление существующего пользователя в существующую группу</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAK">ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAL">EXIT VALUES</a></dt><dd>
+</dd><dt><a href="#lbAM">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAN">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAO">АВТОРСКОЕ ПРАВО</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="addgroup" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

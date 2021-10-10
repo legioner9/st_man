@@ -1,0 +1,1802 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN slapd.access (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, slapd.access"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="slapd.access" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">slapd.access (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=slapd.access&amp;category=5&amp;russian=0"><u>slapd.access</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+slapd.access - конфигурация доступа для slapd, автономного демона LDAP
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+/usr/local/etc/openldap/slapd.conf
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Файл
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5)
+
+содержит конфигурационную информацию для демона
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8).
+
+Этот конфигурационный файл также используется инструментами SLAPD:
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapacl&amp;category=8">slapacl</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapadd&amp;category=8">slapadd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapauth&amp;category=8">slapauth</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapcat&amp;category=8">slapcat</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapdn&amp;category=8">slapdn</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapindex&amp;category=8">slapindex</a></b>(8)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slaptest&amp;category=8">slaptest</a></b>(8).
+
+<p>
+
+Файл
+<b>slapd.conf</b>
+
+состоит из набора глобальных параметров конфигурации, применяемых к
+<b>slapd</b>
+
+в целом (в том числе ко всем механизмам манипуляции данными), за которыми следует ноль или более определений
+баз данных какого-либо механизма манипуляции данными. В этих определениях содержится информация,
+специфичная для конкретной базы данных конкретного механизма манипуляции данными.
+</p><p>
+
+Общий формат
+<b>slapd.conf</b>:
+
+</p><p>
+
+</p><pre>    # комментарий - данные параметры применяются к каждой базе данных
+    &lt;глобальные параметры конфигурации&gt;
+    # определение и параметры конфигурации первой базы данных
+    database    &lt;первый тип механизма манипуляции данными&gt;
+    &lt;параметры конфигурации, специфичные для механизма первого типа&gt;
+    # последующие определения и параметры конфигурации баз данных
+    ...
+</pre>
+
+<p>
+
+Как раздел глобальных настроек, так и каждый из разделов баз данных механизмов манипуляции
+данными могут содержать информацию по контролю доступа.
+Директивы контроля доступа из раздела, специфичного для базы данных какого-либо механизма манипуляции данными,
+используются для записей, относящихся к этой базе в соответствии с контекстом их именования.
+В случае, когда для какой-либо базы данных не определено директив контроля доступа, либо те,
+которые определены, являются неприменимыми, используются директивы из раздела глобальных настроек.
+</p><p>
+
+Если отсутствуют какие-либо настройки контроля доступа, политика по умолчанию разрешает
+кому бы то ни было (всем) читать что угодно, а вносить изменения разрешено только rootdn
+(то есть, "access to * by * read").
+</p><p>
+
+При обработке списков доступа директивы из глобального списка добавляются в конец списка каждой базы данных.
+Если полученный в результате список не пуст, то к нему неявно добавляется директива
+<b>access to * by * none</b>.
+
+Если же применимых к механизму манипуляции данными директив доступа не оказалось,
+то по умолчанию используется доступ на чтение.
+</p><p>
+
+<b>Предупреждение: rootdn всегда может читать и записывать ВСЁ!</b>
+
+</p><p>
+
+Для записей, не входящих в базу данных какого-либо механизма манипуляции данными (таких как root DSE),
+используются глобальные директивы.
+</p><p>
+
+Аргументы, которые необходимо заменить актуальным текстом, показаны в угловых скобках &lt;&gt;.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ДИРЕКТИВА ACCESS</h2>
+
+Структура директивы контроля доступа:
+<dl compact="">
+<dt><b>access to &lt;what&gt; [ by &lt;who&gt; [ &lt;access&gt; ] [ &lt;control&gt; ] ]+</b>
+
+</dt><dd>
+Предоставляется доступ (указанный как 
+<b>&lt;access&gt;</b>)
+
+к набору записей и/или атрибутов (указанных как
+<b>&lt;what&gt;</b>)
+
+одному или более запрашивающих доступ (указанных как 
+<b>&lt;who&gt;</b>).
+
+<p>
+</p></dd></dl>
+<p>
+
+Список директив access оценивается в порядке их определения в <i>slapd.conf</i>.
+При совпадении условия
+<b>&lt;what&gt;</b>
+
+с элементом данных, доступ к которому в текущий момент оценивается, проверяется список условий
+<b>&lt;who&gt;</b>
+
+этой директивы. При совпадении условия
+<b>&lt;who&gt;</b>
+
+с характеристиками того, кто хочет получить доступ, оцениваются условия
+<b>&lt;access&gt;</b>
+
+и
+<b>&lt;control&gt;</b>
+
+этой директивы. Контроль доступа прекращается при первом совпадении условий
+<b>&lt;what&gt;</b>
+
+и
+<b>&lt;who&gt;</b>,
+
+если иное не задано условием
+<b>&lt;control&gt;</b>.
+
+Каждый список условий
+<b>&lt;who&gt;</b>
+
+неявно завершается условием
+</p><p>
+
+</p><pre>        by * none stop
+</pre>
+
+<p>
+
+в результате чего контроль доступа прекращается без предоставления привилегий доступа.
+Каждый список условий
+<b>&lt;what&gt;</b>
+
+неявно завершается условием
+</p><p>
+
+</p><pre>        access to *
+                by * none
+</pre>
+
+<p>
+
+в результате чего привилегии на доступ ко всем остальным не указанным явно элементам данных не предоставляются.
+<a name="lbAF">&nbsp;</a>
+</p><h2>ПОЛЕ &lt;WHAT&gt;</h2>
+
+Поле
+<b>&lt;what&gt;</b>
+
+определяет объект, к которому применяется директива контроля доступа. Оно может иметь следующие формы:
+<p>
+
+</p><pre>        dn[.&lt;dnstyle&gt;]=&lt;dnpattern&gt;
+        filter=&lt;ldapfilter&gt;
+        attrs=&lt;attrlist&gt;[ val[/matchingRule][.&lt;attrstyle&gt;]=&lt;attrval&gt;]
+</pre>
+
+<p>
+
+где
+</p><p>
+
+</p><pre>        &lt;dnstyle&gt;={{exact|base(object)}|regex
+                |one(level)|sub(tree)|children}
+        &lt;attrlist&gt;={&lt;attr&gt;|[{!|@}]&lt;objectClass&gt;}[,&lt;attrlist&gt;]
+        &lt;attrstyle&gt;={{exact|base(object)}|regex
+                |one(level)|sub(tree)|children}
+</pre>
+
+<p>
+
+Выражение
+<b>dn=&lt;dnpattern&gt;</b>
+
+отбирает записи на основании их контекста именования.
+<b>&lt;dnpattern&gt;</b>&nbsp;-
+
+это строковое представление DN записи.
+Шаблон
+<b>*</b>
+
+соответствует всем записям, он неявно подразумевается, если никакая из форм 
+<b>dn</b>
+
+не предоставлена.
+</p><p>
+
+Указание 
+<b>&lt;dnstyle&gt; </b>
+
+необязательно; тем не менее, рекомендуется указывать его во избежание неоднозначностей.
+Значение по умолчанию -
+<b>base </b>
+
+(синоним
+<b>baseObject</b>),
+
+или
+<b>exact </b>
+
+(псевдоним для 
+<b>base</b>),
+
+указывает на запись, DN которой совпадает с
+<b>&lt;dnpattern&gt;</b>;
+
+<b>one</b>
+
+(синоним
+<b>onelevel</b>)
+
+указывает на все записи, непосредственно на один уровень ниже
+<b>&lt;dnpattern&gt;</b>;
+
+<b>sub</b>
+
+(синоним
+<b>subtree</b>)
+
+указывает на все записи поддерева, начиная с
+<b>&lt;dnpattern&gt;</b>;
+
+<b>children</b>
+
+указывает на все записи ниже (нижестоящие по отношению к) 
+<b>&lt;dnpattern&gt;</b>.
+
+</p><p>
+
+Если в качестве квалификатора
+<b>&lt;dnstyle&gt;</b>
+
+указан
+<b>regex</b>,
+
+то 
+<b>&lt;dnpattern&gt;</b>
+
+рассматривается как шаблон POSIX (''расширенного'') регулярного выражения,
+как описано в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=regex&amp;category=7">regex</a></b>(7)
+
+и/или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=re_format&amp;category=7">re_format</a></b>(7),
+
+соответствующего нормализованному строковому представлению DN записи.
+Форма шаблона regex не поддерживает UTF-8 (пока).
+</p><p>
+
+Выражение
+<b>filter=&lt;ldapfilter&gt;</b>
+
+отбирает записи на основании корректного LDAP-фильтра, как описано в RFC 4515.
+Если никакая из форм
+<b>filter</b>
+
+не предоставлена, неявно подразумевается фильтр
+<b>(objectClass=*)</b>.
+
+</p><p>
+
+Выражение
+<b>attrs=&lt;attrlist&gt;</b>
+
+отбирает атрибуты, к которым применяется данное правило контроля доступа.
+Это разделённый запятыми список типов атрибутов, плюс специальные имена
+<b>entry</b>
+
+(указывающее на доступ к самой записи) и
+<b>children</b>
+
+(указывающее на доступ к потомкам этой записи).
+В этом списке также могут быть указаны имена объектных классов,
+тогда правило доступа будет распространяться на все атрибуты,
+которые требуются или разрешены этими объектными классами.
+В настоящее время имена в списке 
+<b>&lt;attrlist&gt;</b>,
+
+перед которыми указан знак
+<b>@</b>,
+
+прямо интерпретируются как имена объектных классов. Имена, перед которыми указан знак
+<b>!</b>,
+
+также интерпретируются как объектные классы, но в этом случае правило доступа будет распространяться на атрибуты,
+которые не требуются или не разрешены этими объектными классами.
+Если никакая из форм
+<b>attrs</b>
+
+не предоставлена, неявно подразумевается
+<b>attrs=@extensibleObject</b>,
+
+то есть охватываются все атрибуты.
+</p><p>
+
+Использование формы
+<b>attrs=&lt;attr&gt; val[/matchingRule][.&lt;attrstyle&gt;]=&lt;attrval&gt;</b>
+
+определяет доступ к конкретному значению одного атрибута.
+В этом случае может быть задан только один тип атрибута.
+<b>&lt;attrstyle&gt;</b>
+
+<b>exact</b>
+
+(по умолчанию) использует для выполнения сравнения со значением правило соответствия equality атрибута,
+если не указано иное (и совместимое с атрибутом) правило соответствия. Если в качестве
+<b>&lt;attrstyle&gt;</b>
+
+указан
+<b>regex</b>,
+
+предоставленное значение используется как шаблон POSIX (''расширенного'') регулярного выражения.
+Если атрибут имеет синтаксис DN, то
+<b>&lt;attrstyle&gt;</b>
+
+может быть одним из
+<b>base</b>,
+
+<b>onelevel</b>,
+
+<b>subtree</b>
+
+или
+<b>children</b>,
+
+что означает совпадение как при поиске с диапазонами base, onelevel, subtree или children, соответственно.
+</p><p>
+
+Выражения dn, filter и attrs являются аддитивными; они могут использоваться последовательно
+для отбора объектов, к которым применяется данное правило доступа,
+на основании контекста именования, значения и типа атрибута одновременно.
+На подсовпадения, получившиеся в результате совпадения с шаблоном регулярного выражения
+<b>regex</b>,
+
+можно сослаться в поле
+<b>&lt;who&gt;</b>
+
+с помощью синтаксиса
+<i>${v&lt;n&gt;}</i>,
+
+где
+<i>&lt;n&gt;</i>&nbsp;-
+
+это номер подсовпадения. Синтаксис по умолчанию
+<i>$&lt;n&gt;</i>
+
+в действительности является псевдонимом для
+<i>${d&lt;n&gt;}</i>,
+
+который соответствует подсовпадению из части
+<b>dnpattern</b>
+
+поля
+<b>&lt;what&gt;</b>.
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>ПОЛЕ &lt;WHO&gt;</h2>
+
+Поле
+<b>&lt;who&gt;</b>
+
+указывает того, к кому применяется данное правило доступа.
+В директиве контроля доступа может присутствовать несколько выражений
+<b>&lt;who&gt;</b>,
+
+задающих разные привилегии доступа к одному и тому же ресурсу для разных претендентов на получение доступа.
+Выражение
+<b>&lt;who&gt;</b>
+
+может иметь следующие формы:
+<p>
+
+</p><pre>        *
+        anonymous
+        users
+        self[.&lt;selfstyle&gt;]
+
+        dn[.&lt;dnstyle&gt;[,&lt;modifier&gt;]]=&lt;DN&gt;
+        dnattr=&lt;attrname&gt;
+
+        realanonymous
+        realusers
+        realself[.&lt;selfstyle&gt;]
+
+        realdn[.&lt;dnstyle&gt;[,&lt;modifier&gt;]]=&lt;DN&gt;
+        realdnattr=&lt;attrname&gt;
+
+        group[/&lt;objectclass&gt;[/&lt;attrname&gt;]]
+                [.&lt;groupstyle&gt;]=&lt;group&gt;
+        peername[.&lt;peernamestyle&gt;]=&lt;peername&gt;
+        sockname[.&lt;style&gt;]=&lt;sockname&gt;
+        domain[.&lt;domainstyle&gt;[,&lt;modifier&gt;]]=&lt;domain&gt;
+        sockurl[.&lt;style&gt;]=&lt;sockurl&gt;
+        set[.&lt;setstyle&gt;]=&lt;pattern&gt;
+
+        ssf=&lt;n&gt;
+        transport_ssf=&lt;n&gt;
+        tls_ssf=&lt;n&gt;
+        sasl_ssf=&lt;n&gt;
+
+        dynacl/&lt;name&gt;[/&lt;options&gt;][.&lt;dynstyle&gt;][=&lt;pattern&gt;]
+</pre>
+
+<p>
+
+где
+</p><p>
+
+</p><pre>        &lt;style&gt;={exact|regex|expand}
+        &lt;selfstyle&gt;={level{&lt;n&gt;}}
+        &lt;dnstyle&gt;={{exact|base(object)}|regex
+                |one(level)|sub(tree)|children|level{&lt;n&gt;}}
+        &lt;groupstyle&gt;={exact|expand}
+        &lt;peernamestyle&gt;={&lt;style&gt;|ip|ipv6|path}
+        &lt;domainstyle&gt;={exact|regex|sub(tree)}
+        &lt;setstyle&gt;={exact|expand}
+        &lt;modifier&gt;={expand}
+        &lt;name&gt;=aci              &lt;pattern&gt;=&lt;attrname&gt;]
+</pre>
+
+<p>
+
+Эти формы могут задаваться в комбинации.
+</p><p>
+
+</p><pre></pre>
+
+<p>
+
+Шаблон
+<b>*</b>
+
+указывает на всех.
+</p><p>
+
+Ключевые слова с префиксом
+<b>real</b>
+
+обрабатываются также, как и соответствующие им ключевые слова без префикса;
+проверке подвергаются <i>аутентификационное</i> и <i>авторизационное</i> DN, соответственно.
+</p><p>
+
+Ключевое слово
+<b>anonymous</b>
+
+означает, что доступ предоставляется не прошедшим проверку подлинности клиентам;
+в основном оно используется для того, чтобы доступ к ресурсам аутентифкации (например, атрибуту
+<b>userPassword</b>)
+
+предоставлялся лишь клиентам, не прошедшим проверку подлинности, в целях её прохождения ими.
+</p><p>
+
+Ключевое слово
+<b>users</b>
+
+означает, что доступ предоставляется клиентам, прошедшим проверку подлинности.
+</p><p>
+
+Ключевое слово
+<b>self</b>
+
+означает, что доступ к записи разрешается самой этой записи
+(то есть, запись, к которой осуществляется доступ, и запись,
+от имени которой запрашивается доступ, должны совпадать).
+При этом разрешается использовать стиль 
+<b>level{&lt;n&gt;}</b>,
+
+где индекс <i>&lt;n&gt;</i> указывает, какой предок DN должен быть использован в совпадениях.
+Положительное значение индекса говорит о том, что должен рассматриваться &lt;n&gt;-й предок DN пользователя;
+отрицательное значение индекса говорит о том, что должен рассматриваться &lt;n&gt;-й предок DN целевой записи.
+Например, условие "<i>by self.level{1} ...</i>" сработает, когда к объекту "<i>dc=example,dc=com</i>"
+осуществляется доступ пользователем "<i>cn=User,dc=example,dc=com</i>".
+Условие "<i>by self.level{ -1} ...</i>" сработает, когда тот же пользователь осуществляет доступ
+к объекту "<i>ou=Address Book,cn=User,dc=example,dc=com</i>".
+</p><p>
+
+Выражение
+<b>dn=&lt;DN&gt;</b>
+
+означает, что доступ предоставляется соответствующему DN. В необязательном квалификаторе стиля
+<b>dnstyle</b>
+
+разрешено использовать те же варианты, что и в форме dn поля
+<b>&lt;what&gt;</b>.
+
+Кроме того, в стиле
+<b>regex</b>
+
+можно воспользоваться заменой подстрок подсовпадениями из условия dn.regex поля
+<b>&lt;what&gt;</b>
+
+путём использования формы
+<b>$&lt;digit&gt;</b>,
+
+где
+<b>digit</b>
+
+может быть от 0 до 9 (0 соответствует строке целиком), либо формы
+<b>${&lt;digit&gt;+}</b>,
+
+для подсовпадений, номер которых превышает 9.
+Может быть выполнена замена подстроки значением атрибута с помощью формы
+<b>${v&lt;digit&gt;+}</b>.
+
+Так как символ доллара используется для указания замены подстроки, символ доллара,
+использующийся для указания совпадения с концом строки,
+должен быть экранирован вторым символом доллара, например:
+</p><p>
+
+</p><pre>    access to dn.regex="^(.+,)?uid=([^,]+),dc=[^,]+,dc=com$"
+        by dn.regex="^uid=$2,dc=[^,]+,dc=com$$" write
+</pre>
+
+<p>
+
+В квалификаторе стиля разрешено использование необязательного модификатора
+<b>modifier</b>.
+
+В настоящее время единственным разрешённым вариантом модификатора является
+<b>expand</b>,
+
+указание которого приводит к тому, что замена подстрок подсовпадениями происходит даже если
+<b>dnstyle</b>
+
+не является
+<b>regex</b>.
+
+Имейте ввиду, что dnstyle
+<b>regex </b>
+
+в приведённом выше примере целесообразно использовать, только если в условии
+<b>&lt;by&gt;</b>
+
+требуется применение регулярного выражения; в противном случае,
+если в этом же примере значение второго (справа) вхождения
+<b>dc=</b>
+
+в DN фиксировано, может быть использована форма:
+</p><p>
+
+</p><pre>    access to dn.regex="^(.+,)?uid=([^,]+),dc=example,dc=com$"
+        by dn.exact,expand="uid=$2,dc=example,dc=com" write
+</pre>
+
+<p>
+
+Если же это вхождение должно соответствовать значению в условии
+<b>&lt;what&gt;</b>,
+
+то может быть использована форма:
+</p><p>
+
+</p><pre>    access to dn.regex="^(.+,)?uid=([^,]+),dc=([^,]+),dc=com$"
+        by dn.exact,expand="uid=$2,dc=$3,dc=com" write
+</pre>
+
+<p>
+
+Отличные от regex формы условия
+<b>&lt;what&gt;</b>
+
+могут также предоставлять подсовпадения. Формы
+<b>base(object)</b>,
+
+<b>sub(tree)</b>,
+
+<b>one(level)</b>,
+
+<b>children</b>
+
+предоставляют подсовпадение
+<b>$0</b>,
+
+совпадающее со строкой целиком.
+Также формы
+<b>sub(tree)</b>,
+
+<b>one(level)</b>,
+
+<b>children</b>
+
+предоставляют подсовпадение
+<b>$1</b>,
+
+совпадающее с самой правой частью DN, как определено в условии
+<b>&lt;what&gt;</b>.
+
+Это может пригодиться, например, для предоставления доступа всем предкам пользователя:
+</p><p>
+
+</p><pre>    access to dn.subtree="dc=com"
+        by dn.subtree,expand="$1" read
+</pre>
+
+<p>
+
+Здесь доступ разрешён только к записям, которые представлены в DN условия
+<b>&lt;by&gt;</b>.
+
+</p><p>
+
+Форма 
+<b>level{&lt;n&gt;}</b>&nbsp;-
+
+это расширение и обобщение формы
+<b>onelevel</b>,
+
+совпадающая со всеми DN, &lt;n&gt;-м предком которых является указанный шаблон.
+Так, <i>level{1}</i> - это эквивалент <i>onelevel</i>, 
+а <i>level{0}</i> - эквивалент <i>base</i>.
+</p><p>
+
+Совершенно бессмысленно предоставлять любые привилегии доступа DN, полностью совпадающему с 
+<b>rootdn</b>
+
+базы данных, к которой применяется этот ACL, поскольку ему неявно
+предоставлены права на запись во всём дереве этой базы данных.
+По сути, контроль доступа для
+<b>rootdn</b>
+
+обходится, чтобы решить пресловутую проблему курицы и яйца.
+</p><p>
+
+Выражение
+<b>dnattr=&lt;attrname&gt;</b>
+
+означает, что доступ предоставляется тем запрашивающим, чей DN перечислен в записи,
+к которой осуществляется доступ, в качестве значения атрибута
+<b>&lt;attrname&gt;</b>.
+
+</p><p>
+
+Выражение
+<b>group=&lt;group&gt;</b>
+
+означает, что доступ предоставляется тем запрашивающим,
+чей DN перечислен в групповой записи, DN которой задан в
+<b>&lt;group&gt;</b>.
+
+Необязательные параметры
+<b>&lt;objectclass&gt;</b>
+
+и
+<b>&lt;attrname&gt;</b>
+
+определяют объектный класс групповой записи и тип атрибута членства в ней.
+Значения по умолчанию -
+<b>groupOfNames</b>
+
+и
+<b>member</b>,
+
+соответственно.
+Опциональный квалификатор стиля
+<b>&lt;style&gt;</b>
+
+может быть
+<b>expand</b>,
+
+тогда
+<b>&lt;group&gt;</b>
+
+будет расширен как строка замены с подстановками (но не как регулярное выражение) согласно
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=regex&amp;category=7">regex</a></b>(7)
+
+и/или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=re_format&amp;category=7">re_format</a></b>(7),
+
+и
+<b>exact</b>,
+
+тогда будет использовано точное совпадение. Если стилем выражения DN в условии
+<b>&lt;what&gt;</b>
+
+является regex, становятся доступны подсовпадения согласно
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=regex&amp;category=7">regex</a></b>(7)
+
+и/или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=re_format&amp;category=7">re_format</a></b>(7);
+
+при других стилях предоставляются ограниченные подсовпадения, как было рассмотрено выше
+при обсуждении формы DN условия
+<b>&lt;by&gt;</b>.
+
+</p><p>
+
+Для статических групп указанный тип атрибута должен иметь синтаксис
+<b>DistinguishedName</b>
+
+или
+<b>NameAndOptionalUID</b>.
+
+Для динамических групп тип атрибута должен быть подтипом от
+<b>labeledURI</b>.
+
+В динамических группах будут оцениваться только LDAP URI формы
+<b><a href="ldap:///">ldap:///</a>&lt;base&gt;??&lt;scope&gt;?&lt;filter&gt;</b>
+
+с поиском только по локальному серверу.
+</p><p>
+
+Выражения
+<b>peername=&lt;peername&gt;</b>,
+
+<b>sockname=&lt;sockname&gt;</b>,
+
+<b>domain=&lt;domain&gt;</b>
+
+и
+<b>sockurl=&lt;sockurl&gt;</b>
+
+означают, что при принятии решения о предоставлении доступа шаблон
+<b>pattern</b>
+
+сравнивается с IP-адресом хоста, с которого происходит подключение, (в форме 
+<b>IP=&lt;ip&gt;:&lt;port&gt;</b>
+
+для IPv4 или
+<b>IP=[&lt;ipv6&gt;]:&lt;port&gt;</b>
+
+для IPv6), либо с именем файла именованного канала при подключении через именованный канал (в форме
+<b>PATH=&lt;path&gt;</b>)
+
+для
+<b>peername</b>;
+
+с именем файла именованного канала для
+<b>sockname</b>;
+
+с именем хоста, с которого происходит подключение, для
+<b>domain</b>;
+
+и с используемым при подключении URL для
+<b>sockurl</b>.
+
+При сравнении с шаблоном применяются те же правила
+<b>style</b>,
+
+которые были описаны для варианта
+<b>group</b>,
+
+плюс стиль
+<b>regex</b>,
+
+подразумевающий подстановку подсовпадений
+<b>expand</b>
+
+и сравнение соответствующих параметров подключения с регулярным выражением.
+Стиль
+<b>exact</b>
+
+условия
+<b>&lt;peername&gt;</b>
+
+(по умолчанию) подразумевает точное совпадение с клиентским
+<b>IP</b>,
+
+включая префикс
+<b>IP=</b>
+
+и окончание
+<b>:&lt;port&gt;</b>,
+
+либо с именем файла клиентского именованного канала
+<b>path</b>,
+
+включая префикс
+<b>PATH=</b>
+
+при подключении через именованный канал.
+При использовании специального стиля
+<b>ip</b>
+
+шаблон интерпретируется как
+<b>&lt;peername&gt;=&lt;ip&gt;[%&lt;mask&gt;][{&lt;n&gt;}]</b>,
+
+где
+<b>&lt;ip&gt;</b>
+
+и 
+<b>&lt;mask&gt;</b>&nbsp;-
+
+точечно-цифровое представление IP-адреса и маски подсети, а
+<b>&lt;n&gt;</b>,
+
+заключённое в фигурные скобки, - опциональное указание номера порта.
+То же касается и адресов IPv6 при использовании специального стиля
+<b>ipv6</b>.
+
+При проверке привилегий доступа, извлекается IP-составляющая выражения
+<b>peername</b>,
+
+отбрасываются префикс
+<b>IP=</b>
+
+и часть
+<b>:&lt;port&gt;</b>,
+
+и полученное сравнивается с частью
+<b>&lt;ip&gt;</b>
+
+шаблона после применения маски
+<b>&lt;mask&gt;</b>:
+
+<i>((peername &amp; &lt;mask&gt;) == &lt;ip&gt;)</i>.
+Например,
+<b>peername.ip=127.0.0.1</b>
+
+и
+<b>peername.ipv6=::1</b>
+
+позволяют устанавливать соединение только с локального хоста,
+<b>peername.ip=192.168.1.0%255.255.255.0 </b>
+
+позволяет устанавливать соединение с любого IP-адреса сети класса C 192.168.1, а
+<b>peername.ip=192.168.1.16%255.255.255.240{9009}</b>
+
+позволяет устанавливать соединение с любого IP-адреса в диапазоне 192.168.1.[16-31]
+той же сети и только при использовании порта 9009.
+В случае соединения через именованный канал, при использовании специального стиля
+<b>path</b>
+
+из 
+<b>peername</b>
+
+отбрасывается префикс
+<b>PATH=</b>
+
+и полученное значение сравнивается на точное совпадение с заданным шаблоном.
+В условии
+<b>&lt;domain&gt;</b>
+
+также разрешён стиль
+<b>subtree</b>,
+
+в этом случае доступ предоставляется при точном совпадении полностью квалифицированного имени с шаблоном
+<b>domain</b>,
+
+либо при точном совпадении конечной части этого имени (после
+<b>точки</b>)
+
+с шаблоном
+<b>domain</b>.
+
+Разрешено использование стиля
+<b>expand</b>,
+
+при котором подразумевается точное совпадение как в стиле
+<b>exact</b>
+
+с возможностью подстановки подсовпадений; в данном случае более правильным решением считается использование
+<b>expand </b>
+
+в качестве модификатора стиля.
+Для примера,
+<b>domain.subtree=example.com</b>
+
+будет совпадать с <a href="http://www.example.com">www.example.com</a>, но не с <a href="http://www.anotherexample.com">www.anotherexample.com</a>.
+Доменное имя
+<b>domain</b>
+
+хоста, с которого происходит подключение, определяется путём выполнения обратного поиска DNS.
+Поскольку результаты данного вида поиска довольно легко подменить, использование выражения
+<b>domain</b>
+
+настоятельно не рекомендуется. По умолчанию, обратный поиск отключен.
+В необязательном квалификаторе
+<b>domainstyle</b>
+
+условия
+<b>&lt;domain&gt;</b>
+
+разрешено использовать опциональный модификатор
+<b>modifier</b>;
+
+единственное на сегодняшний день поддерживаемое значение модификатора -
+<b>expand</b>,
+
+указание которого приводит к тому, что замена подстрок подсовпадениями происходит, даже если
+<b>domainstyle</b>
+
+не является
+<b>regex</b>,
+
+аналогично тому, как это происходит в условии
+<b>&lt;dn&gt;</b>.
+
+</p><p>
+
+Применение выражения
+<b>set=&lt;pattern&gt;</b>
+
+пока недокументировано.
+</p><p>
+
+Выражение
+<b>dynacl/&lt;name&gt;[/&lt;options&gt;][.&lt;dynstyle&gt;][=&lt;pattern&gt;]</b>
+
+означает, что проверка доступа возлагается на определённый администратором метод, указываемый в поле
+<b>&lt;name&gt;</b>,
+
+который может быть зарегистрирован во время выполнения с помощью директивы
+<b>moduleload</b>.
+
+Поля
+<b>&lt;options&gt;</b>,
+
+<b>&lt;dynstyle&gt;</b>
+
+и
+<b>&lt;pattern&gt;</b>
+
+являются опциональными и непосредственно передаются зарегистрированной процедуре разбора.
+Динамические ACL dynacl являются экспериментальными; они должны быть явно включены во время компиляции.
+</p><p>
+
+Выражение
+<b>dynacl/aci[=&lt;attrname&gt;]</b>
+
+означает, что контроль доступа определяется значениями атрибутов
+<b>attrname</b>
+
+самой записи.
+Необязательный параметр
+<b>&lt;attrname&gt;</b>
+
+указывает, в атрибутах какого типа содержится ACI-информация в записи.
+По умолчанию используется операционный атрибут
+<b>OpenLDAPaci</b>.
+
+ACIs являются экспериментальными; они должны быть явно включены во время компиляции.
+</p><p>
+
+Выражения
+<b>ssf=&lt;n&gt;</b>,
+
+<b>transport_ssf=&lt;n&gt;</b>,
+
+<b>tls_ssf=&lt;n&gt;</b>
+
+и
+<b>sasl_ssf=&lt;n&gt;</b>
+
+задают минимально необходимый фактор силы безопасности (Security Strength Factor, ssf),
+требуемый для предоставления доступа. Значением должно быть положительное целое число.
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПОЛЕ &lt;ACCESS&gt;</h2>
+
+Необязательное поле
+<b>&lt;access&gt; ::= [[real]self]{&lt;level&gt;|&lt;priv&gt;}</b>
+
+определяет уровень доступа или специфические привилегии доступа, предоставляемые тому, кто указан в поле
+<b>who</b>.
+
+Компоненты поля
+<b>&lt;access&gt;</b>
+
+определяются следующим образом:
+<p>
+
+</p><pre>        &lt;level&gt; ::= none|disclose|auth|compare|search|read|{write|add|delete}|manage
+        &lt;priv&gt; ::= {=|+|- }{0|d|x|c|s|r|{w|a|z}|m}+
+</pre>
+
+<p>
+
+Модификатор
+<b>self</b>
+
+позволяет специальные операции, вроде получения некоторого уровня доступа или привилегии,
+только в случае, когда в этой операции участвует имя пользователя, запрашивающего доступ.
+Подразумевается, что пользователь, запрашивающий доступ, прошёл авторизацию.
+Модификатор
+<b>realself</b>
+
+указывает на аутентификационное DN, в отличие от авторизационного DN модификатора
+<b>self</b>.
+
+В качестве примера можно привести уровень доступа
+<b>selfwrite</b>
+
+к атрибуту членства в группе, позволяющий кому-либо добавлять/удалять своё собственное DN
+в списке членов группы, но не дающий права воздействовать на других членов.
+</p><p>
+
+Модель доступа
+<b>level </b>
+
+основывается на инкрементной интерпретации привилегий доступа. Возможные уровни:
+<b>none</b>,
+
+<b>disclose</b>,
+
+<b>auth</b>,
+
+<b>compare</b>,
+
+<b>search</b>,
+
+<b>read</b>,
+
+<b>write</b>
+
+и
+<b>manage</b>.
+
+Каждый уровень доступа подразумевает права всех предыдущих, а на уровне
+<b>manage</b>
+
+предоставляется полный доступ, в том числе административный. Уровень 
+<b>write</b>
+
+на самом деле представляет собой комбинацию уровней
+<b>add</b>
+
+и
+<b>delete</b>,
+
+которые, соответственно, ограничивают привилегии записи до добавления и удаления
+объектов, указанных в поле
+<b>&lt;what&gt;</b>.
+
+</p><p>
+</p><p>
+
+Уровень доступа
+<b>none </b>
+
+запрещает любой доступ, в том числе вывод информации об ошибках при возникновении таковых.
+</p><p>
+
+Уровень доступа
+<b>disclose</b>
+
+позволяет выводить информацию об ошибках при возникновении таковых.
+</p><p>
+
+Уровень доступа
+<b>auth</b>
+
+означает, что запрашивающему разрешается доступ к отдельному атрибуту
+для выполнения операций аутентификации/авторизации (например,
+<b>bind</b>),
+
+остальной доступ запрещается. Это полезно для предоставления неаутентифицированным
+клиентам минимально возможного уровня доступа к критическим ресурсам, таким как пароли.
+</p><p>
+
+Модель доступа
+<b>priv</b>
+
+основывается на явном задании привилегий доступа для каждого условия.
+Знак
+<b>=</b>
+
+сбрасывает заданные ранее привилегии доступа; следовательно,
+итоговые привилегии соответствуют тем, которые заданы только в этом условии.
+Знаки
+<b>+</b>
+
+и
+<b>-</b>
+
+добавляют/удаляют привилегии доступа к уже существующим.
+Привилегии могут быть:
+<b>m</b>
+
+для manage (управление),
+<b>w</b>
+
+для write (запись),
+<b>a</b>
+
+для add (добавление),
+<b>z</b>
+
+для delete (удаление),
+<b>r</b>
+
+для read (чтение),
+<b>s </b>
+
+для search (поиск),
+<b>c </b>
+
+для compare (сравнение),
+<b>x</b>
+
+для authentication (аутентификация) и
+<b>d</b>
+
+для disclose (вывод информации об ошибках).
+В одном выражении можно указывать несколько из этих привилегий.
+<b>0</b>
+
+указывает, что никаких привилегий не предоставляется.
+Это значение может быть использовано только само по себе (например, +0).
+Имейте ввиду, что
+<b>+az</b>&nbsp;-
+
+это эквивалент
+<b>+w</b>.
+
+</p><p>
+
+Если никакого уровня или привилегий доступа не указано, значение по умолчанию - 
+<b>+0</b>.
+
+<a name="lbAI">&nbsp;</a>
+</p><h2>ПОЛЕ &lt;CONTROL&gt;</h2>
+
+Необязательное поле
+<b>&lt;control&gt;</b>
+
+управляет ходом применения правил доступа. Оно может принимать формы:
+<p>
+
+</p><pre>        stop
+        continue
+        break
+</pre>
+
+<p>
+
+где
+<b>stop</b>
+
+(значение по умолчанию), означает, что в случае нахождения совпадения контроль доступа завершается.
+Две других формы используются для продолжения обработки условий доступа. Форма
+<b>continue</b>
+
+позволяет перейти к рассмотрению других условий
+<b>&lt;who&gt;</b>
+
+в том же условии
+<b>&lt;access&gt;</b>,
+
+в результате чего может иметь место инкрементное изменение привилегий. Форма 
+<b>break</b>
+
+позволяет перейти к обработке других условий
+<b>&lt;access&gt;</b>,
+
+совпадающих с аналогичными целевыми объектами.
+Рассмотрим пример (глупый):
+</p><p>
+
+</p><pre>        access to dn.subtree="dc=example,dc=com" attrs=cn
+                by * =cs break
+
+        access to dn.subtree="ou=People,dc=example,dc=com"
+                by * +r
+</pre>
+
+<p>
+
+В этом примере всем даются привилегии на поиск и сравнение в пределах дерева
+"dc=example,dc=com", а во втором правиле также разрешается чтение в пределах поддерева
+"ou=People". Второй (ещё более глупый) пример:
+</p><p>
+
+</p><pre>        access to dn.subtree="dc=example,dc=com" attrs=cn
+                by * =cs continue
+                by users +r
+</pre>
+
+<p>
+
+В этом примере  всем даются привилегии на поиск и сравнение, а пользователям,
+прошедшим проверку подлинности, дополнительно предоставляются привилегии на чтение.
+</p><p>
+
+Одним из полезных применений может быть простое предоставление привилегий на запись пользователю
+<b>updatedn</b>,
+
+отличному от
+<b>rootdn</b>.
+
+В этом случае, поскольку
+<b>updatedn</b>
+
+требуется доступ на запись ко всем (или почти всем) данным,
+в качестве первого правила доступа можно использовать
+</p><p>
+
+</p><pre>        access to *
+                by dn.exact="cn=The Update DN,dc=example,dc=com" write
+                by * break
+</pre>
+
+<p>
+
+Как следствие, если операция выполняется не от имени 
+<b>updatedn</b>,
+
+контроль доступа сразу переходит к рассмотрению последующих правил.
+</p><p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ТРЕБОВАНИЯ ОПЕРАЦИЙ</h2>
+
+Операциям требуются различные привилегии доступа к различным частям
+и совокупностям записей. Приводимое ниже краткое изложение применимо к
+базам данных первичных механизмов манипуляции данными, таких как BDB и HDB.
+Требования баз данных других механизмов могут отличаться (и часто отличаются).
+<p>
+</p><p>
+
+Операция
+<b>add</b>
+
+требует привилегий
+<b>add (=a)</b>
+
+на псевдоатрибут
+<b>entry</b>
+
+добавляемой записи и привилегий
+<b>add (=a)</b>
+
+на псевдоатрибут
+<b>children</b>
+
+родительской по отношению к ней записи.
+При добавлении записи-суффикса базы данных требуется доступ
+<b>add</b>
+
+на псевдоатрибут
+<b>children</b>
+
+пустого DN (""). Также, если на уровне базы данных была настроена проверка
+ACL добавления контента (смотрите man-страницы
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-config&amp;category=5">slapd-config</a></b>(5)),
+
+на все добавляемые атрибуты требуются привилегии
+<b>add</b>(=a)<b>.</b>
+
+</p><p>
+</p><p>
+
+Операция
+<b>bind</b>,
+
+при хранении данных аутентификации в каталоге, требует привилегий
+<b>auth (=x)</b>
+
+на атрибут, в котором хранятся эти данные (обычно
+<b>userPassword</b>).
+
+</p><p>
+</p><p>
+
+Операция
+<b>compare</b>
+
+требует привилегий
+<b>compare (=c)</b>
+
+на атрибут, который будет сравниваться.
+</p><p>
+</p><p>
+
+Операция
+<b>delete</b>
+
+требует привилегий
+<b>delete (=z)</b>
+
+на псевдоатрибут
+<b>entry </b>
+
+удаляемой записи, и привилегий
+<b>delete (=z)</b>
+
+на псевдоатрибут
+<b>children</b>
+
+родительской по отношению к ней записи.
+</p><p>
+</p><p>
+
+Операция
+<b>modify</b>
+
+требует привилегий
+<b>write (=w)</b>
+
+на модифицируемый атрибут.
+Точнее, для добавления новых значений требуются привилегии 
+<b>add</b>(=a)<b>,</b>
+
+для удаления существующих значений требуются привилегии
+<b>delete</b>(=z)<b>,</b>
+
+а для замены существующих значений требуются одновременно привилегии
+<b>delete</b>
+
+и
+<b>add (=az)</b>,
+
+либо
+<b>write (=w)</b>.
+
+</p><p>
+</p><p>
+
+Операция
+<b>modrdn</b>
+
+требует привилегий
+<b>write (=w)</b>
+
+на псевдоатрибут
+<b>entry</b>
+
+той записи, у которой модифицируется относительный DN, привилегий
+<b>delete (=z)</b>
+
+на псевдоатрибут
+<b>children</b>
+
+старой родительской по отношению к ней записи, привилегий
+<b>add (=a)</b>
+
+на псевдоатрибут
+<b>children</b>
+
+новой родительской по отношению к ней записи, и привилегий
+<b>add (=a)</b>
+
+на атрибуты, присутствующие в новом относительном DN.
+Если
+<b>deleteoldrdn</b>
+
+установлен в 1, то также требуются привилегии
+<b>delete (=z)</b>
+
+на атрибуты, присутствующие в старом относительном DN.
+</p><p>
+</p><p>
+
+Операция
+<b>search</b>
+
+требует привилегий
+<b>search (=s)</b>
+
+на псевдоатрибут
+<b>entry</b>
+
+записи-основы поиска searchBase (ПРИМЕЧАНИЕ: это было введено в OpenLDAP версии 2.4).
+Далее, для каждой записи требуются привилегии
+<b>search (=s)</b>
+
+на атрибуты, которые указаны в поисковом фильтре.
+Наконец, записи, отобранные в результате поиска, проверяются на наличие привилегий
+<b>read (=r)</b>
+
+на псевдоатрибут
+<b>entry</b>
+
+(для доступа на чтение к самой записи)
+и доступа
+<b>read (=r)</b>
+
+к каждому значению каждого запрашиваемого атрибута.
+Кроме того, для каждого объекта
+<b>referral</b>,
+
+используемого при генерации отсылок-продолжений, операция поиска требует доступа
+<b>read (=r)</b>
+
+на псевдоатрибут
+<b>entry</b>
+
+(для доступа на чтение к самому объекту referral),
+а также доступа
+<b>read (=r)</b>
+
+к атрибуту, в котором содержится информация об отсылке
+(обычно атрибут
+<b>ref</b>).
+
+</p><p>
+</p><p>
+
+Некоторые внутренние операции и некоторые элементы управления
+<b>controls</b>
+
+требуют специфических привилегий доступа.
+Отображение
+<b>authzID</b>
+
+и элемент управления
+<b>proxyAuthz</b>
+
+требуют привилегий
+<b>auth (=x)</b>
+
+на все атрибуты, присутствующие в поисковом фильтре URI карт регулярных выражений (правая часть директив
+<b>authz-regexp</b>).
+
+Также требуются привилегии
+<b>auth (=x)</b>
+
+на атрибут
+<b>authzTo</b>
+
+авторизационной идентификационной сущности и/или атрибут
+<b>authzFrom</b>
+
+авторизованной идентификационной сущности. Вообще, при выполнении внутреннего поиска
+в целях аутентификации или авторизации, специфичные для поиска привилегии
+(смотрите приведённые выше требования доступа для операции search) ослабляются до
+<b>auth</b>.
+
+</p><p>
+</p><p>
+
+Контроль доступа к записям в процессе поиска проверяется интерфейсом приёма запросов frontend,
+поэтому полностью соблюдается всеми механизмами манипуляции данными; для всех остальных операций
+и для фазы обнаружения записей операции поиска search полные семантики ACL поддерживаются
+только первичными механизмами манипуляции данными, то есть
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=back-bdb&amp;category=5">back-bdb</a></b>(5)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=back-hdb&amp;category=5">back-hdb</a></b>(5).
+
+</p><p>
+Некоторые другие механизмы манипуляции данными, такие как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=back-sql&amp;category=5">back-sql</a></b>(5),
+
+могут полностью поддерживать описанные семантики; другие могут поддерживать только часть из них,
+или даже вести себя иначе в некоторых аспектах. Подробнее об этом можно узнать в
+man-страницах, специфичных для конкретного механизма манипуляции данными.
+</p><p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>ПРЕДОСТЕРЕЖЕНИЯ</h2>
+
+Настоятельно рекомендуется явно использовать наиболее подходящий стиль
+<b>&lt;dnstyle&gt;</b>
+
+в условиях
+<b>&lt;what&gt;</b>
+
+и
+<b>&lt;who&gt;</b>
+
+во избежание возможных неверных спецификаций правил доступа, а также в целях улучшения производительности
+(не следует без необходимости использовать поиск соответствия с регулярным выражением regex,
+когда достаточно определения точного совпадения exact).
+<p>
+
+Администратор может создать правило
+</p><p>
+
+</p><pre>        access to dn.regex="dc=example,dc=com"
+                by ...
+</pre>
+
+<p>
+
+ожидая, что оно будет соответствовать всем записям в поддереве "dc=example,dc=com".
+Однако, на самом деле это правило соответствует любому DN,
+содержащему где бы то ни было подстроку "dc=example,dc=com". То есть, данное правило верно и для
+"uid=joe,dc=example,dc=com", и для "dc=example,dc=com,uid=joe".
+</p><p>
+
+Чтобы соответствовать желаемому поддереву, это правило должно быть составлено более точно:
+</p><p>
+
+</p><pre>        access to dn.regex="^(.+,)?dc=example,dc=com$"
+                by ...
+</pre>
+
+<p>
+
+По соображениям производительности лучше будет использовать стиль subtree:
+</p><p>
+
+</p><pre>        access to dn.subtree="dc=example,dc=com"
+                by ...
+</pre>
+
+<p>
+
+При составлении правил с подсовпадениями более правильно будет не использовать без необходимости
+<b>&lt;dnstyle&gt;</b>
+
+<b>regex</b>.
+
+Например, чтобы разрешить доступ к поддереву пользователя, совпадение с которым
+определяется в условии
+<b>&lt;what&gt;</b>,
+
+этому же пользователю, можно составить правило:
+</p><p>
+
+</p><pre>        access to dn.regex="^(.+,)?uid=([^,]+),dc=example,dc=com$"
+                by dn.regex="^uid=$2,dc=example,dc=com$$" write
+                by ...
+</pre>
+
+<p>
+
+Однако, поскольку в условии
+<b>&lt;by&gt;</b>
+
+требуется всего лишь подстановка подстроки, более эффективным решением будет:
+</p><p>
+
+</p><pre>        access to dn.regex="^(.+,)?uid=([^,]+),dc=example,dc=com$"
+                by dn.exact,expand="uid=$2,dc=example,dc=com" write
+                by ...
+</pre>
+
+<p>
+
+По сути, если
+<b>&lt;dnstyle&gt; regex</b>
+
+подразумевает подстановку подстрок, то 
+<b>exact</b>
+
+(и другие связанные с DN значения
+<b>&lt;dnstyle&gt;</b>)
+
+- нет, поэтому подстановка должна быть запрошена явно.
+</p><p>
+
+<a name="lbAL">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt>/usr/local/etc/openldap/slapd.conf</dt><dd>
+конфигурационный файл slapd по умолчанию
+</dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8),
+
+<b>slapd-*</b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapacl&amp;category=8">slapacl</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=regex&amp;category=7">regex</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=re_format&amp;category=7">re_format</a></b>(7)
+
+<p>
+
+"Руководство администратора OpenLDAP" (<a href="http://www.OpenLDAP.org/doc/admin/,">http://www.OpenLDAP.org/doc/admin/,</a> <a href="http://pro-ldap.ru/tr/admin24/).">http://pro-ldap.ru/tr/admin24/).</a>
+<a name="lbAN">&nbsp;</a>
+</p><h2>ПРИЗНАНИЕ ЗАСЛУГ</h2>
+
+
+
+<b>Программное обеспечение OpenLDAP</b>
+
+разработано и поддерживается проектом OpenLDAP &lt;<a href="http://www.openldap.org/">http://www.openldap.org/</a>&gt;.
+<b>Программное обеспечение OpenLDAP</b>
+
+является производным от релиза 3.3 LDAP Мичиганского Университета.
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ДИРЕКТИВА ACCESS</a></dt><dd>
+</dd><dt><a href="#lbAF">ПОЛЕ &lt;WHAT&gt;</a></dt><dd>
+</dd><dt><a href="#lbAG">ПОЛЕ &lt;WHO&gt;</a></dt><dd>
+</dd><dt><a href="#lbAH">ПОЛЕ &lt;ACCESS&gt;</a></dt><dd>
+</dd><dt><a href="#lbAI">ПОЛЕ &lt;CONTROL&gt;</a></dt><dd>
+</dd><dt><a href="#lbAJ">ТРЕБОВАНИЯ ОПЕРАЦИЙ</a></dt><dd>
+</dd><dt><a href="#lbAK">ПРЕДОСТЕРЕЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAL">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAM">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAN">ПРИЗНАНИЕ ЗАСЛУГ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="slapd.access" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

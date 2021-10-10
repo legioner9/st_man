@@ -1,0 +1,468 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN qfile (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, qfile"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="qfile" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">qfile (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=qfile&amp;category=1&amp;russian=0"><u>qfile</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+  <h1 id="qfile"> qfile<a href="#qfile" class="wiki-anchor">¶</a></h1>
+
+
+	<h2 id="НАЗВАНИЕ">НАЗВАНИЕ<a href="#НАЗВАНИЕ" class="wiki-anchor">¶</a></h2>
+
+
+qfile - вывод всех пакетов, которым принадлежит файл 
+
+	<h2 id="СИНТАКСИС">СИНТАКСИС<a href="#СИНТАКСИС" class="wiki-anchor">¶</a></h2>
+
+
+	<p><strong>qfile</strong> <em>&lt;файл&gt;</em></p>
+
+
+	<h2 id="ОПИСАНИЕ">ОПИСАНИЕ<a href="#ОПИСАНИЕ" class="wiki-anchor">¶</a></h2>
+
+
+	<p>Доступные опции: <strong>-[ef:m:oRx:vqChV]</strong></p>
+
+
+	<p><strong>-e</strong>, <strong>--exact</strong></p>
+
+
+	<p style="padding-left:4em;">* Искать точное соответствие</p>
+
+
+	<p><strong>-f</strong>, <strong>--from</strong> &lt;аргумент&gt;</p>
+
+
+	<p style="padding-left:4em;"> * Брать аргументы из файла в &lt;аргументе&gt; ("-" для стандартного ввода)</p>
+
+
+	<p><strong>-m</strong>, <strong>--max-args</strong> &lt;аргумент&gt;</p>
+
+
+	<p style="padding-left:4em;"> * Обрабатывать файлы группами в количестве, заданном &lt;аргументом&gt; (значение по умолчанию - 5000)</p>
+
+
+	<p><strong>-o</strong>, <strong>--orphans</strong></p>
+
+
+	<p style="padding-left:4em;">* Вывести список файлов</p>
+
+
+	<p><strong>-R</strong>, <strong>--root-prefix</strong></p>
+
+
+	<p style="padding-left:4em;">* Считать, что префикс $ROOT уже добавлен к аргументам</p>
+
+
+	<p><strong>-x</strong>, <strong>--exclude</strong> &lt;аргумент&gt;</p>
+
+
+	<p style="padding-left:4em;"> * Не рассматривать пакет в &lt;аргументе&gt;</p>
+
+
+	<p><strong>-v</strong>, <strong>--verbose</strong></p>
+
+
+	<p style="padding-left:4em;">* Предлагать подробный вывод</p>
+
+
+	<p><strong>-q</strong>, <strong>--quiet</strong></p>
+
+
+	<p style="padding-left:4em;">* Предлагать компактный вывод - в частности, не выводить предупреждения</p>
+
+
+	<p><strong>-C</strong>, <strong>--nocolor</strong></p>
+
+
+	<p style="padding-left:4em;">* Не использовать цветной вывод</p>
+
+
+	<p><strong>-h</strong>, <strong>--help</strong></p>
+
+
+	<p style="padding-left:4em;">* Вывести эту справку и выйти</p>
+
+
+	<p><strong>-V</strong>, <strong>--version</strong></p>
+
+
+	<p style="padding-left:4em;">* Вывести версию программы и выйти</p>
+
+
+	<p><em>$Id: qfile.1,v 1.24 2007/01/13 19:17:40 Написано для Gentoo solar и vapier, gentoo.org</em></p>
+
+
+	<h2 id="НАХОЖДЕНИЕ-ПАКЕТОВ-ВЛАДЕЛЬЦЕВ-ФАЙЛОВ">НАХОЖДЕНИЕ ПАКЕТОВ - ВЛАДЕЛЬЦЕВ ФАЙЛОВ<a href="#НАХОЖДЕНИЕ-ПАКЕТОВ-ВЛАДЕЛЬЦЕВ-ФАЙЛОВ" class="wiki-anchor">¶</a></h2>
+
+
+	<p>Это поведение утилиты <strong>qfile</strong> по умолчанию. Будет выведен перечень пакетов, которым принадлежат запрошенные файлы (вместо файлов могут быть каталоги, символические ссылки и любые другие элементы, устанавливаемые Portage). Для запроса можно использовать как путь, так и просто имя файла. Стандартный вывод утилиты включает названия пакетов и полные пути доступа к файлам, удовлетворяющим запросу. Если вы используете опцию <strong>--exact</strong>, будут отображаться также версии пакетов. Если же выставить опцию <strong>--quiet</strong>, будут выведены только названия пакетов, без путей доступа к файлам. Аналогично опции <strong>--exact</strong> работает <strong>--verbose</strong>, но выводит еще больше информации. Когда все пакеты, которым принадлежат файлы, указанные в аргументе, найдены, <strong>qfile</strong> возвращает <em>0</em>.</p>
+
+
+	<p>Найти пакет(ы), которому/-ым принадлежит "/bin/bash": <br></p><pre>    $ qfile -q /bin/bash 
+    app-shells/bash 
+</pre><p></p>
+
+
+	<p>Найти пакет(ы), которому/-ым принадлежит любой файл с именем "bash", и показать пути доступа к нему: <br></p><pre>    $ qfile bash 
+    app-shells/bash (/bin/bash) 
+    app-shells/bash (/etc/bash) 
+</pre><p></p>
+
+
+	<p>Найти пакет(ы), которому/-ым принадлежит любой файл с именем "bash", в текущем каталоге. Кроме того, будет выведен точный номер версии: <br></p><pre>    $ cd /bin 
+    $ qfile -e ./bash 
+    app-shells/bash-3.1_p17 (/bin/bash) 
+</pre><p></p>
+
+
+	<p>Найти пакет(ы), которому/-ым принадлежат библиотеки, требуемые бинарным Bash: <br></p><pre>    $ qfile $(scanelf -nq -F%n#F /bin/bash | tr , '\n') 
+    sys-libs/ncurses (/lib/libncurses.so.5) 
+    sys-libs/glibc (/lib/libdl.so.2) 
+    sys-libs/glibc (/lib/libc.so.6) 
+</pre><p></p>
+
+
+	<h2 id="ОБНАРУЖЕНИЕ-НЕИСПОЛЬЗУЕМЫХ-ФАЙЛОВ">ОБНАРУЖЕНИЕ НЕИСПОЛЬЗУЕМЫХ ФАЙЛОВ<a href="#ОБНАРУЖЕНИЕ-НЕИСПОЛЬЗУЕМЫХ-ФАЙЛОВ" class="wiki-anchor">¶</a></h2>
+
+
+	<p><strong>qfile</strong> умеет также находить файлы, не принадлежащие ни одному пакету; для этого необходимо использовать опцию <strong>--orphans</strong>. Фактически при этом утилита осуществляет операцию, обратную своему обычному поведению: выводит список элементов, для которых не найдено соответствий в базе данных установленных пакетов. Опция <strong>--exact</strong> в данном режиме не работает, но вы можете использовать <strong>--verbose</strong>, если вы хотите видеть дополнительную информацию. Если же вы выставите опцию <strong>--quiet</strong>, вывод утилиты будет полностью отключен: команда отработает молча и вернет <em>0</em> только в том случае, если неиспользуемых файлов среди запрошенных вами нет.</p>
+
+
+	<p>Найти неиспользуемые файлы библиотек: <br></p><pre>    $ qfile -o $(find /lib /usr/lib -name "*.la") 
+    /usr/lib/libGL.la 
+</pre><p></p>
+
+
+	<p>Найти библиотеки, которые нужны для работы бинарному пакету "foo", но при этом не были установлены ни одним пакетом: <br></p><pre>    $ qfile -o $(scanelf -nq -F%n#F /путь/к/foo | tr , '\n') 
+    libinstalledmanually.so.2 
+</pre><p></p>
+
+
+	<h2 id="ОБРАБОТКА-ПЕРЕМЕННОЙ-ROOT">ОБРАБОТКА ПЕРЕМЕННОЙ ROOT<a href="#ОБРАБОТКА-ПЕРЕМЕННОЙ-ROOT" class="wiki-anchor">¶</a></h2>
+
+
+	<p>Установив переменную окружения <em>ROOT</em>, вы можете указать <strong>qfile</strong>, в какой системе работать. В приведенном примере осуществляется поиск пакета-владельца файла "/bin/sh" - сначала в вашей основной системе, а затем в системе, смонтированной в каталог "/mnt": <br></p><pre>    $ qfile -q /bin/sh 
+    app-shells/bash 
+    $ ROOT=/mnt qfile -q /bin/sh 
+    sys-apps/busybox 
+</pre><p></p>
+
+
+	<p>Обратите внимание, что в обеих командах аргументов запроса является "/bin/sh": по умолчанию <strong>qfile</strong> ищет по путям доступа к файлам, прописанным в базе данных пакетов адресуемой системы, и эти пути не включают <em>$ROOT</em>. Если же вы хотите искать по действительным путям доступа к файлам (включая точку монтирования), используйте опцию <strong>--root-prefix</strong> (<strong>-R</strong>): <br></p><pre>    $ ROOT=/mnt qfile -Rq /mnt/bin/sh 
+    sys-apps/busybox 
+</pre><p></p>
+
+
+	<p>Кроме того, опция <strong>-R</strong> отличается от настроек по умолчанию выводом путей доступа. В предыдущем примере префикс <em>$ROOT</em> не используется, а в примере ниже - используется: <br></p><pre>    $ ROOT=/mnt qfile sh 
+    sys-apps/busybox (/bin/sh) 
+    $ ROOT=/mnt qfile -R sh 
+    sys-apps/busybox (/mnt/bin/sh) 
+</pre><p></p>
+
+
+	<p>Разумеется, сказанное справедливо и для поиска неиспользуемых файлов: <br></p><pre>    $ ROOT=/mnt qfile -o $(ls /mnt/bin/ | sed 's:^/mnt::') 
+    /bin/dostuff.sh 
+    $ ROOT=/mnt qfile -Ro /mnt/bin/* 
+    /mnt/bin/dostuff.sh 
+</pre><p></p>
+
+
+	<h2 id="СЧИТЫВАНИЕ-АРГУМЕНТОВ-ИЗ-ФАЙЛА-СТАНДАРТНЫЙ-ВВОД">СЧИТЫВАНИЕ АРГУМЕНТОВ ИЗ ФАЙЛА (СТАНДАРТНЫЙ ВВОД)<a href="#СЧИТЫВАНИЕ-АРГУМЕНТОВ-ИЗ-ФАЙЛА-СТАНДАРТНЫЙ-ВВОД" class="wiki-anchor">¶</a></h2>
+
+
+	<p>Пытаясь запустить <strong>qfile</strong> с большим количеством аргументов, вы можете столкнуться со следующей ошибкой интерпретатора: <br></p><pre>    $ qfile -o $(find /usr/lib) 
+    bash: ./qfile: Argument list too long 
+</pre><p></p>
+
+
+	<p>Во избежание этого следует использовать опцию <strong>--from</strong> (<strong>-f</strong>), которая позволяет считывать список аргументов из файла: <br></p><pre>    $ find /usr/lib &gt; ~/usr-lib.list 
+    $ qfile -o -f ~/usr-lib.list 
+    /usr/lib/libMagick-5.5.7-Q16.so.0.0.0 
+    /usr/lib/libGL.so 
+    ... 
+</pre><p></p>
+
+
+	<p>В каждой строке списка аргументов должен располагаться только один файл, без какого либо мусора (без пробелов в начале или в конце строки, без пропусков строки и т.п.). Стандартный формат вывода <strong>find</strong>, как правило, вполне удобен.</p>
+
+
+	<p>Но аргументы могут быть перенаправлены и со стандартного ввода, с помощью псевдо-имени файла "<strong>-</strong>"; это удобно при использовании конвейера: <br></p><pre>    $ find /usr/lib | qfile -o -f - 
+    /usr/lib/libMagick-5.5.7-Q16.so.0.0.0 
+    /usr/lib/libGL.so 
+    ... 
+</pre><p></p>
+
+
+	<p>Ниже приведен пример сценария, которые ищет некоторые файлы, которые могут оказаться неиспользуемыми конфигурационными файлами, не удаленными Portage при удалении или обновлении пакетов: <br></p><pre>    #!/bin/bash 
+    SEARCH_PATHS="$(portageq envvar CONFIG_PROTECT)" 
+    SEARCH_MASK="$(portageq envvar CONFIG_PROTECT_MASK) 
+        /etc/runlevels /etc/portage 
+        /etc/ssl/certs /etc/ssh 
+        /etc/bash_completion.d /etc/cups" 
+    for path in ${SEARCH_MASK} ; do 
+        EXCLUDE="${EXCLUDE} -not -path ${path}/*" 
+    done 
+    set -f 
+    find ${SEARCH_PATHS} ${EXCLUDE} | qfile -o -f - 
+</pre><p></p>
+
+
+	<p><strong>ВНИМАНИЕ:</strong> приведенный сценарий не следует рассматривать как рабочий инструмент - это не более чем набросок. Не удаляйте вслепую файлы, которые будут выведены при запуске этого сценария!</p>
+
+
+	<p>Если аргументы считываются из файла или перенаправляются со стандартного ввода, для улучшения производительности <strong>qfile</strong> обрабатывает данные блоками по 5000 элементов (будет осуществлен поиск пакетов-владельцев первых 5000 файлов, затем 5000 следующих и т.д.). В большинстве случаев это условное значение вполне удобно, но при желании вы можете изменить его с помощью опции <strong>--max-args</strong> (<strong>-m</strong>). Увеличение значения по умолчанию увеличит объем используемой оперативной памяти, но может ускорить обработку запросов с очень большим количеством аргументов; тем не менее всякое необдуманное изменение может самым негативным образом сказаться на производительности. Не вдаваясь в детали, можно сказать, что вам, скорее всего, не потребуется изменять стандартное значение.</p>
+
+
+	<h2 id="ПОИСК-КОНФЛИКТУЮЩИХ-ФАЙЛОВ">ПОИСК КОНФЛИКТУЮЩИХ ФАЙЛОВ<a href="#ПОИСК-КОНФЛИКТУЮЩИХ-ФАЙЛОВ" class="wiki-anchor">¶</a></h2>
+
+
+	<p>Последней опцией утилиты <strong>qfile</strong> является <strong>--exclude</strong> (<strong>-x</strong>). Она позволяет пропустить при поиске пакетов-владельцев файлов один определенный пакет. Эта опция принимает один аргумент: это может быть название пакета (например, <strong>bash</strong> или <strong>app-shells/bash</strong>), название пакета с указанием версии (например, <strong>bash-3.2_p9-r1</strong> или <strong>app-shells/bash-3.2_p9-r1</strong>), название пакета с указанием слота (<strong>bash:0</strong> или <strong>app-shells/bash:0</strong>). Опция полезна для выявления конфликтов между пакетами (в частности, путем сопоставления содержимого одного пакета с другими).</p>
+
+
+	<p>Так, приведенный ниже сценарий предназначен для поиска конфликтов между любыми установленными пакетами. Имейте в виду, что это займет некоторое время: <br></p><pre>    #!/bin/bash 
+    cd $(portageq vdb_path) 
+    for pkg in *-*/*-* ; do 
+        [[ -f ${pkg}/CONTENTS ]] || continue 
+        collisions=$(sed -n 
+                '/^obj\|^sym/s:^... \([^ ]\+\).*:\1:p' 
+                ${pkg}/CONTENTS 
+            | qfile -e -x ${pkg} -f -) 
+        [[ -n ${collisions} ]] 
+            &amp;&amp; echo "&gt;&gt;&gt; ${pkg}:" 
+            &amp;&amp; echo "${collisions}" 
+    done 
+</pre><p></p>
+
+
+	<p>А этот сценарий может быть использован для проверки, не имеет ли бинарный пакет (.tbz2-архив) конфликтов с каким-либо из установленных пакетов, за исключением того, который он может заменить (с тем же именем и слотом), если таковой имеется: <br></p><pre>#!/bin/bash 
+pkgver=$(basename "${1}") 
+pkgver=${pkgver%%.tbz2} 
+pn=$(qatom ${pkgver} | cut -d\  -f2) 
+tmpdir=$(mktemp -t -d) || exit 1 
+tarbz2=${tmpdir}/${pkgver}.tar.bz2 
+xpak=${tmpdir}/${pkgver}.xpak 
+qtbz2 -s "${1}" "${tarbz2}" "${xpak}" 
+categ=$(qxpak -O -x "${xpak}" CATEGORY) 
+slot=$(qxpak -O -x "${xpak}" SLOT) 
+tar tjf "${tarbz2}" 
+    | sed -e 's:^\./:/:' -e '\:/$:d' 
+    | qfile -e -f - -x ${categ}/${pn}:${slot} 
+rm -rf "${tmpdir}" 
+</pre><p></p>
+
+
+	<h2 id="РАЗРАБОТАНО-ПРИ-УЧАСТИИ">РАЗРАБОТАНО ПРИ УЧАСТИИ<a href="#РАЗРАБОТАНО-ПРИ-УЧАСТИИ" class="wiki-anchor">¶</a></h2>
+
+
+	<ul>
+	<li>TGL <a class="email" href="mailto:degrenier@easyconnect.fr">degrenier@easyconnect.fr</a></li>
+	</ul>
+
+
+	<h2 id="ПЕРЕВОД">ПЕРЕВОД<a href="#ПЕРЕВОД" class="wiki-anchor">¶</a></h2>
+
+
+	<ul>
+	<li>Елена Гаврилова &lt;<a class="email" href="mailto:e.vl.gavrilova@yandex.ru">e.vl.gavrilova@yandex.ru</a>&gt;</li>
+	</ul>
+
+
+	<p>&nbsp;<br>&nbsp;</p>
+
+
+	<p>Январь 2007</p>
+
+
+
+
+
+
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="qfile" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

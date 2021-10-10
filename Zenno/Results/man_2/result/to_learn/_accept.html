@@ -1,0 +1,615 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN accept (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, accept"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="accept" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">accept (2)</font><hr><li> <a href="/man.shtml?topic=accept&amp;category=1&amp;russian=4"><u>accept</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=accept&amp;category=2&amp;russian=1"><u>accept</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=accept&amp;category=2&amp;russian=0"><u>accept</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=accept&amp;category=2&amp;russian=2"><u>accept</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=accept&amp;category=3&amp;russian=4"><u>accept</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=accept&amp;category=3&amp;russian=5"><u>accept</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=accept&amp;category=8&amp;russian=2"><u>accept</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+accept - принять соединение на сокете
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>#include &lt;<a href="file:/usr/include/sys/types.h">sys/types.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;</b>
+
+<p>
+<b>int accept(int </b><i>s</i><b>, struct sockaddr *</b><i>addr</i><b>, socklen_t *</b><i>addrlen</i><b>);</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Функция
+<b>accept</b>
+
+используется с сокетами, ориентированными на устанавление соединения
+(<b>SOCK_STREAM</b>,
+
+<b>SOCK_SEQPACKET</b>
+
+и
+<b>SOCK_RDM</b>).
+
+Эта функция извлекает первый запрос на соединение из очереди ожидающих
+соединений, создаёт новый подключенный сокет почти с такими же параметрами,
+что и у
+<i>s</i>,
+
+и выделяет для сокета новый файловый дескриптор, который и
+возвращается.  Новый сокет более не находится в слушающем состоянии.
+Исходный сокет 
+<i>s</i>
+
+не изменяется при этом вызове.  Заметим, что флаги файловых
+дескрипторов (те, что можно установить с помощью параметра
+<b>F_SETFL</b>
+
+функции
+<b>fcntl</b>,
+
+типа неблокированного состояния или асинхронного ввода-вывода) не
+наследуются новым файловым дескриптором после
+<i>accept</i>.
+
+<p>
+</p><p>
+
+Аргумент
+<i>s</i>~--
+
+это сокет, который был создан с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=2">socket</a></b>(2),
+
+привязан к локальному адресу с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bind&amp;category=2">bind</a></b>(2),
+
+и слушает соединения после
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=listen&amp;category=2">listen</a></b>(2).
+
+</p><p>
+Аргумент
+<i>addr</i>~--
+
+это указатель на структуру
+<b>sockaddr</b>.
+
+В эту структуру помещается адрес другой стороны, в том виде, в каком
+он известен на коммуникационном уровне.  Точный формат адреса,
+передаваемого в параметре
+<i>addr</i>,
+
+определяется "семейством" сокета (см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=2">socket</a></b>(2)
+
+и страницу руководства по соответствующему протоколу).
+Аргумент
+<i>addrlen</i>
+
+является параметром, передаваемым по ссылке: перед вызовом он содержит
+размер структуры, на которую ссылается
+<i>addr</i>,
+
+а после вызова~-- действительную длину адреса в байтах.  Если
+<i>addr</i>
+
+равен
+<b>NULL</b>,
+
+он не заполняется.
+</p><p>
+
+Если в очереди нет запросов на соединение, и на сокет не установлен
+флаг, что он является неблокирующим,
+<b>accept</b>
+
+блокирует вызвавшую программу до появления соединения.  Если сокет
+является неблокирующим, а в очереди нет запросов на соединение, то
+<b>accept</b>
+
+возвращает EAGAIN.
+</p><p>
+</p><p>
+
+Для того, чтобы получать уведомления о входящих сооединениях на сокете,
+можно использовать
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=select&amp;category=2">select</a></b>(2)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=poll&amp;category=2">poll</a></b>(2).
+
+В этом случае, когда придёт запрос на новое соединение, будет
+доставлено событие "можно читать", и после этого вы можете вызвать
+<b>accept</b>,
+
+чтобы получить сокет для этого соединения.  Можно также настроить
+сокет так, чтобы он посылал сигнал
+<b>SIGIO</b>,
+
+когда на нём происходит какая-либо активность; см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7),
+
+где описаны детали.
+</p><p>
+
+Для определённых протоколов, которые требуют явного подтверждения,
+например, DECNet, системный вызов
+<b>accept</b>
+
+можно рассматривать просто как извлечение из очереди следующего
+запроса на соединение, не подразумевающее подтверждение.
+Подтверждение, в свою очередь, произойдет при следующем чтении или
+записи в новом файловом дескрипторе, а отказ от соединения может
+произойти при закрытии сокета.  В настоящий момент под Linux такую
+семантику имеет только DECNet.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ЗАМЕЧАНИЯ</h2>
+
+Не всегда после доставки сигнала
+<b>SIGIO</b>
+
+или после возврата из
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=select&amp;category=2">select</a></b>(2)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=poll&amp;category=2">poll</a></b>(2)
+
+в очереди будет находиться соединение.  Оно могло быть удалено в той
+же нити из-за асинхронной сетевой ошибки или же в другой нити до
+вызова
+<b>accept</b>.
+
+Если такое произойдет, то 
+<b>accept </b>
+
+заблокирует выполнение до следующего соединения.  Чтобы убедиться, что 
+такого не произойдет в любом случае, на сокет
+<i>s</i>
+
+должен быть установлен флаг
+<b>O_NONBLOCK</b>
+
+(см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7)).
+
+<p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ</h2>
+
+Этот системный вызов возвращает -1 в случае ошибки.  При успешном
+завершении возвращается неотрицательное целое, являющееся дескриптором 
+сокета.
+<p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>ОБРАБОТКА ОШИБОК</h2>
+
+<b>accept </b>
+
+в реализации Linux передаёт уже ожидающие сетевые ошибки на новый
+сокет, как код ошибки из вызова
+<b>accept</b>.
+
+Это поведение отличается от других реализаций BSD-сокетов.  Для
+надёжной работы приложения должны отслеживать сетевые ошибки, которые
+могут появиться при работе с протоколом, и обрабатывать их как 
+<b>EAGAIN</b>,
+
+повторным выполнением.  В случае TCP/IP такими ошибками являются
+<b>ENETDOWN</b>,
+
+<b>EPROTO</b>,
+
+<b>ENOPROTOOPT</b>,
+
+<b>EHOSTDOWN</b>,
+
+<b>ENONET</b>,
+
+<b>EHOSTUNREACH</b>,
+
+<b>EOPNOTSUPP</b>,
+
+и
+<b>ENETUNREACH</b>.
+
+<a name="lbAH">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+<b>accept</b>
+
+завершится с ошибкой если:
+<dl compact="">
+<dt><b>EAGAIN</b> или <b>EWOULDBLOCK</b>
+
+</dt><dd>
+сокет маркирован как неблокирующий, но нет ни одного соединения,
+которое можно было бы принять.
+</dd><dt><b>EBADF</b>
+
+</dt><dd>
+Дескриптор неправилен.
+</dd><dt><b>ENOTSOCK</b>
+
+</dt><dd>
+Дескриптор ссылается на файл, а не на сокет.
+</dd><dt><b>EOPNOTSUPP</b>
+
+</dt><dd>
+Тип сокета, на который ссылается дескриптор, отличается от
+<b>SOCK_STREAM</b>.
+
+</dd><dt><b>EINTR</b>
+
+</dt><dd>
+Системный вызов был прерван сигналом, который был получен
+перед тем как из очереди поступило корректное соединение.
+</dd><dt><b>ECONNABORTED</b>
+
+</dt><dd>
+Соединение было прервано.
+</dd><dt><b>EINVAL</b>
+
+</dt><dd>
+Сокет не слушает соединения.
+</dd><dt><b>EMFILE</b>
+
+</dt><dd>
+Было достигнуто ограничение по открытым файловым дескриптором
+на процесс.
+</dd><dt><b>ENFILE</b>
+
+</dt><dd>
+Был достигнут системный максимум на файловые дескрипторы.
+</dd></dl>
+<p>
+
+<b>accept</b>
+
+может завершиться с ошибкой если:
+</p><dl compact="">
+<dt>Параметр</dt><dd>
+<b>EFAULT</b>
+
+<i>addr</i>
+
+не находится в пространстве адресов с возможностью записи.
+</dd><dt><b>ENOBUFS, ENOMEM</b>
+
+</dt><dd>
+Не хватает свободной памяти.
+Это зачастую означает, что выделение памяти ограничено размерами
+буфера сокетов, а не системной памятью, но это не 100% верно.
+</dd><dt><b>EPROTO</b>
+
+</dt><dd>
+Ошибка протокола.
+</dd></dl>
+<p>
+
+В Linux
+<b>accept</b>
+
+может завешиться с ошибкой если:
+</p><dl compact="">
+<dt><b>EPERM</b>
+
+</dt><dd>
+Правила межсетевого экрана запрещают соединение.
+</dd></dl>
+<p>
+
+Вдобавок, могут также возвращаться сетевые ошибки на новом сокете и
+ошибки, могущие возникнуть в протоколе.  Различные ядра Linux могут
+вернуть другие ошибки, например,
+<b>EMFILE</b>,
+
+<b>EINVAL</b>,
+
+<b>ENOSR</b>,
+
+<b>ENOBUFS</b>,
+
+<b>EPERM</b>,
+
+<b>ECONNABORTED</b>,
+
+<b>ESOCKTNOSUPPORT</b>,
+
+<b>EPROTONOSUPPORT</b>,
+
+<b>ETIMEDOUT</b>,
+
+<b>ERESTARTSYS</b>.
+
+<a name="lbAI">&nbsp;</a>
+</p><h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+SVr4, 4.4BSD (функция
+<b>accept</b>
+
+впервые появилась в BSD 4.2).  Страница руководства BSD документирует
+пять возможных кодов ошибок (EBADF, ENOTSOCK, EOPNOTSUPP, EWOULDBLOCK,
+EFAULT).
+SUSv3 документирует ошибки EAGAIN, EBADF, ECONNABORTED, EINTR, EINVAL,
+EMFILE, ENFILE, ENOBUFS, ENOMEM, ENOTSOCK, EOPNOTSUPP, EPROTO,
+EWOULDBLOCK. В дополнение, SUSv2 документирует EFAULT и ENOSR.
+<p>
+Реализация
+<i>accept</i>
+
+в Linux _не_ наследует флаги сокетов (типа
+<b>O_NONBLOCK</b>).
+
+Это поведение отличается от других реализаций BSD-сокетов.
+Переносимые программы не должны полагаться на такое поведение и всегда
+должны устанавливать на сокете, полученном от
+<i>accept</i>,
+
+все требуемые флаги.
+</p><p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ЗАМЕЧАНИЕ </h2>
+
+Третий аргумент функции
+<b>accept</b>
+
+изначально был объявлен как
+int *
+
+(это именно так в libc4, libc5 и на многих других системах, включая
+BSD~4.*, SunOS~4 и SGI); черновик стандарта POSIX~1003.1g пытался
+поменять этот тип на
+size_t *<b>,</b>
+
+и в SunOS~5 это именно так.  Поздние черновики POSIX содержат
+socklen_t *<b>,</b>
+
+и в Single Unix Specification и glibc2 это именно так. 
+<p>
+
+По словам Линуса Торвальдса:
+</p><p>
+
+
+<i>В _любой_ разумной библиотеке размеры "socklen_t" и int _должны_
+совпадать.  Любой другой вариант разламывает реализацию BSD-сокетов.
+В POSIX сначала использовали size_t, но я (и, к счастью, кто-то ещё,
+хотя и не слишком многие) очень громко пожаловались.  Такая реализация
+полностью сломана, как раз потому, что size_t очень редко имеет тот же
+размер, что и "int", например, на 64-битных архитектурах.  Это
+необходимо потому, что интерфейс BSD-сокетов таков, каков он есть.
+</i></p><p><i>
+
+В любом случае, люди из POSIX наконец поняли и создали "socklen_t".
+Вообще, с самого начала они просто не должны были ничего трогать, но
+по какой-то причине они чувствовали, что должны использовать
+поименованный тип (вероятно, они не хотели ударить в грязь лицом,
+сделав глупость, поэтому они тихо переименовали место, в котором
+просчитались).</i>
+<a name="lbAK">&nbsp;</a>
+</p><h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bind&amp;category=2">bind</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=listen&amp;category=2">listen</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=select&amp;category=2">select</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=2">socket</a></b>(2)
+
+<a name="lbAL">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Copyright (C) Alexey Mahotkin &lt;<a href="mailto:alexm@hsys.msk.ru">alexm@hsys.msk.ru</a>&gt; 1999-2001,
+Виктор Вислобоков &lt;<a href="mailto:corochoone@perm.ru">corochoone@perm.ru</a>&gt; 2003
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAG">ОБРАБОТКА ОШИБОК</a></dt><dd>
+</dd><dt><a href="#lbAH">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAI">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ЗАМЕЧАНИЕ </a></dt><dd>
+</dd><dt><a href="#lbAK">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAL">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="accept" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,665 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN getopt_long_only (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, getopt_long_only"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="getopt_long_only" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">getopt_long_only (3)</font><hr><li> <a href="/man.shtml?topic=getopt_long_only&amp;category=3&amp;russian=1"><u>getopt_long_only</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=getopt_long_only&amp;category=3&amp;russian=0"><u>getopt_long_only</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=getopt_long_only&amp;category=3&amp;russian=2"><u>getopt_long_only</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+getopt - разбор командной строки, получение опций
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<pre><b>#include &lt;<a href="file:/usr/include/unistd.h">unistd.h</a>&gt;</b>
+
+<b>int getopt(int </b><i>argc</i><b>, char * const </b><i>argv[]</i><b>,</b>
+<b>           const char *</b><i>optstring</i><b>);</b>
+
+<b>extern char *</b><i>optarg</i><b>;</b>
+<b>extern int </b><i>optind</i><b>, </b><i>opterr</i><b>, </b><i>optopt</i><b>;</b>
+
+<b>#define _GNU_SOURCE</b>
+<br>
+<b>#include &lt;<a href="file:/usr/include/getopt.h">getopt.h</a>&gt;</b>
+
+<b>int getopt_long(int </b><i>argc</i><b>, char * const </b><i>argv[]</i><b>,</b>
+<b>           const char *</b><i>optstring</i><b>,</b>
+<b>           const struct option *</b><i>longopts</i><b>, int *</b><i>longindex</i><b>);</b>
+
+<b>int getopt_long_only(int </b><i>argc</i><b>, char * const </b><i>argv[]</i><b>,</b>
+<b>           const char *</b><i>optstring</i><b>,</b>
+<b>           const struct option *</b><i>longopts</i><b>, int *</b><i>longindex</i><b>);</b>
+</pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Функция
+<b>getopt()</b>
+
+разбирает аргументы командной строки. Ее аргументы
+<i>argc</i>
+
+и 
+<i>argv</i>
+
+являются счетчиком и массивом аргументов, которые передаются функции
+<b>main()</b>
+
+при запуске программы. Элемент
+<i>argv</i>,
+
+начинающийся с "-" (и не являющийся "-" или "--"), считается опцией.
+Символы этого элемента (не считая начального "-") являются символами
+опций. При каждом повторном вызове 
+<b>getopt() </b>
+
+возвращаются символы следующей опции.
+<p>
+
+Если
+<b>getopt() </b>
+
+находит символ опции, она возвращает этот символ, обновляя внешнюю переменную 
+<i>optind </i>
+
+и статическую переменную 
+<i>nextchar</i>,
+
+так что следующий вызов 
+<b>getopt() </b>
+
+может продолжить проверку со следующего символа опции или элемента 
+<i>argv</i>.
+
+</p><p>
+
+Если символов опций больше нет, то 
+<b>getopt() </b>
+
+возвращает -1. При этом 
+<i>optind </i>
+
+станет индексом первого элемента 
+<i>argv</i>,
+
+не являющегося опцией.
+</p><p>
+
+<i>optstring</i>
+
+является строкой, содержащей допустимые символы опций. Если за таким символом
+стоит двоеточие, то опция требует указания аргумента. При этом 
+<b>getopt() </b>
+
+помещает указатель на следующий за символом опции текст, в тот же элемент
+<i>argv</i>,
+
+или на текст следующего элемента 
+<i>argv,</i>
+
+в 
+<i>optarg</i>.
+
+Два двоеточия означают, что опция имеет необязательный аргумент;
+если текущий элемент 
+<i>argv </i>
+
+содержит текст, то он возвращается в 
+<i>optarg</i>,
+
+в противном случае 
+<i>optarg </i>
+
+содержит ноль. Это является дополнением GNU. 
+Если 
+<i>optstring</i>
+
+содержит 
+<b>W</b>,
+
+за которой следует точка с запятой, то 
+<b>-W foo</b>
+
+рассматривается как длинная опция 
+<b>--foo</b>.
+
+Опция 
+<b>-W</b>
+
+зарезервирована POSIX.2 для реализации расширений. Такое поведение является
+дополнительным для GNU и недоступным в библиотеках GNU libc более ранних по сравнению
+со второй версий.
+</p><p>
+
+По умолчанию 
+<b>getopt()</b>
+
+переставляет элементы содержимого 
+<i>argv</i>
+
+в процессе поиска, так что в конечном счете все аргументы, не являющиеся
+опциями, оказываются в конце. Реализованы также два других режима. Если первым
+символом 
+<i>optstring</i>
+
+является "+" или задана переменная окружения POSIXLY_CORRECT, то обработка
+опций прерывается на первом аргументе, не являющемся опцией. Если первым
+символом 
+<i>optstring </i>
+
+является "-", то каждый элемент 
+<i>argv</i>,
+
+не являющийся опцией, обрабатывается так, как если бы он был
+аргументом опции с символом, имеющим код 1. Она используется программами,
+которые требуют опции и другие аргументы командной строки.
+Специальный аргумент "--" служит для обозначения конца опций независимо от
+режима. 
+</p><p>
+
+Если 
+<b>getopt() </b>
+
+не распознал символ опции, то он выводит на стандартный поток ошибок 
+соответствующее сообщение, заносит символ в 
+<i>optopt </i>
+
+и возвращает "?". Вызывающая программа может предотвратить вывод сообщения об
+ошибке, установив нулевое значение
+<i>opterr</i>.
+
+</p><p>
+
+Если функция <b>getopt()</b> обнаружит в <i>argv</i> символ опции, не найденный
+в <i>optstring</i>, или если она обнаружит пропущенный аргумент опции, то она
+возвратит `?' и занесет во внешную переменную <i>optopt</i> действительный
+символ опции. Если первым символом <i>optstring</i> является двоеточие (`:'),
+то для сообщения о пропущенном аргументе опции <b>getopt()</b> возвратит `:'
+вместо `?'. Если при обнаружении ошибки первый символ <i>optstring</i> не
+является двоеточием и внешняя переменная <i>opterr</i> не равно нулю
+(по умолчанию так и есть), то <b>getopt()</b> выведет сообщение об ошибке.
+</p><p>
+
+Функция 
+<b>getopt_long()</b>
+
+работает так же, как  
+<b>getopt()</b>,
+
+за исключением того, что она воспринимает и длинные опции, начинающиеся с двух
+дефисов. Длинные опции можно сокращать, если сокращение сохраняет уникальность
+опции или полностью совпадает с одной из определенных опций. Длинная опция может
+иметь параметр вида 
+<b>--опция=параметр</b>
+
+или 
+<b>--опция параметр</b>.
+
+</p><p>
+
+<i>longopts</i>
+
+является указателем на первый элемент массива структур 
+<b>struct option</b>,
+
+указанного в 
+<b>&lt;<a href="file:/usr/include/getopt.h">getopt.h</a>&gt;</b>
+
+следующим образом
+</p><pre>
+struct option {
+const char *name;
+int has_arg;
+int *flag;
+int val;
+};
+</pre>
+
+<p>
+
+Значения различных полей: 
+</p><dl compact="">
+<dt><i>name</i>
+
+</dt><dd>
+является именем длинной опции. 
+</dd><dt><i>has_arg</i>
+
+</dt><dd>
+может быть:
+<b>no_argument</b> (или 0), если опция не имеет аргумента;
+<b>required_argument</b> (или 1), если опция требует указания аргумента;
+<b>optional_argument</b> (или 2), если опция может иметь необязательный
+аргумент. 
+</dd><dt><i>flag</i>
+
+</dt><dd>
+задает способ возвращения результатов для длинной опции. Если
+<i>flag </i>
+
+равен
+<b>NULL</b>,
+
+то
+<b>getopt_long()</b>
+
+возвращает
+<i>val</i>.
+
+Hапример, вызывающая программа может назначить
+<i>val</i>
+
+эквивалентом символа короткой опции. В противном случае
+<b>getopt_long()</b>
+
+возвращает 0, а
+<i>flag</i>
+
+указывает на переменную, устанавливаемое значение которой равно 
+<i>val</i>,
+
+если опция найдена; и оставляемую без изменений, если опция не найдена.
+</dd><dt><i>val</i> </dt><dd>
+является возвращаемым значением или загружается в переменную, на которую
+указывает 
+<i>flag</i>.
+
+</dd></dl>
+<p>
+
+Последний элемент массива должен быть заполнен нулями. 
+</p><p>
+
+Если 
+<i>longindex</i>
+
+не содержит 
+<b>NULL</b>,
+
+то он является указателем на переменную, содержащую индекс длинной опции
+в соответствии с
+<i>longopts</i>.
+
+</p><p>
+
+<b>getopt_long_only()</b>
+
+работает так же, как 
+<b>getopt_long(),</b>
+
+но в качестве указателя длинной опции может служить не только "--", но и
+"-". Если опция, начинающаяся с "-" (не с "--"), не совпадает с длинной опцией,
+но совпадает с короткой, то она обрабатывается как короткая опция.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+Функция 
+<b>getopt()</b>
+
+возвращает символ опции, если опция была успешно найдена, ":", если был пропущен
+параметр одной из опций, "?", если обнаружен неизвестный символ опции, или -1 в
+конце списка опций.
+<p>
+
+<b>getopt_long()</b>
+
+и
+<b>getopt_long_only()</b>
+
+также возвращают символ опции, если распознана короткая опция. Для длинной опции
+они возвращают
+<i>val</i>,
+
+если
+<i>flag</i>
+
+равен
+<b>NULL</b>,
+
+и 0 в остальных случаях. Возвращаемые ошибки и -1 имеют то же значение, что и
+для 
+<b>getopt()</b>,
+
+кроме того, "?" возвращается при двусмысленном толковании параметра.
+<a name="lbAF">&nbsp;</a>
+</p><h2>ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</h2>
+
+<dl compact="">
+<dt><font size="-1"><b>POSIXLY_CORRECT</b>
+
+</font>
+</dt><dd>
+Если установлена эта переменная, то обработка опций прерывается на первом
+аргументе, не являющемся опцией. 
+</dd><dt><font size="-1"><b>_&lt;PID&gt;_GNU_nonoption_argv_flags_</b>
+
+</font>
+</dt><dd>
+Эта переменная использовалась 
+<b>bash</b>
+
+2.0 для связи с GNU libc, аргументы которой являются
+результатом раскрытия шаблонов и, таким образом, не должны
+рассматриваться как опции. Это было изъято из 
+<b>bash</b>
+
+версии 2.01, но поддержка такого поведения в GNU libc осталась.
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</h2>
+
+Приведенный ниже пример программы иллюстрирует
+использование большинства возможностей 
+<b>getopt_long()</b>.
+
+<pre>
+#include &lt;<a href="file:/usr/include/stdio.h">stdio.h</a>&gt;     /* для printf */
+#include &lt;<a href="file:/usr/include/stdlib.h">stdlib.h</a>&gt;    /* для exit */
+#include &lt;<a href="file:/usr/include/getopt.h">getopt.h</a>&gt;
+
+int
+main (int argc, char **argv) {
+    int c;
+    int digit_optind = 0;
+
+    while (1) {
+        int this_option_optind = optind ? optind : 1;
+        int option_index = 0;
+        static struct option long_options[] = {
+            {"add", 1, 0, 0},
+            {"append", 0, 0, 0},
+            {"delete", 1, 0, 0},
+            {"verbose", 0, 0, 0},
+            {"create", 1, 0, 'c'},
+            {"file", 1, 0, 0},
+            {0, 0, 0, 0}
+        };
+
+        c = getopt_long (argc, argv, "abc:d:012",
+                 long_options, &amp;option_index);
+        if (c == -1)
+            break;
+
+        switch (c) {
+        case 0:
+            printf ("параметр %s", long_options[option_index].name);
+            if (optarg)
+                printf (" с аргументом %s", optarg);
+            printf ("\n");
+            break;
+
+        case '0':
+        case '1':
+        case '2':
+            if (digit_optind != 0 &amp;&amp; digit_optind != this_option_optind)
+              printf ("цифры используются в двух разных элементах argv.\n");
+            digit_optind = this_option_optind;
+            printf ("параметр  %c\n", c);
+            break;
+
+        case 'a':
+            printf ("параметр a\n");
+            break;
+
+        case 'b':
+            printf ("параметр b\n");
+            break;
+
+        case 'c':
+            printf ("параметр c со значением `%s'\n", optarg);
+            break;
+
+        case 'd':
+            printf ("параметр d со значением `%s'\n", optarg);
+            break;
+
+        case '?':
+            break;
+
+        default:
+            printf ("?? getopt возвратило код символа 0%o ??\n", c);
+        }
+    }
+
+    if (optind &lt; argc) {
+        printf ("элементы ARGV, не параметры: ");
+        while (optind &lt; argc)
+            printf ("%s ", argv[optind++]);
+        printf ("\n");
+    }
+
+    exit (0);
+}
+</pre>
+
+<a name="lbAH">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Описание на этой странице руководства является не совсем ясным.
+<p>
+
+Описание в POSIX.2 функции 
+<b>getopt()</b>
+
+содержит техническую ошибку, рассмотренную в POSIX.2 Interpretation 150. В
+реализации GNU (и, возможно, во всех других реализациях) работа функции 
+отличается от описанной в спецификации и является корректной.
+<a name="lbAI">&nbsp;</a>
+</p><h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+<dl compact="">
+<dt><b>getopt()</b>:
+
+</dt><dd>
+POSIX.2, если установлена переменная окружения POSIXLY_CORRECT.
+В противном случае элементы
+<i>argv </i>
+
+на самом деле не являются константами, потому что мы изменяем их порядок.
+Мы будем считать их постоянными в прототипах для совместимости этих прототипов
+с другими операционными системами.
+<p>
+</p></dd></dl>
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAH">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAI">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="getopt_long_only" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

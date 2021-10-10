@@ -1,0 +1,1069 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN rsyncd.conf (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, rsyncd.conf"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="rsyncd.conf" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">rsyncd.conf (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=rsyncd.conf&amp;category=5&amp;russian=0"><u>rsyncd.conf</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=rsyncd.conf&amp;category=5&amp;russian=2"><u>rsyncd.conf</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<p>
+
+<a name="lbAB">&nbsp;</a>
+</p><h2>НАИМЕНОВАНИЕ </h2>
+
+<p>
+
+rsyncd.conf - конфигурационный файл для rsync-сервера 
+</p><p>
+
+<a name="lbAC">&nbsp;</a>
+</p><h2>СИНТАКСИС </h2>
+
+<p>
+
+rsyncd.conf
+</p><p>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ </h2>
+
+<p>
+
+rsyncd.conf конфигурационный файл для rsync при запуске в режиме 
+rsync-сервера. 
+</p><p>
+
+Файл rsyncd.conf управляет модулями аутентификации, доступа,
+протоколирования, а также другими доступными модулями.
+</p><p>
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>ФОРМАТ ФАЙЛА</h2>
+
+<p>
+
+Файл состоит из модулей и параметров. 
+Модуль начинается своим именем в квадратных скобках и продолжается
+до начала следующего модуля.
+Модули содержат параметры в виде 'name = value'.
+</p><p>
+
+Формат файла построчный.
+Это означает, что каждая строка, заканчивающаяся специальным
+символом-признаком новой строки, содержит либо комментарий, либо имя
+модуля, либо параметр.
+</p><p>
+
+Только первый знак равенства в описании параметра является значимым.
+Пробелы до или после знака равенства отбрасываются.
+Пробелы в начале, в конце и в середине имен модуля или параметра
+недопустимы.
+Пробелы в начале или в конце значения параметра отбрасываются.
+Пробелы внутри значений параметров остаются неизменными.
+</p><p>
+
+Любая строка, начинающаяся с хеша (#), пропускается, также как и
+строки, состоящие только из пробелов.
+</p><p>
+
+Любая строка, оканчивающаяся на \, "продолжается" со следующей
+строкой в привычной для UNIX манере.
+</p><p>
+
+Все значения, следующие за знаком равенства в параметрах, либо
+строковые (кавычки не нужны), либо логические.
+Последние могут принимать значения yes/no, 0/1 или true/false.
+Регистр букв не играет роли для логических значений, но для
+строковых он сохраняется как есть.
+</p><p>
+
+<a name="lbAF">&nbsp;</a>
+</p><h2>ЗАПУСК RSYNC-ДЕМОНА</h2>
+
+<p>
+
+rsync-демон запускается при указании параметра --daemon для rsync.
+</p><p>
+
+Демон должен быть запущен от root'а, если Вы хотите использовать либо
+chroot, либо порт для клиентских подключений с номером ниже 1024
+(например, по умолчанию порт 873), либо возможность установки прав
+и атрибутов владения файлами.
+В противном случае, он должен только иметь соответствующие разрешения
+на чтение и запись в файлы данных, файлы журналов и блокировки.
+</p><p>
+
+Вы можете запустить rsync-демон разными способами: с помощью inetd,
+как самостоятельный демон или по запросу rsync-клиента,
+подключающегося через программу удаленной оболочки.
+Для запуска самостоятельным демоном достаточно команды <i>"rsync
+--daemon"</i> в соответствующем скрипте запуска.
+В случае запуска при подключении rsync-клиента через программу
+удаленной оболочки (указанием двух компонент командной строки, а
+именно параметра "-e/--rsh" и одного из признаков режима сервера "::"
+или "rsync://") параметр --daemon автоматически применяется на
+удаленной стороне.
+</p><p>
+
+При запуске от inetd Вам нужно добавить следующую строчку в
+/etc/services:
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+rsync           873/tcp
+</dd></dl>
+
+<p>
+
+и еще одну в /etc/inetd.conf наподобие:
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+rsync   stream  tcp     nowait  root   /usr/bin/rsync rsyncd --daemon
+</dd></dl>
+
+<p>
+
+Замените "/usr/bin/rsync" тем путем, где у Вас в системе установлена
+программа rsync.
+Затем Вам необходимо послать inetd сигнал HUP, чтобы он перечитал свой
+конфигурационный файл.
+</p><p>
+
+Заметьте, что Вам не нужно посылать rsync-серверу сигнал HUP для
+принудительного прочтения файла <tt>rsyncd.conf</tt> .
+Этот файл перечитывается при каждом клиентском подключении.
+</p><p>
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>ОБЩИЕ ПАРАМЕТРЫ</h2>
+
+<p>
+
+Все параметры в начале файла (до первого заголовка [модуль]) являются
+общими параметрами.
+</p><p>
+
+У Вас также есть возможность помещать любые параметры, специфичные для
+модулей, в общую часть конфигурационного файла, для того чтобы
+заменить указанным при этом значением значение по умолчанию для этого
+параметра.
+</p><p>
+
+</p><dl compact="">
+<dt><b>motd file</b></dt><dd>
+Параметр "motd file" позволяет Вам указать "message of the day"
+("сообщение текущего дня") для выдачи его каждому клиентскому
+подключению.
+Оно обычно содержит информацию о сайте и какие-либо правовые
+предупреждения.
+По умолчанию пуст.
+</dd><dt></dt><dd>
+</dd><dt><b>log file</b></dt><dd>
+Параметр "log file" указывает rsync-демону файл для ведения журнала
+сообщений вместо использования для этой цели syslog.
+Это особенно полезно на таких системах (например, AIX), где syslog()
+не работает для программ в chroot-окружении. 
+</dd><dt></dt><dd>
+</dd><dt><b>pid file</b></dt><dd>
+Параметр "pid file" указывает rsync-демону файл, куда он должен
+записать id своего процесса.
+</dd><dt></dt><dd>
+</dd><dt><b>syslog facility</b></dt><dd>
+Параметр "syslog facility" позволяет Вам указать имя
+syslog-возможности для журналирования сообщений от rsync-демона. 
+Вы можете использовать любую стандартную syslog-возможность, которая
+определена в Вашей системе. 
+Общепринятые значения для этого - auth, authpriv, cron, daemon, ftp,
+kern, lpr, mail, news, security, syslog, user, uucp, local0, local1,
+local2, local3, local4, local5, local6 и local7.
+По умолчанию используется ftp.
+</dd><dt></dt><dd>
+</dd><dt><b>socket options</b></dt><dd>
+Этот параметр может дать бесконечное удовольствие людям, любящим
+доводить свои системы настройкой до наилучшего уровня.
+Вы можете контролировать разнообразные параметры сокета, изменение
+которых может привести к росту (или уменьшению!) скорости передачи.
+Прочитайте руководство для системного вызова setsockopt() на предмет
+подробностей о тех параметрах, которыми Вы можете управлять.
+По умолчанию никакие специальные параметры сокета не устанавливаются.
+</dd></dl>
+<p>
+
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПАРАМЕТРЫ МОДУЛЕЙ </h2>
+
+<p>
+
+После общих параметров Вам нужно определить модули, каждый из которых
+предоставляет доступ извне к части дерева каталогов в виде
+символического имени.
+Модуль создается при указании его имени в квадратных скобках [модуль]
+и следующих затем параметров модуля. 
+</p><p>
+
+</p><dl compact="">
+<dt></dt><dd>
+</dd><dt><b>comment</b></dt><dd>
+Параметр "comment" указывает строку описания, которая показывается
+вслед за именем модуля, когда клиенты запрашивают список доступных
+модулей.
+По умолчанию у модулей нет никакого описания.
+</dd><dt></dt><dd>
+</dd><dt><b>path</b></dt><dd>
+
+
+Параметр "path" указывает каталог файловой системы сервера, который
+делается доступным этим модулем.
+Вы должны обязательно указать этот параметр для каждого модуля в
+<tt>rsyncd.conf</tt>.
+</dd><dt></dt><dd>
+</dd><dt><b>use chroot</b></dt><dd>
+Если параметр "use chroot" установлен в true, то rsync-сервер будет
+выполнять chroot в каталог "path" перед началом приема(передачи)
+файла от(к) клиента(у).
+Эта особенность позволяет дополнительно защититься от реализаций
+использования возможных опасных "дыр", но при этом имеет следующие
+недостатки: требует привилегий супер-пользователя для запуска,
+отключается возможность следования по символьным ссылкам за пределы
+нового корневого (chroot) каталога при чтении, а также подразумевается
+активным параметр --numeric-ids, потому что /etc/passwd становится
+недоступным.
+Если параметр "use chroot" установлен в false, то из безопасных
+соображений символьные ссылки на другие файлы могут быть только
+относительными в пределах каталога, указанного в параметре "path", а
+все начальные слэши удаляются из абсолютных путей. 
+По умолчанию "use chroot" установлен в true.
+</dd><dt></dt><dd>
+</dd><dt><b>max connections</b></dt><dd>
+Параметр "max connections" позволяет Вам указать
+максимально-допустимое количество одновременных подключений.
+Любой клиент, пытающийся подключиться, когда достигнут этот предел,
+будет получать сообщение с просьбой подключиться позднее.
+По умолчанию значение 0, которое означает отсутствие ограничения.
+См. также параметр "lock file".
+</dd><dt></dt><dd>
+</dd><dt><b>lock file</b></dt><dd>
+Параметр "lock file" указывает файл, который нужно использовать для
+поддержки работы параметра "max connections".
+rsync-сервер использует блокировку на этом файле для гарантии, что
+количество подключений никогда не превысит установленный предел для
+модулей, разделяющих этот общий файл блокировки.
+По умолчанию используется <tt>/var/run/rsyncd.lock</tt>.
+</dd><dt></dt><dd>
+</dd><dt><b>read only</b></dt><dd>
+Параметр "read only" определяет могут ли клиенты загружать файлы на
+rsync-сервер или нет.
+Если "read only" установлен в true, то любые попытки загрузки будут
+завершаться ошибкой.
+Если "read only" установлен в false, то загрузка на сервер возможна
+при том условии, что соответственно установлены разрешения для
+файлов.
+По умолчанию для всех модулей действует режим только чтения.
+</dd><dt></dt><dd>
+</dd><dt><b>list</b></dt><dd>
+
+
+Параметр "list" определяет должен ли модуль присутствовать в списке
+доступных модулей, который запрашивают клиенты.
+Установкой этого параметра в false Вы можете создавать скрытые
+модули.
+По умолчанию модули открыты для просмотра в списке.
+</dd><dt></dt><dd>
+</dd><dt><b>uid</b></dt><dd>
+
+
+Параметр "uid" указывает имя или id пользователя, от которого
+происходят прием и передача файлов для модуля, в случае если
+сам rsync-демон был запущен с правами супер-пользователя.
+В комбинации с параметром "gid" он определяет права доступа к
+файлам.
+По умолчанию соответствует пользователю "rsyncd".
+</dd><dt></dt><dd>
+</dd><dt><b>gid</b></dt><dd>
+
+
+Параметр "gid" указывает имя или id группы, от которой происходят
+прием и передача файлов для модуля, в случае если сам rsync-демон был
+запущен с правами супер-пользователя.
+Этот параметр дополняет параметр "uid".
+По умолчанию принимается равным группе "rsyncd".
+</dd><dt></dt><dd>
+</dd><dt><b>exclude</b></dt><dd>
+Параметр "exclude" позволяет указать разделенный пробелами список
+шаблонов, добавляемых к списку исключений.
+Этот параметр лишь частичный эквивалент для параметра --exclude,
+указываемого клиентами.
+Только один параметр "exclude" может быть указан в модуле, но Вы
+можете использовать "-" и "+" перед шаблонами для точного указания
+исключающего или включающего действия шаблона.
+</dd><dt></dt><dd>
+Т.к. этот список исключений не посылается клиентам, то он применяется
+только на стороне сервера, т.е. он исключает файлы, получаемые
+клиентом от сервера, и исключает файлы, удаляемые на сервере при
+передаче на него, но этот параметр не исключает файлы, посылаемые от
+клиента серверу, и не исключает файлы, удаляемые на клиенте при
+передаче их от сервера. 
+</dd><dt></dt><dd>
+Обратите внимание, что этот параметр не был разработан в целях строгой
+безопасности.
+Вполне возможно, что клиент найдет способ обойти список исключений.
+Если Вы хотите быть абсолютно уверенным, что определенные файлы должны быть
+недоступны, то используйте параметры "uid"/"gid" в комбинации с
+установкой прав доступа к файлам.
+</dd><dt></dt><dd>
+</dd><dt><b>exclude from</b></dt><dd>
+Параметр "exclude from" указывает имя файла на стороне сервера,
+который содержит шаблоны исключения, по одному на строчку.
+Этот параметр лишь частичный эквивалент для параметра --exclude-from,
+указываемого клиентами вместе с соответствующим именем
+файла-эквивалента.
+См. параметр "exclude" выше.
+</dd><dt></dt><dd>
+</dd><dt><b>include</b></dt><dd>
+Параметр "include" позволяет Вам указать разделенный пробелами список
+шаблонов, которые rsync не должен исключать.
+Этот параметр лишь частичный эквивалент для параметра --include,
+указываемого клиентами, потому что он применяется только на стороне
+сервера.
+Он полезен как возможность построить довольно сложные правила
+включения/исключения.
+Только один параметр "include" может быть указан в модуле, но Вы
+можете использовать "+" и "-" перед шаблонами для переключения между 
+включающим или исключающим действиями шаблонов.
+См. выше параметр "exclude".
+</dd><dt></dt><dd>
+</dd><dt><b>include from</b></dt><dd>
+Параметр "include from" указывает имя файла на стороне сервера,
+который содержит шаблоны включения, по одному на строчку.
+Этот параметр лишь частичный эквивалент для параметра --include-from,
+указываемого клиентами вместе с соответствующим именем
+файла-эквивалента.
+См. выше параметр "exclude".
+</dd><dt></dt><dd>
+</dd><dt><b>auth users</b></dt><dd>
+Параметр "auth users" указывает разделенный запятыми и пробелами
+список имен пользователей, которым разрешено подключаться к этому
+модулю.
+Эти пользователи совсем не обязательно должны быть локальными.
+Имена также могут содержать символы подстановки для оболочки.
+Если параметр "auth users" установлен, то клиент будет запрошен на
+предмет предоставления имени пользователя и пароля при подключении к
+этому модулю.
+При этом используется протокол аутентификации по "опознаваемому
+отклику" ("a challenge response").
+Обычный текстовый файл, где хранятся имена пользователей и их пароли,
+указывается параметром "secrets file".
+По умолчанию все пользователи могут подключаться без пароля (так
+называемый, "анонимный rsync").
+</dd><dt></dt><dd>
+См. также раздел <i>ПОДКЛЮЧЕНИЕ К RSYNC-СЕРВЕРУ ЧЕРЕЗ УДАЛЕННУЮ
+ОБОЛОЧКУ</i>  в <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rsync&amp;category=1">rsync</a></i>(1) для получения информации о том, как
+справляться в ситуации отличия пользователя, указанного в
+rsyncd.conf, от пользователя, получающего удаленную оболочку, при
+соответствующем подключении к rsync-серверу через программу удаленной
+оболочки.
+</dd><dt></dt><dd>
+</dd><dt><b>secrets file</b></dt><dd>
+Параметр "secrets file" указывает имя файла, который содержит пары
+вида username:password и используемый для аутентификации подключений
+к этому модулю.
+Этот файл играет роль только при указании параметра "auth users".
+Файл по-строковый и содержит пары имя пользователя и пароль,
+разделенные двоеточием.
+Любые строки, начинающиеся с хэша (#), рассматриваются как комментарии
+и пропускаются.
+Пароли могут состоять из любых символов, но будьте внимательны, потому
+что многие операционные системы ограничивают длину паролей, которые
+могут вводиться на клиентской стороне, так что Вы можете найти
+ситуацию, когда пароли больше 8 символов не работают.
+</dd><dt></dt><dd>
+Нет никаких значений по умолчанию для параметра "secrets file", Вы
+должны явно выбрать имя (например, такое
+<tt>/etc/rsyncd.secrets</tt>).
+Обычно этот файл не должен быть читаемым для всех ("other");
+см. параметр "strict modes".
+</dd><dt></dt><dd>
+</dd><dt><b>strict modes</b></dt><dd>
+Параметр "strict modes" определяет будут ли проверяться права доступа
+к файлу паролей ("secrets file").
+Если "strict modes" установлен в true, то файл паролей не должен
+читаться любым пользователем с id, отличным от того, из-под которого
+запущен rsync-демон.
+Если он установлен в false, то такая проверка не производится.
+По умолчанию значение true.
+Этот параметр введен для того, чтобы приспособить запуск rsync на
+платформе Windows.
+</dd><dt></dt><dd>
+</dd><dt><b>hosts allow</b></dt><dd>
+Параметр "hosts allow" позволяет Вам указать список шаблонов, на
+соответствие которым проверяются доменные имена и адреса IP
+клиентов.
+Если ни один из шаблонов не совпал, то соединение отвергается.
+</dd><dt></dt><dd>
+Каждый шаблон может быть в одной из пяти форм:
+</dd><dt></dt><dd>
+</dd><dt>o</dt><dd>
+Разделенный точками десятичный адрес IPv4 в виде a.b.c.d или
+адрес IPv6 в виде a:b:c::d:e:f.
+В этом случае адрес IP подключающейся машины клиента должен точно
+соответствовать шаблону.
+</dd><dt></dt><dd>
+</dd><dt>o</dt><dd>
+Адрес/маска в виде ipaddr/n , где ipaddr - это адрес IP, а n - это
+количество установленных в единицу битов маски сети.
+Все адреса IP, которые соответствуют указанной таким образом  сети,
+могут подключаться к модулю.
+</dd><dt></dt><dd>
+</dd><dt>o</dt><dd>
+Адрес/маска в виде ipaddr/maskaddr, где ipaddr - это адрес IP, а
+maskaddr - это сетевая маска в разделенной точками десятичной форме
+написания для IPv4 или в соответствующей форме для IPv6, например,
+ffff:ffff:ffff:ffff:: вместо /64.
+Все адреса IP, которые соответствуют указанной таким образом  сети,
+могут подключаться к модулю.
+</dd><dt></dt><dd>
+</dd><dt>o</dt><dd>
+Доменное имя.
+Это имя определяется поиском в обратной зоне и проверяется на
+соответствие шаблону без учета регистра.
+Подключение разрешено только для точных соответствий шаблону.
+</dd><dt></dt><dd>
+</dd><dt>o</dt><dd>
+Шаблон доменного имени с использованием символов подстановки.
+Проверка соответствия осуществляется по тем же правилам, которые
+действуют при обычной для unix подстановке имен файлов.
+Если шаблон соответствует, то подключение разрешено.
+</dd><dt></dt><dd>
+Note IPv6 link-local addresses can have a scope in the address
+specification:
+</dd><dt></dt><dd>
+Заметьте, что локальные адреса IPv6 могут содержать указание на
+область в спецификации  адреса:
+</dd><dt></dt><dd>
+<dl compact=""><dt></dt><dd>
+fe80::1%link1
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+fe80::%link1/64
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+fe80::%link1/ffff:ffff:ffff:ffff::
+</dd></dl>
+
+</dd><dt></dt><dd>
+Вы также можете комбинировать параметр "hosts allow" с отдельно
+указанным параметром "hosts deny".
+Если оба параметра указаны, то "hosts allow" проверяется первым, а
+соответствие по нему влечет за собой разрешение соединения для
+клиента.
+Затем проверяется параметр "hosts deny", а соответствие по нему
+означает, что подключающийся хост будет отвергнут.
+Если не совпал ни один шаблон ни в "hosts allow", ни в "hosts deny",
+то при таких условиях соединение разрешается. 
+</dd><dt></dt><dd>
+По умолчанию параметр "hosts allow" не определен, что означает, что
+любым хостам разрешено подключаться.
+</dd><dt></dt><dd>
+</dd><dt><b>hosts deny</b></dt><dd>
+Параметр "hosts deny" позволяет Вам указать список шаблонов, на
+соответствие которым будут проверяться доменные имена хостов клиентов
+и их адреса IP.
+Если обнаружен подходящий шаблон, то соединение с клиентом
+отвергается.
+См. параметр "hosts allow" на предмет больших деталей.
+</dd><dt></dt><dd>
+По умолчанию параметр "hosts deny" не определен, что означает, что
+любым хостам разрешено подключаться.
+</dd><dt></dt><dd>
+</dd><dt><b>ignore errors</b></dt><dd>
+Параметр "ignore errors" указывает rsync-демону игнорировать ошибки
+ввода/вывода на стороне сервера, когда принимается решение о
+выполнении фазы удаления при передачах.
+Обычно rsync пропускает действия, подразумеваемые параметром --delete,
+если произошли какие-либо ошибки ввода/вывода, что обусловлено
+необходимостью предохраниться от неконтролируемого удаления из-за
+временной недоступности ресурсов или других ошибок ввода/вывода.
+В некоторых случаях это непродуктивно, так что Вы можете отключить
+такое поведение с помощью этого параметра.
+</dd><dt></dt><dd>
+</dd><dt><b>ignore nonreadable</b></dt><dd>
+Указывает rsync-серверу полностью игнорировать файлы, которые
+недоступны на чтение пользователю.
+Это полезно для общедоступных архивов, в структуре каталогов которых
+могут встречаться несколько не читаемых файлов, а системный
+администратор хочет полностью исключить даже возможность их видеть.
+Этот параметр включен по умолчанию.  
+</dd><dt></dt><dd>
+</dd><dt><b>transfer logging</b></dt><dd>
+Параметр "transfer logging" включает журналирование скачиваний и
+загрузок на по-файловой основе в формате, подобном тому, который
+используется ftp-демонами.
+Если Вам нужно настроить этот формат, то посмотрите параметр "log
+format".
+Этот параметр включен по умолчанию.
+</dd><dt></dt><dd>
+</dd><dt><b>log format</b></dt><dd>
+Параметр "log format" позволяет указать формат используемого для
+журналирования передач файла, когда это журналирование включено.
+Формат - это текстовая строка, содержащая встроенные символьные 
+escape-последовательности, обозначенные символом процента (%). 
+</dd><dt></dt><dd>
+</dd><dt></dt><dd>
+Распознаваемые префиксы:
+</dd><dt></dt><dd>
+</dd><dt>o</dt><dd>
+%h для имени удаленной машины
+</dd><dt>o</dt><dd>
+%a для удаленного адреса IP
+</dd><dt>o</dt><dd>
+%l для размера файла в байтах
+</dd><dt>o</dt><dd>
+%p для id процесса rsync-сессии
+</dd><dt>o</dt><dd>
+%o для операций, которыми могут быть либо "send", либо "recv"
+</dd><dt>o</dt><dd>
+%f для имени файла
+</dd><dt>o</dt><dd>
+%P для удаленного пути модуля
+</dd><dt>o</dt><dd>
+%m для имени модуля
+</dd><dt>o</dt><dd>
+%t для текущих времени и даты
+</dd><dt>o</dt><dd>
+%u для аутентифицированного имени пользователя (или пустая строка)
+</dd><dt>o</dt><dd>
+%b для количества фактически переданных/принятых байт
+</dd><dt>o</dt><dd>
+%c при передачах файлов подставляет количество байт контрольной суммы,
+полученной для конкретного файла
+</dd><dt></dt><dd>
+По умолчанию файл журнала имеет формат "%o %h [%a] %m (%u) %f %l", и
+"%t [%p] " всегда добавляется к его началу, когда используется
+параметр "log file".
+</dd><dt></dt><dd>
+Скрипт на перле rsyncstats для сбора суммарной статистики из файла с
+таким форматом прилагается к распространяемому исходному коду rsync.
+</dd><dt></dt><dd>
+</dd><dt><b>timeout</b></dt><dd>
+The "timeout" option allows you to override the
+clients choice for IO timeout for this module. Using this option you
+can ensure that rsync won't wait on a dead client forever. The timeout
+is specified in seconds. A value of zero means no timeout and is the
+default. A good choice for anonymous rsync servers may be 600 (giving
+a 10 minute timeout).
+Default value is 60 (one minute).
+</dd><dt></dt><dd>
+Параметр "timeout" позволяет Вам переопределять клиентский выбор для
+значения времени ожидания операций ввода-вывода для данного модуля.
+Использование этого параметра позволяет быть Вам уверенным, что rsync
+в любом случае не будет постоянно находиться в ожидании реакций от
+зависших клиентов.
+Время ожидания указывается в секундах.
+Значение ноль означает отсутствие установки времени ожидания и
+является значением по умолчанию.
+Хорошим выбором для анонимных rsync-серверов может быть значение в 600
+секунд (10 минут).
+</dd><dt></dt><dd>
+</dd><dt><b>refuse options</b></dt><dd>
+Параметр "refuse options" позволяет Вам указать разделенный пробелами
+список параметров командной строки rsync, которые будут отвергаться
+Вашим rsync-сервером.
+При этом должны использоваться полные имена параметров (т.е. Вы
+должны использовать "checksum", а не "c" для отключения вычисления
+контрольных сумм).
+Если параметр должен быть отвергнут, то сервер выдает сообщение об
+ошибке и завершается.
+Чтобы только отключить совсем сжатие данных при передаче, Вы можете
+использовать "dont compress = *" (см. ниже) вместо "refuse options =
+compress", чтобы избежать возврата ошибки клиентам, запрашивающим
+сжатие.
+</dd><dt></dt><dd>
+</dd><dt><b>dont compress</b></dt><dd>
+Параметр "dont compress" позволяет Вам выбрать по шаблону имена
+файлов, которые не должны сжиматься при передаче.
+Сжатие обходится дорого относительно использования ресурсов
+процессора, так что обычно хорошей практикой считается не пытаться
+сжимать файлы, которые плохо сжимаются, такие как уже сжатые файлы.   
+</dd><dt></dt><dd>
+Параметр "dont compress" принимает как аргумент разделенный пробелами
+список шаблонов подстановки, где регистр букв не имеет значения.
+Любой исходный файл, соответствующий одному из так указанных шаблонов,
+при передаче не будет сжиматься.
+</dd><dt></dt><dd>
+Установки по умолчанию для этого параметра
+<pre> 
+*.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz
+</pre>
+
+<br>&nbsp;
+<p>
+</p></dd><dt></dt><dd>
+</dd></dl>
+<p>
+
+<a name="lbAI">&nbsp;</a>
+</p><h2>НАДЕЖНОСТЬ АУТЕНТИФИКАЦИИ</h2>
+
+<p>
+
+Протокол аутентификации, используемый в rsync, - это 128-битная
+основанная на MD4 система "опознаваемых откликов" ("challenge response
+system").
+Хотя я думаю, что никто еще не продемонстрировал прямой взлом подбором
+("a brute-force break")  такой системы, Вы должны представлять
+себе, что эта система не обладает "военной надежностью" ("military
+strength").
+Она достаточно хороша для большинства задач, но если Вы действительно
+хотите безопасности высокого уровня, то я рекомендую запускать rsync
+поверх ssh.
+</p><p>
+
+Также обратите внимание на то, что протокол rsync-сервера в настоящее
+время не поддерживает какое-либо шифрование передаваемых данных.
+Предоставляются только функции аутентификации.
+Используйте ssh в качестве транспорта, если Вам нужно шифрование.
+</p><p>
+
+Будущие версии rsync, может быть, будут поддерживать SSL для лучших
+реализаций аутентификации и шифрования, но это все еще находится в
+стадии изучения.
+</p><p>
+
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ЗАПУСК RSYNC-СЕРВЕРА ПОВЕРХ ПРОГРАММЫ УДАЛЕННОЙ ОБОЛОЧКИ </h2>
+
+<p>
+
+Если rsync запущен с параметрами --daemon и --rsh (-e), то он
+порождает rsync-демон, использующий соединения поверх удаленной
+оболочки.
+Некоторые конфигурационные параметры не доступны при запуске от
+пользователя, отличном от root (например, chroot, setuid/setgid и
+т.д.).
+При таком способе запуска нет необходимости конфигурировать inetd или
+включать порт rsync-сервера в список доступных сетевых служб.
+</p><p>
+
+СОВЕТ: Для запуска rsync-сервера с помощью специально выделенного
+для этого ssh-ключа, используйте возможность указать
+"command=<i>COMMAND</i>" в записях authorized_keys удаленного
+пользователя (см. формат authorized_keys sshd (1)), где команду
+можно указать как
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+rsync --server --daemon .
+</dd></dl>
+
+<p>
+
+ЗАМЕТЬТЕ: встроенная в rsync обработка параметров командной строки
+ожидает завершающей точки ".", так что убедитесь в ее наличии.
+Если вам нужно использовать конфигурационный файл rsyncd.conf,
+отличный от файла по умолчанию, то вы можете добавить параметр
+--config к вызову команды <i>command</i>:
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+rsync --server --daemon --config=<i>file</i> .
+</dd></dl>
+
+<p>
+
+Обратите внимание, что параметр "--server" - это внутренний параметр,
+который rsync использует для запуска удаленной версии rsync, с которой
+он и соединяется, и, таким образом, Вы не должны использовать параметр
+--server при других условиях.
+</p><p>
+
+<a name="lbAK">&nbsp;</a>
+</p><h2>ПРИМЕРЫ</h2>
+
+<p>
+
+Простой пример файла rsyncd.conf, который позволяет организовать
+анонимный доступ rsync-клиентам к ftp-области в <tt>/home/ftp</tt>,
+выглядит так:
+</p><p>
+
+</p><p>
+</p><pre> 
+
+[ftp]
+        path = /home/ftp
+        comment = ftp export area
+
+</pre>
+
+<br>&nbsp;
+<p>
+</p><p>
+
+Более сложный пример:
+</p><p>
+
+uid = nobody 
+<br>
+
+gid = nobody 
+<br>
+
+use chroot = no 
+<br>
+
+max connections = 4 
+<br>
+
+syslog facility = local5 
+<br>
+
+pid file = /var/run/rsyncd.pid
+</p><p>
+
+</p><p>
+</p><pre> 
+[ftp]
+        path = /var/ftp/pub
+        comment = whole ftp area (approx 6.1 GB)
+
+[sambaftp]
+        path = /var/ftp/pub/samba
+        comment = Samba ftp area (approx 300 MB)
+
+[rsyncftp]
+        path = /var/ftp/pub/rsync
+        comment = rsync ftp area (approx 6 MB)
+        
+[sambawww]
+        path = /public_html/samba
+        comment = Samba WWW pages (approx 240 MB)
+
+[cvs]
+        path = /data/cvs
+        comment = CVS repository (requires authentication)
+        auth users = tridge, susan
+        secrets file = /etc/rsyncd.secrets
+
+</pre>
+
+<br>&nbsp;
+<p>
+</p><p>
+
+Файл /etc/rsyncd.secrets должен выглядеть как-то так:
+</p><p>
+
+tridge:mypass 
+<br>
+
+susan:herpass
+</p><p>
+
+<a name="lbAL">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<p>
+
+/etc/rsyncd.conf или rsyncd.conf
+</p><p>
+
+<a name="lbAM">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<p>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rsync&amp;category=1">rsync</a>(1)
+</p><p>
+
+<a name="lbAN">&nbsp;</a>
+</p><h2>ДИАГНОСТИКА </h2>
+
+<p>
+
+<a name="lbAO">&nbsp;</a>
+</p><h2>ОШИБКИ</h2>
+
+<p>
+
+rsync-сервер не посылает все типы сообщений об ошибках клиентам.
+Это означает, что клиент может быть введен в заблуждение о причине
+ошибочного завершения передачи.
+Ошибка журналируется через syslog на сервере.
+</p><p>
+
+Пожалуйста, сообщайте об ошибках! Система сопровождения ошибок для
+rsync находится на <a href="http://rsync.samba.org/">http://rsync.samba.org/</a> .
+</p><p>
+
+<a name="lbAP">&nbsp;</a>
+</p><h2>ВЕРСИЯ</h2>
+
+<p>
+
+Это руководство написано для версий 2.x rsync.
+</p><p>
+
+<a name="lbAQ">&nbsp;</a>
+</p><h2>CREDITS </h2>
+
+<p>
+
+rsync распространяется под GNU public license (GPL).
+См. файл COPYING за деталями.
+</p><p>
+
+Первичный ftp-сайт для rsync <a href="ftp://rsync.samba.org/pub/rsync">ftp://rsync.samba.org/pub/rsync</a> .
+</p><p>
+
+WEB-сайт доступен на <a href="http://rsync.samba.org/">http://rsync.samba.org/</a> .
+</p><p>
+
+Нам хотелось бы услышать от Вас, если вам понравилась эта программа. 
+</p><p>
+
+Эта программа использует библиотеку сжатия zlib, написанную Jean-loup
+Gailly and Mark Adler.
+</p><p>
+
+<a name="lbAR">&nbsp;</a>
+</p><h2>БЛАГОДАРНОСТИ</h2>
+
+<p>
+
+Мы признательны Warren Stanley за его оригинальную идею и патчи для
+rsync-сервера.
+Благодарим также Karsten Thygesen за многие его советы и документацию.
+</p><p>
+
+<a name="lbAS">&nbsp;</a>
+</p><h2>АВТОР</h2>
+
+<p>
+
+rsync был написан Andrew Tridgell и Paul Mackerras.
+С ними можно связаться по email <a href="mailto:tridge@samba.org">tridge@samba.org</a> and
+<a href="mailto:Paul.Mackerras@cs.anu.edu.au">Paul.Mackerras@cs.anu.edu.au</a>
+</p><p>
+
+<a name="lbAT">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+<p>
+
+Sergey Golovin &lt;<a href="mailto:svgol@mail.ru">svgol@mail.ru</a>&gt;
+</p><p>
+
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАИМЕНОВАНИЕ </a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС </a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ </a></dt><dd>
+</dd><dt><a href="#lbAE">ФОРМАТ ФАЙЛА</a></dt><dd>
+</dd><dt><a href="#lbAF">ЗАПУСК RSYNC-ДЕМОНА</a></dt><dd>
+</dd><dt><a href="#lbAG">ОБЩИЕ ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">ПАРАМЕТРЫ МОДУЛЕЙ </a></dt><dd>
+</dd><dt><a href="#lbAI">НАДЕЖНОСТЬ АУТЕНТИФИКАЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ЗАПУСК RSYNC-СЕРВЕРА ПОВЕРХ ПРОГРАММЫ УДАЛЕННОЙ ОБОЛОЧКИ </a></dt><dd>
+</dd><dt><a href="#lbAK">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAL">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAM">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAN">ДИАГНОСТИКА </a></dt><dd>
+</dd><dt><a href="#lbAO">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAP">ВЕРСИЯ</a></dt><dd>
+</dd><dt><a href="#lbAQ">CREDITS </a></dt><dd>
+</dd><dt><a href="#lbAR">БЛАГОДАРНОСТИ</a></dt><dd>
+</dd><dt><a href="#lbAS">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAT">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="rsyncd.conf" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

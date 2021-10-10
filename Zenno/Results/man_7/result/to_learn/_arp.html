@@ -1,0 +1,524 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN arp (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, arp"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="arp" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">arp (7)</font><hr><li> <a href="/man.shtml?topic=arp&amp;category=1&amp;russian=4"><u>arp</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=arp&amp;category=4&amp;russian=1"><u>arp</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=arp&amp;category=7&amp;russian=4"><u>arp</u></a> (7) <font color="#555555"> ( Solaris man: Макропакеты и соглашения )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=arp&amp;category=7&amp;russian=0"><u>arp</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=arp&amp;category=7&amp;russian=2"><u>arp</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=arp&amp;category=8&amp;russian=1"><u>arp</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=arp&amp;category=8&amp;russian=2"><u>arp</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/arp.html"><u>arp</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+arp - модуль ARP ядра Linux. 
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Этот модуль протокола ядра реализует Address Resolution
+Protocol (протокол разрешения адресов), определенный RFC 826.
+Протокол предназначен для преобразования аппаратных адресов
+второго уровня (Layer2) в адреса протокола IPv4 в соединенных
+напрямую сетях. Как правило, пользователю не приходится работать
+с этим модулем непосредственно, исключая случаи его настройки.
+Модуль может использоваться другими протоколами ядра.
+<p>
+
+Процесс пользователя может получать пакеты ARP через сокеты
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=packet&amp;category=7">packet</a></b>(7).
+
+Кроме того, существует механизм управления кэшем ARP с помощью сокетов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netlink&amp;category=7">netlink</a></b>(7)
+
+из пространства пользователя.
+Таблица ARP может управляться с помощью 
+<b>ioctl (2) </b>
+
+произвольным сокетом
+<b>PF_INET</b>.
+
+</p><p>
+
+Модуль ARP поддерживает кэш соответствий аппаратных адресов
+и адресов протокола. Размер кэша ограничен, поэтому старые и наименее
+используемые записи удаляются. Записи, помеченные как постоянные,
+не удаляются никогда. Кэшем можно управлять непосредственно, с помощью
+ioctl-вызовов. Работа кэша может быть настроена с помощью sysctl-вызовов,
+описанных ниже.
+</p><p>
+
+Если в течение некоторого времени (см. sysctl-вызовы ниже) не производится
+обращение к существующей записи кэша, то она считается устаревшей.
+Положительная обратная связь может быть получена с более высокого уровня;
+например, от успешного вызова TCP ACK. Остальные протоколы могут обозначать
+свой прогресс в работе, используя флаг
+<b>MSG_CONFIRM</b>
+
+для команды
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmsg&amp;category=2">sendmsg</a></b>(2).
+
+Если прогресса нет, то ARP пытается повторить запрос. Сначала он пытается
+<b>app_solicit</b>
+
+раз запросить обновленный MAC-адрес у локального демона arp.
+Если получить адрес не удалось, а старый MAC-адрес известен, то
+адресный запрос посылается 
+<b>ucast_solicit</b>
+
+раз. Если и после этого адрес определить не
+удалось, то по сети посылается новый широковещательный ARP-запрос.
+Запросы посылаются только при наличии в очереди данных для отправки.
+</p><p>
+
+Linux автоматически добавляет произвольную запись proxy arp, когда система
+получает запрос адреса и производит переадресацию этого запроса, а proxy arp
+запущен на принимающем интерфейсе.
+При наличии reject route (маршрута отказа) запись proxy arp не производится.
+</p><p>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>СИСТЕМНЫЕ ВЫЗОВЫ</h2>
+
+Всем сокетам
+<b>PF_INET</b>
+
+доступны три ioctl-вызова.
+В качестве параметра вызова дается указатель на
+<b>struct arpreq</b>.
+
+<pre>
+struct arpreq
+{
+    struct sockaddr arp_pa;      /* адрес протокола */
+    struct sockaddr arp_ha;      /* аппаратный адрес */
+    int             arp_flags;   /* флаги */
+    struct sockaddr arp_netmask; /* маска сети */
+    char            arp_dev[16];
+};
+</pre>
+
+Вызовы
+<b>SIOCSARP</b>, <b>SIOCDARP</b> и <b>SIOCGARP</b>
+
+соответственно устанавливают, удаляют и считывают соответствия ARP.
+Для установки или удаления соответсвий ARP процесс должен иметь возможность
+<b>CAP_NET_ADMIN</b>
+
+или эффективный UID пользователя, равный 0.
+<p>
+
+<i>arp_pa</i>
+
+должен быть сокетом
+<b>AF_INET</b>,
+
+а
+<i>arp_ha</i>
+
+должен иметь тот же тип, что и тип устройства, указанного в
+<i>arp_dev</i>.
+
+<i>arp_dev</i>
+
+- строка с именем устройства, оканчивающаяся нулем.
+<table border="">
+<tbody><tr valign="top"><td colspan="2" align="center"><i>arp_flags</i><br></td></tr>
+<tr valign="top"><td>флаг</td><td>значение<br></td></tr>
+<tr valign="top"><td>ATF_COM</td><td>Поиск окончен<br></td></tr>
+<tr valign="top"><td>ATF_PERM</td><td>Постоянная запись<br></td></tr>
+<tr valign="top"><td>ATF_PUBL</td><td>Анонсировать запись<br></td></tr>
+<tr valign="top"><td>ATF_USETRAILERS</td><td>Требуются trailers<br></td></tr>
+<tr valign="top"><td>ATF_NETMASK</td><td>Использовать маску сети<br></td></tr>
+<tr valign="top"><td>ATF_DONTPUB</td><td>Не отвечать<br></td></tr>
+</tbody></table>
+
+</p><p>
+
+Если установлен флаг
+<b>ATF_NETMASK</b>,
+
+то должно быть указано корректное значение
+<i>arp_netmask</i>.
+
+Linux 2.2 не поддерживает сетевые записи proxy ARP, поэтому для удаления
+существующих записей proxy arp это значение должно быть равно 0xffffffff
+или нулю.
+<b>ATF_USETRAILERS</b>
+
+считается устаревшей, ее не рекомендуется использовать.
+</p><p>
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>СИСТЕМНЫЕ ВЫЗОВЫ</h2>
+
+ARP поддерживает интерфейс sysctl для настройки общих параметров или
+параметров конкретного сетевого интерфейса. Hастройка осуществляется
+путем чтения файла или записи в него
+<b>/proc/sys/net/ipv4/neigh/*/*</b>,
+
+а также с помощью вызовов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sysctl&amp;category=2">sysctl</a></b>(2).
+
+Для каждого сетевого интерфейса в системе существует соответствующий каталог в
+/proc/sys/net/ipv4/neigh/.
+Hастройки в каталоге `default' используются для всех новых устройств.
+Если явно не определено время, то оно считается указанным в секундах.
+<dl compact="">
+<dt><b>anycast_delay</b>
+
+</dt><dd>
+Максимальное значение задержки в тиках (jiffies) до ответа на запрос IPv6.
+В данное время поддержка anycast еще не реализована.
+По умолчанию - 1 секунда.
+</dd><dt><b>app_solicit</b>
+
+</dt><dd>
+Максимальное количество попыток послать запрос через сетевое соединение
+ARP-демону пользователя до возврата к широковещательным запросам (см.
+<i>mcast_solicit</i>).
+
+По умолчанию - 0.
+</dd><dt><b>base_reachable_time</b>
+
+</dt><dd>
+Если адрес был найден, значение записи в диапазоне времени между
+<i>base_reachable_time</i>/2 и 3*<i>base_reachable_time</i>/2
+
+будет считаться неустаревшим.
+Запись будет считаться правильной более длительное время, если будет получен 
+положительный ответ от протоколов более высокого уровня.
+По умолчанию - 30 секунд.
+</dd><dt><b>delay_first_probe_time</b>
+
+</dt><dd>
+Задержка до первого запроса после того, как запись стала считаться устаревшей.
+По умолчанию - 5 секунд.
+</dd><dt><b>gc_interval</b>
+
+</dt><dd>
+Частота очистки кэша от устаревших и некорректных записей.
+По умолчанию - 30 секунд.
+</dd><dt><b>gc_stale_time</b>
+
+</dt><dd>
+Частота проверки записей на старение. Если запись считается устаревшей,
+то перед тем, как данные будут посланы, адрес снова проверяется.
+По умолчанию - 60 секунд.
+</dd><dt><b>gc_thresh1</b>
+
+</dt><dd>
+Минимальное количество записей, хранимых в кэше. Если количество записей
+меньше этого значения, то очистка кэша производится не будет.
+По умолчанию - 128.
+</dd><dt><b>gc_thresh2</b>
+
+</dt><dd>
+Необязательный лимит количества записей в кэше ARP. Если это значение будет
+превышено более, чем на 5 секунд, то будет произведена очистка кэша.
+По умолчанию - 512.
+</dd><dt><b>gc_thresh3</b>
+
+</dt><dd>
+"Жесткий" лимит количества записей в ARP-кэше. Если это значение будет
+превышено, то очистка кэша будет произведена в любом случае.
+По умолчанию - 1024.
+</dd><dt><b>locktime</b>
+
+</dt><dd>
+Минимальное время хранения записи в кэше в тиках. Предотвращает
+появление ошибок в кэше при наличии более одного возможного
+соответствия (в общем случае из-за неправильной настройки сети).
+По умолчанию - 1 секунда.
+</dd><dt><b>mcast_solicit</b>
+
+</dt><dd>
+Максимальное количество попыток определить адрес с помощью
+широковещательной передачи. Если адрес не будет обнаружен, то он
+будет помечен как недоступный.
+По умолчанию - 3.
+</dd><dt><b>proxy_delay</b>
+
+</dt><dd>
+Задержка в тиках между получением ARP-запроса на известный proxy
+ARP-адрес и ответом. Предназначена для предотвращения перегрузки сети.
+По умолчанию - 0.8 секунд.
+</dd><dt><b>proxy_qlen</b>
+
+</dt><dd>
+Максимальное количество пакетов, которые могут быть отправлены в
+очередь для передачи по адресу proxy ARP.
+По умолчанию - 64.
+</dd><dt><b>retrans_time</b>
+
+</dt><dd>
+Задержка перед повторением запроса в тиках.
+По умолчанию - 1 секунда.
+</dd><dt><b>ucast_solicit</b>
+
+</dt><dd>
+Максимальное количество попыток послать адресный запрос перед запросом
+демона ARP (см.
+<i>app_solicit</i>).
+
+По умолчанию - 3.
+</dd><dt><b>unres_qlen</b>
+
+</dt><dd>
+Максимальное количество пакетов, поставленных в очередь протоколами
+других сетевых уровней для передачи по неразрешенному адресу.
+По умолчанию - 3.
+</dd></dl>
+<p>
+
+<a name="lbAF">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Значения некоторых настроек указаны в тиках, длительность которых
+зависит от архитектуры компьютера. В Alpha тик равен 1/1024 секунды.
+В большинстве остальных архитектур он равен 1/100 секунды.
+<p>
+
+Hе существует способа сообщить о положительном ответе из пользовательского
+пространства. Это означает, что протоколы, ориентированые на соединения и
+реализованные в пользовательском пространстве, будут создавать избыточный
+ARP-трафик вследствие того, что ndisc будет вновь и вновь запрашивать
+MAC-адрес. То же относится и к некоторым протоколам ядра
+(например, NFS через UDP).
+</p><p>
+
+На этой странице соединено описание специфических функций IPv4 и функций,
+разделяемых IPv4 и IPv6.
+</p><p>
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>ВЕРСИИ</h2>
+
+<p>
+
+В Linux 2.0, в структуру
+<b>struct</b>arpreq<b>,</b>
+
+было включено поле
+<i>arp_dev</i>
+
+и изменены номера ioctl. Старые ioctl более не поддерживаются.
+</p><p>
+
+Сетевые записи proxy arp (маска сети не равна 0xffffffff) в Linux 2.2
+не поддерживаются. Вместо этого было реализовано автоматическое определение
+ядром всех доступных через другие интерфейсы машин (при отправке сообщения
+и запущенном proxy arp).neigh/* sysctls не существовали до версии Linux 2.2.
+</p><p>
+
+<a name="lbAH">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7)
+
+<p>
+
+RFC826 описывает ARP.
+<br>
+
+RFC2461 описывает определение соседних машин с помощью протоколов IPv6
+и основные используемые алгоритмы.
+</p><p>
+
+Linux 2.2+ IPv4 ARP использует алгоритмы IPv6, когда они применимы.
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">СИСТЕМНЫЕ ВЫЗОВЫ</a></dt><dd>
+</dd><dt><a href="#lbAE">СИСТЕМНЫЕ ВЫЗОВЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAG">ВЕРСИИ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="arp" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

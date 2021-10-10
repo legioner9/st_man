@@ -1,0 +1,1185 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN fcntl (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, fcntl"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="fcntl" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">fcntl (2)</font><hr><li> <a href="/man.shtml?topic=fcntl&amp;category=2&amp;russian=4"><u>fcntl</u></a> (2) <font color="#555555"> ( Solaris man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=fcntl&amp;category=2&amp;russian=1"><u>fcntl</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=fcntl&amp;category=2&amp;russian=0"><u>fcntl</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=fcntl&amp;category=2&amp;russian=2"><u>fcntl</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=fcntl&amp;category=3&amp;russian=5"><u>fcntl</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+fcntl - манипуляции с файловым дескриптором
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<pre><b>#include &lt;<a href="file:/usr/include/unistd.h">unistd.h</a>&gt;</b>
+<b>#include &lt;<a href="file:/usr/include/fcntl.h">fcntl.h</a>&gt;</b>
+
+<b>int fcntl(int </b><i>fd</i><b>, int </b><i>cmd</i><b>);</b>
+<b>int fcntl(int </b><i>fd</i><b>, int </b><i>cmd</i><b>, long </b><i>arg</i><b>);</b>
+<b>int fcntl(int </b><i>fd</i><b>, int </b><i>cmd</i><b>, struct flock *</b><i>lock</i><b>);</b>
+</pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<b>fcntl</b>
+
+выполняет одну из различных дополнительных операций над файловым дескриптором
+<i>fd</i>.
+
+Эта операция определяется содержимым аргумента
+<i>cmd</i>.
+
+<a name="lbAE">&nbsp;</a>
+<h3>Управление close-on-exec</h3>
+
+<dl compact="">
+<dt><b>F_DUPFD</b>
+
+</dt><dd>
+Ищет наименьший доступный номер файлового дескриптора, который больше
+<i>arg</i>
+
+и делает его копией дескриптора
+<i>fd</i>.
+
+Фактически это другая форма вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dup2&amp;category=2">dup2</a></b>(2)
+
+которая используется с явным указанием файлового дескриптора.
+<p>
+Старый и новый дескрипторы могут использоваться равнозначно. Они разделяют
+одни и те же блокировки, указатели на позиции в файле и флаги; например,
+если позция в файле изменяется с помощью
+<b>lseek</b>
+
+для одного из дескрипторов, то эта же позиция также будет изменена и для
+другого.
+</p><p>
+Однако, данные два дескриптора не разделяют флаг close-on-exec. Флаг
+close-on-exec в копии выключен. Это означает, что дескриптор не будет
+закрыт в случае вызова exec.
+</p><p>
+При успешном выполнении этой операции, возвращается новый файловый дескриптор.
+</p></dd><dt><b>F_GETFD</b>
+
+</dt><dd>
+Читает флаг close-on-exec. Если бит
+<b>FD_CLOEXEC</b>
+
+установлен в 0, то файл будет оставлен открытым при вызове
+<b>exec</b>,
+
+в противном случае он будет закрыт.
+</dd><dt><b>F_SETFD</b>
+
+</dt><dd>
+Устанавливает флаг close-on-exec в значение, заданное битом
+<b>FD_CLOEXEC</b>
+
+аргумента
+<i>arg</i>.
+
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h3>Флаги состояния файла</h3>
+
+Любой файловый дескриптор имеет несколько связанных с ним флагов,
+которые инициализируются вызовом
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a></b>(2)
+
+
+
+и, возможно, изменяются затем вызовом
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2).
+
+Эти флаги разделяются между копиями (сделанными с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dup&amp;category=2">dup</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fork&amp;category=2">fork</a></b>(2),
+
+и других вызовов) этого же файлового дескриптора.
+<p>
+Эти флаги и их смысл описываются на странице руководства
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a></b>(2).
+
+</p><dl compact="">
+<dt><b>F_GETFL</b>
+
+</dt><dd>
+Читает флаги файлового дескриптора.
+</dd><dt><b>F_SETFL</b>
+
+</dt><dd>
+Устанавливает часть флагов, относящихся к состоянию файла, согласно
+значению, указанному в аргументе
+<i>arg</i>.
+
+Оставшиеся биты (режим доступа, флаги создания файла) в значении
+<i>arg</i>
+
+игнорируются.
+В Linux данная команда может изменять только флаги O_APPEND, O_NONBLOCK,
+O_ASYNC и O_DIRECT.
+
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h3>Совместная (advisory) блокировка</h3>
+
+<b>F_GETLK</b>, <b>F_SETLK</b> и <b>F_SETLKW</b>
+
+используются для установки, снятия и тестирования существующих
+блокировок записи (также известных как блокировки сегмента файла
+или области файла). 
+Третий аргумент
+<i>lock</i>
+
+является указателем на структуру, которая имеет по крайней мере
+следующие поля (в произвольном порядке).
+
+<pre>
+struct flock {
+    ...
+    short l_type;    /* Тип блокировки: F_RDLCK,
+                        F_WRLCK, F_UNLCK */
+    short l_whence;  /* Как интерпретировать l_start:
+                        SEEK_SET, SEEK_CUR, SEEK_END */
+    off_t l_start;   /* Начальное смещение для блокировки */
+    off_t l_len;     /* Количество байт для блокировки */
+    pid_t l_pid;     /* PID процесса блокирующего нашу блокировку
+                        (F_GETLK only) */
+    ...
+};
+</pre>
+
+
+
+Поля
+<i>l_whence</i>, <i>l_start</i> и <i>l_len</i>
+
+этой структуры задают диапазон байт, который мы хотим заблокировать.
+<i>l_start</i>
+
+- это начальное смещение для блокировки, которое интерпретируется как:
+начало файла (если значение
+<i>l_whence</i>
+
+установлено в
+<b>SEEK_SET</b>);
+
+текущая позиция в файле (если значение
+<i>l_whence</i>
+
+установлено в
+<b>SEEK_CUR</b>);
+
+или конец файла (если значение
+<i>l_whence</i>
+
+установлено в
+<b>SEEK_END</b>).
+
+В последних двух случаях,
+<i>l_start</i>
+
+может иметь отрицательное значение, предоставляя
+смещение, которого не может быть перед началом файла.
+<i>l_len</i>
+
+-это неотрицательное целое число (но см. ЗАМЕЧАНИЯ ниже), которое
+задаёт количество байт, которые будут заблокированы.
+Байты следующие после конца файла могут быть заблокированы,
+но это нельзя сделать для байтов, которые находятся перед началом
+файла.
+Значение 0 для
+<i>l_len</i>
+
+имеет специальное назначение: блокировка всех байтов, начиная от
+позиции, заданной
+<i>l_whence</i> и <i>l_start</i>
+
+до конца файла, не зависимо от того, насколько велик файл.
+
+Поле
+<i>l_type</i>
+
+может быть использовано для указания типа блокировки:
+чтение
+(<b>F_RDLCK</b>)
+
+или запись
+(<b>F_WDLCK</b>).
+
+Блокировку на чтение (разделяемая блокировка) на область файла
+может удерживать любое количество процессов, но только один
+процесс может удерживать блокировку на запись (эксклюзивная
+блокировка). Любая эксклюзивная блокировка исключает все другие
+блокировки, как разделяемые так и эксклюзивные.
+Один процесс может удерживать только один тип блокировки области
+файла; если происходит новая блокировка на уже заблокированную
+область, то существующая блокировка преобразуется в новый тип
+блокировки. (Такие преобразования могут привести к разбиению,
+уменьшению или срастанию с существующей блокировкой, если диапазон
+байт, заданный для новой блокировки неточно совпадает с диапазоном
+существующей блокировки.)
+<dl compact="">
+<dt><b>F_SETLK</b>
+
+</dt><dd>
+Установить блокировку (когда
+<i>l_type</i>
+
+установлено в значение
+<b>F_RDLCK</b>
+
+или
+<b>F_WRLCK</b>)
+
+или снять блокировку (когда
+<i>l_type</i>
+
+установлено в значение
+<b>F_UNLCK</b>)
+
+или байты, заданны с помощью полей
+<i>l_whence</i>, <i>l_start</i> и <i>l_len</i>
+
+структуры
+<i>lock</i>.
+
+Если конфликтующая блокировка удерживается другим процессом,
+то данный вызов вернёт -1 и установит значение
+<i>errno</i>
+
+в
+<b>EACCES</b>
+
+или
+<b>EAGAIN</b>.
+
+</dd><dt><b>F_SETLKW</b>
+
+</dt><dd>
+Если устнаовлен
+<b>F_SETLK</b>,
+
+но для файла удерживается конфликтующая блокировка, то происходит
+ожидание снятия блокировки.
+Если во время ожидания поступил сигнал, то данный вызов прерывается
+и (после возврата из обработчика сигнала) из него происходит немедленный
+возрат (где возвращаемое значение установлено в -1, а
+<i>errno</i>
+
+установлено в значение
+<b>EINTR</b>).
+
+</dd><dt><b>F_GETLK</b>
+
+</dt><dd>
+При входе в этот вызов,
+<i>lock</i>
+
+описывает блокировку, которую мы должны бы установить на
+файл. Если такая блокировка не может быть установлена,
+<b>fcntl</b>()
+
+по факту не устанавливает её, но возвращает
+<b>F_UNLCK</b>
+
+в поле
+<i>l_type</i>
+
+структуры
+<i>lock</i>
+
+и оставляет другие поля структуры неизменёнными.
+Если одна или более несовместимых блокировок мешают
+установке нашей блокировки, то
+<b>fcntl</b>()
+
+возвращает подробности об одной из этих блокировок
+в полях
+<i>l_type</i>, <i>l_whence</i>, <i>l_start</i> и <i>l_len</i>
+
+структуры
+<i>lock</i>
+
+и устанавливает
+<i>l_pid</i>
+
+в значение PID того процесса, который удерживает блокировку.
+
+Для того, чтобы установить блокировку на чтение,
+<i>fd</i>
+
+должен быть открыт на чтение.
+Для того, чтобы установить блокировку на запись,
+<i>fd</i>
+
+должен быть открыт на запись.
+Чтобы установить оба типа блокировки, дескриптор должен
+быть открыт на запись и на чтение.
+
+Также, как и при снятии блокировки через явное указание
+<b>F_UNLCK</b>,
+
+блокировка автоматически снимается, когда процесс
+завершается или если он закрывает
+<i>любой</i>
+
+файловый дескриптор, ссылающийся на файл, на котором
+удерживается блокировка.
+
+
+
+Это плохо: это означает, что процесс может потерять блокировки
+на файлах типа
+<i>/etc/passwd</i>
+
+или
+<i>/etc/mtab</i>,
+
+когда по какой-либо причине библиотечная функция производит их
+открытие, чтение и закрытие.
+
+Блокировки не наследуются процессом-потомком, созданным через
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fork&amp;category=2">fork</a></b>(2),
+
+но сохраняются при вызове
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=execve&amp;category=2">execve</a></b>(2).
+
+
+Поскольку буферизация, выполняется через библиотеку
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stdio&amp;category=3">stdio</a></b>(3),
+
+использование блокировок с функциями в этом пакете нужно
+избегать; вместо этих функций используйте
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2) и <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></b>(2).
+
+
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h3>Обязательная (mandatory) блокировка</h3>
+
+(Не-POSIX.)
+Описанные выше блокировки могут быть или совместные или обязательные
+и по умолчанию используются совместные. Чтобы использовать
+обязательные блокировки, они должны быть разрешены
+(с помощью опции "-o mand" в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=8">mount</a></b>(8))
+
+для файловой системы, содержащей файл, который должен быть заблокирован,
+а также разрешены для самого файла (с помощью запрещения прав
+на выполнение группой и установки set-GID бита в правах доступа
+к файлу).
+<p>
+Совместные блокировки не являются принудительными и полезны только
+между сотрудничающими процессами. Обязательные блокировки являются
+принудительными для всех процессов.
+
+<a name="lbAI">&nbsp;</a>
+</p><h3>Управление сигналами</h3>
+
+<b>F_GETOWN</b>, <b>F_SETOWN</b>, <b>F_GETSIG</b> и <b>F_SETSIG</b>
+
+используются для управления сигналами доступности ввода/вывода:
+<dl compact="">
+<dt><b>F_GETOWN</b>
+
+</dt><dd>
+Получить идентификатор процесса или группу процесса, которые в
+текущий момент принимают сигналы SIGIO и SIGURG для событий на
+файловом дескрипторе
+<i>fd</i>.
+
+Группы процессов возвращаются в виде отрицательных значений.
+</dd><dt><b>F_SETOWN</b>
+
+</dt><dd>
+Установить идентификатор процесса или группу процесса, которые
+будут принимать сигналы SIGIO и SIGURG для событий на файловом
+дескрипторе
+<i>fd</i>.
+
+Группы процессов задаются в виде отрицательных значений.
+(<b>F_SETSIG</b>
+
+может использоваться, чтобы задать другой сигнал вместо SIGIO).
+<p>
+
+Если вы установили на файловый дескриптор флаг состояния
+<b>O_ASYNC</b>
+
+(или через предоставление этого флага в вызове
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a></i>(2),
+
+или используя команду
+<b>F_SETFL</b>
+
+вызова
+<b>fcntl</b>),
+
+то сигнал SIGIO посылается всякий раз, когда для данного файлового
+дескриптора становится возможным ввод или вывод.
+</p><p>
+Процесс или группа процесса, для приёма сигнала могут быть выбраны,
+используя команду
+<b>F_SETOWN</b>
+
+в вызове
+<b>fcntl</b>.
+
+Если файловым дескриптором является сокет, то для него также
+выбирается получатель сигналов SIGURG, которые доставляются,
+когда на сокет поступает данных больше, чем его пропускная
+способность. (SIGURG посылается во всех ситуациях, когда вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=select&amp;category=2">select</a></b>(2)
+
+говорит, что сокет находится в состоянии "исключительной ситуации").
+Если файловый дескриптор соответствует терминальному устройству,
+то группе процессов, которые работают с терминалом не в фоновом
+режиме будут посылаться сигналы SIGIO.
+</p></dd><dt><b>F_GETSIG</b>
+
+</dt><dd>
+Получить сигнал, который будет послан, когда станет возможен ввод или
+вывод. Значение 0 означает сигнал SIGIO. Любое другое значение
+(включая SIGIO) является другим сигналам, посылаемым вместо SIGIO
+и в это случае, для обработчика сигнала доступна дополнительная
+информация, если он был установлен с SA_SIGINFO.
+</dd><dt><b>F_SETSIG</b>
+
+</dt><dd>
+Установить сигнал, который будет послан, когда станет возможен ввод или
+вывол. Значение 0 означает сигнал SIGIO. Любое другое значение
+(включая SIGIO) является другим сигналам, посылаемым вместо SIGIO
+и в это случае, для обработчика сигнала доступна дополнительная
+информация, если он был установлен с SA_SIGINFO.
+<p>
+В случае использования F_SETSIG с ненулевым значением и установкой
+SA_SIGINFO для обработчика сигнала (см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigaction&amp;category=2">sigaction</a></b>(2)),
+
+обработчику передаётся дополнительная информация о событиях ввода/вывода
+в структуре
+<i>siginfo_t</i>.
+
+Если поле
+<i>si_code</i>
+
+показывает, что сигналом является SI_SIGIO, то поле
+<i>si_fd</i>
+
+содержит файловый дескриптор, ассоциированный с собрытием вывода/вывода.
+В противном случае, не существует никакого механизма, чтобы сообщить
+с каким файловым дескриптором связан полученный сигнал и вы должны
+использовать
+(<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=select&amp;category=2">select</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=poll&amp;category=2">poll</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+с установленным флагом
+<b>O_NONBLOCK</b>
+
+и т.д.) чтобы определить какой файловый дескриптор доступен для
+ввода/вывода.
+</p><p>
+При выборе сигнала реального времени (value &gt;= SIGRTMIN) как описано
+в POSIX.1b, в очередь будут добавляться несколько событий ввода вывода,
+с теми же номерами сигналов. (Размер очереди зависит от доступной памяти).
+Дополнительная информация будет доступна как описано выше, если для
+обработчика сигнала будет установлено SA_SIGINFO.
+</p></dd></dl>
+<p>
+
+Используя эти механизмы, программа может реализовать полностью
+асинхронный ввода/вывод без использования в своей работе
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=select&amp;category=2">select</a></b>(2)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=poll&amp;category=2">poll</a></b>(2).
+
+</p><p>
+
+Использование
+<b>O_ASYNC</b>,
+
+<b>F_GETOWN</b>,
+
+<b>F_SETOWN</b>
+
+является специфичным для BSD и Linux.
+<b>F_GETSIG</b>
+
+и
+<b>F_SETSIG</b>
+
+являются специфичными для Linux.  POSIX описывает асинхронный ввод/вывод
+и структуру
+<i>aio_sigevent</i>
+
+используемую для сходных вещей; которые также доступны в Linux
+как часть библиотеки GNU C (Glibc).
+
+<a name="lbAJ">&nbsp;</a>
+</p><h3>Аренда</h3>
+
+<b>F_SETLEASE</b>
+
+и
+<b>F_GETLEASE</b>
+
+(в Linux 2.4 и выше) используются (соответственно) для установки и
+получения текущих настроек вызывающего процесса, арендующего
+файл, на который указывает 
+<i>fd</i>.
+
+Аренда файла предоставляет такой механизм, когда процесс, удерживающий
+аренду ("держатель аренды") уведомляется (через доставку сигнала),
+о том, что другой процесс ("конкурент") пытается выполнить
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a></b>(2)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=truncate&amp;category=2">truncate</a></b>(2)
+
+для этого файла.
+<dl compact="">
+<dt><b>F_SETLEASE</b>
+
+</dt><dd>
+Устанавливает или удаляет аренду файла, в соответствии со целым
+значением, установленным в аргументе
+<i>arg</i>:
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>F_RDLCK</b>
+
+</dt><dd>
+Установить аренду чтения.
+Это приведёт к генерации уведомления, когда другой процесс открывает
+указанный файл для записи или усекает его.
+</dd><dt><b>F_WRLCK</b>
+
+</dt><dd>
+Установить аренду записи.
+Это приведёт к генерации уведомления, когда другой процесс открывает
+указанный файл (для чтения или записи) или усекает его. Аренда записи
+может быть установлена на файл, только если этот файл не открыт
+в этот момент каким-либо другим процессом.
+</dd><dt><b>F_UNLCK</b>
+
+</dt><dd>
+Удалить аренду с указанного файла.
+</dd></dl>
+</dd></dl>
+
+
+Процесс может удержитвать для файла только один тип аренды.
+
+Аренда может быть установлена только для обычных файлов.
+Непривелегированный процесс может установить аренту только для
+файла, у которого UID совпадает с UID файловой системы этого
+процесса.
+</dd><dt><b>F_GETLEASE</b>
+
+</dt><dd>
+Показывает какой тип аренды удерживается для файла, на
+который указывает
+<i>fd</i>
+
+и возвращает одно из значений
+<b>F_RDLCK</b>, <b>F_WRLCK</b> или <b>F_UNLCK,</b>
+
+соответственно показывающих, что вызывающий процесс удерживает
+аренду чтения, записи или что аренды нет.
+(Третий аргумент
+<b>fcntl</b>()
+
+при этому опускается.)
+</dd></dl>
+<p>
+
+Когда конкурент выполняет вызов
+<b>open</b>()
+
+или
+<b>truncate</b>(),
+
+который конфликтует с арендой, установленной через
+<b>F_SETLEASE</b>,
+
+системный вызов блокируется ядром (за исключением случая,
+когда при вызове
+<b>open</b>()
+
+указывается флаг 
+<b>O_NONBLOCK</b>;
+
+в этом случае немедленно возращается ошибка
+<b>EWOULDBLOCK</b>).
+
+Затем ядро уведомляет держателя аренды, отправляя ему сигнал
+(по умолчанию SIGIO).
+Держатель аренты должен при получении этого сигнала выполнить
+все необходимые действия для подготовки этого файла к использованию
+другим процессом (например, сбросить буферы кэша) и затем
+удалить аренду, выполнив операцию
+<b>F_SETLEASE</b>
+
+и установив значение аргумента
+<i>arg</i>
+
+в
+<b>F_UNLCK</b>.
+
+</p><p>
+Если держатель аренды не освободит аренду в течении количества
+секунд, которое задаётся в файле
+<i>/proc/sys/fs/lease-break-time</i>,
+
+а системный вызов конкурента останется блокирующим
+(то, есть конкурент не установит флаг
+<b>O_NONBLOCK</b>
+
+для системного вызова
+<b>open</b>()
+
+и этот системный вызов не будет прерван обработчиком события),
+то ядро принудительно удалит аренду у процесса держателя
+аренды.
+</p><p>
+После того как аренда снята держателем аренды или принудительно
+удалена ядром, ядро снимает блокировку с системного вызова
+процесса конкуренту и разрешает продолжить его работу.
+</p><p>
+По умолчанию, для уведомления держателя аренды используется
+сигнал SIGIO, но его можно изменить, используя команду
+<b>F_SETSIG</b>
+
+для 
+<b>fcntl ().</b>
+
+Если выполняется команда
+<b>F_SETSIG</b>
+
+(даже назначая сигнал SIGIO) и при этом обработчик сигнала
+устанавливается с использованием SA_SIGINFO, то обработчик
+будет получит в качестве второго аргумента структуру
+<i>siginfo_t</i>,
+
+в которой поле
+<i>si_fd</i>
+
+будет содержать дескриптор файла, для которого установлена
+аренда и которому пытается получить доступ другой процесс.
+(Это полезно, если вызывающий процесс удерживает аренду на
+несколько файлов).
+<a name="lbAK">&nbsp;</a>
+</p><h3>Уведомления об изменении файла и каталога</h3>
+
+<dl compact="">
+<dt><b>F_NOTIFY</b>
+
+</dt><dd>
+(Начиная с Linux 2.4)
+Предоставляет уведомление, когда изменяется каталог, на который
+указывает
+<i>fd</i>
+
+или файлы, которые в нём содержатся.
+События, о наступлении которых делается уведомление, задаются
+в аргументе
+<i>arg</i>,
+
+который является битовой маской, получаемой битовым сложением
+(OR) одной или более следующих масок:
+<p>
+<table>
+<tbody><tr valign="top"><td>Маска</td><td>Описание (событие в каталоге)<br></td></tr>
+<tr valign="top"><td>DN_ACCESS</td></tr>
+<tr valign="top"><td><b>DN_MODIFY</b></td><td>Файл был изменён (write, pwrite,<br></td></tr>
+<tr valign="top"><td><b></b></td><td>writev, truncate, ftruncate)<br></td></tr>
+<tr valign="top"><td><b>DN_CREATE</b></td><td>Файл был создан (open, creat, mknod,<br></td></tr>
+<tr valign="top"><td><b></b></td><td>mkdir, link, symlink, rename)<br></td></tr>
+<tr valign="top"><td><b>DN_DELETE</b></td><td>Файл был удалён (unlink, rename в<br></td></tr>
+<tr valign="top"><td><b></b></td><td>другой каталог, rmdir)<br></td></tr>
+<tr valign="top"><td><b>DN_RENAME</b></td><td>Файл был переименован внутри каталога (rename)<br></td></tr>
+<tr valign="top"><td><b>DN_ATTRIB</b></td><td>У файла был изменён атрибут (chown, chmod, utime[s])<br></td></tr>
+</tbody></table>
+
+</p><p>
+(Чтобы включить определения этих масок, нужно задать макроопределение
+_GNU_SOURCE до подключения &lt;<a href="file:/usr/include/fcntl.h">fcntl.h</a>&gt;.)
+</p><p>
+Уведомления об изменении состояния каталога обычно однократные и
+приложение должно перерегистрировать установку уведомлений, чтобы
+и дальше получать их. Однако, если в аргумент
+<i>arg</i>
+
+добавить маску
+<b>DN_MULTISHOT</b>,
+
+то уведомления будут происходить до тех пор, пока не будут
+явно отменены.
+</p><p>
+
+Серии запросов
+<b>F_NOTIFY</b>
+
+накапливаются, таким образом запросы на уведомления, указываемые в
+<i>arg</i>
+
+будут добавляться к тем, что уже установлены.
+Чтобы запретить уведомления для всех событий, выполните вызов
+<b>F_NOTIFY</b>,
+
+в котором значение
+<i>arg</i>
+
+установлено в 0.
+</p><p>
+Уведомления выполняются через доставку сигнала.
+По умолчанию - это SIGIO, но вы можете изменить его, используя команду
+<b>F_SETSIG</b>
+
+для вызова
+<b>fcntl</b>().
+
+В последнем случае, обработчик сигнала получит в качестве второго
+аргумента структуру
+<i>siginfo_t</i>
+
+(если обработчик был установлен с использованием SA_SIGINFO), а поле
+<i>si_fd</i>
+
+в этой структуре будет содержать дескриптор файла, для которого было
+сегенерировано уведомление (полезно, когда устанавливается уведомление
+для нескольких каталогов).
+</p><p>
+Кроме того, когда используется
+<b>DN_MULTISHOT</b>,
+
+для уведомлений должен бы быть использован сигнал реального времени
+POSIX.1b, так что множественные уведомления могут быть поставлены в
+очередь.
+</p></dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h2>ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ</h2>
+
+При успешном вызове, возвращаемое значение зависит от использованной
+операции:
+<dl compact="">
+<dt><b>F_DUPFD</b>
+
+</dt><dd>
+Новый файловый дескриптор.
+</dd><dt><b>F_GETFD</b>
+
+</dt><dd>
+Значение флага.
+</dd><dt><b>F_GETFL</b>
+
+</dt><dd>
+Значение флага.
+</dd><dt><b>F_GETOWN</b>
+
+</dt><dd>
+Значение, представляющее собой владельца дескриптора.
+</dd><dt><b>F_GETSIG</b>
+
+</dt><dd>
+Значение сигнала, посылаемого когда становится возможным чтение
+или запись или ноль для традиционного поведения SIGIO.
+</dd><dt>Все другие команды. Ноль.</dt><dd>
+</dd></dl>
+<p>
+
+В случае ошибки, возвращается -1 и значение
+<i>errno</i>
+
+устанавливается соответствующим образом.
+<a name="lbAM">&nbsp;</a>
+</p><h2>ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>EACCES</b> или <b>EAGAIN</b>
+
+</dt><dd>
+Операция запрещена блокировками, которые удерживаются другими процессами.
+Или, операция запрещена, потому что для этого файла другой процесс
+использует механизм отображения в память (memory-map).
+</dd><dt><b>EBADF</b>
+
+</dt><dd>
+<i>fd</i>
+
+не является открытым файловым дескриптором или команда была
+<b>F_SETLK</b>
+
+или
+<b>F_SETLKW</b>
+
+и режим открытия файлового дескриптора не совпадает с типом запрошенной
+блокировки.
+</dd><dt><b>EDEADLK</b>
+
+</dt><dd>
+Было обнаружено, что указанная команда
+<b>F_SETLKW</b>
+
+должна вызывать мёртвую блокировку (deadlock).
+</dd><dt><b>EFAULT</b>
+
+</dt><dd>
+<i>lock</i>
+
+находится за пределами доступного адресного пространства.
+</dd><dt><b>EINTR</b>
+
+</dt><dd>
+Выполнение команды
+<b>F_SETLKW</b>,
+
+было прервана сигналом.
+Или выполнение команд
+<b>F_GETLK</b> и <b>F_SETLK</b>,
+
+было прервано сигналом перед тем как была блокировка была проверка или
+установлена. Большинство таких ошибок случается при блокировке
+удалённого файла (например, блокировка через NFS), но иногда такое
+может случаться и на локальных файлах.
+</dd><dt><b>EINVAL</b>
+
+</dt><dd>
+Для
+<b>F_DUPFD</b>,<b>значение</b>
+
+<i>arg</i>
+
+отрицательное или же больше, чем максимально возможное значение. Для
+<b>F_SETSIG</b>,<b>значение</b>
+
+<i>arg</i>
+
+не содержит допустимый номер сигнала.
+</dd><dt><b>EMFILE</b>
+
+</dt><dd>
+Для
+<b>F_DUPFD</b>,
+
+процесс достиг максимального количества открытых файловых дескрипторов.
+</dd><dt><b>ENOLCK</b>
+
+</dt><dd>
+Открыто слишком много блокировок сегментов, таблица блокировок заполнена
+или ошибка протокола удалённой блокировки (например, при блокировке через
+NFS).
+</dd><dt><b>EPERM</b>
+
+</dt><dd>
+Попытка сбросить флаг
+<b>O_APPEND</b>
+
+на файле, который открыт с атрибутом только для добавления.
+</dd></dl>
+<a name="lbAN">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Ошибки, возвращаемые
+<b>dup2</b>
+
+отличаются от тех, что возвращаются при
+<b>F_DUPFD</b>.
+
+<p>
+Начиная с ядра 2.0, не существует разницы между типами блокировки,
+которые осуществляет
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=flock&amp;category=2">flock</a></b>(2)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2).
+
+</p><p>
+POSIX 1003.1-2001 разрешает отрицательное значение
+<i>l_len</i>.
+
+(И если оно отрицательное, интервал, описывающий блокировку покрывает
+<i>l_start</i>+<i>l_len</i>
+
+байт, включая
+<i>l_start</i>-1.)
+
+Это поддерживатся, начиная с Linux 2.4.21 и 2.5.49.
+</p><p>
+Некоторые системы имеют больше полей в структуре
+<i>struct flock</i>
+
+например такие как
+<i>l_sysid</i>.
+
+Вообще-то, один
+<i>l_pid</i>
+
+не очень-то полезен, если процесс, удерживающий блокировку может
+работать на другой машине.
+</p><p>
+<a name="lbAO">&nbsp;</a>
+</p><h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+SVr4, SVID, POSIX, X/OPEN, BSD 4.3.  В стандарте POSIX.1 описываются только
+F_DUPFD, F_GETFD, F_SETFD, F_GETFL, F_SETFL, F_GETLK, F_SETLK и F_SETLKW.
+F_GETOWN и F_SETOWN в BSD, не поддеживаются в SVr4; F_GETSIG и F_SETSIG
+являются специфичными для Linux.
+<b>F_NOTIFY</b>, <b>F_GETLEASE</b>, и <b>F_SETLEASE</b>
+
+являются специфичными для Linux.
+(Для подключения этих флагов задавайте макрос _GNU_SOURCE перед подключением
+заголовочного файла &lt;<a href="file:/usr/include/fcntl.h">fcntl.h</a>&gt;.)
+Флаги, которые являются допустимыми для F_GETFL/F_SETFL также поддерживаются
+вызовом
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a></b>(2)
+
+и варьируются в зависимости от операционных систем; O_APPEND, O_NONBLOCK,
+O_RDONLY и O_RDWR описываются в POSIX.1.  SVr4 поддерживает несколько других
+опций и флагов, которые здесь не описываются.
+<p>
+
+SVr4 документирует дополнительные условия ошибок EIO, ENOLINK и EOVERFLOW.
+<a name="lbAP">&nbsp;</a>
+</p><h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dup2&amp;category=2">dup2</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=flock&amp;category=2">flock</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lockf&amp;category=3">lockf</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=2">socket</a></b>(2)
+
+
+См. также locks.txt, mandatory.txt и dnotify.txt in
+/usr/src/linux/Documentation.
+<a name="lbAQ">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевёл с английского Виктор Вислобоков &lt;<a href="mailto:corochoone@perm.ru">corochoone@perm.ru</a>&gt; 2005
+<p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAE">Управление close-on-exec</a></dt><dd>
+</dd><dt><a href="#lbAF">Флаги состояния файла</a></dt><dd>
+</dd><dt><a href="#lbAG">Совместная (advisory) блокировка</a></dt><dd>
+</dd><dt><a href="#lbAH">Обязательная (mandatory) блокировка</a></dt><dd>
+</dd><dt><a href="#lbAI">Управление сигналами</a></dt><dd>
+</dd><dt><a href="#lbAJ">Аренда</a></dt><dd>
+</dd><dt><a href="#lbAK">Уведомления об изменении файла и каталога</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAL">ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAM">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAN">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAO">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAP">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAQ">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="fcntl" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

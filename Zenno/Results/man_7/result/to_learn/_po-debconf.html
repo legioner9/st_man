@@ -1,0 +1,797 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN po-debconf (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, po-debconf"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="po-debconf" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">po-debconf (7)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=po-debconf&amp;category=7&amp;russian=0"><u>po-debconf</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=po-debconf&amp;category=7&amp;russian=2"><u>po-debconf</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+<a name="ixAAC"></a>
+po-debconf --- общее описание
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<a name="ixAAD"></a>
+Задачей <tt>"debconf"</tt> является обеспечение простой настройки пакетов для
+пользователя. Чтобы достигнуть этого, очень важно, чтобы пользователю
+задавались вопросы на родном языке. Переводчикам нужна структура для
+облегчения работы над переводами, чтобы не вникать в суть разработки пакета;
+<tt>"po-debconf"</tt> была разработана совместимой со стандартными инструментами
+<tt>"gettext"</tt> для перевода шаблонов debconf.
+<a name="lbAD">&nbsp;</a>
+<h2>ДОБАВЛЕНИЕ ПОДДЕРЖКИ ИНТЕРНАЦИОНАЛИЗАЦИИ (I18N) В ФАЙЛЫ ШАБЛОНОВ DEBCONF</h2>
+
+<a name="ixAAE"></a>
+Если вы добавляете поддержку debconf в свой пакет, то вам нужно написать
+файл шаблонов на английском языке. Для того чтобы правильно добавить
+поддержку интернационализации (i18n) в свой пакет, требуется:
+<dl compact="">
+<dt>- создать <i>debian/po/POTFILES.in</i></dt><dd>
+<a name="ixAAF"></a>
+Этот файл содержит список мастер шаблонов. Обычно он содержит только одну
+строку
+
+
+<p>
+
+
+
+</p><pre>  [type: gettext/rfc822deb] templates
+
+</pre>
+
+
+
+<p>
+
+
+Пути относительно родительского каталога.
+</p></dd><dt>- в начале переводимых полей указать символ подчёркивания</dt><dd>
+Обычно переводятся поля <tt>"Description"</tt>, <tt>"Choices"</tt> и иногда <tt>"Default"</tt>.
+</dd><dt>- запустить <b>debconf-updatepo</b></dt><dd>
+<a name="ixAAG"></a>
+Она создаст файл <i>debian/po/templates.pot</i>, который переводчики будут
+переводить на свой язык.
+</dd><dt>- добавить зависимость сборки от po-debconf в файл <i>debian/control</i></dt><dd><i>
+
+
+<a name="ixAAH"></a>
+</i></dd></dl><i>
+</i><a name="lbAE">&nbsp;</a>
+<h2>ОБНОВЛЕНИЕ ШАБЛОНОВ</h2>
+
+<a name="ixAAI"></a>
+Чтобы помочь переводчикам PO-файлы пакеты должны всегда поддерживаться в
+актуальном состоянии, иначе переводчики могут потерять своё время впустую
+переводя неиспользуемые строки. Для этого, просто запустите следующую
+команду без параметров:
+<p>
+
+
+
+</p><pre>  $ debconf-updatepo
+
+</pre>
+
+
+<p>
+
+Вы должны запускать эту команду каждый раз не только после изменений в
+английских шаблонах, но и когда получаете новые или обновлённые файлы
+переводов, так как переводчики могли работать над устаревшим PO-файлом.
+</p><p>
+
+При переименовании, добавлении или удалении файлов шаблонов, также не
+забудьте внести соответствующие изменения в файл <i>debian/po/POTFILES.in</i>,
+иначе английские строки пропадут из PO-файлов и будут показаны пользователям
+даже если PO-файлы полностью переведены.
+</p><p>
+
+Программа <b>debconf-updatepo</b> является идемпотентной, она изменяет PO-файлы
+только если для них изменилось содержание. Таким образом лучшим решением
+поддерживать актуальное состояние PO-файлов в пакете это запускать эту
+команду в правиле <tt>"clean"</tt> файла <i>debian/rules</i>.
+</p><p>
+
+Заметьте, что вы должны запускать <b>debconf-updatepo</b> даже в случае
+использования <b>dh_installdebconf</b>. Последний вызывает <b>po2debconf</b>,
+который в свою очередь запускает <b>debconf-updatepo</b>, если обнаруживаются
+устаревшие файлы, но это не очень хорошее решение как минимум по двум
+причинам:
+</p><dl compact="">
+<dt>1.</dt><dd>
+Для обнаружения устаревших файлов <b>po2debconf</b> использует временные отметки
+и может неправильно сработать, если используется <tt>"pbuilder"</tt> или если
+устаревшие переводы были записаны на диск после изменения шаблонов
+</dd><dt>2.</dt><dd>
+<b>dh_installdebconf</b> вызывается уже после генерации файла <tt>".diff.gz"</tt>
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ОБЪЕДИНЕНИЕ ПЕРЕВОДОВ И ОРИГИНАЛА</h2>
+
+<a name="ixAAJ"></a>
+Вам нужно проверить, что при сборке пакета переводы попадают в готовый
+пакет. Вы можете делать это вручную или автоматически с помощью сценария
+<b>dh_installdebconf</b> (проверьте, что в зависимостях сборки есть <tt>"debhelper
+(&gt;= 4.1.16)"</tt>).
+<p>
+
+Чтобы сделать это вручную, нужно объединить шаблоны и переводы во время
+сборки (и должна быть зависимость от <tt>"po-debconf"</tt>), например:
+</p><p>
+
+
+
+</p><pre>  $ po2debconf debian/templates &gt; debian/tmp/DEBIAN/templates
+
+</pre>
+
+
+<p>
+
+<b>ОСТОРОЖНО</b>: эти два файла с именем <i>templates</i> имеют разное
+содержимое. Первый содержит только английский текст и поля, помеченные как
+переводимые, а второй содержит сообщения на всех остальных языках. Надо
+добавить, что вы НЕ МОЖЕТЕ хранить только объединённые шаблоны, иначе вы не
+сможете договориться с переводчиками, чтобы они выполняли обновление.
+<a name="lbAG">&nbsp;</a>
+</p><h2>НОВЫЕ МАСТЕР ШАБЛОНЫ</h2>
+
+<a name="ixAAK"></a>
+Новый формат исходных мастер шаблонов почти повторяет распространяемый файл
+шаблонов, но здесь переводимые поля начинаются с символа
+подчёркивания. Пример:
+<p>
+
+
+
+</p><pre>  Template: debconf/frontend
+  Type: select
+  _Choices: Dialog, Readline, Gnome, Editor, Noninteractive
+  Default: Dialog
+  _Description: Interface to use for configuring packages:
+   Packages that use debconf for configuration share a common look and
+   feel.  You can select the type of user interface they use.
+   .
+   The dialog frontend is a full-screen, character based interface,
+   while the readline frontend uses a more traditional plain text
+   interface, and the gnome frontend is a modern X interface.  The
+   editor frontend lets you configure things using your favorite text
+   editor. The noninteractive frontend never asks you any questions.
+
+</pre>
+
+
+<a name="lbAH">&nbsp;</a>
+<h2>РАЗДЕЛЕНИЕ СПИСКА ВЫБОРА</h2>
+
+<a name="ixAAL"></a>
+Начиная с <tt>"po-debconf"</tt> 0.6.0, локализованные имена полей могут содержать
+два начальных подчёркивания. В этом случае предполагается, что значением
+поля является список значений через запятую, которые будут помещены в
+отдельные msgid. То есть, если бы предыдущий пример содержал
+<p>
+
+
+
+</p><pre>  __Choices: Dialog, Readline, Gnome, Editor, Noninteractive
+
+</pre>
+
+
+<p>
+
+то было бы 5 разных msgid. Заметим, что пробелы после запятых не
+обязательны.
+</p><p>
+
+В основном, когда список выбора никогда не меняется, можно указать
+<tt>"_Choices"</tt>, в противном случае <tt>"__Choices"</tt> облегчит жизнь переводчику.
+</p><p>
+
+К сожалению, если вы решили переключиться между двумя этими формами, все
+переводы будут отмечены как неточные. Можно сделать это изменение без потери
+переводов (требуется <tt>"po-debconf"</tt> &gt;= 1.0). Предположим, что вы хотите
+переключить предыдущий пример на <tt>"__Choices"</tt>. Скопируйте файл <i>templates</i>
+во временный файл.
+</p><p>
+
+
+
+</p><pre>  $ cp debian/templates debian/foo
+
+</pre>
+
+
+<p>
+
+Отредактируйте <i>debian/foo</i> и оставьте только поля <tt>"Template"</tt>, <tt>"Type"</tt> и
+<tt>"_Choices"</tt> из этого примера
+</p><p>
+
+
+
+</p><pre>  Template: debconf/frontend
+  Type: select
+  _Choices: Dialog, Readline, Gnome, Kde, Editor, Noninteractive
+
+</pre>
+
+
+<p>
+
+Запустите <b>debconf-gettextize</b> с параметрами <tt>"--merge"</tt> и <tt>"--choices"</tt>,
+чтобы собрать PO-файлы, как если бы было записано <tt>"__Choices"</tt>, и объединить
+эти PO-файлы с существующими:
+</p><p>
+
+
+
+</p><pre>  $ debconf-gettextize --merge --choices debian/foo
+
+</pre>
+
+
+<p>
+
+В конце удалите <i>foo</i> и вручную отредактируйте <i>debian/templates</i> заменив
+<tt>"_Choices"</tt> на <tt>"__Choices"</tt> перед тем как запустить <b>debconf-updatepo</b>.
+<a name="lbAI">&nbsp;</a>
+</p><h2>СОЗДАНИЕ КОММЕНТАРИЕВ ДЛЯ ПЕРЕВОДЧИКОВ</h2>
+
+<a name="ixAAM"></a>
+Сопровождающие <tt>"Dpkg"</tt> пришли к соглашению, что строки, начинающиеся со
+знака <tt>"#"</tt>, считаются комментариями в файлах <i>debian/control</i>, и
+<tt>"po-debconf"</tt> тоже следует этому правилу. Начиная с <tt>"po-debconf"</tt> 0.8.0, эти
+комментарии сохраняются в PO-файлах, и таким образом, могут содержать
+смысловую информацию для переводчиков. Случайно, все предыдущие версии
+<tt>"po-debconf"</tt> игнорировали строки, которые не содержат двоеточия, то есть
+если ваши комментарии не содержат двоеточия, не нужно добавлять зависимость
+от версии сборки <tt>"po-debconf"</tt>. Пример:
+<p>
+
+
+
+</p><pre>  Template: debconf/button-yes
+  Type: text
+  # Translators, this text will appear on a button, so KEEP IT SHORT
+  _Description: Yes
+
+</pre>
+
+
+<p>
+
+В <tt>"po-debconf"</tt> 1.0 были добавлены специальные комментарии, учитывающие
+строки с несколькими элементами (например, поле <i>Choices</i>) или параграфы
+(например, в <i>Description</i>). С помощью новых директив разработчики получают
+больший контроль над тем, что показывать переводчикам. Команды имеют вид
+<tt>"#flag:</tt>directive<tt>"</tt>; директивы описаны далее.
+</p><dl compact="">
+<dt><b>translate:</b><i>spec</i>, <b>translate!:</b><i>spec</i></dt><dd>
+<a name="ixAAN"></a>
+Отметить только некоторые элементы для перевода; <i>spec</i> является списком
+чисел через запятую, в котором указаны какие строки будут выводиться в
+PO-файлы. Можно указывать диапазоны значений через знак минус (например,
+<tt>"2-6"</tt>), звёздочка (<tt>"*"</tt>) означает все строки. Например, из
+
+
+<p>
+
+
+
+</p><pre>  Template: partman-basicfilesystems/fat_mountpoint
+  Type: select
+  #flag:translate:3,4
+  __Choices: /dos, /windows, Enter manually, Do not mount it
+  _Description: Mount point for this partition:
+
+</pre>
+
+
+
+<p>
+
+
+<tt>"Enter manually"</tt> и <tt>"Do not mount it"</tt> появятся в PO-файлах, а <tt>"/dos"</tt> и
+<tt>"/windows"</tt> --- нет. Если после ключевого слова <b>translate</b> поставить
+восклицательный знак, то в <i>spec</i> указываются какие строки будут исключены
+из PO-файлов, а все остальные строки будут выводиться. Предыдущий пример
+можно переписать как
+
+
+</p><p>
+
+
+
+</p><pre>  Template: partman-basicfilesystems/fat_mountpoint
+  Type: select
+  #flag:translate!:1,2
+  __Choices: /dos, /windows, Enter manually, Do not mount it
+  _Description: Mount point for this partition:
+
+</pre>
+
+
+
+<p>
+
+
+Это же ключевое слово можно также применить к полю <i>Description</i>, чтобы
+быть уверенным, что некоторые строки не переводятся.
+
+
+</p><p>
+
+
+
+</p><pre>  Template: partman-crypto/options_missing
+  Type: error
+  #flag:translate!:3
+  _Description: Required encryption options missing
+   The encryption options for ${DEVICE} are incomplete. Please
+   return to the partition menu and select all required options.
+   .
+   ${ITEMS}
+
+</pre>
+
+
+
+<p>
+
+
+Но это опасно, так как из PO-файлов может быть утерян контекст. В этом
+случае добавляйте комментарии, чтобы не запутывать переводчиков.
+</p></dd><dt><b>comment:</b><i>spec</i>, <b>comment!:</b><i>spec</i></dt><dd>
+<a name="ixAAO"></a>
+Комментарий ниже этой директивы относится к строкам, указанным в <i>spec</i>,
+которая задаётся выше. По умолчанию, комментарий записывается перед
+переводимым полем вместе со всеми строками принадлежащими этому
+полю.(Замечание: в <tt>"po-debconf"</tt> &lt; 1.0 комментарий записывался только в
+первой строке)
+
+
+<p>
+
+
+
+</p><pre>  Template: arcboot-installer/prom-variables
+  Type: note
+  # Translators, the 4th string of this description has been dropped
+  # from PO files.  It contains shell commands and should not be
+  # translated.
+  #flag:comment:3
+  # "Stop for Maintenance" should be left in English
+  #flag:translate!:4
+  _Description: Setting PROM variables for Arcboot
+   If this is the first Linux installation on this machine, or if the
+   hard drives have been repartitioned, some variables need to be set
+   in the PROM before the system is able to boot normally.
+   .
+   At the end of this installation stage, the system will reboot.
+   After this, enter the command monitor from the "Stop for
+   Maintenance" option, and enter the following commands:
+   .
+      setenv OSLoader arcboot
+      setenv OSLoadFilename Linux
+   .
+   You will only need to do this once.  Afterwards, enter the "boot"
+   command or reboot the system to proceed to the next stage of the
+   installation.
+
+</pre>
+
+
+
+<p>
+
+
+В примере выше комментарий указывался без директивы <tt>"#flag:comment"</tt>,
+неявным добавлением <tt>"#flag:comment:*"</tt>. Этот комментарий появился во всех
+строках, но указание <i>Stop for Maintenance</i> напечатано только перед
+соответствующей строкой.
+</p></dd><dt><b>partial</b></dt><dd>
+<a name="ixAAP"></a>
+Это ключевое слово указывает <b>po2debconf</b> сохранить переведённые строки,
+даже если не все строки были переведены. Используйте с осторожностью, данное
+ключевое слово было добавлено для очень специфичных случаев.
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>УВЕДОМЛЕНИЕ ПЕРЕВОДЧИКОВ ПЕРЕД АНОНСИРОВАНИЕМ НОВОЙ ВЕРСИИ</h2>
+
+<a name="ixAAQ"></a>
+Обычно на веб-странице состояния проекта указывается (смотрите ниже), что
+перевод устарел и есть ссылка на новый файл будущего релиза. Разработчикам
+предлагается рассмотреть, например, за неделю до срока, возможность отправки
+устаревших файлов переводчикам. Для этой цели была написана специальная
+программа --- <b>podebconf-report-po</b>. Не бойтесь злоупотреблять ею!
+<a name="lbAK">&nbsp;</a>
+<h2>ПРЕДОСТЕРЕЖЕНИЯ</h2>
+
+<a name="ixAAR"></a>
+<dl compact="">
+<dt>*</dt><dd>
+<tt>"Debconf"</tt> 1.2.0 распознаёт поля в виде <i>Имя</i>-<i>язык</i>.<i>кодировка</i>,
+например, <tt>"Description-de.ISO-8859-1"</tt> или <tt>"Choices-ru.KOI8-R"</tt>. По
+умолчанию, <b>po2debconf</b> сохраняет файлы шаблонов в новом формате. Ранние
+версии <tt>"debconf"</tt> игнорируют эти поля и отображают английские
+сообщения. Смотрите в <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=po2debconf&amp;category=1">po2debconf</a></i>(1) как изменять кодировку и выходной
+формат.
+</dd><dt>*</dt><dd>
+Определённая английская строка может иметь только один уникальный перевод на
+другой язык. Невозможно задать два разных перевода в зависимости от
+контекста. Чтобы решить эту проблему, вы можете добавить специальные метки к
+совпадающему тексту в разных местах, чтобы сделать его уникальным. (Эти
+метки увидят только переводчики и удалят их из строки перед показом
+пользователю)
+
+
+<p>
+
+
+Эти метки должны добавляться в конец строк для перевода, они должны
+начинаться с <tt>"[ "</tt> (левая квадратная скобка с пробелом после) и
+заканчиваться <tt>"]"</tt> (правая скобка), и могут содержать любые символы внутри
+кроме скобок и символов новой строки. Например, <tt>"[ blahblah]"</tt> допустимая
+метка, а <tt>"[ bla[bla]bla]"</tt> нет. Для любителей Perl regexp, метки
+распознаются (и удаляются) с помощью выражения:
+
+
+</p><p>
+
+
+
+</p><pre>  $msg =~ s/\[\s[^\[\]]*\]$//s;
+
+</pre>
+
+
+</dd><dt>*</dt><dd>
+Пробелы обрабатываются неодинаково <tt>"po-debconf"</tt> и <tt>"debconf-utils"</tt>;
+последний переформатирует параграфы при обновлении и объединении переводов,
+так как <tt>"debconf-utils"</tt> очень умный и считает, что пробелы не являются
+частью строк, при определении неясных элементов. (то есть, требуется
+внимание переводчика, что оригинал изменился)
+
+
+<p>
+
+
+С другой стороны, <tt>"po-debconf"</tt> полагается на <tt>"gettext"</tt> при определении
+неясных элементов, и не рассматривает пробелы как специальные символы. То
+есть, лишние пробелы должны быть удалены в конце строк в мастер файлах
+шаблонов, или они появятся в <font size="-1">PO-</font> и POT-файлах.
+
+
+</p><p>
+
+
+По этой же причине, <b>debconf-gettextize</b> может отметить текст как неясный
+из-за несовпадения пробельных символов, и переводчики должны вручную снимать
+неясность с таких строк. Это случается только при преобразовании шаблонов в
+<tt>"po-debconf"</tt> формат, если, конечно, вы произвольно не изменяете пробелы в
+мастер файлах шаблонов, что болезненно отражается на переводчиках.
+</p></dd><dt>*</dt><dd>
+Обычно, поле <i>Default:</i> не должно переводиться, если шаблон имеет тип
+<b>Select</b> или <b>Multiselect</b>. В редких случаях (например, при выборе языка
+по умолчанию для приложения) локализованные значения более выразительны.
+
+
+<p>
+
+
+Локализованное значение должно не переводиться, а выбираться из английских
+значений поля <i>Choices</i>. Лучшим путём достигнуть этой цели является вставка
+комментария в файл шаблонов, который будет скопирован в PO-файлы.
+
+
+</p><p>
+
+
+
+</p><pre>  Template: geneweb/lang
+  Type: select
+  __Choices: Danish (da), Dutch (nl), English (en), Esperanto (eo)
+  #  You must NOT translate this string, but you can change its value.
+  #  The comment between brackets is used to distinguish this msgid
+  #  from the one in the Choices list; you do not have to worry about
+  #  them, and have to simply choose a msgstr among the English values
+  #  listed in the Choices field above, e.g. msgstr "Dutch (nl)"
+  _Default: English (en)[ default language]
+  _Description: Geneweb default language
+
+</pre>
+
+
+
+<p>
+
+
+Значение по умолчанию также присутствует в поле <i>Choices</i>, и оба имеют
+различные переводы: первое содержит не переведённое значение, выбираемое из
+<i>Choices</i>, а второе имеет обычный перевод. Так как <tt>"gettext"</tt> не может
+содержать два различных перевода одного <i>msgid</i>, то <i>msgid</i> должны
+отличаться с помощью комментариев в квадратных скобках, как описывалось в
+предыдущем разделе.
+
+
+</p><p>
+
+
+До версии <tt>"po-debconf"</tt> 0.8.0, такие комментарии были недоступны и
+сопровождающие заменяли поле <i>_Default:</i> на поле <i>_DefaultChoice:</i>, чтобы
+как-то выделить такие поля в PO-файлах:
+
+
+</p><p>
+
+
+
+</p><pre>  #. DefaultChoice
+  msgid ""
+  "English[ default: do not translate bracketed material, put your "
+  "own language here but UNTRANSLATED.  If it is not in the list, "
+  "put English (without bracketed material)]"
+  msgstr ""
+  "Swedish"
+
+</pre>
+
+
+
+<p>
+
+
+Простые комментарии менее подвержены ошибкам и приветствуются.
+</p></dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h2>ВЕБ-СТРАНИЦЫ СОСТОЯНИЯ</h2>
+
+<a name="ixAAS"></a>
+Статистика по <tt>"po-debconf"</tt> переводам доступна здесь
+&lt;<a href="http://www.debian.org/intl/l10n/po-debconf/">http://www.debian.org/intl/l10n/po-debconf/</a>&gt; (или с зеркал); она
+обновляется автоматически при поступлении нового пакета. Сюда попадают
+только пакеты, имеющие файлы <i>debian/po/templates.pot</i> и
+<i>debian/po/POTFILES.in</i>, поэтому вы должны проверить, что ваш пакет с
+исходными текстами содержит их.
+<p>
+
+С этой страницы переводчики могут получить <font size="-1">PO-</font> и POT-файлы, но они всегда
+должны связаться с предыдущим переводчиком (его почтовый адрес можно найти в
+PO-файле) и/или их коллегами переводчиками через
+debian-l10n-<i>&lt;язык&gt;</i>@lists.debian.org (если такой список
+существует), чтобы удостовериться, что никто в данный момент не работает над
+тем же переводом, а также изучить имеющиеся сообщения об ошибках пакета,
+который они намереваются переводить, чтобы проверить, что о переводе уже не
+сообщено.
+</p><p>
+
+После перевода этих файлов, они должны быть посланы сопровождающему в виде
+отчёта об ошибке с важностью <b>minor</b> и тегом <b>patch</b>.
+<a name="lbAM">&nbsp;</a>
+</p><h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<a name="ixAAT"></a>
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=debconf-gettextize&amp;category=1">debconf-gettextize</a></i>(1), <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=debconf-updatepo&amp;category=1">debconf-updatepo</a></i>(1), <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dh_installdebconf&amp;category=1">dh_installdebconf</a></i>(1),
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=podebconf-report-po&amp;category=1">podebconf-report-po</a></i>(1).  <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=po2debconf&amp;category=1">po2debconf</a></i>(1).
+<a name="lbAN">&nbsp;</a>
+<h2>АВТОРЫ</h2>
+
+<a name="ixAAU"></a>
+
+
+<pre>  Martin Quinson &lt;<a href="mailto:Martin.Quinson@ens-lyon.fr">Martin.Quinson@ens-lyon.fr</a>&gt;
+  Denis Barbier &lt;<a href="mailto:barbier@linuxfr.org">barbier@linuxfr.org</a>&gt;
+
+</pre>
+
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">ДОБАВЛЕНИЕ ПОДДЕРЖКИ ИНТЕРНАЦИОНАЛИЗАЦИИ (I18N) В ФАЙЛЫ ШАБЛОНОВ DEBCONF</a></dt><dd>
+</dd><dt><a href="#lbAE">ОБНОВЛЕНИЕ ШАБЛОНОВ</a></dt><dd>
+</dd><dt><a href="#lbAF">ОБЪЕДИНЕНИЕ ПЕРЕВОДОВ И ОРИГИНАЛА</a></dt><dd>
+</dd><dt><a href="#lbAG">НОВЫЕ МАСТЕР ШАБЛОНЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">РАЗДЕЛЕНИЕ СПИСКА ВЫБОРА</a></dt><dd>
+</dd><dt><a href="#lbAI">СОЗДАНИЕ КОММЕНТАРИЕВ ДЛЯ ПЕРЕВОДЧИКОВ</a></dt><dd>
+</dd><dt><a href="#lbAJ">УВЕДОМЛЕНИЕ ПЕРЕВОДЧИКОВ ПЕРЕД АНОНСИРОВАНИЕМ НОВОЙ ВЕРСИИ</a></dt><dd>
+</dd><dt><a href="#lbAK">ПРЕДОСТЕРЕЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAL">ВЕБ-СТРАНИЦЫ СОСТОЯНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAM">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAN">АВТОРЫ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="po-debconf" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

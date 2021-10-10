@@ -1,0 +1,615 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN dcraw (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, dcraw"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="dcraw" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">dcraw (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=dcraw&amp;category=1&amp;russian=0"><u>dcraw</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=dcraw&amp;category=1&amp;russian=2"><u>dcraw</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li>
+
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+dcraw - консольный декодер сырых (RAW) цифровых фотографий
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>dcraw</b>
+
+[<i>ОПЦИЯ</i>]... [<i>ФАЙЛ</i>]...
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<b>dcraw</b>
+
+конвертирует сырые (RAW) фотографии, показывает
+метаданные и извлекает уменьшенные изображения - миниатюры.
+<a name="lbAE">&nbsp;</a>
+<h2>ОСНОВНЫЕ ОПЦИИ</h2>
+
+<dl compact="">
+<dt><b>-v</b>
+
+</dt><dd>
+Выдает подробные сообщения, а не только предупреждения и ошибки.
+</dd><dt><b>-c</b>
+
+</dt><dd>
+Выдает расшифрованное изображение или миниатюру на стандартный
+вывод (stdout).
+</dd><dt><b>-e</b>
+
+</dt><dd>
+Извлекает сгенерированное фотокамерой изображение-миниатюру,
+но не сырое изображение. Выдается файл JPEG или PPM, в
+зависимости от используемой фотокамеры.
+</dd><dt><b>-z</b>
+
+</dt><dd>
+Изменяет время последнего доступа и модификации AVI, JPEG,
+TIFF и сырых файлов на время получения снимка, предполагая,
+что часы фотокамеры настроены на время по Гринвичу.
+</dd><dt><b>-i</b>
+
+</dt><dd>
+Идентифицирует файлы без их расшифровки.
+Статус завершения равен 0 если
+<b>dcraw</b>
+
+может расшифровать последний файл и 1, если нет.
+<b>-i -v</b>
+
+показывает метаданные.
+</dd><dt><b></b>
+
+</dt><dd>
+<b>dcraw</b>
+
+не расшифровывает JPEG файлы!!!
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>КОРРЕКТИРУЮЩИЕ ОПЦИИ</h2>
+
+<dl compact="">
+<dt><b>-P повреж_пиксели.txt</b>
+
+</dt><dd>
+Читает список поврежденных пикселей из данного файла вместо файла ".badpixels".
+Смотри в разделе
+<b>ФАЙЛЫ</b>
+
+описание данного формата.
+</dd><dt><b>-K темновой_кадр.pgm</b>
+
+</dt><dd>
+Вычитает темновой кадр из сырых данных. Для получения темнового
+кадра сделайте сырой снимок в полной темноте (например, закрыв
+объектив фотокамеры светонепроницаемой крышкой) и выполните
+<b>dcraw&nbsp;-D&nbsp;-4&nbsp;-j&nbsp;-t&nbsp;0</b>.
+
+</dd><dt><b>-k темновой_уровень</b>
+
+</dt><dd>
+Когда тени выглядят туманными, необходимо поднять темновой уровень.
+Для измерения этого, примените
+<b>pamsumm -mean</b>
+
+к темновому кадру, полученному выше.
+</dd><dt><b>-S насыщенность</b>
+
+</dt><dd>
+Когда пересвеченные области выглядят розовыми, необходимо понизить уровень
+насыщенности.  Для измерения этого, сделайте снимок какого-либо блестящего
+объекта и выполните
+<b>dcraw -D -4 -j -c</b>
+
+фото.raw
+<b>| pamsumm -max</b>
+
+</dd><dt><b></b>
+
+</dt><dd>
+Темновой уровень и насыщенность, установленные по умолчанию, обычно верны.
+</dd><dt><b>-n шумовой_порог</b>
+
+</dt><dd>
+Использует вейвлеты для подавления шума с сохранением настоящих
+деталей изображения. Лучшее пороговое значение должно лежать где-то
+в промежутке от 100 до 1000.
+</dd><dt><b>-C увел_красный увел_синий</b>
+
+</dt><dd>
+Увеличить красный и синий слои в заданное множителями количество раз
+(обычно от 0.999 до 1.001) для устранения хроматической аберрации.
+</dd><dt><b>-H 0</b>
+
+</dt><dd>
+Урезает все пересвеченные области до сплошного белого
+(действие по умолчанию).
+</dd><dt><b>-H 1</b>
+
+</dt><dd>
+Оставляет пересвеченные области неурезанными в различных
+оттенках розового. Позволяет выявить сохранившиеся детали.
+</dd><dt><b>-H 2</b>
+
+</dt><dd>
+Смешивает урезанные и неурезанные значения для постепенного
+перехода к белому.
+</dd><dt><b>-H 3+</b>
+
+</dt><dd>
+Восстанавливает пересвеченные области. Малые числа больше
+подходят для белых областей, большие числа - для цветных.
+Попробуйте
+<b>-H 5</b>
+
+в качестве компромиссного варианта. Если результат
+выглядит недостаточно хорошим, выполните
+<b>-H&nbsp;9</b>,
+
+вырежьте цветные пересвеченные области, и вставьте их в
+изображение, сгенерированное командой
+<b>-H&nbsp;3</b>.
+
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ЦВЕТОВЫЕ ОПЦИИ</h2>
+
+По умолчанию,
+<b>dcraw</b>
+
+использует фиксированный баланс белого, полученный с помощью
+цветной испытательной таблицы, освещенной стандартной лампой D65.
+<dl compact="">
+<dt><b>-w</b>
+
+</dt><dd>
+Использует баланс белого, заданный камерой. В случае, если таковой
+не задан, выводит предупреждение и использует другой метод.
+</dd><dt><b>-a</b>
+
+</dt><dd>
+Расчитывает баланс белого, используя всё изображение.
+</dd><dt><b>-A отступ_слева отступ_сверху ширина высота</b>
+
+</dt><dd>
+Рассчитывает баланс белого, используя прямоугольную область изображения.
+Вначале выполните
+<b>dcraw&nbsp;-j&nbsp;-t&nbsp;0</b>
+
+и выберите область с нейтрально-серым цветом.
+</dd><dt><b>-r множ0 множ1 множ2 множ3</b>
+
+</dt><dd>
+Позволяет задать пользовательский баланс белого.
+Эти множители могут быть взяты из вывода команды
+<b>dcraw&nbsp;-v</b>.
+
+</dd><dt><b>+M</b> или <b>-M</b>
+
+</dt><dd>
+Использует (или не использует) матрицу цвета из метаданных фотокамеры.
+По умолчанию установлено
+<b>+M</b>,
+
+если выбрана опция
+<b>-w</b>.
+
+В противном случае
+<b>-M</b>.
+
+Эта опция влияет только на камеры Olympus, Leaf и Phase One.
+</dd><dt><b>-o [0-5]</b>
+
+</dt><dd>
+Позволяет выбрать выходное цветовое пространство, при
+использовании опции
+<b>-p</b>
+
+:
+<p>
+<b>0</b>
+
+&nbsp;&nbsp;Вывод в собственном цветовом пространстве камеры
+(уникально для каждой фотокамеры)
+<br>
+
+<b>1</b>
+
+&nbsp;&nbsp;sRGB D65 (по умолчанию)
+<br>
+
+<b>2</b>
+
+&nbsp;&nbsp;Adobe RGB (1998) D65
+<br>
+
+<b>3</b>
+
+&nbsp;&nbsp;Wide Gamut RGB D65
+<br>
+
+<b>4</b>
+
+&nbsp;&nbsp;Kodak ProPhoto RGB D65
+<br>
+
+<b>5</b>
+
+&nbsp;&nbsp;XYZ
+</p></dd><dt><b>-p&nbsp;фотокамера.icm</b>&nbsp;[&nbsp;<b>-o&nbsp;вывод.icm</b>&nbsp;]
+
+</dt><dd>
+Использует ICC профили для задания собственного цветового
+пространства фотокамеры и выводимого цветового пространства
+(sRGB по умолчанию).
+</dd><dt><b>-p embed</b>
+
+</dt><dd>
+Использует ICC профиль, внедренный в сырой снимок.
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>ОПЦИИ ИНТЕРПОЛЯЦИИ</h2>
+
+<dl compact="">
+<dt><b>-d</b>
+
+</dt><dd>
+Показывает сырые данные как изображение в градациях серого без
+интерполяции. Хорош для фотографирования черно-белых документов.
+</dd><dt><b>-D</b>
+
+</dt><dd>
+То же, что и
+<b>-d</b>,
+
+но в полностью необработанном виде (без цветового баланса).
+</dd><dt><b>-h</b>
+
+</dt><dd>
+Выдает цветное изображение, уменьшенное вдвое.
+В два раза быстрее, чем
+<b>-q&nbsp;0</b>.
+
+</dd><dt><b>-q 0</b>
+
+</dt><dd>
+Использует быструю низкокачественную билинейную интерполяцию.
+</dd><dt><b>-q 1</b>
+
+</dt><dd>
+Использует интерполяцию VNG (по Переменному Числу Градиентов).
+</dd><dt><b>-q 2</b>
+
+</dt><dd>
+Использует интерполяцию PPG (Группировка Пикселей по Шаблону).
+</dd><dt><b>-q 3</b>
+
+</dt><dd>
+Использует интерполяцию AHD (Адаптивную Гомогенно-Ориентированную).
+</dd><dt><b>-f</b>
+
+</dt><dd>
+Интерполирует RGB как четыре цвета. Используется, когда на
+полученном изображении видны искажения в виде ложной сетки
+2x2 (при VNG интерполяции), или узор в виде лабиринта при
+AHD интерполяции.
+</dd><dt><b>-m число_проходов</b>
+
+</dt><dd>
+Подчищает цветовые артефакты (искажения) путем многократного
+применения медианного фильтра 3x3 к цветовым каналам R-G и B-G.
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>ОПЦИИ ВЫВОДА</h2>
+
+По умолчанию,
+<b>dcraw</b>
+
+записывает 8-битные PGM/PPM/PAM данные с гамма кривой BT.709,
+уровнем белого, базирующемся на гистограмме, и без метаданных.
+<dl compact="">
+<dt><b>-W</b>
+
+</dt><dd>
+Использует фиксированный уровень белого, игнорируя гистограмму изображения.
+</dd><dt><b>-b яркость</b>
+
+</dt><dd>
+Делит уровень белого на это число, равное 1.0 по умолчанию.
+</dd><dt><b>-4</b>
+
+</dt><dd>
+Записывает 16-битные линейные данные (с фиксированным уровнем белого и без гаммы).
+</dd><dt><b>-T</b>
+
+</dt><dd>
+Выдает на выходе файл формата TIFF с метаданными вместо PGM/PPM/PAM.
+</dd><dt><b>-t [0-7,90,180,270]</b>
+
+</dt><dd>
+Поворачивает выводимое фото. По умолчанию,
+<b>dcraw</b>
+
+применяется поворот, заданный фотокамерой.
+<b>-t 0</b>
+
+отключает все виды вращения.
+</dd><dt><b>-j</b>
+
+</dt><dd>
+Для фотокамер Fuji&nbsp;Super&nbsp;CCD показывает изображение,
+повернутое на 45 градусов. Для фотокамер с неквадратными
+пикселями выдает изображение нерастянутым, с сохранением его
+оригинальных пропорций. В любом случае, каждый выводимый
+пиксель соответствует одному сырому пикселю.
+</dd><dt><b>-s [0..N-1]</b> или <b>-s all</b>
+
+</dt><dd>
+Если файл содержит N сырых изображений, выбирает одно или
+"all" (все) для расшифровки.
+Например, фотокамеры Fuji&nbsp;Super&nbsp;CCD&nbsp;SR генерируют второе
+изображение, недоэкспонированное на 4 шага диафрагмы, что
+позволяет запечатлеть детали в пересвеченных областях.
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt>:./.badpixels, ../.badpixels, ../../.badpixels, ...</dt><dd>
+Список поврежденных пикселей вашей фотокамеры, указывающий
+<b>dcraw</b>
+
+интерполировать вокруг них. Каждая строка определяет колонку, ряд
+и Юниксовое время повреждения одного пикселя. Например:
+<p>
+</p><pre> 962   91 1028350000  # пиксель поврежден между 1 и 4 августа 2002
+1285 1067 0           # время повреждения пикселя не известно
+</pre>
+
+<p>
+Эти координаты определяются для изображений, к которым не были
+применены какие-либо виды вырезания или вращения, поэтому используйте
+<b>dcraw -j -t 0</b>
+
+для локализации поврежденных пикселей.
+</p></dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pgm&amp;category=5">pgm</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ppm&amp;category=5">ppm</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pam&amp;category=5">pam</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pamsumm&amp;category=1">pamsumm</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pnmgamma&amp;category=1">pnmgamma</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pnmtotiff&amp;category=1">pnmtotiff</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pnmtopng&amp;category=1">pnmtopng</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gphoto2&amp;category=1">gphoto2</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cjpeg&amp;category=1">cjpeg</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=djpeg&amp;category=1">djpeg</a></b>(1)
+
+<a name="lbAL">&nbsp;</a>
+<h2>АВТОР</h2>
+
+Дэвид Коффин, dcoffin улитка cybercom точка net
+<a name="lbAM">&nbsp;</a>
+<h2>ПЕРЕВОДЧИКИ</h2>
+
+Елена Буторина, elena улитка esperanto точка msx точка ru
+<br>
+
+Максим, volmax улитка rambler точка ru
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОСНОВНЫЕ ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">КОРРЕКТИРУЮЩИЕ ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAG">ЦВЕТОВЫЕ ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAH">ОПЦИИ ИНТЕРПОЛЯЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAI">ОПЦИИ ВЫВОДА</a></dt><dd>
+</dd><dt><a href="#lbAJ">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAK">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAL">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAM">ПЕРЕВОДЧИКИ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="dcraw" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

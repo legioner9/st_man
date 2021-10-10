@@ -1,0 +1,506 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN etcnet (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, etcnet"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="etcnet" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">etcnet (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=etcnet&amp;category=8&amp;russian=0"><u>etcnet</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/etcnet.html"><u>etcnet</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+/etc/net - базовая и расширенная конфигурация сети в Linux
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<dl compact="">
+<dt>ifup &lt;interface&gt;</dt><dd>
+</dd><dt>ifdown &lt;interface&gt;</dt><dd>
+</dd><dt>service network &lt;start|stop|restart|reload...&gt;</dt><dd>
+</dd></dl>
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+/etc/net - это система конфигурации сети. Она является одновременно простой в применении для новичка и действенной для эксперта. В первую очередь следует описать настройки и интерфейсы вашей сети в конфигурационных файлах. Однажды сделав это, вы сможете контролировать состояние вашего хоста с помощью трех скриптов: ifup, ifdown, network.init.
+<a name="lbAE">&nbsp;</a>
+<h2>КОНФИГУРАЦИЯ СИСТЕМЫ</h2>
+
+/etc/net поставляется с конфигурацией по умолчанию, которая подходит для большинства случаев. Более того, дистрибутивы Linux могут подстроить установки по умолчанию, но существуют вещи, которые можете настроить только вы. /etc/net сохраняет свою конфигурацию в файлах, большая часть которых постоянно хранится в каталоге /etc/net.
+<dl compact="">
+<dt>/etc/net/options.d</dt><dd>
+В этом каталоге по умолчанию хранится файл 00-default. Там же могут находиться и другие файлы, они будут читаться в алфавитном порядке.
+</dd><dt>/etc/net/sysctl.conf</dt><dd>
+файл запуска системных вызовов
+</dd><dt>/etc/net/ipv4rule</dt><dd>
+таблица правил ip ('ip -4 добавляет параметры)
+</dd><dt>/etc/net/vlantab</dt><dd>
+Таблица конфигурации VLAN. Если нужно настроить множество простых VLAN интерфейсов, это правильное место. Чтобы узнать подробности, смотрите раздел СИНТАКСИС VLANTAB.
+</dd><dt>/etc/net/iftab</dt><dd>
+Таблица назначения интерфейсов факультативна, но иметь ее настоятельно рекомендуется Этот файл используется ifrename. Формат файлов iftab описан в руководстве iftab. Обратите внимание, что /etc/iftab не используется, а данные хранятся в /etc/net/iftab. Это различие позволяет хранить /etc/net-специфичные профили и суффиксы хостов в отдельном каталоге, не создавая дополнительной путаницы в /etc. Кроме того, это оберегает систему от случайной смены имени интерфейса после запуска ifrename.
+</dd><dt>/etc/net/hosttab</dt><dd>
+Этот дополнительный файл может быть использован во время МУЛЬТИХОСТОВОЙ КОНФИГУРАЦИИ.
+</dd><dt>/etc/net/ifup-pre</dt><dd>
+Если существует и выполним, запускается перед запуском ЛЮБОГО интерфейса, но после того, как он будет создан.
+</dd><dt>/etc/net/ifup-post</dt><dd>
+Если существует и выполним, запускается после того, как ЛЮБОЙ интерфейс будет запущен и начнет работу.
+</dd><dt>/etc/net/ifdown-pre</dt><dd>
+Если существует и выполним, запускается перед тем, как ЛЮБОЙ интерфейс начнет подготовку к выключению. 
+</dd><dt>/etc/net/ifdown-post</dt><dd>
+Если существует и выполним, запускается после того, как ЛЮБОЙ интерфейс полностью выключен.
+</dd><dt>/etc/net/netup-pre</dt><dd>
+Если существует и выполним, запускается перед началом работы сети.
+</dd><dt>/etc/net/netup-post</dt><dd>
+Если существует и выполним, запускается после начала работы сети.
+</dd><dt>/etc/net/netdown-pre</dt><dd>
+Если существует и выполним, запускается перед прекращением работы сети.
+</dd><dt>/etc/net/netdown-post</dt><dd>
+Если существует и выполним, запускается после прекращения работы сети. 
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>НАСТРОЙКА ИНТЕРФЕЙСА</h2>
+
+Для полной настройки интерфейса следует проделать следующие шаги для каждого интерфейса сети, обнаруженной в Linux:
+<dl compact="">
+<dt>Создать описательное имя интерфейса и поместить соответствующую строку в /etc/net/iftab. Помните, что приняты некоторые ограничения:</dt><dd>
+PPP-интерфейсы могут быть названы только pppXXX, TEQL-интерфейсы не должны переименовываться из-за ошибки в коде ядра. Код ядра для Skystar DVB нестабилен вообще.
+</dd><dt>Создать каталог настройки интерфейса /etc/net/ifaces/&lt;ИМЯ&gt;</dt><dd>
+</dd><dt>Заполнить ее файлами настройки в соответствии с ПРАВИЛАМИ НАСТРОЙКИ ИНТЕРФЕЙСА.</dt><dd>
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ГРУППЫ ИНТЕРФЕЙСОВ</h2>
+
+Существует 5 групп интерфейсов в модели /etc/net:
+<dl compact="">
+<dt>virtual (виртуальная)</dt><dd>
+Самодостаточные интерфейсы, в настоящее время loopback и фиктивные (dummy). Они очень редко требуют другие интерфейсы и не требуют оборудования.
+</dd><dt>real physical (физическая)</dt><dd>
+Интерфейсы, связанные с реальным оборудованием: Ethernet, PLIP, адаптерам USB Ethernet и DVB. Вы не можете их создать, если нет оборудования.
+</dd><dt>hosted physical (производная от физической)</dt><dd>
+Нечто среднее между физическим и логическим типами. Эта группа включает: VLAN, связки (bonding), мосты и эквалайзеры трафика. Эти интерфейсы не используют непосредственно оборудование, но основаны на одном или более узловом (host) реальном физическом интерфейсе. Если узловой интерфейс отсутствует, эти интерфейсы не могут быть подняты.
+</dd><dt>independent logical (независимая логически)</dt><dd>
+Эта группа включает тоннели IP и IPSec. Тоннели не имеют постоянного положения, они больше похожи на виртуальные группы, но иногда они косвенно зависят от интерфейсов более низкого уровня.
+</dd><dt>dependent logical (зависимая логически)</dt><dd>
+Эта группа в настоящее время состоит из PPP-интерфейсов, включая PPPoE/PPtP. Хорошо известное их свойство - отключаться по таймауту, так что эта группа имеет больше всех шансов на сбой.
+</dd></dl>
+<p>
+
+Когда сеть начинает работу, /etc/net помещает интерфейсы в соответствующую группу и обрабатывает группы от виртуальной до зависимой логической. Когда сеть завершает работу, группы обрабатываются в обратном порядке. Такой порядок приводит к меньшему числу ошибок, чем простая обработка каждого интерфейса по порядку. Вам не нужно распределять интерфейсы по группам, это происходит автоматически по типу интерфейса.
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПРАВИЛА НАСТРОЙКИ ИНТЕРФЕЙСА</h2>
+
+Если явно не установлено, каждый файл настройки перечисляет по одному параметру в строке (опции, адреса, маршруты и т.д.). Вам следует создавать файлы для каждой возможности, которое вы хотите использовать. Если файл отсутствует, свойство не будет задано.
+<dl compact="">
+<dt>options</dt><dd>
+Главный файл настройки. Этот файл является необходимым. Посмотрите список доступных опций на странице руководства etcnet.
+</dd><dt>iplink</dt><dd>
+Список команд 'ip link'. Если вам нужно изменить флаг MTU или PROMISC интерфейса, это то самое место. Если вы хотите иметь указанный MAC-адрес, вы можете поместить в этот файл опцию "address xx:xx:xx:xx:xx:xx". Этот файл не является необходимым.
+</dd><dt>ipneigh</dt><dd>
+Список команд 'ip ne' может быть использован для контроля таблицы ARP, например, добавляет статичные записи ARP. Этот файл не является необходимым.
+</dd><dt>ipv4address</dt><dd>
+Список адресов IPv4 для текущего интерфейса. Этот файл не является необходимым, но часто используется.
+</dd><dt>ipv4route</dt><dd>
+Список IPv4 маршрутов для текущего интерфейса. Этот файл не является необходимым, но часто используется.
+</dd><dt>ipv4rule</dt><dd>
+Список правил маршрутов IPv4 для текущего интерфейса. Этот файл понадобится вам только для того, чтобы установить маршруты в многочисленные таблицы правил маршрутизации. Этот файл не является необходимым.
+</dd><dt>ipv6address</dt><dd>
+Список адресов IPv6 для текущего интерфейса. Этот файл не является необходимым.
+</dd><dt>ipv6route</dt><dd>
+Список маршрутов IPv6 для текущего интерфейса. Этот файл не является необходимым.
+</dd><dt>iwconfig</dt><dd>
+Список команд iwconfig. Этот файл необходим только для WiFi WEP.
+</dd><dt>wpa_supplicant.conf</dt><dd>
+Файл настройки wpa_supplicant. Этот файл необходим только для WiFi WPA.
+</dd><dt>brctl</dt><dd>
+Список команд brctl. Этот файл используется только мостами и не является необходимым.
+</dd><dt>ethtool</dt><dd>
+Список команд ethtool. Этот файл используется только для интерфейсов Ethernet и не является необходимым.
+</dd><dt>ipx_interface</dt><dd>
+Список параметров 'ipx_interface add'. Этот файл является необходимым для интерфейсов IPX.
+</dd><dt>sysctl.conf</dt><dd>
+Список опций sysctl, которые будут запущены после запуска интерфейса. Смотрите ПОДДЕРЖКА SYSCTL. Этот файл необязателен.
+</dd><dt>resolv.conf</dt><dd>
+Настройка определения адресов. Этот файл будет скопирован в /etc/resolv.conf после запуска интерфейса. Этот файл необязателен.
+</dd><dt>ifup-pre</dt><dd>
+Если существует и выполним, запускается перед тем, как ТЕКУЩИЙ интерфейс поднят, но после того, как он создан.
+</dd><dt>ifup-post</dt><dd>
+Если существует и выполним, запускается после того, как ТЕКУЩИЙ интерфейс запущен и работает.
+</dd><dt>ifdown-pre</dt><dd>
+Если существует и выполним, запускается перед тем как ТЕКУЩИЙ интерфейс начнет подготовку к завершению.
+</dd><dt>ifdown-post</dt><dd>
+Если существует и выполним, запускается после того, как ТЕКУЩИЙ интерфейс полностью завершен.
+</dd><dt>pppoptions</dt><dd>
+Этот опциональный файл содержит дополнительные опции pppd для PPP-интерфейсов.
+</dd><dt>pppinit</dt><dd>
+Этот опциональный файл содержит скрипт чата (не оболочку) для инициализации модема.
+</dd><dt>pppconnect</dt><dd>
+Этот опциональный файл содержит скрипт чата (не оболочку) соединения с удаленным устройством (т.е. набор номера).
+</dd><dt>pppdisconnect</dt><dd>
+Этот опциональный файл содержит скрипт чата (не оболочку) для отключения от удаленного устройства (т.е. отбой).
+<p>
+</p></dd></dl>
+<p>
+
+Каталог интерфейса может содержать два специальных подкаталога: 'fw' и 'qos'. Они используются для настройки брандмауэра и QoS соответственно. Смотрите руководство по настройке QoS <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=etcnet-qos&amp;category=8">etcnet-qos</a>(8).
+<a name="lbAI">&nbsp;</a>
+</p><h2>СПЕЦИАЛЬНЫЕ ИНТЕРФЕЙСЫ</h2>
+
+/etc/net поставляется с тремя существующими интерфейсами:
+<dl compact="">
+<dt>lo</dt><dd>
+Необходим для сетевой подсистемы Linux. Этот интерфейс настроен, подходит в большинстве случаев.
+</dd><dt>default</dt><dd>
+В действительности это не интерфейс, а шаблон интерфейса. Интерфейс 'default' формирует исходный набор опций для всех интерфейсов и не принадлежит ни к какой группе интерфейсов. Этот интерфейс позволяет помещать файлы дополнительных опций в директорию: options-&lt;TYPE&gt;. Этот опциональный файл имеет действие ТОЛЬКО для 'default' интерфейса, это позволяет подменять опции по умолчанию опциями, специфичными для типа.
+Не рекомендуется менять опции интерфейса 'default'. Каждый интерфейс может переназначать значения опций по умолчанию.
+</dd><dt>unknown</dt><dd>
+Это специальный интерфейс, который используется каждый раз, когда /etc/net не может подобрать подходящую конфигурацию, но должен это сделать. Назначение этого интерфейса - помочь сконфигурировать hotplug-интерфейсы, которые еще не настроены
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>ПОДДЕРЖКА SYSCTL</h2>
+
+/etc/net использует некоторые файлы sysctl.conf для настройки ядра:
+<dl compact="">
+<dt>/etc/net/sysctl.conf</dt><dd>
+Вызывается при запуске службы. Не имеет автопрефикса.
+</dd><dt>/etc/net/ifaces/default/sysctl.conf</dt><dd>
+Вызывается ifup, не имеет автопрефикса.
+</dd><dt>/etc/net/ifaces/default/sysctl.conf-$TYPE</dt><dd>
+Вызывается ifup, с автопрефиксом.
+</dd><dt>/etc/net/ifaces/XXXXXX/sysctl.conf</dt><dd>
+Вызывается ifup, с автопрефиксом.
+</dd></dl>
+<p>
+
+Автопрефикс означает, что если встречается полностью заданная переменная (как в традиционном файле /etc/sysctl.conf), она будет обрабатываться как есть, но для переменных отдельного слова, подобно p_filter, или для продвижения соответствующего префикса ее попробуют найти. Автопрефикс работает только для интерфейса sysctl.conf и
+зависящего от типа sysctl.conf.
+<a name="lbAK">&nbsp;</a>
+</p><h2>РЕКУРСИЯ И ЗАВИСИМОСТИ</h2>
+
+Некоторые интерфейсы требуют наличия других поднятых интерфейсов для запуска. Некоторые зависимости вычисляются автоматически, но некоторые должны быть настроены вручную.
+Если для интерфейса A в его файле настроек REQUIRES=B его файле опций, A является дочерним (children), B - родительским (parent).
+Существует шесть опций для контроля над разрешением зависимостей:
+<dl compact="">
+<dt>HOST=&lt;interface&gt;</dt><dd>
+</dd><dt>REQUIRES='&lt;interface&gt;&nbsp;[&lt;interface&gt;&nbsp;[&lt;interface&gt;...]]'</dt><dd>
+</dd><dt>IFUP_PARENTS=&lt;boolean&gt;</dt><dd>
+</dd><dt>IFDOWN_PARENTS=&lt;boolean&gt;</dt><dd>
+</dd><dt>IFUP_CHILDREN=&lt;boolean&gt;</dt><dd>
+</dd><dt>IFDOWN_CHILDREN=&lt;boolean&gt;</dt><dd>
+</dd></dl>
+<p>
+
+Эти опции описаны в руководстве <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=etcnet-options&amp;category=5">etcnet-options</a>(5).
+ОБРАТИТЕ ВНИМАНИЕ:
+Интерфейсы из vlantab обходят традиционную логику,
+они не могут стать причиной запуска/остановки материнского/дочернего интерфейса. Если материнский интерфейс остановлен когда vlantab обрабатывает данные (ONBOOT=no или неверная настройка), все дочерние VLAN-интерфейсы попросту пропускаются.
+</p><p>
+
+В большинстве случаев (если не всегда) зависимости задаются опцией REQUIRES.
+<a name="lbAL">&nbsp;</a>
+</p><h2>СИНТАКСИС VLANTAB</h2>
+
+vlantab обеспечивает путь к массовой настройке VLAN-интерфейсов только по одному адресу IPv4 в каждом интерфейсе. Для каждого VLAN-интерфейса вам следует поместить строку:
+<dl compact="">
+<dt>&lt;host interface&gt; &lt;VLAN ID&gt;</dt><dd>
+Создает VLAN-интерфейс и автоматически называет его в соответствии со значением опции VLAN_NAMETYPE.
+</dd><dt>&lt;host-интерфейс&gt; &lt;VLAN ID&gt; &lt;имя VLAN-интерфейса&gt;</dt><dd>
+Создает VLAN-интерфейс с заданным именем.
+</dd><dt>&lt;host-интерфейс&gt; &lt;VLAN ID&gt; &lt;имя VLAN-интерфейса&gt; &lt;'ip address' параметры&gt;</dt><dd>
+Создает VLAN-интерфейс с заданным именем и запускает 'ip address' с заданными параметрами.
+</dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h2>СИНТАКСИС HOSTTAB</h2>
+
+Этот файл хранит альтернативные имена хоста. Если имя хоста слишком длинное или неудобное, здесь вы можете определить псевдоним. Этот псевдоним может быть использован для отметки файлов. Одно имя хоста должно быть связано только с одним псевдонимом. Формат файлов:
+<pre>&lt;имя host1&gt;&lt;пробел&gt;&lt;псевдоним1&gt;
+&lt;имя host2&gt;&lt;пробел&gt;&lt;псевдоним2&gt;
+&lt;имя host3&gt;&lt;пробел &gt;&lt;псевдоним3&gt;
+&lt;имя host4&gt;&lt;пробел&gt;&lt;псевдоним4&gt;
+&lt;имя host5&gt;&lt;пробел&gt;&lt;псевдоним5&gt;
+</pre><a name="lbAN">&nbsp;</a>
+<h2>ИМЕНА ФАЙЛОВ (FIXME)</h2>
+
+Скрипты /etc/net обеспечивают поддержку независимых пространств имен в едином дереве конфигурации. Это достигается с помощью специальных суффиксов, используемых в зависимости от текущих значений профиля и хоста. 
+<a name="lbAO">&nbsp;</a>
+<h2>ПРОФИЛИ КОНФИГУРАЦИИ</h2>
+
+Профиль - расширенный набор настроек. Например, если ноутбук использует несколько разных сетей, желательно выбрать конфигурацию только по одному параметру. Имя текущего профиля может быть установлено посредством:
+<dl compact="">
+<dt>1. изменяемый режим NETPROFILE (не очень хорошая идея, я полагаю)</dt><dd>
+</dd><dt>2. файл /etc/net/profile (файл должен содержать только одно слово, например "office" без кавычек)</dt><dd>
+</dd><dt>3. ядро загружает параметр "netprofile", например "LILO: linux netprofile=home"</dt><dd>
+</dd></dl>
+<p>
+
+Установка профиля по умолчанию ничего не делает. Но если скрипты etcnet знают имя текущего профиля (например "home") и ищет файл конфигурации (например, "options") и существует "options#home", тогда "options#home" будет использован вместо "options". То же самое для ipv4address, ipv4route, ipv4rule, ipv6address, iplink и так далее.
+</p><p>
+Итак, если вы хотите настроить хост для работы в двух разных сетях, вам скорее всего придется создать дополнительный файл ipv4address#имя_вашего_профиля для другого адреса и ipv4route#имя_вашего_профиля для другого маршрута по умолчанию. То же самое для resolv.conf (если необходимо). 
+</p><p>
+Следующий пример: поднятие двух хостов с одного жесткого диска (root fs). То же самое, что и в предыдущем случае, но создаются дополнительные файлы options#имя_вашего_профиля и iftab#имя_вашего_профиля для разных сетевых карт.
+</p><p>
+Чтобы переключиться между профилями без редактирования /etc/net/profile можно использовать:
+</p><dl compact="">
+<dt># service etcnet startwith office</dt><dd>
+</dd><dt># service etcnet restartwith home</dt><dd>
+</dd></dl>
+<p>
+
+Если скрипт, выполняемый 'selectprofile', существует в каталоге iface, он будет запущен с одним параметром, который определяет текущую стадию конфигурации. Если вы хотите заменить имя текущего профиля во время работы, следует выполнить указанные действия в этом скрипте и вывести имя профиля в стандартный вывод. Так как скрипт будет запущен несколько раз и определение времени работы может занять некоторое время, сообщается, что скрипт выполнит действия только на определенных стадиях. 'selectprofile' будет всегда получать имя запроса скрипта как первый параметр, поэтому вы можете не пытаться обнаружить беспроводное соединение прежде, чем, к примеру, загружен модуль ядра. См. /etc/net/ifaces/default/selectprofile как пример скрипта.
+</p><p>
+Как и в /etc/net-0.5.3 init_netprofile вызывается только из {ifup,ifdown}.*,
+{setup,shutdown}-.* и из network.init scripts.
+<a name="lbAP">&nbsp;</a>
+</p><h2>МУЛЬТИХОСТОВАЯ КОНФИГУРАЦИЯ (MULTIHOST CONFIGURATION) (FIXME)</h2>
+
+Вы можете создать отдельное дерево конфигурации и распространять его по различным хостам. Для этого задайте значения переменных среды окружения
+<dl compact="">
+<dt>NETHOST</dt><dd>
+Эта переменная может хранить ID хоста в мультихостовой конфигурации, которая должна использоваться вместо автоматически обнаруженной.
+</dd><dt>NETPROFILE</dt><dd>
+Эта переменная может сохранить имя профиля конфигурации, которое должно использоваться вместо автоматически обнаруженного.
+</dd></dl>
+<a name="lbAQ">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+<dl compact="">
+<dt>Некоторые версии ядра имеют проблемы со многими интерфейсами VLAN.</dt><dd>
+</dd><dt>Интерфейсы teql не могут быть безопасно переименованы.</dt><dd>
+</dd><dt>Интерфейсы VLAN иногда могут быть инициализированы в неправильное состояние.</dt><dd>
+</dd><dt>Некоторые драйверы сети имеют условие (race condition) в интерфейсе кода инициализации, поэтому соответствие по MAC-адресу в iftab не работает.</dt><dd>
+</dd><dt>Интерфейсы ppp могут быть названы только ppp%d.</dt><dd>
+</dd><dt>Интерфейсы SkyStar DVB могут быть названы только dvb*.</dt><dd>
+</dd><dt>DHCP не работает в связке (bonding).</dt><dd>
+</dd><dt>ppp опция 'demand' может навсегда подвесить запуск /etc/net.</dt><dd>
+</dd><dt>CONFIG_IPV6 должен быть включен, чтобы корректно конфигурировать туннель 6-to-4 (TYPE=iptun, TUNTYPE=sit).</dt><dd>
+</dd><dt>Если вы конфигурируете фиктивные (dummy) интерфейсы, никогда не следует использовать имя интерфейса 'dummy0'.</dt><dd>
+</dd><dt>Имя интерфейса соединения не может совпадать с другим именем модуля ядра.</dt><dd>
+</dd></dl>
+<a name="lbAR">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=8">ip</a>(8),</b>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tc&amp;category=8">tc</a>(8),</b>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=etcnet-options&amp;category=5">etcnet-options</a>(5),</b>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=etcnet-qos&amp;category=8">etcnet-qos</a>(8),</b>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=etcnet-fw&amp;category=8">etcnet-fw</a>(8),</b>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ifrename&amp;category=8">ifrename</a>(8),</b>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=iftab&amp;category=5">iftab</a>(5)</b>
+
+<a name="lbAS">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Vsevolod Khalizev &lt;<a href="mailto:vkhalizev@gmail.com">vkhalizev@gmail.com</a>&gt; 2007.
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">КОНФИГУРАЦИЯ СИСТЕМЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">НАСТРОЙКА ИНТЕРФЕЙСА</a></dt><dd>
+</dd><dt><a href="#lbAG">ГРУППЫ ИНТЕРФЕЙСОВ</a></dt><dd>
+</dd><dt><a href="#lbAH">ПРАВИЛА НАСТРОЙКИ ИНТЕРФЕЙСА</a></dt><dd>
+</dd><dt><a href="#lbAI">СПЕЦИАЛЬНЫЕ ИНТЕРФЕЙСЫ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ПОДДЕРЖКА SYSCTL</a></dt><dd>
+</dd><dt><a href="#lbAK">РЕКУРСИЯ И ЗАВИСИМОСТИ</a></dt><dd>
+</dd><dt><a href="#lbAL">СИНТАКСИС VLANTAB</a></dt><dd>
+</dd><dt><a href="#lbAM">СИНТАКСИС HOSTTAB</a></dt><dd>
+</dd><dt><a href="#lbAN">ИМЕНА ФАЙЛОВ (FIXME)</a></dt><dd>
+</dd><dt><a href="#lbAO">ПРОФИЛИ КОНФИГУРАЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAP">МУЛЬТИХОСТОВАЯ КОНФИГУРАЦИЯ (MULTIHOST CONFIGURATION) (FIXME)</a></dt><dd>
+</dd><dt><a href="#lbAQ">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAR">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAS">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="etcnet" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

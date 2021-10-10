@@ -1,0 +1,1448 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ip (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ip"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ip" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ip (7)</font><hr><li> <a href="/man.shtml?topic=ip&amp;category=1&amp;russian=0"><u>ip</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ip&amp;category=4&amp;russian=1"><u>ip</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=ip&amp;category=4&amp;russian=2"><u>ip</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=ip&amp;category=7&amp;russian=4"><u>ip</u></a> (7) <font color="#555555"> ( Solaris man: Макропакеты и соглашения )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ip&amp;category=7&amp;russian=0"><u>ip</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=ip&amp;category=7&amp;russian=2"><u>ip</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=ip&amp;category=8&amp;russian=0"><u>ip</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=ip&amp;category=8&amp;russian=2"><u>ip</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/ip.html"><u>ip</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+ip - реализация протокола IPv4 под Linux
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>#include &lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;</b>
+
+<br>
+
+
+
+<b>#include &lt;<a href="file:/usr/include/netinet/in.h">netinet/in.h</a>&gt;</b>
+
+<p>
+<i>tcp_socket</i><b> = socket(PF_INET, SOCK_STREAM, 0);</b>
+
+<br>
+
+<i>raw_socket</i><b> = socket(PF_INET, SOCK_RAW, </b><i>protocol</i><b>);</b>
+
+<br>
+
+<i>udp_socket</i><b> = socket(PF_INET, SOCK_DGRAM, </b><i>protocol</i><b>);</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ </h2>
+
+Linux реализует Internet Protocol (IP) версии 4, описанный в RFC791 и
+RFC1122.
+<b>ip </b>
+
+включает в себя второй уровень 
+реализации групповых сообщений, соответствующий RFC1112.  Кроме того, он содержит
+маршрутизатор IP, включающий в себя фильтр пакетов.
+
+<p>
+
+Интерфейс программирования совместим с интерфейсом BSD-сокетов.
+Более подробную информацию смотри в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7).
+
+</p><p>
+
+IP-сокет создается с помощью вызова функции
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=2">socket</a></b>(2)
+
+в виде 
+<b>socket(PF_INET, socket_type, protocol)</b>.
+
+Возможными типами сокета являются 
+<b>SOCK_STREAM</b>,
+
+чтобы открыть сокет 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcp&amp;category=7">tcp</a></b>(7),
+
+<b>SOCK_DGRAM</b>
+
+чтобы открыть сокет 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=udp&amp;category=7">udp</a></b>(7),
+
+или
+<b>SOCK_RAW</b>,
+
+чтобы открыть сокет 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=raw&amp;category=7">raw</a></b>(7)
+
+для прямого доступа к IP протоколу. 
+<i>протокол</i>~--
+
+это IP-протокол, указанный в IP-заголовке, который будет принят или
+отослан.  Единственные возможные значения для параметра
+<i>протокол</i>~--
+
+это 
+<b>0</b>
+
+или
+<b>IPPROTO_TCP</b>
+
+для TCP сокетов, 
+<b>0</b>
+
+или
+<b>IPPROTO_UDP </b>
+
+для UDP сокетов.  Для 
+<b>SOCK_RAW </b>
+
+можно указать зарегистрированный в IANA IP-протокол, один из тех, что
+описаны в RFC1700.
+</p><p>
+
+
+
+Если процесс хочет принимать новые входящие пакеты или соединения, то он 
+должен связать сокет с адресом локального интерфейса, используя
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bind&amp;category=2">bind</a></b>(2).
+
+Только один IP-сокет может быть связан с каждой заданной локальной парой (адрес, порт).
+Если при вызове bind указать 
+<b>INADDR_ANY</b>,
+
+то сокет будет связан со
+<i>всеми</i>
+
+локальными интерфейсами. Если 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=listen&amp;category=2">listen</a></b>(2)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2)
+
+вызываются для несвязанного сокета, то он будет автоматически привязан
+к выбранному наугад свободному порту, а в качестве локального адреса
+будет указан
+<b>INADDR_ANY</b>.
+
+</p><p>
+Адрес локального TCP-сокета, который был связан, будет недоступен в течение некоторого 
+времени после его закрытия, если только не был установлен флаг 
+<b>SO_REUSEADDR</b>.
+
+Следует проявлять осторожность при использовании этого флага, поскольку он
+делает TCP менее надежным.  
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ФОРМАТ АДРЕСА</h2>
+
+Адрес IP сокета определяется как комбинация адреса IP интерфейса
+и номера порта.  Сам по себе IP протокол не присваивает номера портов, они
+реализуются протоколами более высокого уровня, типа 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=udp&amp;category=7">udp</a></b>(7)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcp&amp;category=7">tcp</a></b>(7).
+
+У сокетов типа raw переменная
+<b>sin_port</b>
+
+содержит протокол IP.
+<p>
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>
+struct sockaddr_in {
+    sa_family_t    sin_family; /* семейство адресов: AF_INET */
+    u_int16_t      sin_port;   /* порт сокета в сетевом порядке байт */
+    struct in_addr  sin_addr;  /* адрес в интернете */
+};
+
+/* Адрес в интернете. */
+struct in_addr {
+    u_int32_t      s_addr;     /* адрес сокета в сетевом порядке байт */
+};
+
+</pre>
+
+</dd></dl>
+
+<p>
+
+Значение переменной 
+<i>sin_family </i>
+
+всегда равно 
+<b>AF_INET</b>.
+
+Это обязательно; в Linux 2.2 большая часть сетевых функций возвращает код ошибки 
+<b>EINVAL</b>,
+
+если это условие не выполняется.
+Переменная 
+<i>sin_port</i>
+
+содержит порт сокета в сетевом порядке байт.
+Порты, номера которых меньше 1024, называются
+<i>зарезервированными портами</i>.
+
+Только процессы с фактическим идентификатором пользователя 0 или со способностью 
+<b>CAP_NET_BIND_SERVICE </b>
+
+могут быть связаны с этими сокетами с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bind&amp;category=2">bind</a></b>(2).
+
+Заметьте, что у чистого протокола IPv4, как такового, нет понятия 
+порта, они реализуются только протоколами более высокого уровня, типа
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcp&amp;category=7">tcp</a></b>(7)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=udp&amp;category=7">udp</a></b>(7).
+
+</p><p>
+
+Значением переменной
+<i>sin_addr </i>
+
+является адрес IP-хоста.
+Переменная 
+<i>addr</i>,
+
+являющаяся членом структуры 
+<b>struct in_addr</b>,
+
+содержит адрес сокета в сетевом формате. 
+Работать со структурой 
+<b>in_addr </b>
+
+следует только посредством библиотечных функций
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=inet_aton&amp;category=3">inet_aton</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=inet_addr&amp;category=3">inet_addr</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=inet_makeaddr&amp;category=3">inet_makeaddr</a></b>(3)
+
+или напрямую с помощью преобразователя имен (смотри
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gethostbyname&amp;category=3">gethostbyname</a></b>(3)).
+
+Адреса IPv4 делятся на одиночные, широковещательные 
+и групповые. Каждый одиночный адрес указывает на один интерфейс хоста,
+широковещательные адреса указывают на все хосты в сети, а групповые адреса 
+соответствуют всем хостам в группе. Датаграммы могут посылаться по 
+широковещательным адресам только если установлен флаг 
+<b>SO_BROADCAST</b>.
+
+В текущей реализации сокетам, ориентированным на соединения, 
+разрешено иметь только одиночные адреса.
+
+</p><p>
+Заметьте, что значения адреса и порта всегда хранятся в сетевом формате.
+В частности, это означает, что требуется вызывать
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=htons&amp;category=3">htons</a></b>(3)
+
+для числа, обозначающего порт.  Все функции из стандартной библиотеки, 
+манипулирующие с адресами/портами, работают с сетевым форматом.
+</p><p>
+Есть несколько специальных адресов: 
+<b>INADDR_LOOPBACK</b>
+
+(127.0.0.1)
+всегда приписывается локальному хосту через закольцовывающий интерфейс;
+<b>INADDR_ANY </b>
+
+(0.0.0.0)
+означает любой адрес для связывания;
+<b>INADDR_BROADCAST</b>
+
+(255.255.255.255)
+означает любой хост и по историческим причинам при связывании создает
+тот же эффект, что и
+<b>INADDR_ANY</b>.
+
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>ОПЦИИ СОКЕТА</h2>
+
+<p>
+IP поддерживает некоторые опции сокета, относящиеся к протоколу,
+которые могут быть установлены с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setsockopt&amp;category=2">setsockopt</a></b>(2),
+
+и прочитаны с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getsockopt&amp;category=2">getsockopt</a></b>(2).
+
+Параметр "уровень опции сокета" этих функций равен
+<b>SOL_IP</b>.
+
+Двоичный флаг со значением нуль означает "ложь", другие значения --
+"истина".
+</p><p>
+</p><dl compact="">
+<dt><b>IP_OPTIONS</b>
+
+</dt><dd>
+Устанавливает или возвращает те опции IP, которые посылаются с каждым пакетом из данного
+сокета.  Аргументами являются указатель на область памяти, содержащую эти опции, 
+и размер опции.
+Системный вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setsockopt&amp;category=2">setsockopt</a></b>(2)
+
+устанавливает опции IP, связанные с сокетом.
+Для IPv4 максимальный размер этой опции равен 40 байтам.  Все возможные опции 
+перечислены в RFC791. Если запрос, устанавливающий соединение с сокетом типа
+<b>SOCK_STREAM</b>,
+
+содержит опции IP, то такие же IP-опции (с инвертированными
+заголовками маршрутизации) будут использоваться в этом сокете.
+Входящие пакеты не могут изменять опции после того, как соединение
+установлено.
+По умолчанию обработка всех опций, связанных с маршрутизацией по отправителю,
+отключена, но ее можно включить, используя sysctl-значение 
+<b>accept_source_route</b>.
+
+Другие опции, например связанные с временными отметками, продолжают обрабатываться.
+Для датаграммных сокетов опции IP могут быть установлены только локальным 
+пользователем. В результате вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getsockopt&amp;category=2">getsockopt</a></b>(2)
+
+с  параметром
+<i>IP_OPTIONS</i>
+
+текущие опции IP, используемые при отправки пакетов, будут помещены 
+в указанный буфер.
+<p>
+</p></dd><dt><b>IP_PKTINFO</b>
+
+</dt><dd>
+Передает служебное сообщение
+<i>IP_PKTINFO</i>,
+
+содержащее структуру
+<b>pktinfo</b>,
+
+которая содержит некоторую информацию о входящем пакете. Эта опция 
+используется только для сокетов, ориентированных на посылку датаграмм.
+Аргумент является флагом, который сообщает сокету, нужно ли посылать
+сообщение IP_PKTINFO или нет.  Само сообщение может быть
+послано/получено только в виде контрольного сообщения с пакетом,
+используя
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvmsg&amp;category=2">recvmsg</a></b>(2)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmsg&amp;category=2">sendmsg</a></b>(2).
+
+<p>
+</p></dd><dt></dt><dd>
+<dl compact=""><dt></dt><dd>
+
+
+<pre>struct in_pktinfo {
+    unsigned int   ipi_ifindex;  /* указатель на интерфейс */
+    struct in_addr ipi_spec_dst; /* локальный адрес */
+    struct in_addr ipi_addr;     /* адрес назначения из заголовка */
+};
+</pre>
+
+</dd></dl>
+
+</dd><dt></dt><dd>
+
+<b>ipi_ifindex</b>
+
+это уникальный указатель на интерфейс, от которого был получен этот пакет.
+<b>ipi_spec_dst</b>
+
+это локальный адрес пакета, а
+<b>ipi_addr</b>
+
+это адрес назначения, указанный в заголовке пакета.
+Если опция
+<i>IP_PKTINFO </i>
+
+передана
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmsg&amp;category=2">sendmsg</a></b>(2),
+
+то исходящий пакет будет послан через интерфейс,
+указанный в
+<b>ipi_ifindex</b>,
+
+по адресу из
+<b>ipi_spec_dst</b>.
+
+<p>
+</p></dd><dt><b>IP_RECVTOS</b>
+
+</dt><dd>
+Если включена, то вместе с исходящими пакетами передается 
+вспомогательное сообщение 
+<i>IP_TOS</i>.
+
+Оно содержит байт, который определяет поле Тип Сервиса/Приоритет 
+в заголовке пакета.  Ожидается логический целочисленный флаг.
+<p>
+</p></dd><dt><b>IP_RECVTTL</b>
+
+</dt><dd>
+Если этот флаг установлен, то в поле Время Жизни (time to live) получаемого пакета, 
+как байт, передается управляющее сообщение 
+<i>IP_RECVTTL</i>.
+
+Не поддерживается сокетами типа
+<b>SOCK_STREAM</b>.
+
+<p>
+</p></dd><dt><b>IP_RECVOPTS</b>
+
+</dt><dd>
+Передает пользователю все входящие опции IP, с помощью управляющего сообщения
+<i>IP_OPTIONS</i>.
+
+Заголовок маршрутизации и другие опции уже установлены для 
+локального хоста. Не поддерживается сокетами типа
+<i>SOCK_STREAM</i>.
+
+<p>
+</p></dd><dt><b>IP_RETOPTS</b>
+
+</dt><dd>
+Идентична опции 
+<i>IP_RECVOPTS</i>,
+
+но возвращает необработанные опции, причем временные отметки и записи
+о маршрутизации для этого хопа еще не заполнены.
+<p>
+</p></dd><dt><b>IP_TOS</b>
+
+</dt><dd>
+Устанавливает или получает значение поля Тип-Сервиса (Type-Of-Service (TOS)), 
+которое посылается с каждым IP-пакетом, который отсылается с этого
+сокета.  Это поле
+используется, чтобы задавать сетевые приоритеты пакетов.  TOS хранится 
+в одном байте. 
+Существует несколько стандартных значений флага TOS:
+<b>IPTOS_LOWDELAY</b>,
+
+чтобы минимизировать задержки для передаваемого трафика,
+<b>IPTOS_THROUGHPUT</b>,
+
+чтобы улучшить пропускную способность,
+<b>IPTOS_RELIABILITY</b>,
+
+чтобы увеличить надежность,
+<b>IPTOS_MINCOST</b>,
+
+следует использовать для "необязательных данных", которые можно
+пересылать на минимальной скорости.  Может быть указано не более
+одного из этих значений TOS.
+Все другие биты являются недействительными и должны быть обнулены.
+По умолчанию Linux посылает датаграммы 
+<b>IPTOS_LOWDELAY </b>
+
+первыми, но точное поведение зависит от сконфигурированного порядка
+очередности. 
+
+Для установки некоторых высокоприоритетных типов сервиса фактический
+идентификатор
+пользователя должен быть равен 0, или же у процесса должна быть способность
+<b>CAP_NET_ADMIN</b>.
+
+Приоритеты также можно расставить не зависящим от типа протокола способом, 
+через опции сокета (
+<b>SOL_SOCKET</b>, <b>SO_PRIORITY</b>)
+
+(см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7)).
+
+<p>
+</p></dd><dt><b>IP_TTL</b>
+
+</dt><dd>
+Устанавливает или получает текущее значение поля Время Жизни (time to live),
+которое указывается в каждом пакете, который отсылается с этого сокета. 
+<p>
+</p></dd><dt><b>IP_HDRINCL</b>
+
+</dt><dd>
+Включение этого флага означает, что пользователь уже добавил заголовок
+IP в начало своих данных.  Применяется только в сокетах
+типа 
+<b>SOCK_RAW</b>.
+
+Более подробную информацию см. в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=raw&amp;category=7">raw</a></b>(7).
+
+Если этот флаг включен, то значения, установленные опциями 
+<i>IP_OPTIONS</i>,
+
+<i>IP_TTL</i>
+
+и 
+<i>IP_TOS</i>,
+
+игнорируются.
+<p>
+</p></dd><dt><b>IP_RECVERR</b> (объявлено в &lt;<a href="file:/usr/include/linux/errqueue.h">linux/errqueue.h</a>&gt;)
+
+</dt><dd>
+Включает более надежную передачу сообщений об ошибках. 
+Если эта опция включена для датаграмного сокета, то все появляющиеся
+ошибки будут поставлены в очередь ошибок, свою для каждого сокета.
+Если при работе сокета возникает ошибка,
+то пользователь может получить ее путем вызова 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvmsg&amp;category=2">recvmsg</a></b>(2)
+
+с установленным флагом 
+<b>MSG_ERRQUEUE</b>.
+
+Структура 
+<b>sock_extended_err</b>,
+
+описывающая ошибку, будет передана в служебном сообщении типа 
+<i>IP_RECVERR </i>
+
+через 
+<b>SOL_IP</b>.
+
+Эта опция полезна для надежной обработки ошибок на еще не соединенных
+сокетах.  Порция данных, получаемая из очереди ошибок,
+содержит пакет с описанием ошибки. 
+</dd><dt></dt><dd>
+Контрольное сообщение
+<i>IP_RECVERR</i>
+
+содержит структуру
+<b>sock_extended_err</b>:
+
+</dd><dt></dt><dd>
+<dl compact=""><dt></dt><dd>
+18
+<pre>
+#define SO_EE_ORIGIN_NONE      0
+#define SO_EE_ORIGIN_LOCAL     1
+#define SO_EE_ORIGIN_ICMP      2
+#define SO_EE_ORIGIN_ICMP6     3
+
+struct sock_extended_err {
+       u_int32_t       ee_errno;       /* номер ошибки */
+       u_int8_t        ee_origin;      /* откуда появилась ошибка */ 
+       u_int8_t        ee_type;        /* тип */
+       u_int8_t        ee_code;        /* код */
+       u_int8_t        ee_pad;
+       u_int32_t       ee_info;        /* дополнительная информация */
+       u_int32_t       ee_data;        /* другие данные */  
+       /* Дальше могу следовать еще данные */ 
+};
+
+struct sockaddr *SOCK_EE_OFFENDER(struct sock_extended_err *);
+
+</pre>
+
+</dd></dl>
+
+</dd><dt></dt><dd>
+<b>ee_errno</b>
+
+содержит код ошибки, помещенной в очередь.
+<b>ee_origin</b> --
+
+это код источника ошибки.
+Остальные поля специфичны для каждого протокола.  Макрос
+<b>SOCK_EE_OFFENDER</b>
+
+получает указатель на служебное сообщение и возвращает указатель на
+адрес сетевого объекта, от которого пришла ошибка.  Если этот адрес
+неизвестен, то поле
+<i>sa_family</i>
+
+структуры
+<b>sockaddr</b>
+
+содержит
+<b>AF_UNSPEC</b>,
+
+а остальные ее поля не определены.
+</dd><dt></dt><dd>
+IP использует структуру 
+<b>sock_extended_err</b>
+
+следующим образом: 
+значение поля 
+<i>ee_origin </i>
+
+равно 
+<b>SO_EE_ORIGIN_ICMP </b>
+
+для ошибок, полученных как ICMP пакет, или
+<b>SO_EE_ORIGIN_LOCAL </b>
+
+для локально возникших ошибок.  Неизвестные значения следует
+игнорировать.
+Значения полей 
+<i>ee_type </i>
+
+и 
+<i>ee_code </i>
+
+устанавливаются, исходя из значений полей Тип (type) и Код (code), 
+содержащихся в заголовке ICMP. Поле 
+<i>ee_info</i>
+
+содержит обнаруженную величину MTU для ошибок 
+<b>EMSGSIZE</b>.
+
+Сообщение также содержит
+<i>sockaddr_in</i>
+
+узла, вызвавшего ошибку, к этой структуре можно обратиться с помощью
+макроса
+<b>SOCK_EE_OFFENDER</b>.
+
+Поле
+<i>sin_family</i>
+
+адреса, возвращенного этим макросом, содержит
+<i>AF_UNSPEC</i>,
+
+если источник неизвестен.
+Если ошибка происходит в сети, то все опции IP 
+(<i>IP_OPTIONS</i>, <i>IP_TTL</i>, 
+
+и т.~д.), которые используются сокетом и содержатся в пакете с описанием ошибки, 
+передаются как управляющее сообщение. Данные пакета, вызвавшего ошибку,
+возвращаются как нормальные данные.
+</dd><dt></dt><dd>
+
+
+
+Заметьте, что у TCP нет очереди ошибок; Флаг 
+<b>MSG_ERRQUEUE</b>
+
+нельзя использовать для сокетов типа 
+<b>SOCK_STREAM</b>.
+
+Таким образом, все ошибки можно получить только как значение, возвращаемое 
+функцией сокета, или через опцию 
+<b>SO_ERROR</b>.
+
+</dd><dt></dt><dd>
+Для сокетов типа raw, опция 
+<i>IP_RECVERR </i>
+
+включает передачу в приложение всех получаемых ошибок ICMP, 
+или же, сообщается только об ошибках в сокетах установивших соединение.
+</dd><dt></dt><dd>
+Эта опция устанавливает или возвращает значение ноль или единица. По умолчанию, опция 
+<i>IP_RECVERR</i>
+
+отключена. 
+<p>
+</p></dd><dt><b>IP_PMTU_DISCOVER</b>
+
+</dt><dd>
+Устанавливает или возвращает значение опции Path MTU Discovery (Обнаружение MTU Маршрута) 
+установленной для сокета. Если она включена, то Linux будет производить обнаружение 
+MTU маршрута, как описано в RFC1191
+для данного сокета. В противном случае, флаг фрагментации будет устанавливаться у всех
+исходящих датаграмм.  Значение по умолчанию для всей системы контролируется
+sysctl-значением 
+<b>ip_no_pmtu_disc </b>
+
+для сокетов типа 
+<b>SOCK_STREAM</b>,
+
+а для сокетов других типов эта опция отключена. Если тип сокета не 
+<b>SOCK_STREAM</b>,
+
+то ответственность за разбивку данных на пакеты, размер которых соответствует
+MTU, и за выполнение, по-необходимости, повторной передачи данных, ложится на 
+пользователя. Если этот флаг установлен, то ядро будет отвергать пакеты, 
+размер которых больше заданного значения MTU маршрута (оно задается
+через опцию
+<b>EMSGSIZE</b>).
+
+<p>
+<table>
+<tbody><tr valign="top"><td align="center">Флаги опции</td><td>Их значения<br></td></tr>
+<tr valign="top"><td>Path MTU Discovery</td><td><br></td></tr>
+<tr valign="top"><td>===================</td><td>============<br></td></tr>
+<tr valign="top"><td>IP_PMTUDISC_WANT</td><td>Использовать установки<br></td></tr>
+<tr valign="top"><td></td><td>маршрутизаторов.<br></td></tr>
+<tr valign="top"><td>IP_PMTUDISC_DONT</td><td>Никогда не производить<br></td></tr>
+<tr valign="top"><td></td><td>обнаружение MTU маршрута.<br></td></tr>
+<tr valign="top"><td>IP_PMTUDISC_DO</td><td>Всегда производить обнаружение<br></td></tr>
+<tr valign="top"><td></td><td>MTU маршрута. <br></td></tr>
+</tbody></table>
+
+</p><p>
+</p><p>
+Если опция Path MTU Discovery включена, то ядро автоматически следит за MTU 
+маршрута для каждого удаленного хоста. 
+Если с некоторым узлом устанавливается соединение с помощью 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2),
+
+то текущее значение MTU маршрута может быть установлено заново используя 
+опцию сокета 
+<b>IP_MTU </b>
+
+(например, после возникновения ошибки
+<b>EMSGSIZE</b>).
+
+Значение MTU может меняться время от времени. 
+Для сокетов без предварительного установления соединения, которые имеют 
+несколько хостов-получателей, новое значение MTU для заданного хоста может быть 
+получено с помощью очереди ошибок (смотри 
+<b>IP_RECVERR</b>).
+
+При каждом входящем сообщении об обновлении MTU, в очередь будет поставлена 
+новая ошибка. 
+</p><p>
+Во время процесса обнаружения MTU, пакеты, инициализирующие соединение, 
+от датаграмных сокетов, могут быть отброшены.  Приложения, использующие UDP, 
+должны знать это и не принимать во внимание в своих методах повторной передачи данных.
+</p><p>
+Чтобы запустить процесс обнаружения MTU маршрута для сокетов, не установивших 
+соединение, можно сначала установить большой размер датаграммы 
+(с размером заголовка до 64K) и позволить обновлениям MTU маршрута сократить его.
+
+</p><p>
+Чтобы получить начальную оценку MTU маршрута, установите соединение между 
+датаграммным сокетом и адресом назначения, используя 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2)
+
+и узнайте значение MTU путем вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getsockopt&amp;category=2">getsockopt</a></b>(2)
+
+с опцией
+<b>IP_MTU</b>.
+
+</p><p>
+</p></dd><dt><b>IP_MTU</b>
+
+</dt><dd>
+Возвращает используемое в данный момент значение MTU маршрута текущего сокета. 
+Эта опция используется только если сокет установил соединение. Возвращает целое
+число. Значение этой опции можно получить только 
+через 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getsockopt&amp;category=2">getsockopt</a></b>(2).
+
+
+</dd><dt><b>IP_ROUTER_ALERT</b>
+
+</dt><dd>
+Передает этому сокету все пакеты, которые пересылаются с опцией 
+IP Router Alert. 
+Эта опция используется только в сокетах типа raw. Она может быть полезна, например, 
+для демонов RSVP, запущенных на пользовательском уровне. Перехваченные пакеты не 
+пересылаются ядром: ответственность за их повторную отсылку лежит на пользователе.
+Связывание сокета игнорируется, такие пакеты фильтруются только протоколом.
+В качестве аргумента использует целочисленный флаг. 
+
+</dd><dt><b>IP_MULTICAST_TTL</b>
+
+</dt><dd>
+Устанавливает или возвращает значение time-to-live для исходящих из этого 
+сокета пакетов, использующих групповую адресацию. Для подобных пакетов 
+очень важно установить наименьшее возможное значение TTL. 
+По умолчанию оно равно 1, это значит, что эти пакеты не выйдут за пределы локальной 
+сети, если только пользовательская программа явно не попросит этого. Значением 
+аргумента является целое число.
+
+</dd><dt><b>IP_MULTICAST_LOOP</b>
+
+</dt><dd>
+Устанавливает или возвращает значение ноль или единица, в зависимости от того,
+будут ли пакеты, использующие групповую адресацию, закольцовываться на 
+локальные сокеты.
+
+</dd><dt><b>IP_ADD_MEMBERSHIP</b>
+
+</dt><dd>
+Присоединяет к группе для группового вызова. Аргументом является структура 
+<b>struct</b>ip_mreqn<b>.</b>
+
+</dd></dl>
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>
+struct ip_mreqn {
+    struct in_addr imr_multiaddr; /* IP адрес группы для группового вызова */
+    struct in_addr imr_address;   /* IP адрес локального интерфейса */
+    int            imr_ifindex;   /* указатель на интерфейс */
+};
+</pre>
+
+</dd></dl>
+
+<dl compact="">
+<dt></dt><dd>
+<i>imr_multiaddr</i>
+
+содержит адрес группы для группового вызова, к которой приложение хочет присоединиться 
+или покинуть. 
+Значением должен быть допустимый адрес группового вызова. 
+<i>imr_address</i>
+
+это адрес локального интерфейса через который система присоединяется к группе 
+группового вызова; если он равен 
+<b>INADDR_ANY</b>,
+
+то соответствующий интерфейс выбирается системой.
+<i>imr_ifindex</i>
+
+это либо указатель на интерфейс, который должен быть добавлен/удален из группы 
+<i>imr_multiaddr</i>,
+
+либо 0, что означает любой интерфейс. 
+</dd><dt></dt><dd>
+Для совместимости, старая структура 
+<b>ip_mreq </b>
+
+все еще поддерживается. Она отличается от структуры 
+<b>ip_mreqn </b>
+
+только отсутствием поля 
+<i>imr_ifindex</i>.
+
+Эта опция используется только через 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setsockopt&amp;category=2">setsockopt</a></b>(2).
+
+
+</dd><dt><b>IP_DROP_MEMBERSHIP</b>
+
+</dt><dd>
+Удаляет из группы для группового вызова. Аргументом является структура 
+<b>ip_mreqn </b>
+
+или 
+<b>ip_mreq , </b>
+
+подобно опции
+<i>IP_ADD_MEMBERSHIP</i>.
+
+
+</dd><dt><b>IP_MULTICAST_IF</b>
+
+</dt><dd>
+Устанавливает локальное устройство как сокет группового вызова. 
+Аргументом является структура 
+<b>ip_mreqn </b>
+
+или 
+<b>ip_mreq </b>
+
+подобно опции 
+<i>IP_ADD_MEMBERSHIP</i>.
+
+</dd><dt></dt><dd>
+Если сокету передается неправильная опция, то возвращается ошибка 
+<b>ENOPROTOOPT . </b>
+
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>SYSCTL-ЗНАЧЕНИЯ</h2>
+
+IP протокол 
+поддерживает интерфейс sysctl для конфигурирования некоторых глобальных опций. 
+К sysctl-значениям можно получить доступ путем чтения или записи в файлы
+<b>/proc/sys/net/ipv4/* </b>
+
+или через использование интерфейса 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sysctl&amp;category=2">sysctl</a></b>(2)<b>.</b>
+
+
+<dl compact="">
+<dt><b>ip_default_ttl </b>
+
+</dt><dd>
+Устанавливает значение по умолчанию для величины time-to-live исходящих пакетов. 
+Это значение может быть изменено для каждого отдельного сокета с помощью опции 
+<i>IP_TTL</i>.
+
+
+</dd><dt><b>ip_forward</b>
+
+</dt><dd>
+Включает/отключает перенаправление IP-пакетов в зависимости от
+значения флага.  Перенаправление IP также может быть установлено для
+каждого интерфейса в отдельности.
+
+</dd><dt><b>ip_dynaddr</b>
+
+</dt><dd>
+Включает динамическую адресацию сокета и маскарадинг подмены входного адреса при 
+изменении адреса интерфейса. Это полезно для коммутируемого интерфейса с 
+изменяющимся IP адресом.
+0 означает не подменять, 1 включает подмену и 2 включает многословный режим.
+
+</dd><dt><b>ip_autoconfig</b>
+
+</dt><dd>
+Не описан.
+
+</dd><dt><b>ip_local_port_range</b>
+
+</dt><dd>
+Содержит два целых числа, которые определяют диапазон локальных портов, которые по 
+умолчанию зарезервированы для сокетов. Резервирование ведется с первого числа и 
+оканчивается на втором. 
+Заметьте, что эти порты не должны конфликтовать с портами, которые используются 
+для маскарадинга (хотя такой случай специально обрабатывается). Кроме того, произвольный 
+выбор диапазона может привести к проблемам с некоторыми фильтрами пакетов файервол, 
+которые делают предположение об используемых локальных портах. 
+Первое число должно быть, по крайней мере &gt;1024, а лучше &gt;4096, чтобы избежать 
+конфликтов с известными портами и минимизировать проблемы с файерволами.
+
+</dd><dt><b>ip_no_pmtu_disc</b>
+
+</dt><dd>
+Если включено, то, по умолчанию, не производится обнаружение MTU маршрута для TCP 
+сокетов. Обнаружение MTU маршрута может потерпеть неудачу из-за встретившихся на 
+пути неверно сконфигурированных файерволов (которые отбрасывают все ICMP пакеты) 
+или из-за неверно сконфигурированного интерфейса (например, соединение точка-точка, 
+у которого оба конца не установили MTU). Лучше исправить встреченные на пути 
+неисправные маршрутизаторы, чем глобально отключать обнаружение MTU маршрута, 
+потому что это отключение приведет к высокой нагрузке на сеть. 
+
+</dd><dt><b>ipfrag_high_thresh, ipfrag_low_thresh </b>
+
+</dt><dd>
+Если количество фрагментов IP, стоящих в очереди, достигает значения 
+<b>ipfrag_high_thresh</b>,
+
+то очередь 
+укорачивается до значения 
+<b>ipfrag_low_thresh</b>.
+
+Содержит целое число, означающее количество 
+байт.
+</dd><dt><b>ip_always_defrag</b>
+
+</dt><dd>
+[Появилось начиная с ядра 2.2.13; в ранних версиях ядра эта
+возможность контролировалась во время компиляции с помощью флага
+<b>CONFIG_IP_ALWAYS_DEFRAG</b>].
+
+<p>
+Если этот флаг включен (его значение не равно 0), то входящие фрагменты
+(части IP пакетов, 
+которые образуются, если некоторый хост, находящийся между отправителем и 
+адресатом, решает, что пакеты слишком велики и разделяет их на кусочки)
+будут снова собраны (дефрагментированы) перед дальнейшей обработкой, даже
+если они должны быть пересланы дальше. 
+</p><p>
+Включайте эту опцию только на файерволе, который является единственной связью
+с вашей сетью или на прозрачном прокси-сервере; никогда не включайте ее на 
+нормальном маршрутизаторе или хосте. В противном случае, соединение может быть нарушено
+если фрагменты передаются по различным линиям. Дефрагментация 
+также требует много памяти и процессорного времени.
+</p><p>
+Эта опция включается автоматически, если конфигурируется маскарадинг 
+или прозрачный прокси-сервер.
+</p></dd><dt><b>neigh/*</b>
+
+</dt><dd>
+Смотри 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=arp&amp;category=7">arp</a></b>(7).
+
+
+
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>IOCTLS</h2>
+
+Все ioctls, описанные в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7),
+
+применимы к ip.
+<p>
+
+Ioctls для конфигурирования файерволов, описаны в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ipfw&amp;category=7">ipfw</a></b>(7)
+
+из пакета 
+<b>ipchains</b>.
+
+</p><p>
+
+Ioctls для конфигурирования характерных параметров устройств, описаны в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netdevice&amp;category=7">netdevice</a></b>(7).
+
+
+<a name="lbAI">&nbsp;</a>
+</p><h2>ЗАМЕЧАНИЯ</h2>
+
+Будьте осторожны при использовании опции 
+<b>SO_BROADCAST</b>
+
+- она не является привилегированной в Linux. Если небрежно относиться к 
+широковещательным сообщениям, то можно легко перегрузить сеть.
+В новых протоколах для приложений лучше использовать групповой вызов
+вместо широковещательных сообщений. Широковещательные сообщения сейчас 
+используются реже. 
+<p>
+
+Некоторые другие реализации BSD сокетов предоставляют опции сокета 
+<i>IP_RCVDSTADDR </i>
+
+и 
+<i>IP_RECVIF</i>,
+
+чтобы узнать адрес назначения и интерфейс полученных датаграмм. 
+У Linux есть опция более общего назначения 
+<i>IP_PKTINFO</i>
+
+для выполнения той же задачи. 
+</p><p>
+
+<a name="lbAJ">&nbsp;</a>
+</p><h2>КОДЫ ОШИБОК</h2>
+
+
+
+<dl compact="">
+<dt><b>ENOTCONN</b>
+
+</dt><dd>
+Действие должно выполняться только над сокетом, установившем соединение, а этот 
+сокет соединение не установил.
+</dd><dt><b>EINVAL</b>
+
+</dt><dd>
+Передан недопустимый аргумент. 
+При передаче пакета эта ошибка может возникнуть из-за передачи на маршрутизатор типа 
+<i>черная дыра</i>.
+
+</dd><dt><b>EMSGSIZE </b>
+
+</dt><dd>
+Датаграмма больше, чем MTU на данном маршруте, и она не может быть фрагментирована.
+</dd><dt><b>EACCES</b>
+
+</dt><dd>
+Пользователь попытался выполнить действие, не имея на это необходимых
+полномочий.  Примеры таких действий:
+посылка широковещательного сообщения без предварительной установки флага
+<b>SO_BROADCAST ;</b>
+
+посылка пакета через 
+<i>запрещенный </i>
+
+маршрут;
+изменение настроек файервола, не имея возможности
+<b>CAP_NET_ADMIN</b>,
+
+или нулевого фактического идентификатора пользователя;
+связывание сокета с зарезервированным портом, не имея возможности
+<b>CAP_NET_BIND_SERVICE</b>,
+
+или нулевого фактического идентификатора пользователя.
+<p>
+</p></dd><dt><b>EADDRINUSE</b>
+
+</dt><dd>
+Попытка связать сокет с уже используемым адресом.
+</dd><dt><b>ENOPROTOOPT</b> и <b>EOPNOTSUPP</b>
+
+</dt><dd>
+Передана недопустимая опция. 
+</dd><dt><b>EPERM</b>
+
+</dt><dd>
+У пользователя нет достаточных полномочий, чтобы повысить приоритет, изменить 
+конфигурацию или послать сигнал запрашиваемому процессу или группе 
+процессов. 
+</dd><dt><b>EADDRNOTAVAIL</b>
+
+</dt><dd>
+Был запрошен несуществующий интерфейс или запрошенный исходящий адрес не является
+локальным.
+</dd><dt><b>EAGAIN</b>
+
+</dt><dd>
+Действие над неблокирующим сокетом привело бы к его блокировке.
+</dd><dt><b>ESOCKTNOSUPPORT</b>
+
+</dt><dd>
+Сокет не сконфигурирован или запрошен неизвестный тип сокета.
+</dd><dt><b>EISCONN</b>
+
+</dt><dd>
+Функция
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2)
+
+вызвана для сокета, уже установившего соединение.
+</dd><dt><b>EALREADY</b>
+
+</dt><dd>
+Операция соединения на неблокируемом сокете уже находится в процессе
+выполнения.
+</dd><dt><b>ECONNABORTED</b>
+
+</dt><dd>
+Соединение закрыто во время 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=accept&amp;category=2">accept</a></b>(2).
+
+</dd><dt><b>EPIPE</b>
+
+</dt><dd>
+Соединение неожиданно закрылось или завершено другой стороной.
+</dd><dt><b>ENOENT</b>
+
+</dt><dd>
+<b>SIOCGSTAMP </b>
+
+вызван для сокета, который еще не получил ни одного пакета. 
+</dd><dt><b>EHOSTUNREACH</b>
+
+</dt><dd>
+В таблице маршрутизации нет разрешенных записей, соответствующих
+адресу назначения.  Эта ошибка может возникнуть из-за ICMP-сообщения от 
+удаленного маршрутизатора или из-за локальной таблицы маршрутизации. 
+</dd><dt><b>ENODEV </b>
+
+</dt><dd>
+Сетевое устройство недоступно или неспособно посылать IP пакеты.
+</dd><dt><b>ENOPKG </b>
+
+</dt><dd>
+IP-подсистема ядра не сконфигурирована.
+</dd><dt><b>ENOBUFS, ENOMEM</b>
+
+</dt><dd>
+Недостаточно свободной памяти.
+Часто это означает, что распределение памяти ограничивается не размером системной
+памяти, а границами буфера сокета, но это не всегда так.
+</dd></dl>
+<p>
+
+Протоколами более высокого уровня могут генерироваться другие ошибки; смотри
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcp&amp;category=7">tcp</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=raw&amp;category=7">raw</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=udp&amp;category=7">udp</a></b>(7)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7).
+
+<a name="lbAK">&nbsp;</a>
+</p><h2>ВЕРСИИ</h2>
+
+Опции
+<i>IP_PKTINFO</i>,
+
+<i>IP_MTU</i>,
+
+<i>IP_PMTU_DISCOVER</i>,
+
+<i>IP_PKTINFO</i>,
+
+<i>IP_RECVERR</i>
+
+и
+<i>IP_ROUTER_ALERT</i>
+
+являются новыми в Linux 2.2.
+Более того, они специфичны для Linux и поэтому их не следует
+использовать в переносимых программах.
+<p>
+
+Структура
+<b>ip_mreqn </b>
+
+появилась в Linux 2.2.  Linux 2.0 поддерживал только структуру 
+<b>ip_mreq</b>.
+
+</p><p>
+
+Sysctl-значения были введены в Linux 2.2. 
+<a name="lbAL">&nbsp;</a>
+</p><h2>СОВМЕСТИМОСТЬ</h2>
+
+Для совместимости с Linux 2.0, устаревший синтаксис
+<b>socket(PF_INET, SOCK_RAW, protocol</b><i>)</i>
+
+все еще поддерживается, чтобы создавать сокеты типа 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=packet&amp;category=7">packet</a></b>(7).
+
+Такое использование не поощряется и должно быть заменено на
+<b>socket(PF_PACKET, SOCK_RAW, protocol</b><i>)</i>
+
+Основная разница между ними в новой структуре 
+<b>sockaddr_ll</b>,
+
+хранящей информацию обобщенного уровня соединения, вместо старой
+структуры
+<b>sockaddr_pkt</b>.
+
+<a name="lbAM">&nbsp;</a>
+<h2>ОШИБКИ РЕАЛИЗАЦИИ</h2>
+
+Слишком много противоречивых значений ошибок. 
+<p>
+
+Не описаны ioctls для конфигурирования специфичных для IP опций интерфейса 
+и таблиц ARP.
+</p><p>
+
+Некоторые версии glibc забывали объявить
+<i>in_pktinfo</i>.
+
+Обойти это можно, скопировав объявление этой структуры из этой
+страницы руководства.
+</p><p>
+
+Получение исходного адреса назначения в
+<i>msg_name</i>
+
+с помощью
+<b>MSG_ERRQUEUE</b>
+
+функцией
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvmsg&amp;category=2">recvmsg</a></b>(2)
+
+не работает в некоторых ядрах 2.2.
+<a name="lbAN">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+Эту страницу руководства написал Andi Kleen. 
+<a name="lbAO">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ </h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmsg&amp;category=2">sendmsg</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvmsg&amp;category=2">recvmsg</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netlink&amp;category=7">netlink</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcp&amp;category=7">tcp</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=udp&amp;category=7">udp</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=raw&amp;category=7">raw</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ipfw&amp;category=7">ipfw</a></b>(7).
+
+<p>
+
+RFC791, где описана изначальная спецификация IP.
+<br>
+
+RFC1122, где описаны требования к хосту для IPv4.
+<br>
+
+RFC1812, где описаны требования к маршрутизатору для IPv4.
+<a name="lbAP">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+Copyright (C) 2000 Антон Аюпов &lt;<a href="mailto:astray@yandex.ru">astray@yandex.ru</a>&gt;
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ </a></dt><dd>
+</dd><dt><a href="#lbAE">ФОРМАТ АДРЕСА</a></dt><dd>
+</dd><dt><a href="#lbAF">ОПЦИИ СОКЕТА</a></dt><dd>
+</dd><dt><a href="#lbAG">SYSCTL-ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAH">IOCTLS</a></dt><dd>
+</dd><dt><a href="#lbAI">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAJ">КОДЫ ОШИБОК</a></dt><dd>
+</dd><dt><a href="#lbAK">ВЕРСИИ</a></dt><dd>
+</dd><dt><a href="#lbAL">СОВМЕСТИМОСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAM">ОШИБКИ РЕАЛИЗАЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAN">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAO">СМОТРИ ТАКЖЕ </a></dt><dd>
+</dd><dt><a href="#lbAP">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ip" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

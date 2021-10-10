@@ -1,0 +1,637 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-49925874-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-49925874-3');
+  </script>
+
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <title>Git - git-check-ref-format Documentation</title>
+
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+  <link rel="stylesheet" media="screen" href="/assets/application-3fb605347038cd5206e27d1f90829d3159e0de904e21be188a31e8f8c27c42a8.css">
+  <script src="/assets/modernize-b3ebe0c31c24f230dc62179d3e1030d2e57a53b1668d9382c0a27dbd44a94beb.js"></script>
+  <!--[if (gte IE 6)&(lte IE 8)]>
+  <script src="/javascripts/selectivizr-min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body id="documentation">
+
+  <div class="inner">
+    <header>
+
+  <a href="/"><img src="/images/logo@2x.png" alt="Git" height="46" width="110"></a>
+  <span id="tagline">--distributed-even-if-your-workflow-isnt</span>
+  <script type="text/javascript">
+    var taglines = ["fast-version-control","everything-is-local","distributed-even-if-your-workflow-isnt","local-branching-on-the-cheap","distributed-is-the-new-centralized"];
+    var tagline = taglines[Math.floor(Math.random() * taglines.length)];
+    document.getElementById('tagline').innerHTML = '--' + tagline;
+  </script>
+  <form id="search" action="/search/results">
+    <input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text">
+  </form>
+  <div id="search-results"></div>
+
+</header>
+
+  </div> <!-- .inner -->
+
+    <div class="inner">
+      <div id="content-wrapper">
+        <aside class="sidebar">
+  <nav>
+    <ul>
+      <li>
+        <a href="/about">About</a>
+        <ul class="">
+          <li>
+            <a href="/about">Branching and Merging</a>
+          </li>
+          <li>
+            <a href="/about/small-and-fast">Small and Fast</a>
+          </li>
+          <li>
+            <a href="/about/distributed">Distributed</a>
+          </li>
+          <li>
+            <a href="/about/info-assurance">Data Assurance</a>
+          </li>
+          <li>
+            <a href="/about/staging-area">Staging Area</a>
+          </li>
+          <li>
+            <a href="/about/free-and-open-source">Free and Open Source</a>
+          </li>
+          <li>
+            <a href="/about/trademark">Trademark</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="active" href="/doc">Documentation</a>
+        <ul class="expanded">
+          <li>
+            <a class="active" href="/docs">Reference</a>
+          </li>
+          <li>
+            <a href="/book">Book</a>
+          </li>
+          <li>
+            <a href="/videos">Videos</a>
+          </li>
+          <li>
+            <a href="/doc/ext">External Links</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/downloads">Downloads</a>
+        <ul class="">
+          <li>
+            <a href="/downloads/guis">GUI Clients</a>
+          </li>
+          <li>
+            <a href="/downloads/logos">Logos</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/community">Community</a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+        <div id="content">
+          
+  <div id="reference-version">
+    <a class="dropdown-trigger" id="reference-languages-trigger" data-panel-id="l10n-versions-dropdown" href="#">
+  English ▾</a>
+<div class="dropdown-panel right" id="l10n-versions-dropdown">
+  <header>Localized versions of <strong>git-check-ref-format</strong> manual</header>
+  <ol class="reference-previous-versions">
+      <li>
+        <a href="/docs/git-check-ref-format/en"><span class="version">English</span>
+        </a>
+        </li>
+      <li>
+        <a href="/docs/git-check-ref-format/fr"><span class="version">Français</span>
+        </a>
+        </li>
+      <li>
+        <a href="/docs/git-check-ref-format/pt_BR"><span class="version">Português (Brasil)</span>
+        </a>
+        </li>
+  </ol>
+  <footer>
+    Want to read in your language or fix typos?<br> <a href="https://github.com/jnavila/git-manpages-l10n">You can help translate this page</a>.
+  </footer>
+</div>
+
+    <a class="dropdown-trigger" id="reference-topics-trigger" data-panel-id="topics-dropdown" href="#">Topics ▾</a>
+<div class="dropdown-panel right" id="topics-dropdown">
+  <div class="three-column">
+    <div class="column-left">
+      <h3 class="setup">Setup and Config</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git">git</a></li>
+  <li><a href="/docs/git-config">config</a></li>
+  <li><a href="/docs/git-help">help</a></li>
+  <li><a href="/docs/git-bugreport">bugreport</a></li>
+</ul>
+
+      <h3 class="projects">Getting and Creating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-init">init</a></li>
+  <li><a href="/docs/git-clone">clone</a></li>
+</ul>
+
+      <h3 class="snapshotting">Basic Snapshotting</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-add">add</a></li>
+  <li><a href="/docs/git-status">status</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-commit">commit</a></li>
+  <li><a href="/docs/git-notes">notes</a></li>
+  <li><a href="/docs/git-restore">restore</a></li>
+  <li><a href="/docs/git-reset">reset</a></li>
+  <li><a href="/docs/git-rm">rm</a></li>
+  <li><a href="/docs/git-mv">mv</a></li>
+</ul>
+
+      <h3 class="branching">Branching and Merging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-branch">branch</a></li>
+  <li><a href="/docs/git-checkout">checkout</a></li>
+  <li><a href="/docs/git-switch">switch</a></li>
+  <li><a href="/docs/git-merge">merge</a></li>
+  <li><a href="/docs/git-mergetool">mergetool</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-stash">stash</a></li>
+  <li><a href="/docs/git-tag">tag</a></li>
+  <li><a href="/docs/git-worktree">worktree</a></li>
+</ul>
+
+      <h3 class="sharing">Sharing and Updating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-fetch">fetch</a></li>
+  <li><a href="/docs/git-pull">pull</a></li>
+  <li><a href="/docs/git-push">push</a></li>
+  <li><a href="/docs/git-remote">remote</a></li>
+  <li><a href="/docs/git-submodule">submodule</a></li>
+</ul>
+
+    </div>
+    <div class="column-middle">
+      <h3 class="inspection">Inspection and Comparison</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-show">show</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-difftool">difftool</a></li>
+  <li><a href="/docs/git-range-diff">range-diff</a></li>
+  <li><a href="/docs/git-shortlog">shortlog</a></li>
+  <li><a href="/docs/git-describe">describe</a></li>
+</ul>
+
+      <h3 class="patching">Patching</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-cherry-pick">cherry-pick</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-rebase">rebase</a></li>
+  <li><a href="/docs/git-revert">revert</a></li>
+</ul>
+
+      <h3 class="debugging">Debugging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-bisect">bisect</a></li>
+  <li><a href="/docs/git-blame">blame</a></li>
+  <li><a href="/docs/git-grep">grep</a></li>
+</ul>
+
+      <h3 class="email">Email</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-am">am</a></li>
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-format-patch">format-patch</a></li>
+  <li><a href="/docs/git-send-email">send-email</a></li>
+  <li><a href="/docs/git-request-pull">request-pull</a></li>
+</ul>
+
+      <h3 class="external">External Systems</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-svn">svn</a></li>
+  <li><a href="/docs/git-fast-import">fast-import</a></li>
+</ul>
+
+      <h3 class="server-admin">Server Admin</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-daemon">daemon</a></li>
+  <li><a href="/docs/git-update-server-info">update-server-info</a></li>
+</ul>
+
+    </div>
+    <div class="column-right">
+      <h3 class="guides">Guides</h3>
+<ul class="unstyled">
+  <li><a href="/docs/gitattributes">gitattributes</a></li>
+  <li><a href="/docs/gitcli">Command-line interface conventions</a></li>
+  <li><a href="/docs/giteveryday">Everyday Git</a></li>
+  <li><a href="/docs/gitfaq">Frequently Asked Questions (FAQ)</a></li>
+  <li><a href="/docs/gitglossary">Glossary</a></li>
+  <li><a href="/docs/githooks">Hooks</a></li>
+  <li><a href="/docs/gitignore">gitignore</a></li>
+  <li><a href="/docs/gitmodules">gitmodules</a></li>
+  <li><a href="/docs/gitrevisions">Revisions</a></li>
+  <li><a href="/docs/gitsubmodules">Submodules</a></li>
+  <li><a href="/docs/gittutorial">Tutorial</a></li>
+  <li><a href="/docs/gitworkflows">Workflows</a></li>
+  <li><a href="/docs/git#_guides">All guides...</a></li>
+</ul>
+
+      <h3 class="admin">Administration</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-clean">clean</a></li>
+  <li><a href="/docs/git-gc">gc</a></li>
+  <li><a href="/docs/git-fsck">fsck</a></li>
+  <li><a href="/docs/git-reflog">reflog</a></li>
+  <li><a href="/docs/git-filter-branch">filter-branch</a></li>
+  <li><a href="/docs/git-instaweb">instaweb</a></li>
+  <li><a href="/docs/git-archive">archive</a></li>
+  <li><a href="/docs/git-bundle">bundle</a></li>
+</ul>
+
+      <h3 class="plumbing">Plumbing Commands</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-cat-file">cat-file</a></li>
+  <li><a href="/docs/git-check-ignore">check-ignore</a></li>
+  <li><a href="/docs/git-checkout-index">checkout-index</a></li>
+  <li><a href="/docs/git-commit-tree">commit-tree</a></li>
+  <li><a href="/docs/git-count-objects">count-objects</a></li>
+  <li><a href="/docs/git-diff-index">diff-index</a></li>
+  <li><a href="/docs/git-for-each-ref">for-each-ref</a></li>
+  <li><a href="/docs/git-hash-object">hash-object</a></li>
+  <li><a href="/docs/git-ls-files">ls-files</a></li>
+  <li><a href="/docs/git-ls-tree">ls-tree</a></li>
+  <li><a href="/docs/git-merge-base">merge-base</a></li>
+  <li><a href="/docs/git-read-tree">read-tree</a></li>
+  <li><a href="/docs/git-rev-list">rev-list</a></li>
+  <li><a href="/docs/git-rev-parse">rev-parse</a></li>
+  <li><a href="/docs/git-show-ref">show-ref</a></li>
+  <li><a href="/docs/git-symbolic-ref">symbolic-ref</a></li>
+  <li><a href="/docs/git-update-index">update-index</a></li>
+  <li><a href="/docs/git-update-ref">update-ref</a></li>
+  <li><a href="/docs/git-verify-pack">verify-pack</a></li>
+  <li><a href="/docs/git-write-tree">write-tree</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+    <a class="dropdown-trigger" id="reference-versions-trigger" data-panel-id="previous-versions-dropdown" href="#">
+    Version 2.33.0
+ ▾ </a>
+<span class="light">git-check-ref-format last updated in 2.33.0</span>
+<div class="dropdown-panel left" id="previous-versions-dropdown">
+  <header>Changes in the <strong>git-check-ref-format</strong> manual</header>
+  <ol class="reference-previous-versions">
+        <li class="no-change"><span>2.23.1 → 2.33.0 no changes</span></li>
+        <li>
+        <a href="/docs/git-check-ref-format/2.23.0"><span class="version">2.23.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">08/16/19</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.17.0 → 2.22.5 no changes</span></li>
+        <li>
+        <a href="/docs/git-check-ref-format/2.16.6"><span class="version">2.16.6</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">12/06/19</em>
+        </a>
+        </li>
+        <li>
+        <a href="/docs/git-check-ref-format/2.15.4"><span class="version">2.15.4</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">12/06/19</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.13.7 → 2.14.6 no changes</span></li>
+        <li>
+        <a href="/docs/git-check-ref-format/2.12.5"><span class="version">2.12.5</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">09/22/17</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.11.4 no changes</span></li>
+        <li>
+        <a href="/docs/git-check-ref-format/2.10.5"><span class="version">2.10.5</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">09/22/17</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.7.6 → 2.9.5 no changes</span></li>
+        <li>
+        <a href="/docs/git-check-ref-format/2.6.7"><span class="version">2.6.7</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">05/05/17</em>
+        </a>
+        </li>
+    <li>&nbsp;</li>
+    <!-- <li><a class="more" href="#">See more previous releases →</a></li> -->
+  </ol>
+  <footer>
+    <p>Check your version of git by running</p>
+    <code class="command">git --version</code>
+  </footer>
+</div>
+
+  </div>
+
+  <div id="main">
+    <div class="sect1">
+<h2 id="_name"><a class="anchor" href="#_name"></a>NAME</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>git-check-ref-format - Ensures that a reference name is well formed</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<pre class="content"><em>git check-ref-format</em> [--normalize]
+       [--[no-]allow-onelevel] [--refspec-pattern]
+       &lt;refname&gt;
+<em>git check-ref-format</em> --branch &lt;branchname-shorthand&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_description"><a class="anchor" href="#_description"></a>DESCRIPTION</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Checks if a given <em>refname</em> is acceptable, and exits with a non-zero
+status if it is not.</p>
+</div>
+<div class="paragraph">
+<p>A reference is used in Git to specify branches and tags.  A
+branch head is stored in the <code>refs/heads</code> hierarchy, while
+a tag is stored in the <code>refs/tags</code> hierarchy of the ref namespace
+(typically in <code>$GIT_DIR/refs/heads</code> and <code>$GIT_DIR/refs/tags</code>
+directories or, as entries in file <code>$GIT_DIR/packed-refs</code>
+if refs are packed by <code>git gc</code>).</p>
+</div>
+<div class="paragraph">
+<p>Git imposes the following rules on how references are named:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>They can include slash <code>/</code> for hierarchical (directory)
+grouping, but no slash-separated component can begin with a
+dot <code>.</code> or end with the sequence <code>.lock</code>.</p>
+</li>
+<li>
+<p>They must contain at least one <code>/</code>. This enforces the presence of a
+category like <code>heads/</code>, <code>tags/</code> etc. but the actual names are not
+restricted.  If the <code>--allow-onelevel</code> option is used, this rule
+is waived.</p>
+</li>
+<li>
+<p>They cannot have two consecutive dots <code>..</code> anywhere.</p>
+</li>
+<li>
+<p>They cannot have ASCII control characters (i.e. bytes whose
+values are lower than \040, or \177 <code>DEL</code>), space, tilde <code>~</code>,
+caret <code>^</code>, or colon <code>:</code> anywhere.</p>
+</li>
+<li>
+<p>They cannot have question-mark <code>?</code>, asterisk <code>*</code>, or open
+bracket <code>[</code> anywhere.  See the <code>--refspec-pattern</code> option below for
+an exception to this rule.</p>
+</li>
+<li>
+<p>They cannot begin or end with a slash <code>/</code> or contain multiple
+consecutive slashes (see the <code>--normalize</code> option below for an
+exception to this rule)</p>
+</li>
+<li>
+<p>They cannot end with a dot <code>.</code>.</p>
+</li>
+<li>
+<p>They cannot contain a sequence <code>@{</code>.</p>
+</li>
+<li>
+<p>They cannot be the single character <code>@</code>.</p>
+</li>
+<li>
+<p>They cannot contain a <code>\</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>These rules make it easy for shell script based tools to parse
+reference names, pathname expansion by the shell when a reference name is used
+unquoted (by mistake), and also avoid ambiguities in certain
+reference name expressions (see <a href="/docs/gitrevisions">gitrevisions[7]</a>):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A double-dot <code>..</code> is often used as in <code>ref1..ref2</code>, and in some
+contexts this notation means <code>^ref1 ref2</code> (i.e. not in
+<code>ref1</code> and in <code>ref2</code>).</p>
+</li>
+<li>
+<p>A tilde <code>~</code> and caret <code>^</code> are used to introduce the postfix
+<em>nth parent</em> and <em>peel onion</em> operation.</p>
+</li>
+<li>
+<p>A colon <code>:</code> is used as in <code>srcref:dstref</code> to mean "use srcref’s
+value and store it in dstref" in fetch and push operations.
+It may also be used to select a specific object such as with
+'git cat-file': "git cat-file blob v1.3.3:refs.c".</p>
+</li>
+<li>
+<p>at-open-brace <code>@{</code> is used as a notation to access a reflog entry.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>With the <code>--branch</code> option, the command takes a name and checks if
+it can be used as a valid branch name (e.g. when creating a new
+branch). But be cautious when using the
+previous checkout syntax that may refer to a detached HEAD state.
+The rule <code>git check-ref-format --branch $name</code> implements
+may be stricter than what <code>git check-ref-format refs/heads/$name</code>
+says (e.g. a dash may appear at the beginning of a ref component,
+but it is explicitly forbidden at the beginning of a branch name).
+When run with <code>--branch</code> option in a repository, the input is first
+expanded for the “previous checkout syntax”
+<code>@{ -n}</code>.  For example, <code>@{ -1}</code> is a way to refer the last thing that
+was checked out using "git switch" or "git checkout" operation.
+This option should be
+used by porcelains to accept this syntax anywhere a branch name is
+expected, so they can act as if you typed the branch name. As an
+exception note that, the “previous checkout operation” might result
+in a commit object name when the N-th last thing checked out was not
+a branch.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_options"><a class="anchor" href="#_options"></a>OPTIONS</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-check-ref-format.txt---no-allow-onelevel"> <a class="anchor" href="#Documentation/git-check-ref-format.txt---no-allow-onelevel"></a>--[no-]allow-onelevel </dt>
+<dd>
+<p>Controls whether one-level refnames are accepted (i.e.,
+refnames that do not contain multiple <code>/</code>-separated
+components).  The default is <code>--no-allow-onelevel</code>.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-check-ref-format.txt---refspec-pattern"> <a class="anchor" href="#Documentation/git-check-ref-format.txt---refspec-pattern"></a>--refspec-pattern </dt>
+<dd>
+<p>Interpret &lt;refname&gt; as a reference name pattern for a refspec
+(as used with remote repositories).  If this option is
+enabled, &lt;refname&gt; is allowed to contain a single <code>*</code>
+in the refspec (e.g., <code>foo/bar*/baz</code> or <code>foo/bar*baz/</code>
+but not <code>foo/bar*/baz*</code>).</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-check-ref-format.txt---normalize"> <a class="anchor" href="#Documentation/git-check-ref-format.txt---normalize"></a>--normalize </dt>
+<dd>
+<p>Normalize <em>refname</em> by removing any leading slash (<code>/</code>)
+characters and collapsing runs of adjacent slashes between
+name components into a single slash.  If the normalized
+refname is valid then print it to standard output and exit
+with a status of 0, otherwise exit with a non-zero status.
+(<code>--print</code> is a deprecated way to spell <code>--normalize</code>.)</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples"><a class="anchor" href="#_examples"></a>EXAMPLES</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Print the name of the previous thing checked out:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ git check-ref-format --branch @{ -1}</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Determine the reference name to use for a new branch:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ ref=$(git check-ref-format --normalize "refs/heads/$newbranch")||
+{ echo "we do not like '$newbranch' as a branch name." &gt;&amp;2 ; exit 1 ; }</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git"><a class="anchor" href="#_git"></a>GIT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Part of the <a href="/docs/git">git[1]</a> suite</p>
+</div>
+</div>
+</div>
+  </div>
+
+        </div>
+      </div>
+      <footer>
+  <div class="site-source">
+    <a href="/site">About this site</a><br>
+    Patches, suggestions, and comments are welcome.
+  </div>
+  <div class="sfc-member">
+    Git is a member of <a href="/sfc">Software Freedom Conservancy</a>
+  </div>
+</footer>
+
+<script src="/assets/application-8f00caf205cd147207c24e44516f18312442fd845fad0725e748f19cad311d0d.js"></script>
+
+    </div>
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

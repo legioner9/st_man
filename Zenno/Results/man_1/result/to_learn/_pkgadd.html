@@ -1,0 +1,471 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN pkgadd (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, pkgadd"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="pkgadd" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">pkgadd (1)</font><hr><li> <a href="/man.shtml?topic=pkgadd&amp;category=1&amp;russian=4"><u>pkgadd</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=pkgadd&amp;category=1&amp;russian=0"><u>pkgadd</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>pkgadd(1M)</h1></td>
+<td><h1 align="right">pkgadd(1M)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+
+<p><b>pkgadd</b> - переносит пакет или набор программного обеспечения в систему</p>
+
+<h2>СИНТАКСИС</h2>
+<dl><dt></dt><dd><tt>
+pkgadd [-d <b>устройство</b>] [-r <b>ответ</b>] [-n] [-q] [-l] <br>
+&nbsp;&nbsp;&nbsp;   [-a <b>admin</b>] [-p] [<b>пакет1</b> [<b>пакет2</b>[...]]]<br>
+pkgadd -s <b>spool</b> [-d <b>устройство</b>] [-q] [-l] <br>
+&nbsp;&nbsp;&nbsp;   [-p] [<b>пакет1</b> [<b>пакет2</b>[. . .]]]
+</tt></dd></dl>
+
+<h2>ОПИСАНИЕ</h2>
+
+<p><b>pkgadd</b> переносит содержимое пакета или набора программного обеспечения с 
+дистрибутивного носителя или каталога для установки его в системе. <i>Пакет</i> - это 
+подборка взаимосвязанных файлов и выполняемых программ, которую можно 
+устанавливать независимо. <i>Набор</i> состоит из пакета специального назначения, 
+который называется <i>пакет установки набора</i> (Set Installation Package - SIP), и 
+подборки из одного или нескольких пакетов - элементов набора. SIP управляет 
+установкой набора.</p>
+
+<p><b>pkgadd</b> проверяет, что все пакеты, перечисленные в командной строке, имеются 
+на дистрибутивном носителе. Если любого из указанных пакетов нет, никакие 
+изменения в системе не выполняются, то есть ни один из указанных пакетов не 
+устанавливается.</p>
+
+<p>При использовании без опции <a href="#d"><b>-d</b></a>, <b>pkgadd</b> ищет пакет в стандартном <i>каталоге 
+сброса</i> (spool directory) (<b>/var/spool/pkg</b>). При использовании с опцией <a href="#s"><b>-s</b></a>, команда 
+записывает пакет в каталог сброса вместо того, чтобы его устанавливать.</p>
+
+<p>Сообщения об ошибках всегда записываются в журнал (см. опцию <a href="#l"><b>-l</b></a> ниже). 
+Кроме того, по окончании работы <b>pkgadd</b> посылает почтовое сообщение (по 
+умолчанию, пользователю <b>root</b>) со всеми сообщениями об ошибках и итогами 
+установки пакетов: установлен полностью, частично или не установлен вообще. 
+Поддерживаются следующие опции:</p>
+
+<table cellspacing="4" cellpadding="0" width="100%" border="0">
+<tbody><tr><td valign="top" width="25%"><a name="d"><b>-d устройство</b></a></td><td>
+Устанавливает или копирует пакет/набор с <b>устройства</b>. В 
+качестве устройства можно задавать: (а) полный путь к 
+каталогу, файлу или именованному каналу (например,  
+<b>/var/tmp</b>); (б) идентификаторы устройств для стримера или 
+диска (такие как <b>/dev/rmt/*</b> или <b>/dev/dsk/*</b>) (см. <a href="/man.shtml?topic=intro&amp;category=7"><b>intro(7)</b></a>); (в) 
+псевдоним устройства (например, <b>diskette1</b>); или (г) дефис (<b>-</b>),
+задающий чтение пакетов в формате потока данных со 
+стандартного входного потока. В качестве стандартного устройства
+используется каталог сброса пакетов (<b>/var/spool/pkg</b>).
+
+<p>При использовании идентификаторов устройств, указанное 
+(полным путем или псевдонимом) устройство, должно иметь 
+соответствующую запись в таблице устройств 
+(<b>/etc/device.tab</b>). Если соответствующей записи в таблице 
+устройств нет, <b>pkgadd</b> прекратит работу.</p>
+
+<p><i>Псевдоним устройства</i> - это уникальное имя, под которым 
+устройство известно системе. (Например, псевдонимом 
+стримера может быть <b>ctape1</b>.) Длина имени не должна 
+превышать 64 символа (<b>DDB_MAXALIAS</b>), а само имя 
+может содержать только алфавитно-цифровые символы 
+и/или любой из следующих специальных символов: 
+подчеркивание (<b>_</b>), символ доллара (<b>$</b>), дефис (<b>-</b>) и точка (<b>.</b>). 
+Псевдонимы устройств в базе данных не могут совпадать.</p>
+</td></tr>
+<tr><td valign="top"><a name="r"><b>-r ответ</b></a></td><td>
+Задает файл или каталог, <b>ответ</b>, содержащий ответы на 
+вопросы, поставленные "сценарием запросов" в ходе 
+предыдущего сеанса <b>pkgask</b>, проведенного в интерактивном 
+режиме (см. <a href="/man.shtml?topic=pkgask&amp;category=1"><b>pkgask(1M)</b></a>). Если устанавливается обычный пакет, в 
+качестве <b>ответа</b> можно задавать полный путь к файлу или 
+каталогу; если же устанавливаемый <b>пакет</b> 
+представляет собой SIP, в качестве <b>ответа</b> обязательно 
+должен указываться каталог. Полное описание сценариев 
+запросов и файлов ответов можно найти в руководствах по 
+системному администрированию или по пакетам 
+программного обеспечения.
+</td></tr>
+<tr><td valign="top"><a name="n"><b>-n</b></a></td><td>
+Установка происходит в неинтерактивном режиме. По 
+умолчанию используется интерактивный режим.
+</td></tr>
+<tr><td valign="top"><a name="q"><b>-q</b></a></td><td>
+Установка выполняется в немногословном (quiet) режиме. 
+На экран выдаются только запросы, требующие ввода 
+информации пользователем, и сообщения об ошибках.
+</td></tr>
+<tr><td valign="top"><a name="l"><b>-l</b></a></td><td>
+Сообщения об ошибках не посылаются в стандартный поток 
+ошибок; они только записываются в журнал 
+<b>/var/sadm/install/logs/пакет.log&lt;.b&gt;.
+</b></td></tr>
+<tr><td valign="top"><a name="a"><b>-a admin</b></a></td><td>
+Определяет административный файл установки, <b>admin</b>, 
+используемый вместо стандартного административного 
+файла для задания того, будут ли выполняться при установке 
+проверки (вроде проверки наличия свободного 
+пространства, состояния системы и так далее). (Описание 
+формата административного файла см. на странице 
+справочного руководства <a href="/man.shtml?topic=admin&amp;category=4"><b>admin(4)</b></a>.) Метка <b>none</b> отменяет 
+использование любого административного файла и 
+потребует интерактивного взаимодействия с пользователем. 
+Если не указано полное имя, <b>pkgadd</b> ищет файл в каталоге 
+<b>/var/sadm/install/admin</b>. По умолчанию используется файл 
+<b>default</b> в этом каталоге. Файл <b>default</b> задает отсутствие 
+любых проверок, кроме проверок, достаточно ли места для 
+установки пакета и нет ли зависимостей от других пакетов. 
+Опцию <b>-a</b> нельзя использовать, если устанавливаемый пакет 
+является пакетом SIP.
+</td></tr>
+<tr><td valign="top"><a name="p"><b>-p</b></a></td><td>
+Не выдавать пользователю первоначального приглашения с 
+просьбой вставить дистрибутивный носитель. Все остальные 
+приглашения выдаются, как обычно.
+</td></tr>
+<tr><td valign="top"><a name="pkginst"><b>пакет</b></a></td><td>
+Короткая строка, используемая для обозначения 
+пакета/набора. Она состоит из одной или двух частей: <b>pkg</b> 
+(сокращенное имя пакета/набора) или, если существует 
+несколько экземпляров этого пакета, <b>pkg</b> плюс <b>inst</b> 
+(идентификатор экземпляра). (Термин "<i>экземпляр пакета</i>" 
+("package instance") используется свободно: он ссылается на 
+все копии <b>пакета</b>, даже если они не включают 
+идентификаторов экземпляра.)
+
+<p>Сокращенное имя пакета (<b>pkg</b>) является обязательной 
+частью параметра <b>пакет</b>. (См. 
+<a href="/man.shtml?topic=pkginfo&amp;category=1"><b>pkginfo(1)</b></a> и <a href="/man.shtml?topic=pkginfo&amp;category=1"><b>pkginfo(4)</b></a>.)</p>
+
+<p>Если <b>пакет</b> является пакетом SIP, SIP управляет 
+установкой набора с помощью сценариев запросов и 
+<i>предустановочных сценариев</i> (preinstall scripts). Именно 
+сценарий запросов SIP, а не средства установки пакетов, 
+отвечает за выдачу запросов пользователю и выполнение 
+соответствующих действий. Если сценарий запросов не 
+срабатывает, будет обработан только пакет SIP. Полное 
+описание сценариев запросов и предустановочных сценариев 
+можно найти в руководствах по системному 
+администрированию и/или по пакетам программного 
+обеспечения.</p>
+
+<p>Вторая часть (<b>inst</b>), которая требуется только при наличии 
+более одного экземпляра интересующего пакета, 
+представляет собой суффикс, идентифицирующий 
+экземпляр. Этот суффикс преставляет собой либо число 
+(перед которым идет точка) либо любую выбранную вами 
+короткую мнемоничную строку. Если не указать 
+собственный идентификатор экземпляра, когда это 
+необходимо, система по умолчанию присвоит числовой 
+идентификатор. Например, если имеется три экземпляра 
+пакета Advanced Commands и вы не создавали собственных 
+мнемоничных идентификаторов (типа <b>old</b> и <b>beta</b>), система 
+автоматически добавит суффиксы <b>.2</b> и <b>.3</b> ко второму и 
+третьему пакетам.</p>
+
+<p>Чтобы сослаться на все экземпляры пакета, возьмите 
+командную строку в одиночные кавычки, чтобы командный 
+интерпретатор не интепретировал символ <b>*</b>. Чтобы указать 
+все пакеты, имеющиеся на исходном носителе, используйте 
+метку <b>all</b>.</p>
+</td></tr>
+<tr><td valign="top"><a name="s"><b>-s spool</b></a></td><td>
+Считывает пакет в каталог <b>spool</b> вместо того, чтобы его 
+устанавливать.
+</td></tr>
+</tbody></table>
+
+<h2>ИСПОЛЬЗОВАНИЕ</h2>
+
+<p>Опцию <a href="#r"><b>-r</b></a> можно использовать для указания имени каталога, так же, как и имени 
+файла. Каталог может содержать несколько фалов ответов, причем имя файла 
+соответствует имени пакета, с которым он связан. Это используется, например, 
+при добавлении нескольких интерактивных пакетов с помощью одного вызова 
+<b>pkgadd</b>. Для каждого пакета, имеющего сценарий запросов, потребуется файл 
+ответов. Если созданы файлы ответов с теми же именами, что и 
+соответствующий пакет (например, <b>package1</b> и <b>package2</b>) то после опции <b>-r</b> 
+можно просто указать каталог, в котором эти файлы находятся.</p>
+
+<p>Опция <b>-n</b> вызовет прекращение установки, если для ее завершения необходимо 
+любое взаимодействие с пользователем.</p>
+
+<p>При вызове без указания имени пакета, <b>pkgadd</b> просто выдает имена наборов 
+программного обеспечения, если на носителе имеется хотя бы один пакет SIP. 
+Поэтому не стоит помещать на один носитель пакеты, если некоторые из них 
+входят в пакеты, а другие - нет. В этом случае пакеты, не входящие в наборы, 
+можно будет установить, только явно указав их имена в командной строке.</p>
+
+<p>Команда <b>pkgadd</b> проверяет, не установлены ли уже в системе какие то из файлов 
+<b>пакета</b>, и если они уже есть, записывает эту информацию перед 
+продолжением установки. В дальнейшем, <b>pkgadd</b> не будет переустанавливать 
+эти файлы в системе. Если один из сценариев установки пакета удаляет такой 
+файл, в результате по завершении процесса установки данного файла в системе 
+не будет.</p>
+
+<p>Команда <b>pkgadd</b> не разжимает никакие сжатые файлы (то есть, файлы, 
+имеющие суффикс "<b>.Z</b>") до их обработки утилитой <b>pkgmk</b>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Файлы</h3>
+<dl>
+<dt><b>/etc/device.tab</b></dt><dd>
+таблица устройств</dd>
+<dt><b>/var/sadm/install/admin/default</b></dt><dd>
+стандартный административный файл пакета</dd>
+<dt><b>/var/sadm/install/logs/pkginst.log</b></dt><dd>
+журнал сообщений об ошибках</dd>
+<dt><b>/var/spool/pkg</b></dt><dd>
+стандартный каталог сброса пакетов</dd>
+<dt><b>/usr/lib/locale/локаль/LC_MESSAGES/uxpkg</b></dt><dd>
+файл сообщений для данного языка (См. <b>LANG</b> в 
+<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>.)</dd>
+</dl>
+
+<h3>&nbsp;&nbsp;&nbsp;   Коды выхода</h3>
+
+<table cellpacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="10%"><b>0</b></td><td>
+Успешное завершение сценария.
+</td></tr><tr><td valign="top"><b>1</b></td><td>
+Фатальная ошибка. Процесс установки в этот момент прекращается.</td></tr>
+<tr><td valign="top"><b>2</b></td><td>
+Предупреждение или, возможно, ошибка. Установка будет 
+продолжена. По завершении будет выдано предупреждающее 
+сообщение.</td></tr>
+<tr><td valign="top"><b>3</b></td><td>
+Сценарий прерван и, возможно, не закончен. Установка в этот 
+момент прекращается.</td></tr>
+<tr><td valign="top"><b>4</b></td><td>
+Сценарий был приостановлен (административным путем). Установка 
+в этот момент прекращается.</td></tr>
+<tr><td valign="top"><b>5</b></td><td>
+Сценарий был приостановлен (потребовалось взаимодействие с 
+пользователем). Установка в этот момент прекращается.</td></tr>
+<tr><td valign="top"><b>10</b></td><td>
+Необходимо перезагрузить систему по завершении установки всех 
+выбранных пакетов. (Это значение добавляется в описанным выше 
+кодам возврата из одной цифры.)</td></tr>
+<tr><td valign="top"><b>20</b></td><td>
+Систему необходимо перезагрузить немедленно по завершении 
+установки текущего пакета. (Это значение добавляется в описанным 
+выше кодам возврата из одной цифры.)</td></tr>
+<tr><td valign="top"><b>77</b></td><td>
+Из набора не был выбран пакет.</td></tr>
+<tr><td valign="top"><b>99</b></td><td>
+Внутренняя ошибка.</td></tr>
+</tbody></table>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=admin&amp;category=4"><b>admin(4)</b></a>,
+	<a href="/man.shtml?topic=compver&amp;category=4"><b>compver(4)</b></a>,
+	<a href="/man.shtml?topic=copyright&amp;category=4"><b>copyright(4)</b></a>,
+	<a href="/man.shtml?topic=depend&amp;category=4"><b>depend(4)</b></a>,
+	<a href="/man.shtml?topic=installf&amp;category=1"><b>installf(1M)</b></a>,
+	<a href="/man.shtml?topic=intro&amp;category=7"><b>intro(7)</b></a>, 
+	<a href="/man.shtml?topic=pkgask&amp;category=1"><b>pkgask(1M)</b></a>,
+	<a href="/man.shtml?topic=pkgchk&amp;category=1"><b>pkgchk(1M)</b></a>,
+	<a href="/man.shtml?topic=pkginfo&amp;category=1"><b>pkginfo(1)</b></a>,
+	<a href="/man.shtml?topic=pkginfo&amp;category=4"><b>pkginfo(4)</b></a>,
+	<a href="/man.shtml?topic=pkgmap&amp;category=4"><b>pkgmap(4)</b></a>,
+	<a href="/man.shtml?topic=pkgparam&amp;category=1"><b>pkgparam(1)</b></a>, 
+	<a href="/man.shtml?topic=pkgrm&amp;category=1"><b>pkgrm(1M)</b></a>,
+	<a href="/man.shtml?topic=putdev&amp;category=1"><b>putdev(1M)</b></a>,
+	<a href="/man.shtml?topic=removef&amp;category=1"><b>removef(1M)</b></a>,
+	<a href="/man.shtml?topic=setinfo&amp;category=4"><b>setinfo(4)</b></a>,
+	<a href="/man.shtml?topic=space&amp;category=4"><b>space(4)</b></a>
+</dd></dl>
+
+<p align="center"><font size="-2">Copyright 1994 Novell, Inc.<br>
+Copyright 1999 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="pkgadd" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

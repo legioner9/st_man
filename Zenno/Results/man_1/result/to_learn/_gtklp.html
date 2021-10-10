@@ -1,0 +1,516 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN gtklp (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, gtklp"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="gtklp" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">gtklp (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=gtklp&amp;category=1&amp;russian=0"><u>gtklp</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=gtklp&amp;category=1&amp;russian=2"><u>gtklp</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+gtklp - средство управления печатью документов посредством CUPS
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>gtklp</b> [-P|-d <i>принтер</i>] [-c <i>каталог настроек</i>] [-S|-h <i>сервер</i>] [-p <i>порт</i>] [-l] [-D] [-V] [-b] [-i] [-H] [-C] [-U <i>пользователь</i>] [-#|-n <i>n</i>] [-E] [-q <i>приоритет</i>] [-t|-J <i>имя задания</i>] [-o <i>параметр=значение</i> ... ][<i>файл(ы)</i>]
+<p>
+<b>lp</b> [-d <i>принтер</i>] [-S|-h <i>сервер</i>] [-p <i>порт</i>] [-D] [-V] [-b] [-U <i>пользователь</i>] [-#|-n <i>n</i>] [-E] [-q <i>приоритет</i>] [-t|-J <i>имя задания</i>] [-P <i>список страниц</i> [-H <i>срочность</i>] [-X] [-o <i>параметр=значение</i> ... ][<i>файл(ы)</i>]
+</p><p>
+<b>lpr</b> [-P|-d <i>принтер</i>] [-S|-h <i>сервер</i>] [-p <i>порт</i>] [-D] [-V] [-b] [-U <i>пользователь</i>] [-#|-n <i>n</i>] [-E] [-q <i>приоритет</i>] [-t|-J|-C|-T <i>имя задания</i>] [-X] [-o <i>параметр=значение</i> ... ][<i>файл(ы)</i>]
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<b>GtkLP</b> - графическая оболочка <i>CUPS</i>, (Common UNIX Printing System) - Универсальной системы печати для UNIX.
+<br>
+
+Эта программа предназначена для упрощения доступа к множеству разнообразных настроек печати 
+принтеров, работающих под управлением CUPS
+<a name="lbAE">&nbsp;</a>
+<h2>ПАРАМЕТРЫ</h2>
+
+Возможные параметры командной строки <b>gtklp</b>:
+<dl compact="">
+<dt>-P <i>принтер</i></dt><dd>
+<br>
+
+Использовать указанный <i>принтер</i> по умолчанию.
+</dd><dt>-d <i>принтер</i></dt><dd>
+<br>
+
+То же что "-P".
+</dd><dt>-c <i>каталог настроек</i></dt><dd>
+<br>
+
+Использовать <i>каталог настроек</i> как место хранения файлов конфигурации <b>GtkLP</b>.
+<br>
+
+</dd><dt>-S <i>сервер</i></dt><dd>
+<br>
+
+Имя сервера CUPS.
+</dd><dt>-h <i>сервер</i></dt><dd>
+<br>
+
+То же что "-S".
+</dd><dt>-p <i>порт</i></dt><dd>
+<br>
+
+Номер порта CUPS сервера, по умолчанию - 631.
+</dd><dt>-l</dt><dd>
+<br>
+
+Включать только выбранные опции в итоговый список команд lpr.
+<br>
+
+Удобно для написания сценариев...
+</dd><dt>-D</dt><dd>
+<br>
+
+Режим отладки.
+</dd><dt>-V</dt><dd>
+<br>
+
+Сообщить номер версии <b>GtkLP</b>.
+</dd><dt>-b</dt><dd>
+<br>
+
+Использовать встроенные стандартные настройки вместо сохранённых пользователем.
+</dd><dt>-i</dt><dd>
+<br>
+
+Игнорировать данные с stdin.
+<br>
+
+Иногда это может оказаться полезным, например для печати из некоторых версий программы Acrobat Reader.
+</dd><dt>-U <i>пользователь</i></dt><dd>
+<br>
+
+Имя пользователя CUPS.
+</dd><dt>-# <i>n</i></dt><dd>
+<br>
+
+Печатать <i>n</i> копий по умолчанию.
+</dd><dt>-n <i>n</i></dt><dd>
+<br>
+
+То же что "-#".
+</dd><dt>-H</dt><dd>
+<br>
+
+Помощь
+</dd><dt>-C</dt><dd>
+<br>
+
+Принудительно включить терминальный режим.
+</dd><dt>-o <i>параметр=значение</i></dt><dd>
+<br>
+
+Позволяет задать дополнительные параметры, в соответствии с синтаксисом lpr.
+</dd><dt>-E</dt><dd>
+<br>
+
+Принудительно использовать шифрование при соединении с сервером.
+</dd><dt>-q <i>приоритет</i></dt><dd>
+<br>
+
+Задать приоритет задания на печать. Указывается число от 1 (низший) до 100 (высший).
+</dd><dt>-t <i>имя задания</i></dt><dd>
+<br>
+
+Указать имя задания.
+</dd><dt>-J <i>имя задания</i></dt><dd>
+<br>
+
+То же что "-t".
+</dd><dt><br>
+
+</dt><dd>
+<br>
+
+При вызове взамен lp следующие параметры отличаются от параметров GtkLP:
+</dd><dt>-X</dt><dd>
+Использовать графический режим, даже если значение переменной GTKLP_FORCEX отлично от "1".
+<b>.TP</b>5
+
+-P <i>список страниц</i>
+<br>
+
+Задать перечень печатаемых страниц документа.  Список
+может содержать последовательность номеров страниц и
+диапазонов номеров (например 1,3-5,16), разделяемых запятыми
+<br>
+
+</dd><dt>-H <i>срочность</i></dt><dd>
+Указать время печати задания. Значение <i>immediate</i> означает
+немедленную печать задания, 
+<i>hold</i> задерживает печать на неопределённое время, а указание времени
+в формате (ЧЧ:ММ) задерживает печать до указанного момента.
+(работает не всегда).
+</dd><dt><br>
+
+</dt><dd>
+<br>
+
+При вызове взамен lpr следующие параметры отличаются от параметров GtkLP:
+</dd><dt>-X</dt><dd>
+Использовать графический режим, даже если значение переменной GTKLP_FORCEX отлично от "1".
+<b>.TP</b>5
+
+-C <i>имя задания</i>
+Указать имя задания.
+<b>.TP</b>5
+
+-T <i>имя задания</i>
+То же что "-C".
+<b>.TP</b>5
+
+-p
+Включить режим форматирования печатаемого текста.
+Страницы снабжаются затемнённой шапкой, содержащей дату, время, имя задания, и номер страницы.  Этот параметр эвивалентен параметру "-oprettyprint" и применим лишь для текстовых файлов.
+<b>.TP</b>5
+
+-l
+Считать, что формат файла полностью соответствует требованиям
+печати и данные не должны подвергаться каким-либо преобразованиям.
+Этот параметр эквивалентен "-oraw".
+</dd><dt><b>Отдельные</b>параметры<b>SystemV</b>lp<b>и</b>Berkeley<b>lpr</b>игнорируются<b>без</b>выдачи
+
+</dt><dd>
+сообщений об ошибках.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>КАТАЛОГИ</h2>
+
+<b>GtkLP</b> последовательно считывает файлы конфигурации из:
+<br>
+
+<i>&lt;каталог настроек&gt;</i>
+<br>
+
+затем:
+<br>
+
+<i>$HOME/.gtklp/</i>
+<br>
+
+и наконец:
+<br>
+
+<i>/etc/gtklp/</i>.
+<br>
+
+<p>
+Чтобы скрыть принтеры от пользователей используйте следующие пути:
+<br>
+
+<i>/etc/gtklp/accept/</i>
+<br>
+
+<i>/etc/gtklp/deny/</i>
+<br>
+
+<i>$HOME/.gtklp/</i>
+<br>
+
+</p><p>
+Просто поместите пустой файл с именем принтера, который
+должен быть доступен пользователям по умолчанию в <i>accept</i>.
+Поместите пустой файл с именем принтера, который
+не должен быть доступен пользователям в <i>deny</i>.
+<br>
+
+Значения <i>accept</i> могут быть перезаписаны пользователем, а 
+значения <i>deny</i> - нет. 
+<a name="lbAG">&nbsp;</a>
+</p><h2>ПРИМЕЧАНИЯ</h2>
+
+GtkLP позволяет явно указать программу для показа справки по CUPS, домашней страницы проекта CUPS и т.д. 
+Используйте ваш любимый Интернет-навигатор. Первое сочетание символов "$1" в командной строке заменяется 
+URL-адресом.
+<p>
+При невозможности использования X-сервера GtkLP работает также как терминальный lpr.
+</p><p>
+GtkLP может вызываться взамен lpr или lp. В этом случае GtkLP работает в терминальном режиме и поддерживает ряд описанных выше дополнительных параметров командной строки.
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПЕРЕМЕННЫЕ</h2>
+
+Перечисленные ниже переменные среды оказывают влияние на работу GtkLP:
+<dl compact="">
+<dt>CUPS_SERVER</dt><dd>
+<br>
+
+Сервер CUPS используемый по умолчанию.
+</dd><dt>IPP_PORT</dt><dd>
+<br>
+
+Порт, используемый по умолчанию для соединения с сервером CUPS.
+</dd><dt>PRINTER</dt><dd>
+<br>
+
+Принтер, используемый по умолчанию.
+</dd><dt>GTKLP_FORCEX</dt><dd>
+<br>
+
+При значении равном "1" принудительно включается графический режим для lpr и lp.
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+Коды ошибок GtkLP:
+<dl compact="">
+<dt>0</dt><dd>
+нормальное завершение
+<br>
+
+</dd><dt>1</dt><dd>
+неверные параметры и т.д.
+<br>
+
+</dd><dt>2</dt><dd>
+сервер не найден, не найден принтер по умолчанию и т.д.
+<br>
+
+</dd><dt>3</dt><dd>
+критическая ошибка. слишком маленькие поля, слишком много принтеров и т.д.
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gtklpq&amp;category=1">gtklpq</a>(1), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lpr&amp;category=1">lpr</a>(1), Руководство пользователя CUPS
+<br>
+
+<a href="http://localhost:631/documentation.html">http://localhost:631/documentation.html</a>
+<a name="lbAK">&nbsp;</a>
+<h2>АВТОР</h2>
+
+Программа написана Тобиасом Мюллером (Tobias Mueller), 2000, 2001, 2002.
+<br>
+
+Распространяется на условиях GNU GENERAL PUBLIC LICENSE,
+<br>
+
+см. <a href="http://www.gnu.org.">http://www.gnu.org.</a>
+<p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>КОНТАКТНЫЕ АДРЕСА</h2>
+
+Последняя версия <b>GtkLP</b> всегда доступна по адресу:
+<br>
+
+<a href="http://gtklp.sourceforge.net/">http://gtklp.sourceforge.net/</a>
+<br>
+
+<br>
+
+С её автором можно связаться по адресу:
+<br>
+
+<a href="mailto:sirtobi@stud.uni-hannover.de">sirtobi@stud.uni-hannover.de</a>
+<br>
+
+Пишите также, если вам просто нравится эта программа!!! ;-)
+<p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">КАТАЛОГИ</a></dt><dd>
+</dd><dt><a href="#lbAG">ПРИМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAH">ПЕРЕМЕННЫЕ</a></dt><dd>
+</dd><dt><a href="#lbAI">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAK">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAL">КОНТАКТНЫЕ АДРЕСА</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="gtklp" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

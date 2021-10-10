@@ -1,0 +1,447 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN kill (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, kill"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="kill" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">kill (8)</font><hr><li> <a href="/man.shtml?topic=kill&amp;category=1&amp;russian=4"><u>kill</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=kill&amp;category=1&amp;russian=1"><u>kill</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=kill&amp;category=1&amp;russian=0"><u>kill</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=kill&amp;category=1&amp;russian=2"><u>kill</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=kill&amp;category=1&amp;russian=5"><u>kill</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=kill&amp;category=2&amp;russian=4"><u>kill</u></a> (2) <font color="#555555"> ( Solaris man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=kill&amp;category=2&amp;russian=1"><u>kill</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=kill&amp;category=2&amp;russian=0"><u>kill</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=kill&amp;category=2&amp;russian=2"><u>kill</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=kill&amp;category=3&amp;russian=4"><u>kill</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=kill&amp;category=3&amp;russian=5"><u>kill</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=kill&amp;category=8&amp;russian=0"><u>kill</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td><h1>Пользовательские команды</h1></td>
+<td><h1 align="right">kill(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+
+<p><b>kill</b> - завершить процессы или послать им сигнал</p>
+
+<h2><a name="synopsis">СИНТАКСИС</a></h2>
+
+<dl><dt></dt><dd><tt>
+/usr/bin/kill -s <b>сигнал</b> <b>pid</b>...<br>
+/usr/bin/kill -l  [ <b>статус_выхода</b> ]<br>
+/usr/bin/kill [ -<b>сигнал</b> ]  pid ...
+</tt></dd>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<p>Утилита <b>kill</b> посылает сигнал процессу или процессам, заданным 
+операндами <b>pid</b>.</p>
+
+<p>Для каждого операнда <b>pid</b> утилита <b>kill</b> будет выполнять действия,
+аналогичные выполняемым функцией <b>kill(2)</b>, вызванной со следующими аргументами:</p>
+
+<ol>
+<li>Значение операнда <b>pid</b> будет использоваться в качестве аргумента <b>pid</b>.</li>
+<li>В качестве аргумента <b>sig</b> используетсмя значение, заданное в опции <b>-s</b>,
+или <b>SIGTERM</b>, если эта опция не указана.</li>
+</ol>
+
+<p>Процесс, которому посылается сигнал, должен принадлежать текущему пользователю, но
+суперпользователь (<b>root</b>) может посылать сигналы любым процессам.</p>
+
+<p>Описание версий <b>kill</b>, встроенных в командные интерпретаторы, см. в разделе
+<a href="#notes">"ПРИМЕЧАНИЯ"</a>.</p>
+
+<h2><a name="options">ОПЦИИ</a></h2>
+
+<p>Поддерживаются следующие опции:</p>
+<dl>
+<dt><b><a name="l">-l</a><a></a></b></dt><dd><a>
+(Английская буква "эл".) Выдать все значения сигналов, поддерживаемые в данной реализации,
+если операнды не указаны. Если указан операнд <b>статус_выхода</b>, соответствующий значению
+специального параметра <b>?</b> командного интерпретатора и вызову <b>wait</b> для процесса,
+работа которого прекращена сигналом, выдать имя сигнала, которым была прекращена работа процесса. 
+Если указан операнд <b>статус_выхода</b>, представляющий собой целое число без знака -
+номер сигнала, - выдать имя соответствующего сигнала. В противном случае, результат не определен.
+<br><br></a></dd><a>
+</a><dt><a><b></b></a><b><a name="s">-s сигнал</a><a></a></b></dt><dd><a>
+Задает сигнал, который надо послать, используя одно из символьных имен, заданных в
+заголовочном файле <b>&lt;signal.h&gt;</b>. Значение сигнала распознается независимо от регистра
+символов. При этом префикс <b>SIG</b> указывать не надо. Кроме того, распознается символьное имя <b>0</b>,
+представляющее сигнал со значением ноль. Указанный сигнал будет посылаться вместо
+стандартного, <b>SIGTERM</b>.
+</a></dd></dl><a>
+
+</a><h2><a></a><a name="operands">ОПЕРАНДЫ</a></h2>
+
+<p>Поддерживаются следующие операнды:</p>
+
+<dl>
+<dt><b>pid</b></dt><dd>
+Одно из следующиъ значений:
+
+<ol>
+<li>Десятичное целое, задающее процесс или группу процессов, которым надо послать сигнал.
+Какие процессы выбираются при указании положительного, отрицательного числа или нуля 
+в качестве значения <b>pid</b> см. в описании функции <b>kill</b>. Если указан
+процесс номер 0, посылается сигнал всем процессам в соответствующей группе процессов. 
+Если первый операнд <b>pid</b> - отрицательный, перед ним надо указать два дефиса (<b>--</b>),
+чтобы он не интерпретировался как опция.</li>
+
+<li>Идентификатор задания системы управления заданиями, определяющий фоноваую группу
+процессов, которой надо послать сигнал. Идентифкаторы заданий можно указывать
+только для вызовов <b>kill</b> в среде выполнения текущего командного интерпретатора.</li>
+</ol>
+
+Учтите, что идентификаторы заданий можно указывать только в системах, поддерживающих
+возможности управления заданиями.
+<br><br></dd>
+
+<dt><b>статус_выхода</b></dt><dd>
+Десятичное целое, задающее номер сигнала или статус выхода процесса, прекращенного сигналом.</dd>
+</dl>
+
+<h2><a name="usage">ИСПОЛЬЗОВАНИЕ</a></h2>
+
+<p>Номера (идентификаторы) процессов можно найти с помощью команды <a href="/man.shtml?topic=ps&amp;category=1"><b>ps(1)</b></a>.</p>
+
+<p>Когда <b>kill</b> выполняется в отдельной среде, идентификаторы заданий не обязательно работают так,
+как ожидается. В следующих примерах:</p>
+
+<dl><dt></dt><dd><pre>nohup kill %1 &amp;
+system( "kill %1");
+</pre></dd></dl>
+
+<p><b>kill</b> работает в отдельной среде, в которой не поддерживаются те же
+идентификаторы заданий, что и в исходном командном интерпретаторе.</p>
+
+<h2><a name="output">РЕЗУЛЬТАТЫ</a></h2>
+
+<p>Когда опция <a href="#l"><b>-l</b></a> не указана, стандартный выходной поток не
+используется.</p>
+
+<p>Когда опция <a href="#l"><b>-l</b></a> указана, символьное имя каждого сигнала будет
+выдаваться в следующем формате:</p>
+
+<dl><dt></dt><dd><pre>"%s%c", &lt;сигнал&gt;, &lt;разделитель&gt;
+</pre></dd></dl>
+
+<p>где <b>&lt;сигнал&gt;</b> выдается в верхнем регистре без префикса <b>SIG</b>,
+а <b>&lt;разделитель&gt;</b> - либо символ новой строки, либо пробел. Для последнего
+выдаваемого сигнала &lt;разделителем&gt; будет символ новой строки.</p>
+
+<p>Когдла указана опция <a href="#l"><b>-l</b></a> и операнд <b>статус_выхода</b>, символьное
+имя соответствующего сигнала выдается в следующем формате:</p>
+
+<dl><dt></dt><dd><pre>"%s\n", &lt;сигнал&gt;
+</pre></dd></dl>
+
+<h2><a name="examples">ПРИМЕРЫ</a></h2>
+
+<h3>Пример 1: Примеры использования команды kill.</h3>
+
+<p>Команды:</p>
+
+<dl><dt></dt><dd><pre>kill -9 100 -165
+kill -s kill 100 -165
+kill -s KILL 100 -165
+</pre></dd></dl>
+
+<p>посылают сигнал <b>SIGKILL</b> процессу с идентификатором 100 и всем процессам,
+идентфикатор группы процессов которых равен 165, если, конечно, посылающий процесс
+имеет право посылки сигнала этим процессам, и процессы с соответствующими 
+идентификаторами существуют.</p>
+
+<p>Во избежание двусмысленности, если первый аргумент - отрицательное число,
+задающее номер сигнала или группы процессов, всегда предполагается, что это номер сигнала.
+Поэтому, чтобы послать стандартный сигнал группе процессов (например, 123), надо 
+использовать команды следующего вида:</p>
+
+<dl><dt></dt><dd><pre>kill -TERM -123
+kill -- -123
+</pre></dd></dl>
+
+<h2><a name="environment">ПЕРЕМЕННЫЕ СРЕДЫ</a></h2>
+
+<p>Описание следующих переменных среды, влияющих на работу <b>cat</b>,
+см. на странице справочного руководства 
+<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>:
+<b>LC_CTYPE</b>, <b>LC_MESSAGES</b> и <b>NLSPATH</b>.</p>
+
+<h2><a name="exit_status">СТАТУС ВЫХОДА</a></h2>
+
+<p>Программа завершается со следующими значениями статуса выхода:</p>
+
+<table border="0">
+<tbody><tr><td width="15%">0</td>
+<td>
+Для каждого операнда <b>pid</b> был найден хотя бы один соответствующий процесс и
+указанный сигнал был успешно обработан хотя бы одним из соответствующих процессов.
+</td></tr>
+<tr><td>&gt;0</td> <td>Произошла ошибка.</td></tr>
+</tbody></table>
+
+<h2><a name="attributes">АТРИБУТЫ</a></h2>
+
+<p>Описание следующих атрибутов см. на странице справочного руководства
+<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>:</p>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWcsu</td></tr>
+<tr><td>CSI</td>
+<td>включено</td></tr>
+</tbody></table>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=csh&amp;category=1"><b>csh(1)</b></a>, 
+	<a href="/man.shtml?topic=jobs&amp;category=1"><b>jobs(1)</b></a>, 
+	<a href="/man.shtml?topic=ksh&amp;category=1"><b>ksh(1)</b></a>,  
+	<a href="/man.shtml?topic=ps&amp;category=1"><b>ps(1)</b></a>,  
+	<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>, 
+	<a href="/man.shtml?topic=shell_builtins&amp;category=1"><b>shell_builtins(1)</b></a>,
+	<a href="/man.shtml?topic=wait&amp;category=1"><b>wait(1)</b></a>, 
+	<a href="/man.shtml?topic=kill&amp;category=2"><b>kill(2)</b></a>,  
+	<a href="/man.shtml?topic=signal&amp;category=3"><b>signal(3C)</b></a>,  
+	<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>,  
+	<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>,
+	<a href="signal3H.html"><b>signal(3HEAD)</b></a>
+</dd></dl>
+
+<h2><a name="notes">ПРИМЕЧАНИЯ</a></h2>
+
+<h3>&nbsp;&nbsp;&nbsp;sh</h3>
+
+<p>Командный интерпретатор <b>sh</b> имеет встроенную версию <b>kill</b>, обеспечивающую
+функциональные возможности команды <b>kill</b> при идентификации процессов по номеру задания.
+В <b>sh</b> используется следующий синтаксис:</p>
+
+<dl><dt></dt><dd><pre>kill [-sig] [pid] [%job]...
+kill -l
+</pre></dd></dl>
+
+<h3>&nbsp;&nbsp;&nbsp;csh</h3>
+
+<p>Командный интерпретатор <b>csh</b> тоже имеет встроенную команду <b>kill</b> со следующим
+синтаксисом:</p>
+
+<dl><dt></dt><dd><pre>kill [-sig] [pid] [%job]...
+kill -l
+</pre></dd></dl>
+
+<p>Встроенная в <b>csh</b> команда <b>kill</b> посылает стандартный сигнал <b>TERM</b> или
+указанный сигнал процессам с указанными идентификаторами процесса, номерами задания, или
+текущему заданию. Сигналы задаются по номеру или по имени. Стандартного сигнала нет. 
+Команда <b>kill</b> без аргументов не посылает сигнал текущему заданию. Если посылается
+сигнал <b>TERM</b> или <b>HUP</b>, то заданию и процессу посылается также сигнал <b>CONT</b> 
+(продолжить).</p>
+
+<table cellspacing="4" border="0">
+<tbody><tr><td valign="top" width="15%"><b>-l</b></td>    <td>Выдает имена сигналов, которые можно посылать.</td>
+</tr></tbody></table>
+
+<h3>&nbsp;&nbsp;&nbsp;ksh</h3>
+
+<p>Синтаксис встроенной команды <b>kill</b> в командном интерпретаторе <b>ksh</b>:</p>
+
+<dl><dt></dt><dd><pre>kill [-sig] [pid] [%job]...
+kill -l
+</pre></dd></dl>
+
+<p>Версия <b>kill</b> в <b>ksh</b> посылает либо сигнал <b>TERM</b>, либо указанный сигнал
+указанным заданиям или процессам. Сигналы задаются по номерам или по именам (как описано
+на странице справочного руководства <a href="signal3H.html"><b>signal(3HEAD)</b></a>, но
+без префикса "<b>SIG</b>"). Если посылается сигнал <b>TERM</b> или <b>HUP</b>), заданию
+или процессу посылается также сигнал <b>CONT</b>, если процесс остановлен. В качестве
+аргумента <b>job</b> можно указать индентификатор процесса, не входящего ни в одно из активных заданий.
+Вторая форма вызова, <b>kill -l</b>, выдает номера и соответствующие имена поддерживаемых сигналов.</p>
+
+<p align="center">Последнее изменение: 18 сентября 1995 года</p>
+
+<p align="center"><font size="-2">
+Copyleft (no c) 2003 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="kill" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</dl></body>
+<!---------------------------------------------  0  ---------------------------------------------->

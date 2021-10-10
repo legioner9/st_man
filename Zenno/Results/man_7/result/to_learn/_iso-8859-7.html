@@ -1,0 +1,348 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN iso-8859-7 (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, iso-8859-7"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="iso-8859-7" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">iso-8859-7 (7)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=iso-8859-7&amp;category=7&amp;russian=0"><u>iso-8859-7</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=iso-8859-7&amp;category=7&amp;russian=2"><u>iso-8859-7</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li>
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+iso_8859-7 - набор символов, закодированных в восьмеричной,
+десятичной и шестнадцатеричной системах исчисления согласно стандарту ISO 8859-7
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Стандарт ISO 8859 включает в себя несколько 8-битных расширений для
+набора символов ASCII (также известного как ISO 646-IRV). ISO 8859-7 включает в себя 
+символы, используемые в современном греческом языке.
+<a name="lbAD">&nbsp;</a>
+<h3>Алфавиты ISO 8859</h3>
+
+Полный список алфавитов ISO 8859 включает в себя:
+
+<table>
+<tbody><tr valign="top"><td>ISO 8859-1</td><td>Западноевропейские языки (Latin-1)<br></td></tr>
+<tr valign="top"><td>ISO 8859-2</td><td>Восточноевропейские языки (Latin-2)<br></td></tr>
+<tr valign="top"><td>ISO 8859-3</td><td>Языки юго-восточной Европы и другие (Latin-3)<br></td></tr>
+<tr valign="top"><td>ISO 8859-4</td><td>Скандинавские/балтийские языки (Latin-4)<br></td></tr>
+<tr valign="top"><td>ISO 8859-5</td><td>Кириллицу (Latin/Cyrillic)<br></td></tr>
+<tr valign="top"><td>ISO 8859-6</td><td>Арабский (Latin/Arabic)<br></td></tr>
+<tr valign="top"><td>ISO 8859-7</td><td>Греческий (Latin/Greek)<br></td></tr>
+<tr valign="top"><td>ISO 8859-8</td><td>Иврит (Latin/Hebrew)<br></td></tr>
+<tr valign="top"><td>ISO 8859-9</td><td>Модификацию Latin-1 турецкого языка (Latin-5)<br></td></tr>
+<tr valign="top"><td>ISO 8859-10</td><td>Саамский/скандинавский/эскимосский (Latin-6)<br></td></tr>
+<tr valign="top"><td>ISO 8859-11</td><td>Тайский<br></td></tr>
+<tr valign="top"><td>ISO 8859-13</td><td>Прибалтийские языки (Latin-7)<br></td></tr>
+<tr valign="top"><td>ISO 8859-14</td><td>Кельтский (Latin-8)<br></td></tr>
+<tr valign="top"><td>ISO 8859-15</td><td>Западноевропейские языки (Latin-9)<br></td></tr>
+<tr valign="top"><td>ISO 8859-16    Восточноевропейские языки (Latin-10)</td><td><br></td></tr>
+</tbody></table>
+
+<a name="lbAE">&nbsp;</a>
+<h3>Символы ISO 8859-7</h3>
+
+Нижеописанная таблица содержит символы стандарта ISO 8859 Latin-7, которые
+можно вывести на печать и которые не перечислены на странице руководства 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ascii&amp;category=7">ascii</a></b>(7).
+
+Четвертая колонка показывает соответствующие глифы только в окружении,
+настроенном для ISO 8859-7.
+<table>
+<tbody><tr valign="top"><td>Восьм.  Десят.</td><td>Шестн. Символ</td><td>Название</td><td align="center"></td><td><font size="-9">&nbsp;</font><br></td></tr>
+<tr valign="top"><td>240</td><td>160</td><td>A0</td><td align="center"> </td><td><font size="-9">НЕПЕРЕНОСИМЫЙ ПРОБЕЛ                                    &nbsp;</font><br></td></tr>
+<tr valign="top"><td>241</td><td>161</td><td>A1</td><td align="center"> </td><td><font size="-9">ЗНАК ПЕРЕВЕРНУТОЙ ЗАПЯТОЙ ПРИ БУКВЕ                     &nbsp;</font><br></td></tr>
+<tr valign="top"><td>242</td><td>162</td><td>A2</td><td align="center"> </td><td><font size="-9">АПОСТРОФ ПРИ БУКВЕ                                      &nbsp;</font><br></td></tr>
+<tr valign="top"><td>243</td><td>163</td><td>A3</td><td align="center">ё</td><td><font size="-9">ЗНАК ФУНТА                                              &nbsp;</font><br></td></tr>
+<tr valign="top"><td>246</td><td>166</td><td>A6</td><td align="center"> </td><td><font size="-9">РАЗОРВАННАЯ ВЕРТИКАЛЬНАЯ ЧЕРТА                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>247</td><td>167</td><td>A7</td><td align="center"> </td><td><font size="-9">ЗНАК ПАРАГРАФА                                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>250</td><td>168</td><td>A8</td><td align="center"> </td><td><font size="-9">ДИЭРЕЗА                                                 &nbsp;</font><br></td></tr>
+<tr valign="top"><td>251</td><td>169</td><td>A9</td><td align="center"> </td><td><font size="-9">ЗНАК КОПИРАЙТА                                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>253</td><td>171</td><td>AB</td><td align="center"> </td><td><font size="-9">ЛЕВЫЕ КАВЫЧКИ                                           &nbsp;</font><br></td></tr>
+<tr valign="top"><td>254</td><td>172</td><td>AC</td><td align="center"> </td><td><font size="-9">ЗНАК НЕ                                                 &nbsp;</font><br></td></tr>
+<tr valign="top"><td>255</td><td>173</td><td>AD</td><td align="center"> </td><td><font size="-9">"МЯГКИЙ" ДЕФИС                                            &nbsp;</font><br></td></tr>
+<tr valign="top"><td>257</td><td>175</td><td>AF</td><td align="center"> </td><td><font size="-9">ГОРИЗОНТАЛЬНАЯ ЧЕРТА                                    &nbsp;</font><br></td></tr>
+<tr valign="top"><td>260</td><td>176</td><td>B0</td><td align="center"> </td><td><font size="-9">ЗНАК ГРАДУСА                                            &nbsp;</font><br></td></tr>
+<tr valign="top"><td>261</td><td>177</td><td>B1</td><td align="center"> </td><td><font size="-9">ЗНАК ПЛЮС-МИНУС                                         &nbsp;</font><br></td></tr>
+<tr valign="top"><td>262</td><td>178</td><td>B2</td><td align="center"> </td><td><font size="-9">2 В ВЕРХНЕМ РЕГИСТРЕ                                    &nbsp;</font><br></td></tr>
+<tr valign="top"><td>263</td><td>179</td><td>B3</td><td align="center">Ё</td><td><font size="-9">3 В ВЕРХНЕМ РЕГИСТРЕ                                    &nbsp;</font><br></td></tr>
+<tr valign="top"><td>264</td><td>180</td><td>B4</td><td align="center"> </td><td><font size="-9">ГРЕЧЕСКИЙ ТОНОС                                         &nbsp;</font><br></td></tr>
+<tr valign="top"><td>265</td><td>181</td><td>B5</td><td align="center"> </td><td><font size="-9">ГРЕЧЕСКИЕ ДИАЛИТИКА И ТОНОС                             &nbsp;</font><br></td></tr>
+<tr valign="top"><td>266</td><td>182</td><td>B6</td><td align="center"> </td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "АЛЬФА" С ТОНОСОМ               &nbsp;</font><br></td></tr>
+<tr valign="top"><td>267</td><td>183</td><td>B7</td><td align="center"> </td><td><font size="-9">ТОЧКА ПОСЕРЕДИНЕ                                        &nbsp;</font><br></td></tr>
+<tr valign="top"><td>270</td><td>184</td><td>B8</td><td align="center"> </td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ЭПСИЛОН" С ТОНОСОМ&nbsp;</font><br></td></tr>
+<tr valign="top"><td>271</td><td>185</td><td>B9</td><td align="center"> </td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ЭТА" С ТОНОСОМ&nbsp;</font><br></td></tr>
+<tr valign="top"><td>272</td><td>186</td><td>BA</td><td align="center"> </td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ЙОТА" С ТОНОСОМ&nbsp;</font><br></td></tr>
+<tr valign="top"><td>273</td><td>187</td><td>BB</td><td align="center"> </td><td><font size="-9">ПРАВЫЕ КАВЫЧКИ                                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>274</td><td>188</td><td>BC</td><td align="center"> </td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ОМИКРОН" С ТОНОСОМ             &nbsp;</font><br></td></tr>
+<tr valign="top"><td>275</td><td>189</td><td>BD</td><td align="center"> </td><td><font size="-9">ОДНА ВТОРАЯ                                             &nbsp;</font><br></td></tr>
+<tr valign="top"><td>276</td><td>190</td><td>BE</td><td align="center"> </td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ИПСИЛОН" С ТОНОСОМ             &nbsp;</font><br></td></tr>
+<tr valign="top"><td>277</td><td>191</td><td>BF</td><td align="center"> </td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ОМЕГА" С ТОНОСОМ               &nbsp;</font><br></td></tr>
+<tr valign="top"><td>300</td><td>192</td><td>C0</td><td align="center">ю</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ЙОТА" С ДИАЛИТИКОЙ И ТОНОСОМ    &nbsp;</font><br></td></tr>
+<tr valign="top"><td>301</td><td>193</td><td>C1</td><td align="center">а</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "АЛЬФА"                         &nbsp;</font><br></td></tr>
+<tr valign="top"><td>302</td><td>194</td><td>C2</td><td align="center">б</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "БЕТА"                         &nbsp;</font><br></td></tr>
+<tr valign="top"><td>303</td><td>195</td><td>C3</td><td align="center">ц</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ГАММА"                         &nbsp;</font><br></td></tr>
+<tr valign="top"><td>304</td><td>196</td><td>C4</td><td align="center">д</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ДЕЛЬТА"                        &nbsp;</font><br></td></tr>
+<tr valign="top"><td>305</td><td>197</td><td>C5</td><td align="center">е</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ЭПСИЛОН"                       &nbsp;</font><br></td></tr>
+<tr valign="top"><td>306</td><td>198</td><td>C6</td><td align="center">ф</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ДЗЕТА"                         &nbsp;</font><br></td></tr>
+<tr valign="top"><td>307</td><td>199</td><td>C7</td><td align="center">г</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ЭТА"                           &nbsp;</font><br></td></tr>
+<tr valign="top"><td>310</td><td>200</td><td>C8</td><td align="center">х</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ТЕТА"                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>311</td><td>201</td><td>C9</td><td align="center">и</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ЙОТА"                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>312</td><td>202</td><td>CA</td><td align="center">й</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "КАППА"                         &nbsp;</font><br></td></tr>
+<tr valign="top"><td>313</td><td>203</td><td>CB</td><td align="center">к</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ЛЯМБДА"                        &nbsp;</font><br></td></tr>
+<tr valign="top"><td>314</td><td>204</td><td>CC</td><td align="center">л</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "МЮ"                            &nbsp;</font><br></td></tr>
+<tr valign="top"><td>315</td><td>205</td><td>CD</td><td align="center">м</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "НЮ"                            &nbsp;</font><br></td></tr>
+<tr valign="top"><td>316</td><td>206</td><td>CE</td><td align="center">н</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "КСИ"                           &nbsp;</font><br></td></tr>
+<tr valign="top"><td>317</td><td>207</td><td>CF</td><td align="center">о</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ОМИКРОН"                       &nbsp;</font><br></td></tr>
+<tr valign="top"><td>320</td><td>208</td><td>D0</td><td align="center">п</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ПИ"                            &nbsp;</font><br></td></tr>
+<tr valign="top"><td>321</td><td>209</td><td>D1</td><td align="center">я</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "РО"                            &nbsp;</font><br></td></tr>
+<tr valign="top"><td>323</td><td>211</td><td>D3</td><td align="center">с</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "СИГМА"                         &nbsp;</font><br></td></tr>
+<tr valign="top"><td>324</td><td>212</td><td>D4</td><td align="center">т</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ТАУ"                           &nbsp;</font><br></td></tr>
+<tr valign="top"><td>325</td><td>213</td><td>D5</td><td align="center">у</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ИПСИЛОН"                       &nbsp;</font><br></td></tr>
+<tr valign="top"><td>326</td><td>214</td><td>D6</td><td align="center">ж</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ФИ"                            &nbsp;</font><br></td></tr>
+<tr valign="top"><td>327</td><td>215</td><td>D7</td><td align="center">в</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ХИ"                            &nbsp;</font><br></td></tr>
+<tr valign="top"><td>330</td><td>216</td><td>D8</td><td align="center">ь</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ПСИ"                           &nbsp;</font><br></td></tr>
+<tr valign="top"><td>331</td><td>217</td><td>D9</td><td align="center">ы</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ОМЕГА"                         &nbsp;</font><br></td></tr>
+<tr valign="top"><td>332</td><td>218</td><td>DA</td><td align="center">з</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ЙОТА" С ДИАЛИТИКОЙ             &nbsp;</font><br></td></tr>
+<tr valign="top"><td>333</td><td>219</td><td>DB</td><td align="center">ш</td><td><font size="-9">ЗАГЛАВНАЯ ГРЕЧЕСКАЯ БУКВА "ИПСИЛОН" С ДИАЛИТИКОЙ          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>334</td><td>220</td><td>DC</td><td align="center">э</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "АЛЬФА" С ТОНОСОМ                &nbsp;</font><br></td></tr>
+<tr valign="top"><td>335</td><td>221</td><td>DD</td><td align="center">щ</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ЭПСИЛОН" С ТОНОСОМ              &nbsp;</font><br></td></tr>
+<tr valign="top"><td>336</td><td>222</td><td>DE</td><td align="center">ч</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ЭТА" С ТОНОСОМ                  &nbsp;</font><br></td></tr>
+<tr valign="top"><td>337</td><td>223</td><td>DF</td><td align="center">ъ</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ЙОТА" С ТОНОСОМ                 &nbsp;</font><br></td></tr>
+<tr valign="top"><td>340</td><td>224</td><td>E0</td><td align="center">Ю</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ИПСИЛОН" С ДИАЛИТИКОЙ           &nbsp;</font><br></td></tr>
+<tr valign="top"><td>341</td><td>225</td><td>E1</td><td align="center">А</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "АЛЬФА"                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>342</td><td>226</td><td>E2</td><td align="center">Б</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "БЕТА"                           &nbsp;</font><br></td></tr>
+<tr valign="top"><td>343</td><td>227</td><td>E3</td><td align="center">Ц</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ГАММА"                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>344</td><td>228</td><td>E4</td><td align="center">Д</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ДЕЛЬТА"                         &nbsp;</font><br></td></tr>
+<tr valign="top"><td>345</td><td>229</td><td>E5</td><td align="center">Е</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ЭПСИЛОН"                        &nbsp;</font><br></td></tr>
+<tr valign="top"><td>346</td><td>230</td><td>E6</td><td align="center">Ф</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ДЗЕТА"                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>347</td><td>231</td><td>E7</td><td align="center">Г</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ЭТА"                            &nbsp;</font><br></td></tr>
+<tr valign="top"><td>350</td><td>232</td><td>E8</td><td align="center">Х</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ТЕТА"                           &nbsp;</font><br></td></tr>
+<tr valign="top"><td>351</td><td>233</td><td>E9</td><td align="center">И</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ЙОТА"                           &nbsp;</font><br></td></tr>
+<tr valign="top"><td>352</td><td>234</td><td>EA</td><td align="center">Й</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "КАППА"                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>353</td><td>235</td><td>EB</td><td align="center">К</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ЛЯБДА"                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>354</td><td>236</td><td>EC</td><td align="center">Л</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "МЮ"                             &nbsp;</font><br></td></tr>
+<tr valign="top"><td>355</td><td>237</td><td>ED</td><td align="center">М</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "НЮ"                             &nbsp;</font><br></td></tr>
+<tr valign="top"><td>356</td><td>238</td><td>EE</td><td align="center">Н</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "КСИ"                            &nbsp;</font><br></td></tr>
+<tr valign="top"><td>357</td><td>239</td><td>EF</td><td align="center">О</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ОМИКРОН"                        &nbsp;</font><br></td></tr>
+<tr valign="top"><td>360</td><td>240</td><td>F0</td><td align="center">П</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ПИ"                             &nbsp;</font><br></td></tr>
+<tr valign="top"><td>361</td><td>241</td><td>F1</td><td align="center">Я</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "РО"                             &nbsp;</font><br></td></tr>
+<tr valign="top"><td>362</td><td>242</td><td>F2</td><td align="center">Р</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "СИГМА"                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>363</td><td>243</td><td>F3</td><td align="center">С</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "СИГМА"                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>364</td><td>244</td><td>F4</td><td align="center">Т</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ТАУ"                            &nbsp;</font><br></td></tr>
+<tr valign="top"><td>365</td><td>245</td><td>F5</td><td align="center">У</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ИПСИЛОН"                        &nbsp;</font><br></td></tr>
+<tr valign="top"><td>366</td><td>246</td><td>F6</td><td align="center">Ж</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ПИ"                             &nbsp;</font><br></td></tr>
+<tr valign="top"><td>367</td><td>247</td><td>F7</td><td align="center">В</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ХИ"                             &nbsp;</font><br></td></tr>
+<tr valign="top"><td>370</td><td>248</td><td>F8</td><td align="center">Ь</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ПСИ"                            &nbsp;</font><br></td></tr>
+<tr valign="top"><td>371</td><td>249</td><td>F9</td><td align="center">Ы</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ОМЕГА"                          &nbsp;</font><br></td></tr>
+<tr valign="top"><td>372</td><td>250</td><td>FA</td><td align="center">З</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ЙОТА" С ДИАЛИТИКОЙ              &nbsp;</font><br></td></tr>
+<tr valign="top"><td>373</td><td>251</td><td>FB</td><td align="center">Ш</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ИПСИЛОН" С ДИАЛИТИКОЙ           &nbsp;</font><br></td></tr>
+<tr valign="top"><td>374</td><td>252</td><td>FC</td><td align="center">Э</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ОМИКРОН" С ТОНОСОМ              &nbsp;</font><br></td></tr>
+<tr valign="top"><td>375</td><td>253</td><td>FD</td><td align="center">Щ</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ИПСИЛОН" С ТОНОСОМ              &nbsp;</font><br></td></tr>
+<tr valign="top"><td>376</td><td>254</td><td>FE</td><td align="center">Ч</td><td><font size="-9">СТРОЧНАЯ ГРЕЧЕСКАЯ БУКВА "ОМЕГА" С ТОНОСОМ                &nbsp;</font><br></td></tr>
+<tr valign="top"><td>ISO 8859-7 ранее была известна как ELOT-928 или ECMA-118:1986.</td><td></td><td></td><td align="center"></td><td><font size="-9">&nbsp;</font><br></td></tr>
+<tr valign="top"><td><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td></td><td></td><td align="center"></td><td><font size="-9">&nbsp;</font><br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td align="center"></td><td><font size="-9">&nbsp;</font><br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td align="center"></td><td><font size="-9">&nbsp;</font><br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td align="center"></td><td><font size="-9">&nbsp;</font><br></td></tr>
+</tbody></table>
+
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAD">Алфавиты ISO 8859</a></dt><dd>
+</dd><dt><a href="#lbAE">Символы ISO 8859-7</a></dt><dd>
+</dd></dl>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="iso-8859-7" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,345 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN visudo (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, visudo"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="visudo" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">visudo (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=visudo&amp;category=8&amp;russian=0"><u>visudo</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=visudo&amp;category=8&amp;russian=2"><u>visudo</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+visudo - редактирует файл sudoers
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>visudo</b> [ <b>-c</b> ] [ <b>-f</b> <i>sudoers</i> ] [ <b>-q</b> ] [ <b>-s</b> ] [ <b>-V</b> ]
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<b>visudo</b> редактирует файл <i>sudoers</i> в безопасном режиме, аналогично
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vipw&amp;category=8">vipw</a></i>(8).  <b>visudo</b> блокирует файл <i>sudoers</i>, во избежание 
+открытия его для правки в нескольких сессиях редактора одновременно, осуществляет проверку правильности выражений и грамматики. Если файл <i>sudoers</i> в настоящий момент редактируется, Вы получите сообщение с предложением попытаться отредактировать его позже.  
+<p>
+
+Имеется встроенный список программ для редактирования, указанных при компиляции, которые использует <b>visudo</b> и которые могут быть переопределены посредством переменной <i>editor</i>в <i>sudoers</i>. По умолчанию этот список соотносится с расположением <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vi&amp;category=1">vi</a></i>(1) в вашей системе, как определено сценарием <i>configure</i>. Обычно, <b>visudo</b> не учитывает переменные окружения EDITOR или VISUAL, если они не содержат программу-редактор из вышеупомянутого списка редакторов. Однако, если <b>visudo</b> сконфигурирован с флагом <i>--with-enveditor</i> или в <i>sudoers</i> установлена переменная <i>enveditor</i>, то <b>visudo</b> будет использовать любой редактор определенный при помощи EDITOR или VISUAL. Имейте в виду, что это может стать прорехой в защите, так как позволит пользователю выполнять любые программы просто установив значение EDITOR или VISUAL.
+</p><p>
+
+После редактирования <b>visudo</b> анализирует файл <i>sudoers</i> и не сохраняет 
+изменения, если имеется синтаксическая ошибка.  При обнаружении ошибки на экран будет 
+выведена подсказка с указанием <i>номера</i> строки, на которой произошла ошибка, и пользователю будет предложено решить, что делать дальше, "What now?". Пользователь может ввести "e", для возврата в режим редактирования файла <i>sudoers</i>,  "x", для выхода без сохранения внесенных изменений, или "Q", для выхода с сохранением сделанных им изменений. Опция Q должна использоваться крайне осторожно, так как если <b>visudo</b> в результате синтаксического анализа предполагает, что в файле имеются ошибки, то точно так-же будет считать <b>sudo</b>, в результате чего никто больше не сможет выполнять <b>sudo</b> прежде, чем ошибка будет исправлена. При указании "е", для продолжения редактирования файла <i>sudoers</i> после обнаружения синтаксической ошибки, курсор переместится на ту строку, где была обнаружена ошибка (если редактор поддерживает эту функцию).
+<a name="lbAE">&nbsp;</a>
+</p><h2>ПАРАМЕТРЫ</h2>
+
+<b>visudo</b> поддерживает следующие параметры командной строки:
+<dl compact="">
+<dt>"-с"</dt><dd>
+Задействует режим <b>check-only</b>. При этом будет проверен синтаксис уже существующего файла <i>sudoers</i> и на стандартный вывод будет выведено сообщение содержащее детальный статус <i>sudoers</i>. Если проверка синтаксиса прошла удачно, то <b>visudo</b> завершит работу со значением 0. Если будет обнаружена ошибка в синтаксисе, то <b>visudo</b> завершит работу со значением 1.
+</dd><dt>"-f"</dt><dd>
+Указывает и переопределяет месторасположение файла <i>sudoers</i>. При указании этого параметра <b>visudo</b> будет редактировать (или осуществит проверку) файла <i>sudoers</i> по вашему выбору, вместо подразумеваемого по умолчанию @sysconfdir@/sudoers. Файлом блокировки будет являться имя файла, указанного для <i>sudoers</i>, с добавленным в конце ".tmp".
+</dd><dt>"-q"</dt><dd>
+Задействовать "тихий" режим. При этом режиме не будут отображаться детали при выводе сообщений об ошибках в синтаксисе. Этот параметр полезен только в комбинации с флагом <b>-с</b>.
+</dd><dt>"-s"</dt><dd>
+Включает <b>строгую</b> проверку файла <i>sudoers</i>.  Если псевдоним
+используется до того как он определен, <b>visudo</b> будет рассматривать это как
+грамматическую ошибку.  Обратите внимание, что оно не в состоянии делать различие между псевдонимом и именем машины или именем пользователя, состоящих только из букв набранных в верхнем регистре, чисел и знаков подчеркивания ('_').
+</dd><dt><br>&nbsp;"-V"&nbsp;</dt><dd>
+Параметр <b>-V</b> (версия) заставляет <b>visudo</b> отобразить номер версии, после чего прекращает его работу.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>СООБЩЕНИЯ ОБ ОШИБКАХ</h2>
+
+<dl compact="">
+<dt>"sudoers file busy, try again later" </dt><dd>
+</dd></dl>
+<p>
+
+Это означает, что кто-то в настоящий момент редактирует файл <i>sudoers</i>. 
+</p><dl compact="">
+<dt>"/etc/sudoers.tmp: Permission denied" </dt><dd>
+</dd></dl>
+<p>
+
+Вы выполняете <b>visudo</b> не как супер-пользователь (root).
+</p><dl compact="">
+<dt>"Can't find you in the passwd database"</dt><dd>
+</dd></dl>
+<p>
+
+Ваш идентификатор пользователя не найден в файле паролей.
+</p><dl compact="">
+<dt>"Warning: undeclared Alias referenced near ..." </dt><dd>
+</dd></dl>
+<p>
+
+Либо вы используете один из псевдонимов {User,Runas,Host,Cmnd}_Alias до их определения, либо вы имеете пользователя или имя машины описанное только буквами, набранными в верхнем регистре, цифрами и символами подчеркивания ('_').  В последнем случае вы можете игнорировать предупреждения (<b>sudo</b> не будет жаловаться). В <b>-s</b> (строгом) режиме эти сообщения будут считаться не предупреждениями, а ошибками.
+<a name="lbAG">&nbsp;</a>
+</p><h2>ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</h2>
+
+Следующие переменные могут использоваться в том случае, если <b>visudo</b> при сборке
+было сконфигурировано с параметром <i>--with-env-editor</i>:
+<p>
+
+</p><dl compact="">
+<dt>EDITOR                 Используется visudo для указания используемого редактора</dt><dd>
+</dd><dt>VISUAL                 Используется visudo если EDITOR не определен</dt><dd>
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<p>
+
+</p><dl compact="">
+<dt>/etc/sudoers</dt><dd>
+/etc/sudo.d/*           список пользователей с указанием того, что они могут выполнять
+</dd><dt>/etc/sudoers.tmp              файл блокировки для visudo</dt><dd>
+<p>
+</p></dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>ПРЕДОСТЕРЕЖЕНИЕ</h2>
+
+Не существует никакого простого способа предотвратить захват пользователем оболочки с правами супер-пользователя (root), если редактор, используемый <b>visudo</b>, позволяет использовать управляющие команды оболочки.
+<a name="lbAJ">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+Если вам кажется, что вы нашли ошибку в sudo, то отправьте рапорт об ошибке по адресу: <a href="http://www.courtesan.com/sudo/bugs/">http://www.courtesan.com/sudo/bugs/</a>
+<a name="lbAK">&nbsp;</a>
+<h2>ОБ АВТОРЕ</h2>
+
+Многие люди работали годами над <i>sudo</i>. 
+<p>
+
+Эта версия <b>visudo</b> написана: 
+</p><p>
+
+
+Todd Miller &lt;<a href="mailto:Todd.Miller@courtesan.com">Todd.Miller@courtesan.com</a>&gt;
+
+Для детальных пояснений смотри файл HISTORY или в интернете по адресу <a href="http://www.sudo.ws/sudo/history.html.">http://www.sudo.ws/sudo/history.html.</a>
+<a name="lbAL">&nbsp;</a>
+</p><h2>ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ</h2>
+
+Эта программа распространяется в надежде, что она будет полезной, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; даже без подразумеваемых гарантий КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ КОНКРЕТНОЙ ЦЕЛИ.  Для получения подробных сведений смотрите Универсальную Общественную Лицензию GNU. 
+
+Вы должны были получить копию Универсальной Общественной Лицензии
+GNU вместе с этой программой; если нет, напишите по адресу: Free
+Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+02111-1307 USA  
+<a name="lbAM">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+
+Константин Кудрин &lt;<a href="mailto:cola@tcsb.perm.su">cola@tcsb.perm.su</a>&gt;
+
+
+Александр Блохин &lt;<a href="mailto:sass@altlinux.ru">sass@altlinux.ru</a>&gt;
+
+<a name="lbAN">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vi&amp;category=1">vi</a></i>(1), <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sudo&amp;category=8">sudo</a></i>(8), <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vipw&amp;category=8">vipw</a></i>(8).
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">СООБЩЕНИЯ ОБ ОШИБКАХ</a></dt><dd>
+</dd><dt><a href="#lbAG">ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAH">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAI">ПРЕДОСТЕРЕЖЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAK">ОБ АВТОРЕ</a></dt><dd>
+</dd><dt><a href="#lbAL">ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAM">ПЕРЕВОД</a></dt><dd>
+</dd><dt><a href="#lbAN">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="visudo" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

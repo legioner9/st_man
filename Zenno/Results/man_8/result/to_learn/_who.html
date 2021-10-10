@@ -1,0 +1,454 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN who (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, who"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="who" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">who (8)</font><hr><li> <a href="/man.shtml?topic=who&amp;category=1&amp;russian=4"><u>who</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=who&amp;category=1&amp;russian=1"><u>who</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=who&amp;category=1&amp;russian=0"><u>who</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=who&amp;category=1&amp;russian=2"><u>who</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=who&amp;category=1&amp;russian=5"><u>who</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=who&amp;category=8&amp;russian=0"><u>who</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Пользовательские команды</h1></td>
+<td><h1 align="right">who(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>who</b> - кто работает в системе</p>
+
+<h2>СИНТАКСИС</h2>
+<dl>
+<dt></dt><dd><tt>
+	/usr/bin/who [ -abdHlmpqrstTu ]  [ <b>файл</b> ]<br>
+	/usr/bin/who -q  [ -n x ]  [ <b>файл</b> ]<br>
+	/usr/bin/who am  i<br>
+	/usr/bin/who am  I<br>
+	/usr/xpg4/bin/who [ -abdHlmpqrtTu ]  [ <b>файл</b> ]<br>
+	/usr/xpg4/bin/who -q  [ -n x ]  [ <b>файл</b> ]<br>
+	/usr/xpg4/bin/who -s  [ -bdHlmpqrtu ]  [ <b>файл</b> ]<br>
+	/usr/xpg4/bin/who am  i<br>
+	/usr/xpg4/bin/who am  I
+</tt></dd>
+</dl>
+
+<h2>ОПИСАНИЕ</h2>
+
+<p>Утилита <b>who</b> может выдать имя пользователя, терминальную линию, время
+регистрации, время, прошедшее с момента последнего обращения с соответствующего
+терминала и идентификатор процесса командного интерпретатора для каждого пользователя,
+работающего в настоящий момент в системе UNIX. Для получения этой информации она
+обращается к файлу <b>/var/adm/utmp</b>. Если указан параметр <b>файл</b>,
+проверяется именно этот файл (который должен быть в формате 
+<a href="/man.shtml?topic=utmp&amp;category=4"><b>utmp(4)</b></a>). Обычно в качестве <b>файла</b> задается
+файл <b>/var/adm/wtmp</b>, содержащий хронологию всех регистраций в системе с момента
+своего создания.</p>
+
+<p>Общий формат выдаваемого результата следующий:</p>
+<dl><dt></dt><dd>
+<b>имя</b> [<b>состояние</b>] <b>терминал</b> <b>время</b> [<b>ожидание</b>] [<b>pid</b>] [<b>комментарий</b>] [<b>статус_выхода</b>]
+</dd></dl>
+
+<p>где:</p>
+
+<dl>
+<dt><b>имя</b></dt>
+<dd>регистрационное имя пользователя.</dd>
+<dt><b>состояние</b></dt>
+<dd>возможность записи на терминал.</dd>
+<dt><b>терминал</b></dt>
+<dd>имя терминала как устройства в каталоге <b>/dev</b>.</dd>
+<dt><b>время</b></dt>
+<dd>время, прошедшее с момента регистрации пользователя.</dd>
+<dt><b>ожидание</b></dt>
+<dd>время, прошедшее с момента выполнения пользователем последнего действия.</dd>
+<dt><b>pid</b></dt>
+<dd>идентификатор процесса начального командного интерпретатора пользователя.</dd>
+<dt><b>комментарий</b></dt>
+<dd>строка комментария из файла <a href="/man.shtml?topic=inittab&amp;category=4"><b>inittab(4)</b></a>.</dd>
+<dt><b>статус_выхода</b></dt>
+<dd>статус выхода для "мертвых" процессов.</dd>
+</dl>
+
+<h2>ОПЦИИ</h2>
+
+<p>Поддерживаются следующие опции:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="10%"><b><a name="a">-a</a></b></td><td>
+Обрабатывает <b>/var/adm/utmp</b> или указанный <b>файл</b> с включенными
+опциями <a href="#b"><b>-b</b></a>, <a href="#d"><b>-d</b></a>, 
+<a href="#l"><b>-l</b></a>, <a href="#p"><b>-p</b></a>,
+<a href="#r"><b>-r</b></a>, <a href="#t"><b>-t</b></a>, 
+<a href="#T"><b>-T</b></a> и <a href="#u"><b>-u</b></a>.</td></tr>
+<tr><td valign="top"><b><a name="b">-b</a></b></td><td>
+Показывает дату и время последней перезагрузки.</td></tr>
+<tr><td valign="top"><b><a name="d">-d</a></b></td><td>
+Выдает все процессы, устаревшие и не перезапущенные процессом <b>init</b>. Поле статуса
+выхода выдается для "мертвых" процессов и содержит значения их статусов выхода
+или прекращения (возвращаемые <a href="/man.shtml?topic=wait&amp;category=3"><b>wait(3UCB)</b></a>). Это
+может помочь определить причину прекращения работы процесса.</td></tr>
+<tr><td valign="top"><b><a name="H">-H</a></b></td><td>
+Выдает заголовки столбцов перед обычными результатами.</td></tr>
+<tr><td valign="top"><b><a name="l">-l</a></b></td><td>
+Выдает только те терминальные линии, с которых система ожидает регистрации
+пользователей. В таких случаях в поле <b>имени</b> выдается значение <b>LOGIN</b>.
+Другие поля имеют те же значения, что и для записей о зарегистрированных пользователях,
+но поле <b>состояния</b> не выдается.</td></tr>
+<tr><td valign="top"><b><a name="m">-m</a></b></td><td>
+Выдает информацию только о текущем терминале.</td></tr>
+<tr><td valign="top"><b><a name="n">-n x</a></b></td><td>
+Принимает чиловой аргумент, <b>x</b>, которое задает количество 
+выдаваемых в одной строке пользователей. <b>x</b> должно быть не менее 1.
+Опция <b>-n</b> может использоваться только совместно с опцией 
+<a href="#q"><b>-q</b></a>.</td></tr>
+<tr><td valign="top"><b><a name="p">-p</a></b></td><td>
+Выдает все остальные активные процессы, запущенные ранее процессом <b>init</b>. В поле
+<b>имя</b> указывается имя программы, выполненной процессом <b>init</b>, указанное
+в файле <b>/sbin/inittab</b>. Поля <b>состояние</b>, <b>терминал</b> и
+<b>ожидание</b> в этом случае не имеют значения. В поле <b>комментарий</b>
+в этом случае выдается идентификатор записи из файла <b>/sbin/inittab</b>, которая
+использовалась для порождения этого процесса. См. <a href="/man.shtml?topic=inittab&amp;category=4"><b>inittab(4)</b></a>.</td></tr>
+<tr><td valign="top"><b><a name="q">-q</a></b></td><td>
+(quick who) Выдает только имена и общее количество зарегистрированных сейчас
+пользователей. При использовании этой опции все остальные опции игнорируются.</td></tr>
+<tr><td valign="top"><b><a name="r">-r</a></b></td><td>
+Выдает текущий <i>уровень выполнения</i> (run-level) процесса <b>init</b>.</td></tr>
+<tr><td valign="top"><b><a name="s">-s</a></b></td><td>
+(стандартно) Выдает только поля <b>имени</b>, <b>терминала</b> и <b>времени</b>.
+</td></tr>
+</tbody></table>
+
+<h3>/usr/bin/who</h3>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="10%"><b><a name="T">-T</a></b></td><td>
+То же, что и опция <a href="#s"><b>-s</b></a>, но выдаются также поля
+<b>состояние</b>, <b>ожидание</b>, <b>pid</b> и <b>комментарий</b>. В поле 
+<b>состояние</b> выдается один из следующих символов:
+
+<dl><dt></dt><dd>
+
+<table cellspacing="4" border="0">
+<tbody><tr><td valign="top" width="10%"><b>+</b></td><td>
+Терминал разрешает запись другим пользователям.</td></tr>
+<tr><td valign="top"><b>-</b></td><td>
+Терминал не разрешает запись другим пользователям.</td></tr>
+<tr><td valign="top"><b>?</b></td><td>
+Возможность записи на терминал не может быть определена.</td></tr>
+</tbody></table>
+</dd></dl>
+
+</td></tr>
+</tbody></table>
+
+<h3>/usr/xpg4/bin/who</h3>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="10%"><b>-T</b></td><td>
+То же, что и опция <a href="#s"><b>-s</b></a>, но выдается поле <b>состояние</b>.  
+В поле <b>состояние</b> выдается один из символов, перечисленных в 
+<a href="#T">описании</a> этой опции для версии <b>/usr/bin/who</b>. Если
+вместе с <b>-T</b> используется опция <a href="#u"><b>-u</b></a>, в конце
+строки добавляется столбец времени ожидания.</td></tr>
+<tr><td valign="top"><b><a name="t">-t</a></b></td><td>
+Показывает последнее изменение системных часов (с помощью утилиты <b>date</b>),
+выполненное пользователем <b>root</b>. См. <a href="/man.shtml?topic=su&amp;category=1"><b>su(1M)</b></a> и
+<a href="/man.shtml?topic=date&amp;category=1"><b>date(1)</b></a>.</td></tr>
+<tr><td valign="top"><b><a name="u">-u</a></b></td><td>
+Выдает информацию только о зарегистрированных сейчас пользователях. В поле <b>имя</b>
+выдается регистрационное имя пользователя. В поле <b>терминал</b>, - имя специального
+файла терминала из каталога <b>/dev</b>. В поле <b>время</b> выдается время, когда
+пользователь зарегистрировался. В поле <b>ожидание</b> указано, сколько часов и минут
+назад было выполнено последнее действие с этого терминала. Точка (<b>.</b>) показывает,
+что терминал был активен за последнюю минуту, и поэтому является "текущим". Если
+терминал не использовался более 24 часов или с момента загрузки, в этом поле
+выдается значение <b>old</b>. Поле ожидания позволяет определить, работат ли кто-то
+за теминалом или нет. Поле <b>pid</b> - идентификатор процесса начального командного
+интерпретатора пользователя. В полне <b>комментарий</b> выдается комментарий
+для соответствующей терминалу строки в файле <b>/sbin/inittab</b> 
+(см. <a href="/man.shtml?topic=inittab&amp;category=4"><b>inittab(4)</b></a>). Он может содержать информацию
+о метонахождении терминала, номер телефона владельца, тип терминала и т.п.</td></tr>
+</tbody></table>
+
+<h2>ОПЕРАНДЫ</h2>
+
+<p>Поддерживаются следующие операнды:</p>
+
+<dl>
+<dt><b>am i</b><br>
+<b>am I</b></dt>
+<dd>В локали "<b>C</b>" ограничивает результат, выдавая информацию только о
+вызывающем пользователе, аналогично опции <a href="#m"><b>-m</b></a>. Слова <b>am</b>
+и <b>i</b> или <b>I</b> должны быть отдельными аргументами.</dd>
+<dt><b>файл</b></dt>
+<dd>Задает полное имя файла, используемого вместо стандартного в качестве базы
+данных зарегистрированных пользователей.</dd>
+</dl>
+
+<h2>ПЕРЕМЕННЫЕ СРЕДЫ</h2>
+
+<p>Описание следующих переменных среды:  
+<b>LC_CTYPE</b>, <b>LC_MESSAGES</b>, <b>LC_TIME</b> и <b>NLSPATH</b>, 
+влияющих на работу команды <b>who</b>, 
+см. на странице справочного руководства <b><a href="/man.shtml?topic=environ&amp;category=5">environ(5)</a></b>.</p>
+
+<h2>СТАТУС ВЫХОДА</h2>
+
+<p>Команда завершается со следующими статусами выхода:</p>
+
+<table width="100%" border="0">
+<tbody><tr><td width="10%"><b>0</b></td><td>
+Успешное выполнение.</td></tr>
+<tr><td><b>&gt;0</b></td><td>
+Произошла ошибка.</td></tr>
+</tbody></table>
+
+<h2>ФАЙЛЫ</h2>
+
+<dl>
+<dt><b>/sbin/inittab</b></dt>
+<dd>сценарий для процесса <b>init</b></dd>
+<dt><b>/var/adm/utmp</b></dt>
+<dd>информация о текущих пользователях и времени их работы</dd>
+<dt><b>/var/adm/wtmp</b></dt>
+<dd>историческая информация о пользователях и времени их работы</dd>
+</dl>
+
+<h2>АТРИБУТЫ</h2>
+
+<p>Описание следующих атрибутов см. на странице справочного руководства
+attributes(5):</p>
+
+<h3>/usr/bin/who</h3>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWcsu</td></tr>
+</tbody></table>
+
+<h3>/usr/xpg4/bin/who</h3>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWxcu4</td></tr>    
+</tbody></table>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=date&amp;category=1"><b>date(1)</b></a>,
+	<a href="/man.shtml?topic=login&amp;category=1"><b>login(1)</b></a>,
+	<a href="/man.shtml?topic=mesg&amp;category=1"><b>mesg(1)</b></a>,
+	<a href="/man.shtml?topic=init&amp;category=1"><b>init(1M)</b></a>,
+	<a href="/man.shtml?topic=su&amp;category=1"><b>su(1M)</b></a>,
+	<a href="/man.shtml?topic=wait&amp;category=3"><b>wait(3UCB)</b></a>,
+	<a href="/man.shtml?topic=inittab&amp;category=4"><b>inittab(4)</b></a>,
+	<a href="/man.shtml?topic=utmp&amp;category=4"><b>utmp(4)</b></a>,
+	<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>,
+	<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>,
+	<a href="/man.shtml?topic=XPG&amp;category=4"><b>XPG4(5)</b></a>
+</dd></dl>
+
+<h2>ПРИМЕЧАНИЯ</h2>
+
+<p>Суперпользователь: после перевода системы в однопользовательский режим
+команда <b>who</b> ничего не выдает; поскольку файл <b>/var/adm/utmp</b> изменяется
+при регистрации, а регистрация в однопользовательском режиме не выполняется,
+команда <b>who</b> не может точно проинформировать об этом состоянии. Команда
+<b>who am i</b>, однако, выдает правильную информацию.</p>
+
+<p align="center">Последнее изменение: 18 марта 1997 года</p>
+
+<p align="center"><font size="-2">
+Copyright 2002 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="who" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

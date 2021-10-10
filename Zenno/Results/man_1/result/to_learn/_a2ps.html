@@ -1,0 +1,796 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN a2ps (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, a2ps"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="a2ps" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">a2ps (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=a2ps&amp;category=1&amp;russian=0"><u>a2ps</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=a2ps&amp;category=1&amp;russian=2"><u>a2ps</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li>
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>НАЗВАНИЕ</h2>
+
+<p>
+a2ps - форматирует текстовый файл для печати на Postscript-принтере
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>СИНТАКСИС</h2>
+
+<p>
+<b>a2ps</b> [ <b>глобальные опции</b> ] [ <b>позиционные опции</b> ] [ <i>файл1</i> [
+<b>позиционные опции</b> ] ] <i>файл2</i> ... ] ]
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<p>
+<i>a2ps</i> форматирует каждый заданный файл для печати на
+Postscript-принтере; если не задано ни одного имени файла,
+<i>a2ps</i> читает данные со стандартного ввода. Результат выводится
+в принтер, на стандартный вывод или в файл. Выходной файл красиво
+оформлен и компактен: по умолчанию он отформатирован по две
+страницы на одну физическую страницу, каждая страница заключена
+в рамку, в заголовках выводится много полезной информации (номер
+страницы, дата печати, имя файла или заданный пользователем
+заголовок), есть возможность нумерации строк, подстановки
+символов, синтаксического выделения и т. д. Это бывает очень
+полезно при печати архивных листингов программ.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>Глобальные опции</h2>
+
+<i>a2ps</i> распознает следующие глобальные опции:
+<p>
+</p><dl compact="">
+<dt><b>-? -h</b></dt><dd>
+<p>
+Вывести краткую подсказку.
+</p><p>
+</p></dd><dt><b>-8</b> </dt><dd>
+<p>
+Печатать не-ASCII символы (с установленным старшим битом)
+как символы из набора ISO Latin 1. (по умолчанию: см. опцию -V).
+</p><p>
+</p></dd><dt><b>-a</b> </dt><dd>
+<p>
+Использовать другой формат бумаги. По умолчанию установлен
+в US letter. (см. опцию -V).
+</p><p>
+</p></dd><dt><b>-b</b> </dt><dd>
+<p>
+Включить принудительный вывод двоичных файлов. По умолчанию
+печать двоичных файлов прекращается перед второй страницей
+(см. опцию -nb).
+</p><p>
+</p></dd><dt><b>-c</b> </dt><dd>
+<p>
+Компактный режим для последовательности файлов. Эта опция
+позволяет печатать два файла на одной физической странице:
+последнюю страницу первого файла на левой (или верхней)
+половине, а первую страницу второго файла - на правой
+(или нижней) половине. Эта опция работает только в режиме
+двойных страниц (две страницы на одну физическую страницу).
+</p><p>
+</p></dd><dt><b>-f</b> </dt><dd>
+<p>
+Переносить строки, не умещающиеся внутри рамок страниц
+(опция по умолчанию). Максимальная длина строки зависит
+от размера бумаги, используемого шрифта и наличия или
+отсутствия нумерации строк.
+</p><p>
+</p></dd><dt><b>-G</b> </dt><dd>
+<p>
+Не печатать файлы, но вывести определить их языковой режим
+для опции -k.
+</p><p>
+</p></dd><dt><b>-h</b> </dt><dd>
+<p>
+Вывести краткую подсказку и завершиться.
+</p><p>
+</p></dd><dt><b>-Iфайл</b></dt><dd>
+<p>
+Использовать указанный файл в качестве Postscript-пролога
+для a2ps.
+</p><p>
+</p></dd><dt><b>-na</b> </dt><dd>
+<p>
+Не использовать другие форматы бумаги. По умолчанию
+соответствует формату A4 (подробнее о значениях формата
+см. опцию -V).
+</p><p>
+</p></dd><dt><b>-nb</b> </dt><dd>
+<p>
+Не печатать двоичные файлы (опция по умолчанию). Для
+определения двоичных файлов используется очень простое правило:
+если первая страница файла содержит не менее 75% непечатаемых
+символов, то это двоичный файл. Первая страница всегда печатается.
+</p><p>
+</p></dd><dt><b>-nc</b> </dt><dd>
+<p>
+Не включать комапактный режим для последовательности файлов.
+Начало каждого файла будет выведено на новой физической странице.
+</p><p>
+</p></dd><dt><b>-nf</b> </dt><dd>
+<p>
+Обрезать слишком длинные строки.
+</p><p>
+</p></dd><dt><b>-nP</b> </dt><dd>
+<p>
+Выводить результат форматирования на стандартный вывод
+(значение по умолчанию см. опцию -V).
+</p><p>
+</p></dd><dt><b>-nr</b> </dt><dd>
+<p>
+Нумерация листов (см. опцию -r) общая для всех файлов
+(не сьрасывается на новом файле). Опция по умолчанию.
+</p><p>
+</p></dd><dt><b>-nv</b> </dt><dd>
+<p>
+Заменять непечатаемые символы пробелами.
+</p><p>
+</p></dd><dt><b>-n8</b> </dt><dd>
+<p>
+Не печатать не-ASCII символы как символы из набора ISO Latin 1;
+такие символы будут напечатаны как M- (мета) и символ с кодом,
+включающим в себя младшие 7 бит исходного символа (см. опцию -8).
+</p><p>
+</p></dd><dt><b>-o -oимя_файла</b></dt><dd>
+<p>
+Выводить результат Postscript-форматирования в файл. Если
+указано <i>имя_файла</i>, выводить в него, в противном случае
+в файл <i>a2ps.ps</i>. (По умолчанию результат выводится на
+стандартный вывод.)
+</p><p>
+</p></dd><dt><b>-P -Pпринтер</b></dt><dd>
+<p>
+Посылать результат форматирования на принтер по умолчанию
+либо на указанный <i>принтер</i>. При определенных установках
+Вашей системы их может и не быть. Эта опция не может следовать
+за опцией -o (значение по умолчанию см. опцию -V).
+</p><p>
+</p></dd><dt><b>-q</b> </dt><dd>
+<p>
+Выводить файлы без итоговой информации.
+</p><p>
+</p></dd><dt><b>-r</b> </dt><dd>
+<p>
+Сбрасывать нумерацию листов на каждом новом файле.
+Нумерация листов используется для вывода номера
+физической страницы по мере печати, в отличие от
+нумерации страниц, которых может быть по две на
+каждый лист (если не заданы опции -p или -w).
+</p><p>
+</p></dd><dt><b>-s1</b> </dt><dd>
+<p>
+Произвести форматирование в одностороннем режиме
+(на одну сторону каждого листа) (значение по умолчанию
+см. опцию -V).
+</p><p>
+</p></dd><dt><b>-s2</b> </dt><dd>
+<p>
+Произвести форматирование в двустороннем режиме
+(на двух сторонах листа) (значение по умолчанию
+см. опцию -V).
+</p><p>
+</p></dd><dt><b>-tчисло</b></dt><dd>
+<p>
+Задать размер горизонтальной табуляции равным
+<i>числу</i> (по умолчанию 8). При задании опции
+<b>-ni</b> эта опция игнорируется (см. ниже).
+</p><p>
+</p></dd><dt><b>-v</b> </dt><dd>
+<p>
+Заменить непечатаемые символы таким образом, чтобы они были
+видимы и легко распознавались (опция по умолчанию). Управляющие
+символы (с ASCII-кодами меньше 0x20) выводятся в виде ^X,
+что соответствует Ctrl-X; символ удаления (шестнадцатиричный
+код 0x3f) выводится в виде ^?. Не-ASCII символы (с установленным
+старшим битом) выводятся в виде M- (`мета'), за которым следует
+символ с кодом, равным исходному со сброшенным старшим битом.
+Символы табуляции, забоя и перевода страницы обрабатываются
+как непечатаемые при задании опции -ni.
+</p><p>
+</p></dd><dt><b>-V</b> </dt><dd>
+<p>
+Вывести текущую конфигурацию, зависящую от версии и параметров
+установки, и завершиться.
+</p><p>
+</p></dd><dt><b>-W -Wязык</b></dt><dd>
+<p>
+Вывести отчет о всех языковых стилях, известных <i>a2ps</i>,
+и завершиться. Если задан <i>язык</i>, то вывести отчет
+только по его стилю.
+</p><p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>Позиционные опции</h2>
+
+<p>
+Позиционные опции применяются ко всем файлам, заданным далее
+в командной строке. Единственным исключением является опция
+<i>-H</i>: она применяется только к следующему файлу.
+<i>a2ps</i> распознает следующие позиционные опции:
+</p><p>
+</p><dl compact="">
+<dt><b>-1</b></dt><dd>
+<p>
+Печатать по одной странице на каждую физическую страницу
+(одностраничный режим).
+</p><p>
+</p></dd><dt><b>-2</b></dt><dd>
+<p>
+Печатать по две страницы на кждую физическую страницу
+(двухстраничный режим) слева направо или сверху вниз,
+в зависимости от ориентации бумаги (горизонтальная
+или вертикальная).
+</p><p>
+</p></dd><dt><b>-#число</b></dt><dd>
+<p>
+Вывести указанное количество копий каждого заданного
+файла. По умолчанию печатается одна копия.
+</p><p>
+</p></dd><dt><b>-B</b></dt><dd>
+<p>
+Производить печать жирным шрифтом.
+</p><p>
+</p></dd><dt><b>-d</b></dt><dd>
+<p>
+Выводить текущие дату и время внизу страницы. На эту опцию
+также влияют опции отмены рамки и отмены заголовка.
+</p><p>
+</p></dd><dt><b>-Fчисло</b></dt><dd>
+<p>
+Изменить размер шрифта на указанное значение. По умолчанию
+используются шрифты размера 6.8 для горизонтальной ориентации,
+6.4 для двухстраничной вертикальной ориентации и 9.0 для
+одностраничной вертикальной ориентации. Используйте эту опцию
+в тех случаях, когда эти размеры кажутся Вам слишком маленькими
+(или большими).
+</p><p>
+</p></dd><dt><b>-H -Hтекст</b></dt><dd>
+<p>
+Выводить в заголовке страницы имя файла. Если задан <i>текст</i>,
+то в заголовке будет выведен именно он, а не имя файла (это
+выполняется при печати только текстовых файлов). Для
+разных имен файлов могут задаваться разные опции -H.
+</p><p>
+</p></dd><dt><b>-i</b> </dt><dd>
+<p>
+Интерпретировать символы табуляции, забоя и перевода
+страницы (TAB, BS и FF). Эта опция установлена по умолчанию.
+Символ табуляции заменяется соответствующим количеством
+пробелов, в то время как символы забоя и перевода страницы
+сохраняют свои значения.
+</p><p>
+</p></dd><dt><b>-k -kязык</b></dt><dd>
+<p>
+Разрешить режим синтаксического выделения. Если для этой
+опции не задано аргументов, то языковой стиль выбирается
+автоматически, исходя из расширения имени файла (значение
+по умолчанию см. опцию -V). При указании <i>языка</i>
+используется соответствующий языковой стиль.
+</p><p>
+</p></dd><dt><b>-l</b> </dt><dd>
+<p>
+Печать файлов в горизонтальной ориентации бумаги. Эта опция
+установлена по умолчанию. Ее нельзя использовать совместно
+с опцией -p.
+</p><p>
+</p></dd><dt><b>-lчисло</b></dt><dd>
+<p>
+Установить количество строк на страницу. Размер шрифта
+при этом автоматически изменяется таким образом, чтобы
+заполнить всю страницу. Эта опция полезна при печати
+уже отформатированных текстовых документов с фиксированным
+количеством строк на страницу. Масштабирование шрифта можно
+отменить, если вместе с этой опцией задать опцию <b>-f</b>число.
+Минимальное количество строк на страницу установлено в 40,
+максимальное - в 160. Если задано количество строк, меньшее 40,
+то масштабирование шрифтов выключается, а на терминал выводится
+предупреждающее сообщение.
+</p><p>
+</p></dd><dt><b>-L</b> </dt><dd>
+<p>
+Выводить входное имя пользователя в правом верхнем углу
+страницы (по умолчанию включено). Эта опция доступна только
+на Unix системах.
+</p><p>
+</p></dd><dt><b>-m</b> </dt><dd>
+<p>
+Распознавать формат страниц руководства UNIX (man pages).
+При этом устанавливаются следующие параметры вывода:
+66 строк на страницу, отключение нумерации строк и по возможности
+распознавание <i>жирного</i> и <i>подчеркнутого</i> шрифтов.
+Последнее (распознавание <i>жирного</i> и <i>подчеркнутого</i>
+шрифтов) производится по умолчанию даже без опции -m.
+</p><p>
+</p></dd><dt><b>-n</b> </dt><dd>
+<p>
+Пронумеровать выходные строки, начиная с 1. Номер выводится
+перед соответствующей строкой.
+</p><p>
+</p></dd><dt><b>-nB</b> </dt><dd>
+<p>
+Не использовать при печати полужирный шрифт.
+</p><p>
+</p></dd><dt><b>-nd</b> </dt><dd>
+<p>
+Не выводить в заголовке дату и время
+(опция по умолчанию).
+</p><p>
+</p></dd><dt><b>-nH</b> </dt><dd>
+<p>
+Не печатать заголовки страниц.
+</p><p>
+</p></dd><dt><b>-ni</b> </dt><dd>
+<p>
+Не интерпретировать символы табуляции, забоя и перевода
+страницы (TAB, BS и FF). В этом случае они будут выведены
+в соответствии со значением опции -v.
+</p><p>
+</p></dd><dt><b>-nk</b> </dt><dd>
+<p>
+Не делать синтаксического выделения в файлах (по умолчанию
+включено).
+</p><p>
+</p></dd><dt><b>-nn</b> </dt><dd>
+<p>
+Не производить нумерацию строк (опция по умолчанию).
+</p><p>
+</p></dd><dt><b>-ns</b> </dt><dd>
+<p>
+Не печатать рамки для страниц.
+</p><p>
+</p></dd><dt><b>-nt</b> </dt><dd>
+<p>
+Не переводить специальные ключевые слова в соответствующие
+символы (опция по умолчанию).
+</p><p>
+</p></dd><dt><b>-nu</b> </dt><dd>
+<p>
+Не выводить имя файла внизу страницы.
+</p><p>
+</p></dd><dt><b>-nL</b> </dt><dd>
+<p>
+Не выводить идентификатор пользователя вверху страницы.
+</p><p>
+</p></dd><dt><b>-p</b> </dt><dd>
+<p>
+Выводить файлы на страницы с вертикальной ориентацией.
+По умолчанию страницы ориентированы горизонтально.
+</p><p>
+</p></dd><dt><b>-s</b> </dt><dd>
+<p>
+Выводить рамки вокруг страниц (по умолчанию включено).
+</p><p>
+</p></dd><dt><b>-t</b> </dt><dd>
+<p>
+Транслировать специальные ключевые слова в соответствующие
+символы (см. секцию Синтаксическое выделение текста).
+Эта опция всгда включена, если входным языком файла является
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=prescript&amp;category=4">prescript</a>(4)</b>.
+</p><p>
+</p></dd><dt><b>-u -uтекст</b></dt><dd>
+<p>
+Выводить имя файла внизу страницы по центру (по умолчанию включено).
+Если задан <i>текст</i>, то использовать его для всех последующих
+страниц. Это бывает полезно для оставления пометок при печати набора
+файлов.
+</p><p>
+</p></dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>Синтаксическое выделение текста</h2>
+
+<p>
+<i>a2ps</i> может использовать специальные шрифты для строковых констант,
+комментариев и ключевых слов некоторых языков программирования. В данное
+время поддерживаются следующие языки:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<p>
+<b>ada c c++ caml(ml) claire(cl)
+coq-vernacular(coq) common-lisp(lsp) eiffel(e)
+fortran(f) java lace(ace) mailfolder(mail)
+modula-3(m3) o2c oberon pascal(pas)
+perl(pl) postscript(ps) prescript(pre)
+promela(pml) python(py) sather(sa)
+scheme(scm) sdl-88(sdl) sh tcl
+tk zsh</b>
+</p><p>
+</p></dd></dl>
+
+<p>
+(имена в скобках являются сокращениями).
+</p><p>
+</p><dl compact="">
+<dt><b>-k</b> </dt><dd>
+<p>
+Включить автоматическое выделение синтаксических единиц. <i>a2ps</i>
+определяет язык, используемый в файле, на основании результатов
+команды <i>file</i>. Исключение составляет результат
+"C-program" (программа на языке C) - команда <i>file</i>
+часто делает ошибки при определении таких файлов. В этом случае, а также,
+если команда <i>file</i> не смогла распознать язык, он определяется
+по расширению файла. Вы также можете задать языковой стиль по умолчанию:
+см. опцию -V.
+</p><p>
+</p></dd><dt><b>-kязык</b></dt><dd>
+<p>
+Выбрать стиль синтаксического выделения в соответствии с <i>языком</i>.
+</p><p>
+</p></dd><dt><b>-nk</b> </dt><dd>
+<p>
+Полностью отменить автоматическое выделение синтаксических единиц.
+</p><p>
+</p></dd><dt><b>-t</b> </dt><dd>
+<p>
+Транслировать специальные ключевые слова в символы. <i>a2ps</i> может
+транслировать ключевые слова вида ``=&gt;'' и другие специальные
+последовательности в соответствующие символы из шрифта ``symbol''.
+Как правило, такая возможность используется в сочетании с синтаксическим
+выделением текста. При использовании языкового стиля prescript эта опция
+всегда включена.
+</p><p>
+</p></dd><dt><b>-nt</b> </dt><dd>
+<p>
+Не транслировать ключевые слова в символы.
+</p><p>
+</p></dd><dt><b>-W -Wязык</b></dt><dd>
+<p>
+Эта опция предписывает команде <i>a2ps</i> сгенерировать отчет
+обо всех поддерживаемых ею языковых стилях (или только о стиле с указанным
+<i>языком</i>). Отчет генерируется на языке <i>prescript</i>,
+похожим на LaTeX. Для печати этого отчета его снова нужно передать
+для обработки <i>a2ps</i>:
+</p><p>
+</p><pre>
+a2ps -W | a2ps -kpre -oreport.ps
+
+</pre>
+
+<p>
+Язык <i>prescript</i> признан хорошим выбором для программ, желающих
+производить документы с качеством Postscript, но при этом не
+работающих непосредственно с Postscript. Поскольку синтаксис prescript
+очень близок к LaTeX, то с небольшими исправлениями prescript-программы
+можно откомпилировать с помощью LaTeX.
+</p><p>
+</p></dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>ИСПОЛЬЗОВАНИЕ</h2>
+
+<p>
+<i>a2ps</i> выводит текст в формате Postscript на свой стандартный
+выход. Впоследствии пользователь может перенаправить его в файл,
+передать непосредственно программе печати (вроде lpr) или произвести
+дальнейшую обработку с помощью любого другого фильтра.
+</p><p>
+</p><pre>
+        a2ps file1 &gt; file2
+
+        a2ps -p file1 | psnup -n4 | lpr
+
+        a2ps -n -c -kc main.c main.h -Plwriter
+
+        a2ps -t tcp.pr -Plwriter
+
+</pre>
+
+<p>
+<i>prescript</i> и <i>a2ps</i> могут быть использованы для форматирования
+на лету.
+Вот пример форматирования файла passwd:
+</p><p>
+</p><pre>
+ypcat passwd | \
+  awk -F: `{print "\textbf{" $5 "} (" $1 ") \rightarrow\textit{" $7 "}"}' | \
+  xa2ps -kpre -P
+
+</pre>
+
+<p>
+Не забудьте проверить, поддерживает ли Ваш принтер язык Postscript.
+</p><p>
+Учтите, что такой фильтр можно использовать только с текстовыми файлами.
+Особенно не рекомендуется применять его для обработки выхода TeX, troff
+и других подобных программ форматирования.
+</p><p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>Код возврата</h2>
+
+<p>
+Определены следующие коды возврата:
+</p><p>
+</p><dl compact="">
+<dt><b>0</b></dt><dd>
+<p>
+<br>&nbsp;<i>a2ps</i>&nbsp;завершился&nbsp;нормально.
+</p><p>
+</p></dd><dt><b>1</b></dt><dd>
+<p>
+<br>&nbsp;произошла&nbsp;ошибка.
+</p><p>
+</p></dd><dt><b>2</b></dt><dd>
+<p>
+<br>&nbsp;задан&nbsp;неправильный&nbsp;аргумент.
+</p><p>
+</p></dd><dt><b>3</b></dt><dd>
+<p>
+<br>&nbsp;задан&nbsp;неизвестный&nbsp;языковой&nbsp;режим.
+</p><p>
+</p></dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+<p>
+Если <i>a2ps</i> часто неправильно распознает языковую принадлежность
+файлов, проверьте результат работы команды <i>file</i>, и при наличии
+существенных ошибок (например, perl-скрипт распознается как ``lex program
+text'') попросите Вашего системного администратора обновить файл
+/etc/magic.
+</p><p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<p>
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lpr&amp;category=1">lpr</a>(1)</b>
+, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=file&amp;category=1">file</a>(1)</b>
+, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gs&amp;category=1">gs</a>(1)</b>
+, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=latex&amp;category=1">latex</a>(1)</b>
+, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tgrind&amp;category=1">tgrind</a>(1)</b>
+, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=enscript&amp;category=1">enscript</a>(1)</b>
+,
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=prescript&amp;category=4">prescript</a>(4)</b>
+.
+</p><p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>АВТОР(Ы)</h2>
+
+<p>
+Evan Kirshenbaum (<i><a href="mailto:evan@csli">evan@csli</a></i>) - начальная версия.
+Miguel Santana (<i><a href="mailto:M.Santana@frgu.bull.fr">M.Santana@frgu.bull.fr</a></i>) - версии 1.0,
+2.0, 3.0, 4.0, 4.1, 4.2 и 4.3.
+</p><p>
+Emmanuel Briot (<i><a href="mailto:emmanuel.briot@matra-com.fr">emmanuel.briot@matra-com.fr</a></i>) и Akim
+Demaille (<i><a href="mailto:demaille@inf.enst.fr">demaille@inf.enst.fr</a></i>) - версии 4.5 и 4.6.
+</p><p>
+<a name="lbAM">&nbsp;</a>
+</p><h2>Участники</h2>
+
+<p>
+Oscar Nierstrasz (<i><a href="mailto:oscar@cui.uucp">oscar@cui.uucp</a></i>)
+</p><p>
+Tim Clark (<i><a href="mailto:T.Clark@warwick.ac.uk">T.Clark@warwick.ac.uk</a></i>)
+</p><p>
+Henk Tullemans (<i><a href="mailto:tullemans@apolloway.prl.philips.nl">tullemans@apolloway.prl.philips.nl</a></i>)
+</p><p>
+Johan Vromans (<i><a href="mailto:jv@mh.nl">jv@mh.nl</a></i>)
+</p><p>
+Craig Stevenson (<i><a href="mailto:craig.r.stevenson@att.com">craig.r.stevenson@att.com</a></i>)
+</p><p>
+John Macdonald (<i><a href="mailto:jmm@eci386.uucp">jmm@eci386.uucp</a></i>)
+</p><p>
+Huub van de Wetering (<i><a href="mailto:wstahw@lso.win.tue.nl">wstahw@lso.win.tue.nl</a></i>)
+</p><p>
+<i><a href="mailto:erikt@cs.umu.se">erikt@cs.umu.se</a>
+</i></p><p><i>
+<a href="mailto:wstahw@lso.win.tue.nl">wstahw@lso.win.tue.nl</a>
+</i></p><p><i>
+<a href="mailto:mai@wolfen.cc.uow.oz">mai@wolfen.cc.uow.oz</a></i>
+</p><p>
+Johan Garpendahl (<i><a href="mailto:garp@isy.liu.se">garp@isy.liu.se</a></i>)
+</p><p>
+John Interrante (<i><a href="mailto:interran@uluru.stanford.edu">interran@uluru.stanford.edu</a></i>)
+</p><p>
+Larry Barbieri (<i><a href="mailto:lbarbieri@ll.mit.edu">lbarbieri@ll.mit.edu</a></i>)
+</p><p>
+Chris Adamo (<i><a href="mailto:adamo@ll.mit.edu">adamo@ll.mit.edu</a></i>)
+</p><p>
+Basile Starynkevitch (<i><a href="mailto:Basile.Starynkevitch@cea.fr">Basile.Starynkevitch@cea.fr</a></i>)
+</p><p>
+Denis Girou (<i><a href="mailto:Denis.Girou@idris.fr">Denis.Girou@idris.fr</a></i>)
+</p><p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">Глобальные опции</a></dt><dd>
+</dd><dt><a href="#lbAF">Позиционные опции</a></dt><dd>
+</dd><dt><a href="#lbAG">Синтаксическое выделение текста</a></dt><dd>
+</dd><dt><a href="#lbAH">ИСПОЛЬЗОВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAI">Код возврата</a></dt><dd>
+</dd><dt><a href="#lbAJ">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAK">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAL">АВТОР(Ы)</a></dt><dd>
+</dd><dt><a href="#lbAM">Участники</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="a2ps" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,1012 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN tcsetpgrp (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, tcsetpgrp"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="tcsetpgrp" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">tcsetpgrp (3)</font><hr><li> <a href="/man.shtml?topic=tcsetpgrp&amp;category=3&amp;russian=4"><u>tcsetpgrp</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=tcsetpgrp&amp;category=3&amp;russian=1"><u>tcsetpgrp</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=tcsetpgrp&amp;category=3&amp;russian=0"><u>tcsetpgrp</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=tcsetpgrp&amp;category=3&amp;russian=2"><u>tcsetpgrp</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=tcsetpgrp&amp;category=3&amp;russian=5"><u>tcsetpgrp</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+cfmakeraw, cfgetospeed, cfgetispeed, cfsetispeed, cfsetospeed - получение
+и изменение атрибутов терминала, управление последовательным портом,
+определение и изменение скорости обмена информацией
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+
+<b>
+#include &lt;<a href="file:/usr/include/termios.h">termios.h</a>&gt;
+<br>
+
+#include &lt;<a href="file:/usr/include/unistd.h">unistd.h</a>&gt;
+</b><p><b>
+int tcgetattr(int </b><i>fd</i><b>, struct termios *</b><i>termios_p</i><b>);</b>
+
+</p><p>
+<b>int tcsetattr(int </b><i>fd</i><b>, int </b><i>optional_actions</i><b>, struct termios *</b><i>termios_p</i><b>);</b>
+
+</p><p>
+<b>int tcsendbreak(int </b><i>fd</i><b>, int </b><i>duration</i><b>);</b>
+
+</p><p>
+<b>int tcdrain(int </b><i>fd</i><b>);</b>
+
+</p><p>
+<b>int tcflush(int </b><i>fd</i><b>, int </b><i>queue_selector</i><b>);</b>
+
+</p><p>
+<b>int tcflow(int </b><i>fd</i><b>, int </b><i>action</i><b>);</b>
+
+</p><p>
+<b>int cfmakeraw(struct termios *</b><i>termios_p</i><b>);</b>
+
+</p><p>
+<b>speed_t cfgetispeed(struct termios *</b><i>termios_p</i><b>);</b>
+
+</p><p>
+<b>speed_t cfgetospeed(struct termios *</b><i>termios_p</i><b>);</b>
+
+</p><p>
+<b>int cfsetispeed(struct termios *</b><i>termios_p</i><b>, speed_t </b><i>speed</i><b>);</b>
+
+</p><p>
+<b>int cfsetospeed(struct termios *</b><i>termios_p</i><b>, speed_t </b><i>speed</i><b>);</b>
+
+
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Функции termios описывают общий терминальный интерфейс,
+гарантирующий управление асинхронным коммуникационным портом.
+<p>
+
+Большинство функций, описанных здесь, используют параметр <i>termios_p</i>,
+который указывает на структуру <b>termios</b>.  
+Данная структура содержит, как минимум, следующие элементы:
+
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>tcflag_t <i>c_iflag</i>;      /* режимы ввода */
+tcflag_t <i>c_oflag</i>;      /* режимы вывода */
+tcflag_t <i>c_cflag</i>;      /* режимы управления */
+tcflag_t <i>c_lflag</i>;      /* режимы локали */
+cc_t <i>c_cc</i>[<b>NCCS</b>];       /* управляющие символы */
+</pre>
+
+</dd></dl>
+
+<p>
+
+<i>c_iflag</i> - флаги констант:
+</p><dl compact="">
+<dt><b>IGNBRK</b>
+
+</dt><dd>
+игнорировать режим BREAK при вводе.
+</dd><dt><b>BRKINT</b>
+
+</dt><dd>
+если включен <b>IGNBRK</b> то BREAK игнорируется. Если он не включен,                                                                                                          
+а <b>BRKINT</b> включен, то BREAK вызывает сброс очередей, и, если                                                                                                    
+терминал является управляющим для группы процессов переднего плана, то
+группе будет отослан сигнал <b>SIGINT</b>. Если ни <b>IGNBRK</b> ни <b>BRKINT</b> 
+не включены, то BREAK считывается как нулевой символ, кроме случая
+когда установлено <b>PARMRK</b>, тогда он будет считан, как
+последовательность \377 \0 \0.
+</dd><dt><b>IGNPAR</b>
+
+</dt><dd>
+игнорировать ошибки четности и позиционирования.
+</dd><dt><b>PARMRK</b>
+
+</dt><dd>
+если не включен режим <b>IGNPAR</b>, то сопровождать
+символ с ошибкой четности или позиционирования префиксом \377 \0.
+Если не включен ни <b>IGNPAR</b>, ни <b>PARMRK</b>,
+то считывать символ с ошибкой четности или позиционирования как \0.
+</dd><dt><b>INPCK</b>
+
+</dt><dd>
+запускать проверку четности при вводе.
+</dd><dt><b>ISTRIP</b>
+
+</dt><dd>
+удалять восьмой бит.
+</dd><dt><b>INLCR</b>
+
+</dt><dd>
+преобразовывать NL в CR при вводе.
+</dd><dt><b>IGNCR</b>
+
+</dt><dd>
+игнорировать перевод каретки при вводе.
+</dd><dt><b>ICRNL</b>
+
+</dt><dd>
+преобразовывать перевод каретки в конец строки при вводе
+(пока не будет запущен <b>IGNCR</b>).
+</dd><dt><b>IUCLC</b>
+
+</dt><dd>
+(не включено в POSIX) отображать символы верхнего регистра в нижнем
+регистре при вводе.
+</dd><dt><b>IXON</b>
+
+</dt><dd>
+запустить управление потоком данных XON/XOFF при выводе.
+</dd><dt><b>IXANY</b>
+
+</dt><dd>
+(не включено в POSIX.1; XSI) позволить любому символу заново
+запускать вывод.
+</dd><dt><b>IXOFF</b>
+
+</dt><dd>
+запустить управление потоком данных XON/XOFF при вводе.
+</dd><dt><b>IMAXBEL</b>
+
+</dt><dd>
+(не включено в POSIX) выдавать звуковой сигнал, когда очередь
+ввода переполнится.
+Linux не использует этот бит и действует так. будто он всегда включен.
+</dd></dl>
+<p>
+
+Константы для флага <i>c_oflag</i>, включенные в POSIX.1:
+</p><dl compact="">
+<dt><b>OPOST</b>
+
+</dt><dd>
+включить режим вывода, определяемый реализацией по умолчанию.
+</dd></dl>
+<p>
+
+Остальные константы для флага <i>c_oflag</i> определены в
+POSIX 1003.1-2001 (если явно не указано иначе).
+</p><dl compact="">
+<dt><b>OLCUC</b>
+
+</dt><dd>
+(не включено в POSIX)
+отображать символы нижнего регистра в верхнем регистре при выводе.
+</dd><dt><b>ONLCR</b>
+
+</dt><dd>
+(XSI) преобразовывать NL в CR-NL при выводе.
+</dd><dt><b>OCRNL</b>
+
+</dt><dd>
+преобразовывать CR в NL при выводе.
+</dd><dt><b>ONOCR</b>
+
+</dt><dd>
+не выводить CR в столбце 0.
+</dd><dt><b>ONLRET</b>
+
+</dt><dd>
+не выводить CR.
+</dd><dt><b>OFILL</b>
+
+</dt><dd>
+посылать символы заполнения для задержки, а не использовать
+синхронизированную задержку.
+</dd><dt><b>OFDEL</b>
+
+</dt><dd>
+(не включено в POSIX) установить символ заполнения ASCII DEL (0177).  
+Иначе установить символ заполнения ASCII NUL.
+</dd><dt><b>NLDLY</b>
+
+</dt><dd>
+маска задержки конца строки. Значениями будут <b>NL0</b> и <b>NL1</b>.
+</dd><dt><b>CRDLY</b>
+
+</dt><dd>
+маска задержки перевода каретки. 
+Значениями будут: <b>CR0</b>, <b>CR1</b>, <b>CR2</b> или <b>CR3</b>.
+</dd><dt><b>TABDLY</b>
+
+</dt><dd>
+маска задержки горизонтальной табуляции. 
+Значениями будут: <b>TAB0</b>, <b>TAB1</b>, <b>TAB2</b>, <b>TAB3</b> (или <b>XTABS</b>). 
+Значение TAB3 или, иначе, XTABS "расширяет" табуляцию в пробелы
+(с символами табуляции в каждой восьмой позиции).
+</dd><dt><b>BSDLY</b>
+
+</dt><dd>
+маска задержки символа забоя.  
+Значением будет <b>BS0</b> или <b>BS1</b>.
+(Никогда не была реализована.)
+</dd><dt><b>VTDLY</b>
+
+</dt><dd>
+маска задержки вертикальной табуляции. 
+Значением будет <b>VT0</b> или <b>VT1</b>.
+</dd><dt><b>FFDLY</b>
+
+</dt><dd>
+маска задержки прокрутки страницы. 
+Значением будет <b>FF0</b> или <b>FF1</b>.
+</dd></dl>
+<p>
+
+Константы для флага <i>c_cflag</i>:
+</p><dl compact="">
+<dt><b>CBAUD</b>
+
+</dt><dd>
+(не включено в POSIX) маска скорости в бодах (4+1 бита).
+</dd><dt><b>CBAUDEX</b>
+
+</dt><dd>
+(не включено в POSIX) дополнительная маска скорости в бодах
+(1 бит), включена в CBAUD.
+</dd></dl>
+<p>
+
+(В стандарте POSIX указано, что скорость в бодах хранится в структуре
+termios, без указания ее точного местонахождения, и предоставляет
+<b>cfgetispeed()</b>
+
+и
+<b>cgfsetispeed()</b>
+
+для получения доступа к ней. Некоторые системы используют биты,
+выбираемые CBAUD в
+<i>c_cflag</i>,
+
+другие используют отдельные поля, например
+<i>sg_ispeed</i>
+
+и
+<i>sg_ospeed</i>.)
+
+</p><dl compact="">
+<dt><b>CSIZE</b>
+
+</dt><dd>
+маска размера символов. 
+Значениями будут: <b>CS5</b>, <b>CS6</b>, <b>CS7</b> или <b>CS8</b>.
+</dd><dt><b>CSTOPB</b>
+
+</dt><dd>
+устанавливать два стоповых бита вместо одного.
+</dd><dt><b>CREAD</b>
+
+</dt><dd>
+включить прием.
+</dd><dt><b>PARENB</b>
+
+</dt><dd>
+запустить генерацию четности при выводе и проверку четности на вводе.
+</dd><dt><b>PARODD</b>
+
+</dt><dd>
+установить нечетность на вводе и выводе.
+</dd><dt><b>HUPCL</b>
+
+</dt><dd>
+выключить управление модемом линиями после того, 
+как последний процесс прекратил использование устройства (повесить трубку).
+</dd><dt><b>CLOCAL</b>
+
+</dt><dd>
+игнорировать управление линиями с помощью модема.
+</dd><dt><b>LOBLK</b>
+
+</dt><dd>
+(не включено в POSIX) блокировать вывод с нетекущего уровня оболочки.
+(Для использования с <b>shl</b>.)
+</dd><dt><b>CIBAUD</b>
+
+</dt><dd>
+(не включено в POSIX) маска для скоростей ввода. Для битов CIBAUD
+используются те же значения, что и для битов CBAUD, но они смещены
+влево на ISHIFT битов.
+</dd><dt><b>CRTSCTS</b>
+
+</dt><dd>
+(не включено в POSIX) разрешить управление потоком данных RTS/CTS
+(аппаратное).
+</dd></dl>
+<p>
+
+Константы для флага <i>c_lflag</i>:
+</p><dl compact="">
+<dt><b>ISIG</b>
+
+</dt><dd>
+когда принимаются любые символы из INTR, QUIT, SUSP или DSUSP,
+то генерировать соответствующий сигнал.
+</dd><dt><b>ICANON</b>
+
+</dt><dd>
+запустить канонический режим. Это означает, что линии используют специальные 
+символы: EOF, EOL, EOL2, ERASE, KILL, LNEXT, REPRINT, STATUS и WERASE,
+а также строчную буферизацию.
+</dd><dt><b>XCASE</b>
+
+</dt><dd>
+(не включено в POSIX; не поддерживается в Linux)
+если при этом запущен <b>ICANON</b>, то терминал работает только
+с символами в верхнем регистре. Все вводимое конвертируется в символы нижнего 
+регистра, кроме символов, предваряемых \.
+При выводе предваряемые \ символы в верхнем регистре и символы в нижнем
+регистре преобразуются в символы вернего регистра.
+</dd><dt><b>ECHO</b>
+
+</dt><dd>
+отображать вводимые символы.
+</dd><dt><b>ECHOE</b>
+
+</dt><dd>
+если запущен <b>ICANON</b>, то символ ERASE удалает предыдущий символ,
+а WERASE удаляет предыдущее слово.
+</dd><dt><b>ECHOK</b>
+
+</dt><dd>
+если запущен <b>ICANON</b>, то символ KILL удаляет всю текущую строку.
+</dd><dt><b>ECHONL</b>
+
+</dt><dd>
+если запущен <b>ICANON</b>, то символ NL отображается, 
+даже если режим ECHO не включен.
+</dd><dt><b>ECHOCTL</b>
+
+</dt><dd>
+(не включено в POSIX)
+если запущен <b>ECHO</b>, то управляющие сигналы ASCII, отличающиеся от TAB, NL, 
+START и STOP, отображаются как ^X, где X есть символ из таблицы ASCII с кодом 
+на 0x40 больше, чем у управляющего сигнала. Например, символ 0x08 (BS) 
+отобразится как ^H.
+</dd><dt><b>ECHOPRT</b>
+
+</dt><dd>
+(не включено в POSIX)
+если включены <b>ICANON</b> и <b>IECHO</b>, то символы печатаются по мере того,
+как они уничтожаются.
+</dd><dt><b>ECHOKE</b>
+
+</dt><dd>
+(не включено в POSIX)
+если <b>ICANON</b> также включен, то KILL обозначается как 
+уничтожение каждого символа в строке
+(по спецификации <b>ECHOE</b> и <b>ECHOPRT</b>).
+</dd><dt><b>DEFECHO</b>
+
+</dt><dd>
+(не включено в POSIX)
+выводить только когда процесс считывает.
+</dd><dt><b>FLUSHO</b>
+
+</dt><dd>
+(не включено в POSIX; не поддерживается в Linux)
+выводимые данные ускоренно записываются. Этот флаг 
+переключается с помощью набираемого символа DISCARD.
+</dd><dt><b>NOFLSH</b>
+
+</dt><dd>
+отключить ускоренную запись вводимых и выводимых очередей во время
+генерации сигналов SIGINT и SIGQUIT и записывать вводимую очередь
+при генерации сигнала SIGSUSP.
+</dd><dt><b>TOSTOP</b>
+
+</dt><dd>
+послать сигнал SIGTTOU процессной группе фонового процесса, которая
+делает попытку записать его на контролирующий терминал.
+</dd><dt><b>PENDIN</b>
+
+</dt><dd>
+(не включено в POSIX; не поддерживается в Linux)
+все символы в очереди ввода повторно печатаются, когда считан последующий 
+символ (таким образом <b>bash</b> "перехватывает" предваряющую печать).
+</dd><dt><b>IEXTEN</b>
+
+</dt><dd>
+включить режим ввода, определяемый реализацией по умолчанию.
+Этот флаг, как и <b>ICANON</b> должен быть включен для обработки
+специальных символов EOL2, LNEXT, REPRINT, WERASE, а также
+для того, чтобы работал флаг <b>IUCLC</b>.
+</dd></dl>
+<p>
+
+Массив <i>c_cc</i> определяет специальные управляющие символы.
+Символьные индексы (что означают: начальное значение):                                 
+</p><dl compact="">
+<dt><b>VINTR</b>
+
+</dt><dd>
+(003, ETX, Ctrl-C, а также 0177, DEL, rubout)
+Символ прерывания. Посылает сигнал SIGINT.
+Распознается если установлен ISIG, и, в этом случае, далее не пропускается.
+</dd><dt><b>VQUIT</b>
+
+</dt><dd>
+(034, FS, Ctrl-\)
+Символ завершения. Посылает сигнал SIGQUIT.
+Распознается если установлен ISIG, и, в этом случае, далее не пропускается.
+</dd><dt><b>VERASE</b>
+
+</dt><dd>
+(0177, DEL, rubout, или 010, BS, Ctrl-H, или также #)
+Символ забоя. Стирает предыдущий еще-не-стертый символ, но не
+стирает за EOF или началом строки.
+Распознается если установлен ICANON, и, в этом случае, далее не пропускается.
+</dd><dt><b>VKILL</b>
+
+</dt><dd>
+(025, NAK, Ctrl-U, или Ctrl-X, а также @)
+Символ уничтожения. Стирает ввод с последнего EOF или начала строки.
+Распознается если установлен ICANON, и, в этом случае, далее не пропускается.
+</dd><dt><b>VEOF</b>
+
+</dt><dd>
+(004, EOT, Ctrl-D)
+Символ конца файла.
+Если более точно, то этот символ заставляет переслать буфер tty
+ожидающей программе пользователя без ожидания конца строки.
+Если это первый символ в строке, то <b>read()</b> вернет программе 0,
+что означает конец файла.
+Распознается если установлен ICANON, и, в этом случае, далее не пропускается.
+</dd><dt><b>VMIN</b>
+
+</dt><dd>
+Минимальное количество символов для неканонического ввода.
+</dd><dt><b>VEOL</b>
+
+</dt><dd>
+(0, NUL)
+Дополнительный символ конца строки.
+Распознается если установлен ICANON.
+</dd><dt><b>VTIME</b>
+
+</dt><dd>
+Время ожидания в децисекундах для неканонического ввода.
+</dd><dt><b>VEOL2</b>
+
+</dt><dd>
+(не включено в POSIX; 0, NUL)
+Еще один символ конца строки.
+Распознается если установлен ICANON.
+</dd><dt><b>VSWTCH</b>
+
+</dt><dd>
+(не включено в POSIX; не поддерживается в Linux; 0, NUL)
+Символ переключения. (Используется только <b>shl</b>.)
+</dd><dt><b>VSTART</b>
+
+</dt><dd>
+(021, DC1, Ctrl-Q)
+Символ запуска. Перезапускает вывод, остановленный символом останова.
+Распознается когда установлен IXON и, в этом случае, далее не пропускается.
+</dd><dt><b>VSTOP</b>
+
+</dt><dd>
+(023, DC3, Ctrl-S)
+Символ останова. Приостанавливает вывод до появления символа запуска.
+Распознается когда установлен IXON и, в этом случае, далее не пропускается.
+</dd><dt><b>VSUSP</b>
+
+</dt><dd>
+(032, SUB, Ctrl-Z)
+Символ приостанова. Посылает сигнал SIGTSTP.
+Распознается когда установлен ISIG и, в этом случае, далее не пропускается.
+</dd><dt><b>VDSUSP</b>
+
+</dt><dd>
+(не включен в POSIX; не поддерживается в Linux; 031, EM, Ctrl-Y)
+Символ отложенного приостанова: посылает сигнал SIGTSTP при считывании
+символа программой пользователя.
+Распознается когда установлены IEXTEN и ISIG, и система поддерживает
+управление заданиями. В этом случае далее не пропускается.
+</dd><dt><b>VLNEXT</b>
+
+</dt><dd>
+(не включено в POSIX; 026, SYN, Ctrl-V)
+Следующий символ - литера. Экранирует следующий символ, отменяя его
+возможное специальное значение.
+Распознается когда установлены IEXTEN и, в этом случае далее не пропускается.
+</dd><dt><b>VWERASE</b>
+
+</dt><dd>
+(не включено в POSIX; 027, ETB, Ctrl-W)
+Стирание слова.
+Распознается когда установлены ICANON и IEXTEN и, в этом случае далее не пропускается.
+</dd><dt><b>VREPRINT</b>
+
+</dt><dd>
+(не включено в POSIX; 022, DC2, Ctrl-R)
+Вывести заново несчитанные символы.
+Распознается когда установлены ICANON и IEXTEN и, в этом случае далее не пропускается.
+</dd><dt><b>VDISCARD</b>
+
+</dt><dd>
+(не включено в POSIX; не поддерживается в Linux; 017, SI, Ctrl-O)
+Начать/остановить отбрасывание ожидающего вывода.
+Распознается когда установлены IEXTEN и, в этом случае далее не пропускается.
+</dd><dt><b>VSTATUS</b>
+
+</dt><dd>
+(не включено в POSIX; не поддерживается в Linux;
+запрос состояния: 024, DC4, Ctrl-T).
+</dd></dl>
+<p>
+
+Значения этих символов все различны, за исключением символов
+VTIME, VMIN, которые могут иметь те же значения, что и VEOL, VEOF,
+соответственно.
+(В нестандартном режиме значение специальных символов заменяются
+значениями по истечении времени ожидания. MIN представляет собой
+минимальное число символов, которые должны быть получены при чтении.
+TIME - десятые доли секунды таймера. Когда оба символа установлены,
+чтение будет ожидать пока по меньшей мере один символ не будет получен,
+и тогда возвращает либо MIN полученных символов, либо время TIME
+прошедшее с момента получения последнего символа.
+Если установлено только значение MIN, тогда операция чтение не будет
+возвращаться пока не будет получено MIN количество символов.
+Если установлено только значение TIME, то операция чтения будет возвращать
+любой по крайней мере один полученный символ или произойдет истечение
+времени ожидания. Если ничего не установлено, то
+операция чтения немедленно завершается, и будут доступны только
+уже принятые символы.
+</p><p>
+
+<b>tcgetattr() :</b>
+
+получить параметры, связанные с объектом, на который ссылается <i>fd</i>, 
+и сохранить их в структуре <b>termios</b>, на которую ссылается <i>termios_p</i>.
+Эта функция может быть запущена из фонового процесса;
+однако, атрибуты терминала могут в дальнейшем
+изменяться основным процессом.
+</p><p>
+
+<b>tcsetattr()</b>:
+
+меняет параметры, связанные с терминалом 
+(если требуется поддержка используемого оборудования, 
+которая недоступна), и параметры структуры <b>termios</b>, связанной с 
+<i>termios_p</i>. Для того, чтобы изменения вступили в силу, необходимо указать 
+<i>optional_actions</i>:
+</p><dl compact="">
+<dt><b>TCSANOW</b></dt><dd>
+изменения немедленно начинают работать.
+</dd><dt><b>TCSADRAIN</b></dt><dd>
+изменения заработают после того, как все данные для вывода и записи переданы в
+<i>fd</i>.
+
+Эта функция должна использоваться при работе с параметрами, которые
+меняют работу устройств вывода данных и меняют выводимые данные.
+</dd><dt><b>TCSAFLUSH</b></dt><dd>
+изменения начинают работу после того, как на объект, на который указывает
+<i>fd</i>,
+
+были переданы все данные, предназначенные для вывода на запись; все данные, 
+которые были приняты (но не считаны),
+будут отменены перед тем, как произошли изменения.
+</dd></dl>
+<p>
+
+<b>tcsendbreak()</b>
+
+передает непрерывный поток нулевых битов в течение
+указанного промежутка времени, 
+если терминал использует асинхронную последовательность передачи данных.
+Если <i>duration</i> равно нулю, то нулевые биты передаются,
+по меньшей мере, в течение 0.25 секунд, но не более 0.5 секунды.
+Если <i>duration</i> не равно нулю, то нулевые биты посылаются в
+течении некоторого периода времени, зависящего от реализации.
+</p><p>
+
+Если терминал не использует асинхронную последовательную передачу данных,
+то <b>tcsendbreak()</b> заканчивает работу, не предпринимая каких-либо действий.
+</p><p>
+
+<b>tcdrain()</b>
+
+ждет, пока все данные вывода, записанные на объект, на который ссылается
+<i>fd</i>,
+
+не будут переданы.
+</p><p>
+
+<b>tcflush():</b>
+
+отказывается от данных, записанных, но не переданных на объект, на который 
+ссылается
+<i>fd</i>,
+
+или принятых, но не считанных данных (в зависимости от значения
+<i>queue_selector</i>):
+
+</p><dl compact="">
+<dt><b>TCIFLUSH</b></dt><dd>
+- срочный сброс принятых, но не прочитанных данных.
+</dd><dt><b>TCOFLUSH</b></dt><dd>
+- срочный сброс записанных, но не переданных данных.
+</dd><dt><b>TCIOFLUSH</b></dt><dd>
+- срочный сброс принятых, но не прочитанных данных 
+и записанных, но не переданных данных.
+</dd></dl>
+<p>
+
+<b>tcflow()</b>
+
+задерживает передачу данных на объект или прием их объектом, на который ссылается
+<i>fd</i>
+
+(в зависимости от значения
+<i>action</i>):
+
+</p><dl compact="">
+<dt><b>TCOOFF</b></dt><dd>
+задерживает вывод.
+</dd><dt><b>TCOON</b></dt><dd>
+возобновляет задержанный вывод.
+</dd><dt><b>TCIOFF</b></dt><dd>
+передает символ STOP, который останавливает 
+передачу данных в систему. Передача осуществляется терминальным устройством.
+</dd><dt><b>TCION</b></dt><dd>
+передает символ START, который начинает 
+передачу терминальным устройством данных в систему.
+</dd></dl>
+<p>
+
+По умолчанию открывается терминальный файл, у которого ни
+ввод, ни вывод не приостановлены.
+</p><p>
+
+Функции работы со скоростью двоичной передачи (в бодах) предназначены
+для получения и установки значений скоростей ввода и вывода в
+структуре <b>termios</b>.  Новые значения не будут иметь эффекта, пока
+не будет вызван <b>tcsetattr()</b>.
+При установке скорости в <b>B0</b> модему передается команда "повесить трубку".
+Фактическая скорость, соответствующая <b>B38400</b>,
+может быть изменена с помощью <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setserial&amp;category=8">setserial</a></b>(8).
+</p><p>
+
+Скорости ввода и вывода сохраняются в структуре <b>termios</b>.
+</p><p>
+
+<b>cfmakeraw</b> меняет атрибуты терминала таки образом:
+</p><pre>            termios_p-&gt;c_iflag &amp;= ~(IGNBRK|BRKINT|PARMRK|ISTRIP
+                            |INLCR|IGNCR|ICRNL|IXON);
+            termios_p-&gt;c_oflag &amp;= ~OPOST;
+            termios_p-&gt;c_lflag &amp;= ~(ECHO|ECHONL|ICANON|ISIG|IEXTEN);
+            termios_p-&gt;c_cflag &amp;= ~(CSIZE|PARENB);
+            termios_p-&gt;c_cflag |= CS8;
+</pre>
+
+<p>
+
+<b>cfgetospeed()</b>
+
+возвращает скорость вывода данных, сохраненную в структуре <b>termios</b>,
+на которую указывает
+<i>termios_p</i>.
+
+</p><p>
+
+<b>cfsetospeed()</b>
+
+устанавливает скорость вывода данных, сохраненную в структуре <b>termios</b>,
+на которую указывает <i>termios_p</i>, в <i>speed</i>, 
+которая должна быть равна одной из следующих констант:
+</p><pre><b>        B0
+        B50
+        B75
+        B110
+        B134
+        B150
+        B200
+        B300
+        B600
+        B1200
+        B1800
+        B2400
+        B4800
+        B9600
+        B19200
+        B38400
+        B57600
+        B115200
+        B230400
+</b></pre>
+
+Нулевая скорость, <b>B0</b>,
+используется для завершения связи.  Если указано B0,
+то линии управления модемом не должны больше быть утверждены.
+В обычном случае это прекратит связь с линией.
+<b>CBAUDEX</b> является маской скоростей, которые выше 
+определенных в POSIX.1 (57600 и выше).
+Таким образом, <b>B57600</b> и <b>CBAUDEX</b> не равны нулю.
+<p>
+
+<b>cfgetispeed()</b>
+
+возвращает скорость ввода данных, сохраненную в структуре <b>termios</b>.
+</p><p>
+
+<b>cfsetispeed()</b>
+
+устанавливает значение скорости ввода данных, 
+сохраненной в структуре <b>termios</b>, равное
+<i>speed</i>.
+
+Если скорость ввода данных меняется на ноль, то скорость ввода данных
+будет равна скорости вывода данных.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+<p>
+
+<b>cfgetispeed()</b>
+
+возвращает скорость ввода данных,  сохраненную в структуре <b>termios</b>.
+</p><p>
+
+<b>cfgetospeed()</b>
+
+возвращает скорость вывода данных, сохраненную в структуре <b>termios</b>.
+</p><p>
+
+Все другие функции возвращают:
+</p><dl compact="">
+<dt>0</dt><dd>
+при нормальном завершении работы.
+</dd><dt>-1</dt><dd>
+при ошибках (при этом значение переменной
+<i>errno</i>
+
+меняется на значение, соответствующее ошибке).
+</dd></dl>
+<p>
+
+Обратите внимание, что
+<b>tcsetattr()</b>
+
+сообщает об успешном завершении, если <i>хотя бы одно</i> из запрошенных
+изменений может быть успешно выполнено. Поэтому, при необходимости одновременного
+изменения нескольких параметров, может понадобится после этой функции вызвать
+<b>tcgetattr()</b>
+
+для того, чтобы убедиться, что все изменения были выполнены успешно.
+<a name="lbAF">&nbsp;</a>
+</p><h2>ЗАМЕЧАНИЯ</h2>
+
+Unix V7, а также некоторые более поздние системы, имеют список скоростей в бодах
+в котором, после первых четырнадцати значений B0, ..., B9600, идут две константы
+EXTA и EXTB ("External A" и "External B"). Многие другие системы расширяют этот
+список более высокими значениями.
+<p>
+
+Ненулевое <i>duration</i> вместе с <b>tcsendbreak</b> приведет к неизвестному результату.
+SunOS определяет паузу в
+<i>duration</i><b>*</b><i>N</i>
+
+секунд, где <i>N</i> является минимум 0.25, а максимум 0.5.
+Linux, AIX, DU, Tru64 делают паузу в
+<i>duration</i>
+
+миллискунд.
+FreeBSD и NetBSD и HP-UX и MacOS игнорируют значение
+<i>duration</i>.
+
+В Solaris и Unixware,
+<b>tcsendbreak</b>
+
+с ненулевым
+<i>duration</i>
+
+ведет себя аналогично
+<b>tcdrain</b>.
+
+
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stty&amp;category=1">stty</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setserial&amp;category=8">setserial</a></b>(8)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="tcsetpgrp" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

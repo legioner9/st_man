@@ -1,0 +1,1031 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ls (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ls"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ls" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ls (1)</font><hr><li> <a href="/man.shtml?topic=ls&amp;category=1&amp;russian=4"><u>ls</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ls&amp;category=1&amp;russian=1"><u>ls</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ls&amp;category=1&amp;russian=0"><u>ls</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ls&amp;category=1&amp;russian=2"><u>ls</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ls&amp;category=1&amp;russian=5"><u>ls</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+ls, dir, vdir - выводит содержимое каталога
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>ls [</b><i>опции</i><b>] [</b><i>файл...</i><b>]</b>
+
+<br>
+
+<b>dir [</b><i>файл...</i><b>]</b>
+
+<br>
+
+<b>vdir [</b><i>файл...</i><b>]</b>
+
+<p>
+Опции POSIX:
+<b>[-CFRacdilqrtu1] [--]</b>
+
+</p><p>
+Опции GNU (краткая форма):
+<b>[-1abcdfghiklmnopqrstuvwxABCDFGHLNQRSUX]</b>
+
+<b>[-w </b><i>cols</i><b>]</b>
+
+<b>[-T </b><i>cols</i><b>]</b>
+
+<b>[-I </b><i>шаблон</i><b>]</b>
+
+<b>[--full-time]</b>
+
+<b>[--show-control-chars]</b>
+
+<b>[--block-size=</b><i>размер</i><b>]</b>
+
+<b>[--format={long,verbose,commas,across,vertical,single-column}]</b>
+
+<b>[--sort={none,time,size,extension}]</b>
+
+<b>[--time={atime,access,use,ctime,status}]</b>
+
+<b>[--color[={none,auto,always}]]</b>
+
+<b>[--help] [--version] [--]</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Программа
+<b>ls</b>
+
+сначала выводит список всех 
+<i>файлов</i>
+
+(не каталогов), перечисленных в командной строке, а затем выводит
+список всех файлов, находящихся в каталогах, перечисленных в командной
+строке.  Если не указано ни одного файла, то по умолчанию аргументом
+назначается `.' (текущий каталог).  Опция -d заставляет
+<b>ls</b>
+
+не считать аргументы-каталоги каталогами.  Будут отображаться только
+файлы, которые не начинаются с `.' или все файлы, если задана опция
+-a.
+<p>
+
+Каждый список файлов (для файлов, которые не являются каталогами и
+для каждого каталога, содержащего список файлов) сортируется отдельно
+в алфавитной последовательности текущих региональных настроек (locale).
+Когда указана опция -l, то перед каждым списком выводится итоговая
+строка с общим размером всех файлов в списке, который измеряется в
+полу-килобайтах (512 байт).
+</p><p>
+
+Результаты печатаются на стандартный вывод, по одному файлу на строку,
+если с помощью опции -C не задан многоколоночный вывод.
+Однако при выводе на терминал не определено, будет ли вывод осуществляться
+в одну колонку или в несколько.  Для задания одноколоночного или
+многоколоночного режима вывода могут использоваться опции -1 и -C,
+соответственно.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОПЦИИ POSIX</h2>
+
+<dl compact="">
+<dt><b>-C</b>
+
+</dt><dd>
+Напечатать список файлов в колонках с вертикальной сортировкой.
+</dd><dt><b>-F</b>
+
+</dt><dd>
+Для каждого имени каталога добавлять суффикс `/', для каждого имени FIFO - `|'
+и для каждого имени исполняемого файла `*'.
+</dd><dt><b>-R</b>
+
+</dt><dd>
+Включить рекурсивную выдачу списка каталогов.
+</dd><dt><b>-a</b>
+
+</dt><dd>
+Включать в список файлы с именем, начинающимся с `.'.
+</dd><dt><b>-c</b>
+
+</dt><dd>
+Использовать при сортировке (при задании опции -t или -l) время изменения
+состояния файла вместо времени последней модификации файла.
+</dd><dt><b>-d</b>
+
+</dt><dd>
+Выдавать имена каталогов, как будто они обычные файлы, вместо того,
+чтобы показывать их содержимое.
+</dd><dt><b>-i</b>
+
+</dt><dd>
+Предварять вывод для каждого файла его серийным номером (номером inode).
+</dd><dt><b>-l</b>
+
+</dt><dd>
+Выдавать (в одноколоночном формате) тип файла, права доступа к файлу,
+количество ссылок на файл, имя владельца, имя группы, размер файла (в байтах),
+временной штамп и имя файла.
+<p>
+Типы файлов могут принимать следующие значения:
+<b>-</b>
+
+для обычного файла,
+<b>d</b>
+
+для каталога,
+<b>b</b>
+
+для блочного устройства,
+<b>c</b>
+
+для символьного устройства,
+<b>l</b>
+
+для символической ссылки,
+<b>p</b>
+
+для FIFO и
+<b>s</b>
+
+для гнезда (socket).
+</p><p>
+По умолчанию, временной штамп является временем последней модификации;
+опции -c и -u позволяют выбрать два других временных штампа.
+Для файлов устройств, поле размера обычно заменяется на старший и
+младший номера устройства.
+</p></dd><dt><b>-q</b>
+
+</dt><dd>
+Вместо непечатаемых символов в имени файла при выводе будут ставиться
+знаки вопроса. (Эта опция включена по умолчанию при выводе на терминал.)
+</dd><dt><b>-r</b>
+
+</dt><dd>
+Производить сортировку в обратном порядке.
+</dd><dt><b>-t</b>
+
+</dt><dd>
+Сортировать по показываемому временному штампу.
+</dd><dt><b>-u</b>
+
+</dt><dd>
+Использовать при сортировке (опция -t) или перечислении (опция -l)
+время последнего доступа к файлу вместо времени последней модификации
+файла.
+</dd><dt><b>-1</b>
+
+</dt><dd>
+Выдавать в одноколоночном формате.
+</dd><dt><b>--</b>
+
+</dt><dd>
+Завершает список опций.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ПОДРОБНОСТИ ВЕРСИИ GNU</h2>
+
+Если стандартный вывод является терминалом, то вывод производится в
+многоколоночном формате (с вертикальной сортировкой).
+<p>
+
+Программа
+<b>dir</b>
+
+(также установленная под именем
+<b>d</b>)
+
+является эквивалентом `ls&nbsp;-C&nbsp;-b'; таким образом, файлы по умолчанию
+выдаются в многоколоночном формате (с вертикальной сортировкой).
+Программа
+<b>vdir</b>
+
+(также установленная под именем
+<b>v</b>)
+
+эквивалентна `ls&nbsp;-l&nbsp;-b'; таким образом, файлы по умолчанию выдаются
+в длинном формате.
+<a name="lbAG">&nbsp;</a>
+</p><h2>ОПЦИИ GNU</h2>
+
+<dl compact="">
+<dt><b>-1, --format=single-column</b>
+
+</dt><dd>
+Выдавать один файл на строку. Эта опция включается по умолчанию, если
+стандартный вывод не является терминалом.
+</dd><dt><b>-a, --all</b>
+
+</dt><dd>
+Выдавать все файлы в каталогах, включая все файлы, начинающиеся с `.'.
+</dd><dt><b>-b, --escape, --quoting-style=escape</b>
+
+</dt><dd>
+Заменять неграфические символы в именах файлов, используя
+алфавитно-цифровые последовательности, а также последовательности вида
+\
+000' с восьмеричными цифрами, как в языке C. Данная опция аналогична
+<b>-Q</b>,
+
+за исключением того, что имена файлов не заключаются в двойные кавычки.
+</dd><dt><b>-c, --time=ctime, --time=status</b>
+
+</dt><dd>
+Сортировать содержимое каталога в соответствии с временем изменения
+состояния файла (поле `ctime' в inode). Если с помощью опции
+<b>-l </b>
+
+задан длинный формат, то выдавать время изменения состояния файла
+вместо времени его модификации.
+</dd><dt><b>-d, --directory</b>
+
+</dt><dd>
+Выдавать имена каталогов, как будто они обычные файлы, вместо того,
+чтобы показывать их содержимое.
+</dd><dt><b>-f</b>
+
+</dt><dd>
+Не сортировать содержимое каталога; выдавать файлы в том порядке, в
+котором они записаны на диск.
+Эта опция также разрешает
+<b>-a</b>
+
+и
+<b>-U</b>
+
+и запрещает
+<b>-l</b>,
+
+<b>--color</b>,
+
+<b>-s</b>,
+
+и
+<b>-t</b>,
+
+если они были заданы перед
+<b>-f</b>.
+
+</dd><dt><b>-g</b>
+
+</dt><dd>
+Игнорируется; нужна для совместимости с Unix.
+</dd><dt><b>-h, --human-readable</b>
+
+</dt><dd>
+Добавлять к каждому размеру файла букву размера, например,
+<b>M</b>
+
+для двоичных мегабайт (`мебибайт').
+(Новое в fileutils-4.0.)
+</dd><dt><b>-i, --inode</b>
+
+</dt><dd>
+Выдавать номер inode (также называемый серийным номером файла и
+номером индекса) каждого файла, слева от его имени. (Этот номер
+однозначно идентифицирует каждый файл в каждой файловой системе)
+</dd><dt><b>-k, --kilobytes</b>
+
+</dt><dd>
+Если выдаются размеры файлов, то выдавать их в килобайтах.
+</dd><dt><b>-l, --format=long, --format=verbose</b>
+
+</dt><dd>
+В дополнении к имени каждого файла, выводятся тип файла, права доступа
+к файлу, количество ссылок на файл, имя владельца, имя группы, размер
+файла в байтах и временной штамп (время последней модификации файла,
+если не задано другое). Для файлов с временем больше чем 6 месяцев
+назад или больше, чем 1 час в будущее, временной штамп содержит
+год вместо времени дня.
+<p>
+Каждый каталог со списком содержимого предваряется строкой
+`total
+<i>blocks</i>',
+
+где
+<i>blocks</i> --
+
+это общее дисковое пространство, используемое всеми файлами в данном
+каталоге.  По умолчанию, размер блока составляет 1024 байта; если
+установлена переменная окружения
+<b>POSIXLY_CORRECT ,</b>
+
+то используется размер блока 512 байт (если не задана опция
+<b>-k </b>
+
+). <i>blocks</i>
+
+считает каждую жесткую ссылку отдельно; задать по другому через аргументы
+невозможно.
+</p><p>
+Права доступа отображаются в практически обычном символьном виде, но
+<b>ls</b>
+
+комбинирует несколько битов в третий символ каждого набора прав доступа:
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>s</b>
+
+</dt><dd>
+Если setuid или setgid бит установлены вместе с соответствующим битом
+прав на выполнение.
+</dd><dt><b>S</b>
+
+</dt><dd>
+Если setuid или setgid бит установлены, но соответствующий бит прав
+на выполнение не установлен.
+</dd><dt><b>t</b>
+
+</dt><dd>
+Если sticky-бит установлен вместе с битом прав на выполнение остальными.
+</dd><dt><b>T</b>
+
+</dt><dd>
+Если sticky-бит установлен, но бит прав на выполнение остальными нет.
+</dd><dt><b>x</b>
+
+</dt><dd>
+Если бит прав на выполнение установлен, и не выполняется ни одно из
+вышеуказанных условий.
+</dd><dt><b>-</b>
+
+</dt><dd>
+Во всех остальных случаях.
+</dd></dl>
+</dd></dl>
+
+</dd><dt><b>-m, --format=commas</b>
+
+</dt><dd>
+Выдавать список файлов в строчку с максимально возможным количеством
+имен файлов на строку, разделяя имена запятой и пробелом.
+</dd><dt><b>-n, --numeric-uid-gid</b>
+
+</dt><dd>
+Выдавать числовые UID и GID вместо имен владельца и группы.
+</dd><dt><b>-o</b>
+
+</dt><dd>
+Применять длинный формат, но не показывать информацию о группе.
+Данная опция эквивалентна
+<b>--format=long --no-group</b>.
+
+Данная опция предоставляется для совместимости с другими версиями
+<b>ls</b>.
+
+</dd><dt><b>-p, --file-type, --indicator-style=file-type</b>
+
+</dt><dd>
+Добавлять символ, показывающий тип файла, к каждому имени файла. Данная
+опция похожа на
+<b>-F</b>,
+
+за исключением того, что исполняемые файлы не помечаются.
+(Фактически в fileutils-4.0 опция --file-type эквивалентна --classify.)
+</dd><dt><b>-q, --hide-control-chars</b>
+
+</dt><dd>
+Выдавать знаки вопроса вместо неграфических символов в имени файла.
+Эта опция включена по умолчанию.
+</dd><dt><b>-r, --reverse</b>
+
+</dt><dd>
+Сортировать содержимое каталога в обратном порядке.
+</dd><dt><b>-s, --size</b>
+
+</dt><dd>
+Выдавать размер каждого файла в блоках по 1024 байта слева от имени файла.
+Если установлена переменная окружения
+<b>POSIXLY_CORRECT</b>,
+
+то применяется размер блока 512, если не задана опция 
+<b>-k .</b>
+
+</dd><dt><b>-t, --sort=time</b>
+
+</dt><dd>
+Сортировать по времени последней модификации (поле `mtime' в inode)
+вместо того, чтобы производить сортировку по алфавиту. Самые свежие
+файлы будут отображаться первыми.
+</dd><dt><b>-u, --time=atime, --time=access, --time=use</b>
+
+</dt><dd>
+Сортировать по времени последнего доступа к файлу, вместо времени
+последней модификации (поле `atime' в inode). Если задан длинный
+формат вывода, выдавать время последнего доступа вместо времени
+последней модификации.
+</dd><dt><b>-v</b>
+
+</dt><dd>
+Производить сортировку в соответствии с номером версии файлов.  При
+этом учитывается, что имена файлов часто содержат номера версий или
+порядковые номера.  Стандартные
+функции сортировки обычно не обеспечивают сортировку, которую мог бы
+ожидать человек, так как сортировка производится на основе посимвольного
+сравнения. Сортировка по версиям решает эту проблему и особенно полезна,
+когда производится просмотр каталогов, содержащих много файлов, у
+которых в имени есть номер версии. Например:
+<p>
+</p><pre>     &gt; ls -1            &gt; ls -1v
+     foo.zml-1.gz       foo.zml-1.gz
+     foo.zml-100.gz     foo.zml-12.gz
+     foo.zml-12.gz      foo.zml-25.gz
+     foo.zml-25.gz      foo.zml-100.gz
+</pre>
+
+<p>
+Заметим, что цифровые части с лидирующими нулями определяются как
+более маленькие:
+</p><p>
+</p><pre>     &gt; ls -1            &gt; ls -1v
+     abc-1.007.tgz      abc-1.007.tgz
+     abc-1.012b.tgz     abc-1.01a.tgz
+     abc-1.01a.tgz      abc-1.012b.tgz
+</pre>
+
+<p>
+(Новое в fileutils-4.0.)
+</p></dd><dt><b>-w, --width </b><i>cols</i>
+
+</dt><dd>
+Назначает вывод на экран в
+<i>cols</i>
+
+колонок. По умолчанию, если это возможно, данное значение узнается от драйвера
+терминала; в противном случае используется значение переменной окружения
+<b>COLUMNS</b>,
+
+если она установлена; в противном случае, по умолчанию, устанавливается 80.
+</dd><dt><b>-x, --format=across, --format=horizontal</b>
+
+</dt><dd>
+Выдавать список файлов в многоколоночном режиме, с сортировкой по
+горизонтали. 
+</dd><dt><b>-A, --almost-all</b>
+
+</dt><dd>
+Выдавать все файлы, кроме `.' и `..'.
+</dd><dt><b>-B, --ignore-backups</b>
+
+</dt><dd>
+Не показывать файлы, которые заканчиваются на `~', если они не заданы в
+командной строке.
+</dd><dt><b>-C, --format=vertical</b>
+
+</dt><dd>
+Выдавать файлы в многоколоночном режиме, с сортировкой по вертикали.
+Опция устанавливается по умолчанию, если стандартный вывод является
+терминалом. Данная опция всегда устанавливается по умолчанию для программ
+<b>dir</b> и <b>d</b>.
+
+</dd><dt><b>-D, --dired</b>
+
+</dt><dd>
+При длинном формате
+(<b>-l</b>)<b>,</b>
+
+после основного вывода, выдавать дополнительную строку вида:
+<br>
+
+<b>//DIRED//</b>
+
+<i>BEG1 END1 BEG2 END2 ...</i>
+
+<br>
+
+<p>
+Здесь
+<i>BEGn</i> и <i>ENDn</i> --
+
+это целые беззнаковые числа, которые для каждой записи показывают
+байтовую позицию начала и конца каждого имени файла. Таким образом,
+Emacs может легко найти имена, даже когда они содержат необычные
+символы, такие как пробелы или символы новой строки.
+</p><p>
+Если каталоги отображаются рекурсивно
+(<b>-R</b>),
+
+то похожая строка выводится после каждого подкаталога:
+<br>
+
+<b>//SUBDIRED//</b>
+
+<i>BEG1 END1 ...</i>
+
+</p></dd><dt><b>-F, --classify, --indicator-style=classify</b>
+
+</dt><dd>
+Добавлять к каждому имени файла символ, показывающий его тип.  Для
+обычных исполняемых файлов это `*'.  Для каталога добавляется `/', для
+FIFO - `|', для символических ссылок `@', для гнезд `=', для обычных
+файлов ничего не добавляется.
+</dd><dt><b>-G, --no-group</b>
+
+</dt><dd>
+Не отображать информацию о группе в длинном формате вывода.
+</dd><dt><b>-H, --si</b>
+
+</dt><dd>
+Делает то же, что и опция
+<b>-h</b>,
+
+но использует официальные единицы измерения SI (где для расчетов
+используется 1000 вместо 1024 и, таким образом, M -- это 1000000 вместо
+10485576).
+(Новое в fileutils-4.0.)
+</dd><dt><b>-I, --ignore=</b><i>шаблон</i>
+
+</dt><dd>
+Не показывать файлы, имена которых совпадают с заданным
+<i>шаблоном</i>
+
+(шаблон - это не регулярное выражение), если только они не заданы в
+командной строке. Как и в shell, начальная `.' в имени файла не
+совпадает с символом `*', заданным в начале
+<i>шаблона</i>.
+
+Чтобы спрятать ваши каталоги, вы можете просто
+добавить LS_OPTIONS="$LS_OPTIONS -I mystuff" в /etc/profile.
+</dd><dt><b>-L, --dereference</b>
+
+</dt><dd>
+Выдавать информацию о файлах, на которые указывают символические ссылки,
+вместо информации о самих символических ссылках.
+</dd><dt><b>-N, --literal</b>
+
+</dt><dd>
+Не заключать в кавычки имена файлов.
+</dd><dt><b>-Q, --quote-name, --quoting-style=c</b>
+
+</dt><dd>
+Заключать имена файлов в двойные кавычки и показывать неграфические
+символы как в языке С.
+</dd><dt><b>-R, --recursive</b>
+
+</dt><dd>
+Рекурсивно выдавать список содержимого всех каталогов.
+</dd><dt><b>-S, --sort=size</b>
+
+</dt><dd>
+Производить сортировку по размеру файла, вместо сортировки по алфавиту.
+Таким образом, наибольшие файлы будут показаны сначала.
+</dd><dt><b>-T, --tabsize </b><i>cols</i>
+
+</dt><dd>
+Назначить ширину табуляции в
+<i>cols</i>
+
+колонок. По умолчанию 8, может быть также задано с помощью переменной
+окружения TABSIZE, если при этом не установлена переменная окружения
+POSIXLY_CORRECT.
+<b>ls</b>
+
+использует табуляцию для выравнивания вывода, когда это возможно. Если
+<i>cols </i>
+
+равно нулю, то табуляция не используется.
+</dd><dt><b>-U, --sort=none</b>
+
+</dt><dd>
+Не производить сортировку; список файлов будет выдаваться в том порядке,
+в каком файлы записаны на диск. (отличие между опциями
+<b>-U</b> и <b>-f</b>
+
+состоит в том, что данная опция не запрещает и не разрешает другие опции).
+Эта опция может быть особенно полезна, когда выдаются списки содержимого
+очень больших каталогов, при этом сортировка не выполняется и весь процесс
+происходит быстрее).
+</dd><dt><b>-X, --sort=extension</b>
+
+</dt><dd>
+Производить сортировку в алфавитном порядке по расширениям файлов
+(символы после последней `.'); файлы без расширений будут показаны
+первыми.
+</dd><dt><b>--block-size=</b><i>size</i>
+
+</dt><dd>
+Выдает размеры в блоках по
+<i>size</i>
+
+байт.
+(Новое в fileutils-4.0.)
+</dd><dt><b>--color[=</b><i>when</i><b>]</b>
+
+</dt><dd>
+Задает цвет для различения типов файлов.  Цвета задаются с использованием
+переменной окружения 
+<b>LS_COLORS</b>.
+
+Информацию о том, как нужно задавать значение этой переменной, можно
+найти в странице руководства
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dircolors&amp;category=1">dircolors</a></b>(1).
+
+Параметр
+<i>when</i>
+
+может быть опущен или принимать одно из следующих значений:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>none</b>
+
+</dt><dd>
+Вообще не использовать цвет. Установлено по умолчанию.
+</dd><dt><b>auto</b>
+
+</dt><dd>
+Использовать цвет, только если стандартный вывод является терминалом.
+</dd><dt><b>always</b>
+
+</dt><dd>
+Всегда использовать цвет. Задание
+<b>--color</b>
+
+без параметра
+<i>when</i>
+
+эквивалентно
+<b>--color=always</b>.
+
+</dd></dl>
+</dd></dl>
+
+</dd><dt><b>--full-time</b>
+
+</dt><dd>
+Выдавать время в полном, а не в стандартном сокращенном варианте.
+Данный формат выглядит так же, как и в команде
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=date&amp;category=1">date</a></b>(1)
+
+по умолчанию; его невозможно изменить, но вы можете извлечь строку
+с датой через команду
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cut&amp;category=1">cut</a></b>(1)
+
+и пропустить результат через `date -d'.
+<p>
+Это может быть очень полезно, потому что время в таком формате включает
+секунды. (Файловые системы Unix записывают временной штамп файла с
+округлением до секунды, так что данная опция показывает полную информацию
+о временном штампе). Например, это может помочь, если вы разбираетесь, 
+почему некий Makefile неправильно перегенерирует файлы.
+</p></dd><dt><b>--quoting-style=</b><i>word</i>
+
+</dt><dd>
+Используйте стиль
+<i>word</i>
+
+для выбора режима квотинга имен файлов. Стиль
+<i>word</i>
+
+может принимать следующие значения:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>literal</b>
+
+</dt><dd>
+Вывод имен файлов как есть. Это поведение
+<b>ls</b>
+
+по умолчанию.
+</dd><dt><b>shell</b>
+
+</dt><dd>
+Заключает имена файлов в одиночные кавычки для shell, если они
+содержат метасимволы или могут привести к неоднозначной выдаче.
+</dd><dt><b>shell-always</b>
+
+</dt><dd>
+Заключает имена файлов в одиночные кавычки для shell, даже
+если этого не требуется.
+</dd><dt><b>c</b>
+
+</dt><dd>
+Заключает имена файлов в двойные кавычки, как в языке C; это
+равносильно опции
+<b>-Q</b>.
+
+</dd><dt><b>escape</b>
+
+</dt><dd>
+Как и для
+<i>c</i>,
+
+за исключением того, что имя не заключается в двойные кавычки;
+эквивалентно опции
+<b>-b.</b>
+
+
+</dd></dl>
+<p>
+
+Значение по умолчанию для данной опции может быть задано в переменной
+окружения QUOTING_STYLE.  (См. ниже главу
+<b>ОКРУЖЕНИЕ</b>).
+
+</p></dd></dl>
+
+</dd><dt><b>--show-control-chars</b>
+
+</dt><dd>
+Выдавать неграфические символы в именах файлов как есть. Так задано
+по умолчанию, если вывод осуществляется на терминал, а программа
+называется
+<b>ls</b>.
+
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>СТАНДАРТНЫЕ ОПЦИИ GNU</h2>
+
+<dl compact="">
+<dt><b>--help</b>
+
+</dt><dd>
+Выдать подсказку на стандартный вывод и успешно завершиться.
+</dd><dt><b>--version</b>
+
+</dt><dd>
+Выдать информацию о версии на стандартный вывод и успешно завершиться.
+</dd><dt><b>--</b>
+
+</dt><dd>
+Служит для обозначения конца списка опций.
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>ОКРУЖЕНИЕ</h2>
+
+Переменная POSIXLY_CORRECT определяет размер блока.
+Переменная TABSIZE задает ширину табуляции, если не установлена
+переменная POSIXLY_CORRECT.
+Переменная COLUMNS (когда она содержит целое число) определяет ширину
+вывода в колонках (для использования с опцией -C).
+Имена файлов не должны обрезаться, чтобы уместить их в многоколоночном
+выводе.
+<p>
+
+При работе обычным образом используются значения переменных LANG, LC_ALL, LC_CTYPE и
+LC_MESSAGES.
+Переменная TZ задает временную зону для временных меток, которые выдает
+<b>ls</b>.
+
+Переменная LS_COLORS используется для задания цветов.
+Переменная LS_OPTIONS хранит опции по умолчанию.
+
+</p><p>
+
+Переменная QUOTING_STYLE используется для задания значения по умолчанию
+для опции
+<b>--quoting-style</b>.
+
+Данная опция по умолчанию установлена в
+<b>literal</b>,
+
+но авторы предупреждают, что это умолчание может когда-нибудь в
+следующей версии измениться на
+<b>shell</b>.
+
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ОШИБКИ РЕАЛИЗАЦИИ</h2>
+
+В BSD системах
+<b>ls</b>
+
+выдает размеры, которые являются наполовину меньше правильных, для
+файлов, которые смонтированы по NFS из HP-UX систем. В HP-UX системах
+<b>ls</b>
+
+выдает размеры, которые в два раза больше правильных для файлов,
+которые смонтированы по NFS из BSD систем. Это недостаток систем HP-UX;
+он также есть и в программе 
+<b>ls</b>
+
+из HP-UX.
+<a name="lbAK">&nbsp;</a>
+<h2>СОВМЕСТИМОСТЬ</h2>
+
+POSIX 1003.2
+<a name="lbAL">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dircolors&amp;category=1">dircolors</a></b>(1)
+
+<a name="lbAM">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Данная страница описывает версию
+<b>ls</b>
+
+из пакета fileutils-4.0;
+другие версии могут иметь небольшие отличия.
+Исправления и дополнения присылайте по адресу <a href="mailto:aeb@cwi.nl">aeb@cwi.nl</a>.
+Отчеты об ошибках в этой программе присылайте по адресу
+<a href="mailto:fileutils-bugs@gnu.ai.mit.edu">fileutils-bugs@gnu.ai.mit.edu</a>.
+<a name="lbAN">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевёл с английского Виктор Вислобоков &lt;<a href="mailto:corochoone@perm.ru">corochoone@perm.ru</a>&gt; 2003
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ POSIX</a></dt><dd>
+</dd><dt><a href="#lbAF">ПОДРОБНОСТИ ВЕРСИИ GNU</a></dt><dd>
+</dd><dt><a href="#lbAG">ОПЦИИ GNU</a></dt><dd>
+</dd><dt><a href="#lbAH">СТАНДАРТНЫЕ ОПЦИИ GNU</a></dt><dd>
+</dd><dt><a href="#lbAI">ОКРУЖЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ОШИБКИ РЕАЛИЗАЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAK">СОВМЕСТИМОСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAL">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAM">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAN">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ls" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

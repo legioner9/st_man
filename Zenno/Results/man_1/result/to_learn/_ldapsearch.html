@@ -1,0 +1,819 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ldapsearch (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ldapsearch"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ldapsearch" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ldapsearch (1)</font><hr><li> <a href="/man.shtml?topic=ldapsearch&amp;category=1&amp;russian=4"><u>ldapsearch</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ldapsearch&amp;category=1&amp;russian=3"><u>ldapsearch</u></a> (1) <font color="#555555"> ( Разные man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ldapsearch&amp;category=1&amp;russian=0"><u>ldapsearch</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ldapsearch&amp;category=8&amp;russian=0"><u>ldapsearch</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+ldapsearch - инструмент поиска LDAP
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>ldapsearch</b>
+
+[<b>-V</b>[<b>V</b>]]
+
+[<b>-d</b><i>&nbsp;debuglevel</i>]
+
+[<b>-n</b>]
+
+[<b>-v</b>]
+
+[<b>-c</b>]
+
+[<b>-u</b>]
+
+[<b>-t</b>[<b>t</b>]]
+
+[<b>-T</b><i>&nbsp;path</i>]
+
+[<b>-F</b><i>&nbsp;prefix</i>]
+
+[<b>-A</b>]
+
+[<b>-L</b>[<b>L</b>[<b>L</b>]]]
+
+[<b>-S</b><i>&nbsp;attribute</i>]
+
+[<b>-b</b><i>&nbsp;searchbase</i>]
+
+[<b>-s</b>&nbsp;{<b>base</b>|<b>one</b>|<b>sub</b>|<b>children</b>}]
+
+[<b>-a</b>&nbsp;{<b>never</b>|<b>always</b>|<b>search</b>|<b>find</b>}]
+
+[<b>-l</b><i>&nbsp;timelimit</i>]
+
+[<b>-z</b><i>&nbsp;sizelimit</i>]
+
+[<b>-f</b><i>&nbsp;file</i>]
+
+[<b>-M</b>[<b>M</b>]]
+
+[<b>-x</b>]
+
+[<b>-D</b><i>&nbsp;binddn</i>]
+
+[<b>-W</b>]
+
+[<b>-w</b><i>&nbsp;passwd</i>]
+
+[<b>-y</b><i>&nbsp;passwdfile</i>]
+
+[<b>-H</b><i>&nbsp;ldapuri</i>]
+
+[<b>-h</b><i>&nbsp;ldaphost</i>]
+
+[<b>-p</b><i>&nbsp;ldapport</i>]
+
+[<b>-P</b>&nbsp;{<b>2</b>|<b>3</b>}]
+
+[<b>-e</b>&nbsp;[<b>!</b>]<b></b><i>ext</i>[<b>=</b><i>extparam</i>]]
+
+[<b>-E</b>&nbsp;[<b>!</b>]<b></b><i>ext</i>[<b>=</b><i>extparam</i>]]
+
+[<b>-o</b><i>&nbsp;opt</i><b></b>[=<i>optparam</i><b></b>]]
+
+[<b>-O</b><i>&nbsp;security-properties</i>]
+
+[<b>-I</b>]
+
+[<b>-Q</b>]
+
+[<b>-N</b>]
+
+[<b>-U</b><i>&nbsp;authcid</i>]
+
+[<b>-R</b><i>&nbsp;realm</i>]
+
+[<b>-X</b><i>&nbsp;authzid</i>]
+
+[<b>-Y</b><i>&nbsp;mech</i>]
+
+[<b>-Z</b>[<b>Z</b>]]
+
+<i>filter</i>
+
+[<i>attrs...</i>]
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<i>ldapsearch</i>&nbsp;-
+
+это интерфейс работы из командной строки для библиотечного вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap_search_ext&amp;category=3">ldap_search_ext</a></b>(3).
+
+<p>
+
+<b>ldapsearch</b>
+
+открывает соединение с сервером LDAP, выполняет подсоединение и поиск с использованием указанных параметров.
+Параметр <i>filter</i> должен соответствовать строковому представлению поисковых фильтров, как определено в RFC 4515.
+Если этот параметр не указан, используется фильтр по умолчанию <b>(objectClass=*)</b>.
+</p><p>
+
+Если
+<b>ldapsearch</b>
+
+находит одну или несколько записей, возвращаются атрибуты, указанные в списке
+<i>attrs</i>. Если в этом списке указан знак <b>*</b>, возвращаются все пользовательские атрибуты.
+Если в этом списке указан знак <b>+</b>, возвращаются все операционные атрибуты.
+Если список <i>attrs</i> не указан, возвращаются все пользовательские атрибуты.
+Если в списке указан только OID 1.1, никаких атрибутов не возвращается.
+</p><p>
+
+Результаты поиска отображаются в виде расширенной версии LDIF.
+Формат вывода контролируется с помощью параметра <i>-L</i>.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ПАРАМЕТРЫ</h2>
+
+<dl compact="">
+<dt><b>-V</b>[<b>V</b>]
+
+</dt><dd>
+Вывод информации о версии. При указании <b>-VV</b>, после вывода информации о версии осуществляется выход.
+При указании <b>-V</b>, после вывода информации о версии выполняется поиск согласно заданным критериям.
+</dd><dt><b>-d</b><i>&nbsp;debuglevel</i>
+
+</dt><dd>
+Установить уровень отладки LDAP в <i>debuglevel</i>. Чтобы этот параметр работал,
+<b>ldapsearch</b>
+
+должен быть скомпилирован с опцией LDAP_DEBUG.
+</dd><dt><b>-n</b>
+
+</dt><dd>
+Демонстрируется, что будет сделано, но реальный поиск не выполняется.
+Используется для отладки совместно с параметром <b>-v</b>.
+</dd><dt><b>-v</b>
+
+</dt><dd>
+Запуск в режиме подробного вывода, множество диагностических сообщений посылается на стандартный вывод.
+</dd><dt><b>-c</b>
+
+</dt><dd>
+Режим продолжения операции. Выводятся сообщения об ошибках, но ldapsearch
+продолжает поиск. По умолчанию после сообщения об ошибке происходит завершение работы.
+Применимо только совместно с параметром <b>-f</b>.
+</dd><dt><b>-u</b>
+
+</dt><dd>
+В вывод включается форма удобного для пользователя имени (User Friendly Name, UFN)
+уникального имени (Distinguished Name, DN).
+</dd><dt><b>-t</b>[<b>t</b>]
+
+</dt><dd>
+При указании одного <b>-t</b> полученные непечатаемые значения записываются в набор временных файлов.
+Полезно при работе со значениями, содержащими несимвольные данные, такими как jpegPhoto или audio.
+При указании второго <b>-t</b> все полученные значения записываются в файлы.
+</dd><dt><b>-T</b><i>&nbsp;path</i>
+
+</dt><dd>
+Временные файлы записываются в указанную в <i>path</i> директорию (по умолчанию <b>/var/tmp/</b>).
+</dd><dt><b>-F</b><i>&nbsp;prefix</i>
+
+</dt><dd>
+URL-префикс для временных файлов. По умолчанию <b>file://</b><i>path</i>, где
+<i>path</i> - либо <b>/var/tmp/</b>, либо значение, указанное в параметре <b>-T</b>.
+</dd><dt><b>-A</b>
+
+</dt><dd>
+Получать только атрибуты (без значений). Полезно, если Вы хотите лишь убедиться в наличии атрибута
+в записи и не интересуетесь конкретными значениями.
+</dd><dt><b>-L</b>
+
+</dt><dd>
+Управление выводом результатов поиска в формате обмена данными LDAP (LDAP Data Interchange Format), описанном в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldif&amp;category=5">ldif</a></b>(5).
+
+Единичный <b>-L</b> ограничивает вывод форматом LDIFv1.
+Второй <b>-L</b> отключает вывод комментариев.
+Третий <b>-L</b> отключает вывод версии LDIF.
+По умолчанию используется расширенная версия LDIF.
+</dd><dt><b>-S</b><i>&nbsp;attribute</i>
+
+</dt><dd>
+Отсортировать возвращаемые записи по атрибуту <i>attribute</i>. По умолчанию возвращаемые записи не сортируются.
+Если в качестве <i>attribute</i> задана строка нулевой длины (""),
+записи сортируются по компонентам их уникального имени Distinguished Name. Подробнее смотрите в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap_sort&amp;category=3">ldap_sort</a></b>(3).
+
+Обратите внимание, что по умолчанию
+<b>ldapsearch</b>
+
+выводит записи по мере их получения. При использовании параметра <b>-S</b>
+все данные сначала получаются, потом сортируются, потом выводятся.
+</dd><dt><b>-b</b><i>&nbsp;searchbase</i>
+
+</dt><dd>
+Использовать в качестве точки начала поиска <i>searchbase</i> вместо значения по умолчанию.
+</dd><dt><b>-s</b>&nbsp;{<b>base</b>|<b>one</b>|<b>sub</b>|<b>children</b>}
+
+</dt><dd>
+Указывает диапазон поиска. Может принимать одно из следующих значений:
+<b>base</b>,
+
+<b>one</b>,
+
+<b>sub</b>
+
+или
+<b>children</b>,
+
+что означает поиск только по базовому объекту, на один уровень ниже, по всему поддереву и по дочерним записям соответственно.
+Значение по умолчанию - 
+<b>sub</b>.
+
+Примечание: для диапазона 
+<i>children</i>
+
+требуется расширение LDAPv3 subordinate feature.
+</dd><dt><b>-a</b>&nbsp;{<b>never</b>|<b>always</b>|<b>search</b>|<b>find</b>}
+
+</dt><dd>
+Указывает, как выполняется разыменование псевдонимов. Может принимать одно из следующих значений:
+<b>never</b>,
+
+<b>always</b>,
+
+<b>search</b>
+
+или
+<b>find</b>,
+
+что означает, что псевдонимы никогда не разыменовываются, всегда разыменовываются,
+разыменовываются при поиске или при нахождении базового объекта поиска соответственно.
+По умолчанию псевдонимы никогда не разыменовываются.
+</dd><dt><b>-l</b><i>&nbsp;timelimit</i>
+
+</dt><dd>
+Ждать окончания поиска не более <i>timelimit</i> секунд. Значение timelimit
+<i>0</i>
+
+(ноль) или
+<i>none</i>
+
+означает, что ограничений нет. Значение timelimit
+<i>max</i>
+
+означает максимальное допустимое протоколом значение (целое число).
+Сервер может налагать своё максимальное значение ограничения по времени timelimit,
+переопределить его может только пользователь root.
+</dd><dt><b>-z</b><i>&nbsp;sizelimit</i>
+
+</dt><dd>
+Ограничить количество возвращаемых в результате поиска записей значением <i>sizelimit</i>. Значение sizelimit
+<i>0</i>
+
+(ноль) или
+<i>none</i>
+
+означает, что ограничений нет. Значение sizelimit
+<i>max</i>
+
+означает максимальное допустимое протоколом значение (целое число).
+Сервер может налагать своё максимальное значение ограничения по количеству записей sizelimit,
+переопределить его может только пользователь root.
+</dd><dt><b>-f</b><i>&nbsp;file</i>
+
+</dt><dd>
+Считать серию строк из файла <i>file</i> и выполнить по одному поиску LDAP для каждой строки.
+В этом случае заданный в командной строке фильтр <i>filter</i> интерпретируется как шаблон,
+в котором первое и только первое вхождение <b>%s</b> заменяется строкой из файла <i>file</i>.
+Любые другие вхождения символа <b>%</b> в шаблоне будут рассматриваться как ошибка.
+Если требуется, чтобы в поисковом фильтре присутствовал символ <b>%</b>, он должен быть закодирован
+как <b>\25</b> (смотрите RFC 4515). Если в качестве значения <i>file</i>
+указан единичный символ <b>-</b>, то строки считываются со стандартного ввода.
+Если не используется параметр <b>-c</b>,
+<b>ldapsearch</b>
+
+будет завершать работу после первой операции поиска, вернувшей неудачный код возврата.
+</dd><dt><b>-M</b>[<b>M</b>]
+
+</dt><dd>
+Включить элемент управления Manage DSA IT.
+<b>-MM</b>
+
+делает этот элемент управления критичным.
+</dd><dt><b>-x</b>
+
+</dt><dd>
+Использовать простую аутентификацию вместо SASL.
+</dd><dt><b>-D</b><i>&nbsp;binddn</i>
+
+</dt><dd>
+Использовать указанное в <i>binddn</i> уникальное имя Distinguished Name
+при подсоединении к каталогу LDAP.
+При SASL-подсоединениях сервер будет игнорировать это значение.
+</dd><dt><b>-W</b>
+
+</dt><dd>
+Запрашивать ввод пароля для простой аутентификации.
+Используется для того, чтобы не указывать пароль в командной строке.
+</dd><dt><b>-w</b><i>&nbsp;passwd</i>
+
+</dt><dd>
+Использовать указанное значение <i>passwd</i> в качестве пароля для простой аутентификации.
+</dd><dt><b>-y</b><i>&nbsp;passwdfile</i>
+
+</dt><dd>
+Использовать полное содержимое файла <i>passwdfile</i> в качестве пароля для простой аутентификации.
+</dd><dt><b>-H</b><i>&nbsp;ldapuri</i>
+
+</dt><dd>
+Указывает URI (возможно, несколько), ссылающийся на LDAP-сервер (серверы);
+в качестве значения параметр принимает список URI, разделённый пробелами или запятыми;
+в URI допускаются только поля протокол/хост/порт. В порядке исключения, если указан не хост/порт,
+а DN, этот DN используется для поиска соответствующего хоста (хостов) с помощью SRV-записи DNS
+в соответствии с RFC 2782. DN должен быть непустой последовательностью AVA с типом атрибута "dc" (domain component).
+Он должен быть экранирован согласно требованиям RFC 2396.
+</dd><dt><b>-h</b><i>&nbsp;ldaphost</i>
+
+</dt><dd>
+Указывает альтернативный хост, на котором работает LDAP-сервер.
+Устаревший параметр; используйте вместо него <b>-H</b>.
+</dd><dt><b>-p</b><i>&nbsp;ldapport</i>
+
+</dt><dd>
+Указывает альтернативный порт TCP, на котором ожидает соединений LDAP-сервер.
+Устаревший параметр; используйте вместо него <b>-H</b>.
+</dd><dt><b>-P</b>&nbsp;{<b>2</b>|<b>3</b>}
+
+</dt><dd>
+Указывает, какую версию протокола LDAP использовать.
+</dd><dt><b>-e</b>&nbsp;[<b>!</b>]<b></b><i>ext</i>[<b>=</b><i>extparam</i>]
+
+</dt><dd>
+</dd><dt><b>-E</b>&nbsp;[<b>!</b>]<b></b><i>ext</i>[<b>=</b><i>extparam</i>]
+
+</dt><dd>
+<p>
+Указывает общие расширения с помощью <b>-e</b> и расширения поиска с помощью <b>-E</b>.
+Знак '<b>!</b>' обозначает критичность расширения.
+</p><p>
+Общие расширения:
+</p><pre>  [!]assert=&lt;filter&gt;    (фильтр RFC 4515)
+  [!]authzid=&lt;authzid&gt;  ("dn:&lt;dn&gt;" или "u:&lt;user&gt;")
+  [!]bauthzid           (элемент управления authzid RFC 3829)
+  [!]chaining[=&lt;resolve&gt;[/&lt;cont&gt;]]
+  [!]manageDSAit
+  [!]noop
+  ppolicy
+  [!]postread[=&lt;attrs&gt;] (разделённый запятыми список атрибутов)
+  [!]preread[=&lt;attrs&gt;]  (разделённый запятыми список атрибутов)
+  [!]relax
+  sessiontracking
+  abandon,cancel,ignore (сигнал SIGINT посылает abandon/cancel,
+  либо в ответ на него посылается ignore; если расширение помечено
+  как критичное, сигнал SIGINT не принимается;
+  ненастоящие элементы управления)
+</pre>
+
+<p>
+Расширения поиска:
+</p><pre>  !dontUseCopy
+  [!]domainScope                       (диапазон домена)
+  [!]mv=&lt;filter&gt;                       (фильтр совпавших значений)
+  [!]pr=&lt;size&gt;[/prompt|noprompt]       (постраничный вывод результатов/запрос вывода)
+  [!]sss=[-]&lt;attr[:OID]&gt;[/[-]&lt;attr[:OID]&gt;...]  (сортировка на стороне сервера)
+  [!]subentries[=true|false]           (подзаписи)
+  [!]sync=ro[/&lt;cookie&gt;]                (LDAP Sync refreshOnly)
+          rp[/&lt;cookie&gt;][/&lt;slimit&gt;]     (LDAP Sync refreshAndPersist)
+  [!]vlv=&lt;before&gt;/&lt;after&gt;(/&lt;offset&gt;/&lt;count&gt;|:&lt;value&gt;)  (вид виртуального списка)
+  [!]deref=derefAttr:attr[,attr[...]][;derefAttr:attr[,attr[...]]]
+  [!]&lt;oid&gt;[=&lt;value&gt;]
+</pre>
+
+</dd><dt><b>-o</b><i>&nbsp;opt</i><b></b>[=<i>optparam</i><b></b>]
+
+</dt><dd>
+<p>
+Указывает опции общего назначения.
+</p><p>
+Возможные опции:
+</p><pre>  nettimeout=&lt;timeout&gt;  (в секундах, либо "none" или "max")
+  ldif-wrap=&lt;width&gt;     (в символах, либо "no" для предотвращения разбиения строк)
+</pre>
+
+</dd><dt><b>-O</b><i>&nbsp;security-properties</i>
+
+</dt><dd>
+Указывает параметры безопасности SASL.
+</dd><dt><b>-I</b>
+
+</dt><dd>
+Включает интерактивный режим SASL. Запросы выводятся всегда. По умолчанию запросы выводятся только по мере необходимости.
+</dd><dt><b>-Q</b>
+
+</dt><dd>
+Включает тихий режим SASL. Запросы не выводятся никогда.
+</dd><dt><b>-N</b>
+
+</dt><dd>
+Указывает не использовать обратное разрешение DNS для получения канонического имени хоста SASL.
+</dd><dt><b>-U</b><i>&nbsp;authcid</i>
+
+</dt><dd>
+Задаёт аутентификационный идентификатор для подсоединений SASL.
+Форма идентификатора зависит от того, какой механизм аутентификации в действительности используется.
+</dd><dt><b>-R</b><i>&nbsp;realm</i>
+
+</dt><dd>
+Задаёт realm аутентификационного идентификатора для подсоединений SASL.
+Форма realm зависит от того, какой механизм аутентификации в действительности используется.
+</dd><dt><b>-X</b><i>&nbsp;authzid</i>
+
+</dt><dd>
+Задаёт запрашиваемый авторизационный идентификатор для подсоединений SASL. Значение
+<i>authzid</i>
+
+должно быть в одном из следующих форматов:
+<b>dn:</b><i>&lt;distinguished name&gt;</i>
+
+или
+<b>u:</b><i>&lt;username&gt;</i>
+
+</dd><dt><b>-Y</b><i>&nbsp;mech</i>
+
+</dt><dd>
+Задаёт механизм SASL, который будет использоваться для аутентификации.
+Если параметр не указан, программа выберет лучший из известных серверу механизмов.
+</dd><dt><b>-Z</b>[<b>Z</b>]
+
+</dt><dd>
+Запрос расширенной операции StartTLS (Transport Layer Security).
+При использовании <b>-ZZ</b> эта операция должна быть выполнена успешно.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ФОРМАТ ВЫВОДА</h2>
+
+Если найдена одна или несколько записей, каждая запись выводится в стандартный поток вывода в формате
+LDAP Data Interchange Format или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldif&amp;category=5">ldif</a></b>(5):
+
+<p>
+
+</p><pre>    version: 1
+
+    # bjensen, example, net
+    dn: uid=bjensen,dc=example,dc=net
+    objectClass: person
+    objectClass: dcObject
+    uid: bjensen
+    cn: Barbara Jensen
+    sn: Jensen
+    ...
+</pre>
+
+<p>
+
+При задании параметра <b>-t</b> вместо реальных значений атрибутов будут выводиться URI временных файлов,
+в которые эти значения помещаются.
+При задании параметра <b>-A</b> выводятся только имена атрибутов (attributename).
+<a name="lbAG">&nbsp;</a>
+</p><h2>ПРИМЕРЫ</h2>
+
+Команда
+<p>
+
+</p><pre>    ldapsearch -LLL "(sn=smith)" cn sn telephoneNumber
+</pre>
+
+<p>
+
+выполнит поиск по поддереву (с использованием базы поиска и других параметров по умолчанию, заданных в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap.conf&amp;category=5">ldap.conf</a></b>(5))
+
+для записей, в которых атрибут surname (sn) имеет значение smith.
+Будут получены и выведены в стандартный поток вывода значения атрибутов common name (cn), surname (sn) и telephoneNumber.
+Если будут найдены две записи, вывод может быть примерно такой:
+</p><p>
+
+</p><pre>    dn: uid=jts,dc=example,dc=com
+    cn: John Smith
+    cn: John T. Smith
+    sn: Smith
+    sn;lang-en: Smith
+    sn;lang-de: Schmidt
+    telephoneNumber: 1 555 123-4567
+
+    dn: uid=sss,dc=example,dc=com
+    cn: Steve Smith
+    cn: Steve S. Smith
+    sn: Smith
+    sn;lang-en: Smith
+    sn;lang-de: Schmidt
+    telephoneNumber: 1 555 765-4321
+</pre>
+
+<p>
+
+Команда
+</p><p>
+
+</p><pre>    ldapsearch -LLL -u -t "(uid=xyz)" jpegPhoto audio
+</pre>
+
+<p>
+
+выполнит поиск по поддереву с использованием базы поиска по умолчанию для записей, в которых атрибут uid имеет значение "xyz".
+Форма удобного для пользователя имени DN будет выведена после строки, содержащей само DN,
+а значения атрибутов jpegPhoto и audio будут запрошены и выведены во временные файлы.
+Если будет найдена одна запись, в которой есть по одному значению каждого запрашиваемого атрибута, вывод может быть примерно такой:
+</p><p>
+
+</p><pre>    dn: uid=xyz,dc=example,dc=com
+    ufn: xyz, example, com
+    audio:&lt; <a href="file:///tmp/ldapsearch-audio-a19924">file:///tmp/ldapsearch-audio-a19924</a>
+    jpegPhoto:&lt; <a href="file:///tmp/ldapsearch-jpegPhoto-a19924">file:///tmp/ldapsearch-jpegPhoto-a19924</a>
+</pre>
+
+<p>
+
+Команда
+</p><p>
+
+</p><pre>    ldapsearch -LLL -s one -b "c=US" "(o=University*)" o description
+</pre>
+
+<p>
+
+выполнит поиск по записям на один уровень ниже от c=US для всех записей, значение атрибута organization name (o) которых начинается с <b>University</b>.
+Будут запрошены и выведены в стандартный поток вывода значения атрибутов organization name и description, в результате вывод может быть примерно такой:
+</p><p>
+
+</p><pre>    dn: o=University of Alaska Fairbanks,c=US
+    o: University of Alaska Fairbanks
+    description: Preparing Alaska for a brave new yesterday
+    description: leaf node only
+
+    dn: o=University of Colorado at Boulder,c=US
+    o: University of Colorado at Boulder
+    description: No personnel information
+    description: Institution of education and research
+
+    dn: o=University of Colorado at Denver,c=US
+    o: University of Colorado at Denver
+    o: UCD
+    o: CU/Denver
+    o: CU-Denver
+    description: Institute for Higher Learning and Research
+
+    dn: o=University of Florida,c=US
+    o: University of Florida
+    o: UFl
+    description: Warper of young minds
+
+    ...
+</pre>
+
+<a name="lbAH">&nbsp;</a>
+<h2>ДИАГНОСТИКА</h2>
+
+Если ошибок не произошло, код завершения - ноль. При наличии ошибок код завершения будет ненулевым,
+а в стандартный поток ошибок будет выведено диагностическое сообщение.
+<a name="lbAI">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldapadd&amp;category=1">ldapadd</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldapdelete&amp;category=1">ldapdelete</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldapmodify&amp;category=1">ldapmodify</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldapmodrdn&amp;category=1">ldapmodrdn</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap.conf&amp;category=5">ldap.conf</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldif&amp;category=5">ldif</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap&amp;category=3">ldap</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap_search_ext&amp;category=3">ldap_search_ext</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap_sort&amp;category=3">ldap_sort</a></b>(3).
+
+<a name="lbAJ">&nbsp;</a>
+<h2>АВТОРЫ</h2>
+
+OpenLDAP Project &lt;<a href="http://www.openldap.org/">http://www.openldap.org/</a>&gt;
+<a name="lbAK">&nbsp;</a>
+<h2>ПРИЗНАНИЕ ЗАСЛУГ</h2>
+
+
+
+<b>Программное обеспечение OpenLDAP</b>
+
+разработано и поддерживается проектом OpenLDAP &lt;<a href="http://www.openldap.org/">http://www.openldap.org/</a>&gt;.
+<b>Программное обеспечение OpenLDAP</b>
+
+является производным от релиза 3.3 LDAP Мичиганского Университета.
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">ФОРМАТ ВЫВОДА</a></dt><dd>
+</dd><dt><a href="#lbAG">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">ДИАГНОСТИКА</a></dt><dd>
+</dd><dt><a href="#lbAI">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAJ">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAK">ПРИЗНАНИЕ ЗАСЛУГ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ldapsearch" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

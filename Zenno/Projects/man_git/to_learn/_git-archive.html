@@ -1,0 +1,631 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-49925874-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-49925874-3');
+  </script>
+
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <title>Git - git-archive Documentation</title>
+
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+  <link rel="stylesheet" media="screen" href="/assets/application-3fb605347038cd5206e27d1f90829d3159e0de904e21be188a31e8f8c27c42a8.css">
+  <script src="/assets/modernize-b3ebe0c31c24f230dc62179d3e1030d2e57a53b1668d9382c0a27dbd44a94beb.js"></script>
+  <!--[if (gte IE 6)&(lte IE 8)]>
+  <script src="/javascripts/selectivizr-min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body id="documentation">
+
+  <div class="inner">
+    <header>
+
+  <a href="/"><img src="/images/logo@2x.png" alt="Git" height="46" width="110"></a>
+  <span id="tagline">--distributed-is-the-new-centralized</span>
+  <script type="text/javascript">
+    var taglines = ["fast-version-control","everything-is-local","distributed-even-if-your-workflow-isnt","local-branching-on-the-cheap","distributed-is-the-new-centralized"];
+    var tagline = taglines[Math.floor(Math.random() * taglines.length)];
+    document.getElementById('tagline').innerHTML = '--' + tagline;
+  </script>
+  <form id="search" action="/search/results">
+    <input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text">
+  </form>
+  <div id="search-results"></div>
+
+</header>
+
+  </div> <!-- .inner -->
+
+    <div class="inner">
+      <div id="content-wrapper">
+        <aside class="sidebar">
+  <nav>
+    <ul>
+      <li>
+        <a href="/about">About</a>
+        <ul class="">
+          <li>
+            <a href="/about">Branching and Merging</a>
+          </li>
+          <li>
+            <a href="/about/small-and-fast">Small and Fast</a>
+          </li>
+          <li>
+            <a href="/about/distributed">Distributed</a>
+          </li>
+          <li>
+            <a href="/about/info-assurance">Data Assurance</a>
+          </li>
+          <li>
+            <a href="/about/staging-area">Staging Area</a>
+          </li>
+          <li>
+            <a href="/about/free-and-open-source">Free and Open Source</a>
+          </li>
+          <li>
+            <a href="/about/trademark">Trademark</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="active" href="/doc">Documentation</a>
+        <ul class="expanded">
+          <li>
+            <a class="active" href="/docs">Reference</a>
+          </li>
+          <li>
+            <a href="/book">Book</a>
+          </li>
+          <li>
+            <a href="/videos">Videos</a>
+          </li>
+          <li>
+            <a href="/doc/ext">External Links</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/downloads">Downloads</a>
+        <ul class="">
+          <li>
+            <a href="/downloads/guis">GUI Clients</a>
+          </li>
+          <li>
+            <a href="/downloads/logos">Logos</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/community">Community</a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+        <div id="content">
+          
+  <div id="reference-version">
+    <a class="dropdown-trigger" id="reference-languages-trigger" data-panel-id="l10n-versions-dropdown" href="#">
+  English ▾</a>
+<div class="dropdown-panel right" id="l10n-versions-dropdown">
+  <header>Localized versions of <strong>git-archive</strong> manual</header>
+  <ol class="reference-previous-versions">
+      <li>
+        <a href="/docs/git-archive/en"><span class="version">English</span>
+        </a>
+        </li>
+      <li>
+        <a href="/docs/git-archive/fr"><span class="version">Français</span>
+        </a>
+        </li>
+      <li>
+        <a href="/docs/git-archive/pt_BR"><span class="version">Português (Brasil)</span>
+        </a>
+        </li>
+  </ol>
+  <footer>
+    Want to read in your language or fix typos?<br> <a href="https://github.com/jnavila/git-manpages-l10n">You can help translate this page</a>.
+  </footer>
+</div>
+
+    <a class="dropdown-trigger" id="reference-topics-trigger" data-panel-id="topics-dropdown" href="#">Topics ▾</a>
+<div class="dropdown-panel right" id="topics-dropdown">
+  <div class="three-column">
+    <div class="column-left">
+      <h3 class="setup">Setup and Config</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git">git</a></li>
+  <li><a href="/docs/git-config">config</a></li>
+  <li><a href="/docs/git-help">help</a></li>
+  <li><a href="/docs/git-bugreport">bugreport</a></li>
+</ul>
+
+      <h3 class="projects">Getting and Creating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-init">init</a></li>
+  <li><a href="/docs/git-clone">clone</a></li>
+</ul>
+
+      <h3 class="snapshotting">Basic Snapshotting</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-add">add</a></li>
+  <li><a href="/docs/git-status">status</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-commit">commit</a></li>
+  <li><a href="/docs/git-notes">notes</a></li>
+  <li><a href="/docs/git-restore">restore</a></li>
+  <li><a href="/docs/git-reset">reset</a></li>
+  <li><a href="/docs/git-rm">rm</a></li>
+  <li><a href="/docs/git-mv">mv</a></li>
+</ul>
+
+      <h3 class="branching">Branching and Merging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-branch">branch</a></li>
+  <li><a href="/docs/git-checkout">checkout</a></li>
+  <li><a href="/docs/git-switch">switch</a></li>
+  <li><a href="/docs/git-merge">merge</a></li>
+  <li><a href="/docs/git-mergetool">mergetool</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-stash">stash</a></li>
+  <li><a href="/docs/git-tag">tag</a></li>
+  <li><a href="/docs/git-worktree">worktree</a></li>
+</ul>
+
+      <h3 class="sharing">Sharing and Updating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-fetch">fetch</a></li>
+  <li><a href="/docs/git-pull">pull</a></li>
+  <li><a href="/docs/git-push">push</a></li>
+  <li><a href="/docs/git-remote">remote</a></li>
+  <li><a href="/docs/git-submodule">submodule</a></li>
+</ul>
+
+    </div>
+    <div class="column-middle">
+      <h3 class="inspection">Inspection and Comparison</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-show">show</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-difftool">difftool</a></li>
+  <li><a href="/docs/git-range-diff">range-diff</a></li>
+  <li><a href="/docs/git-shortlog">shortlog</a></li>
+  <li><a href="/docs/git-describe">describe</a></li>
+</ul>
+
+      <h3 class="patching">Patching</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-cherry-pick">cherry-pick</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-rebase">rebase</a></li>
+  <li><a href="/docs/git-revert">revert</a></li>
+</ul>
+
+      <h3 class="debugging">Debugging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-bisect">bisect</a></li>
+  <li><a href="/docs/git-blame">blame</a></li>
+  <li><a href="/docs/git-grep">grep</a></li>
+</ul>
+
+      <h3 class="email">Email</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-am">am</a></li>
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-format-patch">format-patch</a></li>
+  <li><a href="/docs/git-send-email">send-email</a></li>
+  <li><a href="/docs/git-request-pull">request-pull</a></li>
+</ul>
+
+      <h3 class="external">External Systems</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-svn">svn</a></li>
+  <li><a href="/docs/git-fast-import">fast-import</a></li>
+</ul>
+
+      <h3 class="server-admin">Server Admin</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-daemon">daemon</a></li>
+  <li><a href="/docs/git-update-server-info">update-server-info</a></li>
+</ul>
+
+    </div>
+    <div class="column-right">
+      <h3 class="guides">Guides</h3>
+<ul class="unstyled">
+  <li><a href="/docs/gitattributes">gitattributes</a></li>
+  <li><a href="/docs/gitcli">Command-line interface conventions</a></li>
+  <li><a href="/docs/giteveryday">Everyday Git</a></li>
+  <li><a href="/docs/gitfaq">Frequently Asked Questions (FAQ)</a></li>
+  <li><a href="/docs/gitglossary">Glossary</a></li>
+  <li><a href="/docs/githooks">Hooks</a></li>
+  <li><a href="/docs/gitignore">gitignore</a></li>
+  <li><a href="/docs/gitmodules">gitmodules</a></li>
+  <li><a href="/docs/gitrevisions">Revisions</a></li>
+  <li><a href="/docs/gitsubmodules">Submodules</a></li>
+  <li><a href="/docs/gittutorial">Tutorial</a></li>
+  <li><a href="/docs/gitworkflows">Workflows</a></li>
+  <li><a href="/docs/git#_guides">All guides...</a></li>
+</ul>
+
+      <h3 class="admin">Administration</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-clean">clean</a></li>
+  <li><a href="/docs/git-gc">gc</a></li>
+  <li><a href="/docs/git-fsck">fsck</a></li>
+  <li><a href="/docs/git-reflog">reflog</a></li>
+  <li><a href="/docs/git-filter-branch">filter-branch</a></li>
+  <li><a href="/docs/git-instaweb">instaweb</a></li>
+  <li><a class="active" href="/docs/git-archive">archive</a></li>
+  <li><a href="/docs/git-bundle">bundle</a></li>
+</ul>
+
+      <h3 class="plumbing">Plumbing Commands</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-cat-file">cat-file</a></li>
+  <li><a href="/docs/git-check-ignore">check-ignore</a></li>
+  <li><a href="/docs/git-checkout-index">checkout-index</a></li>
+  <li><a href="/docs/git-commit-tree">commit-tree</a></li>
+  <li><a href="/docs/git-count-objects">count-objects</a></li>
+  <li><a href="/docs/git-diff-index">diff-index</a></li>
+  <li><a href="/docs/git-for-each-ref">for-each-ref</a></li>
+  <li><a href="/docs/git-hash-object">hash-object</a></li>
+  <li><a href="/docs/git-ls-files">ls-files</a></li>
+  <li><a href="/docs/git-ls-tree">ls-tree</a></li>
+  <li><a href="/docs/git-merge-base">merge-base</a></li>
+  <li><a href="/docs/git-read-tree">read-tree</a></li>
+  <li><a href="/docs/git-rev-list">rev-list</a></li>
+  <li><a href="/docs/git-rev-parse">rev-parse</a></li>
+  <li><a href="/docs/git-show-ref">show-ref</a></li>
+  <li><a href="/docs/git-symbolic-ref">symbolic-ref</a></li>
+  <li><a href="/docs/git-update-index">update-index</a></li>
+  <li><a href="/docs/git-update-ref">update-ref</a></li>
+  <li><a href="/docs/git-verify-pack">verify-pack</a></li>
+  <li><a href="/docs/git-write-tree">write-tree</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+    <a class="dropdown-trigger" id="reference-versions-trigger" data-panel-id="previous-versions-dropdown" href="#">
+    Version 2.33.0
+ ▾ </a>
+<span class="light">git-archive last updated in 2.33.0</span>
+<div class="dropdown-panel left" id="previous-versions-dropdown">
+  <header>Changes in the <strong>git-archive</strong> manual</header>
+  <ol class="reference-previous-versions">
+        <li class="no-change"><span>2.29.1 → 2.33.0 no changes</span></li>
+        <li>
+        <a href="/docs/git-archive/2.29.0"><span class="version">2.29.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">10/19/20</em>
+        </a>
+        </li>
+    <li>&nbsp;</li>
+    <!-- <li><a class="more" href="#">See more previous releases →</a></li> -->
+  </ol>
+  <footer>
+    <p>Check your version of git by running</p>
+    <code class="command">git --version</code>
+  </footer>
+</div>
+
+  </div>
+
+  <div id="main">
+    <div class="sect1">
+<h2 id="_name"><a class="anchor" href="#_name"></a>NAME</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>git-archive - Create an archive of files from a named tree</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<pre class="content"><em>git archive</em> [--format=&lt;fmt&gt;] [--list] [--prefix=&lt;prefix&gt;/] [&lt;extra&gt;]
+	      [-o &lt;file&gt; | --output=&lt;file&gt;] [--worktree-attributes]
+	      [--remote=&lt;repo&gt; [--exec=&lt;git-upload-archive&gt;]] &lt;tree-ish&gt;
+	      [&lt;path&gt;…​]</pre>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_description"><a class="anchor" href="#_description"></a>DESCRIPTION</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Creates an archive of the specified format containing the tree
+structure for the named tree, and writes it out to the standard
+output.  If &lt;prefix&gt; is specified it is
+prepended to the filenames in the archive.</p>
+</div>
+<div class="paragraph">
+<p><em>git archive</em> behaves differently when given a tree ID versus when
+given a commit ID or tag ID.  In the first case the current time is
+used as the modification time of each file in the archive.  In the latter
+case the commit time as recorded in the referenced commit object is
+used instead.  Additionally the commit ID is stored in a global
+extended pax header if the tar format is used; it can be extracted
+using <em>git get-tar-commit-id</em>. In ZIP files it is stored as a file
+comment.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_options"><a class="anchor" href="#_options"></a>OPTIONS</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-archive.txt---formatltfmtgt"> <a class="anchor" href="#Documentation/git-archive.txt---formatltfmtgt"></a>--format=&lt;fmt&gt; </dt>
+<dd>
+<p>Format of the resulting archive: <em>tar</em> or <em>zip</em>. If this option
+is not given, and the output file is specified, the format is
+inferred from the filename if possible (e.g. writing to "foo.zip"
+makes the output to be in the zip format). Otherwise the output
+format is <code>tar</code>.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt--l"> <a class="anchor" href="#Documentation/git-archive.txt--l"></a>-l </dt>
+<dt class="hdlist1" id="Documentation/git-archive.txt---list"> <a class="anchor" href="#Documentation/git-archive.txt---list"></a>--list </dt>
+<dd>
+<p>Show all available formats.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt--v"> <a class="anchor" href="#Documentation/git-archive.txt--v"></a>-v </dt>
+<dt class="hdlist1" id="Documentation/git-archive.txt---verbose"> <a class="anchor" href="#Documentation/git-archive.txt---verbose"></a>--verbose </dt>
+<dd>
+<p>Report progress to stderr.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt---prefixltprefixgt"> <a class="anchor" href="#Documentation/git-archive.txt---prefixltprefixgt"></a>--prefix=&lt;prefix&gt;/ </dt>
+<dd>
+<p>Prepend &lt;prefix&gt;/ to each filename in the archive.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt--oltfilegt"> <a class="anchor" href="#Documentation/git-archive.txt--oltfilegt"></a>-o &lt;file&gt; </dt>
+<dt class="hdlist1" id="Documentation/git-archive.txt---outputltfilegt"> <a class="anchor" href="#Documentation/git-archive.txt---outputltfilegt"></a>--output=&lt;file&gt; </dt>
+<dd>
+<p>Write the archive to &lt;file&gt; instead of stdout.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt---add-fileltfilegt"> <a class="anchor" href="#Documentation/git-archive.txt---add-fileltfilegt"></a>--add-file=&lt;file&gt; </dt>
+<dd>
+<p>Add a non-tracked file to the archive.  Can be repeated to add
+multiple files.  The path of the file in the archive is built
+by concatenating the value for <code>--prefix</code> (if any) and the
+basename of &lt;file&gt;.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt---worktree-attributes"> <a class="anchor" href="#Documentation/git-archive.txt---worktree-attributes"></a>--worktree-attributes </dt>
+<dd>
+<p>Look for attributes in .gitattributes files in the working tree
+as well (see <a href="#ATTRIBUTES">ATTRIBUTES</a>).</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-ltextragt"> <a class="anchor" href="#Documentation/git-archive.txt-ltextragt"></a>&lt;extra&gt; </dt>
+<dd>
+<p>This can be any options that the archiver backend understands.
+See next section.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt---remoteltrepogt"> <a class="anchor" href="#Documentation/git-archive.txt---remoteltrepogt"></a>--remote=&lt;repo&gt; </dt>
+<dd>
+<p>Instead of making a tar archive from the local repository,
+retrieve a tar archive from a remote repository. Note that the
+remote repository may place restrictions on which sha1
+expressions may be allowed in <code>&lt;tree-ish&gt;</code>. See
+<a href="/docs/git-upload-archive">git-upload-archive[1]</a> for details.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt---execltgit-upload-archivegt"> <a class="anchor" href="#Documentation/git-archive.txt---execltgit-upload-archivegt"></a>--exec=&lt;git-upload-archive&gt; </dt>
+<dd>
+<p>Used with --remote to specify the path to the
+<em>git-upload-archive</em> on the remote side.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-lttree-ishgt"> <a class="anchor" href="#Documentation/git-archive.txt-lttree-ishgt"></a>&lt;tree-ish&gt; </dt>
+<dd>
+<p>The tree or commit to produce an archive for.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-ltpathgt"> <a class="anchor" href="#Documentation/git-archive.txt-ltpathgt"></a>&lt;path&gt; </dt>
+<dd>
+<p>Without an optional path parameter, all files and subdirectories
+of the current working directory are included in the archive.
+If one or more paths are specified, only these are included.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_backend_extra_options"><a class="anchor" href="#_backend_extra_options"></a>BACKEND EXTRA OPTIONS</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_zip"><a class="anchor" href="#_zip"></a>zip</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-archive.txt--0"> <a class="anchor" href="#Documentation/git-archive.txt--0"></a>-0 </dt>
+<dd>
+<p>Store the files instead of deflating them.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt--9"> <a class="anchor" href="#Documentation/git-archive.txt--9"></a>-9 </dt>
+<dd>
+<p>Highest and slowest compression level.  You can specify any
+number from 1 to 9 to adjust compression speed and ratio.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>CONFIGURATION</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-archive.txt-tarumask"> <a class="anchor" href="#Documentation/git-archive.txt-tarumask"></a>tar.umask </dt>
+<dd>
+<p>This variable can be used to restrict the permission bits of
+tar archive entries.  The default is 0002, which turns off the
+world write bit.  The special value "user" indicates that the
+archiving user’s umask will be used instead.  See umask(2) for
+details.  If <code>--remote</code> is used then only the configuration of
+the remote repository takes effect.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-tarltformatgtcommand"> <a class="anchor" href="#Documentation/git-archive.txt-tarltformatgtcommand"></a>tar.&lt;format&gt;.command </dt>
+<dd>
+<p>This variable specifies a shell command through which the tar
+output generated by <code>git archive</code> should be piped. The command
+is executed using the shell with the generated tar file on its
+standard input, and should produce the final output on its
+standard output. Any compression-level options will be passed
+to the command (e.g., "-9"). An output file with the same
+extension as <code>&lt;format&gt;</code> will be use this format if no other
+format is given.</p>
+<div class="paragraph">
+<p>The "tar.gz" and "tgz" formats are defined automatically and default to
+<code>gzip -cn</code>. You may override them with custom commands.</p>
+</div>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-tarltformatgtremote"> <a class="anchor" href="#Documentation/git-archive.txt-tarltformatgtremote"></a>tar.&lt;format&gt;.remote </dt>
+<dd>
+<p>If true, enable <code>&lt;format&gt;</code> for use by remote clients via
+<a href="/docs/git-upload-archive">git-upload-archive[1]</a>. Defaults to false for
+user-defined formats, but true for the "tar.gz" and "tgz"
+formats.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ATTRIBUTES"><a class="anchor" href="#ATTRIBUTES"></a>ATTRIBUTES</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-archive.txt-export-ignore"> <a class="anchor" href="#Documentation/git-archive.txt-export-ignore"></a>export-ignore </dt>
+<dd>
+<p>Files and directories with the attribute export-ignore won’t be
+added to archive files.  See <a href="/docs/gitattributes">gitattributes[5]</a> for details.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-export-subst"> <a class="anchor" href="#Documentation/git-archive.txt-export-subst"></a>export-subst </dt>
+<dd>
+<p>If the attribute export-subst is set for a file then Git will
+expand several placeholders when adding this file to an archive.
+See <a href="/docs/gitattributes">gitattributes[5]</a> for details.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Note that attributes are by default taken from the <code>.gitattributes</code> files
+in the tree that is being archived.  If you want to tweak the way the
+output is generated after the fact (e.g. you committed without adding an
+appropriate export-ignore in its <code>.gitattributes</code>), adjust the checked out
+<code>.gitattributes</code> file as necessary and use <code>--worktree-attributes</code>
+option.  Alternatively you can keep necessary attributes that should apply
+while archiving any tree in your <code>$GIT_DIR/info/attributes</code> file.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples"><a class="anchor" href="#_examples"></a>EXAMPLES</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-archive.txt-codegitarchive--formattar--prefixjunkHEADcdvartmpampamptarxf-code"> <a class="anchor" href="#Documentation/git-archive.txt-codegitarchive--formattar--prefixjunkHEADcdvartmpampamptarxf-code"></a><code>git archive --format=tar --prefix=junk/ HEAD | (cd /var/tmp/ &amp;&amp; tar xf -)</code> </dt>
+<dd>
+<p>Create a tar archive that contains the contents of the
+latest commit on the current branch, and extract it in the
+<code>/var/tmp/junk</code> directory.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-codegitarchive--formattar--prefixgit-140v140gzipgtgit-140targzcode"> <a class="anchor" href="#Documentation/git-archive.txt-codegitarchive--formattar--prefixgit-140v140gzipgtgit-140targzcode"></a><code>git archive --format=tar --prefix=git-1.4.0/ v1.4.0 | gzip &gt;git-1.4.0.tar.gz</code> </dt>
+<dd>
+<p>Create a compressed tarball for v1.4.0 release.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-codegitarchive--formattargz--prefixgit-140v140gtgit-140targzcode"> <a class="anchor" href="#Documentation/git-archive.txt-codegitarchive--formattargz--prefixgit-140v140gtgit-140targzcode"></a><code>git archive --format=tar.gz --prefix=git-1.4.0/ v1.4.0 &gt;git-1.4.0.tar.gz</code> </dt>
+<dd>
+<p>Same as above, but using the builtin tar.gz handling.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-codegitarchive--prefixgit-140-ogit-140targzv140code"> <a class="anchor" href="#Documentation/git-archive.txt-codegitarchive--prefixgit-140-ogit-140targzv140code"></a><code>git archive --prefix=git-1.4.0/ -o git-1.4.0.tar.gz v1.4.0</code> </dt>
+<dd>
+<p>Same as above, but the format is inferred from the output file.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-codegitarchive--formattar--prefixgit-140v140treegzipgtgit-140targzcode"> <a class="anchor" href="#Documentation/git-archive.txt-codegitarchive--formattar--prefixgit-140v140treegzipgtgit-140targzcode"></a><code>git archive --format=tar --prefix=git-1.4.0/ v1.4.0^{tree} | gzip &gt;git-1.4.0.tar.gz</code> </dt>
+<dd>
+<p>Create a compressed tarball for v1.4.0 release, but without a
+global extended pax header.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-codegitarchive--formatzip--prefixgit-docsHEADDocumentationgtgit-140-docszipcode"> <a class="anchor" href="#Documentation/git-archive.txt-codegitarchive--formatzip--prefixgit-docsHEADDocumentationgtgit-140-docszipcode"></a><code>git archive --format=zip --prefix=git-docs/ HEAD:Documentation/ &gt; git-1.4.0-docs.zip</code> </dt>
+<dd>
+<p>Put everything in the current head’s Documentation/ directory
+into <em>git-1.4.0-docs.zip</em>, with the prefix <em>git-docs/</em>.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-codegitarchive-olatestzipHEADcode"> <a class="anchor" href="#Documentation/git-archive.txt-codegitarchive-olatestzipHEADcode"></a><code>git archive -o latest.zip HEAD</code> </dt>
+<dd>
+<p>Create a Zip archive that contains the contents of the latest
+commit on the current branch. Note that the output format is
+inferred by the extension of the output file.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-archive.txt-codegitconfigtartarxzcommandxz-ccode"> <a class="anchor" href="#Documentation/git-archive.txt-codegitconfigtartarxzcommandxz-ccode"></a><code>git config tar.tar.xz.command "xz -c"</code> </dt>
+<dd>
+<p>Configure a "tar.xz" format for making LZMA-compressed tarfiles.
+You can use it specifying <code>--format=tar.xz</code>, or by creating an
+output file like <code>-o foo.tar.xz</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_see_also"><a class="anchor" href="#_see_also"></a>SEE ALSO</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="/docs/gitattributes">gitattributes[5]</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git"><a class="anchor" href="#_git"></a>GIT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Part of the <a href="/docs/git">git[1]</a> suite</p>
+</div>
+</div>
+</div>
+  </div>
+
+        </div>
+      </div>
+      <footer>
+  <div class="site-source">
+    <a href="/site">About this site</a><br>
+    Patches, suggestions, and comments are welcome.
+  </div>
+  <div class="sfc-member">
+    Git is a member of <a href="/sfc">Software Freedom Conservancy</a>
+  </div>
+</footer>
+
+<script src="/assets/application-8f00caf205cd147207c24e44516f18312442fd845fad0725e748f19cad311d0d.js"></script>
+
+    </div>
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

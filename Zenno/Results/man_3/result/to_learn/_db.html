@@ -1,0 +1,725 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN db (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, db"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="db" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">db (3)</font><hr><li> <a href="/man.shtml?topic=db&amp;category=3&amp;russian=1"><u>db</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=db&amp;category=3&amp;russian=0"><u>db</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=db&amp;category=3&amp;russian=2"><u>db</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li><font color="#555555">Ключ <a href="/keywords/db.html"><u>db</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+dbopen - методы доступа к базам данных
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<pre><b>#include &lt;<a href="file:/usr/include/sys/types.h">sys/types.h</a>&gt;
+#include &lt;<a href="file:/usr/include/limits.h">limits.h</a>&gt;
+#include &lt;<a href="file:/usr/include/db.h">db.h</a>&gt;
+DB *
+dbopen(const char *file, int flags, int mode, DBTYPE type,
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const void *openinfo);
+</b></pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<i>Dbopen</i>
+
+- это библиотека для взаимодействия с файлами баз данных. Поддерживаются
+форматы файлов btree, hashed и UNIX file. Формат btree представляет собой
+отсортированную, сбалансированную древовидную структуру. Формат hashed -
+это гибкая, динамическая схема хэширования. Формат линейного файла -
+поток байтов с фиксированной или переменной длиной записи. Сами форматы и
+форматы файлов описываются детально на соответствующих страницах руководства
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=btree&amp;category=3">btree</a></i>(3),
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hash&amp;category=3">hash</a></i>(3)
+
+и
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recno&amp;category=3">recno</a></i>(3).
+
+<p>
+
+Dbopen открывает 
+<i>file</i>
+
+для чтения и/или записи. Файлы, не предназначенные для хранения на
+диске, могут быть созданы установкой параметра file, равного NULL.
+</p><p>
+
+Флаги 
+<i>flags</i>
+
+и параметры 
+<i>mode</i>
+
+те же, что определены для функции
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a></i>(2),
+
+тем не менее, только флаги O_CREAT, O_EXCL, O_EXLOCK, O_NONBLOCK,
+O_RDONLY, O_RDWR, O_SHLOCK и O_TRUNC имеют значение.
+Открытие файла базы данных O_WRONLY невозможно.
+</p><p>
+
+Установленный тип аргумента
+<i>type</i>
+
+равен типу DBTYPE (как определено в файле заголовков &lt;<a href="file:/usr/include/db.h">db.h</a>&gt;)
+и может быть задан как DB_BTREE, DB_HASH или DB_RECNO.
+</p><p>
+
+Аргумент 
+<i>openinfo</i>
+
+является указателем на структуру метода доступа, описанную на странице
+руководства, посвященной методам доступа. Если 
+<i>openinfo</i>
+
+равна NULL, каждый метод доступа будет использовать установки по
+умолчанию для системы и метода доступа. 
+</p><p>
+
+<i>Dbopen</i>
+
+возвращает указатель на структуру DB при успешном выполнении вызова и NULL при ошибке.
+Структура DB определена в файле &lt;<a href="file:/usr/include/db.h">db.h</a>&gt; и содержит, как минимум, следующие поля:
+</p><p>
+</p><pre>typedef struct {
+<dl compact=""><dt></dt><dd>DBTYPE type;
+int (*close)(const DB *db);
+int (*del)(const DB *db, const DBT *key, u_int flags);
+int (*fd)(const DB *db);
+int (*get)(const DB *db, DBT *key, DBT *data, u_int flags);
+int (*put)(const DB *db, DBT *key, const DBT *data,
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u_int flags);
+int (*sync)(const DB *db, u_int flags);
+int (*seq)(const DB *db, DBT *key, DBT *data, u_int flags);
+</dd></dl>
+} DB;
+</pre>
+
+<p>
+
+Эти элементы описывают тип базы данных и набор функций, выполняющих
+различные действия. Функции используют указатель на структуру, возвращаемый
+<i>dbopen</i>,
+
+и иногда один или несколько указателей на структуры ключ/данные и
+на значения флагов.
+</p><dl compact="">
+<dt>type</dt><dd>
+Тип основного метода доступа (и формат файла).
+</dd><dt>close</dt><dd>
+Указатель на функцию, которая записывает любую кэшированную информацию
+на диск, освобождает занятые ресурсы и закрывает основной(-ые) файл(-ы). Пока
+пары ключ/данные могут быть кэшированы в памяти, ошибка при синхронизации
+файла функциями
+<i>close</i>
+
+или
+<i>sync</i>
+
+может привести к повреждению или потере данных.
+Функция
+<i>close</i>
+
+возвращает -1 при ошибках (меняет при этом, соответственно, значение переменной
+<i>errno</i>)
+
+или 0 при успешном завершении вызова.
+</dd><dt>del</dt><dd>
+Указатель на функцию для удаления пар ключ/данные из базы данных.
+</dd><dt></dt><dd>
+Установленное значение параметра
+<i>flag</i>
+
+может быть следующим:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt>R_CURSOR</dt><dd>
+Удаление записи, определяемой указателем записи.
+Указатель предварительно должен быть инициализирован.
+</dd></dl>
+</dd></dl>
+
+</dd><dt></dt><dd>
+Функция 
+<i>delete</i>
+
+возвращает -1 при ошибке (меняет при этом, соответственно, значение переменной
+<i>errno</i>),
+
+0 при успешном выполнении и 1, если указанного ключа 
+<i>key</i>
+
+нет в файле.
+</dd><dt>fd</dt><dd>
+Указатель на функцию, которая возвращает описатель файла, лежащий в
+основе базы данных. Описатель файла, относящийся к одному файлу,
+возвращается всем процессам, которые вызывают
+<i>dbopen</i>
+
+с этим именем файла
+<i>file</i>.
+
+Этот описатель может быть использован как аргумент для блокирующих функций
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></i>(2)
+
+и
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=flock&amp;category=2">flock</a></i>(2)<i>.</i>
+
+Файловые описатели необязательно ассоциировать с какими-либо из
+файлов, лежащих в основе используемого метода доступа. Для баз данных в
+памяти файловые описатели недоступны. Функция
+<i>fd</i>
+
+возвращает -1 при ошибке (меняет при этом, соответственно, значение переменной
+<i>errno</i>)
+
+или описатель файла при успешном выполнении.
+</dd><dt>get</dt><dd>
+Указатель на функцию, которая является интерфейсом для поиска по ключу в
+базе данных. Адрес и размер данных, связанных с указанным ключом  
+<i>key</i>,
+
+возвращается в структуре, указываемой 
+<i>data</i>.
+
+Функция 
+<i>get</i>
+
+возвращает -1 при ошибке (меняет при этом, соответственно, значение переменной
+<i>errno</i>),
+
+0 при успешном выполнении и 1, если ключа
+<i>key</i>
+
+нет в файле.
+</dd><dt>put</dt><dd>
+Указатель на функцию, сохраняющую пары ключ/данные в базе данных.
+</dd><dt></dt><dd>
+Установленное значение параметра 
+<i>flag</i>
+
+может быть одним из следующих:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt>R_CURSOR</dt><dd>
+Замена пары ключ/данные, определяемой указателем записи.
+Указатель предварительно должен быть инициализирован.
+</dd><dt>R_IAFTER</dt><dd>
+Указание данных непосредственно после тех данных, которые связаны с ключом
+<i>key</i>;
+
+создание новой пары ключ/данные.
+Номер записи добавленной пары ключ/данные возвращается в структуре
+<i>key</i>.
+
+(Применимо только в случае метода доступа DB_RECNO).
+</dd><dt>R_IBEFORE</dt><dd>
+Указание данных непосредственно перед данными, связанными с ключом
+<i>key</i>;
+
+создание новой пары ключ/данные.
+Номер записи добавленной пары ключ/данные возвращается в структуре
+<i>key</i>.
+
+(Применимо только в случае метода доступа DB_RECNO).
+</dd><dt>R_NOOVERWRITE</dt><dd>
+Добавление новой пары ключ/данные, только если ключ еще не существовал.
+</dd><dt>R_SETCURSOR</dt><dd>
+Сохранение пары ключ/данные, установка или инициализация позиции
+указателя записи для ссылки на нее. (Применимо только в случае метода
+доступа DB_BTREE и DB_RECNO).
+</dd></dl>
+</dd></dl>
+
+</dd><dt></dt><dd>
+Значение R_SETCURSOR доступно только в случае методов доступа DB_BTREE 
+и DB_RECNO, поскольку они предполагают, что ключи имеют определенный
+порядок, который не изменяется.
+</dd><dt></dt><dd>
+Значения R_IAFTER и R_IBEFORE доступны только в случае методе доступа
+DB_RECNO, поскольку предполагается, что метод доступа позволяет
+создавать новые ключи. Это возможно, только  если ключи отсортированы и
+независимы, например, они могут представлять собой номера записей.
+</dd><dt></dt><dd>
+Обычное поведение функции 
+<i>put</i>
+
+предусматривает ввод новой пары ключ/данные,
+заменяя при этом уже существующий ключ.
+</dd><dt></dt><dd>
+Функция 
+<i>put</i>
+
+возвращает -1 при ошибке (меняет при этом, соответственно, значение переменной
+<i>errno</i>),
+
+0 при успешном выполнении и 1, если установленное значение флага R_NOOVERWRITE равно
+значению
+<i>flag</i>
+
+и ключ в файле уже существует.
+</dd><dt>seq</dt><dd>
+Указатель на функцию, которая является интерфейсом для последовательного поиска
+в базе данных. Адрес и размер ключа возвращается в структуре, определяемой
+<i>key</i>,
+
+а адрес и размер данных - в структуре, определяемой 
+<i>data</i>.
+
+</dd><dt></dt><dd>
+Последовательный поиск пары ключ/данные может быть начат в любой момент,
+и позиция указателя записи не подвергнется изменениям при вызове функций
+<i>del</i>,
+
+<i>get</i>,
+
+<i>put</i>
+
+или
+<i>sync</i>.
+
+Изменение базы данных в процессе последовательного просмотра отразится на
+просмотре, т.е. запись, вставленная позади указателя, не будет возвращена,
+пока не будет возвращена запись, вставленная перед указателем.
+</dd><dt></dt><dd>
+Значение флага
+<b>должно</b>
+
+быть равно одному из следующих значений:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt>R_CURSOR</dt><dd>
+Возвращаются данные, связанные с указанным ключом.
+Отличается от функции
+<i>get</i>
+
+тем, что устанавливает указатель записи на положение ключа или инициализирует этот указатель.
+При методе доступа DB_BTREE необязательно, чтобы возвращаемый ключ в точности 
+соответствовал указанному. Возвращаемый ключ - наименьшее число, но оно больше
+определенного ключа или равно ему. При этом допускается частичное соответствие 
+ключей и поиск их в диапазонах.
+</dd><dt>R_FIRST</dt><dd>
+Возвращается первая пара ключ/данные из базы данных, а указатель записи устанавливается 
+или инициализируется для ссылки на нее.
+</dd><dt>R_LAST</dt><dd>
+Возвращается последняя пара ключ/данные из базы данных, а указатель записи
+устанавливается или инициализируется для ссылки на нее. Применимо
+только для методов доступа DB_BTREE и DB_RECNO.
+</dd><dt>R_NEXT</dt><dd>
+Пара ключ/данные возвращается и ставится непосредственно после указателя. 
+Если указатель не был установлен, она занимает положение флага R_FIRST.
+</dd><dt>R_PREV</dt><dd>
+Возвращается пара ключ/данные и ставится непосредственно перед указателем. 
+Если указатель не был установлен, она занимает положение флага R_LAST.
+Применимо только для методов доступа DB_BTREE и DB_RECNO.
+</dd></dl>
+</dd></dl>
+
+</dd><dt></dt><dd>
+R_LAST и R_PREV подходят только методам доступа DB_BTREE и DB_RECNO, поскольку
+в данном случае предполагается, что ключи расположены в строгом неизменном порядке.
+</dd><dt></dt><dd>
+Функция
+<i>seq</i>
+
+возвращает -1 при ошибке вызова (изменяя при этом значение переменной
+<i>errno</i>),
+
+0 при успешном его выполнении и 1, если не обнаруживается пары ключ/данные, меньшей 
+или большей по значению, чем указанный или текущий ключ. 
+Если используется метод доступа DB_RECNO, а файл базы данных представляет собой 
+специальный символьный файл (и нет доступных сложившихся пар ключ/данные), то функция
+<i>seq</i>
+
+возвращает значение 2.
+</dd><dt>sync</dt><dd>
+Указатель на функцию, которая записывает любые кэшированные данные на диск.
+Если база данных находится только в памяти, функция
+<i>sync</i>
+
+не выполняет никаких действий и всегда безошибочна.
+</dd><dt></dt><dd>
+Аргумент flag может принимать следующее значение:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt>R_RECNOSYNC</dt><dd>
+При методе доступа DB_RECNO этот флаг служит причиной применения
+функции sync к файлу btree, лежащему в основе файла recno, а не к самому файлу
+recno (см. поле
+<i>bfname</i>
+
+на странице руководства 
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recno&amp;category=3">recno</a></i>(3)
+
+для более полной информации).
+</dd></dl>
+</dd></dl>
+
+</dd><dt></dt><dd>
+Функция
+<i>sync</i>
+
+возвращает -1 при ошибке вызова (меняя при этом значение переменной
+<i>errno</i>)
+
+или 0 при успешном его выполнении.
+</dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>ПАРЫ КЛЮЧ/ДАННЫЕ</h2>
+
+Доступ ко всем типам файлов основан на парах ключ/данные.
+И ключ, и данные описываются следующей структурой данных:
+<p>
+
+typedef struct {
+</p><dl compact=""><dt></dt><dd>
+void *data;
+<br>
+
+size_t size;
+</dd></dl>
+
+} DBT;
+<p>
+
+Элементы структуры DBT определяются так:
+</p><dl compact="">
+<dt>data</dt><dd>
+Указатель на строку байтов.
+</dd><dt>size</dt><dd>
+Размер строки байтов.
+</dd></dl>
+<p>
+
+Байтовые строки ключа и данных могут ссылаться на строки практически
+неограниченной длины, хотя любые две из них должны помещаться в доступной
+памяти одновременно. Не забывайте, что методы доступа не предоставляют Вам
+гарантий выравнивания байтовых строк.
+<a name="lbAF">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Функция 
+<i>dbopen</i>
+
+может некорректно завершить работу и изменить
+значение переменной
+<i>errno</i>
+
+соответственно ошибке, определенной в библиотечных функциях
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a></i>(2)
+
+и
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=malloc&amp;category=3">malloc</a></i>(3)
+
+, или на следующие ошибки:
+<dl compact="">
+<dt>[EFTYPE]</dt><dd>
+Файл неверного формата.
+</dd><dt>[EINVAL]</dt><dd>
+Указанные параметры (функция хэширования и т.д.) не совместимы 
+с текущими установками файла, не имеют смысла для данной функции (например,
+использование указателя записи без его предварительной инициализации), или
+имеется несоответствие версий файлов и программного обеспечения.
+</dd></dl>
+<p>
+
+Функция 
+<i>close</i>
+
+может некорректно завершить работу и изменить
+значение переменной
+<i>errno</i>
+
+на ошибку, определенную в библиотечных функциях:
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=close&amp;category=2">close</a></i>(2),
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></i>(2),
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></i>(2),
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=free&amp;category=3">free</a></i>(3)
+
+или
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fsync&amp;category=2">fsync</a></i>(2).
+
+</p><p>
+
+Функции 
+<i>del</i>,
+
+<i>get</i>,
+
+<i>put</i>
+
+и
+<i>seq</i>
+
+могут некорректно завершить работу и изменить
+значение переменной
+<i>errno</i>
+
+на ошибку, определенную в библиотечных функциях
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></i>(2),
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></i>(2),
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=free&amp;category=3">free</a></i>(3)
+
+или
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=malloc&amp;category=3">malloc</a></i>(3).
+
+</p><p>
+
+Функция
+<i>fd</i>
+
+может некорректно завершить работу и изменить значение переменной
+<i>errno</i>
+
+на ENOENT (для баз данных, находящихся только в памяти).
+</p><p>
+
+Функция 
+<i>sync</i>
+
+может некорректно завершить работу и изменить
+значение переменной
+<i>errno</i>
+
+на ошибку, определенную в библиотечной функции
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fsync&amp;category=2">fsync</a></i>(2).
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=btree&amp;category=3">btree</a></i>(3),
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hash&amp;category=3">hash</a></i>(3),
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mpool&amp;category=3">mpool</a></i>(3),
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recno&amp;category=3">recno</a></i>(3)
+
+<p>
+<i>LIBTP: Portable, Modular Transactions for UNIX</i>,
+
+Margo Seltzer, Michael Olson, USENIX proceedings, Winter 1992.
+<a name="lbAH">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Название типа DBT является сокращением от ``data base thang'' и используется
+в настоящее время,
+поскольку никто еще не придумал подходящего для него имени,
+которое ранее нигде не применялось.
+<p>
+
+Интерфейс описателя файла устарел и будет удален в будущей его версии.
+</p><p>
+
+Ни один из методов доступа не предоставляет пользователю каких-либо форм 
+совместного доступа к системе, соединения или транкзаций.
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ПАРЫ КЛЮЧ/ДАННЫЕ</a></dt><dd>
+</dd><dt><a href="#lbAF">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAG">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAH">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="db" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

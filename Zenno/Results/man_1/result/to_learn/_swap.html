@@ -1,0 +1,389 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN swap (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, swap"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="swap" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">swap (1)</font><hr><li> <a href="/man.shtml?topic=swap&amp;category=1&amp;russian=4"><u>swap</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=swap&amp;category=1&amp;russian=0"><u>swap</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=swap&amp;category=3&amp;russian=4"><u>swap</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li><font color="#555555">Ключ <a href="/keywords/swap.html"><u>swap</u></a> обнаружен в базе ключевых слов.</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>swap(1M)</h1></td>
+<td><h1 align="right">swap(1M)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>swap</b> - интерфейс администрирования пространства подкачки</p>
+
+<h2>СИНТАКСИС</h2>
+<dl><dt></dt>
+  <dd><tt>
+/usr/sbin/swap -a <b>swapname</b> <b>swaplow</b> <b>swaplen</b><br>
+/usr/sbin/swap -c [<b>имя_файла</b>]<br>
+/usr/sbin/swap -d <b>swapname</b> <b>swaplow</b><br>
+/usr/sbin/swap -l [-s]<br>
+/usr/sbin/swap -s
+  </tt></dd>
+</dl>
+
+<h2>ОПИСАНИЕ</h2>
+
+<p>Команда <b>swap</b> обеспечивает метод добавления, удаления и мониторинга <i>областей 
+подкачки</i> системы, используемых диспетчером памяти.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Опции</h3>
+
+<p><b>swap</b> воспринимает следующие опции:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="10%"><a name="a"><b>-a</b></a></td><td>
+Добавляет указанную область подкачки. <b>swapname</b> - это имя 
+специального блочного устройства для соответствующей секции, 
+например, <b>/dev/dsk/*</b>, где значение <b>*</b> зависит от машины, или 
+обычное имя файла. <b>swaplow</b> - это смещение в 512-байтовых блоках 
+от начала секции, с которого должна начинаться область подкачки. 
+Если значение смещения не указано, используется нулевое 
+смещение. <b>swaplen</b> - это размер области подкачки в 512-байтовых 
+блоках. Фактически используемая операционной системой область 
+может быть несколько меньше за счет округления до размера блока 
+файловой системы. Если размер области подкачки не указан, 
+используется размер устройства, если его можно получить; в 
+противном случае, команда закончится неудачно, сообщая, что для 
+данного устройства необходимо явно указать размер. Эту опцию 
+может использовать только привилегированный пользователь. 
+<p> 
+Области подкачки обычно добавляются путем изменения файла 
+<b>/sbin/rc<i>n</i></b> так, чтобы он включал команду <b>swap</b>, выполняемую при 
+переходе системы на уровень выполнения <b><i>n</i></b>. Обычно это происходит 
+при запуске системы.</p>
+</td></tr>
+<tr><td valign="top"><a name="c"><b>-c</b></a></td><td>
+Конфигурирует область подкачки, добавляя все устройства, 
+указанные в файле <b>имя_файла</b>, как устройства подкачки. Если 
+<b>имя_файла</b> не указано, в качестве входного файла используется 
+<b>/etc/swaptab</b>. 
+<p> 
+Эту опцию может использовать только привилегированный 
+пользователь.</p>
+</td></tr>
+<tr><td valign="top"><a name="d"><b>-d</b></a></td><td>
+Удаляет указанную область подкачки. <b>swapname</b> - это имя 
+специального блочного устройства для соответствующей секции, 
+например, <b>/dev/dsk/*</b>, где значение <b>*</b> зависит от машины, или 
+обычное имя файла. <b>swaplow</b> - это смещение в 512-байтовых блоках 
+от начала секции, с которого должна начинаться область подкачки. 
+Если значение смещения не указано, используется нулевое 
+смещение. В ходе операции удаления удаляемые области подкачки 
+помечаются как "<b>INDEL</b>" (в процессе удаления). Выполняемая 
+параллельно команда <b>swap -l</b> может обнаружить состояние <b>INDEL</b> и 
+сообщить о нем в конце строки, описывающей область подкачки. 
+Система не будет выделять новые блоки из этой области и 
+попытается освободить уже используемые в ней блоки подкачки. 
+Область подкачки будет использоваться, пока не будут освобождены 
+все ее блоки. Когда завершится команда <b>swap</b>, удаление также будет 
+завершено. 
+<p> 
+Эту опцию может использовать только привилегированный 
+пользователь.</p>
+</td></tr>
+<tr><td valign="top"><a name="l"><b>-l</b></a></td><td>
+Выдает статус всех областей подкачки. Результат содержит пять 
+столбцов:
+<table cellspacing="4" border="0">
+<tbody><tr><td valign="top" width="25%"><b>path</b></td><td>
+Полный путь к области подкачки.
+</td></tr>
+<tr><td valign="top"><b>dev</b></td><td>
+Десятичный основной/дополнительный номер 
+устройства, если это блочное устройство; в 
+противном случае - нули.
+</td></tr>
+<tr><td valign="top"><b>swaplo</b></td><td>
+Значение смещения области подкачки в 512-
+байтовых блоках.
+</td></tr>
+<tr><td valign="top"><b>blocks</b></td><td>
+Размер области подкачки в 512-байтовых блоках.
+</td></tr>
+<tr><td valign="top"><b>free</b></td><td>
+Количество свободных 512-байтовых блоков в 
+области подкачки. Если область подкачки удаляется, 
+справа от этого числа выдается слово <b>INDEL</b>.
+</td></tr>
+</tbody></table>
+</td></tr>
+<tr><td valign="top"><a name="s"><b>-s</b></a></td><td>
+Выдает следующую информацию о суммарном использовании 
+пространства подкачки:
+
+<table cellspacing="4" border="0">
+<tbody><tr><td valign="top" width="25%"><b>allocated</b></td><td>
+Объем пространства подкачки (в 512-байтовых 
+блоках), выделенного под приватные страницы.
+</td></tr>
+<tr><td valign="top"><b>reserved</b></td><td>
+Объем пространства подкачки (в 512-байтовых 
+блоках), которое еще не выделено, но запрошено 
+отображениями памяти, которые еще не создали 
+приватные страницы.
+</td></tr>
+<tr><td valign="top"><b>used</b></td><td>
+Общий объем пространства подкачки, в 512-
+байтовых блоках, которое выделено или 
+зарезервировано.
+</td></tr>
+<tr><td valign="top"><b>available</b></td><td>
+Общий объем пространства подкачки, в 512-
+байтовых блоках, которое в настоящий момент 
+доступно для резервирования и выделения.
+</td></tr>
+</tbody></table>
+
+</td></tr>
+</tbody></table><h2>ИСПОЛЬЗОВАНИЕ</h2><p>При добавлении пространства подкачки с помощью команды <b>swap</b>, в качестве 
+области подкачки можно указать обычный файл. Фактически, зачастую это 
+единственный способ использования данной команды, поскольку не так уж 
+часто имеется неиспользуемая секция на диске. Чтобы создать пространство 
+подкачки, необходимо создать файл соответствующего размера. Не достаточно 
+просто создать файл нулевой длины; он должен быть такого же размера, как 
+создаваемая область подкачки, или команда <b>swap</b> не сработает.</p><p>Для этого можно использовать команду <a href="/man.shtml?topic=dd&amp;category=1"><b>dd(1M)</b></a>, как показано в следующем 
+примере:</p><dl><dt></dt><dd>
+<tt>
+dd &lt; /dev/zero &gt; /dev/more_swap bs=512 count=10000<br>
+swap -a /dev/more_swap 0 10000
+</tt>
+</dd></dl><h3>&nbsp;&nbsp;&nbsp;   Пример</h3><p>Следующий пример использования <b>swap</b> запрашивает 10 Кб области подкачки 
+(двадцать блоков по 512 байтов) на устройстве <b>/dev/dsk/*</b>, где значение <b>*</b> 
+зависит от машины.</p><dl><dt></dt><dd>
+<tt>swap -a /dev/dsk/* 0 20</tt>
+</dd></dl><h2>ДИАГНОСТИКА</h2><p>Команда <b>swap -d</b> не сработает, если в результате удаления окажется 
+недостаточно пространства подкачки для поддержки текущих выполняющихся 
+процессов. В этом случае будет выдано сообщение</p><dl><dt></dt><dd>
+<tt>SC_REMOVE failed</tt>
+</dd></dl><h2>ССЫЛКИ</h2><dl><dt></dt><dd>
+	<a href="/man.shtml?topic=dd&amp;category=1"><b>dd(1M)</b></a>,
+	<a href="/man.shtml?topic=swaptab&amp;category=4"><b>swaptab(4)</b></a>
+</dd></dl><h2>ПРИМЕЧАНИЯ</h2><p>Привилегированное использование этой команды ограничено только <i>режимом 
+сопровождения</i> (maintenance mode). Описание режима сопровождения см. в 
+документации по системному администрированию.</p><p>Не выполняется проверка того, что добавляемая область подкачки не 
+пересекается с существующей файловой системой.</p><p>Не рекомендуется использовать в качестве областей подкачки файлы NFS.</p><p align="center"><font size="-2">Copyright 1994 Novell, Inc.<br>
+Copyright 2000 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p><br><font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="swap" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font><br><noindex>
+<br>
+
+
+</noindex><br><br><div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div><div style="clear: both;"></div><br><table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+<form method="get" action="/search.shtml"></form>
+
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+
+
+<!--htdig_noindex-->
+
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+
+
+
+
+
+
+
+</table><table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

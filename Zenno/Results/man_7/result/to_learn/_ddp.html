@@ -1,0 +1,542 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ddp (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ddp"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ddp" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ddp (7)</font><hr><li> <a href="/man.shtml?topic=ddp&amp;category=4&amp;russian=2"><u>ddp</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ddp&amp;category=7&amp;russian=0"><u>ddp</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=ddp&amp;category=7&amp;russian=2"><u>ddp</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+ddp - реализация протокола AppleTalk в Linux
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/netatalk/at.h">netatalk/at.h</a>&gt; </b>
+
+<p>
+<i>ddp_socket</i><b> = socket(PF_APPLETALK, SOCK_DGRAM, 0);</b>
+
+<br>
+
+<i>raw_socket</i><b> = socket(PF_APPLETALK, SOCK_RAW, </b><i>protocol</i><b>);</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+В Linux реализован протокол Appletalk, описанный в
+<i>Inside Appletalk</i>.
+
+В ядре есть лишь уровни DDP и AARP. Они рассчитаны на использование
+библиотеками протоколов
+<b>netatalk</b>.
+
+Эта страница описывает интерфейс желающим использовать уровень DDP
+непосредственно.
+<p>
+
+Связь между Appletalk и программой пользователя реализована через
+интерфейс сокетов, совместимых с BSD. Дополнительную информацию о сокетах
+можно найти в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7).
+
+</p><p>
+
+Сокет Appletalk создается путем вызова функции
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=2">socket</a></b>(2),
+
+которой в качестве аргумента семьи (family) сокета указано значение
+<b>PF_APPLETALK</b>.
+
+Тип сокета может быть
+<b>SOCK_DGRAM</b>
+
+(чтобы открыть сокет
+<b>ddp</b>)
+
+или
+<b>SOCK_RAW</b>
+
+для сокета
+<b>raw</b>.
+
+<i>protocol</i>
+
+устанавливает протокол приема-передачи Appletalk.
+<b>SOCK_RAW </b>
+
+необходимо указать значение
+<b>ATPROTO_DDP</b>.
+
+</p><p>
+
+Сокеты Raw могут быть открыты только процессом с идентификатором
+эффективного пользователя, равным нулю, либо процессом, имеющим возможность
+<b>CAP_NET_RAW</b>.
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>ФОРМАТЫ АДРЕСОВ</h2>
+
+Адрес сокета Appletalk определяется как комбинация номера сети, номера узла
+(node) и номера порта.
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>
+struct at_addr {
+    u_short         s_net;
+    u_char          s_node;
+};
+struct sockaddr_atalk {
+    sa_family_t     sat_family; /* address family */
+    u_char          sat_port;   /* port */
+    struct at_addr  sat_addr;   /* net/node */
+};
+
+</pre>
+
+</dd></dl>
+
+<p>
+
+Установленное значение
+<i>sat_family</i>
+
+всегда равно
+<b>AF_APPLETALK. </b>
+
+<i>sat_port</i>
+
+содержит номер порта. Порты с номерами меньше 129-и известны как
+<b>зарезервированные порты.</b>
+
+Вызывать этим сокетам функцию
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bind&amp;category=2">bind</a></b>(2)
+
+может только процесс, имеющий либо идентификатор эффективного
+пользователя, равный нулю, либо возможность
+<b>CAP_NET_BIND_SERVICE</b>.
+
+<i>sat_addr </i>
+
+является адресом машины.
+Поле
+<i>net</i>
+
+структуры
+<b>struct at_addr</b>
+
+содержит адрес сети машины (в сетевом порядке расположения байт). Значение
+<b>AT_ANYNET </b>
+
+является шаблоном, включающим в себя и lqэту сетьrq.
+Поле
+<i>node</i>
+
+структуры
+<b>struct at_addr</b>
+
+содержит номер узла машины. Значение 
+<b>AT_ANYNODE </b>
+
+является шаблоном, включающим в себя и lqэтот узелrq. Значение
+<b>ATADDR_BCAST </b>
+
+является ссылкой на локальный широковещательный адрес.
+<a name="lbAF">&nbsp;</a>
+</p><h2>ОПЦИИ СОКЕТОВ</h2>
+
+Опции сокета, специфичные для протокола, не поддерживаются.
+<a name="lbAG">&nbsp;</a>
+<h2>СИСТЕМНЫЕ ВЫЗОВЫ</h2>
+
+IP поддерживает интерфейс sysctl для настройки некоторых общих параметров
+Appletalk. Доступ к sysctl можно получить путем чтения или записи файлов
+<b>/proc/sys/net/atalk/*</b>
+
+или с помощью интерфейса
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sysctl&amp;category=2">sysctl</a></b>(2).
+
+<dl compact="">
+<dt><b>aarp-expiry-time</b>
+
+</dt><dd>
+Временной интервал (в секундах) до момента устаревания записи в кэше AARP.
+</dd><dt><b>aarp-resolve-time</b>
+
+</dt><dd>
+Временной интервал (в секундах) до определения записи в кэше AARP.
+</dd><dt><b>aarp-retransmit-limit</b>
+
+</dt><dd>
+Количество повторных передач запроса AARP, до того, как запись будет объявлена
+недействительной.
+</dd><dt><b>aarp-tick-time</b>
+
+</dt><dd>
+Скорость таймера, управляющего AARP, в секундах.
+</dd></dl>
+<p>
+
+Значения по умолчанию соответствуют описанию и никогда не должны меняться.
+<a name="lbAH">&nbsp;</a>
+</p><h2>СИСТЕМНЫЕ ВЫЗОВЫ</h2>
+
+Все вызовы ioctl, описанные в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7)<b>,</b>
+
+относятся и к ddp.
+<a name="lbAI">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Будьте очень осторожны при работе с опцией
+<b>SO_BROADCAST</b>:
+
+она не относится к привилегированным в Linux. При невнимательной рассылке
+сообщений по широковещательному адресу легко перегрузить сеть.
+<a name="lbAJ">&nbsp;</a>
+<h2>ВЕРСИИ</h2>
+
+Appletalk поддерживается Linux версии 2.0 и более поздних. Интерфейс
+<b>sysctl </b>
+
+появился в Linux 2.2.
+<a name="lbAK">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>ENOTCONN</b>
+
+</dt><dd>
+Операция предназначена только для соединенного сокета, а сокет не был соединен.
+</dd><dt><b>EINVAL</b>
+
+</dt><dd>
+Передан неправильный аргумент.
+</dd><dt><b>EMSGSIZE </b>
+
+</dt><dd>
+Размер датаграммы больше размера DDP MTU.
+</dd><dt><b>EACCES</b>
+
+</dt><dd>
+Пользователь попытался выполнить операцию, не имея на то соответствующих прав.
+Это относится к передаче информации по широковещательному адресу при сброшенном
+флаге широковещательной передачи, а также к попытке соединения с
+зарезервированным портом, когда идентификатор эффективного пользователя
+отличается от нуля или отсутствует возможность
+<b>CAP_NET_BIND_SERVICE</b>.
+
+</dd><dt><b>EADDRINUSE</b>
+
+</dt><dd>
+Попытка соединения с уже используемым адресом.
+</dd><dt><b>ENOMEM</b> and <b>ENOBUFS</b>
+
+</dt><dd>
+Hедостаточно памяти в системе для выполнения данной операции.
+</dd><dt><b>ENOPROTOOPT</b> and <b>EOPNOTSUPP</b>
+
+</dt><dd>
+Передана неправильная опция сокета.
+</dd><dt><b>EPERM</b>
+
+</dt><dd>
+Пользователь не имеет прав на установку высокого приоритета, изменение
+конфигурации или посылку сигналов определенному процессу или группе.
+</dd><dt><b>EADDRNOTAVAIL</b>
+
+</dt><dd>
+Был запрошен несуществующий интерфейс, или запрошенный адрес источника не
+являлся локальным.
+</dd><dt><b>EAGAIN</b>
+
+</dt><dd>
+Операция на неблокируемом сокете блокируется.
+</dd><dt><b>ESOCKTNOSUPPORT</b>
+
+</dt><dd>
+Сокет не был настроен, или был запрошен неизвестный тип сокета.
+</dd><dt><b>EISCONN</b>
+
+</dt><dd>
+Был произведен вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2)
+
+в уже соединенном сокете.
+</dd><dt><b>EALREADY</b>
+
+</dt><dd>
+Операция соединения в неблокируемом сокете уже производится.
+</dd><dt><b>ECONNABORTED</b>
+
+</dt><dd>
+Соединение было закрыто во время
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=accept&amp;category=2">accept</a></b>(2).
+
+</dd><dt><b>EPIPE</b>
+
+</dt><dd>
+Соединение было неожиданно закрыто другой стороной.
+</dd><dt><b>ENOENT</b>
+
+</dt><dd>
+Был произведен вызов
+<b>SIOCGSTAMP </b>
+
+при отсутствии прибывшего в сокет пакета.
+</dd><dt><b>EHOSTUNREACH</b>
+
+</dt><dd>
+Hет записи таблицы маршрутизации, указывающей на адрес назначения.
+</dd><dt><b>ENODEV </b>
+
+</dt><dd>
+Сетевое устройство недоступно или не имеет возможности посылать IP.
+</dd><dt><b>ENOPKG </b>
+
+</dt><dd>
+Подсистема ядра не была настроена.
+</dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h2>СОВМЕСТИМОСТЬ</h2>
+
+Базовый интерфейс сокетов Appletalk совместим с
+<b>netatalk </b>
+
+в BSD-подобных системах. Многие системы BSD не проверяют
+<b>SO_BROADCAST</b>
+
+при посылке широковещательных кадров: это может привести к проблемам
+совместимости.
+<p>
+
+Режим сокетов raw поддерживается только в Linux и предназначен для облегчения
+поддержки альтернативных пакетов CAP и утилит мониторинга AppleTalk.
+<a name="lbAM">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Слишком много противоречивых ошибок.
+<p>
+
+Вызовы ioctl для настройки таблиц маршрутизации, устройств, таблиц AARP и
+других устройств пока что не описаны.
+<a name="lbAN">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmsg&amp;category=2">sendmsg</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvmsg&amp;category=2">recvmsg</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ФОРМАТЫ АДРЕСОВ</a></dt><dd>
+</dd><dt><a href="#lbAF">ОПЦИИ СОКЕТОВ</a></dt><dd>
+</dd><dt><a href="#lbAG">СИСТЕМНЫЕ ВЫЗОВЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">СИСТЕМНЫЕ ВЫЗОВЫ</a></dt><dd>
+</dd><dt><a href="#lbAI">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ВЕРСИИ</a></dt><dd>
+</dd><dt><a href="#lbAK">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAL">СОВМЕСТИМОСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAM">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAN">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ddp" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

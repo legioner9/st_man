@@ -1,0 +1,683 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN cpio (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, cpio"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="cpio" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">cpio (8)</font><hr><li> <a href="/man.shtml?topic=cpio&amp;category=1&amp;russian=4"><u>cpio</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=cpio&amp;category=1&amp;russian=1"><u>cpio</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=cpio&amp;category=1&amp;russian=0"><u>cpio</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=cpio&amp;category=1&amp;russian=2"><u>cpio</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=cpio&amp;category=5&amp;russian=1"><u>cpio</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=cpio&amp;category=8&amp;russian=0"><u>cpio</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Пользовательские команды</h1></td>
+<td><h1 align="right">cpio(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>cpio</b> - копирование файлов в архив и из архива</p>
+
+<h2>СИНТАКСИС</h2>
+<dl>
+<dt></dt><dd><tt>
+     cpio -i [ bBcdfkmPrsStuvV6 ] [ -C <b>размер_буфера</b> ] [ -E <b>файл</b> ]<br>
+     &nbsp;&nbsp;&nbsp;[ -H <b>формат</b> ] [ -I <b>файл</b> 
+     [ -M <b>сообщение</b> ]  ] [ -R <b>id</b> ] [ <b>шаблон</b> ... ]
+</tt></dd>
+<dt></dt><dd><tt>
+     cpio -o [ aABcLPvV ] [ -C <b>размер_буфера</b> ] [ -H <b>формат</b> ] [ -O <b>файл</b> [ -M <b>сообщение</b> ] ]
+</tt></dd>
+<dt></dt><dd><tt>
+     cpio -p [ adlLmPuvV ] [ -R <b>id</b> ] <b>каталог</b>
+</tt></dd>
+</dl>
+
+<h2>ОПИСАНИЕ</h2>
+
+<p>Команда <b>cpio</b> копирует файлы в и из архива <b>cpio</b>.
+Архив <b>cpio</b> может быть многотомным. Опции 
+<a href="#i"><b>-i</b></a>, <a href="#o"><b>-o</b></a> и <a href="#p"><b>-p</b></a> 
+задают выполняемое действие. Эти (взаимоисключающие) действия
+описаны ниже.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Режим копирования из архива</h3>
+
+<p><b>cpio -i</b> (<i>copy in</i>) выбирает файлы из стандартного входного 
+потока, предположительно сформированного предыдущей командой
+<b>cpio -o</b>. Выбираются только файлы с именами, соответствующими <b>шаблону</b>.  
+Подробнее о <b>шаблонах</b> см. на странице справочного руководства
+<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a> и в разделе <a href="#operands"><b>ОПЕРАНДЫ</b></a>.
+Извлеченные файлы при необходимости создаются и копируются в 
+текущее дерево каталогов в зависимости от описанных ниже опций.
+Права доступа к файлам будут такими же, как и в момент выполнения 
+соответствующей команды <b>cpio -o</b>. Пользователь и группа-владелец
+устанавливается на основе текущего пользователя, если только это не
+пользователь <b>root</b>. В этом случае владельцы будут такие же, как были
+при выполнени соответствующей команды <b>cpio -o</b>. 
+Учтите, что если команда <b>cpio -i</b> пытается создать файл, 
+который уже существует, причем с той же датой изменения или более новый,
+команда cpio выдаст предупреждающее сообщение и не заменит этот файл. 
+(Для безусловной перезаписи существующих файлов можно задать 
+опцию <b>-u</b>.)</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Режим копирования в архив</h3>
+
+<p><b>cpio -o</b> (copy out) читает список имен файлов из входного потока
+и копирует эти файлы в стандартный выходной поток вместе с полным путем
+и информацией о состоянии. Результат по умолчанию дополняется до границы
+8192-байтов или до указанного пользователем (с помощью опций <b>-B</b> или <b>-C</b>) 
+размера блока, или, при необходимости, до специфического размера блока 
+устройства (как в случае использования ленты CTC).</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Режим передачи</h3>
+
+<p><b>cpio -p</b> (pass) читает список имен файлов, которые при необходимости, 
+в зависимости от описанных ниже опций, создаются и копируются в указанное
+целевое дерево каталогов.</p>
+
+<p><b><i>Примечание:</i></b> утилита <b>cpio</b> предполагает 
+использование четырехбайтовых слов.</p>
+
+<p>Если при записи на специальное символьное устройство (<b>-o</b>) или 
+при чтении со специального символьного утсройства (<b>-i</b>) утилита <b>cpio</b> 
+обнаружит конец носителя (например, конец дискеты), и не заданы опции
+<b>-O</b> и <b>-I</b>, <b>cpio</b> выдает следующее сообщение:</p>
+
+<dl><dt></dt><dd><tt>
+     To continue, type device/file name when ready.<br>
+     Для продолжения введите имя устройства/файла.
+</tt></dd></dl>
+
+<p>Для продолжения необходимо заменить носитель и ввести имя специального 
+символьного устройства (например, <b>/dev/rdiskette</b>) и нажать клавишу
+Enter. Можно для продолжения архивирования задать <b>cpio</b> другое устройство.
+Например, при наличии двух дисководов, можно переключать архивирование с 
+одного на другой, чтобы оно продолжалось, пока вы меняете дискету. (Если
+просто нажать клавишу Enter, процесс <b>cpio</b> завершает работу.)</p>
+
+<h2>ОПЦИИ</h2>
+
+<p>Поддерживаются следующие опции:</p>
+
+<table width="100%" border="0">
+<tbody><tr><td width="10%"><a name="i"><b>-i</b></a></td><td>
+(copy in) <b>cpio -i</b> выбирает файлы из стандартного входного потока.</td></tr>
+<tr><td><a name="o"><b>-o</b></a></td><td>
+(copy out) <b>cpio -o</b> читает список имен файлов из стандартного 
+входного потока и копирует их в стандартный выходной поток.</td></tr>
+<tr><td><a name="p"><b>-p</b></a></td><td>
+(pass) <b>cpio -p</b> читает список имен файлов из стандартного входного 
+потока.</td></tr>
+</tbody></table>
+
+<p>Следующие опции можно в любой последовательности добавлять к опциям
+<b>-o</b>, <b>-i</b> или <b>-p</b>:</p>
+
+<table width="100%" border="0">
+<tbody><tr><td valign="top" width="20%"><b><a name="a">-a</a></b></td><td>
+Сбрасывает времена обращения к входным файлам после их копирования.
+Времена обращения не сбрасываются для связанных файлов при указании
+опций <b>cpio -pla</b> (взаимоисключающих с опцией 
+<a href="#m"><b>-m</b></a>).</td></tr>
+
+<tr><td valign="top"><b><a name="A">-A</a></b></td><td>
+Добавляет файлы в архив. Опция <b>-A</b> требует обязательного указания
+опции <a href="#O"><b>-O</b></a>. Допустима только для архивов в файлах, на дискетах или на
+разделах жесткого диска.</td></tr>
+
+<tr><td valign="top"><b><a name="b">-b</a></b></td><td>
+Изменяет порядок байтов в каждом слове (Используется только с 
+опцией <a href="#i"><b>-i</b></a>.)</td></tr>
+
+<tr><td valign="top"><b><a name="B">-B</a></b></td><td>
+Выполняет ввод/вывод в виде блоков-записей по 5120
+байтов. Если не указана эта опция и опция <b>-C</b>, используется
+стандартный размер блока - 8192 байтов. Опция <b>-B</b> не применима 
+в <i>режиме передачи</i>; <b>-B</b> имеет смысл только при обмене данными со
+специальным символьным устройством, например,
+<b>/dev/rmt/0m</b>.</td></tr>
+
+<tr><td valign="top"><b><a name="c">-c</a></b></td><td>
+Читает и записывает информацию заголовка в форме ASCII-текста
+для переносимости. Этот формат заголовка не накладывает
+никаких ограничений на значения UID или GID. Эта опция используется
+при обмене архивами между SVR4-системами; для обмена между заранее
+неизвестными машинами имеет смысл использовать опцию <a href="#odc"><b>-H odc</b></a>.  
+Опция <b>-c</b> предполагает использование расширенных номеров устройств, 
+которые поддерживаются только в SVR4-системах. При переносе файлов 
+между SunOS 4 или Interactive UNIX и ОС Solaris 2.6 или более поздиними
+версиями этой ОС используйте опцию <b>-H odc</b>.</td></tr>
+
+<tr><td valign="top"><b><a name="C">-C размер_буфера</a></b></td><td>
+Объединяет ввод/вывод в записи указанного <b>размера</b> (размер задается
+положительным целым числом). Стандартный размер буфера, если не
+указана эта опция и опция <b>-B</b>, - 8192 байта. Опция <b>-C</b> имеет смысл
+только если происходит обмен данными со специальным символьным устройством,
+например, <b>/dev/rmt/0m</b>.</td></tr>
+
+<tr><td valign="top"><b><a name="d">-d</a></b></td><td>
+Создает каталоги при необходимости.</td></tr>
+
+<tr><td valign="top"><b><a name="E">-E файл</a></b></td><td>
+Задает входной <b>файл</b>, содержащий список имен файлов, которые необходимо извлечь
+из архива (по одному имени в строке).</td></tr>
+
+<tr><td valign="top"><b><a name="f">-f</a></b></td><td>
+Копирует все файлы, за исключением соответствующих шаблону. (Описание
+шаблонов см. в разделе <a href="#operands"><b>ОПЕРАНДЫ</b></a>.)</td></tr>
+
+<tr><td valign="top"><b><a name="H">-H формат</a></b></td><td>
+Читает или записывает заголовок в указанном <b>формате</b>.
+Всегда используйте эту опцию или опцию <b>-c</b>, если исходная и целевая машины -
+разных типов (взаимоисключающих, как <b>-c</b> и <b>-6</b>). Допустимы следующие 
+значения формата:
+
+<table border="0">
+<tbody><tr><td align="top" width="15%"><b><a name="bar">bar</a></b></td><td>
+Заголовок и формат <b>bar</b>. Используется вместе с опцией 
+<b><a href="#i">-i</a></b> (только для чтения).
+</td></tr>
+<tr><td valign="top" width="15%"><b><a name="crc">crc|CRC</a></b></td><td>
+Заголовок ASCII с расширенными номерами и дополнительной контрольной
+суммой для каждого файла. Этот формат заголовка не предполагает никаких
+ограничений на значения UID или GID.
+</td></tr>
+<tr><td valign="top" width="15%"><b><a name="odc">odc</a></b></td><td>
+Заголовок ASCII с небольшими номерами устройств. Этот
+заголовок и формат архива <b>cpio</b> соответствует стандарту
+<i>IEEE/P1003  Data  Interchange Standard</i>.  
+Это - наиболее переносимый из всех форматов заголовков. 
+Этот формат официально принят для обмена файлами между системами,
+соответствующими стандарту POSIX 
+(см. <a href="/man.shtml?topic=standards&amp;category=5"><b>standards(5)</b></a>). 
+Используйте этот формат для обмена информацией с SunOS 4 и Interactive 
+UNIX. Этот формат заголовка поддерживает хранение в заголовке 
+идентификаторов UID и GID со значениями вплоть до 262143.
+</td></tr>
+<tr><td valign="top" width="15%"><b><a name="tar">tar|TAR</a></b></td><td>
+Заголовок и формат <b>tar</b>. Этот формат заголовка позволяет хранить в
+заголовке значения UID и GID со значениями вплоть до 2097151.
+</td></tr>
+<tr><td valign="top" width="15%"><b><a name="ustar">ustar|USTAR</a></b></td><td>
+Заголовок и формат <b>tar</b>, соответствующий стандарту <i>IEEE/P1003 Data 
+Interchange Standard</i>. Этот формат заголовка позволяет хранить в
+заголовке значения UID и GID со значениями вплоть до 2097151.
+</td></tr></tbody></table>
+<p>
+Файлы с идентификаторами UID и GID, большими указанного выше предела,
+попадают в архив как имеющие UID и GID 60001. Для переноса больших файлов
+(8 Гбайтов - 1 байт) можно использовать только заголовки фоматов
+<b>tar/TAR</b>, <b>ustar/USTAR</b> или <b>odc</b>.</p>
+</td></tr>
+
+<tr><td valign="top"><b><a name="I">-I файл</a></b></td><td>
+Читает содержимое <b>файла</b> как входной архив. Если указан файл специального
+символьного устройства и текущий носитель полностью прочитан, замените
+носитель и нажмите клавишу Enter для чтения следующего носителя.
+Эта опция используется только совместно с опцией <a href="#i"><b>-i</b></a>.</td></tr>
+
+<tr><td valign="top"><b><a name="k">-k</a></b></td><td>
+Пытается пропустить поврежденные заголовки файлов и игнорировать
+получаемые ошибки ввода/вывода. Если необходимо избирательно скопировать
+файлы с поврежденного носителя, эта опция позволяет прочитать
+файлы с неповрежденными заголовками. (Если архив <b>cpio</b> 
+содержит другие архивы <b>cpio</b>, в случае ошибки <b>cpio</b> может закончить работу
+досрочно. <b>cpio</b> найдет следующий неповрежденный заголовок, и если это
+окажется заголовок вложенного архива, завершит работу, обнаружив признак завершения
+вложенного архива.)  Используется только совместно с опцией <a href="#i"><b>-i</b></a>.</td></tr>
+
+<tr><td valign="top"><b><a name="l">-l</a></b></td><td>
+По возможности связывает файлы, а не копирует их. 
+(Используется только с опцией <a href="#p"><b>-p</b></a>.)</td></tr>
+
+<tr><td valign="top"><b><a name="L">-L</a></b></td><td>
+Следует по символьным связям. По умолчанию утилита не следует по 
+символьным связям.</td></tr>
+
+<tr><td valign="top"><b><a name="m">-m</a></b></td><td>
+Оставляет прежнее время изменения файла. Эта опция не действует
+для копируемых каталогов (эта опция и опция 
+<a href="#a"><b>-a</b></a> - взаимоисключающие). </td></tr>
+
+<tr><td valign="top"><b><a name="M">-M сообщение</a></b></td><td>
+Задает <b>сообщение</b>, выдаваемое при смене носителей. При задании специального
+символьного устройства в опциях <b>-O</b> или <b>-I</b>, эта опция позволяет задать
+сообщение, выдаваемое когда достигнут конец носителя. В <b>сообщение</b>
+можно один раз включить шаблон <b>%d</b>, заменяемый последовательным 
+номером следующего носителя.</td></tr>
+
+<tr><td valign="top"><b><a name="O">-O файл</a></b></td><td>
+Направляет результат работы <b>cpio</b> в <b>файл</b>. Если <b>файл</b> является 
+специальным символьным устройством и текущий носитель заполнен,
+замените носитель и нажмите клавишу Enter для продолжения работы со
+следующим носителем. Используется только с опцией <a href="#o"><b>-o</b></a>.</td></tr>
+
+<tr><td valign="top"><b><a name="P">-P</a></b></td><td>
+Сохраняет <i>списки контроля доступа</i> (ACL). Если эта опция используется
+при выдаче информации, существующие списки ACL 
+записываются вместе с другими атрибутами в стандартный выходной поток. Списки 
+ACL создаются как специальные файлы соответствующего типа. Если
+опция задана при считывании информации, существующие в архиве списки ACL
+извлекаются вместе с другими атрибутами из стандартного входного потока. 
+Опция распознает файлы соответствующего специального типа. Учтите, что 
+при попытке извлечения файлов из архива со списками ACL предыдущими версиями
+<b>cpio</b> произойдет ошибка. Эту опцию не надо использовать вместе с 
+опцией <a href="#c"><b>-c</b></a>, поскольку списки ACL поддерживаются не во всех системах, и поэтоу
+не переносимы. Для обеспечения переносимости используйте заголовки ASCII.</td></tr>
+
+<tr><td valign="top"><b><a name="r">-r</a></b></td><td>
+Интерактивно переименовывает файлы. Если пользователь просто нажимает Enter,
+файл пропускается. Если пользователь вводит точку (<b>.</b>), оставляется исходное
+имя файла. (Опция не поддерживается для <a href="#p"><b>cpio -p</b></a>.)</td></tr>
+
+<tr><td valign="top"><b><a name="R">-R id </a></b></td><td>
+Устанавливает пользователя <b>id</b> (и его первичную группу) в качестве владельца 
+каждого файла (<b>id</b> должно быть одним из известных регистрационных имен в 
+файле <b>/etc/passwd</b>). Эту опцию может задавать только пользователь <b>root</b>.</td></tr>
+
+<tr><td valign="top"><b><a name="s">-s</a></b></td><td>
+Переставляет байты в каждом полуслове.</td></tr>
+
+<tr><td valign="top"><b><a name="S">-S</a></b></td><td>
+Переставляет полуcлова в каждом слове.</td></tr>
+
+<tr><td valign="top"><b><a name="t">-t</a></b></td><td>
+Выдает содержимое входного архива. Никакие файлы при этом
+не создаются (эта опция взаимоисключающа с опцией <a href="#V"><b>-V</b></a>).</td></tr>
+
+<tr><td valign="top"><b><a name="u">-u</a></b></td><td>
+Копирует безусловно (обычно старый файл не заменяет более новый с тем же 
+именем).</td></tr>
+
+<tr><td valign="top"><b><a name="v">-v</a></b></td><td>
+Выдача дополнительной информации. Выдается список имен обрабатываемых файлов. При 
+использовании с опцией <b>-t</b> , список имен файлов выглядит аналогично результатам
+команды <b>ls -l</b> (см. <a href="/man.shtml?topic=ls&amp;category=1"><b>ls(1)</b></a>.)</td></tr>
+
+<tr><td valign="top"><b><a name="V">-V</a></b></td><td>
+Выдача дополнительной информации специального вида. Выдается точка
+для каждого прочитанного или записанного файла. 
+Позволяет пользователю убедиться, что процесс <b>cpio</b> работает, не выдавая
+при этом имена всех файлов.</td></tr>
+
+<tr><td valign="top"><b><a name="6">-6</a></b></td><td>
+Обрабатывает формат файла архива UNIX System Sixth Edition. Используется только
+совместно с опцией <a href="#i"><b>-i</b></a> (взаимоисключающая опция по отношению к опциям
+<a href="#c"><b>-c</b></a> и <a href="#H"><b>-H</b></a>).</td></tr>
+</tbody></table>
+
+<h2><a name="operands">ОПЕРАНДЫ</a></h2>
+
+<p>Поддерживаются следующие операнды:</p>
+
+<table width="100%" border="0">
+<tbody><tr><td valign="top" width="20%"><b>каталог</b></td><td>
+Путь к существующему целевому каталогу для команды <b>cpio -p</b>.
+</td></tr>
+<tr><td valign="top">шаблон</td><td>
+Выражение с теми же метасимволами сопоставления с образцом, что и
+шаблоны имен файлов командного интерпретатора (подробнее о шаблонах
+имен файлов см. на странице <a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>), функционально подобными регулярным 
+выражениям. Поддерживаются следующие метасимволы:
+<table border="0">
+<tbody><tr><td valign="top" width="5%"><b>*</b></td><td>
+Соответствует любой строке, в том числе, пустой.</td></tr>
+<tr><td valign="top" width="5%"><b>?</b></td><td>
+Соответствует любому одиночному символу.</td></tr>
+<tr><td valign="top" width="5%"><b>[...]</b></td><td>
+Соответствует любому из указанных в квадратных скобках символов.
+Пара символов, разделенная дефисом (<b>-</b>), соответствует любому из 
+символов диапазона (включительно с указанными), определяемого по стандартной
+кодовой таблице. Если сразу за открывающей скобкой (<b>[</b>) идет восклицательный 
+знак (<b>!</b>), результаты будут неопределенными.</td></tr>
+
+<tr><td valign="top" width="5%"><b>!</b></td><td>
+Отрицание. (Например, шаблон <b>!abc*</b> исключает все файлы, имена которых
+начинаются с <b>abc</b>.)</td></tr>
+</tbody></table>
+<p>
+В <b>шаблонах</b> метасимволы <b>?</b>, <b>*</b> и <b>[...]</b> сопоставляются с символом косой
+черты (<b>/</b>), а символ обратной косой черты (<b>\</b>) является маскирующим. 
+Можно задавать несколько <b>шаблонов</b>, а если <b>шаблон</b> не задан, предполагается
+шаблон <b>*</b> (т.е. выбираются все файлы).</p>
+<p>
+Каждый шаблон необходимо брать в двойные кавычки, в противном случае,
+командный интерпретатор может подставить имена файлов текущего каталога.</p>
+</td></tr></tbody></table>
+
+<h2>ИСПОЛЬЗОВАНИЕ</h2>
+
+<p>Описание работы утилиты cpio с файлами, рамер которых превосходит
+2 Гбайта (2**31 байтов) см. на странице справочного руководства 
+<a href="/man.shtml?topic=largefile&amp;category=5"><b>largefile(5)</b></a>.</p>
+
+<h2>ПРИМЕРЫ</h2>
+
+<p>Следующие примеры показывают три варианта использования утилиты <b>cpio</b>.</p>
+
+<h3>Пример 1: Использование стандартного входного потока</h3>
+
+<p>Если стандартный входной поток формируется и направляется по программному
+каналу команде <b>cpio -o</b>, утилита группирует файлы так, что они могут быть 
+перенаправлены (&gt;) в один файл (<b>../новый_файл</b>). Опция <a href="#c"><b>-c</b></a> 
+гарантирует, что файл будет переносим на другие машины (как и опция
+<a href="/man.shtml?topic=#H"><b>-H</b></a>). Вместо <a href="ls&amp;category=1"><b>ls(1)</b></a> можно использовать 
+<a href="/man.shtml?topic=find&amp;category=1"><b>find(1)</b></a>, <a href="/man.shtml?topic=echo&amp;category=1"><b>echo(1)</b></a>, 
+<a href="/man.shtml?topic=cat&amp;category=1"><b>cat(1)</b></a> и любые другие
+команды, формирующие в стандартном выходном потоке список имен файлов 
+для <b>cpio</b>. Результат можно перенаправить на устройство, а не в обычный файл.</p>
+
+<tt>example% ls | cpio -oc &gt; <b>../новый_файл</b></tt>
+
+<h3>Пример 2: Извлечение файлов в каталоги</h3>
+
+<p><b>cpio -i</b> использует файлы архивы <b>cpio -o</b> (направленные через программный
+канал с помощью <b>cat</b> в примере ниже), извлекает из них файлы,
+соответствующие шиблону (<b>memo/a1</b>, <b>memo/b*</b>), создает при необходимости 
+подкаталоги в текущем каталоге (опция <a href="#d"><b>-d</b></a>),
+и пощает файлы в соответствующие каталоги. Опция <a href="#c"><b>-c</b></a>
+используется, если архив был создан с переносимым заголовком. 
+Если шаблоны не заданы, в каталог будут помещены все файлы из архива
+<b>newfile</b>.</p>
+
+<tt>example% cat newfile | cpio -icd "<b>memo/a1</b>" "<b>memo/b*</b>"</tt>
+
+<h3>Пример 3: Копирование или связывание файлов в другой каталог</h3>
+
+<p><b>cpio -p</b> принимает из стандартного входного потока список файлов
+и копирует или создает на них связи 
+(опция <b>-l</b>) в другом каталоге (<b>newdir</b> в примере ниже). 
+Опция <a href="#d"><b>-d</b></a> требует создавать каталоги при необходимости. 
+Опция <a href="#m"><b>-m</b></a> требует оставлять время изменения файла. 
+(При генерации списка полных имен файлов для <b>cpio</b> с помощью 
+утилиты <a href="/man.shtml?topic=find&amp;category=1"><b>find(1)</b></a> важно задавать 
+опцию <b>-depth</b>. Это решает проблемы с
+попытками создания файлов в каталогах, доступных только для чтения.) 
+Целевой каталог, <b>newdir</b>, должен существовать.</p>
+
+<tt>example% find . -depth -print | cpio -pdlmv <b>newdir</b></tt>
+
+<p>Учтите, что при использовании утилиты <b>cpio</b> совместно с <b>find</b>, если
+задается опция <a href="#L"><b>-L</b></a> для команды <b>cpio</b>, необходимо использовать опцию
+<b>-follow</b> для <b>find</b>, и наоборот. Иначе могут получиться нежелательные 
+результаты.</p>
+
+<p>При работе с многотомными архивами через несколько устройств 
+демонтируйте старый том,
+смонтируйте новый и перейдите к следующей  ленте, введя имя следующего
+устройства (даже если оно совпадает с предыдущим). Чтобы прекратить 
+обработку томов нажмите клавишу Enter и cpio закончит работу.</p>
+
+<h2>ПЕРЕМЕННЫЕ СРЕДЫ</h2>
+
+<p>Описание следующих переменных среды, влияющих на работу <b>cpio</b>,
+см. на странице справочного руководства 
+<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>:
+<b>LC_COLLATE</b>, <b>LC_CTYPE</b>, <b>LC_MESSAGES</b> 
+<b>LC_TIME</b>, <b>TZ</b> и <b>NLSPATH</b>.</p>
+
+<h2>СТАТУС ВЫХОДА</h2>
+
+<p>Программа завершается со следующими значениями статуса выхода:</p>
+
+<table border="0">
+<tbody><tr><td width="15%">0</td> <td>Успешное завершение.</td></tr>
+<tr><td>&gt;0</td> <td>Произошла ошибка.</td></tr>
+</tbody></table>
+
+<h2>АТРИБУТЫ</h2>
+
+<p>Описание следующих атрибутов см. на странице справочного руководства
+<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>:</p>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWcsu</td></tr>
+<tr><td>CSI</td>
+<td>включено</td></tr>
+</tbody></table>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=ar&amp;category=1"><b>ar(1)</b></a>, 
+	<a href="/man.shtml?topic=cat&amp;category=1"><b>cat(1)</b></a>, 
+	<a href="/man.shtml?topic=echo&amp;category=1"><b>echo(1)</b></a>, 
+	<a href="/man.shtml?topic=find&amp;category=1"><b>find(1)</b></a>, 
+	<a href="/man.shtml?topic=ls&amp;category=1"><b>ls(1)</b></a>, 
+	<a href="/man.shtml?topic=setfacl&amp;category=1"><b>setfacl(1)</b></a>, 
+	<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>,
+	<a href="/man.shtml?topic=tar&amp;category=1"><b>tar(1)</b></a>,
+	<a href="/man.shtml?topic=vold&amp;category=1"><b>vold(1M)</b></a>,
+	<a href="/man.shtml?topic=archives&amp;category=4"><b>archives(4)</b></a>,
+	<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>,
+	<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>,
+	<a href="/man.shtml?topic=largefile&amp;category=5"><b>largefile(5)</b></a>,
+	<a href="/man.shtml?topic=standards&amp;category=5"><b>standards(5)</b></a>
+</dd></dl>
+
+<h2>ПРИМЕЧАНИЯ</h2>
+
+<p>
+Полные имена файлов не долны превышать 256 символов для двоичного
+(стандартного) формата заголовка и формата <a href="#odc&quot;><b>-H odc</b></a>. Для других форматов
+длина имен не должна превышать 1024 символа.</p>
+<p>
+Для файлов, значения идентификаторов UID или GID которых превышают максимальные, 
+допускаемые используемым форматом заголовка, выдается сообщение об ошибке.
+Для создания архивов, допускающих все значения UID и GID, используйте 
+опции <a href=&quot;#crc&quot;><b>-H crc</b></a> или <a href=&quot;#c&quot;><b>-c</b></a>.</p>
+<p>
+Только пользователь <b>root</b> может копировать специальные файлы.</p>
+<p>
+Инофрмация о блоках выдается с учетом размера блока 512 байтов.</p>
+<p>
+Если файл имеет права доступа 000, не пустой и его пытается обработать
+любой пользователь, кроме <b>root</b>, файл не будет сохраняться или восстанавливаться.</p>
+<p>
+Номер <i>индексного дескриптора</i> (inode), сохраняющийся в заголовке,
+(<b>/usr/include/archives.h</b>) - это 2-х байтовое целое без знака. 
+Тем самым, значения номера дескриптора ограничены диапазоном от
+0 до 65535. Жестко связанные файлы должны попадать в этот диапазон значений
+индексных дескрипторов. Это может вызвать проблемы при переносе 
+архивов <b>cpio</b> на машины других производителей.</p>
+<p>
+Когда работает <i>демон управления томами</i> (Volume Management daemon),
+доступ к дискетам через стандартные имена устройств (например, <b>/dev/rdiskette</b>)
+может быть невозможен. Поробнее об этом см. на странице справочного
+руководства <a href=&quot;/man.shtml?topic=vold&amp;category=1&quot;><b>vold(1M)</b></a>.</p>
+<p>
+При извлечении или копировании файлов с ленты на диск 
+нужно использовать тот же размер блока ленты, что и при копировании на ленту.
+Поэтому необходимо задавать опцию <a href=" #b"=""><b>-B</b></a>.</p>
+
+<p align="center"><font size="-2">
+Copyright 2002 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="cpio" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

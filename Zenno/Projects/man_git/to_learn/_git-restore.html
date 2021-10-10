@@ -1,0 +1,688 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-49925874-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-49925874-3');
+  </script>
+
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <title>Git - git-restore Documentation</title>
+
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+  <link rel="stylesheet" media="screen" href="/assets/application-3fb605347038cd5206e27d1f90829d3159e0de904e21be188a31e8f8c27c42a8.css">
+  <script src="/assets/modernize-b3ebe0c31c24f230dc62179d3e1030d2e57a53b1668d9382c0a27dbd44a94beb.js"></script>
+  <!--[if (gte IE 6)&(lte IE 8)]>
+  <script src="/javascripts/selectivizr-min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body id="documentation">
+
+  <div class="inner">
+    <header>
+
+  <a href="/"><img src="/images/logo@2x.png" alt="Git" height="46" width="110"></a>
+  <span id="tagline">--fast-version-control</span>
+  <script type="text/javascript">
+    var taglines = ["fast-version-control","everything-is-local","distributed-even-if-your-workflow-isnt","local-branching-on-the-cheap","distributed-is-the-new-centralized"];
+    var tagline = taglines[Math.floor(Math.random() * taglines.length)];
+    document.getElementById('tagline').innerHTML = '--' + tagline;
+  </script>
+  <form id="search" action="/search/results">
+    <input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text">
+  </form>
+  <div id="search-results"></div>
+
+</header>
+
+  </div> <!-- .inner -->
+
+    <div class="inner">
+      <div id="content-wrapper">
+        <aside class="sidebar">
+  <nav>
+    <ul>
+      <li>
+        <a href="/about">About</a>
+        <ul class="">
+          <li>
+            <a href="/about">Branching and Merging</a>
+          </li>
+          <li>
+            <a href="/about/small-and-fast">Small and Fast</a>
+          </li>
+          <li>
+            <a href="/about/distributed">Distributed</a>
+          </li>
+          <li>
+            <a href="/about/info-assurance">Data Assurance</a>
+          </li>
+          <li>
+            <a href="/about/staging-area">Staging Area</a>
+          </li>
+          <li>
+            <a href="/about/free-and-open-source">Free and Open Source</a>
+          </li>
+          <li>
+            <a href="/about/trademark">Trademark</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="active" href="/doc">Documentation</a>
+        <ul class="expanded">
+          <li>
+            <a class="active" href="/docs">Reference</a>
+          </li>
+          <li>
+            <a href="/book">Book</a>
+          </li>
+          <li>
+            <a href="/videos">Videos</a>
+          </li>
+          <li>
+            <a href="/doc/ext">External Links</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/downloads">Downloads</a>
+        <ul class="">
+          <li>
+            <a href="/downloads/guis">GUI Clients</a>
+          </li>
+          <li>
+            <a href="/downloads/logos">Logos</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/community">Community</a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+        <div id="content">
+          
+  <div id="reference-version">
+    <a class="dropdown-trigger" id="reference-languages-trigger" data-panel-id="l10n-versions-dropdown" href="#">
+  English ▾</a>
+<div class="dropdown-panel right" id="l10n-versions-dropdown">
+  <header>Localized versions of <strong>git-restore</strong> manual</header>
+  <ol class="reference-previous-versions">
+      <li>
+        <a href="/docs/git-restore/de"><span class="version">Deutsch</span>
+        </a>
+        </li>
+      <li>
+        <a href="/docs/git-restore/en"><span class="version">English</span>
+        </a>
+        </li>
+      <li>
+        <a href="/docs/git-restore/fr"><span class="version">Français</span>
+        </a>
+        </li>
+      <li>
+        <a href="/docs/git-restore/pt_BR"><span class="version">Português (Brasil)</span>
+        </a>
+        </li>
+  </ol>
+  <footer>
+    Want to read in your language or fix typos?<br> <a href="https://github.com/jnavila/git-manpages-l10n">You can help translate this page</a>.
+  </footer>
+</div>
+
+    <a class="dropdown-trigger" id="reference-topics-trigger" data-panel-id="topics-dropdown" href="#">Topics ▾</a>
+<div class="dropdown-panel right" id="topics-dropdown">
+  <div class="three-column">
+    <div class="column-left">
+      <h3 class="setup">Setup and Config</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git">git</a></li>
+  <li><a href="/docs/git-config">config</a></li>
+  <li><a href="/docs/git-help">help</a></li>
+  <li><a href="/docs/git-bugreport">bugreport</a></li>
+</ul>
+
+      <h3 class="projects">Getting and Creating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-init">init</a></li>
+  <li><a href="/docs/git-clone">clone</a></li>
+</ul>
+
+      <h3 class="snapshotting">Basic Snapshotting</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-add">add</a></li>
+  <li><a href="/docs/git-status">status</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-commit">commit</a></li>
+  <li><a href="/docs/git-notes">notes</a></li>
+  <li><a class="active" href="/docs/git-restore">restore</a></li>
+  <li><a href="/docs/git-reset">reset</a></li>
+  <li><a href="/docs/git-rm">rm</a></li>
+  <li><a href="/docs/git-mv">mv</a></li>
+</ul>
+
+      <h3 class="branching">Branching and Merging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-branch">branch</a></li>
+  <li><a href="/docs/git-checkout">checkout</a></li>
+  <li><a href="/docs/git-switch">switch</a></li>
+  <li><a href="/docs/git-merge">merge</a></li>
+  <li><a href="/docs/git-mergetool">mergetool</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-stash">stash</a></li>
+  <li><a href="/docs/git-tag">tag</a></li>
+  <li><a href="/docs/git-worktree">worktree</a></li>
+</ul>
+
+      <h3 class="sharing">Sharing and Updating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-fetch">fetch</a></li>
+  <li><a href="/docs/git-pull">pull</a></li>
+  <li><a href="/docs/git-push">push</a></li>
+  <li><a href="/docs/git-remote">remote</a></li>
+  <li><a href="/docs/git-submodule">submodule</a></li>
+</ul>
+
+    </div>
+    <div class="column-middle">
+      <h3 class="inspection">Inspection and Comparison</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-show">show</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-difftool">difftool</a></li>
+  <li><a href="/docs/git-range-diff">range-diff</a></li>
+  <li><a href="/docs/git-shortlog">shortlog</a></li>
+  <li><a href="/docs/git-describe">describe</a></li>
+</ul>
+
+      <h3 class="patching">Patching</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-cherry-pick">cherry-pick</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-rebase">rebase</a></li>
+  <li><a href="/docs/git-revert">revert</a></li>
+</ul>
+
+      <h3 class="debugging">Debugging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-bisect">bisect</a></li>
+  <li><a href="/docs/git-blame">blame</a></li>
+  <li><a href="/docs/git-grep">grep</a></li>
+</ul>
+
+      <h3 class="email">Email</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-am">am</a></li>
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-format-patch">format-patch</a></li>
+  <li><a href="/docs/git-send-email">send-email</a></li>
+  <li><a href="/docs/git-request-pull">request-pull</a></li>
+</ul>
+
+      <h3 class="external">External Systems</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-svn">svn</a></li>
+  <li><a href="/docs/git-fast-import">fast-import</a></li>
+</ul>
+
+      <h3 class="server-admin">Server Admin</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-daemon">daemon</a></li>
+  <li><a href="/docs/git-update-server-info">update-server-info</a></li>
+</ul>
+
+    </div>
+    <div class="column-right">
+      <h3 class="guides">Guides</h3>
+<ul class="unstyled">
+  <li><a href="/docs/gitattributes">gitattributes</a></li>
+  <li><a href="/docs/gitcli">Command-line interface conventions</a></li>
+  <li><a href="/docs/giteveryday">Everyday Git</a></li>
+  <li><a href="/docs/gitfaq">Frequently Asked Questions (FAQ)</a></li>
+  <li><a href="/docs/gitglossary">Glossary</a></li>
+  <li><a href="/docs/githooks">Hooks</a></li>
+  <li><a href="/docs/gitignore">gitignore</a></li>
+  <li><a href="/docs/gitmodules">gitmodules</a></li>
+  <li><a href="/docs/gitrevisions">Revisions</a></li>
+  <li><a href="/docs/gitsubmodules">Submodules</a></li>
+  <li><a href="/docs/gittutorial">Tutorial</a></li>
+  <li><a href="/docs/gitworkflows">Workflows</a></li>
+  <li><a href="/docs/git#_guides">All guides...</a></li>
+</ul>
+
+      <h3 class="admin">Administration</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-clean">clean</a></li>
+  <li><a href="/docs/git-gc">gc</a></li>
+  <li><a href="/docs/git-fsck">fsck</a></li>
+  <li><a href="/docs/git-reflog">reflog</a></li>
+  <li><a href="/docs/git-filter-branch">filter-branch</a></li>
+  <li><a href="/docs/git-instaweb">instaweb</a></li>
+  <li><a href="/docs/git-archive">archive</a></li>
+  <li><a href="/docs/git-bundle">bundle</a></li>
+</ul>
+
+      <h3 class="plumbing">Plumbing Commands</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-cat-file">cat-file</a></li>
+  <li><a href="/docs/git-check-ignore">check-ignore</a></li>
+  <li><a href="/docs/git-checkout-index">checkout-index</a></li>
+  <li><a href="/docs/git-commit-tree">commit-tree</a></li>
+  <li><a href="/docs/git-count-objects">count-objects</a></li>
+  <li><a href="/docs/git-diff-index">diff-index</a></li>
+  <li><a href="/docs/git-for-each-ref">for-each-ref</a></li>
+  <li><a href="/docs/git-hash-object">hash-object</a></li>
+  <li><a href="/docs/git-ls-files">ls-files</a></li>
+  <li><a href="/docs/git-ls-tree">ls-tree</a></li>
+  <li><a href="/docs/git-merge-base">merge-base</a></li>
+  <li><a href="/docs/git-read-tree">read-tree</a></li>
+  <li><a href="/docs/git-rev-list">rev-list</a></li>
+  <li><a href="/docs/git-rev-parse">rev-parse</a></li>
+  <li><a href="/docs/git-show-ref">show-ref</a></li>
+  <li><a href="/docs/git-symbolic-ref">symbolic-ref</a></li>
+  <li><a href="/docs/git-update-index">update-index</a></li>
+  <li><a href="/docs/git-update-ref">update-ref</a></li>
+  <li><a href="/docs/git-verify-pack">verify-pack</a></li>
+  <li><a href="/docs/git-write-tree">write-tree</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+    <a class="dropdown-trigger" id="reference-versions-trigger" data-panel-id="previous-versions-dropdown" href="#">
+    Version 2.33.0
+ ▾ </a>
+<span class="light">git-restore last updated in 2.33.0</span>
+<div class="dropdown-panel left" id="previous-versions-dropdown">
+  <header>Changes in the <strong>git-restore</strong> manual</header>
+  <ol class="reference-previous-versions">
+        <li class="no-change"><span>2.30.1 → 2.33.0 no changes</span></li>
+        <li>
+        <a href="/docs/git-restore/2.30.0"><span class="version">2.30.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">12/27/20</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.27.1 → 2.29.3 no changes</span></li>
+        <li>
+        <a href="/docs/git-restore/2.27.0"><span class="version">2.27.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">06/01/20</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.25.1 → 2.26.3 no changes</span></li>
+        <li>
+        <a href="/docs/git-restore/2.25.0"><span class="version">2.25.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">01/13/20</em>
+        </a>
+        </li>
+    <li>&nbsp;</li>
+    <!-- <li><a class="more" href="#">See more previous releases →</a></li> -->
+  </ol>
+  <footer>
+    <p>Check your version of git by running</p>
+    <code class="command">git --version</code>
+  </footer>
+</div>
+
+  </div>
+
+  <div id="main">
+    <div class="sect1">
+<h2 id="_name"><a class="anchor" href="#_name"></a>NAME</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>git-restore - Restore working tree files</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<pre class="content"><em>git restore</em> [&lt;options&gt;] [--source=&lt;tree&gt;] [--staged] [--worktree] [--] &lt;pathspec&gt;…​
+<em>git restore</em> [&lt;options&gt;] [--source=&lt;tree&gt;] [--staged] [--worktree] --pathspec-from-file=&lt;file&gt; [--pathspec-file-nul]
+<em>git restore</em> (-p|--patch) [&lt;options&gt;] [--source=&lt;tree&gt;] [--staged] [--worktree] [--] [&lt;pathspec&gt;…​]</pre>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_description"><a class="anchor" href="#_description"></a>DESCRIPTION</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Restore specified paths in the working tree with some contents from a
+restore source. If a path is tracked but does not exist in the restore
+source, it will be removed to match the source.</p>
+</div>
+<div class="paragraph">
+<p>The command can also be used to restore the content in the index with
+<code>--staged</code>, or restore both the working tree and the index with
+<code>--staged --worktree</code>.</p>
+</div>
+<div class="paragraph">
+<p>By default, if <code>--staged</code> is given, the contents are restored from <code>HEAD</code>,
+otherwise from the index. Use <code>--source</code> to restore from a different commit.</p>
+</div>
+<div class="paragraph">
+<p>See "Reset, restore and revert" in <a href="/docs/git">git[1]</a> for the differences
+between the three commands.</p>
+</div>
+<div class="paragraph">
+<p>THIS COMMAND IS EXPERIMENTAL. THE BEHAVIOR MAY CHANGE.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_options"><a class="anchor" href="#_options"></a>OPTIONS</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-restore.txt--slttreegt"> <a class="anchor" href="#Documentation/git-restore.txt--slttreegt"></a>-s &lt;tree&gt; </dt>
+<dt class="hdlist1" id="Documentation/git-restore.txt---sourcelttreegt"> <a class="anchor" href="#Documentation/git-restore.txt---sourcelttreegt"></a>--source=&lt;tree&gt; </dt>
+<dd>
+<p>Restore the working tree files with the content from the given
+tree. It is common to specify the source tree by naming a
+commit, branch or tag associated with it.</p>
+<div class="paragraph">
+<p>If not specified, the contents are restored from <code>HEAD</code> if <code>--staged</code> is
+given, otherwise from the index.</p>
+</div>
+<div class="paragraph">
+<p>As a special case, you may use <code>"A...B"</code> as a shortcut for the
+merge base of <code>A</code> and <code>B</code> if there is exactly one merge base. You can
+leave out at most one of <code>A</code> and <code>B</code>, in which case it defaults to <code>HEAD</code>.</p>
+</div>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt--p"> <a class="anchor" href="#Documentation/git-restore.txt--p"></a>-p </dt>
+<dt class="hdlist1" id="Documentation/git-restore.txt---patch"> <a class="anchor" href="#Documentation/git-restore.txt---patch"></a>--patch </dt>
+<dd>
+<p>Interactively select hunks in the difference between the
+restore source and the restore location. See the “Interactive
+Mode” section of <a href="/docs/git-add">git-add[1]</a> to learn how to operate
+the <code>--patch</code> mode.</p>
+<div class="paragraph">
+<p>Note that <code>--patch</code> can accept no pathspec and will prompt to restore
+all modified paths.</p>
+</div>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt--W"> <a class="anchor" href="#Documentation/git-restore.txt--W"></a>-W </dt>
+<dt class="hdlist1" id="Documentation/git-restore.txt---worktree"> <a class="anchor" href="#Documentation/git-restore.txt---worktree"></a>--worktree </dt>
+<dt class="hdlist1" id="Documentation/git-restore.txt--S"> <a class="anchor" href="#Documentation/git-restore.txt--S"></a>-S </dt>
+<dt class="hdlist1" id="Documentation/git-restore.txt---staged"> <a class="anchor" href="#Documentation/git-restore.txt---staged"></a>--staged </dt>
+<dd>
+<p>Specify the restore location. If neither option is specified,
+by default the working tree is restored. Specifying <code>--staged</code>
+will only restore the index. Specifying both restores both.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt--q"> <a class="anchor" href="#Documentation/git-restore.txt--q"></a>-q </dt>
+<dt class="hdlist1" id="Documentation/git-restore.txt---quiet"> <a class="anchor" href="#Documentation/git-restore.txt---quiet"></a>--quiet </dt>
+<dd>
+<p>Quiet, suppress feedback messages. Implies <code>--no-progress</code>.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt---progress"> <a class="anchor" href="#Documentation/git-restore.txt---progress"></a>--progress </dt>
+<dt class="hdlist1" id="Documentation/git-restore.txt---no-progress"> <a class="anchor" href="#Documentation/git-restore.txt---no-progress"></a>--no-progress </dt>
+<dd>
+<p>Progress status is reported on the standard error stream
+by default when it is attached to a terminal, unless <code>--quiet</code>
+is specified. This flag enables progress reporting even if not
+attached to a terminal, regardless of <code>--quiet</code>.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt---ours"> <a class="anchor" href="#Documentation/git-restore.txt---ours"></a>--ours </dt>
+<dt class="hdlist1" id="Documentation/git-restore.txt---theirs"> <a class="anchor" href="#Documentation/git-restore.txt---theirs"></a>--theirs </dt>
+<dd>
+<p>When restoring files in the working tree from the index, use
+stage #2 (<em>ours</em>) or #3 (<em>theirs</em>) for unmerged paths.</p>
+<div class="paragraph">
+<p>Note that during <code>git rebase</code> and <code>git pull --rebase</code>, <em>ours</em> and
+<em>theirs</em> may appear swapped. See the explanation of the same options
+in <a href="/docs/git-checkout">git-checkout[1]</a> for details.</p>
+</div>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt--m"> <a class="anchor" href="#Documentation/git-restore.txt--m"></a>-m </dt>
+<dt class="hdlist1" id="Documentation/git-restore.txt---merge"> <a class="anchor" href="#Documentation/git-restore.txt---merge"></a>--merge </dt>
+<dd>
+<p>When restoring files on the working tree from the index,
+recreate the conflicted merge in the unmerged paths.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt---conflictltstylegt"> <a class="anchor" href="#Documentation/git-restore.txt---conflictltstylegt"></a>--conflict=&lt;style&gt; </dt>
+<dd>
+<p>The same as <code>--merge</code> option above, but changes the way the
+conflicting hunks are presented, overriding the
+<code>merge.conflictStyle</code> configuration variable.  Possible values
+are "merge" (default) and "diff3" (in addition to what is
+shown by "merge" style, shows the original contents).</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt---ignore-unmerged"> <a class="anchor" href="#Documentation/git-restore.txt---ignore-unmerged"></a>--ignore-unmerged </dt>
+<dd>
+<p>When restoring files on the working tree from the index, do
+not abort the operation if there are unmerged entries and
+neither <code>--ours</code>, <code>--theirs</code>, <code>--merge</code> or <code>--conflict</code> is
+specified. Unmerged paths on the working tree are left alone.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt---ignore-skip-worktree-bits"> <a class="anchor" href="#Documentation/git-restore.txt---ignore-skip-worktree-bits"></a>--ignore-skip-worktree-bits </dt>
+<dd>
+<p>In sparse checkout mode, by default is to only update entries
+matched by <code>&lt;pathspec&gt;</code> and sparse patterns in
+$GIT_DIR/info/sparse-checkout. This option ignores the sparse
+patterns and unconditionally restores any files in
+<code>&lt;pathspec&gt;</code>.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt---recurse-submodules"> <a class="anchor" href="#Documentation/git-restore.txt---recurse-submodules"></a>--recurse-submodules </dt>
+<dt class="hdlist1" id="Documentation/git-restore.txt---no-recurse-submodules"> <a class="anchor" href="#Documentation/git-restore.txt---no-recurse-submodules"></a>--no-recurse-submodules </dt>
+<dd>
+<p>If <code>&lt;pathspec&gt;</code> names an active submodule and the restore location
+includes the working tree, the submodule will only be updated if
+this option is given, in which case its working tree will be
+restored to the commit recorded in the superproject, and any local
+modifications overwritten. If nothing (or
+<code>--no-recurse-submodules</code>) is used, submodules working trees will
+not be updated. Just like <a href="/docs/git-checkout">git-checkout[1]</a>, this will detach
+<code>HEAD</code> of the submodule.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt---overlay"> <a class="anchor" href="#Documentation/git-restore.txt---overlay"></a>--overlay </dt>
+<dt class="hdlist1" id="Documentation/git-restore.txt---no-overlay"> <a class="anchor" href="#Documentation/git-restore.txt---no-overlay"></a>--no-overlay </dt>
+<dd>
+<p>In overlay mode, the command never removes files when
+restoring. In no-overlay mode, tracked files that do not
+appear in the <code>--source</code> tree are removed, to make them match
+<code>&lt;tree&gt;</code> exactly. The default is no-overlay mode.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt---pathspec-from-fileltfilegt"> <a class="anchor" href="#Documentation/git-restore.txt---pathspec-from-fileltfilegt"></a>--pathspec-from-file=&lt;file&gt; </dt>
+<dd>
+<p>Pathspec is passed in <code>&lt;file&gt;</code> instead of commandline args. If
+<code>&lt;file&gt;</code> is exactly <code>-</code> then standard input is used. Pathspec
+elements are separated by LF or CR/LF. Pathspec elements can be
+quoted as explained for the configuration variable <code>core.quotePath</code>
+(see <a href="/docs/git-config">git-config[1]</a>). See also <code>--pathspec-file-nul</code> and
+global <code>--literal-pathspecs</code>.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt---pathspec-file-nul"> <a class="anchor" href="#Documentation/git-restore.txt---pathspec-file-nul"></a>--pathspec-file-nul </dt>
+<dd>
+<p>Only meaningful with <code>--pathspec-from-file</code>. Pathspec elements are
+separated with NUL character and all other characters are taken
+literally (including newlines and quotes).</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt---"> <a class="anchor" href="#Documentation/git-restore.txt---"></a>-- </dt>
+<dd>
+<p>Do not interpret any more arguments as options.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-restore.txt-ltpathspecgt82308203"> <a class="anchor" href="#Documentation/git-restore.txt-ltpathspecgt82308203"></a>&lt;pathspec&gt;…​ </dt>
+<dd>
+<p>Limits the paths affected by the operation.</p>
+<div class="paragraph">
+<p>For more details, see the <em>pathspec</em> entry in <a href="/docs/gitglossary">gitglossary[7]</a>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples"><a class="anchor" href="#_examples"></a>EXAMPLES</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following sequence switches to the <code>master</code> branch, reverts the
+<code>Makefile</code> to two revisions back, deletes hello.c by mistake, and gets
+it back from the index.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git switch master
+$ git restore --source master~2 Makefile  <b class="conum">(1)</b>
+$ rm -f hello.c
+$ git restore hello.c                     <b class="conum">(2)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>take a file out of another commit</p>
+</li>
+<li>
+<p>restore hello.c from the index</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If you want to restore <em>all</em> C source files to match the version in
+the index, you can say</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git restore '*.c'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the quotes around <code>*.c</code>.  The file <code>hello.c</code> will also be
+restored, even though it is no longer in the working tree, because the
+file globbing is used to match entries in the index (not in the
+working tree by the shell).</p>
+</div>
+<div class="paragraph">
+<p>To restore all files in the current directory</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git restore .</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or to restore all working tree files with <em>top</em> pathspec magic (see
+<a href="/docs/gitglossary">gitglossary[7]</a>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git restore :/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To restore a file in the index to match the version in <code>HEAD</code> (this is
+the same as using <a href="/docs/git-reset">git-reset[1]</a>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git restore --staged hello.c</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or you can restore both the index and the working tree (this the same
+as using <a href="/docs/git-checkout">git-checkout[1]</a>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git restore --source=HEAD --staged --worktree hello.c</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or the short form which is more practical but less readable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git restore -s@ -SW hello.c</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_see_also"><a class="anchor" href="#_see_also"></a>SEE ALSO</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="/docs/git-checkout">git-checkout[1]</a>,
+<a href="/docs/git-reset">git-reset[1]</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git"><a class="anchor" href="#_git"></a>GIT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Part of the <a href="/docs/git">git[1]</a> suite</p>
+</div>
+</div>
+</div>
+  </div>
+
+        </div>
+      </div>
+      <footer>
+  <div class="site-source">
+    <a href="/site">About this site</a><br>
+    Patches, suggestions, and comments are welcome.
+  </div>
+  <div class="sfc-member">
+    Git is a member of <a href="/sfc">Software Freedom Conservancy</a>
+  </div>
+</footer>
+
+<script src="/assets/application-8f00caf205cd147207c24e44516f18312442fd845fad0725e748f19cad311d0d.js"></script>
+
+    </div>
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

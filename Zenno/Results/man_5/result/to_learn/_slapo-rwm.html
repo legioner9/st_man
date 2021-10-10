@@ -1,0 +1,1000 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN slapo-rwm (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, slapo-rwm"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="slapo-rwm" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">slapo-rwm (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=slapo-rwm&amp;category=5&amp;russian=0"><u>slapo-rwm</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+slapo-rwm - наложение slapd перезаписи/отображения.
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+/usr/local/etc/openldap/slapd.conf
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Наложение
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8)
+
+<b>rwm</b>
+
+выполняет перезапись DN и данных, а также отображение объектных классов и типов атрибутов.
+В основном оно предназначено для обеспечения виртуального представления существующих данных,
+как удалённых, когда оно работает совместно с механизмом прокси, описанным в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-ldap&amp;category=5">slapd-ldap</a></b>(5),
+
+так и локальных, когда оно работает совместно с механизмом трансляции, описанным в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-relay&amp;category=5">slapd-relay</a></b>(5).
+
+<p>
+
+Это наложение является экспериментальным.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОТОБРАЖЕНИЕ</h2>
+
+Важной особенностью наложения
+<b>rwm</b>
+
+является функция отображения объектных классов и типов атрибутов из локального набора (или его
+подмножества) во внешний набор и обратно. Такое отображение выполняется средствами директивы
+<b>rwm-map</b>.
+
+<dl compact="">
+<dt><b>rwm-map {attribute | objectclass} [&lt;local name&gt; | *] {&lt;foreign name&gt; | *}</b>
+
+</dt><dd>
+Отображает типы атрибутов и объектные классы внешнего сервера в различные значения на локальном
+сервере slapd. Это может потребоваться, если некоторые атрибуты не входят в схему данных локального
+slapd, или если имена некоторых атрибутов отличаются, но их предназначение совпадает, или в других целях.
+Если в качестве локального или внешнего имени указано `*', это имя сохраняется неизменным. Если локальное
+имя пропущено, внешнее имя удаляется. Имена, неотображаемые явно, сохраняются неизменными, если и
+локальное, и внешнее имя задано в `*', и удаляются, если локальное имя пропущено, а внешнее имя
+задано в `*'.
+</dd></dl>
+<p>
+
+Локальные
+<i>объектные классы</i>
+
+и
+<i>типы атрибутов</i>
+
+должны быть определены в локальной схеме данных; определять внешние объектные классы и типы атрибутов
+в локальной схеме данных не требуется, но пользователям не возбраняется явно определить те из них,
+которые они собираются отображать. В целом, при отображении удалённого сервера средствами back-ldap
+(<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-ldap&amp;category=5">slapd-ldap</a></b>(5)) или back-meta (<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-meta&amp;category=5">slapd-meta</a></b>(5)), определения объектных классов и типов
+атрибутов можно довольно просто получить путём запроса подзаписи <i>subschemaSubentry</i> удалённого
+сервера; при отображении локальной базы данных проблем с элементами схемы данных возникать не должно.
+Однако, имейте ввиду, что решение о том, переопределять или нет типы атрибутов с
+<i>синтаксисом distinguishedName</i>,
+
+требует знаний относительно синтаксисов типов атрибутов. Подробнее смотрите в разделе ПЕРЕЗАПИСЬ.
+</p><p>
+
+Обратите внимание, что при отображении локальных атрибутов, значениями которых являются DN, в удалённые,
+сначала происходит перезапись DN, а затем отображение типов атрибутов, а при отображении удалённых
+атрибутов в локальные сначала происходит отображение типов атрибутов, а затем перезапись DN. Поэтому
+важно, чтобы локальный тип атрибута был соответствующим образом определён с использованием синтаксиса
+distinguishedName. Также обратите внимание, что существуют связанные с DN синтаксисы (например,
+составные типы с частью, значением которой является DN), такие как nameAndOptionalUID, значения
+которых в настоящее время перезаписи не подвергаются.
+</p><p>
+
+Если отображаемый внешний тип атрибута не определён на локальном сервере, то после процесса отображения
+может потребоваться нормализовать значение этого атрибута. Если такие значения останутся в
+ненормализованном состоянии, это может привести к неверным результатам, когда наложение
+<b>rwm</b>
+
+используется вместе с другими наложениями, например с
+<b>pcache</b>.
+
+Такая нормализация включается с помощью директивы
+<b>rwm-normalize-mapped-attrs</b>.
+
+</p><dl compact="">
+<dt><b>rwm-normalize-mapped-attrs {yes|no}</b>
+
+</dt><dd>
+Если в качестве значения директивы указано "yes", наложение
+<b>rwm</b>
+
+будет пытаться нормализовать значения отображаемых атрибутов, типы которых неизвестны локальному
+серверу. Значение по умолчанию - "no".
+</dd><dt><b>rwm-drop-unrequested-attrs {yes|no}</b>
+
+</dt><dd>
+Если в качестве значения директивы указано "yes", наложение
+<b>rwm</b>
+
+будет отбрасывать атрибуты, которые не запрашивались явно в операции поиска. Если указано "no", наложение
+<b>rwm</b>
+
+будет оставлять все атрибуты на месте, и их дальнейшая обработка может быть выполнена другими модулями.
+В любом случае, незапрошенные атрибуты будут исключены из результатов поиска механизмом frontend
+при кодировании пакета записей ответа операции поиска. Значение по умолчанию - "yes".
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ПРЕОБРАЗОВАНИЕ СУФФИКСА</h2>
+
+Основной функцией наложения
+<b>rwm</b>
+
+является возможность преобразования суффикса (suffix massaging) между виртуальным и реальным
+контекстом именования с помощью директивы
+<b>rwm-suffixmassage</b>.
+
+Во взаимодействии с механизмами прокси
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-ldap&amp;category=5">slapd-ldap</a></b>(5)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-meta&amp;category=5">slapd-meta</a></b>(5),
+
+либо с механизмом трансляции
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-relay&amp;category=5">slapd-relay</a></b>(5),
+
+это позволяет создавать виртуальные представления баз данных. Отличительной особенностью этого
+наложения является то, что, при его настройке до определения какой-либо базы данных, оно может
+модифицировать DN запросов
+<i>перед</i>
+
+выбором базы данных. По этой причине правила, перезаписывающие пустое DN ("") или DN подзаписи
+subschemaSubentry (обычно "cn=subschema"), будут предотвращать чтение клиентом записи root DSE
+или схемы данных DSA.
+<dl compact="">
+<dt><b>rwm-suffixmassage [&lt;virtual naming context&gt;] &lt;real naming context&gt;</b>
+
+</dt><dd>
+Сокращенное выражение для реализации перезаписи контекста именования; конечная часть DN преобразуется
+из виртуального контекста именования в реальный в контекстах перезаписи bindDN, searchDN,
+searchFilterAttrDN, compareDN, compareAttrDN, addDN, addAttrDN, modifyDN, modifyAttrDN, modrDN,
+newSuperiorDN, deleteDN, exopPasswdDN, и обратно из реального в виртуальный контекст именования в
+контекстах перезаписи searchEntryDN, searchAttrDN и matchedDN. По умолчанию преобразования не
+осуществляются для контекстов перезаписи searchFilter, referralAttrDN и referralDN. Если виртуальный
+контекст именования <i>&lt;virtual naming context&gt;</i> не указан, используется первый суффикс базы данных,
+к которой применяется наложение; это требует, чтобы директива
+<b>rwm-suffixmassage</b>
+
+была определена <i>после</i> директивы
+<b>suffix</b>
+
+базы данных. Директива
+<b>rwm-suffixmassage</b>
+
+автоматически задаёт
+<b>rwm-rewriteEngine</b>
+
+в
+<b>ON</b>.
+
+</dd></dl>
+<p>
+
+Подробнее смотрите в разделе ПЕРЕЗАПИСЬ.
+<a name="lbAG">&nbsp;</a>
+</p><h2>ПЕРЕЗАПИСЬ</h2>
+
+Строка преобразуется в соответствии с набором правил, называемых `контекстом перезаписи' (`rewrite
+context'). Эти правила основаны на POSIX (''расширенных'') регулярных выражениях с совпадением подстрок;
+специфические механизмы, подробно описанные далее, позволяют выполнять общую подстановку переменных
+и разрешение подстрок с помощью карт.
+Алгоритмы нахождения совпадения с шаблоном и подстановки можно изменять с помощью набора флагов.
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>&lt;rewrite context&gt; ::= &lt;rewrite rule&gt; [...]
+&lt;rewrite rule&gt; ::= &lt;pattern&gt; &lt;action&gt; [&lt;flags&gt;]
+</pre>
+
+</dd></dl>
+
+<p>
+
+Лежащая в основе идея заключалась в создании для сервера slapd легковесного модуля перезаписи
+(изначально предназначавшегося для механизма манипуляции данными LDAP).
+</p><p>
+
+<a name="lbAH">&nbsp;</a>
+</p><h2>Процесс работы</h2>
+
+Во входной строке производится поиск совпадений с набором правил перезаписи
+<i>rewriteRules</i>.
+
+Правила состоят из
+<i>шаблона поиска совпадения с регулярным выражением</i>,
+
+<i>шаблона подстановки</i>
+
+и комбинации выполняемых действий, описываемых набором
+<i>опциональных флагов</i>.
+
+В случае нахождения совпадения, преобразование строки выполняется в соответствии с шаблоном подстановки,
+который позволяет использовать подстроки, совпавшие во входной строке. Если определены какие-либо
+действия, они выполняются в самом конце. Каждое правило выполняется рекурсивно, если такое поведение
+не переопределено специфичными флагами действий; подробнее смотрите в подразделе "Флаги действий".
+Лимит по умолчанию на уровень вложенности рекурсии задаётся и может быть переопределён директивой
+<b>rwm-rewriteMaxPasses</b>;
+
+подробно это описано в подразделе "Дополнительные директивы конфигурации". В шаблонах подстановки
+разрешено выполнение разрешения подстрок с помощью так называемых карт. Карта - это некоторый объект,
+отображающий шаблон подстановки в какое-то значение.
+Флаги делятся на "Флаги управления поиском совпадений с шаблоном" и "Флаги действий"; первые управляют
+поведением поиска совпадения с  шаблоном регулярного выражения, вторые - действиями, выполняемыми
+после проведения подстановки.
+<a name="lbAI">&nbsp;</a>
+<h2>Флаги управления поиском совпадений с шаблоном</h2>
+
+<dl compact="">
+<dt><b>`C'</b>
+
+</dt><dd>
+соблюдать регистр символов при сравнении строки с шаблоном (по умолчанию регистр символов игнорируется).
+</dd><dt><b>`R'</b>
+
+</dt><dd>
+использовать ''основные'' регулярные выражения POSIX (по умолчанию используются ''расширенные'').
+</dd><dt><b>`M{n}'</b>
+
+</dt><dd>
+разрешить не более чем
+<b>n</b>
+
+рекурсивных проходов для конкретного правила; этот флаг не отменяет максимального общего количества
+проходов, таким образом он может только ужесточить ограничение для конкретного правила.
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>Флаги действий</h2>
+
+<dl compact="">
+<dt><b>`:'</b>
+
+</dt><dd>
+применить правило только один раз (по умолчанию применяется рекурсивно).
+</dd><dt><b>`@'</b>
+
+</dt><dd>
+прекратить применять правила в случае совпадения; текущее правило всё ещё будет применяться рекурсивно;
+для того чтобы применить текущее правило только один раз, а затем прекратить, используйте этот флаг
+в комбинации с флагом `:'.
+</dd><dt><b>`#'</b>
+
+</dt><dd>
+прекратить текущую операцию, если было найдено совпадение с правилом, и выдать ошибку
+`unwilling to perform'.
+</dd><dt><b>`G{n}'</b>
+
+</dt><dd>
+перейти на
+<b>n</b>
+
+правил назад и продолжить (опасайтесь зацикливания!).
+Имейте ввиду, что `G{1}' подразумевается в каждом правиле.
+</dd><dt><b>`I'</b>
+
+</dt><dd>
+игнорировать ошибки в правиле; это означает, что в случае возникновения ошибки, например, возникшей в ходе применения карты,
+эта ошибка интерпретируется как отсутствие совпадения. Ошибка `unwilling to perform' не переопределяется.
+</dd><dt><b>`U{n}'</b>
+
+</dt><dd>
+использовать
+<b>n</b>
+
+в качестве кода возврата, если было найдено совпадение с правилом; этот флаг не отменяет рекурсивного
+выполнения правила, поэтому, если требуется, чтобы правило выполнялось только один раз, этот флаг должен
+использоваться в комбинации с флагом  `:', например,
+<b>`:U{32}'</b>
+
+возвратит значение `32' (то есть noSuchObject) после ровно одного выполнения правила, если было найдено
+совпадение с шаблоном. Следовательно, поведение этого флага эквивалентно флагу `@',
+но при этом возвращается код
+<b>n</b>;
+
+другими словами, `@' эквивалентен `U{0}'.
+Разрешаются положительные коды возврата, отражающие соответствующие коды ошибок LDAP, указанные в
+<i>draft-ietf-ldapbis-protocol</i>.
+</dd></dl>
+<p>
+
+Порядок указания флагов может иметь значение. Например, `IG{2}' означает игнорировать ошибки и переходить
+на две строки вперёд как в случае нахождения совпадения, так и в случае ошибки, тогда как `G{2}I' означает
+игнорировать ошибки, но осуществлять переход на две строки вперёд только в случае нахождения совпадения.
+</p><p>
+
+При необходимости будут добавлены дополнительные флаги (главным образом, флаги действий).
+<a name="lbAK">&nbsp;</a>
+</p><h2>Шаблоны поиска совпадений</h2>
+
+Смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=regex&amp;category=7">regex</a></b>(7)
+
+и/или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=re_format&amp;category=7">re_format</a></b>(7).
+
+<a name="lbAL">&nbsp;</a>
+<h2>Синтаксис шаблонов подстановки</h2>
+
+Всё, что начинается с `$', требует подстановки;
+<p>
+
+единственное очевидное исключение - это `$$', которое преобразуется в единичный знак `$';
+</p><p>
+
+основная конструкция подстановки - `$&lt;d&gt;', где `&lt;d&gt;' это цифра; 0 означает строку целиком, а 1-9 -
+это подсовпадения, как описано в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=regex&amp;category=7">regex</a></b>(7)
+
+и/или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=re_format&amp;category=7">re_format</a></b>(7).
+
+</p><p>
+
+если за `$' следует `{', это означает выполнение расширенной подстановки. Шаблон такой подстановки:
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+`$' `{' [ &lt;operator&gt; ] &lt;name&gt; `(' &lt;substitution&gt; `)' `}'
+</dd></dl>
+
+<p>
+
+где &lt;name&gt; должно быть именем карты в правильном формате, то есть
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>&lt;name&gt; ::= [a-z][a-z0-9]* (регистр символов не имеет значения)
+&lt;operator&gt; ::= `&gt;' `|' `&amp;' `&amp;&amp;' `*' `**' `$'
+</pre>
+
+</dd></dl>
+
+<p>
+
+а &lt;substitution&gt; должно быть шаблоном подстановки в правильном формате, без ограничений на уровень вложенности.
+</p><p>
+
+Операторы:
+</p><dl compact="">
+<dt><b>&gt;</b>
+
+</dt><dd>
+вызов подконтекста; &lt;name&gt; должно быть правильным, заранее определённым именем контекста перезаписи
+</dd><dt><b>|</b>
+
+</dt><dd>
+вызов внешней команды; &lt;name&gt; должно указывать на правильное, заранее определённое имя команды
+(ЕЩЁ НЕ РЕАЛИЗОВАНО)
+</dd><dt><b>&amp;</b>
+
+</dt><dd>
+присвоение значения переменной; &lt;name&gt; определяет переменную в структуре выполняемой операции, которая может быть разыменована позже; оператор
+<b>&amp;</b>
+
+присваивает значение переменной в рамках текущего контекста перезаписи; оператор
+<b>&amp;&amp;</b>
+
+присваивает значение переменной в рамках всей сессии, то есть её значение может быть использовано позднее другими контекстами перезаписи
+</dd><dt><b>*</b>
+
+</dt><dd>
+разыменование переменной; &lt;name&gt; должно указывать на переменную, которая определена и ей присвоено значение для выполняемой операции; оператор
+<b>*</b>
+
+разыменовывает переменную в рамках текущего контекста перезаписи; оператор
+<b>**</b>
+
+разыменовывает переменную в рамках всей сессии, то есть значение этой переменной доступно всем контекстам перезаписи
+</dd><dt><b>$</b>
+
+</dt><dd>
+разыменование параметра; &lt;name&gt; должно указывать на существующий параметр; идея заключается в том,
+чтобы сделать доступными механизму перезаписи некоторые задаваемые системой параметры времени исполнения,
+такие как имя хоста клиента, DN подсоединения (если оно есть), параметры-константы, инициализируемые во
+время конфигурации, и так далее; в настоящий момент механизмами
+<b>back-ldap</b>
+
+и
+<b>back-meta</b>
+
+не задаются никакие параметры, но в конфигурационном файле с помощью директивы
+<b>rewriteParam</b>
+
+можно определить параметры-константы.
+</dd></dl>
+<p>
+
+Экранирование в строковых шаблонах подстановки осуществляется с помощью символа `$', который используется
+вместо символа `\', поскольку `\' уже экранируется низкоуровневыми процедурами разбора slapd; как
+следствие, при экранировании регулярных выражений требуется использовать два символа `\', например,
+выражение `<b>.*\.foo\.bar</b>' должно записываться как `<b>.*\\.foo\\.bar</b>'.
+
+
+
+<a name="lbAM">&nbsp;</a>
+</p><h2>Контексты перезаписи</h2>
+
+Контекст перезаписи - это набор правил, которые применяются последовательно. Основная идея состоит в том,
+чтобы иметь приложение, инициализирующее механизм перезаписи (что-то вроде mod_rewrite в Apache), с
+набором контекстов перезаписи; когда возникает потребность в преобразовании строки, вызывается соответствующий
+контекст перезаписи с входной строкой, а на выходе (если не возникло ошибок) получается новая перезаписанная строка.
+<p>
+
+Все основные операции сервера ассоциированы с контекстами перезаписи; они подразделяются на две основные
+группы: перезапись строк в сообщениях клиент -&gt; сервер и в сообщениях сервер -&gt; клиент.
+</p><p>
+
+клиент -&gt; сервер:
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>(default)            если определено правило и не указано
+                     никакого конкретного контекста
+bindDN               bind
+searchDN             search
+searchFilter         search
+searchFilterAttrDN   search
+compareDN            compare
+compareAttrDN        compare AVA
+addDN                add
+addAttrDN            add AVA (за исключением DN-части отсылок)
+modifyDN             modify
+modifyAttrDN         modify AVA (за исключением DN-части отсылок)
+referralAttrDN       add/modify часть DN отсылок
+                     (по умолчанию пустая строка)
+renameDN             modrdn (старое DN)
+newSuperiorDN        modrdn (новое родительское DN, если есть)
+newRDN               modrdn (новое относительное DN)
+deleteDN             delete
+exopPasswdDN         DN расширенной операции password modify
+</pre>
+
+</dd></dl>
+
+<p>
+
+сервер -&gt; клиент:
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>searchEntryDN        search (только если определён; нет значения по
+                     умолчанию; выполняется над DN найденных записей)
+searchAttrDN         search AVA (только если определён; по умолчанию
+                     соответствует searchEntryDN; выполняется над
+                     атрибутами синтаксиса DN результатов поиска)
+matchedDN            все операции (только если применение возможно;
+                     по умолчанию соответствует searchEntryDN)
+referralDN           все операции (только если применение возможно;
+                     по умолчанию пустая строка)
+</pre>
+
+</dd></dl>
+
+<p>
+
+<a name="lbAN">&nbsp;</a>
+</p><h2>Основные директивы конфигурации</h2>
+
+Все директивы перезаписи/отображения начинаются с префикса
+<b>rwm-</b>;
+
+для обратной совместимости с исторически встроенными в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-ldap&amp;category=5">slapd-ldap</a></b>(5)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-meta&amp;category=5">slapd-meta</a></b>(5)
+
+возможностями перезаписи/отображения этот префикс может не указываться, но поступать так
+настоятельно не рекомендуется.
+<dl compact="">
+<dt><b>rwm-rewriteEngine { on | off }</b>
+
+</dt><dd>
+Если эта директива задана в `on', настроенные процедуры перезаписи будут выполняться; если директива
+задана в `off', перезапись выполняться не будет (простой способ остановить перезапись без
+необходимости внесения слишком больших изменений в конфигурационный файл).
+</dd><dt><b>rwm-rewriteContext &lt;context name&gt; [ alias &lt;aliased context name&gt; ]</b>
+
+</dt><dd>
+&lt;context name&gt; - это имя, идентифицирующее контекст, то есть имя, которое будет использоваться
+приложением для того, чтобы обратиться к набору правил, содержащемуся в этом контексте. Кроме того,
+это имя используется при перезаписи строк для ссылки на подконтексты. Один контекст может быть
+псевдонимом другого. В этом случае контекст-псевдоним не содержит правил, и в результате любого
+обращения к нему происходит доступ к тому контексту, псевдонимом которого он является.
+</dd><dt><b>rwm-rewriteRule &lt;regex match pattern&gt; &lt;substitution pattern&gt; [ &lt;flags&gt; ]</b>
+
+</dt><dd>
+Определяет, как будет перезаписана строка, если было найдено совпадение с шаблоном.
+Примеры приведены ниже.
+</dd></dl>
+<a name="lbAO">&nbsp;</a>
+<h2>Дополнительные директивы конфигурации</h2>
+
+<dl compact="">
+<dt><b>rwm-rewriteMap &lt;map type&gt; &lt;map name&gt; [ &lt;map attrs&gt; ]</b>
+
+</dt><dd>
+Позволяет определить карту, которая трансформирует перезапись подстроки во что-то иное. Ссылка на карту
+происходит внутри шаблона подстановки правила.
+</dd><dt><b>rwm-rewriteParam &lt;param name&gt; &lt;param value&gt;</b>
+
+</dt><dd>
+Задаёт значение с глобальной областью видимости, на которое можно сослаться командой `${$paramName}'.
+</dd><dt><b>rwm-rewriteMaxPasses &lt;number of passes&gt; [&lt;number of passes per rule&gt;]</b>
+
+</dt><dd>
+Задаётся максимальное общее количество проходов перезаписи, которое может быть выполнено в рамках одной
+операции перезаписи (во избежание зацикливания). Безопасное значение по умолчанию - 100; имейте ввиду,
+что достижение этого предела всё ещё интерпретируется как успешное выполнение операции; рекурсивный
+вызов правил просто прерывается. Это ограничение применяется к операции перезаписи в целом, а не только
+к одному правилу. Дополнительно может быть установлено ограничение на выполнение одного правила. Данное общее
+ограничение переопределяется путём задания специфичных ограничений для конкретных правил с помощью флага `M{n}.
+<p>
+</p></dd></dl>
+<a name="lbAP">&nbsp;</a>
+<h2>КАРТЫ</h2>
+
+В настоящее время существует всего несколько встроенных типов карт, но есть возможность регистрировать
+дополнительные типы карт во время выполнения.
+<p>
+Поддерживаемые карты:
+</p><dl compact="">
+<dt><b>LDAP &lt;URI&gt; [bindwhen=&lt;when&gt;] [version=&lt;version&gt;] [binddn=&lt;DN&gt;] [credentials=&lt;cred&gt;]</b>
+
+</dt><dd>
+Расширение значения с использованием карты
+<b>LDAP</b>
+
+производится путём выполнения простого поиска LDAP. Конфигурация этой карты базируется на обязательном URI, часть
+<b>attrs</b>
+
+которого должна содержать ровно один атрибут (используйте
+<b>entryDN</b>
+
+для извлечения DN записи). Если используется атрибут с несколькими значениями, учитывается только первое из них.
+<p>
+Параметр
+<b>bindwhen</b>
+
+определяет, когда устанавливается соединение. Он может принимать значения
+<b>now</b>,
+
+<b>later</b>
+
+и
+<b>everytime</b>,
+
+указывающее, соответственно, что соединение должно быть создано при запуске, когда оно потребуется,
+или в любое время, когда оно используется. В первых двух случаях соединение кэшируется, а в последнем
+всё время устанавливается новое соединение. Это значение по умолчанию.
+</p><p>
+Параметры
+<b>binddn</b>
+
+и
+<b>credentials</b>
+
+представляют собой DN и пароль, используемые для выполнения простого подсоединения с аутентификацией
+перед выполнением операции поиска; если они не заданы, используется анонимное соединение.
+</p><p>
+Параметр
+<b>version</b>
+
+указывает, какую версию протокола следует использовать. Значением может быть 2 или 3. По умолчанию - 3.
+</p><p>
+</p></dd><dt><b>slapd &lt;URI&gt;</b>
+
+</dt><dd>
+Расширение значения с использованием карты
+<b>slapd</b>
+
+производится путём выполнения внутреннего поиска LDAP. Конфигурация этой карты базируется на обязательном URI,
+который должен начинаться с
+<b><a href="ldap:///">ldap:///</a></b>
+
+(то есть это должен быть URI со схемой LDAP и без указания хоста). Как и в карте LDAP, часть
+<b>attrs</b>
+
+должна содержать ровно один атрибут, и если используется атрибут с несколькими значениями,
+учитывается только первое из них.
+<p>
+</p></dd></dl>
+<a name="lbAQ">&nbsp;</a>
+<h2>ПРИМЕРЫ НАСТРОЙКИ ПЕРЕЗАПИСИ</h2>
+
+<pre># Для отключения перезаписи задайте значение `off'
+rwm-rewriteEngine on
+
+# Правила, реализуемые директивой "suffixmassage"
+rwm-rewriteEngine on
+# весь поток данных от клиента к серверу, в части, касающейся DN
+rwm-rewriteContext default
+rwm-rewriteRule "(.+,)?&lt;virtualnamingcontext&gt;$" "$1&lt;realnamingcontext&gt;" ":"
+# пустое правило для фильтров
+rwm-rewriteContext searchFilter
+# весь поток данных от сервера к клиенту
+rwm-rewriteContext searchEntryDN
+rwm-rewriteRule "(.+,)?&lt;realnamingcontext&gt;$" "$1&lt;virtualnamingcontext&gt;" ":"
+rwm-rewriteContext searchAttrDN alias searchEntryDN
+rwm-rewriteContext matchedDN alias searchEntryDN
+# разные пустые правила
+rwm-rewriteContext referralAttrDN
+rwm-rewriteContext referralDN
+
+# Всё, определённое здесь, относится к контексту `default'.
+# Данное правило меняет контекст именования всего, что отправляется для
+# `dc=home,dc=net' на `dc=OpenLDAP, dc=org'
+
+rwm-rewriteRule "(.+,)?dc=home,[ ]?dc=net$"
+            "$1dc=OpenLDAP, dc=org"  ":"
+
+# поскольку общепринятые/нормализованные DN не включают пробелов
+# после разделителей rdn, например, `,', достаточно такого правила:
+
+rwm-rewriteRule "(.+,)?dc=home,dc=net$"
+            "$1dc=OpenLDAP,dc=org"  ":"
+
+# Начинается новый контекст (заканчивается ввод предыдущего).
+# Это правило добавляет пробелы между частями DN, если их нет.
+rwm-rewriteContext  addBlanks
+rwm-rewriteRule     "(.*),([^ ].*)" "$1, $2"
+
+# А это убирает пробелы
+rwm-rewriteContext  eatBlanks
+rwm-rewriteRule     "(.*), (.*)" "$1,$2"
+
+# Здесь управление переходит обратно к контексту перезаписи по
+# умолчанию; правила добавляются в конец списка уже существующих.
+# Всё, что попадает сюда, перенаправляется в правило `addBlanks'
+rwm-rewriteContext  default
+rwm-rewriteRule     ".*" "${&gt;addBlanks($0)}" ":"
+
+# Перезапись базы поискового запроса в соответствии с правилами
+# `default'.
+rwm-rewriteContext  searchDN alias default
+
+# Результаты поиска с DN OpenLDAP перезаписываются обратно в
+# контекст именования `dc=home,dc=net' с поглощением пробелов.
+rwm-rewriteContext  searchEntryDN
+rwm-rewriteRule     "(.*[^ ],)?[ ]?dc=OpenLDAP,[ ]?dc=org$"
+                "${&gt;eatBlanks($1)}dc=home,dc=net"    ":"
+
+# Подсоединение с предоставлением адреса электронной почты
+# вместо полного DN: для начала нам необходима ldap-карта,
+# переводящая атрибуты в DN (аргумент, используемый при вызове
+# карты добавляется к URI и выступает в качестве фильтра)
+rwm-rewriteMap ldap attr2dn "<a href="ldap://host/dc=my,dc=org?dn?sub">ldap://host/dc=my,dc=org?dn?sub</a>"
+
+# Затем нам нужно выявить DN, представляющий собой только адрес
+# электронной почты, например, `mail=<a href="mailto:someone@example.com">someone@example.com</a>';
+# обратите внимание, что согласно этому правилу в случае нахождения
+# совпадения перезапись останавливается; в случае возникновения
+# ошибки, она будет проигнорирована. Если мы, кроме того,
+# отображаем виртуальный контекст именования в реальный, нам также
+# необходимо настроить перезапись обычных DN, поскольку правила
+# контекста перезаписи bindDN переопределяют правила, настроенные
+# по умолчанию.
+rwm-rewriteContext bindDN
+rwm-rewriteRule "^mail=[^,]+@[^,]+$" "${attr2dn($0)}" ":@I"
+
+# Следующий пример довольно сложный. В нём поисковый фильтр преобразуется
+# в случае, когда тот, кто выполняет поиск, имеет административные
+# привилегии. Во-первых, мы должны отслеживать DN подсоединения
+# входящих запросов и сохранять их в переменной `binddn', которая
+# будет доступна в рамках всей сессии, а также оставлять их на месте
+# для того, чтобы можно было осуществлять обычные подключения:
+rwm-rewriteContext  bindDN
+rwm-rewriteRule     ".+" "${&amp;&amp;binddn($0)}$0" ":"
+
+# Поисковый фильтр, содержащий `uid=', перезаписывается, только
+# если подсоединение осуществлялось от имени соответствующего DN.
+# Чтобы сделать это, в первом правиле происходит подстановка DN
+# подключения, а фильтр разбивается на префикс (переменная prefix),
+# значение AVA `uid=&lt;arg&gt;' (переменная arg) и суффикс (переменная
+# suffix). Тег `&lt;&gt;' добавляется в конец DN. Если DN указывает на
+# запись в поддереве `ou=admin', фильтр перезаписывается: условие
+# `uid=&lt;arg&gt;' соединяется с условием `cn=&lt;arg&gt;' через логическое ИЛИ;
+# в противном случае всё остаётся как есть. Это может понадобиться,
+# например, чтобы позволить модулю apache auth_ldap-1.4 аутентифицировать
+# пользователей, логины которых могут быть либо в атрибуте `uid',
+# либо в атрибуте `cn', но только если запрос поступает, например,
+# от пользователя `cn=Web auth,ou=admin,dc=home,dc=net'.
+rwm-rewriteContext searchFilter
+rwm-rewriteRule "(.*\\()uid=([a-z0-9_]+)(\\).*)"
+  "${**binddn}&lt;&gt;${&amp;prefix($1)}${&amp;arg($2)}${&amp;suffix($3)}"
+  ":I"
+rwm-rewriteRule "^[^,]+,ou=admin,dc=home,dc=net$"
+  "${*prefix}|(uid=${*arg})(cn=${*arg})${*suffix}" ":@I"
+rwm-rewriteRule ".*&lt;&gt;$" "${*prefix}uid=${*arg}${*suffix}" ":"
+
+# В этом примере показано, как исключить нежелательные значения атрибутов,
+# значениями которых являются DN, из результатов поиска. В первом правиле
+# ищутся DN, оканчивающиеся на "ou=People,dc=example,dc=com"; в случае
+# нахождения совпадения, перезапись успешно завершается. Второе правило
+# совпадает со всем остальным, и приводит к тому, что значение будет отвергнуто.
+rwm-rewriteContext searchEntryDN
+rwm-rewriteRule ".+,ou=People,dc=example,dc=com$" "$0" ":@"
+rwm-rewriteRule ".*" "" "#"
+</pre>
+
+<a name="lbAR">&nbsp;</a>
+<h2>ПРИМЕРЫ ОТОБРАЖЕНИЯ</h2>
+
+Следующие директивы отображают объектный класс `groupOfNames' в объектный класс `groupOfUniqueNames',
+и тип атрибута `member' в тип атрибута `uniqueMember':
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>map objectclass groupOfNames groupOfUniqueNames
+map attribute uniqueMember member
+</pre>
+
+</dd></dl>
+
+<p>
+
+В этом примере настраивается представление ограниченного набора атрибутов с удалённого сервера:
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>map attribute cn *
+map attribute sn *
+map attribute manager *
+map attribute description *
+map attribute *
+</pre>
+
+</dd></dl>
+
+<p>
+
+Атрибуты cn, sn, manager и description отображаются сами в себя, а любые другие атрибуты "удаляются"
+из объекта перед его отправкой клиенту (или посылкой обратно на LDAP-сервер). Очевидно,
+это упрощённый пример, но его можно использовать как отправную точку.
+<a name="lbAS">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt>/usr/local/etc/openldap/slapd.conf</dt><dd>
+конфигурационный файл slapd по умолчанию
+</dd></dl>
+<a name="lbAT">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-config&amp;category=5">slapd-config</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-ldap&amp;category=5">slapd-ldap</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-meta&amp;category=5">slapd-meta</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-relay&amp;category=5">slapd-relay</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=regex&amp;category=7">regex</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=re_format&amp;category=7">re_format</a></b>(7).
+
+<a name="lbAU">&nbsp;</a>
+<h2>АВТОРЫ</h2>
+
+Pierangelo Masarati; основано на функциях перезаписи/отображения модуля back-ldap, написанного
+Howard Chu, Pierangelo Masarati.
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОТОБРАЖЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРЕОБРАЗОВАНИЕ СУФФИКСА</a></dt><dd>
+</dd><dt><a href="#lbAG">ПЕРЕЗАПИСЬ</a></dt><dd>
+</dd><dt><a href="#lbAH">Процесс работы</a></dt><dd>
+</dd><dt><a href="#lbAI">Флаги управления поиском совпадений с шаблоном</a></dt><dd>
+</dd><dt><a href="#lbAJ">Флаги действий</a></dt><dd>
+</dd><dt><a href="#lbAK">Шаблоны поиска совпадений</a></dt><dd>
+</dd><dt><a href="#lbAL">Синтаксис шаблонов подстановки</a></dt><dd>
+</dd><dt><a href="#lbAM">Контексты перезаписи</a></dt><dd>
+</dd><dt><a href="#lbAN">Основные директивы конфигурации</a></dt><dd>
+</dd><dt><a href="#lbAO">Дополнительные директивы конфигурации</a></dt><dd>
+</dd><dt><a href="#lbAP">КАРТЫ</a></dt><dd>
+</dd><dt><a href="#lbAQ">ПРИМЕРЫ НАСТРОЙКИ ПЕРЕЗАПИСИ</a></dt><dd>
+</dd><dt><a href="#lbAR">ПРИМЕРЫ ОТОБРАЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAS">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAT">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAU">АВТОРЫ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="slapo-rwm" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

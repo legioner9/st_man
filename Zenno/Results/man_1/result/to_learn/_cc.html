@@ -1,0 +1,705 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN cc (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, cc"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="cc" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">cc (1)</font><hr><li> <a href="/man.shtml?topic=cc&amp;category=1&amp;russian=4"><u>cc</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=cc&amp;category=1&amp;russian=1"><u>cc</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=cc&amp;category=1&amp;russian=0"><u>cc</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>cc(1)</h1></td>
+<td><h1 align="right">cc(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>cc</b> - компилятор C</p>
+
+<h2>СИНТАКСИС</h2>
+<dl><dt></dt><dd><tt>
+	cc [<b>опции</b>] <b>файл</b> ...
+</tt></dd></dl>
+
+<h2>ОПИСАНИЕ</h2>
+<p>Команда <b>cc</b> - это интерфейс к системе компиляции языка C. Система 
+компиляции состоит из следующих концептуальных стадий: 
+<i>препроцессирование</i>, <i>компиляция</i>, <i>оптимизация</i>, 
+<i>базовое профилирование</i> блоков, <i>ассемблирование</i> и <i>компоновка</i>. 
+Команда <b>cc</b> проверяет введенные опции и суффиксы имен файлов, а затем 
+выполняет необходимые стадии с соответствующими опциями и аргументами.</p>
+
+<p>Команда <b>cc</b> распознает следующие суффиксы имен файлов:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="15%"><b>.c</b></td><td>
+Файл, содержащий необработанный исходный код на языке C; 
+применяются все стадии.</td></tr>
+<tr><td valign="top"><b>.i</b></td><td>
+Файл, содержащий обработанный препроцессором код на языке C; 
+применяются все стадии, кроме препроцессирования.</td></tr>
+<tr><td valign="top"><b>.s</b></td><td>
+Файл, содержащий исходный текст на языке ассемблера; применяются 
+только стадии ассемблирования и компоновки.</td></tr>
+<tr><td valign="top"><b>другой</b></td><td>
+Файл, содержащий данные, применимые только на стадии компоновки. 
+В эту категорию обычно попадают объектные файлы (<b>.o</b>), архивные 
+библиотеки (<b>.a</b>) и <i>совместно используемые</i> (<i>разделяемые</i>) объектные 
+библиотеки (<b>.so</b>).</td></tr>
+</tbody></table>
+
+<p>Если опции не указаны, команда <b>cc</b> проводит все файлы через все стадии 
+обработки (в соответствии с их суффиксами), необходимые для получения на их 
+основе динамически скомпонованного выполняемого файла <b>a.out</b> в текущем 
+каталоге. Если запрошены промежуточные результаты, они тоже размещаются в 
+текущем каталоге в файлах с именами, получаемыми путем замены входного 
+суффикса на суффикс, соответствующий результирующему файлу. Если 
+проходится стадия ассемблирования, команда <b>cc</b> помещает объектный файл (<b>.o</b>) 
+в текущем каталоге, но этот файл будет удален, если единственный исходный 
+файл компилируется в выполняемый. Все остальные промежуточные файлы 
+помещаются во временный каталог. (Можно управлять используемым для этого 
+каталогом с помощью переменной среды <b>TMPDIR</b>.)</p>
+
+<p>Имеется исключение из правила суффиксов имен файлов, состоящее в том, что 
+при указании опции <b>-E</b> будет воспринято любое имя файла, независимо от 
+суффикса. Это позволяет вызывать препроцессор C как отдельное средство для 
+применения к файлам, не содержащим исходный текст на языке C.</p>
+
+<p>Следующие опции применимы ко всем стадиям.</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="20%"><a name="Q"><b>-Q строка</b></a></td><td>
+Управляет включением идентификационной информации 
+о средстве компиляции в результат. Если в качестве 
+<b>строки</b> указан <b>y</b> (по умолчанию), эта информация будет 
+включена; если же <b>n</b>, - не будет.
+</td></tr>
+<tr><td valign="top"><a name="V"><b>-V</b></a></td><td>
+Вызывает выдачу в стандартный поток ошибок 
+информации о версии команды <b>cc</b> и каждого вызываемого 
+средства, построчно.
+</td></tr>
+<tr><td valign="top"><a name="W"><b>-W стадия,список</b></a></td><td>
+Передает аргумент(ы), задаваемые в <b>списке</b> через запятую 
+(в указанном порядке) одной стадии компиляции, 
+задаваемой параметром <b>стадия</b>. Аргумент в списке может 
+содержать запятую, если она замаскирована обратной 
+косой (<b>\</b>). Если несколько концептуальных стадий 
+реализуются одним инструментальным средством, все 
+соответствующие списки аргументов передаются этому 
+средству. Стадии указываются следующим образом:
+<dl><dt></dt><dd>
+<table cellspacing="4" border="0">
+<tbody><tr><td width="5%"><b>p</b></td>	<td>препроцессор</td></tr> 
+<tr><td><b>0</b></td>	<td>компилятор</td></tr> 
+<tr><td><b>2</b></td>	<td>оптимизатор</td></tr> 
+<tr><td><b>b</b></td>	<td>базовый профилировщик блоков</td></tr> 
+<tr><td><b>a</b></td>	<td>ассемблер</td></tr> 
+<tr><td><b>l</b></td>	<td>компоновщик</td></tr>
+</tbody></table>
+</dd></dl>
+<p>По отношению к обычным опциям и аргументам, 
+переданным стадии компиляции, расположение 
+аргументов из <b>списка</b> не определено и может изменяться.</p>
+</td></tr>
+<tr><td valign="top"><a name="X"><b>-X строка</b></a></td><td>
+Управляет уровнем соответствия стандартам ANSI и ISO 
+для языка C. Аргумент опции <b>строка</b> может иметь одно 
+из следующих значений:
+<table cellspacing="4" border="0">
+<tbody><tr><td valign="top" width="5%"><b>a</b></td><td>
+Задает стандартное соответствие, за исключением 
+того, что некоторые предупреждения не выдаются, 
+а пространство имени расширено и включает 
+имена, не задаваемые стандартами. Все 
+конструкции C работают так, как указано в 
+стандартах. Доступны также все реализованные 
+расширения языка и библиотек, выходящие за 
+пределы стандартов. Этот уровень соответствия 
+используется по умолчанию.
+</td></tr>
+<tr><td valign="top"><b>c</b></td><td>
+Задает строгое соответствие стандартам. 
+Поскольку пространство имен языка и 
+заголовочных файлов сокращено по отношению к <b>-Xa</b>,
+определенные расширения (такие как 
+ключевое слово <b>asm</b>) и некоторые 
+общеупотребительные объявления заголовочных 
+файлов недоступны. Последнюю проблему можно 
+частично решить, используя <b>-D_POSIX_SOURCE</b> 
+или <b>-D_XOPEN_SOURCE</b>.
+</td></tr>
+<tr><td valign="top"><b>t</b></td><td>
+Задает соответствие стандартам, за исключением 
+семантики, отличающейся от "классического" C. 
+(См. <a href="http://cm.bell-labs.com/cm/cs/cbook/">Kernighan &amp; Ritchie, Первое издание.</a>) Кроме 
+того, выдаются предупреждения об изменениях 
+семантики на стадии препроцессирования, таких 
+как новые управляющие последовательности 
+(вроде <b>\x</b>) и замены любых триграфов (вроде <b>??!</b>). 
+Некоторые потенциальные возможности 
+оптимизации, доступные в других режимах <b>-X</b>, также отключены.
+</td></tr>
+</tbody></table>
+
+<p>Во всех режимах <b>-X</b>, стадия компиляции выдает 
+предупреждения о выражениях, в которых измененные 
+правила расширения более узкого диапазона значений без 
+знака могут привести к скрытым (если не выдавать 
+предупреждения) изменениям в работе.</p>
+</td></tr>
+<tr><td valign="top"><a name="Y"><b>-Y строка,каталог</b></a></td><td>
+Использует указанный <b>каталог</b> для поиска элемента 
+(элементов), указанных в <b>строке</b>. Аргумент <b>строка</b> может 
+иметь одно или несколько из следующих значений:
+
+<table cellspacing="4" border="0">
+<tbody><tr><td valign="top" width="5%"><b>стадия</b></td><td>
+Заставляет искать программу для указанной 
+<b>стадии</b> компиляции (которая задается так же, как и 
+для <a href="#W"><b>-W</b></a>) в указанном <b>каталоге</b>. Если несколько 
+концептуальных стадий реализуются одним 
+инструментальным средством и для этих стадий 
+указаны различные каталоги, выбор используемого 
+каталога не определен.
+</td></tr>
+<tr><td valign="top"><b>I</b></td><td>
+Изменяет каталог, просматриваемый последним в 
+поисках заголовочных файлов на стадии препроцессирования.
+</td></tr>
+<tr><td valign="top"><b>P</b></td><td>
+Изменяет стандартный путь поиска библиотек на 
+стадии компоновки на список каталогов через двоеточие, 
+задаваемый параметром <b>каталог</b>. (В начало этого пути за 
+счет других опций могут быть добавлены другие каталоги.)
+</td></tr>
+<tr><td valign="top"><b>S</b></td><td>
+Изменяет каталог, из которого берутся зависящие 
+от реализации <i>стартовые</i> (start-up) объектные файлы.</td></tr>
+</tbody></table>
+
+<p>В дополнение к возможности задавать каталоги для 
+поиска средств выполнения различных стадий 
+компиляции, если команда <b>cc</b> вызвана как <b><i>префикс</i>cc</b>, то 
+каждое используемое средство будет предварено таким 
+же префиксом, как и имена стартовых объектных файлов. 
+Например, если команда <b>./abccc</b> вызвана с опцией <b>-Ya,../xyz</b>, 
+предполагается, что ассемблер находится в файле <b>../xyz/abcas</b>.</p>
+</td></tr>
+</tbody></table>
+
+<p>Следующие опции применимы только на стадии препроцессирования. В ходе 
+этой стадии всегда предопределены макросы <b>__STDC__</b> и <b>__USLC__</b>. Тогда как 
+<b>__USLC__</b> всегда имеет положительное целое значение (которое означает, что 
+используется компилятор USL C), <b>__STDC__</b> имеет значение 1 только для <b>-Xc</b>, в 
+противном случае его значение - 0.</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="25%"><a name="A"><b>-A имя[(лексемы)]</b></a></td><td>
+Вызывает проверку <b>имени</b> как предиката с 
+необязательными лексемами в круглых скобках, как если 
+бы он был указан в директиве <b>#assert</b>.</td></tr>
+<tr><td valign="top"><a name="A-"><b>-A -</b></a></td><td>
+Делает неопределенными все предопределенные макросы 
+(кроме начинающихся на <b>__</b>) и отменяет проверку всех 
+утверждений <b>#assert</b>.
+<p>Опция влияет на следующие предопределенные 
+макросы и проверяемые утверждения:</p>
+<dl><dt></dt><dd>
+<pre>#define i386 1	/* нет, если указана
+			 опция -Xc */
+#define unix 1	/* нет, если указана
+			 опция -Xc */
+#assert system(unix)
+#assert cpu(i386)
+#assert machine(i386)
+</pre>
+</dd></dl>
+</td></tr>
+<tr><td valign="top"><a name="C"><b>-C</b></a></td><td>
+Оставляет все комментарии в строках, не содержащих 
+директивы, в результате препроцессирования; в 
+противном случае они удаляются.</td></tr>
+<tr><td valign="top"><a name="D"><b>-D имя[=лексемы]</b></a></td><td>
+Определяет <b>имя</b> как макрос, заменяемый на <b>лексемы</b> или 
+на <b>1</b>, если конструкция <b>=лексемы</b> не указана, как если бы 
+он был определен директивой <b>#define</b>.</td></tr>
+<tr><td valign="top"><a name="E"><b>-E</b></a></td><td>
+Выполняет только стадию препроцессирования и 
+посылает результат в стандартный выходной поток. 
+Результат будет содержать строки, подобные директивам 
+препроцессора, и может использоваться для последующей 
+стадии компиляции. Имя обрабатываемого 
+препроцессором файла может иметь любой суффикс.</td></tr>
+<tr><td valign="top"><a name="H"><b>-H</b></a></td><td>
+Вызывает выдачу в стандартный поток ошибок полных 
+имен всех включаемых файлов, по одному в строке.</td></tr>
+<tr><td valign="top"><a name="I"><b>-I каталог</b></a></td><td>
+Вызывает просмотр указанного <b>каталога</b> в поисках 
+включаемых файлов, имена которых не начинаются с <b>/</b>, 
+перед просмотром стандартных каталогов. Если 
+используется несколько опций <b>-I</b>, каталоги 
+просматриваются в указанном порядке.</td></tr>
+<tr><td valign="top"><a name="P"><b>-P</b></a></td><td>
+Выполняет только стадию препроцессирования и 
+помещает результат в файл с суффиксом <b>.i</b>. В отличие от <a href="#E"><b>-E</b></a>,
+результат не будет содержать директив. Компиляция 
+получившегося файла <b>.i</b> даст в результате выполняемый 
+файл, номера строк в котором будут соответствовать 
+файлу <b>.i</b>, а не файлу <b>.c</b>.</td></tr>
+<tr><td valign="top"><a name="U"><b>-U имя</b></a></td><td>
+Вызывает отмену определения <b>имени</b> как макроса, как 
+если бы применялась директива <b>#undef</b>, даже если <b>имя</b> 
+является предопределенным макросом (включая 
+начинающиеся с <b>__</b>) или определено опцией <b>-D</b>.</td></tr>
+</tbody></table>
+
+<p>Следующие опции применимы ко всем стадиям, кроме стадии 
+препроцессирования. Все опции, влияющие только на стадию компоновки, 
+передаются также команде <a href="/man.shtml?topic=ld&amp;category=1"><b>ld(1)</b></a>.</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="20%"><a name="B"><b>-B строка</b></a></td><td>
+Управляет механизмом поиска имен библиотек на стадии 
+компоновки для последующих опций <b>-l</b>. Аргумент опции, 
+<b>строка</b>, может быть либо <b>dynamic</b> (начальная установка), 
+либо <b>static</b>. Порядок указания опций <b>-B</b>, <b>-L</b> и <b>-l</b> имеет 
+значение; см. описание опции <a href="#l"><b>-l</b></a>.</td></tr>
+<tr><td valign="top"><a name="c"><b>-c</b></a></td><td>
+Пропускает фазу компоновки. Созданные объектные файлы (<b>.o</b>) не удаляются.</td></tr>
+<tr><td valign="top"><a name="d"><b>-d строка</b></a></td><td>
+Определяет режим создания выполняемого файла при 
+компоновке. Если <b>строка</b> - это <b>y</b> (по умолчанию), будет 
+создаваться динамически скомпонованный выполняемый 
+файл; если <b>строка</b> - <b>n</b>, результат будет скомпонован статически.</td></tr>
+<tr><td valign="top"><a name="G"><b>-G</b></a></td><td>
+Ведет к созданию компоновщиком <i>разделяемого</i> (shared 
+object, <i>динамически подключаемая библиотека</i>), вместо 
+выполняемого файла.</td></tr>
+<tr><td valign="top"><a name="g"><b>-g</b></a></td><td>
+Вызывает генерацию информации, помогающей при 
+символьной отладке. Эта опция конфликтует с <a href="#O"><b>-O</b></a>, но 
+имеет более низкий приоритет: если указаны обе опции, 
+отладочная информация не генерируется.</td></tr>
+<tr><td valign="top"><a name="K"><b>-K список</b></a></td><td>
+Включает различные варианты генерации кода, 
+оптимизации или компоновки, или их комбинации. Для 
+элементов следующего списка, представленных группами 
+по два и более, первый элемент в такой группе определяет 
+стандартное значение, причем действовать будет ровно 
+один элемент группы. Аргумент опции <b>список</b> - это 
+список одного или нескольких следующих элементов через запятую:
+<table cellspacing="4" border="0">
+<tbody><tr><td valign="top" width="10%"><b>PIC</b></td><td>	
+Изменяет генерацию кода так, что она не зависит от позиции.
+</td></tr>
+<tr><td valign="top"><b>thread</b></td><td>
+Указывает, будет ли программа использовать 
+средства многопоточной обработки. В режиме с 
+поддержкой многопоточности должны быть 
+включены соответствующие флаги препроцессора 
+и должна компоноваться в нужном месте 
+<i>библиотека многопоточной обработки</i> (threading library).
+</td></tr>
+<tr><td valign="top"><b>blended<br>
+pentium<br>
+i486<br>
+i386</b></td><td>
+Включает генерацию кода, специально оптимизированную для указанного процессора. 
+<b>blended</b> балансирует варианты генерации кода так, 
+чтобы они хорошо работали на всех процессорах. 
+Используется только совместно с опцией <a href="#O"><b>-O</b></a>.
+</td></tr>
+<tr><td valign="top"><b>ieee<br>
+no_ieee</b></td><td>
+Управляет тем, будет ли генерируемый код вычислений с плавающей точкой строго 
+соответствовать стандартам IEEE и C. <b>ieee</b> задает 
+строгое соответствие. <b>no_ieee</b> разрешает более 
+агрессивную оптимизацию. При этом предполагается, что приложение не изменяет 
+режимов округления, не проверяет возникновение исключительных ситуаций и не генерирует 
+пренебрежимо малых или бесконечно больших величин. В этом режиме <b>errno</b> может 
+устанавливаться реже, а исключительные ситуации могут не возбуждаться.
+</td></tr>
+<tr><td valign="top"><b>no_frame<br>
+frame</b></td><td>
+Определяет, должен ли генерируемый код использовать регистр <b>%ebp</b> как 
+<i>указатель на фрейм стека</i> (stack frame pointer). <b>no_frame</b> 
+позволяет использовать <b>%ebp</b> как регистр общего 
+назначения, что может сделать образы стека при отладке нечитаемыми, но обычно приводит к более 
+быстрому коду. Применим только, если указана опция <a href="#O"><b>-O</b></a>. 
+Неоптимизированный код всегда использует этот регистр как указатель фрейма.
+</td></tr>
+<tr><td valign="top"><b>host<br>
+no_host</b></td><td>
+В режиме <b>host</b> компилятор предполагает, что имена стандартных функций C зарезервированы и 
+эти функции работают так, как описано в стандартах. Компилятор может свободно 
+<i>подставлять</i> (inline) такие функции вместо вызовов при необходимости. Если указан также 
+<b>no_ieee</b>, компилятор предполагает, что математические функции не получают в качестве 
+аргументов и не генерируют пренебрежимо малых или бесконечно больших величин.
+</td></tr>
+<tr><td valign="top"><b>no_inline<br>
+inline</b></td><td>
+Определяет, должен ли компилятор выполнять подстановку функций. Подстановка функций 
+может дать большую скорость выполнения за счет увеличения размера кода. Применим только, если 
+указана опция <a href="#O"><b>-O</b></a>.
+</td></tr>
+<tr><td valign="top"><b>loop_unroll<br>
+no_loop_unroll</b></td><td>
+Определяет, должен ли компилятор выполнять <i>развертку цикла</i> (loop unrolling) при включенной 
+оптимизации (<b>-O</b>). Развертка цикла может дать большую скорость выполнения за счет увеличения
+размера кода.
+</td></tr>
+<tr><td valign="top"><b>schar<br>
+uchar</b></td><td>
+Определяет, должны ли символьные типы рассматриваться как знаковые или без знака. По 
+умолчанию, эти типы рассматриваются как знаковые.
+</td></tr>
+</tbody></table>
+
+<p>Несколько опций <b>-K</b> дают тот же эффект, как если бы 
+отдельные списки аргументов были объединены в одной опции.</p>
+</td></tr>
+<tr><td valign="top"><a name="L"><b>-L каталог</b></a></td><td>
+Добавляет <b>каталог</b> на стадии компоновки к списку 
+каталогов для просмотра последующими опциями <b>-l</b>. 
+Порядок указания опций <a href="#B"><b>-B</b></a>, <b>-L</b> и <b>-l</b> имеет значение;
+см. описание опции <b>-l</b>.</td></tr>
+<tr><td valign="top"><a name="l"><b>-l строка</b></a></td><td>
+Заставляет компоновщик искать библиотеку <b>libстрока.so</b> 
+или <b>libстрока.a</b>. Порядок указания опций <a href="#B" <b="">-B</a>, 
+<a href="#L"><b>-L</b></a> и <b>-l</b> имеет 
+значение: опция <b>-l</b> заставляет компоновщик (в 
+соответствующем порядке) проверять каталоги, 
+указанные предыдущими опциями <b>-L</b>, а затем каталоги 
+стандартного пути поиска библиотек (<b>-YP</b>). Если перед 
+опцией <b>-l</b> установлено <b>-Bdynamic</b>, в каждом каталоге 
+ищется <b>libстрока.so</b>, а затем <b>libстрока.a</b>; в противном 
+случае ищется только библиотека <b>libстрока.a</b>.</td></tr>
+<tr><td valign="top"><a name="O"><b>-O</b></a></td><td>
+Включает стадию оптимизации. Эта опция конфликтует с 
+опцией <a href="#g"><b>-g</b></a>, но имеет более высокий приоритет: если 
+указаны обе опции, отладочная информация не 
+генерируется. Эта опция также конфликтует с <a href="#q"><b>-ql</b></a>, но 
+имеет более низкий приоритет: стадия оптимизации 
+пропускается, если указаны обе эти опции.</td></tr>
+<tr><td valign="top"><a name="o"><b>-o файл</b></a></td><td>
+Заставляет компоновщик помещать результат в указанный файл, а не в <b>a.out</b>.</td></tr>
+<tr><td valign="top"><a name="p"><b>-p</b></a></td><td>
+Вызывает генерацию дополнительного кода, считающего 
+количество вызовов каждой подпрограммы. Если 
+включена стадия компоновки, стандартный путь поиска 
+библиотек (<b>-YP</b>) изменяется так, чтобы каталоги, которые 
+должны содержать подготовленные так же библиотеки, 
+проверялись до обычных каталогов. Более того, 
+используются другие стартовые файлы, обеспечивающие 
+запись (в файл <b>mon.out</b>) времени работы каждой 
+подпрограммы; см. <a href="/man.shtml?topic=prof&amp;category=1"><b>prof(1)</b></a>.</td></tr>
+<tr><td valign="top"><a name="q"><b>-q строка</b></a></td><td>
+Вызывает генерацию дополнительного кода, снабжающего программу определенными 
+инструментальными средствами. Если <b>строка</b> - это <b>p</b>, 
+результат аналогичен использованию опции <a href="#p"><b>-p</b></a>. Если 
+<b>строка</b> - это <b>l</b>, включается стадия базового 
+профилирования блоков, генерирующая дополнительный 
+код, считающий, сколько раз выполнялась каждая строка 
+исходного кода; см. <a href="/man.shtml?topic=lprof&amp;category=1"><b>lprof(1)</b></a>. Если <b>строка</b> - это <b>f</b>, 
+создается <i>журнал профиля потока</i> (flow profile log); см. 
+<a href="/man.shtml?topic=fprof&amp;category=1"><b>fprof(1)</b></a>. 
+Опция <a href="#O"><b>-O</b></a> конфликтует с <b>-ql</b>, но имеет более 
+низкий приоритет: стадия оптимизации не включается, 
+если указаны обе эти опции.</td></tr>
+<tr><td valign="top"><a name="S"><b>-S</b></a></td><td>
+Подавляет стадии ассемблирования и компоновки и 
+выдает в результате файл на ассемблере (с суффиксом <b>.s</b>).</td></tr>
+<tr><td valign="top"><a name="V"><b>-v</b></a></td><td>
+Вызывает выполнение на стадии компиляции 
+дополнительных синтаксических, семантических и 
+аналогичных выполняемым <a href="/man.shtml?topic=lint&amp;category=1"><b>lint(1)</b></a> проверок.</td></tr>
+<tr><td valign="top"><a name="Z"><b>-Z строка</b></a></td><td>
+Управляет упаковкой структур на стадии компиляции. 
+Аргумент <b>строка</b> может иметь одно из следующих значений:
+<table cellspacing="4" border="0">
+<tbody><tr><td valign="top" width="5%"><b>p1</b></td><td>
+Устанавливает выравнивание, по крайней мере, на границу байта для всех элементов структуры; или, 
+другими словами, исключает заполнение. (Это можно также задать как <b>-Zp</b>.)
+</td></tr>
+<tr><td valign="top"><b>p2</b></td><td>
+Устанавливает выравнивание, по крайней мере, на границу двух байтов для элементов структуры, 
+имеющих размер не менее двух байтов.
+</td></tr>
+<tr><td valign="top"><b>p4</b></td><td>
+Устанавливает выравнивание на два байта для двухбайтовых элементов структуры и 
+выравнивание на границу четырех байтов для элементов большего размера. Эта установка 
+используется по умолчанию.
+</td></tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+
+<p>Команда <b>cc</b> распознает <b>-e</b>, <b>-h</b>, <b>-u</b> и <b>-z</b> как опции 
+стадии компоновки с параметрами. Эти и все остальные нераспознанные аргументы-опции 
+передаются команде <a href="/man.shtml?topic=ld&amp;category=1"><b>ld(1)</b></a>.</p>
+
+<p>Наконец, команда <b>cc</b> также распознает опцию <b>-#</b>. Если указана одна опция <b>-#</b>, 
+команда <b>cc</b> будет выдавать каждое инструментальное средство с опциями и 
+аргументами непосредственно перед вызовом. При наличии двух опций <b>-#</b> 
+выдается также полный путь к каждому инструментальному средству; при 
+указании трех таких опций все вызовы пропускаются.</p>
+
+<h2>ФАЙЛЫ</h2>
+<dl>
+<dt><b>a.out</b></dt><dd>
+стандартное имя создаваемого выполняемого файла</dd>
+<dt><b>INCDIR</b></dt><dd>
+последний каталог для поиска включаемых файлов</dd>
+<dt><b>LIBDIR/*crt*.o</b></dt><dd>
+объектные файлы стартового кода</dd>
+<dt><b>LIBDIR/acomp</b></dt><dd>
+препроцессор и компилятор</dd>
+<dt><b>LIBDIR/optim</b></dt><dd>
+оптимизатор</dd>
+<dt><b>LIBDIR/basicblk</b></dt><dd>
+базовый профилировщик блоков</dd>
+<dt><b>BINDIR/as</b></dt><dd>
+ассемблер</dd>
+<dt><b>BINDIR/ld</b></dt><dd>
+компоновщик</dd>
+<dt><b>LIBDIR/libc.so</b></dt><dd>
+динамическая разделяемая версия стандартной библиотеки C</dd>
+<dt><b>LIBDIR/libc.a</b></dt><dd>
+архивная версия стандартной библиотеки C</dd>
+<dt><b>DIR/libp</b></dt><dd>
+подкаталог каждого элемента <b>LIBPATH</b>, в котором 
+нужно искать библиотеки, поддерживающие профилирование</dd>
+<dt><b>INCDIR</b></dt><dd>
+обычно <b>/usr/include</b></dd>
+<dt><b>LIBDIR</b></dt><dd>
+обычно <b>/usr/ccs/lib</b></dd>
+<dt><b>BINDIR</b></dt><dd>
+обычно <b>/usr/ccs/bin</b></dd>
+<dt><b>LIBPATH</b></dt><dd>
+обычно <b>/usr/ccs/lib:/usr/lib</b></dd>
+<dt><b>TMPDIR</b></dt><dd>
+обычно <b>/var/tmp</b>, но может быть изменено путем задания переменной среды <b>TMPDIR</b>.</dd>
+<dt><b>/usr/lib/locale/локаль/LC_MESSAGES/uxcds</b></dt><dd>
+файл сообщений для текущего языка (См. <b>LANG</b> в <a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>.)</dd>
+</dl>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=as&amp;category=1"><b>as(1)</b></a>,
+	<a href="/man.shtml?topic=debug&amp;category=1"><b>debug(1)</b></a>,
+	<a href="/man.shtml?topic=ld&amp;category=1"><b>ld(1)</b></a>,
+	<a href="/man.shtml?topic=lint&amp;category=1"><b>lint(1)</b></a>,
+	<a href="/man.shtml?topic=lprof&amp;category=1"><b>lprof(1)</b></a>,
+	<a href="/man.shtml?topic=monitor&amp;category=3"><b>monitor(3C)</b></a>,
+	<a href="/man.shtml?topic=prof&amp;category=1"><b>prof(1)</b></a>,
+	<a href="/man.shtml?topic=tmpnam&amp;category=3"><b>tmpnam(3S)</b></a><br>
+	<a href="http://cm.bell-labs.com/cm/cs/cbook/">Kernighan, B. W., and Ritchie, D. M., The C Programming Language, Second Edition, Prentice-Hall, 1988</a><br>
+	American National Standard for Information Systems - Programming Language C, X3.159-1989<br>
+	International Standard ISO/IEC 9899:1990, Programming Languages - C<br>
+	International Standard ISO/IEC 9945-1:1990, Information Technology - Portable Operating
+	  System Interface (POSIX) - Part 1: System Application Program Interface (API) [C Language]
+</dd></dl>
+
+<h2>ПРИМЕЧАНИЯ</h2>
+<p>Если опция выбора режима (такая как <a href="#Q"><b>-Q</b></a> или <a href="#X"><b>-X</b></a>) 
+указана несколько раз, обычно используется последняя.</p>
+
+<p>Для нового кода необходимо использовать <b>-Xa</b>, <b>-Khost</b> и <b>-v</b>; старый код лучше 
+обрабатывается при указании <b>-Xt</b> и <b>-Kno_host</b>.</p>
+
+<p>Для типичной многопользовательской системы на основе процессора Intel486, 
+самый быстрый код, скорее всего, будет сгенерирован при указании опций 
+<b>-Xa</b>, <b>-Kno_ieee</b>, <b>-Kinline</b> и <b>-O</b> и при использовании 
+стандартных заголовочных файлов типа <b><string.h></string.h></b>.</p>
+
+<p align="center"><font size="-2">Copyright 1994 Novell, Inc.<br>
+Copyright 2000 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="cc" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,683 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN FvwmForm (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, FvwmForm"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="FvwmForm" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">FvwmForm (1)</font><hr><li> <a href="/man.shtml?topic=FvwmForm&amp;category=1&amp;russian=4"><u>FvwmForm</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=FvwmForm&amp;category=1&amp;russian=0"><u>FvwmForm</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>НАЗВАНИЕ</h2>
+
+<p>
+FvwmForm - модуль ввода форм для fvwm95
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>СИНТАКСИС</h2>
+
+<p>
+FvwmForm должен вызываться fvwm95. Он не будет работать из
+командной строки.
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<p>
+FvwmForm предоставляет механизм для пользовательского
+ввода и выполнения соответствующих действий. Им является
+форма, в которой пользователь может заполнить поля ввода
+и выбрать действия, которые затем выполнит fvwm95. Форма содержит
+пять типов элементов: текстовые метки, однострочные поля
+ввода, элементы взаимоисключающего выбора (radiobuttons),
+элементы независимого выбора (checkbuttons) и кнопки.
+Эти пункты выравниваются в несколько строк, с очень гибким
+размещением.
+</p><p>
+Текстовая
+метка выполняет только функцию, вытекающую из ее
+названия. В нее ничего нельзя ввести. Поле ввода может
+быть использовано для редактирования однострочной строки.
+FvwmForm предоставляет клавиши управления перемещения
+курсором в стиле Emacs. Функции вырезания и копирования в ней
+отсутствуют.
+</p><p>
+Элемент выбора содержит в себе несколько вариантов
+выбора. Элемент
+выбора сам по себе является логическим обьектом, который
+не имеет каких-либо других особенностей. Каждый вариант
+выбора отображается как нажимаемая кнопка, за которой
+следует поясняющая текстовая метка. В процессе выбора
+исключающий вариант выбора показывается как кружок в
+центре, в то время как дополняющий показывает квадратик.
+</p><p>
+Кнопка при нажатии посылает назначенные ей
+команды для fvwm95.
+</p><p>
+FvwmForm делает подстановку переменных в текст
+команды для отражения пользовательского ввода.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>Инициализация</h2>
+
+<p>
+FvwmForm использует тот же файл конфигурации (обычно
+.fvwm95rc в домашнем каталоге пользователя), что и fvwm95.
+При использовании модуля FvwmForm для множества разных
+форм ввода просто создайте на него символьные ссылки с
+другими именами, и они будут трактоваться как различные
+модули. Или вы можете вызвать FvwmForm с необязательным
+парамером, который он будет использовать как имя вместо
+настоящего имени (т.е. например, `Module FvwmForm QuitVerify').
+Этот путь даже не требует создания символьных
+ссылок.
+</p><p>
+Убедитесь, что в параметр ModulePath в Вашем .fvwm95rc включен путь
+до модуля FvwmForm.
+При вызове модуля FvwmForm из окна (например, из окна
+меню) все команды, посылаемые им для fvwm95, будут
+иметь контекст этого окна.
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>Конфигурация</h2>
+
+<p>
+В файле .fvwm95rc могут быть установлены следующие опции.
+Заметим, что подстрока "FvwmForm" должна быть
+соответствующим образом изменена,
+если используется модуль с другим именем.
+</p><p>
+Порядок опций
+имеет важное значение. Обычно цвета и
+шрифты определяются первыми. Строки, текстовые метки и
+элементы ввода должны появляться в требуемом логическом
+порядке.
+</p><p>
+</p><dl compact="">
+<dt><b>*FvwmFormGrabServer</b></dt><dd>
+<p>
+Эта опция указывает FvwmForm, что необходимо захватывать указатель мыши
+при старте. Она полезна для таких вещей, как проверка
+разрегистрации или выхода.
+</p><p>
+</p></dd><dt><b>*FvwmFormWarpPointer</b></dt><dd>
+<p>
+Эта опция указывает FvwmForm, что необходимо помещать укзатель мыши в
+его окно при старте. Она сохраняет для пользователя
+возможность перемещать мышь.
+</p><p>
+</p></dd><dt><b>*FvwmFormPosition</b> <i>x y</i></dt><dd>
+<p>
+Помещает окно FvwmForm на экран по координатам (<i>x</i>, <i>y</i>).
+При преобразовании отрицательное значение <i>x</i> (и,
+соответственно, <i>y</i>) определяет расстояние от правой (и, соответственно,
+нижней) стороны экрана.
+</p><p>
+Если данная опция пропущена, FvwmForm запускается в
+центре экрана.
+</p><p>
+</p></dd><dt><b>*FvwmFormBack</b> <i>цвет</i></dt><dd>
+<p>
+Определяет цвет фона для окна FvwmForm.
+</p><p>
+</p></dd><dt><b>*FvwmFormFore</b> <i>цвет</i></dt><dd>
+<p>
+Определяет цвет шрифта при выводе
+текста.
+</p><p>
+</p></dd><dt><b>*FvwmFormItemBack</b> <i>цвет</i></dt><dd>
+<p>
+Определяет цвет фона для окон ввода текста и кнопок.
+</p><p>
+</p></dd><dt><b>*FvwmFormItemFore</b> <i>color</i></dt><dd>
+<p>
+Определяет цвет шрифта для строк ввода текста и меток
+кнопок.
+</p><p>
+</p></dd><dt><b>*FvwmFormFont</b> <i>font</i></dt><dd>
+<p>
+Определяет шрифт для отображения текста.
+</p><p>
+</p></dd><dt><b>*FvwmFormButtonFont</b> <i>font</i></dt><dd>
+<p>
+Определяет шрифт меток для кнопок.
+</p><p>
+</p></dd><dt><b>*FvwmFormInputfont</b> <i>font</i></dt><dd>
+<p>
+Определяет шрифт для полей ввода текста. Этот шрифт должен
+иметь фиксированную ширину.
+</p><p>
+</p></dd><dt><b>*FvwmFormLine</b> <i>выравнивание</i></dt><dd>
+<p>
+Начинает новую строку формы. Строка может содержать
+произвольное число элементов, после которых могут быть
+указаны их опции. Окно FvwmForm может иметь
+произвольное число строк. Ширина окна определяется
+самой длинной строкой.
+</p><p>
+Выравнивание элементов в
+строке задается параметром
+<i>выравнивание</i>, который может принимать одно из
+следующих значений:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<p>
+</p><dl compact="">
+<dt><i>left</i> </dt><dd>
+<p>
+Элементы выравниваются по левому краю
+окна.
+</p><p>
+</p></dd><dt><i>right</i> </dt><dd>
+<p>
+Элементы выравниваются по правому краю
+окна.
+</p><p>
+</p></dd><dt><i>center</i> </dt><dd>
+<p>
+Элементы помещаются по центру краю окна.
+</p><p>
+</p></dd><dt><i>expand</i> </dt><dd>
+<p>
+Если задан только один элемент в строке,
+то этот элемент центрируется в окне. Если
+задано два или более, то они расширяются
+до заполнения свободного места окна.
+</p><p>
+</p></dd></dl>
+</dd></dl>
+
+<p>
+</p></dd><dt><b>*FvwmFormText</b> <i>строка</i></dt><dd>
+<p>
+Отображает <i>строку</i> как обычный текст. Окончания строк
+должны достигаться при помощи многократных опций
+*FvwmFormLine и *FvwmFormText. Свободные места могут
+быть использованы для предоставления дополнительных
+разделителей между элементами.
+</p><p>
+</p></dd><dt><b>*FvwmFormInput</b> <i>имя размер начальное_значение</i></dt><dd>
+<p>
+Определяет поле ввода текста с именем <i>имя</i>. Для редактирования
+используется подокно шириной указанного <i>размера</i>.
+Если задано <i>начальное_значение</i>, то поле будет
+устанавливаться в него каждый раз при запуске или перезапуске
+FvwmForm. По умолчанию начальное значение устанавливается в
+``''.
+</p><p>
+</p></dd><dt><b>*FvwmFormSelection</b> <i>имя тип</i></dt><dd>
+<p>
+Эта опция запускает элемент выбора с указанным <i>именем</i>. Его
+варианты выбора должны быть определены в следующих
+строках. Параметр <i>тип</i> может принимать одно из следующих
+значений:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<p>
+</p><dl compact="">
+<dt><i>single</i> </dt><dd>
+<p>
+Взаимоисключающий выбор
+(RadioButtons).
+</p><p>
+</p></dd><dt><i>multiple</i> </dt><dd>
+<p>
+Множественный выбор
+(CheckButtons).
+</p><p>
+</p></dd></dl>
+</dd></dl>
+
+<p>
+</p></dd><dt><b>*FvwmFormChoice</b> <i>имя значение</i> <b>on | off</b> <i>строка</i></dt><dd>
+<p>
+Задает вариант выбора для элемента выбора. Вариант
+выбора имеет указанные <i>имя</i> и <i>значение</i>. В качестве метки
+справа от кнопки будет выведена указанная <i>строка</i>.
+</p><p>
+Вариант
+выбора будет назначать определенное начальное
+состояние (``on'' помечает как выбранный) при запуске или
+перезапуске FvwmForm.
+Заметим, что
+если выбор исключающий, то FvwmForm не будет
+определять противоречия в начальных состояниях
+вариантов выбора, т.е. два или ни один из вариантов
+выбора могут быть помечены как выбранные. Одако, когда
+пользователь выбирает варианты, FvwmForm будет
+позволять выбрать только один.
+</p><p>
+</p></dd><dt><b>*FvwmFormButton</b> <i>тип строка</i> <b>[клавиша]</b></dt><dd>
+<p>
+Эта опция определяет обычную кнопку. Кнопка имеет <i>string</i> в
+качестве метки и выполняет установленную команду Fvwm
+<i>command</i> при нажатии. Команды должны быть
+заданы с помощью опции *FvwmFormCommand.
+</p><p>
+Необязательный параметр <i>key</i> задает горячую клавишу,
+которая активирует кнопку. Это может быть управляющий
+символ типа ^@, ^A, ..., ^_ или функциональная
+клавиша типа F1, F2, ..., F35. Управляющие клавиши,
+которые используются для перемещения курсора в поле
+ввода текста не могут активировать кнопку, за
+исключением TAB, RETURN, LINEFEED, которые могут
+активировать кнопку, когда курсор находится в
+последнем из полей ввода текста.
+</p><p>
+Поведение кнопки определяется ее <i>типом</i>:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<p>
+</p><dl compact="">
+<dt>continue</dt><dd>
+<p>
+FvwmForm будет продолжать выполнение после
+запуска набора команд.
+</p><p>
+</p></dd><dt>restart</dt><dd>
+<p>
+После запуска набора команд FvwmForm будет
+сбрасывать все значения для инициализации
+и затем продолжать выполнение.
+</p><p>
+</p></dd><dt>quit</dt><dd>
+<p>
+FvwmForm будет завершаться после запуска
+набора команд.
+</p><p>
+</p></dd></dl>
+</dd></dl>
+
+<p>
+</p></dd><dt><b>*FvwmFormCommand</b> <i>команда</i></dt><dd>
+<p>
+Данная опция определяет команду <i>fvwm95</i>, ассоциированную
+с текущей кнопкой. Команды, которые появляются перед
+любой из опций *FvwmFormButton, будут выполнены при
+старте модуля. Это полезно для выдачи звукового
+сигнала для привлечения внимания или предупреждения
+пользователя.
+</p><p>
+Перед посылкой каждой из команд к <i>fvwm95</i>, FvwmForm
+распознает переменные в следующих формах, и
+присваивает им значения.
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<p>
+</p><dl compact="">
+<dt><b>$(name)</b></dt><dd>
+<p>
+Если <i>name</i> соответствует полю ввода текста,
+то результатом является строка, введенная
+пользователем. Специальные символы, такие
+как ", `, и ' будут предварены символом
+обратная косая черта (backslash).
+</p><p>
+Если <i>name</i> соответствует варианту выбора,
+то результатом является значение этого
+выбора (как задано в *FvwmFormChoice),
+если данный вариант был выбран. Если он не
+был выбран, то результатом будет пустая
+строка.
+</p><p>
+Если <i>name</i> соответствует элементу выбора,
+то результатом является список выбранных
+значений всех его выриантов выбора.
+</p><p>
+</p></dd><dt><b>$(name?string)</b></dt><dd>
+<p>
+Если <i>name</i> - поле ввода текста и значение
+<i>name</i> не пустая строка, то результатом
+является <i>string</i>, с рекурсивной
+подстановкой переменной. Если пользователь
+ввел пустую строку, то результат
+пустой.
+</p><p>
+Если <i>name</i> это вариант выбора и он выбран,
+то результат это <i>string</i>, с рекурсивной
+подстановкой переменной. Если вариант
+выбора не выбран, то результат пустой.
+</p><p>
+</p></dd><dt><b>$(name!string)</b></dt><dd>
+<p>
+То же, что и выше, за исключением того, что
+придается условия преобразования.
+</p><p>
+</p></dd></dl>
+</dd></dl>
+
+<p>
+</p></dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>Пример 1 - Подтверждение выхода</h2>
+
+<p>
+Этот пример симулирует способ mwm'а для подтверждения
+разрегистрации.
+</p><p>
+</p><pre>
+*QuitVerifyGrabServer
+*QuitVerifyWarpPointer
+*QuitVerifyFont         *helvetica*m*r*n*14*
+*QuitVerifyButtonFont   *helvetica*m*o*n*14*
+*QuitVerifyFore         Black
+*QuitVerifyBack         Light Gray
+*QuitVerifyItemFore Wheat
+*QuitVerifyItemBack Gray50
+# begin items
+*QuitVerifyCommand  Beep
+*QuitVerifyLine         center
+*QuitVerifyText         "Do you really want to logout?"
+
+*QuitVerifyLine         expand
+*QuitVerifyButton   quit     "Logout"  ^M
+*QuitVerifyCommand  Quit
+*QuitVerifyButton   quit     "Cancel"  ^[
+*QuitVerifyCommand  Nop
+# Fvwm window style
+Style ``QuitVerify'' NoTitle, NoHandles, BorderWidth 3
+
+</pre>
+
+<p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>Пример 2 - Удаленная регистрация</h2>
+
+<p>
+Этот пример позволяет пользователю вводить имя хоста и
+необязательное имя пользователя на удаленной машине и
+открывать окно xterm с удаленного хоста.
+</p><p>
+</p><pre>
+*RloginWarpPointer
+*RloginFont         *helvetica*m*r*n*14*
+*RloginButtonFont   *helvetica*m*o*n*14*
+*RloginInputFont    *cour*m*r*n*14*
+*RloginFore         Black
+*RloginBack         Light Gray
+*RloginItemFore          Wheat
+*RloginItemBack          Gray50
+# begin items
+*RloginLine         center
+*RloginText         "Login to Remote Host"
+*RloginLine         center
+*RloginText         "Host:"
+*RloginInput        HostName  20   ""
+*RloginLine         center
+*RloginSelection    UserSel   single
+*RloginChoice       Default   Default   on   "same user"
+*RloginChoice       Custom    Custom    off  "user:"
+*RloginInput        UserName  10   ""
+*RloginLine         expand
+*RloginButton       quit "Login"        ^M
+*RloginCommand Exec   exec rsh $(Custom?-l  )  xterm -T xterm@ -display $HOSTDISPLAY &amp;
+*RloginButton       restart   "Clear"
+*RloginButton       quit "Cancel"  ^[
+*RloginCommand Nop
+
+</pre>
+
+<p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>Пример 3 - Захват окна</h2>
+
+<p>
+Этот пример предоставляет инструмент для работы с xwd,
+xwud и xpr.
+</p><p>
+</p><pre>
+*CaptureFont        *helvetica*m*r*n*14*
+*CaptureButtonFont  *helvetica*m*o*n*14*
+*CaptureInputFont   *cour*m*r*n*14*
+*CaptureLine        center
+*CaptureText        "Capture Window"
+*CaptureLine        left
+*CaptureText        "File: "
+*CaptureInput       file      25   "/tmp/Capture"
+*CaptureLine        left
+*CaptureText        "Printer: "
+*CaptureInput       printer        20   "ps1"
+*CaptureLine        expand
+*CaptureSelection   PtrType   single
+*CaptureChoice      PS   ps   on   "PostScript"
+*CaptureChoice      Ljet ljet off  "HP LaserJet"
+*CaptureLine        left
+*CaptureText        "xwd options:"
+*CaptureLine        expand
+*CaptureSelection   Options   multiple
+*CaptureChoice      Brd  -nobdrs   off   "No border"
+*CaptureChoice      Frm  -frame    on    "With frame"
+*CaptureChoice      XYZ  -xy       off   "XY format"
+*CaptureLine        expand
+*CaptureButton      continue   "Capture" ^M
+*CaptureCommand     Exec  exec xwd -out   &amp;
+*CaptureButton      continue  "Preview"
+*CaptureCommand     Exec  exec xwud -in  &amp;
+*CaptureButton      continue  "Print"
+*CaptureCommand     Exec  xpr -device   | lpr -P  &amp;
+*CaptureButton      quit      "Quit"
+
+</pre>
+
+<p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ОШИБКИ</h2>
+
+<p>
+Имеется жесткий предел на число элементов в форме.
+</p><p>
+Отчет об ошибках посылайте на <i><a href="mailto:ztfeng@math.princeton.edu">ztfeng@math.princeton.edu</a></i>.
+</p><p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>ПРАВА</h2>
+
+<p>
+FvwmForm - это оригинальная работа Thomas Zuwei Feng.
+</p><p>
+Copyright Feb 1995, Thomas Zuwei Feng. Предоставляется без
+каких-либо гарантий. Используйте программу на свой страх и
+риск. Права на использование, распостранение и модификацию
+представляются при соблюдении copyright.
+</p><p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">Инициализация</a></dt><dd>
+</dd><dt><a href="#lbAF">Конфигурация</a></dt><dd>
+</dd><dt><a href="#lbAG">Пример 1 - Подтверждение выхода</a></dt><dd>
+</dd><dt><a href="#lbAH">Пример 2 - Удаленная регистрация</a></dt><dd>
+</dd><dt><a href="#lbAI">Пример 3 - Захват окна</a></dt><dd>
+</dd><dt><a href="#lbAJ">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAK">ПРАВА</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="FvwmForm" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

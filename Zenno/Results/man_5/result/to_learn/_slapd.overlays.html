@@ -1,0 +1,423 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN slapd.overlays (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, slapd.overlays"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="slapd.overlays" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">slapd.overlays (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=slapd.overlays&amp;category=5&amp;russian=0"><u>slapd.overlays</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+slapd.overlays - наложения для slapd, автономного демона LDAP.
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Демон
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8)
+
+может использовать множество различных наложений для того, чтобы изменить или расширить нормальное
+поведение базы данных того или иного механизма манипуляции данными. Наложения могут быть статически
+вкомпилированы в slapd, либо, когда включена поддержка модулей, могут быть подгружены динамически.
+Для большинства наложений разрешена их настройка только поверх индивидуальных баз данных, но
+некоторые из них можно также настроить глобально.
+<p>
+Параметры конфигурации для каждого наложения документированы отдельно в соответствующих man-страницах
+<b>slapo-&lt;overlay&gt;</b>(5).
+
+</p><dl compact="">
+<dt><b>accesslog</b>
+
+</dt><dd>
+Журнал доступа. Это наложение может записывать обращения к заданной базе данных в другой базе данных.
+</dd><dt><b>auditlog</b>
+
+</dt><dd>
+Журнал изменений. Это наложение используется для записи изменений соответствующей базы данных в файл
+журнала в формате LDIF. По умолчанию это наложение не собирается.
+</dd><dt><b>chain</b>
+
+</dt><dd>
+Сцепление. Это наложение позволяет автоматически разрешать отсылки, возвращённые в результате запроса,
+если такое разрешение было настроено на сервере или запрошено клиентом.
+</dd><dt><b>collect</b>
+
+</dt><dd>
+Коллективные атрибуты. Это наложение реализует определённые в RFC 3671 коллективные атрибуты;
+такие атрибуты имеют общие значения для всех членов коллекции, унаследованные от записи-предка.
+</dd><dt><b>constraint</b>
+
+</dt><dd>
+Ограничения. Это наложение устанавливает ограничения в виде регулярных выражений на все значения
+указанных атрибутов. Оно используется для обеспечения более точного синтаксиса значений атрибутов в
+случаях, когда базовый синтаксис атрибутов является слишком общим.
+</dd><dt><b>dds</b>
+
+</dt><dd>
+Динамические службы каталога. Это наложение обеспечивает поддержку динамических объектов с
+ограниченным временем жизни, по истечении которого они устаревают и автоматически удаляются.
+</dd><dt><b>dyngroup</b>
+
+</dt><dd>
+Динамические группы. Это демонстрационное наложение, расширяющее операцию Compare для определения
+членства в динамической группе. На другие операции LDAP воздействия не оказывает.
+</dd><dt><b>dynlist</b>
+
+</dt><dd>
+Динамические списки. Это наложение позволяет наполнять содержимым динамические группы и другие объекты.
+</dd><dt><b>memberof</b>
+
+</dt><dd>
+MemberOf. Это наложение позволяет автоматически поддерживать значения обратного членства в группе,
+которые обычно хранятся в атрибуте memberOf.
+</dd><dt><b>pbind</b>
+
+</dt><dd>
+Прокси-подсоединения. Это наложение перенаправляет запросы Simple Bind, адресованные к локальной
+базе данных, на удалённый LDAP-сервер.
+</dd><dt><b>pcache</b>
+
+</dt><dd>
+Кэширующий прокси-сервер. Это наложение позволяет кэшировать поисковые запросы LDAP в локальной базе данных.
+Чаще всего используется с механизмами манипуляции данными
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-ldap&amp;category=5">slapd-ldap</a></b>(5)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-meta&amp;category=5">slapd-meta</a></b>(5).
+
+</dd><dt><b>ppolicy</b>
+
+</dt><dd>
+Политика паролей. Это наложение предоставляет различные механизмы управления паролями,
+например управление сроками действия паролей, контроль повторного использования и дублирования паролей,
+обязательное переназначение паролей и т.п.
+</dd><dt><b>refint</b>
+
+</dt><dd>
+Обеспечение целостности ссылок. Это наложение может быть использовано с базами данных таких механизмов
+манипуляции данными, как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-bdb&amp;category=5">slapd-bdb</a></b>(5),
+
+для поддержания согласованности схемы данных, в которой используются ссылочные атрибуты.
+</dd><dt><b>retcode</b>
+
+</dt><dd>
+Результирующие коды. Это наложение полезно для тестирования поведения клиентов при возникновении
+сгенерированных сервером ошибочных и/или необычных ответов.
+</dd><dt><b>rwm</b>
+
+</dt><dd>
+Перезапись/отображение. Это наложение является экспериментальным. Оно выполняет перезапись DN и данных,
+а также отображение объектных классов и типов атрибутов.
+</dd><dt><b>sssvlv</b>
+
+</dt><dd>
+Сортировка на стороне сервера и просмотр виртуального списка. Это наложение реализует элемент управления
+LDAP сортировки на стороне сервера (RFC2891) и элемент управления LDAP просмотра виртуального списка,
+а также заменяет реализацию по умолчанию элемента управления LDAP PagedResults (RFC2696) так,
+чтобы он мог работать совместно с данным механизмом сортировки.
+</dd><dt><b>syncprov</b>
+
+</dt><dd>
+Поставщик syncrepl. Это наложение реализует поддержку функционала поставщика репликации
+<b>syncrepl</b>,
+
+в том числе функционал непрерывного поиска.
+</dd><dt><b>translucent</b>
+
+</dt><dd>
+Прозрачный прокси. Данное наложение может использоваться совместно с базой данных такого механизма
+манипуляции данными, как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-bdb&amp;category=5">slapd-bdb</a></b>(5),
+
+для создания "прозрачного прокси". Содержимое записей, полученных с удалённого сервера LDAP, может
+быть частично переопределено содержимым записей из этой локальной базы данных.
+</dd><dt><b>unique</b>
+
+</dt><dd>
+Обеспечение уникальности атрибутов. Данное наложение может быть использовано с базами данных таких
+механизмов манипуляции данными, как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-bdb&amp;category=5">slapd-bdb</a></b>(5),
+
+для соблюдения уникальности значений некоторых или всех атрибутов в некотором поддереве каталога.
+</dd><dt><b>valsort</b>
+
+</dt><dd>
+Сортировка значений.
+Это наложение может использоваться для обеспечения заданного порядка сортировки значений какого-либо
+атрибута при их возвращении в результате поиска.
+</dd></dl>
+<a name="lbAD">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt>/usr/local/etc/openldap/slapd.conf</dt><dd>
+конфигурационный файл slapd по умолчанию
+</dd><dt>/usr/local/etc/openldap/slapd.d</dt><dd>
+конфигурационная директория slapd по умолчанию.
+</dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap&amp;category=3">ldap</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-accesslog&amp;category=5">slapo-accesslog</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-auditlog&amp;category=5">slapo-auditlog</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-chain&amp;category=5">slapo-chain</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-collect&amp;category=5">slapo-collect</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-constraint&amp;category=5">slapo-constraint</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-dds&amp;category=5">slapo-dds</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-dyngroup&amp;category=5">slapo-dyngroup</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-dynlist&amp;category=5">slapo-dynlist</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-memberof&amp;category=5">slapo-memberof</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-pbind&amp;category=5">slapo-pbind</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-pcache&amp;category=5">slapo-pcache</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-ppolicy&amp;category=5">slapo-ppolicy</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-refint&amp;category=5">slapo-refint</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-retcode&amp;category=5">slapo-retcode</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-rwm&amp;category=5">slapo-rwm</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-sssvlv&amp;category=5">slapo-sssvlv</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-syncprov&amp;category=5">slapo-syncprov</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-translucent&amp;category=5">slapo-translucent</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-unique&amp;category=5">slapo-unique</a></b>(5).
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapo-valsort&amp;category=5">slapo-valsort</a></b>(5).
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-config&amp;category=5">slapd-config</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.backends&amp;category=5">slapd.backends</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8).
+
+"Руководство администратора OpenLDAP" (<a href="http://www.OpenLDAP.org/doc/admin/,">http://www.OpenLDAP.org/doc/admin/,</a> <a href="http://pro-ldap.ru/tr/admin24/).">http://pro-ldap.ru/tr/admin24/).</a>
+<a name="lbAF">&nbsp;</a>
+<h2>ПРИЗНАНИЕ ЗАСЛУГ</h2>
+
+
+
+<b>Программное обеспечение OpenLDAP</b>
+
+разработано и поддерживается проектом OpenLDAP &lt;<a href="http://www.openldap.org/">http://www.openldap.org/</a>&gt;.
+<b>Программное обеспечение OpenLDAP</b>
+
+является производным от релиза 3.3 LDAP Мичиганского Университета.
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAE">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРИЗНАНИЕ ЗАСЛУГ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="slapd.overlays" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

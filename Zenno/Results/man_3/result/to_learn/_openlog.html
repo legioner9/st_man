@@ -1,0 +1,580 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN openlog (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, openlog"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="openlog" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">openlog (3)</font><hr><li> <a href="/man.shtml?topic=openlog&amp;category=3&amp;russian=1"><u>openlog</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=openlog&amp;category=3&amp;russian=0"><u>openlog</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=openlog&amp;category=3&amp;russian=2"><u>openlog</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=openlog&amp;category=3&amp;russian=5"><u>openlog</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+closelog, openlog, syslog -  сообщения программе, ведущей системный журнал
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/syslog.h">syslog.h</a>&gt;</b>
+
+<p>
+<b>void openlog(const char *</b><i>ident</i><b>, int </b><i>option</i><b>, int </b><i>facility</i><b>);</b>
+
+<br>
+
+<b>void syslog(int </b><i>priority</i><b>, const char *</b><i>format</i><b>, ...);</b>
+
+<br>
+
+<b>void closelog(void);</b>
+
+</p><p>
+<b>#include &lt;<a href="file:/usr/include/stdarg.h">stdarg.h</a>&gt;</b>
+
+</p><p>
+<b>void vsyslog(int </b><i>priority</i><b>, const char *</b><i>format</i><b>, va_list </b><i>ap</i><b>);</b>
+
+<br>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<b>closelog()</b>
+
+закрывает описатель, используемый для записи данных в журнал. Использование
+<b>closelog()</b>
+
+необязательно.
+<p>
+<b>openlog()</b>
+
+устанавливает связь с программой, ведущей системный журнал. Строка 
+<i>ident </i>
+
+добавляется к каждому сообщению и обычно представляет собой название программы.
+Аргумент
+<i>option</i>
+
+указывает флаг управляющий работой
+<b>openlog()</b>
+
+и соответствующих вызовов
+<b>syslog()</b>.
+
+Аргумент
+<i>facility</i>
+
+устанаваливает значение по умолчанию если не указываются
+соответствующие параметры при вызовах
+<b>syslog()</b>.
+
+Значения 
+<i>option</i>
+
+и
+<i>facility</i>
+
+приводятся ниже.  Использование 
+<b>openlog()</b>
+
+тоже необязательно, оно при необходимости автоматически будет вызвано функцией 
+<b>syslog()</b>,
+
+и в этом случае значение  
+<i>ident</i>
+
+будет установлено равным NULL.
+</p><p>
+<b>syslog()</b>
+
+создает сообщение для журнала, которое передается  
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8).
+
+<i>priority</i>
+
+получаеся при логическом сложении
+<i>facility</i>
+
+и 
+<i>level</i>,
+
+описанных в следующей главе. Остаются аргументы
+<i>format</i>
+
+(как и в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=printf&amp;category=3">printf</a></b>(3))
+
+и аргументы для 
+<i>format</i>,
+
+кроме того, что сочетание %m будет заменено сообщением об ошибке 
+<i>strerror</i>(<i>errno</i>)
+
+и будет добавлен завершающий символ новой строки.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ПАРАМЕТРЫ</h2>
+
+Этот раздел описывает параметры, используемые для установки значений 
+<i>option</i>,<i> facility</i> и <i>priority</i>.
+
+<a name="lbAF">&nbsp;</a>
+<h3>option</h3>
+
+Аргумент
+<i>option</i>,
+
+относящийся к функции
+<b>openlog() ,</b>
+
+имеет значение ИЛИ для следующих выражений:
+<dl compact="">
+<dt><b>LOG_CONS</b>
+
+</dt><dd>
+- написать сообщение об ошибке прямо на консоли, если была ошибка при записи
+данных в системный журнал;
+</dd><dt><b>LOG_NDELAY</b>
+
+</dt><dd>
+- устанавливать соединение немедленно (обычно оно устанавливается только при
+поступлении первого сообщения);
+</dd><dt><b>LOG_NOWAIT</b>
+
+</dt><dd>
+- не ожидает дочерние процессы которые могут быть созданы во время
+отправки этого сообщения. (Библиотека GNU C не создает в это время
+дочерних процессов, поэтому эта опция не будет иметь эффекта в Linux.)
+</dd><dt><b>LOG_ODELAY</b>
+
+</dt><dd>
+- обратно от
+<b>LOG_NDELAY</b>;
+
+открытие соединения откладывается до вызова
+<b>syslog()</b>.
+
+</dd><dt><b>LOG_PERROR</b>
+
+</dt><dd>
+- посылать сообщение еще и в поток stderr (отсутствует в SUSv3);
+</dd><dt><b>LOG_PID</b>
+
+</dt><dd>
+- добавлять к каждому сообщению идентификатор
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h3>facility . </h3>
+
+Аргумент 
+<i>facility</i>
+
+используется для указания типа программы, записывающей сообщения.
+Это позволяет файлу конфигурации указывать, что сообщения от различных
+программ будут по-разному обрабатываться.
+<dl compact="">
+<dt><b>LOG_AUTH</b>
+
+</dt><dd>
+- сообщения о безопасности/авторизации (РЕКОМЕНДУЕТСЯ использовать вместо него 
+<b>LOG_AUTHPRIV</b>).
+
+</dd><dt><b>LOG_AUTHPRIV</b>
+
+</dt><dd>
+- сообщения о безопасности/авторизации (частные); 
+</dd><dt><b>LOG_CRON</b>
+
+</dt><dd>
+- демон часов 
+(<b>cron</b> и <b>at</b>);
+
+</dd><dt><b>LOG_DAEMON</b>
+
+</dt><dd>
+- другие системные демоны;
+</dd><dt><b>LOG_KERN</b>
+
+</dt><dd>
+- сообщения ядра;
+</dd><dt><b>LOG_LOCAL0</b> до <b>LOG_LOCAL7</b>
+
+</dt><dd>
+зарезервированы для определения пользователем;
+</dd><dt><b>LOG_LPR</b>
+
+</dt><dd>
+- подсистема принтера;
+</dd><dt><b>LOG_MAIL</b>
+
+</dt><dd>
+- почтовая подсистема;
+</dd><dt><b>LOG_NEWS</b>
+
+</dt><dd>
+- подсистема новостей USENET;
+</dd><dt><b>LOG_SYSLOG</b>
+
+</dt><dd>
+- сообщения, генерируемые
+<b>syslogd</b>;
+
+</dd><dt><b>LOG_USER</b>
+
+</dt><dd>
+(по умолчанию)
+- общие сообщения на уровне пользователя ;
+</dd><dt><b>LOG_UUCP</b>
+
+</dt><dd>
+- подсистема UUCP
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h3>level ,</h3>
+
+определяющая степень важности сообщения.
+Далее значения приводятся по понижению степени их важности:
+<dl compact="">
+<dt><b>LOG_EMERG</b>
+
+</dt><dd>
+- система остановлена;
+</dd><dt><b>LOG_ALERT</b>
+
+</dt><dd>
+- требуется немедленное вмешательство;
+</dd><dt><b>LOG_CRIT</b>
+
+</dt><dd>
+- критические условия;
+</dd><dt><b>LOG_ERR</b>
+
+</dt><dd>
+- ошибки;
+</dd><dt><b>LOG_WARNING</b>
+
+</dt><dd>
+- предупреждения;
+</dd><dt><b>LOG_NOTICE</b>
+
+</dt><dd>
+- важные рабочие условия;
+</dd><dt><b>LOG_INFO</b>
+
+</dt><dd>
+- информационные сообщения;
+</dd><dt><b>LOG_DEBUG</b>
+
+</dt><dd>
+- сообщения об отладке.
+</dd></dl>
+<p>
+
+Функция
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setlogmask&amp;category=3">setlogmask</a></b>(3)
+
+может использоваться для ограничения доступа на указанные уровни.
+<a name="lbAI">&nbsp;</a>
+</p><h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+Функции
+<b>openlog()</b>,
+
+<b>closelog()</b>,
+
+и
+<b>syslog()</b>
+
+(но не
+<b>vsyslog()</b>)
+
+описаны в SUSv2 и POSIX 1003.1-2001.
+POSIX 1003.1-2001 описывает только значения
+<b>LOG_USER</b>
+
+и
+<b>LOG_LOCAL*</b>
+
+для
+<i>facility</i>.
+
+Кроме значений
+<b>LOG_AUTHPRIV</b>
+
+и
+<b>LOG_FTP</b>,
+
+другие значения
+<i>facility</i>
+
+присутствуют в различных системах Unix.
+Значение
+<b>LOG_PERROR</b>
+
+для
+<i>option</i>
+
+не описано в POSIX 1003.1-2001, но присутствует в большинстве версий Unix.
+<a name="lbAJ">&nbsp;</a>
+<h2>ПРИМЕЧАНИЯ ПО ИСТОРИИ</h2>
+
+Функция
+<b>syslog</b>
+
+появилась в BSD 4.2.
+BSD 4.3 описывает
+<i>openlog</i>(),
+
+<i>syslog</i>(),
+
+<i>closelog</i>(),
+
+и
+<i>setlogmask</i>().
+
+4.3BSD-Reno описывает
+<i>vsyslog</i>().
+
+разумеется ранние версии функций v* использовали механизм
+<i>&lt;<a href="file:/usr/include/varargs.h">varargs.h</a>&gt;</i>,
+
+не совместимый с 
+<i>&lt;<a href="file:/usr/include/stdarg.h">stdarg.h</a>&gt;</i>.
+
+<a name="lbAK">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Аргумент
+<i>ident</i>
+
+функции
+<b>openlog()</b>,
+
+по-видимому, заносится один в один. Поэтому, если строка, на которую
+он указывает, меняется, то
+<b>syslog()</b>
+
+может начать подготавливать измененную строку. В случае же, когда
+строка уже не существует, результаты неопределены. Наиболее переносимо
+будет использовать строковую константу.
+<p>
+
+Никогда не передавайте строку с предоставленным пользователем
+форматом, лучше используйте
+</p><dl compact=""><dt></dt><dd>
+syslog("%s", string);
+</dd></dl>
+
+<a name="lbAL">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=logger&amp;category=1">logger</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setlogmask&amp;category=3">setlogmask</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog.conf&amp;category=5">syslog.conf</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ПАРАМЕТРЫ</a></dt><dd>
+<dl>
+<dt><a href="#lbAF">option</a></dt><dd>
+</dd><dt><a href="#lbAG">facility . </a></dt><dd>
+</dd><dt><a href="#lbAH">level ,</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAI">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ПРИМЕЧАНИЯ ПО ИСТОРИИ</a></dt><dd>
+</dd><dt><a href="#lbAK">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAL">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="openlog" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,759 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN sigsuspend (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, sigsuspend"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="sigsuspend" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">sigsuspend (2)</font><hr><li> <a href="/man.shtml?topic=sigsuspend&amp;category=2&amp;russian=4"><u>sigsuspend</u></a> (2) <font color="#555555"> ( Solaris man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=sigsuspend&amp;category=2&amp;russian=1"><u>sigsuspend</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=sigsuspend&amp;category=2&amp;russian=0"><u>sigsuspend</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=sigsuspend&amp;category=2&amp;russian=2"><u>sigsuspend</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=sigsuspend&amp;category=3&amp;russian=5"><u>sigsuspend</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+sigaction, sigprocmask, sigpending, sigsuspend - POSIX-функции обработки сигналов.
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/signal.h">signal.h</a>&gt;</b>
+
+<p>
+<b>int sigaction(int </b><i>signum</i><b>, const struct sigaction *</b><i>act</i><b>,</b>
+
+<b>struct sigaction *</b><i>oldact</i><b>);</b>
+
+</p><p>
+<b>int sigprocmask(int </b><i>how</i><b>, const sigset_t *</b><i>set</i><b>,</b>
+
+<b>sigset_t *</b><i>oldset</i><b>);</b>
+
+</p><p>
+<b>int sigpending(sigset_t *</b><i>set</i><b>);</b>
+
+</p><p>
+<b>int sigsuspend(const sigset_t *</b><i>mask</i><b>);</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Системный вызов
+<b>sigaction</b>
+
+используется для изменения действий процесса при получении
+соответствующего сигнала.
+<p>
+
+Параметр
+<i>signum</i>
+
+задает номер сигнала и может быть равен любому номеру,
+кроме
+<b>SIGKILL</b>
+
+и
+<b>SIGSTOP</b>.
+
+</p><p>
+
+Если параметр
+<i>act</i>
+
+не равен нулю, то новое действие, связянное с сигналом
+<i>signum</i>,
+
+устанавливается соответственно
+<i>act</i>.
+
+Если
+<i>oldact</i>
+
+не равен нулю, то предыдущее действие записывается в
+<i>oldact</i>.
+
+</p><p>
+
+Структура
+<b>sigaction</b>
+
+имеет следующий формат:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>struct sigaction {
+    void (*sa_handler)(int);
+    void (*sa_sigaction)(int, siginfo_t *, void *);
+    sigset_t sa_mask;
+    int sa_flags;
+    void (*sa_restorer)(void);
+}
+</pre>
+
+</dd></dl>
+
+<p>
+
+В некоторых архитектурах используется объединение элементов, но не используйте
+<i>sa_handler</i>
+
+и
+<i>sa_sigaction</i>
+
+вместе.
+</p><p>
+
+Элемент
+<i>sa_restorer</i>
+
+устарел, поэтому не должен использоваться.
+POSIX не описывает элемент
+<i>sa_restorer</i>.
+
+</p><p>
+
+<i>sa_handler</i>
+
+задает тип действий процесса, связанный с сигналом
+<i>signum</i>,
+
+и может быть равен:
+<b>SIG_DFL</b>
+
+для выполнения стандартных действий,
+<b>SIG_IGN</b>
+
+для игнорирования сигнала,-  или быть указателем на функцию обработки сигнала.
+</p><p>
+
+<i>sa_mask</i>
+
+задает маску сигналов, которые должны блокироваться при обработке сигнала.
+Также будет блокироваться и сигнал, вызвавший запуск
+функции, если только не были использованы флаги
+<b>SA_NODEFER</b>
+
+или
+<b>SA_NOMASK</b>.
+
+</p><p>
+
+<i>sa_flags</i>
+
+содержит набор флагов, которые могут влиять на поведение процесса
+при обработке сигнала. Он состоит из следующих флагов:
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>SA_NOCLDSTOP</b>
+
+</dt><dd>
+Если
+<i>signum</i>
+
+равен
+<b>SIGCHLD</b>,
+
+то  уведомление об остановке дочернего процесса не будет получено (т.е., в тех
+случаях, когда дочерний процесс получает сигнал
+<b>SIGSTOP</b>, <b>SIGTSTP</b>, <b>SIGTTIN</b>
+
+или
+<b>SIGTTOU</b>).
+
+</dd><dt><b>SA_ONESHOT</b> или <b>SA_RESETHAND</b>
+
+</dt><dd>
+Восстановить поведение сигнала после одного вызова
+обработчика.
+</dd><dt><b>SA_ONSTACK</b>
+
+</dt><dd>
+Вызвать обработчик сигнала в дополнительном стеке сигналов, предоставленном
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigaltstack&amp;category=2">sigaltstack</a></b>(2).
+
+Если дополнительный стек недоступен, то будет использован стек по умолчанию.
+</dd><dt><b>SA_RESTART</b>
+
+</dt><dd>
+Поведение должно соответствовать семантике сигналов BSD и позволять
+некоторым системным вызовам работать, в то время как идет обработка сигналов.
+</dd><dt><b>SA_NOMASK</b> or <b>SA_NODEFER</b>
+
+</dt><dd>
+Не препятствовать получению сигнала при его обработке.
+</dd><dt><b>SA_SIGINFO</b>
+
+</dt><dd>
+Обработчик сигнала требует 3-х аргументов, а не одного. В этом
+случае надо использовать параметр
+<i>sa_sigaction</i>
+
+вместо
+<i>sa_handler</i>.
+
+(Поле sa_sigaction было добавлено в Linux 2.1.86.)
+</dd></dl>
+</dd></dl>
+
+<p>
+
+Параметр
+<i>siginfo_t</i>
+
+поля
+<i>sa_sigaction</i>
+
+является структурой, состоящей из следующих элементов:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>
+siginfo_t {
+    int      si_signo;  /* Номер сигнала */
+    int      si_errno;  /* Значение errno */
+    int      si_code;   /* Код сигнала */
+    pid_t    si_pid;    /* Идентификатор процесса, пославшего сигнал */
+    uid_t    si_uid;    /* Реальный идентификатор пользователя процесса, пославшего сигнал */
+    int      si_status; /* Выходное значение или номер сигнала */
+    clock_t  si_utime;  /* Занятое пользователем время */
+    clock_t  si_stime;  /* Использованное системное время */
+    sigval_t si_value;  /* Значение сигнала */
+    int      si_int;    /* Сигнал  POSIX.1b */
+    void *   si_ptr;    /* Сигнал  POSIX.1b */
+    void *   si_addr;   /* Адрес в памяти, приводящий к ошибке */
+    int      si_band;   /* Общее событие */
+    int      si_fd;     /* Описатель файла */
+}
+</pre>
+
+</dd></dl>
+
+Поля
+<i>si_signo</i>, <i>si_errno</i> и <i>si_code</i>
+
+определены для всех сигналов.
+Остальная часть структуры может быть объединением, поэтому
+Вы должны работать только с теми полями, которые имеют
+смысл для конкретного сигнала.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=kill&amp;category=2">kill</a></b>(2),
+
+сигналы POSIX.1b и SIGCHLD заполняют поля
+<i>si_pid</i> и <i>si_uid</i>.
+
+<b>SIGCHLD</b>также<b>заполняет</b>поля
+
+<i>si_status</i>, <i>si_utime</i> и <i>si_stime</i>.
+
+Поля
+<i>si_int</i> и <i>si_ptr</i>
+
+задаются процессом, пославшим сигнал POSIX.1b.
+Сигналы SIGILL, SIGFPE, SIGSEGV и SIGBUS заполняют поле
+<i>si_addr</i>
+
+адресом в памяти, который привел к ошибке.
+Сигнал IGPOLL заполняет
+<i>si_band</i> и <i>si_fd</i>.
+
+<i>si_code</i>
+
+указывает на причину отправки сигнала. Это значение, а не битовая маска.
+В следующей таблице приведены значения, которые могут вернуть любые сигналы:
+<table border="">
+<tbody><tr valign="top"><td colspan="2" align="center"><i>si_code</i><br></td></tr>
+<tr valign="top"><td>Значение</td><td>Причина сигнала<br></td></tr>
+<tr valign="top"><td>SI_USER</td><td>kill, sigsend или raise<br></td></tr>
+<tr valign="top"><td>SI_KERNEL</td><td>ядро<br></td></tr>
+<tr valign="top"><td>SI_QUEUE</td><td>sigqueue<br></td></tr>
+<tr valign="top"><td>SI_TIMER</td><td>истекло время таймера<br></td></tr>
+<tr valign="top"><td>SI_MESGQ</td><td>изменилось состояние mesq<br></td></tr>
+<tr valign="top"><td>SI_ASYNCIO</td><td>завершился AIO<br></td></tr>
+<tr valign="top"><td>SI_SIGIO</td><td>SIGIO помещен в очередь<br></td></tr>
+</tbody></table>
+
+<table border="">
+<tbody><tr valign="top"><td colspan="2" align="center">SIGILL<br></td></tr>
+<tr valign="top"><td>ILL_ILLOPC</td><td>некорректный код инструкции<br></td></tr>
+<tr valign="top"><td>ILL_ILLOPN</td><td>неверный операнд<br></td></tr>
+<tr valign="top"><td>ILL_ILLADR</td><td>некорректный режим адресации<br></td></tr>
+<tr valign="top"><td>ILL_ILLTRP</td><td>некорректная ловушка<br></td></tr>
+<tr valign="top"><td>ILL_PRVOPC</td><td>привилегированная операция<br></td></tr>
+<tr valign="top"><td>ILL_PRVREG</td><td>привилегированный регистр<br></td></tr>
+<tr valign="top"><td>ILL_COPROC</td><td>ошибка сопроцессора<br></td></tr>
+<tr valign="top"><td>ILL_BADSTK</td><td>внутренняя ошибка стека<br></td></tr>
+</tbody></table>
+
+<table border="">
+<tbody><tr valign="top"><td colspan="2" align="center">SIGFPE<br></td></tr>
+<tr valign="top"><td>FPE_INTDIV</td><td>деление на ноль при работе с целыми числами<br></td></tr>
+<tr valign="top"><td>FPE_INTOVF</td><td>переполнение при работе с целыми числами<br></td></tr>
+<tr valign="top"><td>FPE_FLTDIV</td><td>деление на ноль при работе с числами с плавающей запятой<br></td></tr>
+<tr valign="top"><td>FPE_FLTOVF</td><td>переполнение при работе с числами с плавающей запятой<br></td></tr>
+<tr valign="top"><td>FPE_FLTUND</td><td>нехватка значения при работе с числами с плавающей запятой<br></td></tr>
+<tr valign="top"><td>FPE_FLTRES</td><td>неточный результат при работе с числами с плавающей запятой<br></td></tr>
+<tr valign="top"><td>FPE_FLTINV</td><td>неправильная операция при работе с числами с плавающей запятой<br></td></tr>
+<tr valign="top"><td>FPE_FLTSUB</td><td>индекс вне разрешенных пределов при работе с числами с плавающей запятой<br></td></tr>
+</tbody></table>
+
+<table border="">
+<tbody><tr valign="top"><td colspan="2" align="center">SIGSEGV<br></td></tr>
+<tr valign="top"><td>SEGV_MAPERR</td><td>адрес не соответствует объекту<br></td></tr>
+<tr valign="top"><td>SEGV_ACCERR</td><td>права на отраженный объект неправильны<br></td></tr>
+</tbody></table>
+
+<table border="">
+<tbody><tr valign="top"><td colspan="2" align="center">SIGBUS<br></td></tr>
+<tr valign="top"><td>BUS_ADRALN</td><td>неправильное выравнивание адреса<br></td></tr>
+<tr valign="top"><td>BUS_ADRERR</td><td>несуществующий физический адрес<br></td></tr>
+<tr valign="top"><td>BUS_OBJERR</td><td>аппаратная ошибка, специфичная для объекта<br></td></tr>
+</tbody></table>
+
+<table border="">
+<tbody><tr valign="top"><td colspan="2" align="center">SIGTRAP<br></td></tr>
+<tr valign="top"><td>TRAP_BRKPT</td><td>точка остановки процесса<br></td></tr>
+<tr valign="top"><td>TRAP_TRACE</td><td>ловушка отладки процесса<br></td></tr>
+</tbody></table>
+
+<table border="">
+<tbody><tr valign="top"><td colspan="2" align="center">SIGCHLD<br></td></tr>
+<tr valign="top"><td>CLD_EXITED</td><td>дочерний процесс завершил работу<br></td></tr>
+<tr valign="top"><td>CLD_KILLED</td><td>работа дочернего процесса была прервана<br></td></tr>
+<tr valign="top"><td>CLD_DUMPED</td><td>дочерний процесс завершился некорректно<br></td></tr>
+<tr valign="top"><td>CLD_TRAPPED</td><td>сработала ловушка в отлаживаемом дочернем процессе<br></td></tr>
+<tr valign="top"><td>CLD_STOPPED</td><td>дочерний процесс остановлен<br></td></tr>
+<tr valign="top"><td>CLD_CONTINUED</td><td>остановленный дочерний процесс продолжил работу<br></td></tr>
+</tbody></table>
+
+<table border="">
+<tbody><tr valign="top"><td colspan="2" align="center">SIGPOLL<br></td></tr>
+<tr valign="top"><td>POLL_IN</td><td>есть входные данные<br></td></tr>
+<tr valign="top"><td>POLL_OUT</td><td>освободились выходные буферы<br></td></tr>
+<tr valign="top"><td>POLL_MSG</td><td>есть входное сообщение<br></td></tr>
+<tr valign="top"><td>POLL_ERR</td><td>ошибка ввода/вывода<br></td></tr>
+<tr valign="top"><td>POLL_PRI</td><td>есть входные данные высокого приоритета<br></td></tr>
+<tr valign="top"><td>POLL_HUP</td><td>устройство отключено<br></td></tr>
+</tbody></table>
+
+<p>
+
+Системный вызов
+<b>sigprocmask</b>
+
+используется для того, чтобы изменить список блокированных
+в данный момент сигналов. Работа этой функции зависит от значения
+параметра
+<i>how</i>
+
+следующим образом:
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>SIG_BLOCK</b>
+
+</dt><dd>
+Набор блокируемых сигналов - объединение текущего набора и
+аргумента
+<i>set</i>.
+
+</dd><dt><b>SIG_UNBLOCK</b>
+
+</dt><dd>
+Сигналы, устанавливаемое значение битов которых равно
+<i>set</i>,
+
+удаляются из списка блокируемых сигналов.
+Допускается разблокировать незаблокированные сигналы.
+</dd><dt><b>SIG_SETMASK</b>
+
+</dt><dd>
+Набор блокируемых сигналов приравнивается к аргументу
+<i>set</i>.
+
+</dd></dl>
+</dd></dl>
+
+<p>
+
+Если значение поля
+<i>oldset</i>
+
+не равно нулю, то предыдущее значение маски сигналов записывается в
+<i>oldset</i>.
+
+</p><p>
+
+Системный вызов
+<b>sigpending</b>
+
+позволяет определить наличие ожидающих сигналов (полученных заблокированных
+сигналов). Маска ожидающих сигналов помещается в
+<i>set</i>.
+
+</p><p>
+
+Системный вызов
+<b>sigsuspend</b>
+
+временно изменяет значение маски блокировки сигналов процесса на указанное в
+<i>mask</i>,
+
+и затем приостанавливает работу процесса до получения соответствующего сигнала.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+Функции
+<b>sigaction</b>,
+
+<b>sigprocmask</b>
+
+и
+<b>sigpending</b>
+
+возвращают 0 при удачном завершении работы функции и -1 при ошибке.
+Функция
+<b>sigsuspend</b>
+
+всегда возвращает -1, обычно с кодом ошибки
+<b>EINTR</b>.
+
+<p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>EINVAL</b>
+
+</dt><dd>
+Было задано неверное значение сигнала. Эта ошибка также возникает в
+случае попытки задания сигналов
+<b>SIGKILL</b> или <b>SIGSTOP</b>, 
+
+которые не могут быть "перехвачены".
+</dd><dt><b>EFAULT</b>
+
+</dt><dd>
+<i>act</i>, <i>oldact</i>, <i>set</i>, <i>oldset</i>
+
+или 
+<i>mask</i>
+
+указывают на адрес, не входящий в адресное пространство процесса.
+</dd><dt><b>EINTR</b>
+
+</dt><dd>
+Системный вызов был прерван.
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Невозможно заблокировать сигналы
+<b>SIGKILL</b> или <b>SIGSTOP</b>
+
+при помощи системного вызова sigprocmask.  Попытки это сделать
+будут игнорироваться.
+<p>
+
+В соответствии с POSIX поведение процесса после игнорирования
+сигнала SIGFPE, SIGILL или SIGSEGV не определено, если эти сигналы
+не были посланы при помощи функций <i>kill()</i> или <i>raise()</i>.
+Деление целого числа на ноль имеет непредсказуемый результат.
+В некоторых архитектурах это приводит к появлению сигнала SIGFPE.
+(Более того, деление самого большого по модулю
+отрицательного числа на -1 приведет к появлению SIGFPE.)
+Игнорирование этого сигнала может привести к появлению бесконечного цикла.
+</p><p>
+
+POSIX (B.3.3.1.3) запрещает установку действия для
+сигнала SIGCHLD на SIG_IGN.
+Поведение BSD и SYSV в этом случае различается. Это приводит к тому,
+что BSD-программы, определяющие поведение SIGCHLD в SIG_IGN,
+в Linux не работают.
+</p><p>
+
+Специфические черты POSIX определяют только
+<b>SA_NOCLDSTOP</b>.
+
+Использование других флагов в
+<i>sa_flags</i>
+
+может быть неэффективно в других системах.
+</p><p>
+
+Флаг
+<b>SA_RESETHAND</b>
+
+совместим с одноименным флагом SVr4.
+</p><p>
+
+Флаг
+<b>SA_NODEFER</b>
+
+совместим с одноименным флагом SVr4 в ядре версии 1.3.9 и более поздних.
+В старых выпусках ядра Linux позволяли принимать и обрабатывать
+любые сигналы, а не только те, обработка которых уже задана
+(на деле это приводит к игнорированию установок
+<i>sa_mask</i>).
+
+</p><p>
+
+Названия флагов
+<b>SA_RESETHAND</b> и <b>SA_NODEFER</b>,
+
+необходимые для совместимости с SVr4, присутствуют в библиотеках
+версии 3.0.9 и более поздних.
+</p><p>
+
+Флаг
+<b>SA_SIGINFO</b>
+
+описан в POSIX.1b. Его поддержка была добавлена в Linux 2.2.
+</p><p>
+
+Функция
+<b>sigaction</b>
+
+со вторым нулевым аргументом может быть вызвана для того, чтобы получить
+адрес текущего обработчика прерываний. Эту функцию можно также использовать
+для проверки правильности этого типа сигнала в конкретной системе, вызвав
+ее с нулевыми вторым и третьим параметрами.
+</p><p>
+
+Подробная информация о работе с наборами сигналов есть
+на странице
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigsetops&amp;category=3">sigsetops</a></b>(3).
+
+<a name="lbAH">&nbsp;</a>
+</p><h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+POSIX, SVr4.  SVr4 не описывает код ошибки EINTR.
+<a name="lbAI">&nbsp;</a>
+<h2>НЕДОКУМЕНТИРОВАННОЕ</h2>
+
+До появления
+<b>SA_SIGINFO</b>
+
+существовала возможность получить дополнительную информацию,
+используя sa_handler со вторым параметром типа
+<i>struct sigcontext.</i>
+
+См. соответствующие исходные тексты ядра.
+В настоящее время этот механизм устарел.
+<a name="lbAJ">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=kill&amp;category=1">kill</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=kill&amp;category=2">kill</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=killpg&amp;category=2">killpg</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pause&amp;category=2">pause</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigaltstack&amp;category=2">sigaltstack</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=raise&amp;category=3">raise</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=siginterrupt&amp;category=3">siginterrupt</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=signal&amp;category=2">signal</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=signal&amp;category=7">signal</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigsetops&amp;category=3">sigsetops</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigvec&amp;category=2">sigvec</a></b>(2)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAG">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAH">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAI">НЕДОКУМЕНТИРОВАННОЕ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="sigsuspend" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

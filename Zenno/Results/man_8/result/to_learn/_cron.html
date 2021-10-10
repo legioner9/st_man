@@ -1,0 +1,598 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN cron (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, cron"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="cron" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">cron (8)</font><hr><li> <a href="/man.shtml?topic=cron&amp;category=1&amp;russian=4"><u>cron</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=cron&amp;category=1&amp;russian=0"><u>cron</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=cron&amp;category=8&amp;russian=1"><u>cron</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=cron&amp;category=8&amp;russian=0"><u>cron</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=cron&amp;category=8&amp;russian=2"><u>cron</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/cron.html"><u>cron</u></a> обнаружен в базе ключевых слов.</font></li><br>BSD mandoc<br>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+
+
+<b>cron</b>
+
+ - демон расписания
+
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>cron</b>
+
+[-<b>l </b><i>загрузка_системы</i>
+
+
+
+]
+
+[-<b>n</b>
+
+]
+
+[-<b>x </b><i>[ext,sch,proc,pars,load,misc,test]</i>
+
+
+
+]
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Демон
+<b></b>
+
+
+занимается планированием и выполнением команд, запускаемых по определенным датам и в определенное время.
+Команды, выполняемые периодически, указываются в файлах
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crontab&amp;category=5">crontab</a>(5).
+
+
+Команды, которые должны быть запущены лишь однажды, добавляются при помощи 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=at&amp;category=1">at</a>(1)
+
+
+и
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=batch&amp;category=1">batch</a>(1).
+
+
+Как правило, демон
+<b></b>
+
+
+запускается из командного скрипта
+/etc/rc
+
+ 
+Так как
+<b></b>
+
+
+может выполнять команды от имени пользователя,
+он должен быть запущен как можно позже при запуске системы и как можно ближе к моменту, когда разрешается вход в систему.
+<p>
+
+<b></b>
+
+
+загружает файлы
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crontab&amp;category=5">crontab</a>(5)
+
+
+и
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=at&amp;category=1">at</a>(1)
+
+
+при запуске, а также в случае, если командами
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crontab&amp;category=1">crontab</a>(1)
+
+
+и
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=at&amp;category=1">at</a>(1)
+
+
+были внесены какие-то изменения.
+Кроме этого, раз в минуту
+<b></b>
+
+
+проверяет время модификации системного файла crontab
+(/etc/crontab
+
+)
+
+ 
+набора пользовательских crontab
+(/var/cron/tabs
+
+)
+
+ 
+и набора пользовательских at
+(/var/cron/atjobs
+
+)
+
+ 
+Если время модификации файлов изменилось, файлы загружаются снова.
+</p><p>
+
+Вывод исполняемой команды отправляется пользователю, указанному в переменной окружения
+<b>MAILTO , </b>
+
+как указано в файле
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crontab&amp;category=5">crontab</a>(5).
+
+
+Если переменная
+<b>MAILTO</b>
+
+не определена (или если это задача 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=at&amp;category=1">at</a>(1)
+
+
+или
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=batch&amp;category=1">batch</a>(1)
+
+
+), то сообщение отправляется владельцу задачи.
+Сообщение не отправляется, если команда не выводит какой-либо информации, или если 
+переменная окружения
+<b>MAILTO</b>
+
+является пустой строкой.
+Исключением являются задачи
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=at&amp;category=1">at</a>(1)
+
+
+или
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=batch&amp;category=1">batch</a>(1)
+
+
+созданные с флагом 
+-<b>m</b>
+
+ 
+В этом случае, сообщение будет отправлено даже если задача ничего не выводит.
+<a name="lbAE">&nbsp;</a>
+</p><h3>Переход на летнее или зимнее время, прочие изменения времени</h3>
+
+Локальные изменения времени меньше чем на 3 часа (например, переход на 
+летнее или зимнее время) обрабатываются специальным образом.
+Это относится только к задачам, которые запускаются в определенное время или периодом более одного часа.
+Задачи, которые выполняются чаще, исполняются как обычно.
+<p>
+
+Если время было переведено вперед, задачи, которые должны были быть выполнены в течение пропущенного интервала, будут запущены немедленно. И наоборот, если время было переведено назад, принимаются меры для предотвращения запуска задачи дважды.
+</p><p>
+
+Изменения времени более чем на 3 часа считается коррекцией времени или временной зоны, и новое время начинает использоваться немедленно.
+</p><p>
+
+Доступны следующие флаги:
+</p><dl compact="">
+<p>
+
+</p><dt><b>-l </b><i>средняя_загрузка</i>
+
+
+
+</dt><dd>
+Если текущая средняя загрузка системы больше, чем
+<i>средняя_загрузка</i>
+
+ 
+задачи
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=batch&amp;category=1">batch</a>(1)
+
+
+не будут запущены.
+По умолчанию используется значение 1.5.
+Чтобы разрешить выполнение задач
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=batch&amp;category=1">batch</a>(1)
+
+
+вне зависимости от загрузки системы, можно использовать значение 0.0.
+</dd><dt><b>-n</b>
+
+
+</dt><dd>
+По умолчанию,
+<b></b>
+
+
+отсоединяется от текущей консоли и становится демоном.
+Флаг
+-<b>n</b>
+
+предотвращает это и заставляет cron работать в интерактивном (foreground) режиме.
+</dd><dt><b>-x </b><i>отладочные_флаги</i>
+
+
+
+</dt><dd>
+Если 
+<b></b>
+
+
+был собран с поддержкой отладки, некоторое флаги позволяют узнать, что 
+<b></b>
+
+
+делает в данный момент.
+Следующие флаги могут быть указаны:
+<dl compact="">
+<p>
+
+</p><dt><b>ext</b>
+</dt><dd>
+показывает расширенную отладочную информацию. Используется в комбинации с другими отладочными флагами для получения дополнительных данных.
+</dd><dt><b>sch</b>
+</dt><dd>
+печатает информацию, относящуюся к планированию заданий.
+</dd><dt><b>proc</b>
+</dt><dd>
+печатает информацию, относящуюся к запущенным процессам.
+</dd><dt><b>pars</b>
+</dt><dd>
+печатает информацию, относящуюся к синтаксическому анализу файлов
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crontab&amp;category=5">crontab</a>(5).
+
+
+</dd><dt><b>load</b>
+</dt><dd>
+выводит сообщение при загрузки баз данных.
+</dd><dt><b>misc</b>
+</dt><dd>
+показывает дополнительную отладочную информацию.
+</dd><dt><b>test</b>
+</dt><dd>
+тестовый режим (не выполнять команды на самом деле).
+</dd></dl>
+<p>
+
+</p><p>
+
+Может быть указано несколько флагов, разделенных запятыми
+(So , Sc 
+
+
+
+)
+
+Вне зависимости от того, какие флаги были указаны, флаг
+-<b>x</b>
+
+заставит
+<b></b>
+
+
+оставаться в интерактивном (foreground) режиме и не позволит ему становиться демоном.
+</p></dd></dl>
+<p>
+
+<a name="lbAF">&nbsp;</a>
+</p><h2>СИГНАЛЫ</h2>
+
+<dl compact="">
+<p>
+
+</p><dt><b>SIGHUP</b>
+
+
+</dt><dd>
+Заставляет 
+<b></b>
+
+
+закрыть и вновь открыть файл журнала.
+Это полезно в скриптах ротации файлов журналов.
+На
+Ox это не работает, так как 
+
+<b>cron</b>
+
+пишет в журнал при помощи
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a>(3).
+
+
+</dd></dl>
+<p>
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<p>
+
+</p><dt><b>/etc/crontab
+
+</b>
+</dt><dd>
+системный файл crontab
+</dd><dt><b>/var/cron/atjobs
+
+</b>
+</dt><dd>
+каталог, в котором хранятся файлы задач
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=at&amp;category=1">at</a>(1)
+
+
+</dd><dt><b>/var/cron/log
+
+</b>
+</dt><dd>
+файл журнала 
+<b></b>
+
+
+</dd><dt><b>/var/cron/tabs
+
+</b>
+</dt><dd>
+каталог, содержащий пользовательские файлы crontab
+</dd><dt><b>/var/cron/tabs/.sock
+
+</b>
+</dt><dd>
+используется командой
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crontab&amp;category=1">crontab</a>(1)
+
+
+для указания 
+<b></b>
+
+
+немедленно проверять наличие изменений в файлах crontab.
+</dd></dl>
+<p>
+
+<a name="lbAH">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=at&amp;category=1">at</a>(1),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crontab&amp;category=1">crontab</a>(1),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a>(3),
+
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crontab&amp;category=5">crontab</a>(5)
+
+
+<a name="lbAI">&nbsp;</a>
+<h2>АВТОР</h2>
+
+An Paul Vixie Aq <a href="mailto:vixie@isc.org">vixie@isc.org</a>
+
+<a name="lbAJ">&nbsp;</a>
+<h2>ПРЕДОСТЕРЕЖЕНИЕ</h2>
+
+Все файлы
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crontab&amp;category=5">crontab</a>(5)
+
+
+не должны быть доступны для чтения никому, кроме владельца файлов,
+включая
+/etc/crontab
+
+ 
+На практике это означает, что режим доступа для файлов должен быть установлен в 0600.
+Это ограничение автоматически устанавливается
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crontab&amp;category=1">crontab</a>(1),
+
+
+но если используется
+/etc/crontab
+
+ 
+то на этом файле режим должен быть установлен вручную.
+<a name="lbAK">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевод с английского Виктор Ерёмин &lt;<a href="mailto:ErV2005@rambler.ru">ErV2005@rambler.ru</a>&gt; 2007
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAE">Переход на летнее или зимнее время, прочие изменения времени</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAF">СИГНАЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAI">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAJ">ПРЕДОСТЕРЕЖЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAK">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="cron" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

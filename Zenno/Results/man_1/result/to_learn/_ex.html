@@ -1,0 +1,784 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ex (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ex"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ex" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ex (1)</font><hr><li> <a href="/man.shtml?topic=ex&amp;category=1&amp;russian=4"><u>ex</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ex&amp;category=1&amp;russian=1"><u>ex</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ex&amp;category=1&amp;russian=0"><u>ex</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ex&amp;category=1&amp;russian=2"><u>ex</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ex&amp;category=1&amp;russian=5"><u>ex</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ex&amp;category=4&amp;russian=1"><u>ex</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>ex(1)</h1></td>
+<td><h1 align="right">ex(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>ex</b> - текстовый редактор</p>
+
+<h2>СИНТАКСИС</h2>
+<dl><dt></dt>
+  <dd><tt>
+ex [-s] [-v] [-t <b>тэг</b>] [-r <b>файл</b>] [-L] [-R] [-x] [-C] <br>
+&nbsp;&nbsp;&nbsp;   [-c <b>команда</b>] <b>файл</b> ...
+</tt></dd></dl>
+
+<h2>ОПИСАНИЕ</h2>
+<p><b>ex</b> является базовым в семействе редакторов <b>ex</b> и <a href="/man.shtml?topic=vi&amp;category=1"><b>vi</b></a>. 
+<b>ex</b> является надмножеством 
+<b>ed</b>, причем наиболее существенным расширением является возможность 
+полноэкранного редактирования. Если у вас есть экранный терминал, имеет 
+смысл использовать полноэкранный редактор; в этом случае см. страницу 
+справочного руководства <a href="/man.shtml?topic=vi&amp;category=1"><b>vi(1)</b></a>. <b>ex</b> обрабатывает <i>символы дополнительного 
+набора</i> (supplementary code set characters) в соответствии с локалью, указанной в 
+переменной среды <b>LC_CTYPE</b> (см. <b>LANG</b> в <a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>). В регулярных 
+выражениях поиск шаблонов осуществляется над символами, а не над байтами, 
+как описано в <a href="/man.shtml?topic=ed&amp;category=1"><b>ed(1)</b></a>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Для пользователей ed</h3>
+<p>Если вы использовали <b>ed</b>, то обнаружите, что помимо всех команд <b>ed</b>, <b>ex</b> 
+предлагает множество дополнительных возможностей, полезных на экранных 
+терминалах. На интеллектуальных и высокоскоростных терминалах очень 
+удобно работать с <b>vi</b>. В общем случае, редактор <b>ex</b> использует намного больше 
+возможностей терминалов, чем <b>ed</b>, а также использует базу данных 
+возможностей терминалов (см. <a href="/man.shtml?topic=terminfo&amp;category=4"><b>terminfo(4)</b></a>) и тип используемого терминала из 
+переменной среды <b>TERM</b> для определения того, как эффективно работать с 
+терминалом. Редактор использует возможности типа вставки и удаления 
+символов и строк в команде <b>visual</b> (которую можно сокращать до <b>vi</b>), что 
+обеспечивает основной режим редактирования при использовании команды <b>vi</b>.</p>
+
+<p><b>ex</b> поддерживает ряд возможностей, облегчающих просмотр текста в файле. 
+Команда <b>z</b> обеспечивает простой доступ к окнам с текстом. Ввод <b>^D</b> (Ctrl-d) 
+заставляет редактор прокрутить пол окна текста, что намного удобнее при 
+быстром листании файла, чем просто нажатие Enter. Конечно же, экранно-
+ориентированный визуальный режим дает постоянный доступ к контексту 
+редактирования.</p>
+
+<p><b>ex</b> выдает подсказки в случае ошибок. Команда отмены (<b>u</b>) позволяет отменить 
+любое ошибочное изменение. <b>ex</b> дает пользователю существенную обратную 
+связь, печатая обычно измененные строки и сообщая о командах, 
+затрагивающих много строк, чтобы можно было легко выявить ошибочные 
+команды.</p>
+
+<p>Редактор также обычно предотвращает перезапись существующих файлов, если 
+только они не редактируются, чтобы вы не перезаписали случайно не тот файл. 
+Если система (или редактор) аварийно прекращает работу, или случайно 
+отключается терминал, можно использовать команду восстановления (<b>recover</b>) 
+или опцию <b>-r файл</b> для получения последних изменений. При этом 
+восстанавливается состояние, отличающееся не более, чем на несколько строк, 
+от имевшегося в момент сбоя.</p>
+
+<p><b>ex</b> имеет ряд возможностей для одновременной работы с несколькими файлами. 
+Можно указать редактору список файлов в командной строке и использовать 
+команду перехода к следующему файлу <b>next (n)</b> для работы с ними по очереди. 
+Команде next также можно задать список имен файлов или шаблон, 
+аналогичный используемым командным интерпретатором, для задания нового 
+набора обрабатываемых файлов. В общем случае, имена файлов в редакторе 
+могут формироваться с использованием всех соответствующих метасимволов 
+командного интерпретатора. Кроме того, при формировании имен файлов 
+можно использовать метасимвол '<b>%</b>', который заменяется именем текущего 
+файла.</p>
+
+<p>Редактор имеет набор буферов, имена которых представляют собой строчные 
+буквы (<b>a-z</b>). Можно помещать текст в эти именованные буферы, из которых его 
+можно в дальнейшем вставить в другое место в файле. Содержимое этих 
+буферов остается доступным и после начала редактирования нового файла с 
+помощью команды <b>edit</b> (<b>e</b>).</p>
+
+<p>Команда <b>&amp;</b> в <b>ex</b> повторяет последнюю команду подстановки. Кроме того, 
+имеется команда подстановки с подтверждением. Вы задаете диапазон, в 
+котором необходимо выполнить подстановки, а редактор интерактивно 
+запрашивает подтверждение необходимости каждой конкретной подстановки.</p>
+
+<p>При поиске и подстановках можно игнорировать регистр символов. <b>ex</b> позволяет 
+легко строить регулярные выражения, которые будут сопоставляться со словами. 
+Это удобно, например, при поиске слова  "<b>edit</b>", если документ содержит также 
+слова "<b>editor</b>".</p>
+
+<p><b>ex</b> имеет множество опций, которые пользователь может настраивать по своему 
+вкусу. Одна из очень полезных опций - автоматическое выравнивание 
+(<b>autoindent</b>), когда редактор сам вставляет начальные пробелы для 
+автоматического выравнивания текста. Затем можно использовать <b>^D</b> в качестве 
+обратной табуляции и пробел или клавишу табуляции для перемещения вперед, 
+что позволяет легко добиться нужного выравнивания нового кода.</p>
+
+<p>К многочисленным полезным возможностям относится также интеллектуальная 
+команда соединения строк (<b>join</b> - <b>j</b>), автоматически вставляющая пробел между 
+соединяемыми строками, команды <b>&lt;</b> и <b>&gt;</b>, сдвигающие группы строк, а также 
+возможность фильтровать части буфера с помощью команд типа <b>sort</b>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Опции командной строки</h3>
+<p>Следующие опции командной строки интерпретируются редактором ex (ранее 
+задокументированные опции рассматриваются в разделе <a href="#notes"><b>"ПРИМЕЧАНИЯ"</b></a> в 
+конце этой страницы справочного руководства):</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td width="30%"><b>-s</b></td>
+<td>
+Подавляет выдачу всех интерактивных сообщений 
+пользователю. Это полезно при обработке сценариев 
+редактирования.</td></tr>
+<tr><td><b>-v</b></td>
+<td>Вызывает <b>vi</b>.</td></tr>
+<tr><td><b>-t тэг</b></td>
+<td>
+Редактирует файл, содержащий <b>тэг</b>, и устанавливает редактор в 
+позицию, соответствующую определению тэга. <i>Примечание:</i> 
+тэги в файле тэгов должны идти в порядке возрастания 
+номеров строк.</td></tr>
+<tr><td><b>-r файл</b></td>
+<td>
+Редактирует файл после сбоя редактора или системы. 
+(Восстанавливает версию файла, которая была в буфере в 
+момент возникновения сбоя.)</td></tr>
+<tr><td><b>-L</b></td>
+<td>
+Выдает имена всех файлов, сохраненных в результате сбоя 
+редактора или системы.</td></tr>
+<tr><td><b>-R</b></td>
+<td>
+Режим только для чтения; устанавливается флаг только для 
+чтения, предотвращающий случайную перезапись файла.</td></tr>
+<tr><td><b>-x</b></td>
+<td>
+Опция шифрования; в случае ее использования, <b>ex</b> имитирует 
+команду X и предлагает пользователю ввести ключ. Этот ключ 
+используется для шифрования и дешифрования текста с 
+помощью алгоритма команды <b>crypt</b>. Команда <b>X</b> сама 
+определяет, является ли прочитанный текст зашифрованным 
+или нет. Временный файл буфера также шифруется с 
+использованием преобразованной версии введенного 
+пользователем ключа. См. <a href="/man.shtml?topic=crypt&amp;category=1"><b>crypt(1)</b></a>. См. также раздел 
+<a href="#notes"><b>"ПРИМЕЧАНИЯ"</b></a> в конце данной страницы справочного 
+руководства.</td></tr>
+<tr><td><b>-C</b></td>
+<td>
+Опция шифрования; то же, что и опция <b>-x</b>, но <b>ex</b> имитирует 
+команду <b>C</b>. Команда <b>C</b> аналогична команде <b>X</b>, но любой 
+прочитанный текст считается зашифрованным.</td></tr>
+<tr><td><b>-c команда</b></td>
+<td>
+Начинает редактирование с выполнения указанной <b>команды</b> 
+редактора (обычно, команды поиска или позиционирования).</td></tr>
+</tbody></table>
+
+<p>Аргумент <b>файл</b> задает один или несколько файлов для редактирования.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Режимы ex</h3>
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td width="30%">Командный режим</td>
+<td>Обычный и первоначальный режим. В качестве приглашения 
+для ввода выдается двоеточие (<b>:</b>). Символ удаления строки 
+позволяет отменить частично введенную команду.</td></tr>
+<tr><td>Режим вставки</td>
+<td>Активизируется командами <b>a</b>, <b>i</b> или <b>c</b>. Можно вводить 
+произвольный текст. Из состояния вставки можно выйти 
+нормально, введя строку, содержащую только точку "<b>.</b>", или 
+аварийно с помощью прерывания.</td></tr>
+<tr><td>Визуальный режим</td>
+<td>Активизируется командой <b>vi</b>; чтобы выйти из этого режима, 
+введите <b>Q</b> или <b>^\</b> (<b>Ctrl-\</b>).</td></tr>
+</tbody></table>
+
+<h3>&nbsp;&nbsp;&nbsp;   Имена и сокращения команд ex</h3>
+
+<dl><dt></dt><dd>
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr>
+<td>abbrev</td>
+<td><b>ab</b></td>
+<td>map</td>
+<td>&nbsp;</td>
+<td>set</td>
+<td><b>se</b></td>
+</tr>
+<tr>
+<td>append</td>
+<td><b>a</b></td>
+<td>mark</td>
+<td><b>ma</b></td>
+<td>shell</td>
+<td><b>sh</b></td>
+</tr>
+<tr>
+<td>args</td>
+<td><b>ar</b></td>
+<td>move</td>
+<td><b>m</b></td>
+<td>source</td>
+<td><b>so</b></td>
+</tr>
+<tr>
+<td>change</td>
+<td><b>c</b></td>
+<td>next</td>
+<td><b>n</b></td>
+<td>substitute</td>
+<td><b>s</b></td>
+</tr>
+<tr>
+<td>copy</td>
+<td><b>co</b></td>
+<td>number</td>
+<td><b>nu</b></td>
+<td>unabbrev</td>
+<td><b>unab</b></td>
+</tr>
+<tr>
+<td>delete</td>
+<td><b>d</b></td>
+<td>preserve</td>
+<td><b>pre</b></td>
+<td>undo</td>
+<td><b>u</b></td>
+</tr>
+<tr>
+<td>edit</td>
+<td><b>e</b></td>
+<td>print</td>
+<td><b>p</b></td>
+<td>unmap</td>
+<td><b>unm</b></td>
+</tr>
+<tr>
+<td>file</td>
+<td><b>f</b></td>
+<td>put</td>
+<td><b>pu</b></td>
+<td>version</td>
+<td><b>ve</b></td>
+</tr>
+<tr>
+<td>global</td>
+<td><b>g</b></td>
+<td>quit</td>
+<td><b>q</b></td>
+<td>visual</td>
+<td><b>vi</b></td>
+</tr>
+<tr>
+<td>insert</td>
+<td><b>i</b></td>
+<td>read</td>
+<td><b>r</b></td>
+<td>write</td>
+<td><b>w</b></td>
+</tr>
+<tr>
+<td>join</td>
+<td><b>j</b></td>
+<td>recover</td>
+<td><b>rec</b></td>
+<td>xit</td>
+<td><b>x</b></td>
+</tr>
+<tr>
+<td>list</td>
+<td><b>l</b></td>
+<td>rewind</td>
+<td><b>rew</b></td>   
+<td>yank</td>
+<td><b>ya</b></td>
+</tr></tbody></table>
+</dd></dl>
+
+<h3>&nbsp;&nbsp;&nbsp;   Команды ex</h3>
+
+<dl><dt></dt><dd>
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr>
+<td width="40%">принудительное шифрование</td>
+<td width="10%"><b>C</b></td>
+<td width="40%">эвристическое шифрование</td>
+<td width="10%"><b>X</b></td></tr>
+<tr>
+<td>повторная подстановка</td>
+<td><b>&amp;</b></td>
+<td>печать следующей</td>
+<td><b>CR</b></td></tr>
+<tr>
+<td>сдвиг вправо</td>
+<td><b>&gt;</b></td>
+<td>сдвиг влево</td>
+<td><b>&lt;</b></td></tr>
+<tr>
+<td>прокрутка</td>
+<td><b>^D</b></td>
+<td>окно</td>
+<td><b>z</b></td></tr>
+<tr>
+<td>выход в shell</td>
+<td><b>!</b></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr>
+</tbody></table>
+</dd></dl>
+
+<h3>&nbsp;&nbsp;&nbsp;   Адреса команд ex</h3>
+
+<dl><dt></dt><dd>
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr>
+<td width="10%"><b>n</b></td>
+<td width="40%">строка <b>n</b></td>
+<td width="10%"><b>/шаблон</b></td>
+<td width="40%">следующая с <b>шаблоном</b></td></tr>
+<tr>
+<td><b>.</b></td>
+<td>текущая строка</td>
+<td><b>?шаблон</b></td>
+<td>предыдущая с <b>шаблоном</b></td></tr>
+<tr>
+<td><b>$</b></td>
+<td>последняя строка</td>
+<td><b>x-n</b></td>
+<td>за <b>n</b> до <b>x</b></td></tr>
+<tr>
+<td><b>+</b></td>
+<td>следующая строка</td>
+<td><b>x,y</b></td>
+<td>с <b>x</b> по <b>y</b></td></tr>
+<tr>
+<td><b>-</b></td>
+<td>предыдущая строка</td>
+<td><b>'x</b></td>
+<td>помеченная символом <b>x</b></td></tr>
+<tr>
+<td><b>+n</b></td>
+<td>на <b>n</b> вперед</td>
+<td><b>"</b></td>
+<td>предыдущий контекст</td></tr>
+<tr>
+<td><b>%</b></td>
+<td><b>1,$</b></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr>
+</tbody></table>
+</dd></dl>
+
+<h3>&nbsp;&nbsp;&nbsp;   Опции инициализации</h3>
+<dl><dt></dt><dd>
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr>
+<td width="30%"><b>EXINIT</b></td>
+<td>В этой переменной среды можно задавать установки  <b>set</b></td></tr>
+<tr>
+<td><b>$HOME/.exrc</b></td>
+<td>файл инициализации редактора</td></tr>
+<tr>
+<td><b>./.exrc</b></td>
+<td>файл инициализации редактора</td></tr>
+<tr>
+<td><b>set x</b></td>
+<td>включает опцию <b>x</b></td></tr>
+<tr>
+<td><b>set nox</b></td>
+<td>отключает опцию <b>x</b></td></tr>
+<tr>
+<td><b>set x=val</b></td>
+<td>задает значение <b>val</b> для опции <b>x</b></td></tr>
+<tr>
+<td><b>set</b></td>
+<td>показывает измененные опции</td></tr>
+<tr>
+<td><b>set all</b></td>
+<td>показывает все опции</td></tr>
+<tr>
+<td><b>set x?</b></td>
+<td>показывает значение опции <b>x</b></td></tr>
+</tbody></table>
+</dd></dl>
+
+<h3>&nbsp;&nbsp;&nbsp;   Самые полезные опции и их сокращения</h3>
+
+<dl><dt></dt><dd>
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr>
+<td width="30%"><b>autoindent</b></td>
+<td width="10%"><b>ai</b></td>
+<td width="60%">использовать выравнивание</td>
+</tr><tr>
+<td><b>autowrite</b></td>
+<td><b>aw</b></td>
+<td>записывать файлы перед изменением</td>
+</tr><tr>
+<td><b>directory</b></td>
+<td>&nbsp;</td>
+<td>путь к каталогу для временных рабочих файлов</td>
+</tr><tr>
+<td><b>exrc</b></td>
+<td><b>ex</b></td>
+<td>позволяет <b>vi</b>/<b>ex</b> читать файл <b>.exrc</b> в текущем 
+каталоге. Эта опция устанавливается в переменной 
+среды <b>EXINIT</b> или в файле <b>.exrc</b> в каталоге 
+<b>$HOME</b>.</td>
+</tr><tr>
+<td><b>ignorecase</b></td>
+<td><b>ic</b></td>
+<td>игнорировать регистр символов при сканировании (поиске)</td>
+</tr><tr>
+<td><b>list</b></td>
+<td>&nbsp;</td>
+<td>выдавать <b>^I</b> вместо символов табуляции и <b>$</b> в конце строки</td>
+</tr><tr>
+<td><b>magic</b></td>
+<td>&nbsp;</td>
+<td>рассматривать <b>. [ *</b> как специальные символы в 
+шаблонах</td>
+</tr><tr>
+<td><b>modelines</b></td>
+<td>&nbsp;</td>
+<td>первые пять строки и последние пять строк 
+выполняются как команды <b>vi</b>/<b>ex</b>, если они имеют 
+вид <b>ex:команда:</b> или <b>vi:команда:</b></td>
+</tr><tr>
+<td><b>number</b></td>
+<td><b>nu</b></td>
+<td>нумеровать строки</td>
+</tr><tr>
+<td><b>paragraphs</b></td>
+<td><b>para</b></td>
+<td>макроимена для начала абзацев</td>
+</tr><tr>
+<td><b>redraw</b></td>
+<td>&nbsp;</td>
+<td>имитировать интеллектуальный терминал</td>
+</tr><tr>
+<td><b>report</b></td>
+<td>&nbsp;</td>
+<td>информировать пользователя, если количество 
+измененных последней командой строк превосходит 
+значение переменной <b>report</b></td>
+</tr><tr>
+<td><b>scroll</b></td>
+<td>&nbsp;</td>
+<td>строки командного режима</td>
+</tr><tr>
+<td><b>sections</b></td>
+<td><b>sect</b></td>
+<td>макроимена для начала разделов</td>
+</tr><tr>
+<td><b>shiftwidth</b></td>
+<td><b>sw</b></td>
+<td>величина сдвига для команд <b>&lt;</b>, <b>&gt;</b> и <b>^D</b></td>
+</tr><tr>
+<td><b>showmatch</b></td>
+<td><b>sm</b></td>
+<td>показывать соответствующую скобку <b>)</b> и <b>}</b> при наборе</td>
+</tr><tr>
+<td><b>showmode</b></td>
+<td><b>smd</b></td>
+<td>показывать режим вставки в <b>vi</b></td>
+</tr><tr>
+<td><b>slowopen</b></td>
+<td><b>slow</b></td>
+<td>приостановить изменения в ходе вставки</td>
+</tr><tr>
+<td><b>window</b></td>
+<td>&nbsp;</td>
+<td>количество строк визуального режима</td>
+</tr><tr>
+<td><b>wrapmargin</b></td>
+<td><b>wm</b></td>
+<td>автоматическое разбиение строки</td>
+</tr><tr>
+<td><b>wrapscan</b></td>
+<td><b>ws</b></td>
+<td>продолжать поиск с начала (с конца) буфера</td></tr>
+</tbody></table>
+</dd></dl>
+
+<h3>&nbsp;&nbsp;&nbsp;   Формирование шаблонов сканирования</h3>
+<dl><dt></dt><dd>
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr>
+<td width="30%"><b>^</b></td>
+<td>начало строки</td></tr>
+<tr>
+<td><b>$</b></td>
+<td>конец строки</td></tr>
+<tr>
+<td><b>.</b></td>
+<td>любой символ</td></tr>
+<tr>
+<td><b>\&lt;</b></td>
+<td>начало слова</td></tr>
+<tr>
+<td><b>\&gt;</b></td>
+<td>конец слова</td></tr>
+<tr>
+<td><b>[строка]</b></td>
+<td>любой символ, входящий в <b>строку</b></td></tr>
+<tr>
+<td><b>[^строка]</b></td>
+<td>любой символ, не входящий в <b>строку</b></td></tr>
+<tr>
+<td><b>[x-y]</b></td>
+<td>любой символ между <b>x</b> и <b>y</b></td></tr>
+<tr>
+<td><b>*</b></td>
+<td>любое количество вхождений предыдущего символа</td></tr>
+</tbody></table>
+</dd></dl>
+
+<h2>АВТОР</h2>
+<p><b>vi</b> и <b>ex</b> базируются на программном обеспечении, разработанном в 
+Калифорнийском университете в Бэркли, отделение компьютерных наук, 
+Department of Electrical Engineering and Computer Science.</p>
+
+<h2>ФАЙЛЫ</h2>
+<dl>
+<dt><b>/usr/lib/exstrings</b></dt>
+<dd>сообщения об ошибках</dd>
+<dt><b>/usr/lib/exrecover</b></dt>
+<dd>команда восстановления</dd>
+<dt><b>/usr/lib/expreserve</b></dt>
+<dd>команда сохранения</dd>
+<dt><b>/usr/share/lib/terminfo/*</b></dt>
+<dd>описывают возможности терминалов</dd>
+<dt><b>$HOME/.exrc</b></dt>
+<dd>файл инициализации редактора</dd>
+<dt><b>./.exrc</b></dt>
+<dd>файл инициализации редактора</dd>
+<dt><b>/tmp/Ex nnnnn</b></dt>
+<dd>временный файл редактора</dd>
+<dt><b>/tmp/Rx nnnnn</b></dt>
+<dd>временный файл именованного буфера</dd>
+<dt><b>/var/preserve/</b></dt>
+<dd>каталог для сохранения регистрационных имен</dd>
+<dt><b>/usr/lib/locale/локаль/LC_MESSAGES/uxed.abi</b></dt>
+<dd>файл сообщений для текущего языка (См. <b>LANG</b> 
+в <a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>.)</dd>
+</dl>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=crypt&amp;category=1"><b>crypt(1)</b></a>,
+	<a href="/man.shtml?topic=ctags&amp;category=1"><b>ctags(1)</b></a>,
+	<a href="/man.shtml?topic=cusres&amp;category=3"><b>curses(3curses)</b></a>,
+	<a href="/man.shtml?topic=ed&amp;category=1"><b>ed(1)</b></a>,
+	<a href="/man.shtml?topic=edit&amp;category=1"><b>edit(1)</b></a>,
+	<a href="/man.shtml?topic=grep&amp;category=1"><b>grep(1)</b></a>,
+	<a href="/man.shtml?topic=sed&amp;category=1"><b>sed(1)</b></a>,
+	<a href="/man.shtml?topic=grep&amp;category=1"><b>sort(1)</b></a>,
+	<a href="/man.shtml?topic=term&amp;category=4"><b>term(4)</b></a>, 
+	<a href="/man.shtml?topic=terminfo&amp;category=4"><b>terminfo(4)</b></a>,
+	<a href="/man.shtml?topic=vi&amp;category=1"><b>vi(1)</b></a>
+</dd></dl>
+
+<h2><a name="notes">ПРИМЕЧАНИЯ</a></h2>
+
+<p>Ряд опций, хотя и продолжают поддерживаться, были заменены в документации 
+опциями, соответствующими <i>стандарту синтаксиса команд</i> (Command Syntax 
+Standard, см. <a href="/man.shtml?topic=intro&amp;category=1"><b>intro(1)</b></a>). Опция <b>-</b> была заменена на <b>-s</b>, опция <b>-r</b>, после которой не 
+идет аргумент, была заменена на <b>-L</b>, а команда <b>+</b> была заменена командой <b>-c</b>.</p>
+
+<p>Опции шифрования и соответствующие команды поставляются в составе пакета 
+<i>утилит шифрования</i> (Encryption Utilities), который доступен только в 
+Соединенных Штатах.</p>
+
+<p>Команда <b>z</b> учитывает количество логических, а не физических строк. Если 
+имеются длинные строки, результат может быть больше одного экрана.</p>
+
+<p>Если использована опция <b>-s</b>, имена файлов в сообщениях об ошибках 
+ввода/вывода не выдаются.</p>
+
+<p>Нет простого способа выполнить одиночное сканирование, игнорируя регистр 
+символов.</p>
+
+<p>Редактор не предупреждает пользователя, если помещенный в поименованные 
+буферы текст не использован перед выходом из редактора.</p>
+
+<p>Пустые символы во вводимых строках игнорируются и не попадают в 
+результирующие файлы.</p>
+
+<p align="center"><font size="-2">Copyright 1994 Novell, Inc.<br>
+Copyright 2000 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ex" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

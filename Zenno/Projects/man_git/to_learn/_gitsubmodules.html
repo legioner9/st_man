@@ -1,0 +1,872 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-49925874-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-49925874-3');
+  </script>
+
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <title>Git - gitsubmodules Documentation</title>
+
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+  <link rel="stylesheet" media="screen" href="/assets/application-3fb605347038cd5206e27d1f90829d3159e0de904e21be188a31e8f8c27c42a8.css">
+  <script src="/assets/modernize-b3ebe0c31c24f230dc62179d3e1030d2e57a53b1668d9382c0a27dbd44a94beb.js"></script>
+  <!--[if (gte IE 6)&(lte IE 8)]>
+  <script src="/javascripts/selectivizr-min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body id="documentation">
+
+  <div class="inner">
+    <header>
+
+  <a href="/"><img src="/images/logo@2x.png" alt="Git" height="46" width="110"></a>
+  <span id="tagline">--distributed-even-if-your-workflow-isnt</span>
+  <script type="text/javascript">
+    var taglines = ["fast-version-control","everything-is-local","distributed-even-if-your-workflow-isnt","local-branching-on-the-cheap","distributed-is-the-new-centralized"];
+    var tagline = taglines[Math.floor(Math.random() * taglines.length)];
+    document.getElementById('tagline').innerHTML = '--' + tagline;
+  </script>
+  <form id="search" action="/search/results">
+    <input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text">
+  </form>
+  <div id="search-results"></div>
+
+</header>
+
+  </div> <!-- .inner -->
+
+    <div class="inner">
+      <div id="content-wrapper">
+        <aside class="sidebar">
+  <nav>
+    <ul>
+      <li>
+        <a href="/about">About</a>
+        <ul class="">
+          <li>
+            <a href="/about">Branching and Merging</a>
+          </li>
+          <li>
+            <a href="/about/small-and-fast">Small and Fast</a>
+          </li>
+          <li>
+            <a href="/about/distributed">Distributed</a>
+          </li>
+          <li>
+            <a href="/about/info-assurance">Data Assurance</a>
+          </li>
+          <li>
+            <a href="/about/staging-area">Staging Area</a>
+          </li>
+          <li>
+            <a href="/about/free-and-open-source">Free and Open Source</a>
+          </li>
+          <li>
+            <a href="/about/trademark">Trademark</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="active" href="/doc">Documentation</a>
+        <ul class="expanded">
+          <li>
+            <a class="active" href="/docs">Reference</a>
+          </li>
+          <li>
+            <a href="/book">Book</a>
+          </li>
+          <li>
+            <a href="/videos">Videos</a>
+          </li>
+          <li>
+            <a href="/doc/ext">External Links</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/downloads">Downloads</a>
+        <ul class="">
+          <li>
+            <a href="/downloads/guis">GUI Clients</a>
+          </li>
+          <li>
+            <a href="/downloads/logos">Logos</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/community">Community</a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+        <div id="content">
+          
+  <div id="reference-version">
+    <a class="dropdown-trigger" id="reference-languages-trigger" data-panel-id="l10n-versions-dropdown" href="#">
+  English ▾</a>
+<div class="dropdown-panel right" id="l10n-versions-dropdown">
+  <header>Localized versions of <strong>gitsubmodules</strong> manual</header>
+  <ol class="reference-previous-versions">
+      <li>
+        <a href="/docs/gitsubmodules/en"><span class="version">English</span>
+        </a>
+        </li>
+  </ol>
+  <footer>
+    Want to read in your language or fix typos?<br> <a href="https://github.com/jnavila/git-manpages-l10n">You can help translate this page</a>.
+  </footer>
+</div>
+
+    <a class="dropdown-trigger" id="reference-topics-trigger" data-panel-id="topics-dropdown" href="#">Topics ▾</a>
+<div class="dropdown-panel right" id="topics-dropdown">
+  <div class="three-column">
+    <div class="column-left">
+      <h3 class="setup">Setup and Config</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git">git</a></li>
+  <li><a href="/docs/git-config">config</a></li>
+  <li><a href="/docs/git-help">help</a></li>
+  <li><a href="/docs/git-bugreport">bugreport</a></li>
+</ul>
+
+      <h3 class="projects">Getting and Creating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-init">init</a></li>
+  <li><a href="/docs/git-clone">clone</a></li>
+</ul>
+
+      <h3 class="snapshotting">Basic Snapshotting</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-add">add</a></li>
+  <li><a href="/docs/git-status">status</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-commit">commit</a></li>
+  <li><a href="/docs/git-notes">notes</a></li>
+  <li><a href="/docs/git-restore">restore</a></li>
+  <li><a href="/docs/git-reset">reset</a></li>
+  <li><a href="/docs/git-rm">rm</a></li>
+  <li><a href="/docs/git-mv">mv</a></li>
+</ul>
+
+      <h3 class="branching">Branching and Merging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-branch">branch</a></li>
+  <li><a href="/docs/git-checkout">checkout</a></li>
+  <li><a href="/docs/git-switch">switch</a></li>
+  <li><a href="/docs/git-merge">merge</a></li>
+  <li><a href="/docs/git-mergetool">mergetool</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-stash">stash</a></li>
+  <li><a href="/docs/git-tag">tag</a></li>
+  <li><a href="/docs/git-worktree">worktree</a></li>
+</ul>
+
+      <h3 class="sharing">Sharing and Updating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-fetch">fetch</a></li>
+  <li><a href="/docs/git-pull">pull</a></li>
+  <li><a href="/docs/git-push">push</a></li>
+  <li><a href="/docs/git-remote">remote</a></li>
+  <li><a href="/docs/git-submodule">submodule</a></li>
+</ul>
+
+    </div>
+    <div class="column-middle">
+      <h3 class="inspection">Inspection and Comparison</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-show">show</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-difftool">difftool</a></li>
+  <li><a href="/docs/git-range-diff">range-diff</a></li>
+  <li><a href="/docs/git-shortlog">shortlog</a></li>
+  <li><a href="/docs/git-describe">describe</a></li>
+</ul>
+
+      <h3 class="patching">Patching</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-cherry-pick">cherry-pick</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-rebase">rebase</a></li>
+  <li><a href="/docs/git-revert">revert</a></li>
+</ul>
+
+      <h3 class="debugging">Debugging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-bisect">bisect</a></li>
+  <li><a href="/docs/git-blame">blame</a></li>
+  <li><a href="/docs/git-grep">grep</a></li>
+</ul>
+
+      <h3 class="email">Email</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-am">am</a></li>
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-format-patch">format-patch</a></li>
+  <li><a href="/docs/git-send-email">send-email</a></li>
+  <li><a href="/docs/git-request-pull">request-pull</a></li>
+</ul>
+
+      <h3 class="external">External Systems</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-svn">svn</a></li>
+  <li><a href="/docs/git-fast-import">fast-import</a></li>
+</ul>
+
+      <h3 class="server-admin">Server Admin</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-daemon">daemon</a></li>
+  <li><a href="/docs/git-update-server-info">update-server-info</a></li>
+</ul>
+
+    </div>
+    <div class="column-right">
+      <h3 class="guides">Guides</h3>
+<ul class="unstyled">
+  <li><a href="/docs/gitattributes">gitattributes</a></li>
+  <li><a href="/docs/gitcli">Command-line interface conventions</a></li>
+  <li><a href="/docs/giteveryday">Everyday Git</a></li>
+  <li><a href="/docs/gitfaq">Frequently Asked Questions (FAQ)</a></li>
+  <li><a href="/docs/gitglossary">Glossary</a></li>
+  <li><a href="/docs/githooks">Hooks</a></li>
+  <li><a href="/docs/gitignore">gitignore</a></li>
+  <li><a href="/docs/gitmodules">gitmodules</a></li>
+  <li><a href="/docs/gitrevisions">Revisions</a></li>
+  <li><a class="active" href="/docs/gitsubmodules">Submodules</a></li>
+  <li><a href="/docs/gittutorial">Tutorial</a></li>
+  <li><a href="/docs/gitworkflows">Workflows</a></li>
+  <li><a href="/docs/git#_guides">All guides...</a></li>
+</ul>
+
+      <h3 class="admin">Administration</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-clean">clean</a></li>
+  <li><a href="/docs/git-gc">gc</a></li>
+  <li><a href="/docs/git-fsck">fsck</a></li>
+  <li><a href="/docs/git-reflog">reflog</a></li>
+  <li><a href="/docs/git-filter-branch">filter-branch</a></li>
+  <li><a href="/docs/git-instaweb">instaweb</a></li>
+  <li><a href="/docs/git-archive">archive</a></li>
+  <li><a href="/docs/git-bundle">bundle</a></li>
+</ul>
+
+      <h3 class="plumbing">Plumbing Commands</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-cat-file">cat-file</a></li>
+  <li><a href="/docs/git-check-ignore">check-ignore</a></li>
+  <li><a href="/docs/git-checkout-index">checkout-index</a></li>
+  <li><a href="/docs/git-commit-tree">commit-tree</a></li>
+  <li><a href="/docs/git-count-objects">count-objects</a></li>
+  <li><a href="/docs/git-diff-index">diff-index</a></li>
+  <li><a href="/docs/git-for-each-ref">for-each-ref</a></li>
+  <li><a href="/docs/git-hash-object">hash-object</a></li>
+  <li><a href="/docs/git-ls-files">ls-files</a></li>
+  <li><a href="/docs/git-ls-tree">ls-tree</a></li>
+  <li><a href="/docs/git-merge-base">merge-base</a></li>
+  <li><a href="/docs/git-read-tree">read-tree</a></li>
+  <li><a href="/docs/git-rev-list">rev-list</a></li>
+  <li><a href="/docs/git-rev-parse">rev-parse</a></li>
+  <li><a href="/docs/git-show-ref">show-ref</a></li>
+  <li><a href="/docs/git-symbolic-ref">symbolic-ref</a></li>
+  <li><a href="/docs/git-update-index">update-index</a></li>
+  <li><a href="/docs/git-update-ref">update-ref</a></li>
+  <li><a href="/docs/git-verify-pack">verify-pack</a></li>
+  <li><a href="/docs/git-write-tree">write-tree</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+    <a class="dropdown-trigger" id="reference-versions-trigger" data-panel-id="previous-versions-dropdown" href="#">
+    Version 2.33.0
+ ▾ </a>
+<span class="light">gitsubmodules last updated in 2.33.0</span>
+<div class="dropdown-panel left" id="previous-versions-dropdown">
+  <header>Changes in the <strong>gitsubmodules</strong> manual</header>
+  <ol class="reference-previous-versions">
+        <li class="no-change"><span>2.29.1 → 2.33.0 no changes</span></li>
+        <li>
+        <a href="/docs/gitsubmodules/2.29.0"><span class="version">2.29.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">10/19/20</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.27.1 → 2.28.1 no changes</span></li>
+        <li>
+        <a href="/docs/gitsubmodules/2.27.0"><span class="version">2.27.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">06/01/20</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.25.1 → 2.26.3 no changes</span></li>
+        <li>
+        <a href="/docs/gitsubmodules/2.25.0"><span class="version">2.25.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">01/13/20</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.22.1 → 2.24.4 no changes</span></li>
+        <li>
+        <a href="/docs/gitsubmodules/2.22.0"><span class="version">2.22.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">06/07/19</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.19.3 → 2.21.4 no changes</span></li>
+        <li>
+        <a href="/docs/gitsubmodules/2.19.2"><span class="version">2.19.2</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">11/21/18</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.19.1 no changes</span></li>
+        <li>
+        <a href="/docs/gitsubmodules/2.19.0"><span class="version">2.19.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">09/10/18</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.17.0 → 2.18.5 no changes</span></li>
+        <li>
+        <a href="/docs/gitsubmodules/2.16.6"><span class="version">2.16.6</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">12/06/19</em>
+        </a>
+        </li>
+    <li>&nbsp;</li>
+    <!-- <li><a class="more" href="#">See more previous releases →</a></li> -->
+  </ol>
+  <footer>
+    <p>Check your version of git by running</p>
+    <code class="command">git --version</code>
+  </footer>
+</div>
+
+  </div>
+
+  <div id="main">
+    <div class="sect1">
+<h2 id="_name"><a class="anchor" href="#_name"></a>NAME</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>gitsubmodules - Mounting one repository inside another</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>.gitmodules, $GIT_DIR/config</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>git submodule
+git &lt;command&gt; --recurse-submodules</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_description"><a class="anchor" href="#_description"></a>DESCRIPTION</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A submodule is a repository embedded inside another repository.
+The submodule has its own history; the repository it is embedded
+in is called a superproject.</p>
+</div>
+<div class="paragraph">
+<p>On the filesystem, a submodule usually (but not always - see FORMS below)
+consists of (i) a Git directory located under the <code>$GIT_DIR/modules/</code>
+directory of its superproject, (ii) a working directory inside the
+superproject’s working directory, and a <code>.git</code> file at the root of
+the submodule’s working directory pointing to (i).</p>
+</div>
+<div class="paragraph">
+<p>Assuming the submodule has a Git directory at <code>$GIT_DIR/modules/foo/</code>
+and a working directory at <code>path/to/bar/</code>, the superproject tracks the
+submodule via a <code>gitlink</code> entry in the tree at <code>path/to/bar</code> and an entry
+in its <code>.gitmodules</code> file (see <a href="/docs/gitmodules">gitmodules[5]</a>) of the form
+<code>submodule.foo.path = path/to/bar</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>gitlink</code> entry contains the object name of the commit that the
+superproject expects the submodule’s working directory to be at.</p>
+</div>
+<div class="paragraph">
+<p>The section <code>submodule.foo.*</code> in the <code>.gitmodules</code> file gives additional
+hints to Git’s porcelain layer. For example, the <code>submodule.foo.url</code>
+setting specifies where to obtain the submodule.</p>
+</div>
+<div class="paragraph">
+<p>Submodules can be used for at least two different use cases:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Using another project while maintaining independent history.
+Submodules allow you to contain the working tree of another project
+within your own working tree while keeping the history of both
+projects separate. Also, since submodules are fixed to an arbitrary
+version, the other project can be independently developed without
+affecting the superproject, allowing the superproject project to
+fix itself to new versions only when desired.</p>
+</li>
+<li>
+<p>Splitting a (logically single) project into multiple
+repositories and tying them back together. This can be used to
+overcome current limitations of Git’s implementation to have
+finer grained access:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Size of the Git repository:
+In its current form Git scales up poorly for large repositories containing
+content that is not compressed by delta computation between trees.
+For example, you can use submodules to hold large binary assets
+and these repositories can be shallowly cloned such that you do not
+have a large history locally.</p>
+</li>
+<li>
+<p>Transfer size:
+In its current form Git requires the whole working tree present. It
+does not allow partial trees to be transferred in fetch or clone.
+If the project you work on consists of multiple repositories tied
+together as submodules in a superproject, you can avoid fetching the
+working trees of the repositories you are not interested in.</p>
+</li>
+<li>
+<p>Access control:
+By restricting user access to submodules, this can be used to implement
+read/write policies for different users.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_configuration_of_submodules"><a class="anchor" href="#_the_configuration_of_submodules"></a>The configuration of submodules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Submodule operations can be configured using the following mechanisms
+(from highest to lowest precedence):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The command line for those commands that support taking submodules
+as part of their pathspecs. Most commands have a boolean flag
+<code>--recurse-submodules</code> which specify whether to recurse into submodules.
+Examples are <code>grep</code> and <code>checkout</code>.
+Some commands take enums, such as <code>fetch</code> and <code>push</code>, where you can
+specify how submodules are affected.</p>
+</li>
+<li>
+<p>The configuration inside the submodule. This includes <code>$GIT_DIR/config</code>
+in the submodule, but also settings in the tree such as a <code>.gitattributes</code>
+or <code>.gitignore</code> files that specify behavior of commands inside the
+submodule.</p>
+<div class="paragraph">
+<p>For example an effect from the submodule’s <code>.gitignore</code> file
+would be observed when you run <code>git status --ignore-submodules=none</code> in
+the superproject. This collects information from the submodule’s working
+directory by running <code>status</code> in the submodule while paying attention
+to the <code>.gitignore</code> file of the submodule.</p>
+</div>
+<div class="paragraph">
+<p>The submodule’s <code>$GIT_DIR/config</code> file would come into play when running
+<code>git push --recurse-submodules=check</code> in the superproject, as this would
+check if the submodule has any changes not published to any remote. The
+remotes are configured in the submodule as usual in the <code>$GIT_DIR/config</code>
+file.</p>
+</div>
+</li>
+<li>
+<p>The configuration file <code>$GIT_DIR/config</code> in the superproject.
+Git only recurses into active submodules (see "ACTIVE SUBMODULES"
+section below).</p>
+<div class="paragraph">
+<p>If the submodule is not yet initialized, then the configuration
+inside the submodule does not exist yet, so where to
+obtain the submodule from is configured here for example.</p>
+</div>
+</li>
+<li>
+<p>The <code>.gitmodules</code> file inside the superproject. A project usually
+uses this file to suggest defaults for the upstream collection
+of repositories for the mapping that is required between a
+submodule’s name and its path.</p>
+<div class="paragraph">
+<p>This file mainly serves as the mapping between the name and path of submodules
+in the superproject, such that the submodule’s Git directory can be
+located.</p>
+</div>
+<div class="paragraph">
+<p>If the submodule has never been initialized, this is the only place
+where submodule configuration is found. It serves as the last fallback
+to specify where to obtain the submodule from.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_forms"><a class="anchor" href="#_forms"></a>FORMS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Submodules can take the following forms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The basic form described in DESCRIPTION with a Git directory,
+a working directory, a <code>gitlink</code>, and a <code>.gitmodules</code> entry.</p>
+</li>
+<li>
+<p>"Old-form" submodule: A working directory with an embedded
+<code>.git</code> directory, and the tracking <code>gitlink</code> and <code>.gitmodules</code> entry in
+the superproject. This is typically found in repositories generated
+using older versions of Git.</p>
+<div class="paragraph">
+<p>It is possible to construct these old form repositories manually.</p>
+</div>
+<div class="paragraph">
+<p>When deinitialized or deleted (see below), the submodule’s Git
+directory is automatically moved to <code>$GIT_DIR/modules/&lt;name&gt;/</code>
+of the superproject.</p>
+</div>
+</li>
+<li>
+<p>Deinitialized submodule: A <code>gitlink</code>, and a <code>.gitmodules</code> entry,
+but no submodule working directory. The submodule’s Git directory
+may be there as after deinitializing the Git directory is kept around.
+The directory which is supposed to be the working directory is empty instead.</p>
+<div class="paragraph">
+<p>A submodule can be deinitialized by running <code>git submodule deinit</code>.
+Besides emptying the working directory, this command only modifies
+the superproject’s <code>$GIT_DIR/config</code> file, so the superproject’s history
+is not affected. This can be undone using <code>git submodule init</code>.</p>
+</div>
+</li>
+<li>
+<p>Deleted submodule: A submodule can be deleted by running
+<code>git rm &lt;submodule path&gt; &amp;&amp; git commit</code>. This can be undone
+using <code>git revert</code>.</p>
+<div class="paragraph">
+<p>The deletion removes the superproject’s tracking data, which are
+both the <code>gitlink</code> entry and the section in the <code>.gitmodules</code> file.
+The submodule’s working directory is removed from the file
+system, but the Git directory is kept around as it to make it
+possible to checkout past commits without requiring fetching
+from another repository.</p>
+</div>
+<div class="paragraph">
+<p>To completely remove a submodule, manually delete
+<code>$GIT_DIR/modules/&lt;name&gt;/</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_active_submodules"><a class="anchor" href="#_active_submodules"></a>ACTIVE SUBMODULES</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A submodule is considered active,</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>if <code>submodule.&lt;name&gt;.active</code> is set to <code>true</code></p>
+<div class="paragraph">
+<p>or</p>
+</div>
+</li>
+<li>
+<p>if the submodule’s path matches the pathspec in <code>submodule.active</code></p>
+<div class="paragraph">
+<p>or</p>
+</div>
+</li>
+<li>
+<p>if <code>submodule.&lt;name&gt;.url</code> is set.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>and these are evaluated in this order.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[submodule "foo"]
+  active = false
+  url = https://example.org/foo
+[submodule "bar"]
+  active = true
+  url = https://example.org/bar
+[submodule "baz"]
+  url = https://example.org/baz</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above config only the submodule <em>bar</em> and <em>baz</em> are active,
+<em>bar</em> due to (1) and <em>baz</em> due to (3). <em>foo</em> is inactive because
+(1) takes precedence over (3)</p>
+</div>
+<div class="paragraph">
+<p>Note that (3) is a historical artefact and will be ignored if the
+(1) and (2) specify that the submodule is not active. In other words,
+if we have a <code>submodule.&lt;name&gt;.active</code> set to <code>false</code> or if the
+submodule’s path is excluded in the pathspec in <code>submodule.active</code>, the
+url doesn’t matter whether it is present or not. This is illustrated in
+the example that follows.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[submodule "foo"]
+  active = true
+  url = https://example.org/foo
+[submodule "bar"]
+  url = https://example.org/bar
+[submodule "baz"]
+  url = https://example.org/baz
+[submodule "bob"]
+  ignore = true
+[submodule]
+  active = b*
+  active = :(exclude) baz</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In here all submodules except <em>baz</em> (foo, bar, bob) are active.
+<em>foo</em> due to its own active flag and all the others due to the
+submodule active pathspec, which specifies that any submodule
+starting with <em>b</em> except <em>baz</em> are also active, regardless of the
+presence of the .url field.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_workflow_for_a_third_party_library"><a class="anchor" href="#_workflow_for_a_third_party_library"></a>Workflow for a third party library</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre># Add a submodule
+git submodule add &lt;url&gt; &lt;path&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Occasionally update the submodule to a new version:
+git -C &lt;path&gt; checkout &lt;new version&gt;
+git add &lt;path&gt;
+git commit -m "update submodule to new version"</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># See the list of submodules in a superproject
+git submodule status</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># See FORMS on removing submodules</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_workflow_for_an_artificially_split_repo"><a class="anchor" href="#_workflow_for_an_artificially_split_repo"></a>Workflow for an artificially split repo</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre># Enable recursion for relevant commands, such that
+# regular commands recurse into submodules by default
+git config --global submodule.recurse true</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Unlike most other commands below, clone still needs
+# its own recurse flag:
+git clone --recurse &lt;URL&gt; &lt;directory&gt;
+cd &lt;directory&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Get to know the code:
+git grep foo
+git ls-files --recurse-submodules</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<code>git ls-files</code> also requires its own <code>--recurse-submodules</code> flag.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Get new code
+git fetch
+git pull --rebase</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Change worktree
+git checkout
+git reset</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implementation_details"><a class="anchor" href="#_implementation_details"></a>Implementation details</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When cloning or pulling a repository containing submodules the submodules
+will not be checked out by default; you can instruct <code>clone</code> to recurse
+into submodules. The <code>init</code> and <code>update</code> subcommands of <code>git submodule</code>
+will maintain submodules checked out and at an appropriate revision in
+your working tree. Alternatively you can set <code>submodule.recurse</code> to have
+<code>checkout</code> recursing into submodules (note that <code>submodule.recurse</code> also
+affects other Git commands, see <a href="/docs/git-config">git-config[1]</a> for a complete list).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_see_also"><a class="anchor" href="#_see_also"></a>SEE ALSO</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="/docs/git-submodule">git-submodule[1]</a>, <a href="/docs/gitmodules">gitmodules[5]</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git"><a class="anchor" href="#_git"></a>GIT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Part of the <a href="/docs/git">git[1]</a> suite</p>
+</div>
+</div>
+</div>
+  </div>
+
+        </div>
+      </div>
+      <footer>
+  <div class="site-source">
+    <a href="/site">About this site</a><br>
+    Patches, suggestions, and comments are welcome.
+  </div>
+  <div class="sfc-member">
+    Git is a member of <a href="/sfc">Software Freedom Conservancy</a>
+  </div>
+</footer>
+
+<script src="/assets/application-8f00caf205cd147207c24e44516f18312442fd845fad0725e748f19cad311d0d.js"></script>
+
+    </div>
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

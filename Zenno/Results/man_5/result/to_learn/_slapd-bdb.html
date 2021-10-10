@@ -1,0 +1,551 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN slapd-bdb (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, slapd-bdb"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="slapd-bdb" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">slapd-bdb (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=slapd-bdb&amp;category=5&amp;russian=0"><u>slapd-bdb</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+slapd-bdb, slapd-hdb - механизмы манипуляции данными для slapd Berkeley DB.
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>/usr/local/etc/openldap/slapd.conf</b>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Механизм манипуляции данными для
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8)
+
+<b>bdb</b> использует для хранения данных пакет Oracle Berkeley DB (BDB).
+Для ускорения доступа к данным он широко использует индексацию и кэширование.
+<p>
+
+Имейте ввиду, что механизм BDB является устаревшим, и в будущих выпусках OpenLDAP его поддержка
+будет прекращена. Вместо него следует использовать <b>mdb</b>.
+</p><p>
+
+<b>hdb</b> - это вариант механизма <b>bdb</b>, использующий иерархическую модель базы данных, поддерживающую
+переименование поддеревьев. Он эффективнее механизма <b>bdb</b> как с точки зрения потребления
+дискового пространства, так и по рабочим характеристикам. Во всём остальном его поведение
+идентично поведению <b>bdb</b>, и в настройке применяются все те же параметры.
+</p><p>
+
+Следует отметить, что эти параметры призваны дополнять параметры конфигурации Berkeley DB,
+задаваемые в файле
+<b>DB_CONFIG</b>
+
+в окружении базы данных. Подробное описание параметров конфигурации
+<b>DB_CONFIG</b>
+
+можно найти в документации Berkeley DB. Там, где настройки перекрывают друг друга,
+приоритет имеют установки в файле
+<b>DB_CONFIG</b>.
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>КОНФИГУРАЦИЯ</h2>
+
+Приведённые ниже директивы
+<b>slapd.conf</b>
+
+применяются к базам данных механизмов манипуляции данными <b>bdb</b> и <b>hdb</b>. То есть они должны
+следовать за строками "database bdb" или "database hdb" и находиться до последующих строк "backend"
+или "database". Другие относящиеся к базам данных директивы описаны в man-странице
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5).
+
+<dl compact="">
+<dt><b>cachesize</b><i>&nbsp;&lt;integer&gt;</i>
+
+</dt><dd>
+Указывает размер (в количестве записей) поддерживаемого экземпляром базы данных механизма манипуляции
+данными <b>bdb</b> или <b>hdb</b> кэша записей в оперативной памяти. Значение по умолчанию - 1000 записей.
+</dd><dt><b>cachefree</b><i>&nbsp;&lt;integer&gt;</i>
+
+</dt><dd>
+Указывает, какое количество записей нужно высвободить из кэша записей, когда его размер достигает
+ограничения <b>cachesize</b>. Значение по умолчанию - 1 запись.
+</dd><dt><b>checkpoint</b><i>&nbsp;&lt;kbyte&gt;&nbsp;&lt;min&gt;</i>
+
+</dt><dd>
+Указывает периодичность сброса журнала транзакций базы данных. Операция сброса в контрольной точке
+выгружает буферы базы данных на диск и записывает информацию о контрольной точке в журнал. Выгрузка
+данных произойдёт либо при записи данных размером <i>&lt;kbyte&gt;</i> Кбайт, либо по прошествии <i>&lt;min&gt;</i>
+минут с момента последней выгрузки. По умолчанию оба аргумента установлены в ноль, в этом случае они
+игнорируются. Если аргумент <i>&lt;min&gt;</i> отличен от нуля, каждые <i>&lt;min&gt;</i> минут будет запускаться
+внутренняя задача по выгрузке данных. Более подробную информацию о сбросе в контрольных точках
+смотрите в руководстве по Berkeley DB.
+</dd><dt><b>checksum</b>
+
+</dt><dd>
+Включает проверку контрольной суммы страниц базы данных при их чтении с диска.
+Эту настройку можно задать только перед тем, как будут созданы какие-либо файлы базы данных.
+</dd><dt><b>cryptfile</b><i>&nbsp;&lt;file&gt;</i>
+
+</dt><dd>
+Указывает путь к файлу, содержащему ключ шифрования, который будет использован для шифрования базы данных.
+Шифрование выполняется с использованием Berkeley DB-реализации AES. Имейте ввиду, что шифрование
+может быть настроено только перед тем, как будут созданы какие-либо файлы базы данных, а изменение ключа
+может быть осуществлено только после удаления текущей базы данных и повторного её создания.
+По умолчанию шифрование не включено, и некоторые дистрибутивы Berkeley DB не поддерживают шифрование.
+</dd><dt><b>cryptkey</b><i>&nbsp;&lt;key&gt;</i>
+
+</dt><dd>
+Указывает ключ шифрования, который будет использован для шифрования базы данных.
+Эту директиву можно использовать, если создавать отдельный файл
+<i>cryptfile</i>
+
+нежелательно. Может быть указана только одна из директив
+<b>cryptkey</b>
+
+и
+<b>cryptfile</b>.
+
+</dd><dt><b>dbconfig</b><i>&nbsp;&lt;Berkeley-DB-setting&gt;</i>
+
+</dt><dd>
+Указывает директиву конфигурации, которая будет помещена в файл
+<b>DB_CONFIG</b>
+
+в директории базы данных. Директива
+<b>dbconfig</b>
+
+- это просто удобный способ, позволяющий задавать все необходимые настройки в файле
+<b>slapd.conf</b>.
+
+Параметры конфигурации Berkeley DB, задаваемые с помощью этой директивы, будут записаны в файл
+<b>DB_CONFIG</b>
+
+только если во время запуска сервера этого файла не существует, в противном случае они будут
+полностью проигнорированы. Это позволяет задать первоначальные установки, при этом, если файл
+<b>DB_CONFIG</b>
+
+уже был настроен другими средствами, все настройки в нём не будут переопределены или сброшены.
+Эту директиву можно задавать несколько раз по мере необходимости, например:
+<dl compact=""><dt></dt><dd>
+<pre>        dbconfig set_cachesize 0 1048576 0
+        dbconfig set_lg_bsize 2097152
+</pre>
+
+</dd></dl>
+
+</dd><dt><b>dbnosync</b>
+
+</dt><dd>
+Указывает, что содержимое базы данных на диске не должно немедленно синхронизироваться при изменении
+содержимого базы данных в памяти. Включение этой опции может повысить производительность за счёт
+увеличения риска потери данных. Более подробную информацию смотрите в руководстве по Berkeley DB.
+</dd><dt><b>dbpagesize </b> <i>&lt;dbfile&gt; &lt;size&gt;</i></dt><dd>
+Указывает, какой размер страницы использовать для конкретных файлов базы данных. Размер указывается
+в единицах, равных 1024 байта. Значение по умолчанию для файла
+<b>id2entry</b>
+
+- 16, для всех остальных файлов значение по умолчанию зависит от размера блока файловой системы, в
+которой располагается база данных (обычно 4 или 8). Максимальный размер, поддерживаемый BerkeleyDB
+- 64. Обычно этот параметр изменять не следует, но если утилита BerkeleyDB "db_stat -d" показывает,
+что в файле появляется большое количество переполненных страниц, установка большего размера страницы
+может повысить производительность за счёт возможной потери целостности данных. Эта настройка
+срабатывает только при создании файлов базы данных. Более подробную информацию смотрите в
+руководстве по Berkeley DB.
+</dd><dt><b>directory</b><i>&nbsp;&lt;directory&gt;</i>
+
+</dt><dd>
+Указывает директорию, где находятся BDB-файлы, содержащие эту базу данных и ассоциированные с ней
+индексы. Для каждой базы данных должна быть определена отдельная директория. По умолчанию -
+<b>/usr/local/var/openldap-data</b>.
+
+</dd><dt><b>dirtyread</b>
+
+</dt><dd>
+Позволяет считывать модифицированные данные, фиксация изменений которых ещё не произошла. Обычно
+транзакции изолируются для предотвращения доступа других операций к незафиксированным данным.
+Этот параметр может повысить производительность, но может также привести к возврату противоречивых
+результатов, если данные поступили из транзакции, которая позже была отклонена. В этом случае
+модифицированные данные вернутся в исходное состояние и последующий поисковый запрос вернёт другой
+результат.
+</dd><dt><b>dncachesize</b><i>&nbsp;&lt;integer&gt;</i>
+
+</dt><dd>
+Указывает максимальное количество DN в кэше DN в оперативной памяти. В идеальном случае этот кэш
+должен быть настолько велик, чтобы вместить DN всех записей в базе данных. Если размер кэша DN задан
+меньше, чем значение <b>cachesize</b>, то он будет негласно увеличен до размера <b>cachesize</b>.
+Значение по умолчанию - 0, что означает отсутствие ограничений, то есть кэш DN может разрастаться
+до любого требуемого размера.
+<p>
+Следует отметить, что <b>кэш DN</b> может временно
+превышать настроенный размер. Это происходит в случае, когда при попытке освобождения кэша большое
+количество записей являются заблокированными (из-за того, что в настоящее время они используются в
+запросах). Кроме того, из <b>кэша DN</b> никогда не удаляются записи, дочерние записи которых закэшированы,
+поэтому, в зависимости от структуры DIT, может быть закэшировано множество DN сверх установленного лимита.
+</p></dd><dt><b>idlcachesize</b><i>&nbsp;&lt;integer&gt;</i>
+
+</dt><dd>
+Указывает размер (в слотах индексов) кэша индексов в оперативной памяти. Значение по умолчанию - ноль.
+Чем больше это значение, тем больше скорость выполнения часто производимых поисковых запросов, в которых
+анализируются проиндексированные записи. В базах данных <b>hdb</b> для обеспечения хорошей
+производительности поиска требуется большое значение <b>idlcachesize</b>, обычно в три раза превышающее значение
+<b>cachesize</b>
+
+(размер кэша записей) или даже больше.
+</dd><dt><b>index </b>{<i>&lt;attrlist&gt;</i>|<b>default</b>} [<b>pres</b>,<b>eq</b>,<b>approx</b>,<b>sub</b>,<i>&lt;special&gt;</i>]</dt><dd>
+Указывает индексы, которые поддерживаются для указанного атрибута (или списка атрибутов).
+Некоторые атрибуты поддерживают не все индексы.
+Если задан только список атрибутов <i>&lt;attrlist&gt;</i>, для этих атрибутов будут поддерживаться индексы,
+указанные как индексы по умолчанию <b>default</b>. Обратите внимание, что задание индексов по умолчанию
+не подразумевает, что будут проиндексированы все атрибуты. Кроме того, для лучшей производительности, для атрибута
+<b>objectClass</b>
+
+следует всегда настраивать индекс
+<b>eq</b>.
+
+<p>
+Может быть указано несколько специальных параметров индексирования. Тип индекса
+<b>sub</b>
+
+может быть представлен как три отдельных типа
+<b>subinitial</b>,
+
+<b>subany</b>
+
+и
+<b>subfinal</b>.
+
+Для запрета использования определяемого индекса для языковых подтипов может быть указан специальный тип
+<b>nolang</b>.
+
+Для запрета использования определяемого индекса для именованных подтипов может быть указан специальный тип
+<b>nosubtypes</b>.
+
+Примечание: при изменении установок <b>index</b> в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5)
+
+требуется повторное построение индексов, смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapindex&amp;category=8">slapindex</a></b>(8);
+
+динамическое изменение установок <b>index</b> путём выполнения операций LDAPModifying над "cn=config"
+приводит к автоматическому онлайн-перепостроению индексов в фоновом режиме.
+</p></dd><dt><b>linearindex</b>
+
+</dt><dd>
+Указывает
+<b>slapindex</b>
+
+индексировать по одному атрибуту за один проход. По умолчанию за один проход обрабатываются все
+индексируемые атрибуты одной записи. При установке этого параметра каждый индексируемый атрибут
+обрабатывается отдельно, и для выполнения индексации используется несколько проходов по всей
+базе данных. Этот параметр повышает производительность
+<b>slapindex</b>,
+
+когда размер базы данных превышает размер <b>dbcache</b>. Если размер <b>dbcache</b> достаточно велик,
+устанавливать этот параметр не следует, поскольку это снизит производительность. Кроме того, по умолчанию
+<b>slapadd</b>
+
+выполняет полное индексирование и потому не требуется отдельно запускать
+<b>slapindex</b>.
+
+С данным параметром
+<b>slapadd</b>
+
+не будет выполнять индексирование, и запуск
+<b>slapindex</b>
+
+необходим.
+</dd><dt><b>lockdetect</b>&nbsp;{<b>oldest</b>|<b>youngest</b>|<b>fewest</b>|<b>random</b>|<b>default</b>}
+
+</dt><dd>
+Указывает, какую транзакцию следует прекратить при выявлении взаимной блокировки (deadlock).
+Значение по умолчанию -
+<b>random</b>.
+
+</dd><dt><b>mode</b><i>&nbsp;&lt;integer&gt;</i>
+
+</dt><dd>
+Указывает режим защиты файлов, которые будут иметь вновь созданные файлы индексов базы данных.
+Значение по умолчанию - 0600.
+</dd><dt><b>searchstack</b><i>&nbsp;&lt;depth&gt;</i>
+
+</dt><dd>
+Указывает глубину стека, используемого для оценки поискового фильтра. Оценка поисковых фильтров
+происходит по стеку, в который помещаются вложенные условия AND / OR. Для каждого потока сервера
+выделяется собственный стек. Глубина стека определяет, насколько комплексные фильтры могут быть
+оценены без необходимости выделения дополнительной памяти. Применение поискового фильтра с глубиной
+вложенности большей, чем глубина поискового стека, приведёт к тому, что для этой конкретной
+операции поиска будет выделен отдельный стек. Подобное выделение может привести к значительному
+падению производительности, однако определение слишком большого стека также приведёт к потреблению
+значительного объема памяти. Каждый поисковый стек использует 512Kb для одного вложенного уровня
+условий. Глубина стека по умолчанию - 16, то есть используется 8Mb памяти для каждого потока.
+</dd><dt><b>shm_key</b><i>&nbsp;&lt;integer&gt;</i>
+
+</dt><dd>
+Указывает ключ для окружения BDB в разделяемой памяти. По умолчанию окружение BDB использует
+отображаемые в памяти файлы. Если в параметре указано значение, отличное от нуля, оно будет
+использовано в качестве ключа, идентифицирующего регион разделяемой памяти, в котором будет
+располагаться окружение.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>КОНТРОЛЬ ДОСТУПА</h2>
+
+Механизмы манипуляции данными
+<b>bdb</b>
+
+и
+<b>hdb</b>
+
+соблюдают указанные в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.access&amp;category=5">slapd.access</a></b>(5)
+
+семантики контроля доступа.
+<a name="lbAG">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt><b>/usr/local/etc/openldap/slapd.conf</b>
+
+</dt><dd>
+конфигурационный файл
+<b>slapd</b>
+
+по умолчанию
+</dd><dt><b>DB_CONFIG</b>
+
+</dt><dd>
+конфигурационный файл Berkeley DB.
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-config&amp;category=5">slapd-config</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-mdb&amp;category=5">slapd-mdb</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd&amp;category=8">slapd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapadd&amp;category=8">slapadd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapcat&amp;category=8">slapcat</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapindex&amp;category=8">slapindex</a></b>(8),
+
+документацию Berkeley DB.
+<a name="lbAI">&nbsp;</a>
+<h2>ПРИЗНАНИЕ ЗАСЛУГ</h2>
+
+
+
+<b>Программное обеспечение OpenLDAP</b>
+
+разработано и поддерживается проектом OpenLDAP &lt;<a href="http://www.openldap.org/">http://www.openldap.org/</a>&gt;.
+<b>Программное обеспечение OpenLDAP</b>
+
+является производным от релиза 3.3 LDAP Мичиганского Университета.
+
+Разработку механизма манипуляции данными начал Kurt Zeilenga. Механизмы кэширования первоначально
+разработал Jong-Hyuk Choi. Завершение работ и последующие доработки, а также механизм back-hdb -
+Howard Chu.
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">КОНФИГУРАЦИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">КОНТРОЛЬ ДОСТУПА</a></dt><dd>
+</dd><dt><a href="#lbAG">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAI">ПРИЗНАНИЕ ЗАСЛУГ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="slapd-bdb" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

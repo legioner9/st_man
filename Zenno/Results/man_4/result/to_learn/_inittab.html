@@ -1,0 +1,363 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN inittab (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, inittab"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="inittab" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">inittab (4)</font><hr><li> <a href="/man.shtml?topic=inittab&amp;category=4&amp;russian=4"><u>inittab</u></a> (4) <font color="#555555"> ( Solaris man: Специальные файлы /dev/* )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=inittab&amp;category=4&amp;russian=0"><u>inittab</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=inittab&amp;category=5&amp;russian=2"><u>inittab</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Форматы файлов</h1></td>
+<td><h1 align="right">inittab(4)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+
+<p><b>inittab</b> - сценарий для <b>init</b></p>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<p>Файл <b>/etc/inittab</b> управляет порождением процессов программой <b>init</b>.
+Чаще всего программа <b>init</b> порождает процессы-<i>демоны</i>.</p>
+
+<p>Файл <b>inittab</b> состоит из записей следующего формата:</p>
+
+<dl><dt></dt><dd><tt>
+<b>идентификатор</b>:<b>уровень_выполнения</b>:<b>действие</b>:<b>процесс</b>
+</tt></dd></dl>
+
+<p>Записи разделяются символами новой строки; но если перед символом новой строки
+идет обратная косая (<b>\</b>), запись продолжается на следующей строке. 
+Максимальная длина записи - 512 символов. В поле <b>процесс</b> можно использовать
+комментарии с помощью нотации, описанной на странице справочного руководства
+<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>. На количество записей в файле <b>inittab</b> никаких
+ограничений не налагается (только на размер одной записи). Запись состоит из
+следующих полей:</p>
+
+<dl>
+<dt><b>идентификатор</b></dt><dd>
+Идин или два символа, уникально идентифицирующих запись.<br><br></dd>
+<dt><b>уровень_выполнения</b></dt><dd>
+Задает уровень выполнения, на котором долджна обрабатываться эта запись. Уровни выполнения, 
+по сути, соответствуют конфигурации процессов в системе. Другими словами, с каждым процессом,
+порожденным программой <b>init</b>, связывается уровень (или уровни) выполнения, на котором
+он может существовать. Уровни выполнения представлены числами от 0 до 6. Например, если
+система работает на уровне выполнения 1, обрабатываются только записи, в поле 
+<b>уровень_выполнения</b> которых указано значение 1.
+
+<p>Когда процесс <b>init</b> получает запрос на изменение уровня выполнения, всем процессам, 
+для которых в поле <b>уровень_выполнения</b> не указан целевой уровень, посылается
+сигнал <b>SIGTERM</b>, а через 5 секунд их работа принудительно прерывается сигналом
+<b>SIGKILL</b>. Поле <b>уровень_выполнения</b> может задавать несколько уровней
+выполнения для процесса в виде любой комбинации значений от 0 до 6. Если уровень
+выполнения не задан, предполагается, что процесс может работать на всех
+уровнях выполнения, от 0 до 6.</p>
+
+<p>Есть еще три значения, <b>a</b>, <b>b</b> и <b>c</b>, которые можно
+указывать в поле <b>уровень_выполнения</b>, хотя они и не задают уровни
+выполнения. Записи, в поле <b>уровень_выполнения</b> которых указаны эти значения,
+обрабатываются только когда процесс <b>init</b> или <b>telinit</b> явно просит их
+выполнить (независимо от текущего уровня выполнения в системе). См. 
+<a href="/man.shtml?topic=init&amp;category=1"><b>init(1M)</b></a>. Отличие от уровней выполнения в том,
+что процесс <b>init</b> не может перейти на уровень <b>a</b>, <b>b</b> или <b>c</b>.
+Кроме того, запрос на выполнение любого из этих процессов не изменяет текущего уровня 
+выполнения. Более того, процесс, запущенный командой <b>a</b>, <b>b</b> или <b>c</b>,
+не прекращается при изменении уровня выполнения программой <b>init</b>.
+Они прекращают работу только если соответствующая строка в файле <b>inittab</b>
+помечена как <b>off</b> в поле <b>действие</b>, полностью удалена из <b>inittab</b> или
+программа <b>init</b> переходит в однопользовательское состояние.</p>
+</dd>
+<dt><b>действие</b></dt><dd>
+Ключевые слова в этом поле сообщают программе <b>init </b>, как обрабатывать 
+процесс, заданный в соответствующем поле. Программа <b>init</b> распознает
+следующие действия:
+<dl>
+<dt><b>respawn</b></dt><dd>
+Если процесс не существует, запустить его; не ждать завершения работы процесса
+(продолжать просмотр файла <b>inittab</b>), а когда процесс завершит существование,
+перезапустить его. Если процесс существует, не делать ничего и продолжить просмотр
+файла <b>inittab</b>.
+<br><br></dd>
+<dt><b>wait</b></dt><dd>
+Когда <b>init</b> переходит на уровень выполнения, соответствующий полю 
+<b>уровень_выполнения</b> данной записи, запустить процесс и дождаться его завершения.
+При всех последующих перечитываниях файла <b>inittab</b> процессом <b>init</b>
+на том же уровне выполнения эта запись игнорируется.
+<br><br></dd>
+<dt><b>once</b></dt><dd>
+При переходе процесса <b>init</b>на уровень выполнения, соответствующий этой записи,
+запустить процесс и не ждать его завершения. Когда процесс завершит работу, 
+не перезапускать его. Если <b>init</b> переходит на новый уровень выполнения, и
+процесс остался работать после предыдущего изменения уровня, он не перезапускается.
+<br><br></dd>
+<dt><b>boot</b></dt><dd>
+Эта запись должна обрабатываться только при первоначальном чтении файла <b>inittab</b> 
+при загрузке <b>init</b>. <b>init</b> запустит <b>процесс</b> и не будет ждать его
+завершения; когда процесс завершается, init его не перезапускает. Чтобы эта
+инструкция имела смысл, поле <b>уровень_выполнения</b> должно быть пустым
+или соответствать начальному уровню выполнения <b>init</b> при загрузке. Это действие
+подходит для функции инициализации после перезагрузки аппаратного обеспечения системы.
+<br><br></dd>
+<dt><b>bootwait</b></dt><dd>
+Эта запись должна обрабатываться только при первоначальном переходе процесса <b>init</b>
+с однопользовательского в многопользовтельский режим после загрузки системы. 
+(Если <b>initdefault</b> имеет значение 2, процесс срабатывает сразу после загрузки.)
+<b>init</b> запускает процесс, ждет его завершения и после этого его уже не перезапускает.
+<br><br></dd>
+<dt><b>powerfail</b></dt><dd>
+Связанный с этой записью процесс выполняется только при получении процессом 
+<b>init</b> сигнала сбоя питания, <b>SIGPWR</b> (см. 
+<a href="/man.shtml?topic=signal&amp;category=3"><b>signal(3C)</b></a>).
+<br><br></dd>
+<dt><b>powerwait</b></dt><dd>
+Связанный с этой записью процесс выполняется только при получении процессом 
+<b>init</b> сигнала сбоя питания, <b>SIGPWR</b>, причем, <b>init</b> ждет
+завершения процесса прежде чем продолжать дальнейшую обработку
+файла <b>inittab</b>.
+<br><br></dd>
+<dt><b>off</b></dt><dd>
+Если процесс, связанный с этой записью, в настоящее время работает, ему посылается
+предупреждающий сигнал <b>SIGTERM</b>, а через 5 процесс прерывается принудительно
+посылкой сигнала <b>SIGKILL</b>. Если процесс не существует, запись игнорируется.
+<br><br></dd>
+<dt><b>ondemand</b></dt><dd>
+Это действие, по сути, являеся синонимом для действия <b>respawn</b>. Оно функционально
+идентично <b>respawn</b>, но, чтобы не было ассоциации с уровнями выполнения,
+используется другое ключевое слово. Это действие используется только со значениями
+<b>a</b>, <b>b</b> или <b>c</b> в поле <b>уровень_выполнения</b>.
+<br><br></dd>
+<dt><b>initdefault</b></dt><dd>
+Запись с этим действием просматривается только при первоначальном вызове <b>init</b>.
+Процесс <b>init</b> использует эту запись, чтобы определить, на какой уровень выполнения
+первоначально переходить. Для этого берется максимальный уровень выполнения, указанный в
+поле <b>уровень_выполнения</b>. Если поле <b>уровень_выполнения</b> - пустое, 
+оно интерпретируется как <b>0123456</b>, и <b>init</b> переходи на уровень выполнения
+6. Это приведет к зацикливанию системы (она будет постоянно переходить в 
+режим микропрограммного обеспечения и перезагружаться). Кроме того, если <b>init</b>
+не находит записи <b>initdefault</b> в файле <b>inittab</b>, он запрашивает начальный 
+уровень выполнения у пользователя при перезагрузке.
+<br><br></dd>
+<dt><b>sysinit</b></dt><dd>
+Записи этого типа выполняются прежде, чем программа <b>init</b> попытается
+обратиться к консоли (другими словами, до выдачи приглашения <b>Console Login:</b>).
+Предполагается, что такие записи будут использоваться толкьо для инициализации
+устройств, на которые процесс <b>init</b> может попытаться выдать запрос уровня
+выполнения. Эти записи выполняются, и процесс <b>init</b> ждет их завершения,
+прежде чем продолжать работу.
+</dd>
+</dl>
+</dd>
+<dt><b>процесс</b></dt><dd>
+Задает команду, которую надо выполнить. Перед всем полем <b>процесс</b>
+добавляется команда <b>exec</b> и все вместе передается программе <b>sh</b>
+в виде <b>sh -c 'exec <i>команда</i>'</b>. Поэтому в поле <b>процесс</b> можно
+указывать любую допустимую команду <b>sh</b>.
+</dd>
+</dl>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>,
+	<a href="/man.shtml?topic=who&amp;category=1"><b>who(1)</b></a>,
+	<a href="/man.shtml?topic=init&amp;category=1"><b>init(1M)</b></a>,
+	<a href="/man.shtml?topic=ttymon&amp;category=1"><b>ttymon(1M)</b></a>,
+	<a href="/man.shtml?topic=exec&amp;category=2"><b>exec(2)</b></a>,
+	<a href="/man.shtml?topic=open&amp;category=2"><b>open(2)</b></a>,
+	<a href="/man.shtml?topic=signal&amp;category=3"><b>signal(3C)</b></a>
+</dd><dl>
+
+<p align="center">Последнее изменение: 3 июля 1990 года</p>
+
+<p align="center"><font size="-2">
+Copyleft (no c) 2003 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="inittab" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</dl></dl></body>
+<!---------------------------------------------  0  ---------------------------------------------->

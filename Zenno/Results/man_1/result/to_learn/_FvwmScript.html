@@ -1,0 +1,836 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN FvwmScript (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, FvwmScript"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="FvwmScript" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">FvwmScript (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=FvwmScript&amp;category=1&amp;russian=0"><u>FvwmScript</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>НАЗВАНИЕ</h2>
+
+<p>
+FvwmScript - модуль для построения графического интерфейса
+пользователя
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>СИНТАКСИС</h2>
+
+<p>
+FvwmScript должен вызываться оконным менеджером Fvwm. Он не будет работать
+при вызове из командной строки.
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<p>
+FvwmScript - это модуль, которые позволяет строить
+графические приложения такие как параметры desktop'а,
+панель кнопок с всплывающим меню, модальные диалоги и т.д.
+При старте FvwmScript читает содержащий сценарий файл,
+который задается ему в командной строке. Этот
+сценарий не включается в конфигурационный файл Fvwm.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ВЫЗОВ</h2>
+
+<p>
+FvwmScript может быть вызван из файла .fvwmrc
+командой`Module FvwmScript имя_сценария'. Все сценарии,
+использемые FvwmScript, должны находится в каталоге,
+который задается в файле .fvwmrc строкой вида: `*FvwmScriptPath
+путь_каталога_с_сценариями'. Кроме того при
+вызове модуля FvwmScript при инициализации Fvwm или из
+меню или по горячей клавише, Fvwm будет искать модуль
+FvwmScript в каталоге, указанном в параметре ModulePath
+конфигурационного файла .fvwmrc.
+</p><p>
+Убедитесь, что вы правильно определили ModulePath.
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>АНАТОМИЯ СЦЕНАРИЯ</h2>
+
+<p>
+FvwmScript использует свой собственный язык
+программирования. Его сценарий состоит из четырех частей.
+Заголовок содержит общие характеристики окна и свойства по
+умолчанию для всех элементов управления (widgets). Вторая часть
+содержит инструкции, которые выполняются при старте
+сценария. Третья часть содержит описания периодических задач,
+которые выполняются раз в секунду. Последняя, четвертая, часть
+содержит описания элементов управления. Можно задавать элементы управления одиннадцати
+различных типов: текстовые метки,
+однострочные поля ввода, checkbox'ы, radio button'ы (т.е.
+кнопки с зависимой и независимой фиксацией),
+горизонтальные и вертикальные полосы прокрутки,
+четырехугольники, всплывающие меню, уменьшенные окна и
+миниатюрные полосы прокрутки.
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>ЗАГОЛОВОК СЦЕНАРИЯ</h2>
+
+<p>
+Заголовок имеет следующий синтаксис:
+</p><p>
+</p><dl compact="">
+<dt>WindowTitle <i>строка</i></dt><dd>
+<p>
+Эта опция устанавливает заголовок окна.
+</p><p>
+</p></dd><dt>WindowSize <i>ширина выстота</i></dt><dd>
+<p>
+Эта опция устанавливает размер окна. <i>ширина</i> и
+<i>высота</i> - числовые значения.
+</p><p>
+</p></dd><dt>WindowPosition <i>x y</i></dt><dd>
+<p>
+Эта опция задает положение окна. <i>x</i> и <i>y</i> -
+числовые значения.
+</p><p>
+</p></dd><dt>ForeColor {<i>цвет</i>}&lt;/p&gt;</dt><dd>
+Эта опция устанавливает цвет переднего плана по
+умолчанию для всех элементов управления.
+&lt;tag&gt;BackColor {<i>цвет</i>}
+<p>
+Эта опция устанавливает цвет фона по умолчанию для
+всех элементов управления.
+</p><p>
+</p></dd><dt>HilightColor {<i>цвет</i>}</dt><dd>
+<p>
+Эта опция устанавливает цвет выделения по умолчанию
+для всех элементов управления.
+</p><p>
+</p></dd><dt>ShadowColor {<i>цвет</i>}</dt><dd>
+<p>
+Эта опция устанавливает цвет тени для всех
+элементов управления.
+</p><p>
+</p></dd><dt>Font {<i>шрифт</i>}</dt><dd>
+<p>
+Эта опция устанавливает шрифт текста по умолчанию
+для всех элементов управления.
+</p><p>
+</p></dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>ИНИЗИАЛИЗАЦИЯ</h2>
+
+<p>
+Эта часть содержит инструкции, которые будут выполнены при
+старте. Например:
+</p><p>
+</p><pre>
+Init
+
+Begin
+
+  Do "Exec cat tada.voc &gt; /dev/dsp"
+  WarpPointer 1
+
+Set $ToDo="Restart"
+
+End
+
+</pre>
+
+<p>
+Эти инструкции используются для проигрывания звука,
+перемещении указателя на элемент управления с номером 1 и для
+инициализации переменной $ToDo значением "Restart" при
+каждом старте сценария.
+</p><p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>ПЕРИОДИЧЕСКИЕ ЗАДАЧИ</h2>
+
+<p>
+Эта часть сценария содержит несколько инструкций, которые
+выполняются один раз в секунду. Например:
+</p><p>
+</p><pre>
+Periodic Task
+
+Begin
+
+If (RemainderOfDiv (GetTime) 10)==0 Then
+  Do {Exec xcalc}
+
+End
+
+</pre>
+
+<p>
+Этот пример показывает, как вызывать xcalc каждые 10
+секунд.
+</p><p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ГЛАВНАЯ ЧАСТЬ СЦЕНАРИЯ</h2>
+
+<p>
+Вторая часть сценария содержит описание для каждого
+элемента управления, которое будет затем использоваться в программе.
+Описание элемента состоит из двух частей. Первая часть
+описывает начальные свойства, а вторая часть содержит
+инструкции, которые будут выполнены при получении
+сообщения. Все элементы могут посылать и принимать
+сообщения, которые идентифицируются по номеру.
+При выборе элемента управления ему посылается сообщение "UserAction".
+Ниже приведен синтаксис описаний:
+</p><p>
+</p><dl compact="">
+<dt>Widget id # Set the id widget</dt><dd>
+<p>
+</p></dd><dt>Property</dt><dd>
+<p>
+</p></dd><dt>Type string</dt><dd>
+<p>
+</p></dd><dt>Size width height</dt><dd>
+<p>
+</p></dd><dt>Position x y</dt><dd>
+<p>
+</p></dd><dt>Title { string }</dt><dd>
+<p>
+</p></dd><dt>Value int</dt><dd>
+<p>
+</p></dd><dt>MaxValue int</dt><dd>
+<p>
+</p></dd><dt>MinValue int</dt><dd>
+<p>
+</p></dd><dt>Font string</dt><dd>
+<p>
+</p></dd><dt>ForeColor { color }</dt><dd>
+<p>
+</p></dd><dt>BackColor { color }</dt><dd>
+<p>
+</p></dd><dt>HilightColor { color }</dt><dd>
+<p>
+</p></dd><dt>ShadowColor { Color }</dt><dd>
+<p>
+</p></dd><dt>Flags Hidden and/or NoReliefString</dt><dd>
+<p>
+Опция `Flags' задается в том случае, если элемент
+должен быть невидимым или текст на нем должен быть
+выведен в плоском (не трехмерном) исполнении.
+</p><p>
+</p><pre>
+Main
+
+Case Message of
+
+SingleClic:
+
+Begin
+
+&amp;035; список инструкций, которые будут
+&amp;035; выполнены, когда виджет принимает
+&amp;035; сообщение "SingleClic". Это сообщение
+&amp;035; генерируется пользователем.
+
+End
+
+1:
+
+Begin
+
+&amp;035; список инструкций, которые будут выполнены
+&amp;035; когда виджет принимает сообщение 1
+End
+
+End
+
+</pre>
+
+<p>
+</p></dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h2>СПИСОК ЭЛЕМЕНТОВ УПРАВЛЕНИЯ</h2>
+
+<p>
+Имеется пятнадцать типов элементов управления.
+</p><p>
+</p><dl compact="">
+<dt><b>ItemDraw</b>:</dt><dd>
+<p>
+Отображает иконку и/или строку.
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<p>
+</p><dl compact="">
+<dt><b>Title</b>:</dt><dd>
+<p>
+Строка для отображения.
+</p><p>
+</p></dd><dt><b>Icon</b>:</dt><dd>
+<p>
+Иконка для отображения.
+</p><p>
+</p></dd></dl>
+</dd></dl>
+
+<p>
+</p></dd><dt><b>PushButton</b>:</dt><dd>
+<p>
+Отображает кнопку с иконкой и/или строкой.
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<p>
+</p><dl compact="">
+<dt><b>Title</b>:</dt><dd>
+<p>
+Это строка которая имеет следующий синтаксис:
+</p><pre>
+{Заголовок кнопки|Опция 1|Опция 2|Опция 3|...|Опция N}.
+
+</pre>
+
+"Опция 1|Опция 2|...|Опция N" - это
+всплывающее меню, которое отображается при
+нажатии правой кнопки мыши.
+<p>
+</p></dd><dt><b>Icon</b>:</dt><dd>
+<p>
+Иконка для отображения.
+</p><p>
+</p></dd></dl>
+</dd></dl>
+
+<p>
+</p></dd><dt><b>RadioButton</b>:</dt><dd>
+<p>
+Отображает radio button вместе со строкой.
+&lt;/p&gt;
+</p><p>
+<b>Title</b>: заголовок radio button.
+</p><p>
+<b>Value</b>: если Value равно 1, то бокс проверяется, в
+других случаях нет.
+</p><p>
+<b>CheckBox</b>: Отображает check box вместе со строкой.
+</p><p>
+<b>Title</b>: заголовок для check box.
+</p><p>
+<b>Value</b>: если Value равно 1, то бокс проверяется, в
+других случаях нет.
+</p><p>
+<b>TextField</b>: Отображает поле ввода текста. Эта полоса может
+быть использована для редактирования одной строки.
+&lt;p&gt;
+<b>Title</b>: текстовое содержимое поля.
+</p><p>
+<b>Value</b>: позиция указателя вставки.
+</p><p>
+<b>HScrollBar</b>: Отображает горизонтальную полосу прокрутки.
+</p><p>
+<b>Value</b>: позиция бегунка.
+</p><p>
+<b>MaxValue</b>: верхнее предельное значение.
+</p><p>
+<b>MinValue</b>: нижнее предельное значение.
+</p><p>
+<b>VScrollBar</b>: Отображает вертикальную полосу прокрутки.
+</p><p>
+<b>Value</b>: позиция бегунка.
+</p><p>
+<b>MaxValue</b>: верхнее предельное значение.
+</p><p>
+<b>MinValue</b>: нижнее предельное значение.
+</p><p>
+<b>MiniScrollBar</b>: Отображает очень маленькую вертикальную
+полосу прокрутки.
+</p><p>
+<b>Value</b>: позиция бегунка.
+</p><p>
+<b>MaxValue</b>: верхнее предельное значение.
+</p><p>
+<b>MinValue</b>: нижнее предельное значение.
+</p><p>
+<b>Rectangle</b>:
+Отображает четырехугольник.
+Этот тип элемента управления может использоваться для
+оформления окна.
+&lt;p&gt;
+<b>SwallowExec</b>:
+Этот тип элемента управления заставляет FvwmScript
+вызвать процесс и захватить первое окно, чье имя или ресурс
+равны Title, и отобразить его в окне сценария.
+&lt;p&gt;
+<b>Title</b>: задает имя окна, которое будет захвачено и
+отображено в окне сценария.
+</p><p>
+<b>SwallowExec</b>: задает командную строку для запуска
+вызываемого процесса. Модули также могут быть
+обработаны таким же образом.
+</p><p>
+<b>Value</b>: задает видимый борждюр. Возможны значения:
+-1, 0, 1.
+</p><p>
+<b>PopupMenu</b>: Отображает всплывающее меню.
+</p><p>
+<b>Value</b>: задает какая опция выбирается.
+</p><p>
+<b>Title</b>: заголовок имеет следующий синтакс: {Опция
+1|Опция 2|...|Опция N}. "Опция 1|Опция 2|...|Опция
+N" это всплывающее меню, которое отображается, при
+нажатии кнопки мыши.
+</p><p>
+<b>HDipstick</b>: Отображает специальную полоску (dipstick). Этот
+виджет может использоваться для отображения используемого
+пространства на диске.
+&lt;p&gt;
+<b>Value</b>: задает текущую величину dipstick.
+</p><p>
+<b>MinValue</b>: задает минимальное значение dipstick.
+</p><p>
+<b>MaxValue</b>: задает максимальное значение dipstick.
+</p><p>
+<b>VDipstick</b>: Отображает вертикальную dipstick.
+</p><p>
+<b>Value</b>: задает текущую величину dipstick.
+</p><p>
+<b>MinValue</b>: задает минимальное значение dipstick.
+</p><p>
+<b>MaxValue</b>: задает максимальное значение dipstick.
+</p><p>
+<b>List</b>: Отображает список. Список дает пользователю
+возможность выбора между несколькими опциями.
+&lt;p&gt;
+<b>Value</b>: определяет какая опция выбирается.
+</p><p>
+<b>Title</b>: заголовок содержит опции списка. Синтакс
+заголовка следующий: {Опция 1|Опция 2|...|Опция N}.
+Все меню отображаются вверху окна.
+</p><p>
+<b>Menu</b>: Отображает меню которое позволяет пользователю
+выбрать опцию.
+&lt;p&gt;
+<b>Value</b>: определяет какая опция выбирается.
+</p><p>
+<b>Title</b>: заголовок содержит опции меню. Синтакс
+заголовка следующий: {Опция 1|Опция 2|...|Опция N}.
+</p><p>
+</p></dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h2>ИНСТРУКЦИИ</h2>
+
+<p>
+Здесь описываются все инструкции.
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<p>
+HideWidget <i>id</i> : спрятать виджет с номером <i>id</i>.
+</p><p>
+ShowWidget <i>id</i>: показать виджет с номером <i>id</i>.
+</p><p>
+ChangeValue <i>id1 id2</i>: установить значение виджета с
+номерами от <i>id1</i> до <i>id2</i>.
+&lt;p&gt;
+ChangeMaxValue <i>id1 id2</i>: установить максимальное значение
+виджета с номерами от <i>id1</i> до <i>id2</i>.
+</p><p>
+ChangeMinValue <i>id1 id2</i>: установить минимальное значение
+виджета с номерами от <i>id1</i> до <i>id2</i>.
+</p><p>
+ChangeTitle <i>id1 id2</i>: установить заголовок виджета с
+номерами от <i>id1</i> до <i>id2</i>.
+</p><p>
+ChangeIcon <i>id1 id2</i>: установить иконку виджета с номерами
+от <i>id1</i> до <i>id2</i>.
+</p><p>
+ChangeForeColor <i>id1</i> {<i>color</i>}: установить цвет переднего
+плана для виджета с номерами от <i>id1</i> до {<i>color</i>}.
+</p><p>
+ChangeBackColor <i>id1</i> {<i>color</i>}: установить цвет фона
+для виджета с номерами от <i>id1</i> до {<i>color</i>}.
+</p><p>
+ChangePosition <i>id1 x y</i>: переместить виджет с номером
+<i>id1</i> в позицию (<i>x</i>,<i>y</i>).
+</p><p>
+ChangeSize <i>id1 width height</i>: установить размер виджета
+с номером <i>id1</i> в (<i>width</i>,<i>height</i>).
+</p><p>
+ChangeFont <i>id1 newfont</i>: установить фонт для виджета с
+номером <i>id1</i> в <i>newfont</i>.
+</p><p>
+WarpPointer <i>id</i>: поместить указатель мыши в виджет с
+номером <i>id</i>.
+</p><p>
+WriteToFile <i>filename</i> {<i>str1</i>} {<i>str2</i>} ...:
+записать в файл <i>filename</i> строку, которая является
+результатом слияния аргументов <i>str1</i>, <i>str2</i>, ...
+</p><p>
+Do {<i>str1</i>} {<i>str2</i>} ...: выполнить команду которая
+является результатом слияния аргументов <i>str1</i>, <i>str2</i>,
+...
+</p><p>
+Set $<i>var</i>={<i>str</i>1} {<i>str2</i>} ...: слить все
+</p><p>
+аргумент в строку и установить присвоить переменной
+$<i>var</i> значение строки.
+</p><p>
+Quit: выйти из программы.
+</p><p>
+SendSignal <i>id1 id2</i>: послать сообщение с номером
+<i>id2</i> в виджет <i>id1</i>.
+</p><p>
+SendToScript <i>id_script</i> {<i>str1</i>1} {<i>str2</i>} ...: послать
+сообщение в сценарий id_script. Это сообщение
+является результатом слияния str1, str2...
+</p><p>
+</p></dd></dl>
+
+<p>
+<a name="lbAM">&nbsp;</a>
+</p><h2>АРГУМЕНТЫ</h2>
+
+<p>
+Большинство команд используют аргументы. Имеется два вида
+аргументов: числа и строки. Численный аргумент может
+принимать значение от -32000 до +32000. Строка всегда
+заключена в скобки. Переменные всегда начинаются с символа
+"$" и могут содержать и числа и строки.
+</p><p>
+<a name="lbAN">&nbsp;</a>
+</p><h2>Функции</h2>
+
+<p>
+Все функции используются как аргументы. Функции могут
+возвращать как строки так и числа. Синтаксис:
+</p><p>
+</p><pre>
+(function argument1 argument2 ...)
+
+</pre>
+
+<p>
+Ниже приводится полный список аргументов:
+</p><p>
+(GetTitle <i>id</i>): возвращает заголовок виджета с номером <i>id</i>.
+</p><p>
+(GetValue <i>id</i>): возвращает текущее значение виджета с
+номером <i>id</i>.
+</p><p>
+(GetOutput {<i>str</i>} <i>int1 int2</i>): выполняет команду <i>str</i>,
+захватывает стандартный вывод и возвращает слово,
+которое есть в строке <i>int1</i> и которое встречается в
+<i>int2</i>. Если <i>int2</i> равно -1, то GetOutput возвращает
+полную строку."
+</p><p>
+(NumToHex <i>int</i>): возвращает шестнадцатиричное значение <i>int</i>.
+</p><p>
+(HexToNum {<i>str</i>}): возвращает десятичное значение <i>str</i>,
+<i>str</i> должно быть шестнадцатиричным значением."
+</p><p>
+(Add <i>int1 int2</i>): возвращает результат (<i>int1</i>+<i>int2</i>).
+</p><p>
+(Mult <i>int1 int2</i>): возвращает результат (<i>int1</i>*<i>int2</i>).
+</p><p>
+(Div <i>int1 int2</i>): возвращает результат (<i>int1</i>/<i>int2</i>).
+</p><p>
+(StrCopy {<i>str</i>} <i>int1 int2</i>): возвращает подстроку, которая
+находится в строке <i>str</i> между позициями int1 и int2.
+Например, (StrCopy {Hello} 1 2) возвращает {He}"
+</p><p>
+(LaunchScript {<i>str</i>}): эта функция запускает сценарий с
+именем str и возвращает идентификационный номер.
+Этот номер необходим при использовании таких
+функций как SendToScript и ReceivFromScript.
+Строка str содержит имя сценария и несколько
+аргументов."
+</p><p>
+(GetScriptArgument {<i>int</i>}): эта функция
+возвращает аргумент-сценарий,
+</p><p>
+использующийся в функции LaunchScript. Если int
+равен нулю, GetScriptArgument возвращает имя
+данного сценария."
+</p><p>
+(GetScriptFather): эта функция возвращает
+идентификационный номер
+</p><p>
+сценария-родителя."
+</p><p>
+(ReceivFromScript {<i>int</i>}): эта функция возвращает сообщение
+посланное сценарию с номером int."
+</p><p>
+(RemainderOfDiv {<i>int1 int2</i>}): эта функция возвращает
+остаток
+</p><p>
+от деления (<i>int1</i>/<i>int2</i>)."
+</p><p>
+(GetTime): эта функция возвращает время в секундах.
+</p><p>
+&lt;descrip&gt;
+</p><p>
+<a name="lbAO">&nbsp;</a>
+</p><h2>Условные циклы</h2>
+
+<p>
+Имееется три вида циклов по условию. Инструкция "If-Then-Else"
+имеет следующий синтакс:
+</p><p>
+</p><pre>
+If $ToDo="={Open" xcalc} Then
+        Do {Exec xcalc &amp;} # список инструкций
+Else
+        Begin
+                Do {Exec killall xcalc &amp;} # список инструкций
+                Do {Exec echo xcalc killed &gt; /dev/console}
+        End
+
+</pre>
+
+<p>
+Вторая часть "Else-Begin-End" необязательна. Если цикл
+содержит только одну инструкцию, то Begin и End могут быть
+опушены. Инструкция "While-Do" имеет следующий синтакс:
+</p><p>
+</p><pre>
+While $i&lt;5 Do
+Begin
+        Set $i="(Add" i 1) # список инструкций
+End
+
+</pre>
+
+<p>
+Две строки могут сравниваться оператором "==", а два числа
+могут сравниваться операторами "&lt;", "&lt;=", "==", "&gt;=", "&gt;".
+Цикл "For-Do-Begin-End" имеет следующий синтакс:
+</p><p>
+</p><pre>
+For $i="1" To 20 Do
+Begin
+        Do {Exec xcalc &amp;} # список инструкций
+End
+
+</pre>
+
+<p>
+<a name="lbAP">&nbsp;</a>
+</p><h2>АВТОР(Ы)</h2>
+
+<p>
+Frederic Cordier (<i><a href="mailto:cordie97@cui.unige.ch">cordie97@cui.unige.ch</a></i> или
+<i><a href="mailto:f-cord96@univlyon1.fr">f-cord96@univlyon1.fr</a></i>).
+</p><p>
+<a name="lbAQ">&nbsp;</a>
+</p><h2>Распространитель</h2>
+
+<p>
+Eddy J. Gurney (<i><a href="mailto:eddy@gizmo.aa.ans.net">eddy@gizmo.aa.ans.net</a></i>).
+</p><p>
+<a name="lbAR">&nbsp;</a>
+</p><h2>Перевод</h2>
+
+<p>
+Перевел с английского Висктор Вислобоков (E-mail: <i><a href="mailto:victor_v@permonline.ru">victor_v@permonline.ru</a></i>,
+FIDO: 2:5054/<a href="mailto:69.34@Fidonet.org">69.34@Fidonet.org</a>)
+</p><p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВЫЗОВ</a></dt><dd>
+</dd><dt><a href="#lbAF">АНАТОМИЯ СЦЕНАРИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">ЗАГОЛОВОК СЦЕНАРИЯ</a></dt><dd>
+</dd><dt><a href="#lbAH">ИНИЗИАЛИЗАЦИЯ</a></dt><dd>
+</dd><dt><a href="#lbAI">ПЕРИОДИЧЕСКИЕ ЗАДАЧИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ГЛАВНАЯ ЧАСТЬ СЦЕНАРИЯ</a></dt><dd>
+</dd><dt><a href="#lbAK">СПИСОК ЭЛЕМЕНТОВ УПРАВЛЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAL">ИНСТРУКЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAM">АРГУМЕНТЫ</a></dt><dd>
+</dd><dt><a href="#lbAN">Функции</a></dt><dd>
+</dd><dt><a href="#lbAO">Условные циклы</a></dt><dd>
+</dd><dt><a href="#lbAP">АВТОР(Ы)</a></dt><dd>
+</dd><dt><a href="#lbAQ">Распространитель</a></dt><dd>
+</dd><dt><a href="#lbAR">Перевод</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="FvwmScript" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,614 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN scmxx (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, scmxx"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="scmxx" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">scmxx (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=scmxx&amp;category=1&amp;russian=0"><u>scmxx</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+scmxx - осуществляет обмен данными с вашим мобильным телефоном Siemens
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>scmxx</b> [<b>--device</b> <b>устройство</b>] [<b>--baud</b> <b>скорость_передачи</b>] [<b>--quiet</b>] [<b>--verbose</b>] [<b>--reset</b>] {<b>--info</b> | <b>--set-time</b> | <b>--mem-info</b> | <b>--lock-info</b> | 
+<b>--lock</b> <b>блокировка</b>
+{<b>--enable</b> | <b>--disable</b>}
+| 
+<b>--set-smsc</b>
+<b>--number</b>
+{<b>номер</b> | <b>имя</b>}
+}
+<p>
+
+<b>scmxx</b> [<b>--device</b> <b>устройство</b>] [<b>--baud</b> <b>скорость_передачи</b>] [<b>--quiet</b>] [<b>--verbose</b>] [<b>--out</b> <b>файл</b>] [<b>--pipe</b> <b>канал</b>] {<b>--remove</b> | <b>--send</b> | <b>--get</b>} [<b>--binary</b>] [<b>--mem</b> <b>тип_памяти</b>] [<b>--slot</b> <b>слот</b>] [<b>файл...</b>]
+</p><p>
+
+<b>scmxx</b> [<b>--device</b> <b>устройство</b>] [<b>--baud</b> <b>скорость_передачи</b>] [<b>--quiet</b>] [<b>--verbose</b>] [<b>--out</b> <b>файл</b>] [<b>--pipe</b> <b>канал</b>] [<b>--pin</b> <b>PIN-код</b>] {<b>--remove</b> | <b>--send</b> | <b>--get</b>} [<b>--pbook</b>] [<b>--mem</b> <b>тип_памяти</b>] [<b>--slot</b> <b>слот</b>] [<b>--text</b> <b>текст</b>] [
+<b>--number</b>
+{<b>номер</b> | <b>имя</b>}
+] [<b>файл...</b>]
+</p><p>
+
+<b>scmxx</b> [<b>--device</b> <b>устройство</b>] [<b>--baud</b> <b>скорость_передачи</b>] [<b>--quiet</b>] [<b>--verbose</b>] [<b>--out</b> <b>файл</b>] [<b>--pipe</b> <b>канал</b>] {<b>--remove</b> | <b>--send</b> | <b>--get</b>} [<b>--sms</b>] [<b>--mem</b> <b>тип_памяти</b>] [<b>--slot</b> <b>слот</b>] [<b>--text</b> <b>текст</b>] [
+<b>--number</b>
+{<b>номер</b> | <b>имя</b>}
+] [<b>--direct</b>] [<b>--flash</b>] [<b>--srr</b>] [<b>--unicode</b>] [<b>файл...</b>]
+</p><p>
+
+<b>scmxx</b> [<b>--help</b>] [<b>--version</b>]
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+SCMxx может копировать файлы в мобильный телефон Siemens и обратно, а
+также удалять сохраненные файлы. Файлы могут быть прочитаны из
+указанного файла или получены через стандартный ввод и сохранены в
+конкретном файле или переданы на стандартный вывод. SMS могут быть также
+напрямую переданы или приняты без сохранения в мобильном телефоне. SCMxx
+была протестирована с несколькими мобильными телефонами, произведенными
+Siemens (только S25 и поздние).
+<a name="lbAE">&nbsp;</a>
+<h2>ОПЦИИ</h2>
+
+<dl compact="">
+<dt><b>--device (-d)</b></dt><dd>
+определить отличное от вкомпилированного имя устройства. Опция
+перекрывает переменную окружения SCMXX_TTY и вкомпилированное значение.
+Для системы linux может быть, к примеру, /dev/ttyS0 для
+последовательного соединения, /dev/ircomm0 для соединения по
+инфракрасному порту и /dev/rfcomm0 для соединения по каналу bluetooth.
+</dd><dt><b>--baud (-b)</b></dt><dd>
+определить скорость устройства. Подходящие значения зависят от системы,
+но могут быть 9600, 19200, 38400, 57600 или 115200. Значение по
+умолчанию 19200. Телефоны S25 и *35i работают только при скорости 19200,
+все поздние модели также работают при полной скорости последовательного
+канала. Соединения по инфракрасному порту могут содержать исключения из
+этих правил (зависит от реализации порта). Опция перекрывает значение
+переменной окружения SCMXX_BAUD и вкомпилированное значение.
+</dd><dt><b>--out (-o)</b></dt><dd>
+определить используемый файл. При получении бинарных файлов с параметром
+"all" к каждому имени файла добавляется номер слота, точка и тип файла.
+При отправке или удалении, опция не будет использоваться, но в качестве
+параметра должны быть указаны корректные файлы. Стандартный вывод должен
+быть однозначно выбран через дефис ("-"), по умолчанию ничего не
+выводится на стандартный вывод. Ничего не добавляется к "-", когда идет
+получение группы файлов.
+</dd><dt><b>--pipe (-p)</b></dt><dd>
+определить канал к другой программе. При получении данных с параметром
+"all", каждый файл будет передан по каналу к этим программам в отдельности
+(только для опций --binary и --sms).
+</dd><dt><b>--quiet (-q)</b></dt><dd>
+уменьшить степень подробности вывода на 1
+</dd><dt><b>--pin</b></dt><dd>
+использовать эту опцию, если требуется ввести PIN код для доступа
+</dd><dt><b>--verbose (-v)</b></dt><dd>
+увеличить степень подробности вывода на 1
+</dd><dt><b>--reset</b></dt><dd>
+попытаться сбросить телефон, и он снова станет доступен. Это может
+понадобится в случае, если телефон больше не отвечает по
+последовательному интерфейсу, особенно при прерванной перед этим
+пользователем передачи файла. Произойдет просто слепая передача
+некоторых специальных символов.
+</dd><dt><b>--help (-h)</b></dt><dd>
+вывести текст помощи
+</dd><dt><b>--version</b></dt><dd>
+вывести номер версии
+</dd><dt><b>--remove (-r)</b></dt><dd>
+удалить запись в телефоне.
+Когда опция определена с опциями --sms и --get, будут произведены
+получение и удаление. Когда опция определена с опциями --sms и --send,
+будут произведены отправка и удаление.
+</dd><dt><b>--get (-g)</b></dt><dd>
+получить запись и сохранить ее в файл.
+Когда опция определена с опциями --sms и --remove, будут произведены
+получение и удаление. Когда опция определена с опциями --sms и --send,
+будут произведены получение и отправка.
+</dd><dt><b>--send (-s)</b></dt><dd>
+отправить файл в телефон.
+При отправке sms возможно использование совместно с опцией --direct,
+чтобы его увидеть на экране. Когда опция определена с опциями --sms и
+--remove, будут произведены отправка и удаление. Когда опция определена
+с опциями --sms и --get, будут произведены получение и отправка.
+</dd><dt><b>--info (-i)</b></dt><dd>
+собрать информацию о телефоне, --mem-info может быть использована для
+переключения вывода между кратким и более сложным списком доступных
+типов памяти.
+</dd><dt><b>--mem-info</b></dt><dd>
+отобразить информацию о доступных типах памяти и их слотах, а также
+другую информацию. Опция использует такой же формат, как и --mem=?
+(смотрите ниже), и также может быть использована как переключатель для
+--info, чтобы заместить краткий список типов памяти.
+</dd><dt><b>--lock-info</b></dt><dd>
+отобразить состояние блокировок. Может быть также использована как
+переключатель для --info, чтобы заместить вывод списка имен блокировок.
+</dd><dt><b>--lock</b></dt><dd>
+определить блокировку, которую необходимо установить или снять.
+Для некоторых блокировок необходим пароль (см. опцию --pin).
+</dd><dt><b>--enable</b></dt><dd>
+установить какую-либо блокировку
+</dd><dt><b>--disable</b></dt><dd>
+снять какую-либо блокировку
+</dd><dt><b>--dial</b></dt><dd>
+позвонить по заданному номеру (требуется опция --number).
+Программа возвратится или через 10 секунд, или после установки
+соединения с удалённой стороной.
+</dd><dt><b>--hangup</b></dt><dd>
+сбросить все текущие активные вызовы.
+</dd><dt><b>--set-time</b></dt><dd>
+синхронизировать время в телефоне. Рекомендуется использовать
+инструменты типа ntpdate перед синхронизацией.
+</dd><dt><b>--set-smsc</b></dt><dd>
+установить номер SMS-центра (требует опцию --number)
+</dd><dt><b>--binary (-N)</b></dt><dd>
+выбрать режим обмена бинарными файлами
+</dd><dt><b>--pbook (-P)</b></dt><dd>
+выбрать режим передачи телефонной книги
+</dd><dt><b>--sms (-S)</b></dt><dd>
+выбрать режим службы коротких сообщений
+</dd><dt><b>--mem</b></dt><dd>
+выбрать тип памяти, к которой осуществляется доступ. Номера слотов могут
+варьироваться в зависимости от выбранного типа памяти. Смотрите вывод
+опции --info для определения поддерживаемых типов памяти. Без
+использования этой опции срабатывает поведение по умолчанию (если
+таковое было определено). Специальная строка "?" предназначена для
+вывода в таком же формате, как и --mem-info, но только для выбранного
+режима.
+</dd><dt><b>--slot</b></dt><dd>
+выбрать слот, к которому осуществляется доступ. Смотрите вывод
+--mem-info или --mem=?. Без использования этой опции включается
+поведение по умолчанию (если таковое было определено). Специальная
+строка "all" определяет полный диапазон всех доступных слотов для
+выбранных типа памяти и режима, за исключением использования
+совместно с --sms, и не может быть использована совместно с --send.
+Для SMS, доступны четыре дополнительных специальных строки: "read"
+(прочитанные), "unread" (непрочитанные), "sent" (отправленные) и
+"unsent" (неотправленные). Последние два варианта могут быть
+использованы вместе с --send. Для доступа к телефонной книге
+доступна дополнительная строка "last". При опущенной этой опции и
+использовании вместе с --send scmxx попытается найти свободный слот
+(что может занять, а может и нет, некоторое длительное время).
+Поиск пустого слота пока что не поддерживается для телефонных книг.
+Когда слот и группа файлов для загрузки определены, необходимый слот
+является стартовой точкой для поиска свободных слотов. Перезапись
+группы непустых слотов пока что не поддерживается, кроме
+специального случая "all".
+</dd><dt><b>--text (-t)</b></dt><dd>
+определить содержание текста короткого сообщения или записи телефонной
+книги.
+Для записей телефонной книги лимит длины может зависеть от выбранной
+книги (см. вывод --mem-info или --mem=?).
+</dd><dt><b>--number (-n)</b></dt><dd>
+определить номер для отправки короктого сообщения или номер записи
+телефонной книги. Заметьте, что номер может иметь вначале '+' для
+международных номеров. Он ограничен 20 цифрами (без '+'), которых
+действительно достаточно.
+</dd><dt><b>--direct</b></dt><dd>
+отправить/получить короткие сообщения без сохранения в памяти телефона.
+Это не выполняется по умолчанию, так как вы будете несомненно заняты
+сообщением, при отправке. При непосредственном получении, SMS, тип
+которого не соответствует DELIVER, все еще сохраняется в памяти телефона
+(scmxx не может пока что декодировать такие сообщения).
+</dd><dt><b>--unicode</b></dt><dd>
+переслать сообщение и ипользовать UCS-2 (16бит unicode) как таблицу
+символов. Необязательно применять эту
+опцию для декодирования сообщений, написанных в кодировке unicode.
+</dd><dt><b>--flash</b></dt><dd>
+установить class0 в поле схемы кодирования данных, что обычно
+интерпретируется как "немедленное отображение". Не все принимающие
+аппараты дают право делать это. Заметьте, что очередное sms такого
+типа обычно перезаписывает предыдущее сообщение без вопросов! Её
+использование не рекомендуется.
+</dd><dt><b>--srr</b></dt><dd>
+установить бит StatusReportRequest в поле pdutype из sms pdu. Это
+зависит от SMSC, если это принимать во внимание. С некоторыми
+провайдерами это потребует дополнительных затрат!
+</dd><dt><b>--sort</b></dt><dd>
+сортировать сообщения при печати на выбранное устройство вывода.
+Возможными методами сортировки являются "type" (тип), "slot" (слот) и
+"type,slot" (тип, слот). "type" сортирует по типу короткого сообщения с
+вложенным порядком сортировки, при котором неподдерживаемые типы
+печатаются вначале, затем SMS-SUBMIT, SMS-STATUS-REPORT и SMS-DELIVER. "slot"
+сортирует по слоту короткого сообщения. "type,slot" осуществляет сортировку
+вначале по "type" и затем внутри блока каждого типа по "slot". По умолчанию
+никакой сортировки не производится (порядок зависит от телефона).
+</dd><dt><b>--pin</b></dt><dd>
+включить использование pin-кода. Используйте это лишь в случае
+возникновения ошибки, которая требует ввода PIN-кода либо
+PUK-кода. Для PIN-кода соответственно передаётся
+"&lt;PIN-код&gt;", для PUK-кода - "&lt;PUK-код&gt;,&lt;новый
+PIN-код&gt;". Значение используется однократно.
+Рассмотрите использование pin-файла (см. ниже) вместо этой опции.
+</dd><dt><b>--system-charset</b></dt><dd>
+определить системную таблицу символов вместо используемого значения,
+возвращаемого функцией nl_langinfo(CODESET). Этот обходной манёвр
+необходим для систем, которые не поддерживают юникодные локали,
+такие как UTF-8, или когда данные от другой системы в отличной
+локали используются на входе. Обычно эта опция не применяется.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ПРИМЕРЫ</h2>
+
+<dl compact="">
+<dt>Отправить файл растрового изображения в телефон как Картинку (Логотип):</dt><dd>
+scmxx
+<b>--send</b>
+<b>--binary</b>
+<b>--mem</b>="bmp"
+<b>--slot</b>=0
+myfile.bmp 
+</dd><dt>Получить Картинку из телефона и сохранить ее в новом файле:</dt><dd>
+scmxx
+<b>--get</b>
+<b>--binary</b>
+<b>--mem</b>="bmp"
+<b>--slot</b>=0
+<b>--out</b>=myfile.bmp 
+</dd><dt>Получить все непрочитанные (режим по умолчанию при get) короткие сообщения и вывести их на стандартный вывод:</dt><dd>
+scmxx
+<b>--get</b>
+<b>--sms</b>
+<b>--slot</b>=unread
+<b>--out</b>=-
+<p>
+scmxx
+<b>-gS</b>
+<b>-o</b>- 
+</p></dd><dt>Отправить короткое сообщение напрямую (без сохранения в телефоне):</dt><dd>
+scmxx
+<b>--send</b>
+<b>--sms</b>
+<b>--direct</b>
+<b>--number</b>=123
+<b>--text</b>="тест"
+</dd><dt>Получить телефонную книгу и сохранить её в файле:</dt><dd>
+scmxx
+<b>--get</b>
+<b>--pbook</b>
+<b>--mem</b>=SM
+<b>--out</b>=SM.pb
+</dd><dt>Изменить указанный слот (33) в памяти SM телефонных книг:</dt><dd>
+scmxx
+<b>-sP</b>
+<b>--mem</b>=SM
+<b>--slot</b>=33
+<b>--number</b>=123
+<b>--text</b>="тест"
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Выводимый текст (телефонная книга и сообщения) зависит от таблицы
+символов текущей локали. Вводимый аналогично. Такое преимущество у
+локализации, но есть и недостаток, что все остальные символы должны
+вводиться через последовательность вида \XXXX, где X - шестнадцатиричный
+символ (например, \20ac для знака Euro). Это 16битное представление
+значения unicode. Представление \XXXX используется только для вывода с
+целью его последующего прочтения. При нормальном выводе, символы,
+которые не могут быть отображены в текущей локали, заменяются на символ
+'?'. Использование локализации, базирующейся на UTF-8, гарантирует, что
+все символы могут быть перекодированы. Символ новой строки может быть
+введен, используя общее представление \n, а символ '\' должен быть
+экранирован сам собой. В bash в результате необходимо вводить строку
+подобно "\\\\".
+<a name="lbAH">&nbsp;</a>
+<h2>ПРОБЛЕМЫ СОЕДИНЕНИЯ</h2>
+
+Здесь описываются дополнительные параметры --ignore-serial-bits (по
+умолчанию) и --keep-serial-bits. Используйте его только тогда, когда
+вообще нет ответа от телефона. Такие установки зависят от кабеля и
+последовательного порта и не могут быть определены автоматически.
+<p>
+
+Если при первой команде происходят таймауты, следует попробовать
+параметр --start-delay=&lt;секунды&gt;.
+</p><p>
+
+Другой параметр --device-timeout=&lt;секунды&gt; предназначен для
+случая, когда телефону когда-либо потребуется больше времени на ответ,
+чем определенные по умолчанию 10 секунд. Действительно, это было более
+чем достаточно, но кто знает. Минимальное значение равно 1, значения,
+превышающие 25, подразумевают ожидание ответа до тех пор, пока он не
+будет получен.
+<a name="lbAI">&nbsp;</a>
+</p><h2>БЕЗОПАСНОСТЬ</h2>
+
+Опцию --pin необходимо использовать с осторожностью. Опция и ее аргумент
+будут видны в списке процессов.
+<a name="lbAJ">&nbsp;</a>
+<h2>ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</h2>
+
+<dl compact="">
+<dt>SCMXX_TTY</dt><dd>
+смотрите описание опции --device
+</dd><dt>SCMXX_BAUD</dt><dd>
+смотрите описание опции --baud
+</dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt>~/.scmxx/cache.pb</dt><dd>
+этот файл служит при выводе короткого сообщения (для подмены адресов
+получателя и отправителя) и при отправке короткого сообщения для
+подмены номера в опции --number. Формат файла совпадает с форматом
+файла для телефонной книги (номера слотов не имеют значения, но
+должны присутствовать).
+</dd><dt>~/.scmxx/config</dt><dd>
+этот файл может содержать набор длинных опций (без --), аргументы
+отделяются от названия опции символом '='. Любое количество
+пробельных символов допускается вначале строки, перед и после
+разделителя. Символ '#' вначале строки помечает её как комментарий.
+Примеры:
+<p>
+</p><pre>
+          #выбрать устройство доступа
+          device  =  /dev/ttyS0
+          #всегда отправлять SMS с использованием UCS-2
+          unicode
+          
+</pre>
+
+<p>
+</p></dd><dt>~/.scmxx/pin</dt><dd>
+Данный файл используется как алтернатива опции командной
+строки --pin. Файл НЕ должен быть доступен группе или всем на
+чтение/запись! Также он ДОЛЖЕН быть обычным файлом, не
+символической ссылкой. SCMxx отвергает файлы в подобных
+случаях. Если значение PUK-кода запрашивается телефоном,
+соответствующий PIN-код должен быть также определён. Только
+такие элементы форматирования являются необходимыми: '{',
+'=', ';' и '}'. Пробелы и символы новой строки игнорируются.
+Файл имеет следующий формат:
+<p>
+</p><pre>
+          sim 262031234567890 {
+            pin = 1234
+            puk = 12345678;
+            pin2 = 4321;
+            puk2 = 87654321;
+          }
+          device 350123456789012 {
+            type SIM {
+              pin = 0000;
+              puk = 0000;
+            }
+          }
+          
+</pre>
+
+<p>
+Секции "sim" используют IMSI в качестве идентификатора, секции
+же "device" уже используют IMEI как идентификатор (см. вывод
+опции --info). Следовательно IMSI необходим, так как без него
+НЕЛЬЗЯ включить телефон!
+Подсекция "type" в секции device определяет следующие идентификаторы:
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt>SIM</dt><dd>
+код устройства (защита от кражи)
+</dd><dt>FSIM</dt><dd>
+самая первая установленная SIM-карта
+</dd><dt>NET</dt><dd>
+привязка к сети
+</dd><dt>NETSUB</dt><dd>
+дополнительная привязка к сети
+</dd><dt>SP</dt><dd>
+привязка к оператору связи
+</dd><dt>CORP</dt><dd>
+привязка к корпорации
+</dd></dl>
+</dd></dl>
+
+<p>
+</p></dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h2>АВТОР</h2>
+
+Hendrik Sattler <a href="mailto:post@hendrik-sattler.de">post@hendrik-sattler.de</a>. Перевод выполнен
+Andy Shevchenko <a href="mailto:andy@smile.org.ua">andy@smile.org.ua</a> и Irina Yeresko
+<a href="mailto:mecec@yandex.ru">mecec@yandex.ru</a>.
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAH">ПРОБЛЕМЫ СОЕДИНЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAI">БЕЗОПАСНОСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAK">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAL">АВТОР</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="scmxx" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,1093 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN sudoers (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, sudoers"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="sudoers" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">sudoers (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=sudoers&amp;category=5&amp;russian=0"><u>sudoers</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=sudoers&amp;category=5&amp;russian=2"><u>sudoers</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+<p>
+
+sudoers - список пользователей, с указанием того, что они могут выполнять
+<a name="lbAC">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<p>
+
+Файл <i>sudoers</i> содержит два типа данных:
+псевдонимы (в основном переменные) и определения пользователей 
+(где определяется кто что может выполнять). Грамматика <i>sudoers</i>
+будет описана ниже в Расширенной Форме Бэкуса-Наура (EBNF).
+Не отчаивайтесь, если вы не знаете,что такое EBNF; это довольно просто,
+и к определениям, приводимым далее, будут даваться пояснения.
+<a name="lbAD">&nbsp;</a>
+</p><h3>Краткое руководство по -1EBNF</h3>
+
+<p>
+
+-1EBNF это краткий и точный способ описания грамматики языка.
+Каждое определение -1EBNF происходит из <i>последовательности правил</i>.  Т.е.
+</p><p>
+
+символ ::= определение | альтернатива1 | альтернатива2 ...
+</p><p>
+
+Каждая <i>последовательность правил</i> ссылается на другие и, таким образом, образует грамматику языка. -1EBNF также содержит следующие операторы, 
+которые наверняка покажутся знакомыми многим читателям. Однако, не спутайте их со знаками подстановки, которые имеют другое значение.
+</p><dl compact="">
+<dt>"<tt>?</tt>"</dt><dd>
+Означает, что предшествующий символ (или группа символов) является необязательным.
+То есть, может встречаться или вовсе отсутствовать.
+</dd><dt>"<tt>*</tt>"</dt><dd>
+Означает, что предшествующий символ (или группа символов) может встречаться ноль или более раз.
+</dd><dt>"<tt>+</tt>"</dt><dd>
+Означает, что предшествующий символ (или группа символов) может встречаться один или более раз.
+</dd></dl>
+<p>
+
+Круглые скобки могут использоваться для объединения символов в группы. Для ясности, мы будем использовать одинарные ('') кавычки для выделения выражений, которые следует
+читать и понимать буквально (в противоположность символическим именам).
+<a name="lbAE">&nbsp;</a>
+</p><h3>Псевдонимы</h3>
+
+<p>
+
+Имеется четыре типа псевдонимов: <tt>User_Alias</tt>, <tt>Runas_Alias</tt>,
+<tt>Host_Alias</tt> и <tt>Cmnd_Alias</tt>.
+</p><p>
+
+
+Псевдоним ::= 'User_Alias'  User_Alias (':' User_Alias)* |
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Runas_Alias'&nbsp;Runas_Alias&nbsp;(':'&nbsp;Runas_Alias)*&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Host_Alias'&nbsp;&nbsp;Host_Alias&nbsp;(':'&nbsp;Host_Alias)*&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Cmnd_Alias'&nbsp;&nbsp;Cmnd_Alias&nbsp;(':'&nbsp;Cmnd_Alias)*
+
+</p><p>
+
+
+User_Alias ::= NAME '=' User_List
+
+</p><p>
+
+
+Runas_Alias ::= NAME '=' Runas_User_List
+
+</p><p>
+
+
+Host_Alias ::= NAME '=' Host_List
+
+</p><p>
+
+
+Cmnd_Alias ::= NAME '=' Cmnd_List
+
+</p><p>
+
+
+NAME ::= [A-Z]([A-Z][0-9]_)*
+
+</p><p>
+
+Каждое определение <i>псевдонима</i> имеет форму
+</p><p>
+
+
+<br>&nbsp;Тип_Псевдонима&nbsp;НАЗВАНИЕ&nbsp;=&nbsp;элемент1,&nbsp;элемент2,&nbsp;...
+
+</p><p>
+
+где <i>Тип_Псевдонима</i> является одним из <tt>User_Alias</tt>, <tt>Runas_Alias</tt>, <tt>Host_Alias</tt>,
+или <tt>Cmnd_Alias</tt>. <tt>НАЗВАНИЕ</tt> это набор символов, набранных в верхнем регистре, цифр,
+и символов подчеркивания ('_'). <tt>НАЗВАНИЕ</tt> <b>должно</b> начинаться с символа, набранного в верхнем регистре. Это позволяет размещать несколько определений псевдонимов одного типа в одной строке, разделенных знаком двоеточия (':').  Т.е.
+</p><p>
+
+
+<br>&nbsp;Тип_Псевдонима&nbsp;НАЗВАНИЕ&nbsp;=&nbsp;элемент1,&nbsp;элемент2,&nbsp;элемент3&nbsp;:&nbsp;НАЗВАНИЕ&nbsp;=&nbsp;элемент4,&nbsp;элемент5
+
+</p><p>
+
+За определением следует допустимое значение <i>псевдонима</i>.
+</p><p>
+
+
+<br>&nbsp;User_List&nbsp;::=&nbsp;User&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User&nbsp;','&nbsp;User_List
+
+</p><p>
+
+
+<br>&nbsp;User&nbsp;::=&nbsp;'!'*&nbsp;username&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;'%'group&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;'+'netgroup&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;User_Alias
+
+</p><p>
+
+<tt>User_List</tt> состоит из одного, или более, имени пользователя (username), идентификатора пользователя (uid), начинающегося со знака #', cистемной группы (group), начинающейся со знака %'),
+сетевой группы (netgroup), начинающейся со знака +', и других псевдонимов (User_Alias). Каждый элемент списка может начинаться с одного, или более, оператора !. Отрицающее значение оператора ! отрицает значение элемента; положительное значение только отменяет значение другого.
+</p><p>
+
+
+<br>&nbsp;Runas_List&nbsp;::=&nbsp;Runas_User&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Runas_User&nbsp;','&nbsp;Runas_List
+
+</p><p>
+
+
+<br>&nbsp;Runas_User&nbsp;::=&nbsp;'!'*&nbsp;username&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;'#'uid&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;'%'group&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;+netgroup&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;Runas_Alias
+
+</p><p>
+
+<tt>Runas_List</tt> аналогичен <tt>User_List</tt>, за исключением того, что хоть в нём и присутствуют идентификаторы пользователей uid (начинающиеся со знака '#'), однако
+вместо <tt>User_Alias</tt>
+он содержит <tt>Runas_Alias</tt>
+</p><p>
+
+
+<br>&nbsp;Host_List&nbsp;::=&nbsp;Host&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Host&nbsp;','&nbsp;Host_List
+
+</p><p>
+
+
+<br>&nbsp;Host&nbsp;::=&nbsp;'!'*&nbsp;hostname&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;ip_addr&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;network(/netmask)?&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;'+'netgroup&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;Host_Alias
+
+</p><p>
+
+<tt>Host_List</tt> состоит из одного, или более, имен машин (hostname), -1IP адресов (ip_addr),
+номеров сетей (network), сетевых групп (netmask, начинающихся со знака +') и других псевдонимов (Host_Alias).
+Опять-же, значение может отрицаться оператором !.
+Если вы не укажете маску сети с номером сети, то будет использоваться подходящая сетевая маска внешнего сетевого  <i>интерфейса</i> машины.
+Сетевая маска может быть указана либо четырьмя группами чисел, разделенных между собой точками, (т.е. 255.255.255.0) или указанием -1CIDR (числом бит, т.е. 24).  Имя машины может содержать символы подстановки в стиле интерпретатора команд (см. ниже секцию `Символы подстановки), но если команда <tt>hostname</tt> на вашей машине возвращает полное имя машины, то для использования маски вы должны будете использовать опцию <i>fqdn</i>.
+</p><p>
+
+
+<br>&nbsp;Cmnd_List&nbsp;::=&nbsp;Cmnd&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cmnd&nbsp;','&nbsp;Cmnd_List
+
+</p><p>
+
+
+<br>&nbsp;commandname&nbsp;::=&nbsp;filename&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;filename&nbsp;args&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;filename&nbsp;'""'
+
+</p><p>
+
+
+<br>&nbsp;Cmnd&nbsp;::=&nbsp;'!'*&nbsp;commandname&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;directory&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;Cmnd_Alias
+
+</p><p>
+
+<tt>Cmnd_List</tt> это список имен комманд (commandnames), каталогов (directory), и других псевдонимов (Cmnd_Alias). Имя команды это полное имя файла, которое может содержать символы подстановки используемые  интерпретатором команд (см. секцию  `Символы подстановки). Простое имя файла позволяет пользователю выполнять команду с любыми аргументами, какие он пожелает. 
+Также вы можете использовать аргументы командной строки (включая символы подстановки).
+Дополнительно вы можете использовать <tt>""</tt> для указания, что эта команда может быть выполнена <b>без</b> параметров командной строки.  Каталог, это полное имя имя пути, заканчивающееся с /. Если вы укажите каталог в <tt>Cmnd_List</tt>, то пользователь сможет выполнить любой файл, в пределах того каталога (но не в его подкаталогах).
+</p><p>
+
+Если <tt>Cmnd</tt> имеет ассоциированные аргументы командной строки, то аргументы, указанные пользователем в <tt>Cmnd</tt>, должны точно соответствовать аргументам в командной строке (или соответствовать символам подстановки, если таковые имеются). Обратите внимание, что следующие символы должны начинаться с \, если они используются в аргументах команд: ,, :, =, \.
+<a name="lbAF">&nbsp;</a>
+</p><h3>Значения по умолчанию</h3>
+
+<p>
+
+Некоторые значения параметров конфигурации по умолчанию могут быть изменены во время выполнения через одну или несколько записей <tt>Default_Entry</tt>. Они могут касаться всех пользователей на любом компьютере, всех пользователей на определенном компьютере, или только определенного пользователя. Когда имеется множество значений, то они применяются поочередно. Если имеются конфликтующие значения, то эффект будет иметь последнее из них в строке.
+</p><p>
+
+
+<br>&nbsp;Default_Type&nbsp;::=&nbsp;'Defaults'&nbsp;||
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Defaults'&nbsp;':'&nbsp;User&nbsp;||
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Defaults'&nbsp;'@'&nbsp;Host
+
+</p><p>
+
+
+<br>&nbsp;Default_Entry&nbsp;::=&nbsp;Default_Type&nbsp;Parameter_List
+
+</p><p>
+
+
+<br>&nbsp;Parameter&nbsp;::=&nbsp;Parameter&nbsp;'='&nbsp;Value&nbsp;||
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>       Parameter '+=' Value ||<br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>       Parameter '-=' Value ||<br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'!'*&nbsp;Parameter&nbsp;||
+
+</p><p>
+
+Параметры могут быть <b>флагами</b>, <b>целочисленными</b> значениями, <b>выражениями</b> или списками. Флаги являются булевыми и могут быть выключены при помощи оператора !.
+Некоторые параметры, целочисленные, выражения и списки, могут быть так же использованы в булевом контексте для его отключения. Значения могут быть заключены в двойные кавычки (<tt>"</tt>), если они содержат повторяющиеся слова. Специальные символы могут начинаться с символа "обратный слэш" (<tt>\</tt>).
+</p><p>
+
+<b>Флаги</b>:
+</p><dl compact="">
+<dt>"long_otp_prompt" </dt><dd>
+При идентификации по схеме One Time Password (<b>S/Key</b> или <b>-1OPIE</b>), используется двойная командная строка, чтобы облегчить возможность
+"вырезать и вставлять" вызов в локальное окно. Это не так хорошо выглядит, как значение по умолчанию, но некоторые люди найдут это более удобным. По умолчанию этот флаг выключен.
+</dd><dt>"ignore_dot" </dt><dd>
+Если этот флаг установлен, то <b>sudo</b> будет игнорировать . или  (текущий каталог) в <tt>$PATH</tt>;
+сам <tt>$PATH</tt> при этом не меняется. Этот флаг <i>включен</i> по умолчанию.
+</dd><dt>"mail_always" </dt><dd>
+Отправить сообщение пользователю <i>mailto</i> каждый раз, когда пользователи выполняют <b>sudo</b>. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"mail_badpass" </dt><dd>
+Отправить сообщение пользователю <i>mailto</i>, если пользователь выполняющий <b>sudo</b> ввёл неверный пароль. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"mail_no_user" </dt><dd>
+Если этот флаг установлен, сообщение будет отправлено пользователю <i>mailto</i>, если пользователь, выполняющий <b>sudo</b>, отсутствует в файле <i>sudoers</i>. По умолчанию этот флаг <i>включен</i>.
+</dd><dt>"mail_no_host" </dt><dd>
+Если этот флаг установлен, пользователю <i>mailto</i> будет отправлено сообщение, если вызывающий пользователь присутствует в файле <i>sudoers</i>, но не имеет прав на выполнение команд на данной машине. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"mail_no_perms" </dt><dd>
+Если этот флаг установлен, пользователю <i>mailto</i> будет отправлено сообщение, если вызывающий пользователь имеет право выполнять <b>sudo</b>, но команда, которую он пытается выполнить, отсутствует в записи этого пользователя в файле <i>sudoers</i>. По умолчанию этот флаг выключен.
+</dd><dt>"tty_tickets" </dt><dd>
+Если этот флаг установлен, <b>sudo</b> будет использовать ticket dir (каталог вида /var/run/sudo/имя_ticketа, где имя_ticketa совпадает с именем пользователя или терминала, с которого пользователь вошел в систему) для по-терминальной аутентификации пользователей. Это механизм, с помощью которого <b>sudo</b> отслеживает, что данный пользователь уже вызывал <b>sudo</b> (используется, в частности, для lecture) и момент времени, когда была произведена последняя успешная аутентификация данного пользователя (или терминала, если используется tty_tickets). По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"lecture" </dt><dd>
+Если этот флаг установлен, то при первом использовании <b>sudo</b> пользователь получит короткую лекцию. По умолчанию этот флаг <i>включен</i>. 
+</dd><dt>"authenticate" </dt><dd>
+Если этот флаг установлен, то пользователи должны аутентифицировать себя при помощи пароля (или другим способом аутентификации) прежде, чем они смогут выполнять команды. Эта установка может быть изменена при помощи тэгов <tt>PASSWD</tt> и <tt>NOPASSWD</tt>. По умолчанию этот флаг <i>включен</i>.
+</dd><dt>"root_sudo" </dt><dd>
+Если этот флаг установлен, то супер-пользователю (root) также разрешено выполнять <b>sudo</b>. Отключение этого позволит предотвратить выполнение пользователями цепочек команд <b>sudo</b>, подобных <tt>"sudo sudo /bin/sh"</tt>, в целях получения ими командной оболочки с правами супер-пользователя (root). Этот флаг <i>включен</i> по умолчанию.
+</dd><dt>"log_host" </dt><dd>
+Если этот флаг установлен, то имя машины будет записано в (не системном) файле журнала <b>sudo</b>. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"log_year" </dt><dd>
+Если установлен этот флаг, то год будет записан в (не системном) файле журнала <b>sudo</b> в четырехразрядном формате. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"shell_noargs" </dt><dd>
+Если этот флаг установлен и <b>sudo</b> вызвано без параметров, то это равносильно вызову с флагом <tt>-s</tt>. То-есть, это запускает оболочку от имени супер-пользователя (root) (оболочка определена переменной окружения <tt>SHELL</tt>, если она указана, если нет, то происходит обращение к оболочке, указанной в учетной записи пользователя вызывающего команду файла /etc/passwd). По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"set_home" </dt><dd>
+Если этот флаг установлен и <b>sudo</b> вызвано с флагом <tt>-s</tt>, переменная окружения <tt>HOME</tt> будет установлена в домашний каталог целевого пользователя (которым является супер-пользователь (root), если не указан параметр <tt>-u</tt>). Это заставит подразумевать вместо флага <tt>-s</tt> флаг <tt>-H</tt>. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"always_set_home" </dt><dd>
+Если этот флаг установлен, то <b>sudo</b> установит переменную окружения <tt>HOME</tt> к домашнему каталогу целевого пользователя (которым является супер-пользователь (root), если не указан параметр <tt>-u</tt>). Это подразумевает, что флаг <tt>-H</tt> используется постоянно. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"path_info" </dt><dd>
+Обычно, <b>sudo</b> сообщает пользователю, что команда не найдена в его переменной окружения <tt>$PATH</tt>. Некоторые сайты могут отключить эту функцию, так как это может быть использовано для сбора информации о месторасположении исполняемых файлов к которым обычный пользователь не имеет доступа. Неудобство состоит в том, что если программа просто не найдена в пользовательском <tt>$PATH</tt>, то <b>sudo</b>
+сообщит, что  пользователь не имеет права на ее выполнение, что может вызвать путаницу. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"preserve_groups"</dt><dd>
+По умолчанию <b>sudo</b> инициализирует групповой вектор к списку групп, которому принадлежит целевой пользователь. Когда <i>preserve_groups</i> установлен, то существующий вектор группы пользователя остаётся неизменным. А реальный и эффективный ID группы, наоборот, приводятся в соответствие с целевым пользователем. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"fqdn" </dt><dd>
+Установите этот флаг если вы хотите поместить полные имена машин в файл <i>sudoers</i>. То-есть, вместо myhost вы бы использовали myhost.mydomain.edu.
+Вы все-равно можете, при желании, использовать краткую форму (и даже смешивать две).
+Остерегайтесь! Для включения <i>fqdn</i> <b>sudo</b> требуется сделать поисковую таблицу -1DNS, из-за чего <b>sudo</b> может перестать реагировать, если -1DNS прекратит свою работу (например, если машина не подключена к сети). Так же обратите внимание, что вы должны использовать только официальное имя машины под которым она известна -1DNS.  То есть, Вы не можете использовать
+псевдоним машины (запись <tt>CNAME</tt>) из-за проблем производительности и факта, что не возможно получить все псевдонимы от -1DNS.
+Если имя вашей машины полное (как сообщает вывод команды <tt>hostname</tt>), то у вас нет необходимости задействовать <i>fqfn</i>. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"insults" </dt><dd>
+Если этот флаг установлен, то <b>sudo</b> сообщит пользователям, когда они вводят неверный пароль. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"requiretty" </dt><dd>
+Если этот флаг установлен, <b>sudo</b> будет выполнено только в том случае, если пользователь вошел в систему с реального терминала. Это предотвращает вещи, подобные <tt>"rsh somehost sudo ls"</tt>, так как <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rsh&amp;category=1">rsh</a></i>(1) не назначает терминал. Так как нет возможности отключить отклик, если терминал отсутствует, некоторые сайты могут устанавливать этот флаг для предотвращения ввода пользователем пароля открытым текстом. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"env_editor" </dt><dd>
+Если этот флаг установлен, <b>visudo</b> будет использовать значение переменной -1EDITOR или -1VISUAL и лишь после этого возвращаться к списку редакторов по умолчанию. Учтите, что это может создать прорехи в защите, так как позволит пользователю выполнять произвольные команды от имени супер-пользователя, не подлежащие какому-либо контролю. Более безопасным является помещение списка редакторов, разделённых точкой с запятой, в переменную редактора. Это позволит <b>visudo</b> использовать -1EDITOR и -1VISUAL только если они соответствуют значению, указанному в редакторе. Этот флаг <i>включен</i> по умолчанию.
+</dd><dt>"rootpw" </dt><dd>
+Если этот флаг установлен, <b>sudo</b> будет запрашивать пароль супер-пользователя (root), вместо пароля пользователя инициировавшего вызов команды. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"runaspw" </dt><dd>
+Если этот флаг установлен, <b>sudo</b> будет запрашивать пароль пользователя, определенного опцией <i>runas_default</i> (по умолчанию супер-пользователь (root)) вместо пароля пользователя инициировавшего вызов команды. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"targetpw" </dt><dd>
+Если этот флаг установлен, <b>sudo</b> будет запрашивать пароль пользователя, указанного при помощи флага <tt>-u</tt> (по умолчанию супер-пользователь (root))  вместо пароля пользователя инициировавшего вызов команды. По умолчанию этот флаг <i>выключен</i>.
+</dd><dt>"set_logname" </dt><dd>
+Обычно, <b>sudo</b> устанавливает переменные окружения <tt>LOGNAME</tt> и <tt>USER</tt> к имени целевого пользователя (обычно супер-пользователя (root), если не задан флаг <tt>-u</tt>).
+Однако, так как некоторые программы (включая систему управления проверкой -1RCS)
+используют <tt>LOGNAME</tt>, чтобы определить подлинность пользователя, то может возникнуть желание изменить это поведение. Это может быть сделано посредством отрицания опции set_logname.
+</dd><dt>"stay_setuid"</dt><dd>
+Обычно, когда <b>sudo</b> выполняет команду, реальный и эффективный UID устанавливаются в значение целевого пользователя (по умолчанию супер-пользователь (root)). Этот параметр изменит его поведение таким образом, что реальный UID останется таким же, как и у пользователя инициировавшего его выполнение. Другими словами это заставляет <b>sudo</b> действовать как обработчика setuid. Это полезно для отключения потенциально опасной функциональности при выполнении setuid-программ. Обратите внимание, что это означает то, что <b>sudo</b> выполняется с реальным uid пользователя инициировавшего его выполнение, что может позволить этому пользователю уничтожить <b>sudo</b> раньше, чем тот сможет запротоколировать отказ, в зависимости от того, как ваша система определяет взаимодействие между сигналами и setuid-процессами. 
+</dd><dt>"env_reset"</dt><dd>
+Если установлено, то <b>sudo</b> обнулит значения переменных окружения оставив только следующие: HOME, LOGNAME, PATH, SHELL, TERM, и USER (в дополнение к переменным SUDO_*). Из них будет полностью скопирован в неизменном виде только TERM. Прочие переменные будут установлены в значения по умолчанию (возможно изменённые в соответствии со значениями параметра <i>set_logname</i>). Если <b>sudo</b> было собрано с параметром SECURE_PATH, то это значение быдет использовано для переменной окружения PATH. Другие переменные могут быть сохранены использованием параметра <i>env_keep</i>.
+</dd><dt>"use_loginclass" </dt><dd>
+Если этот флаг установлен, <b>sudo</b> применит установки по умолчанию, определенные для входа в систему класса целевого пользователя. Это доступно только если <b>sudo</b> сконфигурировано с опцией --with-logincap. По умолчанию этот флаг <i>выключен</i>.
+</dd></dl>
+<p>
+
+<b>Целые числа</b>:
+</p><dl compact="">
+<dt>"passwd_tries"</dt><dd>
+Количество пользовательских попыток ввести пароль прежде, чем <b>sudo</b> регистрирует неудачу и прекращает работу.  По умолчанию 3.
+</dd></dl>
+<p>
+
+<b>Целые числа, которые могут быль использованы в булевом контексте</b>:
+</p><dl compact="">
+<dt>"loglinelen" </dt><dd>
+Количество знаков в строке в файле журнала. Это значение используется для указания через какое количество знаков лучше производить верстку строк в файлах журнала. Это не окажет влияния на системном журнале, только на файле журнала <b>sudo</b>. По умолчанию это значение равно 80 (используйте 0 или отрицание для отключения верстки строк).
+</dd><dt>"timestamp_timeout" </dt><dd>
+Количество минут, которое должно пройти перед тем, как <b>sudo</b> запросит пароль снова. По умолчанию это 5. Установка этого значения в 0 заставит программу запрашивать пароль всегда. Установка значения меньшего, чем 0 будет означать, что временные метки пользователя бессрочны. Это может быть использовано для того, чтобы позволить пользователям самим управлять созданием и удалением своих временных меток при помощи sudo -v и sudo -k соответственно.
+</dd><dt>"passwd_timeout"</dt><dd>
+Количество минут, в течение которых <b>sudo</b> будет ожидать повторного ввода пароля прежде, чем истечёт срок действия прежнего пароля. Значение по умолчанию - 5. Для отключения ожидания пароля установите это значение равным 0.
+</dd><dt>"umask" </dt><dd>
+Umask используемое при выполнении команды. Установите это значение в 0777 для сохранения umask пользователя. По умолчанию это 0022.
+</dd></dl>
+<p>
+
+<b>Строчные значения</b>:
+</p><dl compact="">
+<dt>"mailsub" </dt><dd>
+Тема сообщения, отправляемого пользователю <i>mailto</i>. Использование <tt>%h</tt>
+позволит указать имя машины.
+По умолчанию это *** -1SECURITY information for <tt>%h</tt> ***.
+</dd><dt>"badpass_message" </dt><dd>
+Сообщение, которое будет отображено, если пользователь введет неверный пароль.
+По умолчанию это Sorry, try again., если включено использование <i>insults</i>.
+</dd><dt>"timestampdir"</dt><dd>
+Каталог в котором <b>sudo</b> хранит свои временные файлы-метки.
+По умолчанию это <i>/var/run/sudo</i>.
+</dd><dt>"passprompt" </dt><dd>
+Вид приглашения для ввода пароля по умолчанию; может быть изменен при помощи параметра <tt>-p</tt> или переменной окружения <tt>SUDO_PROMPT</tt>. Поддерживаются два варианта управляющих последовательностей: %u отображает имя входящего в систему пользователя и %h выводит локальное имя машины. Значение по умолчанию - Password:.
+</dd><dt>"runas_default" </dt><dd>
+Пользователь по умолчанию, от чьего имени выполняются команды, если в командной строке не указан флаг <tt>-u</tt>. По умолчанию это root (супер-пользователь).
+</dd><dt>"syslog_goodpri" </dt><dd>
+Приоритет Syslog в случае успешной регистрации пользователя в системе. По умолчанию notice.
+</dd><dt>"syslog_badpri"</dt><dd>
+Приоритет Syslog в случае, если регистрация пользователя окончилась неудачей. По умолчанию alert.
+</dd><dt>"editor"</dt><dd>
+Разделённый через двоеточие (:) список программ для редактирования, допущенных к использованию с <b>visudo</b>. <b>visudo</b> выберет, по возможности, редактор соответствующий пользовательской переменной окружения USER, или первый из списка, присутствующий в системе и доступный для выполнения. По умолчанию это путь к редактору vi в вашей системе.
+</dd></dl>
+<p>
+
+<b>Выражения, которые могут быть использованы в булевом контексте</b>:
+</p><dl compact="">
+<dt>"logfile"</dt><dd>
+Путь к файлу журнала <b>sudo</b> (не syslog). Указание пути включает регистрацию событий в файл журнала; отрицание выключает это.
+</dd><dt>"syslog"</dt><dd>
+Средство для регистрации событий в системном журнале Syslog (укажите отрицание для отключения регистрации в syslog). По умолчанию установлено  authpriv.
+</dd><dt>"mailerpath"</dt><dd>
+Путь к программе доставки почты для отправки предупредительных сообщений. По умолчанию это путь к sendmail определенный в момент конфигурации.
+</dd><dt>"mailerflags"</dt><dd>
+Флаги используемые при вызове почтовой программы. По умолчанию <tt>-t</tt>.
+</dd><dt>"mailto"</dt><dd>
+Адрес, по которому будут отправлены предупреждения и сообщения об ошибках. Адрес должен быть заключен в двойные кавычки (") во избежание интерпретации sudo знака @. По умолчанию root (супер-пользователь).
+</dd><dt>"exempt_group"</dt><dd>
+Пользователи в этой группе лишены необходимости в указании пароля и ограничений переменной -1PATH.
+По умолчанию это не установлено.
+</dd><dt>"verifypw"</dt><dd>
+Включением этого параметра регулируются случаи, в которых выполнение <b>sudo</b> с <b>-v</b> требует подтверждения паролем. Эта функция может иметь следующие допустимые значения:
+</dd></dl>
+<p>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;all&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Все&nbsp;пользовательские&nbsp;записи&nbsp;в&nbsp;<i>sudoers</i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;для&nbsp;данного&nbsp;компьютера&nbsp;должны&nbsp;иметь&nbsp;установленный
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;флаг&nbsp;NOPASSWD&nbsp;во&nbsp;избежание&nbsp;ввода&nbsp;пароля.
+
+</p><p>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;any&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Хотя&nbsp;бы&nbsp;одна&nbsp;пользовательская&nbsp;запись&nbsp;для&nbsp;данного
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;компьютера&nbsp;в&nbsp;<i>sudoers</i>&nbsp;должна&nbsp;иметь
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;установленный&nbsp;флаг&nbsp;NOPASSWD&nbsp;во&nbsp;избежание
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ввода&nbsp;пароля.
+
+</p><p>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;never&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Для&nbsp;использования&nbsp;флага&nbsp;<b>-v</b>&nbsp;пользователь&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;не&nbsp;должен&nbsp;использовать&nbsp;пароль.
+
+</p><p>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;always&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Пользователь&nbsp;должен&nbsp;всегда&nbsp;вводить&nbsp;пароль&nbsp;для
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;использования&nbsp;флага&nbsp;<b>-v</b>.
+
+</p><p>
+
+Значение по умолчанию `all.
+</p><dl compact="">
+<dt>"listpw"</dt><dd>
+Этим параметром регулируются случаи, когда требуется указание пароля при выполнении пользователем <b>sudo</b> с <b>-l</b>. Эта функция может иметь следующие допустимые значения:
+</dd></dl>
+<p>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;all&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Все&nbsp;пользовательские&nbsp;записи&nbsp;в&nbsp;<i>sudoers</i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;для&nbsp;данного&nbsp;компьютера,&nbsp;должны&nbsp;иметь&nbsp;установленный
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;флаг&nbsp;NOPASSWD&nbsp;во&nbsp;избежание&nbsp;ввода&nbsp;пароля.
+
+</p><p>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;any&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Хотя&nbsp;бы&nbsp;одна&nbsp;пользовательская&nbsp;запись&nbsp;для&nbsp;данного
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;компьютера&nbsp;в&nbsp;<i>sudoers</i>&nbsp;должна&nbsp;иметь
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;установленный&nbsp;флаг&nbsp;NOPASSWD,&nbsp;во&nbsp;избежание
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ввода&nbsp;пароля.
+
+</p><p>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;never&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Для&nbsp;использования&nbsp;флага&nbsp;<b>-l</b>&nbsp;пользователь&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;не&nbsp;должен&nbsp;использовать&nbsp;пароль.
+
+</p><p>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;always&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Пользователь&nbsp;должен&nbsp;всегда&nbsp;вводить&nbsp;пароль&nbsp;для
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;использования&nbsp;флага&nbsp;<b>-l</b>.
+
+</p><p>
+
+По умолчанию принято значение `any.
+</p><p>
+
+<a name="lbAG">&nbsp;</a>
+</p><h3>Списки, которые могут быть использованы в булевом контексте:</h3>
+
+<dl compact="">
+<dt>env_check</dt><dd>
+Если значения переменных окружения содержат символы % или /, то эти переменные будут удалены из пользовательских переменных. Это может быть использовано для защиты от уязвимости плохо написанных программ в printf-style формате. Аргументом может быть заключение в двойные кавычки, разделенный пробелами список или одинарное значение без двойных кавычек. Список может быть замещен, добавлен к, удален из, или отключен при помощи операторов =, +=, -= и ! соответственно. Список проверяемых переменных окружения по умолчанию может быть получен при выполнении <b>sudo</b> с параметром <i>-V</i> от имени root.
+</dd><dt>env_delete</dt><dd>
+Переменные окружения, которые будут удалены из пользовательских переменных. Аргументом может быть заключение в двойные кавычки, разделенный пробелами список или одинарное значение без двойных кавычек. Список может быть замещен, добавлен к, удален из, или отключен при помощи операторов =, +=, -= и ! соответственно. Список удаляемых переменных окружения по умолчанию может быть получен при выполнении <b>sudo</b> с параметром <i>-V</i> от имени root.
+</dd><dt>env_keep</dt><dd>
+Переменные окружения, которые будут сохранены в пользовательских переменных, даже если используется параметр <i>env_reset</i>. Это позволяет осуществить филигранный контроль над переменными окружения, получаемыми процессами порождёнными <b>sudo</b>. Аргументом может быть заключение в двойные кавычки, разделенный пробелами список или одинарное значение без двойных кавычек. Список может быть замещен, добавлен к, удален из, или отключен при помощи операторов =, +=, -= и ! соответственно. По умолчанию этот список пуст.
+</dd><dt>Если включена регистрация событий через <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></i>(3), <b>sudo</b> акцептирует следующие значения для лучшего взаимодействия с syslog (значение Параметра <b>syslog</b>): <b>authpriv</b> (если ваша ОС поддерживает это), <b>auth</b>, <b>daemon</b>, <b>user</b>, <b>local0</b>, <b>local1</b>, <b>local2</b>, <b>local3</b>, <b>local4</b>, <b>local5</b>, <b>local6</b>, и <b>local7</b>.  Поддерживаются следующие приоритеты syslog: <b>alert</b>, <b>crit</b>, <b>debug</b>, <b>emerg</b>, <b>err</b>, <b>info</b>, <b>notice</b>, и <b>warning</b>.</dt><dd>
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h3>Спецификация Пользователя</h3>
+
+<p>
+
+
+<br>&nbsp;User_Spec&nbsp;::=&nbsp;User_list&nbsp;Host_List&nbsp;'='&nbsp;User_List&nbsp;Cmnd_Spec_List&nbsp;\
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(':'&nbsp;User_Spec)*
+
+</p><p>
+
+
+<br>&nbsp;Cmnd_Spec_List&nbsp;::=&nbsp;Cmnd_Spec&nbsp;|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cmnd_Spec&nbsp;','&nbsp;Cmnd_Spec_List
+
+</p><p>
+
+
+<br>&nbsp;Cmnd_Spec&nbsp;::=&nbsp;Runas_Spec?&nbsp;('NOPASSWD:'&nbsp;|&nbsp;'PASSWD:')?&nbsp;Cmnd
+
+</p><p>
+
+
+<br>&nbsp;Runas_Spec&nbsp;::=&nbsp;'('&nbsp;Runas_List&nbsp;')'
+
+</p><p>
+
+<b>Спецификация пользователя</b> определяет какие команды может выполнять пользователь (и какой пользователь) на определенной машине. По умолчанию, команды выполняются от имени <b>супер-пользователя</b> (root), но это может быть изменено на уровне по-командного доступа.
+</p><p>
+
+Давайте разберем это детальнее:
+<a name="lbAI">&nbsp;</a>
+</p><h3>Runas_Spec</h3>
+
+<p>
+
+<tt>Runas_Spec</tt> это просто <tt>Runas_List</tt> (как определено выше)
+заключенный в круглые скобки. Если вы не определяете 
+<tt>Runas_Spec</tt> в спецификации пользователя, то по умолчанию будет использован <tt>Runas_Spec</tt> <b>супер-пользователя</b> (root).  <tt>Runas_Spec</tt> устанавливает значение по умолчанию для команд следующих после него. Вот что это означает в записи:
+</p><p>
+
+
+<br>&nbsp;dgb&nbsp;&nbsp;&nbsp;&nbsp;boulder&nbsp;=&nbsp;(operator)&nbsp;/bin/ls,&nbsp;/bin/kill,&nbsp;/usr/bin/who
+
+</p><p>
+
+Пользователь <b>dgb</b> может выполнять <i>/bin/ls</i>, <i>/bin/kill</i>, и
+<i>/usr/bin/lprm</i> -- но только как <b>operator</b>.  Т.е.
+</p><p>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;sudo&nbsp;-u&nbsp;operator&nbsp;/bin/ls.
+
+</p><p>
+
+Также возможно отменить <tt>Runas_Spec</tt> далее, в той же строке. Если мы изменим запись вот так: 
+</p><p>
+
+
+<br>&nbsp;dgb&nbsp;&nbsp;&nbsp;&nbsp;boulder&nbsp;=&nbsp;(operator)&nbsp;/bin/ls,&nbsp;(root)&nbsp;/bin/kill,&nbsp;/usr/bin/lprm
+
+</p><p>
+
+Пользователю <b>dgb</b> теперь разрешено выполнять <i>/bin/ls</i> как <b>operator</b>,
+но  <i>/bin/kill</i> и <i>/usr/bin/lprm</i> как <b>root</b>.
+<a name="lbAJ">&nbsp;</a>
+</p><h3>-1NOPASSWD and -1PASSWD</h3>
+
+<p>
+
+По умолчанию <b>sudo</b> требует чтобы пользователь аутентифицировал себя заранее, до выполнения команды. Это поведение может быть изменено через тэг
+<tt>NOPASSWD</tt>. Как и <tt>Runas_Spec</tt>, тэг <tt>NOPASSWD</tt> устанавливает значение по умолчанию для команд, следующих за <tt>Cmnd_Spec_List</tt>.
+Тэг <tt>PASSWD</tt> может использоваться в целях изменения значений наоборот.
+Например:
+</p><p>
+
+
+<br>&nbsp;ray&nbsp;&nbsp;&nbsp;&nbsp;rushmore&nbsp;=&nbsp;NOPASSWD:&nbsp;/bin/kill,&nbsp;/bin/ls,&nbsp;/usr/bin/lprm
+
+</p><p>
+
+позволило бы пользователю <b>ray</b> выполнять <i>/bin/kill</i>, <i>/bin/ls</i>, и <i>/usr/bin/lprm</i> как <b>супер-пользователю</b> (root) на машине rushmore без аутентификации. Если мы хотим разрешить <b>ray</b> выполнять без пароля только <i>/bin/kill</i>, то запись должна быть:
+</p><p>
+
+
+<br>&nbsp;ray&nbsp;&nbsp;&nbsp;&nbsp;rushmore&nbsp;=&nbsp;NOPASSWD:&nbsp;/bin/kill,&nbsp;PASSWD:&nbsp;/bin/ls,&nbsp;/usr/bin/lprm
+
+</p><p>
+
+Обратите внимание, что тэг <tt>PASSWD</tt> не возымеет эффекта на пользователях, указанных в группе, определенной опцией exempt_group.
+</p><p>
+
+По умолчанию, если к какой-либо записи пользователя на данной машине применен тэг <tt>NOPASSWD</tt>, он или она сможет выполнять <tt>sudo -l</tt> без указания пароля. Также, пользователь может выполнять без пароля только <tt>sudo -v</tt>, если отметка <tt>NOPASSWD</tt> присутствует для всех пользователей, которые относятся к данному компьютеру.
+Это поведение может быть изменено при помощи параметров verifypw и listpw. 
+<a name="lbAK">&nbsp;</a>
+</p><h3>Символы подстановки (метасимволы):</h3>
+
+<p>
+
+<b>sudo</b> позволяет использовать <i>знаки подстановки</i>, подобные знакам подстановки оболочки, для использования в именах пути также, как в параметрах командной строки в файле <i>sudoers</i>. Знаки подстановки соответствуют <b>-1POSIX</b> <tt><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fnmatch&amp;category=3">fnmatch</a>(3)</tt>. Обратите внимание, что это <i>не</i> регулярные выражения.
+</p><dl compact="">
+<dt>"<tt>*</tt>" </dt><dd>
+Соответствует любому количеству символов, в том числе нулю.
+</dd><dt>"<tt>?</tt>"</dt><dd>
+Соответствует любому одному символу.
+</dd><dt>"<tt>[...]</tt>"</dt><dd>
+Соответствует любому символу в заданном диапазоне.
+</dd><dt>"<tt>[!...]</tt>" </dt><dd>
+Соответствует любому символу <b>не</b> в указанном диапазоне.
+</dd><dt>"<tt>\x</tt>"</dt><dd>
+Для любого символа x, принять значение x. Это необходимо для использования специальных символов: *, ?, [, и }.
+</dd></dl>
+<p>
+
+Обратите внимание, что знак слэша ('/') <b>не</b> будет соответствовать символам подстановки используемым в имени пути. Однако, если сравнивать с параметрами командной строки, слэш <b>будет</b> соответствовать символу подстановки. Это делает путь подобный:
+</p><p>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;/usr/bin/*
+
+</p><p>
+
+соответствующим <tt>/usr/bin/who</tt>, но не <tt>/usr/bin/X11/xterm</tt>.
+<a name="lbAL">&nbsp;</a>
+</p><h3>Исключения из правил символов подстановки:</h3>
+
+<p>
+
+К вышеприведенным правилам применимы следующие исключения:
+</p><dl compact="">
+<dt><tt>""""</tt> </dt><dd>
+Если единственным параметром командной строки, в записи <i>sudoers</i>, является пустая строка <tt>""</tt>, это означает, что команда не может быть выполнена <b>ни с какими</b> параметрами.
+</dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h3>Другие специальные символы и зарезервированные слова:</h3>
+
+<p>
+
+Знак фунта ('#') используется для обозначения комментария (если это происходит не в
+контексте имени пользователя, сопровождается одной или более
+цифр и обрабатывается как универсальный идентификатор пользователя (uid)). И знак комментария, и любой текст после него, игнорируются до конца строки.
+</p><p>
+
+Зарезервированное слово <b>-1ALL</b> является встроенным <i>псевдонимом</i>, которое всегда имеет определение. Это может использоваться везде, где было бы уместно использование псевдонимов <tt>Cmnd_Alias</tt>, <tt>User_Alias</tt>, <tt>Runas_Alias</tt>, или <tt>Host_Alias</tt>.
+Вы не должны пытаться назначить свой собственный <i>псевдоним</i> с именем <b>-1ALL</b>, поскольку встроенный псевдоним будет использоваться вместо вашего собственного. Помните, что использование <b>-1ALL</b> в контексте команды опасно, так как позволит пользователю выполнить <b>любую</b> команду в системе.
+</p><p>
+
+Знак восклицания (!') может быть использован как логический оператор <i>не</i>, как в <i>псевдониме</i>, так и перед <tt>Cmnd</tt>. Это позволяет исключать некоторые значения. Обратите внимание, что использование <tt>!</tt> в сочетании с встроенным псевдонимом <tt>ALL</tt> для разрешения выполнения пользователем всего кроме нескольких команд не всегда работает должным образом (см. -1БЕЗОПАСНОСТЬ
+-1ПРИМЕЧАНИЯ ниже).
+</p><p>
+
+Длинные строки могут быть перенесены при помощи обратного слэша (\'), если он является последним символом в строке.
+</p><p>
+
+Пробелы между элементами описания, также как и специальные синтаксические символы в <i>Спецификации пользователя</i> ('=, :, (, )'), являются необязательными.
+</p><p>
+
+Следующие символы должны начинаться с символа обратного слэша (\'), когда используются как часть слова (т.е. имя пользователя или имя компьютера):
+'@, !, =, :, ,, (, ), \.
+<a name="lbAN">&nbsp;</a>
+</p><h2>ПРИМЕРЫ</h2>
+
+<p>
+
+Ниже приведены примеры записей <i>sudoers</i>. Возможно, некоторые из них являются выдуманными. Сначала мы определяем свои <i>псевдонимы</i>:
+</p><p>
+
+
+<br>&nbsp;#&nbsp;Определение&nbsp;псевдонимов&nbsp;пользователя
+<br>&nbsp;User_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FULLTIMERS&nbsp;=&nbsp;millert,&nbsp;mikef,&nbsp;dowdy
+<br>&nbsp;User_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PARTTIMERS&nbsp;=&nbsp;bostley,&nbsp;jwfox,&nbsp;crawl
+<br>&nbsp;User_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEBMASTERS&nbsp;=&nbsp;will,&nbsp;wendy,&nbsp;wim
+
+</p><p>
+
+
+<br>&nbsp;#&nbsp;Определение&nbsp;псевдонимов&nbsp;Runas&nbsp;(Выполнить&nbsp;как)
+<br>&nbsp;Runas_Alias&nbsp;&nbsp;&nbsp;&nbsp;OP&nbsp;=&nbsp;root,&nbsp;operator
+<br>&nbsp;Runas_Alias&nbsp;&nbsp;&nbsp;&nbsp;DB&nbsp;=&nbsp;oracle,&nbsp;sybase
+
+</p><p>
+
+
+<br>&nbsp;#&nbsp;Определение&nbsp;псевдонимов&nbsp;машин
+<br>&nbsp;Host_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SPARC&nbsp;=&nbsp;bigtime,&nbsp;eclipse,&nbsp;moet,&nbsp;anchor&nbsp;:\
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SGI&nbsp;=&nbsp;grolsch,&nbsp;dandelion,&nbsp;black&nbsp;:\
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALPHA&nbsp;=&nbsp;widget,&nbsp;thalamus,&nbsp;foobar&nbsp;:\
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HPPA&nbsp;=&nbsp;boa,&nbsp;nag,&nbsp;python
+<br>&nbsp;Host_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUNETS&nbsp;=&nbsp;128.138.0.0/255.255.0.0
+<br>&nbsp;Host_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSNETS&nbsp;=&nbsp;128.138.243.0,&nbsp;128.138.204.0/24,&nbsp;128.138.242.0
+<br>&nbsp;Host_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVERS&nbsp;=&nbsp;master,&nbsp;mail,&nbsp;www,&nbsp;ns
+<br>&nbsp;Host_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDROM&nbsp;=&nbsp;orion,&nbsp;perseus,&nbsp;hercules
+
+</p><p>
+
+
+<br>&nbsp;#&nbsp;Определение&nbsp;псевдонимов&nbsp;Cmnd&nbsp;(команд)
+<br>&nbsp;Cmnd_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DUMPS&nbsp;=&nbsp;/usr/bin/mt,&nbsp;/usr/sbin/dump,&nbsp;/usr/sbin/rdump,\
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/usr/sbin/restore,&nbsp;/usr/sbin/rrestore
+<br>&nbsp;Cmnd_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KILL&nbsp;=&nbsp;/usr/bin/kill
+<br>&nbsp;Cmnd_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRINTING&nbsp;=&nbsp;/usr/sbin/lpc,&nbsp;/usr/bin/lprm
+<br>&nbsp;Cmnd_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHUTDOWN&nbsp;=&nbsp;/usr/sbin/shutdown
+<br>&nbsp;Cmnd_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HALT&nbsp;=&nbsp;/usr/sbin/halt,&nbsp;/usr/sbin/fasthalt
+<br>&nbsp;Cmnd_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REBOOT&nbsp;=&nbsp;/usr/sbin/reboot,&nbsp;/usr/sbin/fastboot
+<br>&nbsp;Cmnd_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHELLS&nbsp;=&nbsp;/usr/bin/sh,&nbsp;/usr/bin/csh,&nbsp;/usr/bin/ksh,&nbsp;\
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/usr/local/bin/tcsh,&nbsp;/usr/bin/rsh,&nbsp;\
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/usr/local/bin/zsh
+<br>&nbsp;Cmnd_Alias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SU&nbsp;=&nbsp;/usr/bin/su
+
+</p><p>
+
+Здесь мы переопределим некоторые встроенные значения по умолчанию. Мы хотим, чтобы <b>sudo</b> регистрировал события при помощи <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></i>(3), во всех случаях используя метод <i>auth</i>.
+Мы не хотим, что бы <b>sudo</b> читало лекции всем пользователям, и пользователь  <b>millert</b> не должен указывать пароль. В добавок, на машинах в <i>SERVERS</i> <tt>Host_Alias</tt> мы держим дополнительный локальный файл журнала и удостоверимся, что мы регистрируем год в каждой строке файла журнала, так как записи журнала будут сохраняться в течение нескольких лет.
+</p><p>
+
+
+<br>&nbsp;#&nbsp;Переопределяем&nbsp;встроенные&nbsp;значения&nbsp;по&nbsp;умолчанию
+<br>&nbsp;Defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;syslog=auth
+<br>&nbsp;Defaults:FULLTIMERS&nbsp;&nbsp;&nbsp;&nbsp;!lecture
+<br>&nbsp;Defaults:millert&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!authenticate
+<br>&nbsp;<a href="mailto:Defaults@SERVERS">Defaults@SERVERS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log_year,&nbsp;logfile=/var/log/sudo.log
+
+</p><p>
+
+<i>Определение пользователя</i> является частью, которая фактически определяет кто что может выполнять.
+</p><p>
+
+
+<br>&nbsp;root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALL&nbsp;=&nbsp;(ALL)&nbsp;ALL
+<br>&nbsp;%wheel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALL&nbsp;=&nbsp;(ALL)&nbsp;ALL
+
+</p><p>
+
+Мы позволим <b>супер-пользователю</b> (root) и любому пользователю в группе <b>wheel</b> выполнить любую команду на любой машине от имени любого пользователя.
+</p><p>
+
+
+<br>&nbsp;FULLTIMERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALL&nbsp;=&nbsp;NOPASSWD:&nbsp;ALL
+
+</p><p>
+
+Системные администраторы занятые полный рабочий день (<b>millert</b>, <b>mikef</b> и <b>dowdy</b>) могут выполнить любую команду на любой машине без аутентификации.
+</p><p>
+
+
+<br>&nbsp;PARTTIMERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALL&nbsp;=&nbsp;ALL
+
+</p><p>
+
+Системные администраторы занятые не полный рабочий день (<b>bostley</b>, <b>jwfox</b> и <b>crawl</b>) могут выполнить любую команду на любом компьютере, но сначала должны себя аутентифицировать (так как в записи отсутствует тэг <tt>NOPASSWD</tt>).
+</p><p>
+
+
+<br>&nbsp;jack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSNETS&nbsp;=&nbsp;ALL
+
+</p><p>
+
+Пользователь <b>jack</b> может выполнить любую команду на машинах с псевдонимом <i>CSNETS</i> (сети <tt>128.138.243.0</tt>, <tt>128.138.204.0</tt> и <tt>128.138.242.0</tt>).
+Из этих сетей только &lt;128.138.204.0&gt; имеет явную сетевую маску (в соответствии с CIDR) означающую сеть класса C. Для остальных сетей в <i>CSNETS</i> в случае соответствия будет использоваться сетевая маска машины.
+</p><p>
+
+
+<br>&nbsp;lisa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUNETS&nbsp;=&nbsp;ALL
+
+</p><p>
+
+Пользователь <b>lisa</b> может выполнять любую команду на любой машине с псевдонимом <i>CUNETS</i> (сеть класса B <tt>128.138.0.0</tt>).
+</p><p>
+
+
+<br>&nbsp;operator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALL&nbsp;=&nbsp;DUMPS,&nbsp;KILL,&nbsp;PRINTING,&nbsp;SHUTDOWN,&nbsp;HALT,&nbsp;REBOOT,\
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/usr/oper/bin/
+
+</p><p>
+
+Пользователь <b>operator</b> может выполнять команды ограничивающиеся простым обслуживанием.
+В данном случае таковыми являются резервное копирование, уничтожение процессов, система печати, выключение системы и любая команда в каталоге <i>/usr/oper/bin/</i>.
+</p><p>
+
+
+<br>&nbsp;joe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALL&nbsp;=&nbsp;/usr/bin/su&nbsp;operator
+
+</p><p>
+
+Пользователь <b>joe</b> может выполнять только <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=su&amp;category=1">su</a></i>(1) оператору.
+</p><p>
+
+
+<br>&nbsp;pete&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HPPA&nbsp;=&nbsp;/usr/bin/passwd&nbsp;[A-z]*,&nbsp;!/usr/bin/passwd&nbsp;root
+
+</p><p>
+
+Пользователю <b>pete</b> разрешено изменять любой пароль, за исключением пароля супер-пользователя (root) на машинах <i>HPPA</i>. Учтите, что <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=passwd&amp;category=1">passwd</a></i>(1) не воспринимает несколько имен пользователей подряд в одной командной строке.
+</p><p>
+
+
+<br>&nbsp;bob&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SPARC&nbsp;=&nbsp;(OP)&nbsp;ALL&nbsp;:&nbsp;SGI&nbsp;=&nbsp;(OP)&nbsp;ALL
+
+</p><p>
+
+Пользователь <b>bob</b> может выполнять любые команды на машинах <i>SPARC</i> и <i>SGI</i>, как пользователь описанный в <tt>Runas_Alias</tt> в <i>OP</i>  (<b>root</b> и <b>operator</b>).
+</p><p>
+
+
+<br>&nbsp;jim&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+biglab&nbsp;=&nbsp;ALL
+
+</p><p>
+
+Пользователь <b>jim</b> может выполнить любую команду на машинах в сетевой группе <i>biglab</i>.
+<b>Sudo</b> знает, что biglab является сетевой группой из-за префикса +.
+</p><p>
+
+
+<br>&nbsp;+secretaries&nbsp;&nbsp;&nbsp;ALL&nbsp;=&nbsp;PRINTING,&nbsp;/usr/bin/adduser,&nbsp;/usr/bin/rmuser
+
+</p><p>
+
+Пользователи в сетевой группе <b>secretaries</b> должны как помогать в управлении принтерами, так и добавлять или удалять пользователей. Таким образом им позволено выполнять эти команды на всех машинах.
+</p><p>
+
+
+<br>&nbsp;fred&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALL&nbsp;=&nbsp;(DB)&nbsp;NOPASSWD:&nbsp;ALL
+
+</p><p>
+
+Пользователь <b>fred</b> может выполнять команды от имени любого пользователя в <tt>Runas_Alias</tt> <i>DB</i>  (<b>oracle</b> или <b>sybase</b>), без указания пароля.
+</p><p>
+
+
+<br>&nbsp;john&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALPHA&nbsp;=&nbsp;/usr/bin/su&nbsp;[!-]*,&nbsp;!/usr/bin/su&nbsp;*root*
+
+</p><p>
+
+На машинах <i>ALPHA</i> пользователь <b>john</b> может выполнить su любому пользователю, за исключением супер-пользователя (root), но не имеет права задавать <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=su&amp;category=1">su</a></i>(1) какие-либо флаги.
+</p><p>
+
+
+<br>&nbsp;jen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALL,&nbsp;!SERVERS&nbsp;=&nbsp;ALL
+
+</p><p>
+
+Пользователь <b>jen</b> может выполнить любую команду на любой машине, за исключением машин в <tt>Host_Alias</tt> <i>SERVERS</i> (master, mail, www и ns).
+</p><p>
+
+
+<br>&nbsp;jill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVERS&nbsp;=&nbsp;/usr/bin/,&nbsp;!SU,&nbsp;!SHELLS
+
+</p><p>
+
+Для любой машины в <tt>Host_Alias</tt> <i>SERVERS</i> <b>jill</b> может выполнить любую команду в каталоге /usr/bin/, за исключением команд относящихся к <tt>Cmnd_Aliases</tt> <i>SU</i> и <i>SHELLS</i>.
+</p><p>
+
+
+<br>&nbsp;steve&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSNETS&nbsp;=&nbsp;(operator)&nbsp;/usr/local/op_commands/
+
+</p><p>
+
+Пользователь <b>steve</b> может выполнить любую команду в каталоге /usr/local/op_commands/, но только как пользователь operator.
+</p><p>
+
+
+<br>&nbsp;matt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;valkyrie&nbsp;=&nbsp;KILL
+
+</p><p>
+
+На своей персональной рабочей станции, valkyrie, <b>matt</b> необходима возможность уничтожать зависшие процессы.
+</p><p>
+
+
+<br>&nbsp;WEBMASTERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;www&nbsp;=&nbsp;(www)&nbsp;ALL,&nbsp;(root)&nbsp;/usr/bin/su&nbsp;www
+
+</p><p>
+
+На машинах www, любой пользователь в <tt>User_Alias</tt> <i>WEBMASTERS</i> (will,
+wendy и wim), может выполнить любую команду как пользователь www (который является владельцем web-страниц) или просто <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=su&amp;category=1">su</a></i>(1) к www.
+</p><p>
+
+
+<br>&nbsp;ALL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDROM&nbsp;=&nbsp;NOPASSWD:&nbsp;/sbin/umount&nbsp;/CDROM,\
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/sbin/mount&nbsp;-o&nbsp;nosuid\,nodev&nbsp;/dev/cd0a&nbsp;/CDROM
+
+</p><p>
+
+Любой пользователь может монтировать или размонтировать CD-ROM на машинах в <tt>Host_Alias</tt> <i>CDROM</i> (orion, perseus, hercules) без ввода пароля.
+Ввод этого несколько утомителен для пользователей, поэтому это первейший кандидат для включения в сценарий оболочки.
+<a name="lbAO">&nbsp;</a>
+</p><h2>СОВЕТЫ ПО БЕЗОПАСНОСТИ</h2>
+
+<p>
+
+В целом исключение команд из <tt>ALL</tt>,
+с использованием оператора !, не эффективно. Пользователь может тривиально это обойти, копируя желаемые команды с разными именами, и затем их выполнять. Например:
+</p><p>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;bill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALL&nbsp;=&nbsp;ALL,&nbsp;!SU,&nbsp;!SHELLS
+
+</p><p>
+
+В действительности не реально предотвратить выполнение <b>bill</b> команд, перечисленных в <i>SU</i> или <i>SHELLS</i>, так как он может запросто их скопировать под разными названиями, или использовать расширения оболочки из редактора или другой программы. Поэтому этот вид ограничений должен быть тщательно изучен (и подкреплен системной политикой).
+<a name="lbAP">&nbsp;</a>
+</p><h2>ПРЕДОСТЕРЕЖЕНИЯ</h2>
+
+<p>
+
+Файл <i>sudoers</i> должен редактироваться <b>только</b> командой <b>visudo</b>,
+которая блокирует файл и осуществит проверку грамматики. Это 
+обязательно, во избежание возникновения ошибок в синтаксисе <i>sudoers</i>, так как 
+sudo не будет работать при наличии ошибок в <i>sudoers</i>.
+</p><p>
+
+Если используются сетевые группы или машины (в противоположность пользователям), если вы сохраняете полностью определенные имена машин в сетевой группе (что, бывает, случается), то имена машин должны быть полностью определенными, и соответствовать именам, возвращаемым командой <tt>hostname</tt>, или должна использоваться опция <i>fqdn</i> в <i>sudoers</i>.
+<a name="lbAQ">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<p>
+
+
+<br>&nbsp;/etc/sudoers,&nbsp;
+<br>&nbsp;/etc/sudo.d/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cписок&nbsp;пользователей,&nbsp;с&nbsp;указанием&nbsp;того,&nbsp;что&nbsp;они&nbsp;могут&nbsp;выполнять
+<br>&nbsp;/etc/group&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Файл&nbsp;локальных&nbsp;групп
+<br>&nbsp;/etc/netgroup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Список&nbsp;сетевых&nbsp;групп
+
+<a name="lbAR">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+
+Александр Блохин &lt;<a href="mailto:sass@altlinux.ru">sass@altlinux.ru</a>&gt;
+
+<a name="lbAS">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<p>
+
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rsh&amp;category=1">rsh</a></i>(1), <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sudo&amp;category=8">sudo</a></i>(8), <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=visudo&amp;category=8">visudo</a></i>(8), <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=su&amp;category=1">su</a></i>(1), <i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fnmatch&amp;category=3">fnmatch</a></i>(3).
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAD">Краткое руководство по -1EBNF</a></dt><dd>
+</dd><dt><a href="#lbAE">Псевдонимы</a></dt><dd>
+</dd><dt><a href="#lbAF">Значения по умолчанию</a></dt><dd>
+</dd><dt><a href="#lbAG">Списки, которые могут быть использованы в булевом контексте:</a></dt><dd>
+</dd><dt><a href="#lbAH">Спецификация Пользователя</a></dt><dd>
+</dd><dt><a href="#lbAI">Runas_Spec</a></dt><dd>
+</dd><dt><a href="#lbAJ">-1NOPASSWD and -1PASSWD</a></dt><dd>
+</dd><dt><a href="#lbAK">Символы подстановки (метасимволы):</a></dt><dd>
+</dd><dt><a href="#lbAL">Исключения из правил символов подстановки:</a></dt><dd>
+</dd><dt><a href="#lbAM">Другие специальные символы и зарезервированные слова:</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAN">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAO">СОВЕТЫ ПО БЕЗОПАСНОСТИ</a></dt><dd>
+</dd><dt><a href="#lbAP">ПРЕДОСТЕРЕЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAQ">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAR">ПЕРЕВОД</a></dt><dd>
+</dd><dt><a href="#lbAS">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="sudoers" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

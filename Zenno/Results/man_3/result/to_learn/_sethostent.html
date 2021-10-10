@@ -1,0 +1,617 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN sethostent (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, sethostent"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="sethostent" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">sethostent (3)</font><hr><li> <a href="/man.shtml?topic=sethostent&amp;category=3&amp;russian=1"><u>sethostent</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=sethostent&amp;category=3&amp;russian=0"><u>sethostent</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=sethostent&amp;category=3&amp;russian=2"><u>sethostent</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=sethostent&amp;category=3&amp;russian=5"><u>sethostent</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+gethostbyname, gethostbyaddr, sethostent, endhostent, herror, hstrerror -
+получают информацию о машине в сети
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<pre><b>#include &lt;<a href="file:/usr/include/netdb.h">netdb.h</a>&gt;</b>
+<b>extern int h_errno;</b>
+
+<b>struct hostent *gethostbyname(const char *</b><i>name</i><b>);</b>
+
+<b>#include &lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;        /* for AF_INET */</b>
+<b>struct hostent *gethostbyaddr(const char *</b><i>addr</i><b>,</b>
+<b>  int </b><i>len</i><b>, int </b><i>type</i><b>);</b>
+
+<b>void sethostent(int </b><i>stayopen</i><b>);</b>
+
+<b>void endhostent(void);</b>
+
+<b>void herror(const char *</b><i>s</i><b>);</b>
+
+<b>const char *hstrerror(int </b><i>err</i><b>);</b>
+
+/* GNU extensions */
+<br>
+<b>struct hostent *gethostbyname2(const char *</b><i>name</i><b>, int </b><i>af</i><b>);</b>
+
+<b>int gethostbyname_r (const char *</b><i>name</i><b>,</b>
+<b>  struct hostent *</b><i>ret</i><b>, char *</b><i>buf</i><b>, size_t </b><i>buflen</i><b>,</b>
+<b>  struct hostent **</b><i>result</i><b>, int *</b><i>h_errnop</i><b>);</b>
+
+<b>int gethostbyname2_r (const char *</b><i>name</i><b>, int </b><i>af,</i>
+<b>  struct hostent *</b><i>ret</i><b>, char *</b><i>buf</i><b>, size_t </b><i>buflen</i><b>,</b>
+<b>  struct hostent **</b><i>result</i><b>, int *</b><i>h_errnop</i><b>);</b>
+</pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Функция 
+<b>gethostbyname()</b>
+
+возвращает структуру типа 
+<i>hostent</i>
+
+машине с именем
+<i>name</i>.
+
+В данном случае 
+<i>name </i>
+
+является либо именем машины, либо адресом IPv4 в стандартной точечной нотации,
+либо адресом IPv6 в нотации с двоеточием (и, возможно, точкой) в качестве разделителя
+(см. описание адресов IPv6 в RFC 1884). Если
+<i>name</i>
+
+является адресом IPv4 или IPv6, то поиск не производится и 
+<b>gethostbyname</b>()
+
+просто копирует 
+<i>name</i>
+
+в поле 
+<i>h_name</i>,
+
+а его эквивалент для структуры
+<i>struct in_addr</i>
+
+копируется в поле 
+<i>h_addr_list[0]</i>
+
+возвращаемой структуры 
+<i>hostent</i>.
+
+Если 
+<i>name</i>
+
+не оканчивается точкой и установлена переменная окружения 
+<b>HOSTALIASES,</b>
+
+то в файле, на который указывает 
+<b>HOSTALIASES,</b>
+
+будет произведен поиск 
+<i>name</i>
+
+(формат файла приведен в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hostname&amp;category=7">hostname</a></b>(7)).
+
+Если 
+<i>name </i>
+
+не оканчивается точкой, то будет произведен поиск в текущем домене и его
+родителях. 
+<p>
+
+Функция
+<b>gethostbyaddr()</b>
+
+возвращает структуру типа
+<i>hostent</i>
+
+указанному адресу машины 
+<i>addr,</i>
+
+длина которого равна 
+<i>len,</i>
+
+а тип адреса равен 
+<i>type.</i>
+
+В данный момент типом адреса может быть только 
+<b>AF_INET</b>.
+
+</p><p>
+
+Функция 
+<b>sethostent()</b>
+
+(если значение 
+<i>stayopen</i>
+
+истинно (1)) указывает, что соединенный сокет TCP должен быть использован для
+отправки запросов серверу имен, а также то, что соединение должно оставаться открытым во
+время последующих запросов. В противном случае для отправки серверу имен запросов
+будут использоваться датаграммы UDP.
+</p><p>
+
+Функция 
+<b>endhostent() </b>
+
+закрывает соединение TCP для запроса сервера имен.
+</p><p>
+
+Функция 
+<b>error() </b>
+
+(устаревшая) выводит сообщение об ошибке, связанное с текущим значением 
+<i>h_errno</i>
+
+в стандартном потоке вывода ошибок. 
+</p><p>
+
+Функция 
+<b>hstrerror()</b>
+
+(устаревшая) в качестве параметра использует номер ошибки (обычно 
+<i>h_errno</i>)
+
+и возвращает соответствующую строку сообщения. 
+</p><p>
+
+Запросы имени домена, производимые функциями
+<b>gethostbyname()</b>
+
+и 
+<b>gethostbyaddr(),</b>
+
+используют комбинацию данных любых или всех серверов имен
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=named&amp;category=8">named</a></b>(8),
+
+записи из файла
+<i>/etc/hosts</i>
+
+и комбинацию данных сетевой информационной службы (NIS или YP) в зависимости от
+<i>порядка</i>
+
+строк файла
+<i>/etc/host.conf</i>
+
+(см.
+<b>resolv+</b>(8).
+
+По умолчанию производится опрос 
+<b>named (8),</b>
+
+затем 
+<i>/etc/hosts</i>.
+
+</p><p>
+
+Структура 
+<i>hostent </i>
+
+определена в 
+<i>&lt;<a href="file:/usr/include/netdb.h">netdb.h</a>&gt; </i>
+
+следующим образом:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>
+struct hostent {
+        char    *h_name;        /* официальное имя машины */
+        char    **h_aliases;    /* список псевдонимов */
+        int     h_addrtype;     /* тип адреса машины */
+        int     h_length;       /* длина адреса */
+        char    **h_addr_list;  /* список адресов */
+}
+#define h_addr  h_addr_list[0]  /* для совместимости с предыдущими версиями */
+
+</pre>
+
+</dd></dl>
+
+<p>
+
+Полями структуры 
+<i>hostent </i>
+
+являются:
+</p><dl compact="">
+<dt><i>h_name</i>
+
+</dt><dd>
+(официальное имя машины);
+</dd><dt><i>h_aliases</i>
+
+</dt><dd>
+(оканчивающийся нулем массив альтернативных имен машины);
+</dd><dt><i>h_addrtype</i>
+
+</dt><dd>
+(тип адреса; в настоящее время всегда 
+<b>AF_INET</b>);
+
+</dd><dt><i>h_length</i>
+
+</dt><dd>
+(длина адреса в байтах);
+</dd><dt><i>h_addr_list</i>
+
+</dt><dd>
+(оканчивающийся нулем массив сетевых адресов машины в сетевом порядке байтов); 
+</dd><dt><i>h_addr</i>
+
+</dt><dd>
+(первый адрес в 
+<i>h_addr_list</i>
+
+определен для совместимости с более ранними версиями).
+</dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+Функции
+<b>gethostbyname()</b>
+
+и 
+<b>gethostbyaddr()</b>
+
+возвращают структуру 
+<i>hostent</i>
+
+или, в случае ошибки, указатель NULL. В последнем случае переменная
+<i>h_errno </i>
+
+содержит номер ошибки.
+<a name="lbAF">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Переменная
+<i>h_errno </i>
+
+может принимать следующие значения:
+<dl compact="">
+<dt><b>HOST_NOT_FOUND</b>
+
+</dt><dd>
+Указанный хост неизвестен.
+</dd><dt><b>NO_ADDRESS</b> или <b>NO_DATA</b>
+
+</dt><dd>
+Запрошенное имя существует, но не имеет IP-адреса.
+</dd><dt><b>NO_RECOVERY</b>
+
+</dt><dd>
+Hепоправимая ошибка сервера имен.
+</dd><dt><b>TRY_AGAIN</b>
+
+</dt><dd>
+Временная ошибка на официальном сервере имен. Повторите попытку позже.
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt><i>/etc/host.conf</i>
+
+</dt><dd>
+(файл настройки системы разрешения имен);
+</dd><dt><i>/etc/hosts</i>
+
+</dt><dd>
+(файл базы данных машин).
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+BSD 4.3.
+<a name="lbAI">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Стандарт SUS-v2 содержит ошибки и обозначает тип параметра 
+<i>len</i>
+
+функции
+<b>gethostbyaddr()</b>
+
+как 
+<i>size_t</i>
+
+(что является неправильным: он должен представлять собой 
+<i>int</i>,
+
+а 
+<i>size_t</i>
+
+таким типом не является). 
+В POSIX 1003.1-2001 этот тип равен 
+<i>socklen_t</i>,
+
+что является корректным.
+<p>
+
+Функции
+<b>gethostbyname</b>()
+
+и
+<b>gethostbyaddr</b>()
+
+могут возвращать указатели на статические данные, которые могут быть
+перезаписаны более поздними вызовами. Простого копирования структуры
+<i>struct hostent</i>
+
+недостаточно, так как эта структура содержит указатели - небоходимо
+глубокое копирование.
+</p><p>
+
+В glibc2 имеется также функция
+<b>gethostbyname2()</b>
+
+работающая как 
+<b>gethostbyname()</b>,
+
+но позволяющая обозначать семейство, к которому должен принадлежать адрес.
+</p><p>
+
+Кроме того, glibc2 содержит реентрантные версии
+<b>gethostbyname_r()</b>
+
+и
+<b>gethostbyname2_r()</b>.
+
+Эти функции возвращают 0 при успешном завершении и ненулевое значение при
+ошибке. Результат вызова заносится в структуру с адресом
+<i>ret</i>.
+
+После вызова
+*<i>result</i>
+
+может быть NULL при ошибке или указывать на результат при успешном
+завершении. Вспомогательные данные заносятся в буфер
+<i>buf</i>
+
+длиной
+<i>buflen</i>.
+
+(Если буфер слишком мал, то функция вернет
+<b>ERANGE</b>.)
+
+Глобальная переменная
+<i>h_errno</i>
+
+не изменяется, но в
+<i>h_errnop</i>
+
+передается адрес переменной, в которую будет занесен код ошибки.
+</p><p>
+
+POSIX 1003.1-2001 заменяет 
+<b>gethostbyaddr()</b>
+
+на
+<b>gethostbyname()</b>.
+
+</p><p>
+</p><pre><b>struct hostent *getipnodebyaddr(const void *restrict </b><i>addr</i><b>,</b>
+<b>  socklen_t </b><i>len</i><b>, int </b><i>type</i><b>, int *restrict </b><i>error_num</i><b>);</b>
+
+<b>struct hostent *getipnodebyname(const char *</b><i>name</i><b>,</b>
+<b>  int </b><i>type</i><b>, int </b><i>flags</i><b>, int *</b><i>error_num</i><b>);</b>
+</pre>
+
+<a name="lbAJ">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=resolver&amp;category=3">resolver</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hosts&amp;category=5">hosts</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hostname&amp;category=7">hostname</a></b>(7),
+
+<b>resolv+</b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=named&amp;category=8">named</a></b>(8)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAG">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAI">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="sethostent" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,613 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN lstat (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, lstat"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="lstat" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">lstat (2)</font><hr><li> <a href="/man.shtml?topic=lstat&amp;category=2&amp;russian=4"><u>lstat</u></a> (2) <font color="#555555"> ( Solaris man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=lstat&amp;category=2&amp;russian=1"><u>lstat</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=lstat&amp;category=2&amp;russian=0"><u>lstat</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=lstat&amp;category=2&amp;russian=2"><u>lstat</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=lstat&amp;category=3&amp;russian=4"><u>lstat</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=lstat&amp;category=3&amp;russian=5"><u>lstat</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+stat, fstat, lstat - считывает статус файла
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/sys/types.h">sys/types.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/sys/stat.h">sys/stat.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/unistd.h">unistd.h</a>&gt;</b>
+
+<p>
+<b>int stat(const char *</b><i>file_name</i><b>, struct stat *</b><i>buf</i><b>);</b>
+
+<br>
+
+<b>int fstat(int </b><i>filedes</i><b>, struct stat *</b><i>buf</i><b>);</b>
+
+<br>
+
+<b>int lstat(const char *</b><i>file_name</i><b>, struct stat *</b><i>buf</i><b>);</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<p>
+
+Эти функции возвращают информацию об указанном файле. Для этого не
+требуется иметь права доступа к файлу, хотя потребуются права поиска 
+во всех каталогах, указанных в полном имени файла.
+</p><p>
+
+<b>stat</b>
+
+возвращает информацию о файле
+<i>file_name</i>
+
+и заполняет буфер
+<i>buf</i>.
+
+<b>lstat</b>
+
+идентична
+<b>stat</b>,
+
+но в случае символьных сылок она возвращает информацию о самой ссылке, 
+а не о файле, на который она указывает.
+<b>fstat</b>
+
+идентична 
+<b>stat</b>,
+
+только возвращается информация об открытом файле,
+на который указывает
+<i>filedes</i>
+
+(возвращаемый
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a></b>(2)),
+
+а не о
+<i>file_name</i>.
+
+</p><p>
+</p><p>
+
+Все эти функции возвращают структуру
+<i>stat</i>,
+
+которая содержит следующие поля:
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>struct stat {
+    dev_t         st_dev;      /* устройство */
+    ino_t         st_ino;      /* inode */
+    mode_t        st_mode;     /* режим доступа */
+    nlink_t       st_nlink;    /* количество жестких ссылок */
+    uid_t         st_uid;      /* идентификатор пользователя-владельца */
+    gid_t         st_gid;      /* идентификатор группы-владельца */
+    dev_t         st_rdev;     /* тип устройства */
+                               /* (если это устройство) */
+    off_t         st_size;     /* общий размер в байтах */
+    blksize_t     st_blksize;  /* размер блока ввода-вывода */
+                               /* в файловой системе */
+    blkcnt_t      st_blocks;   /* количество выделенных блоков */
+    time_t        st_atime;    /* время последнего доступа */
+    time_t        st_mtime;    /* время последней модификации */
+    time_t        st_ctime;    /* время последнего изменения */
+};
+</pre>
+
+</dd></dl>
+
+<p>
+
+Поле
+<i>st_size</i>
+
+задает размер файла (если он обычный или является символьной ссылкой) в байтах.
+Размер символьной ссылки - длина пути файла на который она сылается, без
+конечного NUL.
+</p><p>
+
+Поле
+<i>st_blocks</i>
+
+задает размер файла в 512-байтных блоках.
+(Оно может быть меньше, чем
+<i>st_size</i>/512
+
+например, когда в файле есть пропуски.)
+<i>st_blksize</i>
+
+задает "предпочтительный" размер блока для эффективного ввода/вывода
+в файловой системе. (Запись в файл более мелкими порциями может
+привести к некорректному чтению/изменению/повторной записи информации).
+</p><p>
+
+Некоторые файловые системы Linux не реализуют все метки времени.
+Некоторые файловые системы позволяют обращаться к
+файлам так, что не происходит никаких изменений в поле
+<i>st_atime</i>.
+
+(См. 'noatime' в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=8">mount</a></b>(8).
+
+Поле
+<i>st_atime</i>
+
+изменяется при доступе к файлу, например, при
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=execve&amp;category=2">execve</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mknod&amp;category=2">mknod</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pipe&amp;category=2">pipe</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=utime&amp;category=2">utime</a></b>(2)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+(если прочитано больше нуля байтов).  Другие функции, например,
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mmap&amp;category=2">mmap</a></b>(2),
+
+могут изменять, а могут и не изменять
+<i>st_atime</i>.
+
+Поле
+<i>st_mtime</i>
+
+изменяется при модификациях файла, например, при выполнении
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mknod&amp;category=2">mknod</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=truncate&amp;category=2">truncate</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=utime&amp;category=2">utime</a></b>(2)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></b>(2)
+
+(если записано больше нуля байтов). Более того, поле
+<i>st_mtime</i>
+
+каталога изменяется при создании и удалении файлов в этом каталоге.
+Поле
+<i>st_mtime</i>
+
+<i>не</i>
+
+изменяется при изменении владельца, группы, количества жестких ссылок файла
+или режима доступа к нему.
+Поле
+<i>st_ctime</i>
+
+изменяется при записи или установке информации об inode (владельце,
+группе, количестве ссылок, режиме и т.д.).
+</p><p>
+
+Указанные далее макросы POSIX проверяют, является ли файл:
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt>S_ISLNK(m)</dt><dd>
+символьной ссылкой (Нет в POSIX.1-1996.)
+</dd><dt>S_ISREG(m)</dt><dd>
+обычным файлом
+</dd><dt>S_ISDIR(m)</dt><dd>
+каталогом
+</dd><dt>S_ISCHR(m)</dt><dd>
+символьным устройством
+</dd><dt>S_ISBLK(m)</dt><dd>
+блочным устройством
+</dd><dt>S_ISFIFO(m)</dt><dd>
+каналом FIFO
+</dd><dt>S_ISSOCK(m)</dt><dd>
+сокетом
+</dd></dl>
+</dd></dl>
+
+<p>
+
+Описанные ниже флаги определены для поля
+<i>st_mode</i>:
+
+
+<table>
+<tbody><tr valign="top"><td>S_IFMT</td><td>0170000</td><td>битовая маска для полей типа файла<br></td></tr>
+<tr valign="top"><td>S_IFSOCK</td><td>0140000</td><td>сокет<br></td></tr>
+<tr valign="top"><td>S_IFLNK</td><td>0120000</td><td>символьная ссылка<br></td></tr>
+<tr valign="top"><td>S_IFREG</td><td>0100000</td><td>обычный файл<br></td></tr>
+<tr valign="top"><td>S_IFBLK</td><td>0060000</td><td>блочное устройство<br></td></tr>
+<tr valign="top"><td>S_IFDIR</td><td>0040000</td><td>каталог<br></td></tr>
+<tr valign="top"><td>S_IFCHR</td><td>0020000</td><td>символьное устройство<br></td></tr>
+<tr valign="top"><td>S_IFIFO</td><td>0010000</td><td>канал FIFO<br></td></tr>
+<tr valign="top"><td>S_ISUID</td><td>0004000</td><td>бит setuid<br></td></tr>
+<tr valign="top"><td>S_ISGID</td><td>0002000</td><td>бит setgid (смотри ниже)<br></td></tr>
+<tr valign="top"><td>S_ISVTX</td><td>0001000</td><td>бит принадлежности (смотри ниже)<br></td></tr>
+<tr valign="top"><td>S_IRWXU</td><td>00700</td><td>маска для прав доступа пользователя<br></td></tr>
+<tr valign="top"><td>S_IRUSR</td><td>00400</td><td>пользователь имеет право чтения<br></td></tr>
+<tr valign="top"><td>S_IWUSR</td><td>00200</td><td>пользователь имеет право записи<br></td></tr>
+<tr valign="top"><td>S_IXUSR</td><td>00100</td><td>пользователь имеет право выполнения<br></td></tr>
+<tr valign="top"><td>S_IRWXG</td><td>00070</td><td>маска для прав доступа группы<br></td></tr>
+<tr valign="top"><td>S_IRGRP</td><td>00040</td><td>группа имеет права чтения<br></td></tr>
+<tr valign="top"><td>S_IWGRP</td><td>00020</td><td>группа имеет права записи<br></td></tr>
+<tr valign="top"><td>S_IXGRP</td><td>00010</td><td>группа имеет права выполнения<br></td></tr>
+<tr valign="top"><td>S_IRWXO</td><td>00007</td><td>маска прав доступа всех прочих (не находящихся в группе)<br></td></tr>
+<tr valign="top"><td>S_IROTH</td><td>00004</td><td>все прочие имеют права чтения<br></td></tr>
+<tr valign="top"><td>S_IWOTH</td><td>00002</td><td>все прочие имеют права записи<br></td></tr>
+<tr valign="top"><td>S_IXOTH</td><td>00001</td><td>все прочие имеют права выполнения<br></td></tr>
+</tbody></table>
+
+
+Бит setgid (S_ISGID) имеет несколько специальных применений:
+указывает, что для данного каталога используется семантика BSD; 
+файлы, создаваемые в нем, наследуют группу-владельца от этого каталога, 
+а не от фактической группы-владельца процесса, создавшего файл; 
+а в подкаталогах данного каталога также будет установлен бит S_ISGID. 
+Если файл не имеет бита выполнения группой (S_IXGRP), 
+то бит setgid означает жесткую блокировку файла/записей.
+
+Бит принадлежности (S_ISVTX) каталога означает, что файлы в этом
+каталоге могут быть удалены или переименованы только владельцем файла,
+владельцем каталога и суперпользователем.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+В случае успеха возвращается ноль.  При ошибке возвращается -1, а переменной
+<i>errno</i>
+
+присваивается номер ошибки.
+<a name="lbAF">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>EBADF</b>
+
+</dt><dd>
+Неверный файловый описатель
+<i>filedes</i>.
+
+</dd><dt><b>ENOENT</b>
+
+</dt><dd>
+Компонент полного имени файла
+<i>file_name</i>
+
+не существует или полное имя является пустой строкой.
+</dd><dt><b>ENOTDIR</b>
+
+</dt><dd>
+Компонент пути не является каталогом.
+</dd><dt><b>ELOOP</b>
+
+</dt><dd>
+При поиске файла встретилось слишком много символьных ссылок.
+</dd><dt><b>EFAULT</b>
+
+</dt><dd>
+Некорректный адрес.
+</dd><dt><b>EACCES</b>
+
+</dt><dd>
+Запрещен доступ.
+</dd><dt><b>ENOMEM</b>
+
+</dt><dd>
+Недостаточно памяти в системе.
+</dd><dt><b>ENAMETOOLONG</b>
+
+</dt><dd>
+Слишком длинное название файла.
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+Системные вызовы
+<b>stat</b>
+
+и
+<b>fstat</b>
+
+соответствуют SVr4, SVID, POSIX, X/OPEN, BSD 4.3.  Системный вызов
+<b>lstat</b>
+
+соответствует 4.3BSD и SVr4.  SVr4 документирует дополнительные коды
+ошибок
+<b>fstat:</b>EINTR,<b>ENOLINK</b>и<b>EOVERFLOW.</b>SVr4<b>описывает</b>дополнительные<b>коды</b>ошибок
+
+<b>stat</b>
+
+и
+<b>lstat</b>:
+
+EACCES, EINTR, EMULTIHOP, ENOLINK и EOVERFLOW.  Использование полей
+<i>st_blocks</i>
+
+и
+<i>st_blksize</i>
+
+может быть затруднено при переносе их на другие платформы.
+(Эти поля описаны в BSD, но не в POSIX.  Их работа различается 
+в разных системах и, вероятно, даже в одной системе, 
+если Вы пользуетесь настройками системы NFS).
+<p>
+
+POSIX не описывает биты S_IFMT, S_IFSOCK, S_IFLNK, S_IFREG, S_IFBLK,
+S_IFDIR, S_IFCHR, S_IFIFO, S_ISVTX, но вместо этого требует
+использовать макросы S_ISDIR() и т.п. 
+Макросов S_ISLNK и S_ISSOCK нет в стандарте POSIX.1-1996, но оба они
+могут быть в следующем стандарте POSIX; бывший SVID 4v2,
+последний SVIDv2. Unix V7 (и более поздние
+системы) имеют S_IREAD, S_IWRITE, S_IEXEC, тогда как POSIX требует
+присутствия синонимов S_IRUSR, S_IWUSR, S_IXUSR.
+<a name="lbAH">&nbsp;</a>
+</p><h2>ДРУГИЕ СИСТЕМЫ</h2>
+
+Значения, которые использовались или используются в различных
+системах:
+
+<table>
+<tbody><tr valign="top"><td>hex</td><td>имя</td><td>ls</td><td>oct</td><td>описание<br></td></tr>
+<tr valign="top"><td>f000</td><td>S_IFMT</td><td></td><td>170000</td><td>маска типа файла<br></td></tr>
+<tr valign="top"><td>0000</td><td></td><td></td><td>000000</td><td>SCO: недействующий inode<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>BSD: неизвестный тип<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>в SVID-v2 и XPG2 как 0, так и 0100000<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>означают обычный файл<br></td></tr>
+<tr valign="top"><td>1000</td><td>S_IFIFO</td><td>p|</td><td>010000</td><td>поименованный канал FIFO<br></td></tr>
+<tr valign="top"><td>2000</td><td>S_IFCHR</td><td>c</td><td>020000</td><td>символьной устройство (V7)<br></td></tr>
+<tr valign="top"><td>3000</td><td>S_IFMPC</td><td></td><td>030000</td><td>мультиплексированное символьное<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>устройство (V7)<br></td></tr>
+<tr valign="top"><td>4000</td><td>S_IFDIR</td><td>d/</td><td>040000</td><td>каталог (V7)<br></td></tr>
+<tr valign="top"><td>5000</td><td>S_IFNAM</td><td></td><td>050000</td><td>XENIX: именованый специальный файл с<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>двумя подтипами и разными значениями<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>st_rdev (1 и 2)<br></td></tr>
+<tr valign="top"><td>0001</td><td>S_INSEM</td><td>s</td><td>000001</td><td>семафор XENIX, подтип IFNAM<br></td></tr>
+<tr valign="top"><td>0002</td><td>S_INSHD</td><td>m</td><td>000002</td><td>разделяемые данные XENIX, подтип IFNAM<br></td></tr>
+<tr valign="top"><td>6000</td><td>S_IFBLK</td><td>b</td><td>060000</td><td>блочное устройство (V7)<br></td></tr>
+<tr valign="top"><td>7000</td><td>S_IFMPB</td><td></td><td>070000</td><td>мультиплексированное блочное<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>устройство (V7)<br></td></tr>
+<tr valign="top"><td>8000</td><td>S_IFREG</td><td>-</td><td>100000</td><td>обычный файл (V7)<br></td></tr>
+<tr valign="top"><td>9000</td><td>S_IFCMP</td><td></td><td>110000</td><td>VxFS: сжатый файл<br></td></tr>
+<tr valign="top"><td>9000</td><td>S_IFNWK</td><td>n</td><td>110000</td><td>сетевое устройство (HP-UX)<br></td></tr>
+<tr valign="top"><td>a000</td><td>S_IFLNK</td><td>l@</td><td>120000</td><td>символьная ссылка (BSD)<br></td></tr>
+<tr valign="top"><td>b000</td><td>S_IFSHAD</td><td></td><td>130000</td><td>Solaris: теневой inode для ACL<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>(не виден пользовательскими<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>процессами)<br></td></tr>
+<tr valign="top"><td>c000</td><td>S_IFSOCK</td><td>s=</td><td>140000</td><td>сокет (BSD; также "S_IFSOC" on VxFS)<br></td></tr>
+<tr valign="top"><td>d000</td><td>S_IFDOOR</td><td>D&gt;</td><td>150000</td><td>Solaris: door<br></td></tr>
+<tr valign="top"><td>e000</td><td>S_IFWHT</td><td>w%</td><td>160000</td><td>BSD whiteout (не используется для inode'ов)<br></td></tr>
+<tr valign="top"><td>0200</td><td>S_ISVTX</td><td></td><td>001000</td><td>Бит принадлежности: сохраняет код<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>программы в файле подкачки даже после<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>использования (V7)<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>зарезервировано (SVID-v2)<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>В некаталогах: не кэшировать этот<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>файл (SunOS)<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>В каталогах: флаг ограниченного<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>удаления (SVID-v4.2)<br></td></tr>
+<tr valign="top"><td>0400</td><td>S_ISGID</td><td></td><td>002000</td><td>установить идентификатор группы при<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>выполнении (V7)<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>для каталогов: использовать семантику<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>BSD для установки группы-владельца<br></td></tr>
+<tr valign="top"><td>0400</td><td>S_ENFMT</td><td></td><td>002000</td><td>жесткая блокировка файлов в стиле SysV<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>(делит функции c S_ISGID)<br></td></tr>
+<tr valign="top"><td>0800</td><td>S_ISUID</td><td></td><td>004000</td><td>установить идентификатор пользователя<br></td></tr>
+<tr valign="top"><td></td><td></td><td></td><td></td><td>при выполнении (V7)<br></td></tr>
+<tr valign="top"><td>0800</td><td>S_CDF</td><td></td><td>004000</td><td>каталог является файлом, зависящим от контекста (HP-UX)<br></td></tr>
+</tbody></table>
+
+Бит принадлежности появился в Version 32V AT&amp;T UNIX.
+<a name="lbAI">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chmod&amp;category=2">chmod</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chown&amp;category=2">chown</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=readlink&amp;category=2">readlink</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=utime&amp;category=2">utime</a></b>(2)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAG">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAH">ДРУГИЕ СИСТЕМЫ</a></dt><dd>
+</dd><dt><a href="#lbAI">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="lstat" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

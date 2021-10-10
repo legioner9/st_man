@@ -1,0 +1,439 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN idbuild (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, idbuild"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="idbuild" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">idbuild (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=idbuild&amp;category=1&amp;russian=0"><u>idbuild</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>idbuild(1M)</h1></td>
+<td><h1 align="right">idbuild(1M)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>idbuild</b> - строит новое базовое ядро системы UNIX и/или конфигурирует 
+загружаемые модули</p>
+
+<h2>СИНТАКСИС</h2>
+<dl><dt></dt><dd><tt>
+/etc/conf/bin/idbuild [-B] [-#] [-K] [-Q] [[-I <b>каталог</b>] ...] [-O <b>выходной_файл</b>]
+	[-S] [[-M <b>имя_модуля</b>] ...] [-l <b>список_символов</b>] [[-D <b>символ</b>] ...] [[-U <b>символ</b>] ...]
+</tt></dd></dl>
+
+<h2>ОПИСАНИЕ</h2>
+<p>Одно из средств конфигурирования <i>устанавливаемых драйверов/параметров 
+настройки</i> (Installable Driver/Tunable Parameters - ID/TP) ядра, <b>idbuild</b> строит 
+базовое ядро системы UNIX и/или конфигурирует загружаемые модули ядра с 
+использованием текущей конфигурации системы в каталоге 
+<b>$ROOT/$MACH/etc/conf</b>.</p>
+
+<p><b>idbuild</b> использует переменные среды пользователя <b>$ROOT</b> и <b>$MACH</b> для 
+построения начального пути как <b>$ROOT/$MACH</b>. За исключением 
+специальных случаев разработки ядра в некорневом дереве исходного кода, 
+переменная командного интерпретатора <b>$ROOT</b> должна всегда быть пустой или 
+устанавливаться в "<b>/</b>"; если значение <b>$ROOT</b> пустое или равно "<b>/</b>", значение 
+<b>$MACH</b> игнорируется (рассматривается как пустое).</p>
+
+<p>Перед тем, как команда <b>idbuild</b> использует конфигурацию системы, она 
+вызывает <b>idconfupdate(1M)</b> для синхронизации базы данных диспетчера 
+ресурсов и файлов <b>sdevice</b>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Опции</h3>
+<p><b>idbuild</b> воспринимает следующие опции:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="20%"><b>-B</b></td><td>
+Перестроить ядро немедленно. Если указана любая другая 
+опция, данную опцию указывать не обязательно.</td></tr>
+<tr><td valign="top"><b>-#</b></td><td>
+Выдавать отладочную информацию.</td></tr>
+<tr><td valign="top"><b>-K</b></td><td>
+Сохранять временные конфигурационные файлы и 
+объектные модули, созданные <b>idbuild</b>. Это позволяет 
+выполнять в дальнейшем быструю перестройку с 
+помощью опции <b>-Q</b>.</td></tr>
+<tr><td valign="top"><b>-Q</b></td><td>
+Выполнять быструю перестройку, при которой часть 
+обычной обработки и компиляции зависящих от 
+конфигурации файлов пропускается. Чтобы использовать 
+опцию быстрого построения, необходимо иметь 
+временные конфигурационные файлы и объектные 
+модули, оставшиеся с последней перестройки ядра в 
+результате использования опции <b>-K</b> для обычного 
+построения.
+<p>Опцию быстрого построения необходимо использовать 
+осторожно. Использование этой опции исключает 
+возможность использования других опций конфигурации,
+кроме <b>-#</b>, <b>-K</b>, <b>-O</b>, <b>-l</b>.</p></td></tr>
+<tr><td valign="top"><b>-I каталог</b></td><td>
+Искать в указанном каталоге включаемые по <b>#include</b> 
+файлы до их поиска в стандартном каталоге, 
+<b>$ROOT/usr/include</b>. Эту опцию можно повторять в 
+командной строке сколько угодно раз, чтобы перечислить 
+все необходимые каталоги для поиска.</td></tr>
+<tr><td valign="top"><b>-O выходной_файл</b></td><td>
+Поместить ядро в <b>выходной_файл</b> вместо стандартно 
+используемого файла <b>$ROOT/$MACH/etc/conf/cf.d/unix</b>.</td></tr>
+<tr><td valign="top"><b>-S</b></td><td>
+Статически скомпоновать все сконфигурированные 
+модули ядра в базовое ядро.</td></tr>
+<tr><td valign="top"><b>-M имя_модуля</b></td><td>
+Сконфигурировать указанный загружаемый модуль ядра и 
+поместить его в каталог <b>$ROOT/$MACH/etc/conf/mod.d</b>, 
+используя файл с тем же именем, что и имя модуля. 
+Опцию <b>-M</b> можно повторять в командной строке сколько 
+угодно раз, чтобы перечислить все необходимые модули. 
+Подробнее об использовании этой опции см. ниже.</td></tr>
+<tr><td valign="top"><b>-l список_символов</b></td><td>
+Ограничить информацию таблицы символов, 
+добавляемой к вновь сгенерированному ядру, только 
+символами, указанными в файле <b>список_символов</b>.</td></tr>
+<tr><td valign="top"><b>-D символ</b></td><td>
+Помимо стандартных символов, определить (<b>#define</b>) 
+указанный <b>символ</b> при компиляции файлов, зависящих от 
+конфигурации. Эту опцию можно повторять в командной 
+строке сколько угодно раз, чтобы задать все необходимые 
+<b>символы</b>.</td></tr>
+<tr><td valign="top"><b>-U символ</b></td><td>
+Отменить определение (<b>#undef</b>) указанного <b>символа</b> при 
+компиляции файлов, зависящих от конфигурации, даже 
+если этот символ обычно определен. Опция <b>-U</b> отменяет 
+любую опцию <b>-D</b>  для того же символа и может быть 
+повторена в командной строке сколько угодно раз, чтобы 
+задать все <b>символы</b>, определения которых отменяются.</td></tr>
+</tbody></table>
+
+<h3>&nbsp;&nbsp;&nbsp;   Файлы</h3>
+<p>Файлы с данными конфигурации, необходимыми в качестве входных для 
+каждого модуля, описаны в:</p>
+<dl><dt></dt><dd>
+<b>Autotune(4)</b><br>
+<b>Init(4)</b><br>
+<b>Master(4)</b><br>
+<b>Mtune(4)</b><br>
+<b>Node(4)</b><br>
+<b>Rc(4)</b><br>
+<b>Sassign(4)</b><br>
+<b>Sd(4)</b><br>
+<b>System(4)</b><br>
+<b>Space.c(4)</b><br>
+<b>Stubs.c(4)</b>
+</dd></dl>
+
+<p>Эти файлы должны быть установлены в каталоге <b>$ROOT/$MACH/etc/conf</b> с 
+помощью <b>idinstall(1M)</b> перед вызовом <b>idbuild</b>. Кроме того, <b>idbuild</b> предполагает 
+наличие следующих файлов в каталоге <b>$ROOT/$MACH/etc/conf/cf.d</b>:</p>
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="20%"><b>deflist</b></td><td>
+Этот файл содержит список дополнительных аргументов <b>cc(1)</b> 
+для использования при компиляции файлов, зависящих от 
+конфигурации (включая файлы <b>Space.c</b>); эти аргументы 
+должны иметь вид "<b>-Dxxxxxxx</b>" или "<b>-Uxxxxxxx</b>", где <b>xxxxxxx</b> 
+используется для определения или отмены определения 
+символов препроцессора, зависящих от платформы (например, 
+<b>-Dat386</b> или <b>-Dhector</b>). Этот файл поставляется как часть 
+базовой системы и его не надо изменять.</td></tr>
+<tr><td valign="top"><b>kernmap</b></td><td>
+Это зависящий от платформы <i>файл карты</i> (mapfile) передается 
+команде <b>ld(1)</b> для управления компоновкой ядра. Этот файл 
+поставляется как часть базовой системы и его не надо изменять.</td></tr>
+<tr><td valign="top" width="20%"><b>stune</b></td><td>
+Этот файл содержит специфические для конкретной установки 
+значения параметров настройки. Работать с файлом <b>stune</b> надо 
+с помощью утилиты <b>idtune(1M)</b>.</td></tr>
+</tbody></table>
+
+<p>Файл <b>/etc/mod_register</b> генерируется командой <b>idbuild</b> и содержит список всех 
+зарегистрированных загружаемых модулей ядра; описание этого файла см. на 
+странице справочного руководства <b>idmodreg(1M)</b>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Ошибки</h3>
+<p>Поскольку <b>idbuild</b> вызывает другие системные команды для выполнения 
+переконфигурирования системы, редактирования связей и настройки таблицы 
+символов, он будет сообщать обо всех ошибках, обнаруженных 
+соответствующими командами. В общем случае, код возврата 1 показывает, что 
+при выполнении <b>idbuild</b> произошла ошибка, а код возврата 0 свидетельствует об 
+успешном выполнении.</p>
+
+<p>Обнаруживаемые ошибки разбиваются на следующие категории:</p>
+<ul>
+<li>Сообщения об ошибках в файле данных конфигурации, выдаваемые 
+командой <b>idbuild(1M)</b>.</li>
+<li>Сообщения об ошибках компилятора и редактора связей, выдаваемые 
+командами <a href="http://ln.com.ua/~openxs/projects/man/uw2/cc.html"><b>cc(1)</b></a> и <b>ld(1)</b>.</li>
+</ul>
+
+<p>При загрузке модуля с помощью опции <b>-M</b>, если модуль драйвера уже загружен 
+для другого диапазона главных номеров устройств, команда <b>idbuild</b> завершится 
+аварийно с ошибкой <b>ENXIO</b>. Описание действий, которые необходимо 
+предпринять в этом случае, см. в следующем разделе данной страницы 
+справочного руководства.</p>
+
+<p>Если не удастся выполнить <b>idinstall</b> для одного из модулей в коде 
+переконфигурирования, будет выдано сообщение о сбое, а затем 
+переконфигурирование продолжится.</p>
+
+<h2>ИСПОЛЬЗОВАНИЕ</h2>
+<p>Построение ядра системы UNIX состоит из трех стадий. Сначала на основе 
+файлов с данными конфигурации генерируются таблицы и символы 
+конфигурации, а также списки модулей. Затем файлы, зависящие от 
+конфигурации, компилируются и компонуются вместе со всеми 
+сконфигурированными объектными модулями ядра и драйверов устройств. 
+Наконец, если включена поддержка загружаемых модулей ядра или 
+задействован отладчик ядра, информация таблицы символов ядра 
+присоединяется к ядру.</p>
+
+<p>Ядро по умолчанию помещается в файл <b>$ROOT/$MACH/etc/conf/cf.d/unix</b>.</p>
+
+<p>Если ядро построено успешно и <b>$ROOT</b> имеет пустое значение или значение 
+"<b>/</b>", <b>idbuild</b> устанавливает флаг, извещающий процедуру 
+остановки/перезагрузки системы о необходимости замены стандартного ядра в 
+каталоге <b>/stand/unix</b> на новое. Затем устанавливается другой флаг, вызывающий 
+соответствующее переконфигурирование среды (специальные файлы устройств, 
+<b>/etc/inittab</b> и т.п.).</p>
+
+<p>Если с использованием опции <b>-M</b> указаны один или несколько загружаемых 
+модулей ядра, <b>idbuild</b> будет конфигурировать только указанные загружаемые 
+модули ядра и поместит их в каталог <b>$ROOT/$MACH/etc/conf/mod.d</b>. В 
+противном случае перестраивается базовое ядро системы UNIX и 
+переконфигурируются все загружаемые модули в каталоге 
+<b>$ROOT/$MACH/etc/conf/modnew.d</b>, который будет изменен на <b>/etc/conf/mod.d</b> 
+при следующей перезагрузке системы, если <b>$ROOT</b> имеет пустое значение или 
+значение "<b>/</b>" (см. <b>modadmin(1M)</b>).</p>
+
+<p>Если загружаемый модуль уже был загружен, но для другого диапазона главных 
+номеров устройств, можно либо сначала выгрузить модуль, а затем использовать 
+<b>idbuild</b> с опцией <b>-M</b>, либо вызвать <b>idbuild</b> без опции <b>-M</b> и перезагрузить 
+систему. Если попытаться использовать опцию <b>-M</b> для модуля, который уже 
+загружен для другого диапазона главных номеров устройств, <b>idbuild</b> закончится 
+аварийно с ошибкой <b>ENXIO</b>.</p>
+
+<p>Когда загружаемые модули ядра конфигурируются опцией <b>-M</b>, <b>idbuild</b> также 
+создает необходимые <i>специальные файлы</i> (nodes) в каталоге <b>/dev</b>, добавляя и 
+активизируя записи в <b>/etc/inittab</b>, если с модулями связаны файлы <b>Init</b>, и 
+регистрируя модули в работающем ядре (см. <b>idmodreg(1M)</b>). Это делает их 
+доступными для динамической загрузки, не требуя перезагрузки системы.</p>
+
+<p>Перестройки базового ядра обычно необходимы после установки статически 
+компонуемого модуля ядра, при удалении любого статического модуля или при 
+изменении параметров настройки системы. При выполнении <b>idbuild</b> без опций и 
+если переменная среды <b>$ROOT</b> имеет пустое значение или значение "<b>/</b>", 
+устанавливается соответствующий флаг и перестройка ядра откладывается до 
+следующей перезагрузки системы.</p>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<b>Dtune(4)</b>,
+	<b>Ftab(4)</b>,
+	<b>idconfupdate(1M)</b>,
+	<b>idinstall(1M)</b>,
+	<b>idmkinit(1M)</b>,
+	<b>idmknod(1M)</b>, 
+	<b>idmodreg(1M)</b>, 
+	<b>idtune(1M)</b>, 	<b>Init(4)</b>,
+	<b>Interface_ID(4)</b>,
+	<b>Master(4)</b>,
+	<b>Mtune(4)</b>, 
+	<b>Node(4)</b>,
+	<b>Rc(4)</b>,
+	<b>Sassign(4)</b>,
+	<b>Sd(4)</b>,
+	<b>Space.c(4)</b>,
+	<b>Stubs.c(4)</b>,
+	<b>stune(4)</b>,
+	<b>System(4)</b>
+</dd></dl>
+
+<p align="center"><font size="-2">Copyright 1994 Novell, Inc.<br>
+Copyright 2000 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="idbuild" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

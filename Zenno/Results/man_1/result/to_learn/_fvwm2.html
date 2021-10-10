@@ -1,0 +1,2758 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN fvwm2 (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, fvwm2"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="fvwm2" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">fvwm2 (1)</font><hr><li> <a href="/man.shtml?topic=fvwm2&amp;category=1&amp;russian=4"><u>fvwm2</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=fvwm2&amp;category=1&amp;russian=0"><u>fvwm2</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>НАЗВАНИЕ</h2>
+
+<p>
+fvwm2 - F(?) Виртуальный менеджер окон для X11
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>СИНТАКСИС</h2>
+
+<p>
+<b>fvwm2</b> [ <i>options</i> ]
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<i>Fvwm</i> это менежер окон (программа, управляющая окнами) для
+X11. Он является проиводным от <i>twm</i>, переделанным с
+минимальными требованиями к памяти, предоставлением a 3-D
+офрмления окон и простого виртуального десктопа. Версия
+2.xx использует незначительно больше памяти, чем 1.xx,
+зато имеет множество дополнительных опций для управления
+окнами.
+<p>
+Как и стандартный Fvwm <b>Fvwm2</b> совмещает два
+достоинства:больщой виртуальный desktop и множество
+отдельных desktop'ов, которые могут быть использованы по
+отдельности или вместе. Виртуальный desktop позволяет вам
+иметь экран как бы большего размера, чем на самом деле и
+перемещаться по нему. Множество раздельных desktop'ов
+позволяет вам иметь как бы несколько экранов для работы,
+но каждый экран полностью независим от других.
+</p><p>
+Fvwm2 дает вам использовать горячие клавиши, которые
+позволяют выполнять многие функции менеджера окон, включая
+перемещение и изменение размеров окон и операции с меню.
+</p><p>
+Fvwm2 также имеет нечеткие различия между командами
+конфигурации и встроенными командами (такими как команды
+управления окнами). Команды конфигурации обычно
+устанавливают шрифты, цвета, клавиши, задают содержимое
+меню, указывают какие функции выполняются мышью, в то
+время как встроенные команды обычно делают такие вещи как,
+например, активация окна. Fvwm2 не делает таких
+различий и позволяет изменять что угодно когда угодно.
+</p><p>
+Другие замечательные различия между Fvwm2 и прочими
+менеджерами окон для X Window состоят в методах SloppyFocus
+и per-window focus. SloppyFocus делает окно
+активным с помощью мыши, но окно не становится
+неактивным, когда мышь покидает его и перемещается в
+главное(root) окно. Когда SloppyFocus используется как
+стиль активации окон по умолчанию, он прекрасен для окон
+в которые вы обычно ничего не вводите (xmag, xman,
+xgraph, xclock, xbiff, и т.д.), так что ваше терминальное
+окно не потеряет активности.
+</p><p>
+</p><dl compact="">
+<dt><b>АВТОРСКИЕ ПРАВА</b></dt><dd>
+<p>
+Так как <i>fvwm2</i> является производным от <i>fvwm</i>, то он
+разделяет его авторские права.
+</p><p>
+<i>fvwm</i> copyright 1988 Evans и Sutherland Computer
+</p><p>
+Corporation, Salt Lake City, Utah, и 1989 Massachusetts
+Institute of Technology, Cambridge, Massachusetts, Все
+права защищены. Также copyright 1993 и 1994 Robert
+Nation.
+</p><p>
+</p></dd><dt>Права </dt><dd>
+<p>
+на использование, копирование, изменение и
+распостранение этого программного обеспечения и его
+документации для любых целей и без каких-либо гарантий
+предоставляются при условии предоставления замечения по
+авторским правам на все копии и при условии, что и данное
+замечание по авторским правам и данное замечание по правам
+на использование будет предоставлено в документации, и
+кроме того, что имена Evans и Sutherland и M.I.T. не будут
+использованы при рекламировании и паблисити при
+распостранении данного программного обеспечения без
+специального письменного разрешения.
+</p><p>
+</p></dd><dt>ROBERT </dt><dd>
+<p>
+NATION, CHARLES HINES, EVANS &amp; SUTHERLAND, AND
+M.I.T. DISCLAIM ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS, IN NO EVENT SHALL EVANS &amp; SUTHERLAND OR
+M.I.T. BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL
+DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
+NEGLIGENCE OR OTHER TORTUOUS ACTION, ARISING OUT OF OR IN
+CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+</p><p>
+</p></dd><dt><b>АНАТОМИЯ ОКНА</b></dt><dd>
+<p>
+<i>Fvwm</i> создает вокруг многих окон декоративный бордюр. Этот
+бордюр содержит полоску на каждую сторону окна и маленькую
+"L" образную секцию в каждом углу. В добавление к этому
+вверху окна есть широкая полоса, называемая заголовком
+(title bar) окна. На этой полосе можно разместить до 10-ти
+кнопок(title-bar button). Верхие, нижние полоски и полоски
+</p><p>
+</p></dd><dt>по </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;сторонам&nbsp;обобщенно&nbsp;назваются&nbsp;полоски&nbsp;по
+сторонам(side-bars). Угловые части называются рамкой.
+</p><p>
+</p></dd><dt>Если установки по </dt><dd>
+<p>
+умолчанию не были модифицированы в
+конфигурационных файлах, то нажав левую кнопку мыши на
+заголовке окна или полоске на одной из сторон вы можете
+переместить окно. Нажав левую кнопку мыши в углу рамки
+окна вы можете изменять его размер. Нажав среднюю кнопку
+мыши (для трехкнопочной мыши. Для двухкнопочной в случае
+включенной эмуляции 3-й кнопки нужно нажать одновременно
+левую и правую кнопки) в любом месте бордюра получите
+список операций с окном.
+</p><p>
+</p></dd><dt>Как </dt><dd>
+<p>
+уже говорилось на полосе заголовка окна может
+сущетсвовать до 10-ти кнопок. Их использование полностью
+определяется пользователем. Конфигурация по умолчанию
+задает по одной кнопке на каждую сторону заголовка окна.
+Одна, которая слева используется для получения списка
+операций с окном, какая бы кнопка мыши не была нажата.
+Кнопка справа используется для сворачивания окна в иконку.
+На каждую кнопку, что находится на полосе заголовка окна
+пользователь может задать выполнение какой-либо функции
+по нажатию кнопоки мыши. Смотрите ниже секцию
+конфигурационного параметра "Mouse".
+</p><p>
+</p></dd><dt><b>ВИРТУАЛЬНЫЙ DESKTOP</b></dt><dd>
+<p>
+<i>Fvwm2</i> предоставляет множество виртуальных desktop'ов
+для пользователей, которые хотят их использовать. Экран
+это поле вывода на desktop'e который может быть больше,
+чем сам экран. Может быть доступно сразу несколько
+различных desktop'ов (Стратегия: один desktop для
+каждого проекта, или один desktop для каждого
+приложения, когда нужно, чтобы ясно были видны все окна
+или окно приложения).Теперь, когда каждый desktop может
+быть больше, чем физический экран, можно легко видеть те
+окна, которые больше размера экрана или большие группы
+независимых окон.
+</p><p>
+Размер виртуальных desktop'ов может быть изменен в любое
+время с помощью использования встроенной команды
+DeskTopSize. Все виртульные desktop'ы могут быть разного
+размера. Максимально возможно число различных desktop'ов
+не определено, но приблизительно составляет около 4-х
+миллиардов. Все окна в на desktop'ах можно увидеть с
+Pager'а, который имеет миниатюрный вид desktop'ов. Pager
+это специальная программа являющаяясь одним из модулей
+Fvwm, которая не является важной для управления
+менеджером окон. Окна могут быть также отображены в
+</p><p>
+</p></dd><dt>списке, включая их геометрию, в специальном окне </dt><dd>
+<p>
+(window
+list), доступном из всплывающего вертикального (pop-up)
+меню или как самомтоятельное окно, называемое FvwmWinList
+(другой модуль).
+</p><p>
+"Sticky"("приклеенные") окна это окна которые находятся
+вне пределов виртуального desktop'а как "Приклеенные к
+стеклу экранна". Они всегда остаются на экране.Это удобно
+</p><p>
+</p></dd><dt>для таких программ как claock и xbiff, таким образом </dt><dd>
+<p>
+вам
+нужно только запустить одну такую программу и она всегда
+останется с вами. Иконки также могут быть "приклеены", в
+случае необходимости.
+</p><p>
+</p></dd><dt>Геометрия </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;окна&nbsp;определяется&nbsp;относительно&nbsp;текущего
+поля просмотра. Например:
+</p><p>
+xterm -geometry +0+0
+</p><p>
+</p></dd><dt>будет </dt><dd>
+<p>
+всегда показывать в вверхнем левом углу видимой
+части экрана. Геометрические параметры можно задать так,
+чтобы они определяли место окон на виртуальном desktop'е,
+но вне экрана. Например, если видимый экран имеет размер
+1000 на 1000 точек и размер desktop'а 3 на 3, и текущее
+поле просмотра это верхний левый угол desktop'а, то вызов
+</p><p>
+xterm -geometry +1000+1000
+</p><p>
+</p></dd><dt>поместит окно в точно вне правого нижнего угла экрана. Его</dt><dd>
+<p>
+можно увидеть если переместить мышь в правый нижний угол
+экрана и подождать пока произойдет сдвиг экрана вниз.
+</p><p>
+Это не работает в случае, если окно помещается на desktop,
+отличный от текущего активного десктопа.
+</p><p>
+</p></dd><dt>Можно задать геометрию окна и так:</dt><dd>
+<p>
+xterm -geometry -5-5
+</p><p>
+</p></dd><dt>поместит </dt><dd>
+<p>
+нижний правый угол окна на 5 точек от нижнего
+правого угла видимой части экрана. Не все приложения
+поддерживают геометрические параметры с отрицательным
+смещением.
+</p><p>
+</p></dd><dt>Некоторые </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;приложения&nbsp;которые&nbsp;понимают&nbsp;стандратные
+агрументы командной строки Xt и ресурсы X, такие как
+xterm и xfontsel, позволяют пользователю определять
+desktop, на который будет выведено окно приложения в
+командной строке:
+</p><p>
+xterm -xrm "*Desk:1"
+</p><p>
+запустит xterm на desktop'е номер 1. Не все приложения
+понимают эту опцию.
+</p><p>
+</p></dd><dt>Вы </dt><dd>
+<p>
+можете получить такойже результат со следующей
+строкой:
+</p><p>
+XTerm*Desk: 1
+</p><p>
+</p></dd><dt><b>ИНИЦИАЛИЗАЦИЯ</b></dt><dd>
+<p>
+Во время инициализации, <i>Fvwm</i> будет искать конфигурационный
+файл который описывает различные параметры такие как
+назначение клавиатуры, задание функций мыши и др. Формат
+этого файла будет описан позже. Сперва <i>fvwm2</i> ищет файл
+.fvwm2rc или .fvwmrc в зависимости от того как был
+скомпилирован Fvwm (.fvwm2rc по умолчанию) в домашнем
+каталоге пользователя. Если там этого файла нет, то <i>fvwm</i>
+смотрит /usr/local/lib/X11/fvwm2/system.fvwm2rc для чтения
+установок по умолчанию. Если и этот файл не найден, то
+<i>fvwm2</i> запустится, но его нельзя будет использовать.
+</p><p>
+<i>fvwm2</i> устанавливает две переменных окружения которые
+будут унаследованы его потомкомками.Это $DISPLAY и $HOSTDISPLAY.
+$DISPLAY описывает дисплей, на котором запущен
+<i>fvwm2</i>. $DISPLAY может принимать значения unix:0.0 или 0.0.
+Значение 0.0 не работает также хорошо, как unix:0.0, когда
+работают через rsh на другой машине. $HOSTDISPLAY
+устанавливает и использует сетевое описание дисплея.
+Переменную $HOSTDISPLAY использвует протокол TCP/IP
+</p><p>
+</p></dd><dt>(каждый раз при локальном соединении), однако и </dt><dd>
+<p>
+$DISPLAY
+может испльзоваться при локальных соединениях, так как
+они можгут использовать Unix-domain sockets, которые
+быстрее.
+</p><p>
+<i>fvwm</i> имеет две специальные функции для инициальзации:
+InitFunction и RestartFunction, которые запускаются
+соответственно во время Инициализации и Перезапуска. Они
+могут быть описаны вручную в пользовательском rc файле
+через вызов AddToFunc (описано ниже), и могут
+использоваться для старта модулей или программ, которые бы
+вы захотели запустить при старте <i>fvwm</i>.
+</p><p>
+<i>Fvwm</i> также имеет специальную функцию для выхода: ExitFunction,
+которая запускается или перезапускается перед
+выходом или в других случаях. Она может быть использована
+для явного убивания модулей и т.д.
+</p><p>
+</p></dd><dt><b>ОПЦИИ КОМПИЛЯЦИИ</b></dt><dd>
+<p>
+<i>Fvwm</i> имеет несколько способов для снижения использования
+памяти, что достигается ограничинием использование
+определенных особенностей <i>fvwm</i>, во время компляции. Если у
+вас возникли проблемы при использовании определенной
+команды или особенности, то проверьте была ли включена
+поддержка данной особенности во время компиляции.
+Необязательные особенности полностью описаны в
+конфигурационном файле Imake: Fvwm.tmpl.
+</p><p>
+</p></dd><dt><b>ИКОНКИ</b></dt><dd>
+<p>
+Базовая конфигурация <i>fvwm2</i> использует черно-белые иконки,
+симулирующие twm. Если <i>fvwm2</i> скомпилирован с поддержкой
+XPM (а это почти наверняка), то могут использоваться
+цветные иконки симулирующие ctwm, MS-Windows или Macintosh.
+Обычно для использования таких иконок нужен XPM
+package как описано в конфигурационном Imake файле
+Fvwm.tmpl.
+</p><p>
+</p></dd><dt>Если и SHAPE и XPM опции скопилированы, то вы можете взять</dt><dd>
+<p>
+цветные иконки, которые покажутся вам более красивыми.
+</p><p>
+</p></dd><dt><b>МОДУЛИ</b></dt><dd>
+<p>
+Модули - это отдельные программы, которые запускаются как
+отдельные процессы Unix, но которые передают команы <i>fvwm2</i>
+для выполнения. Пользователи могут написать свои
+собственные модули для каких-либо манипуляций, чтобы не
+интегрировать их в <i>fvwm2</i> во избежание распухания
+последнего.
+</p><p>
+Модули ДОЛЖНЫ быть вызваны <i>fvwm2</i> так как он устанавливает
+два канала: для <i>fvwm2</i> и модуля с которым он работает.
+Каналы будут уже открыты для модуля, когда он запускается
+и дескрипторы файлов для каналов предоставляются как
+агрументы командной строки.
+</p><p>
+Модули могут быть вызваны <i>fvwm2</i> в любое время в течении
+X-сессии при помощи втроенной команды Module. Модули
+могут существовать во время X-сессии, или могут выполнятся
+и заканчиваться как отдельные задачи. Если модуль еще
+активен, когда <i>fvwm2</i> завершает свою работу, то <i>fvwm2</i>
+закрывает соединительные каналы и ждет когда придет из
+модуля сигнал SIGCHLD, показывающий, что модуль
+определил, что канал закрыт и закончил свою работу. Если
+модуль не определил, что канал закрыт <i>fvwm2</i> закончит
+свою работу после ожидания приблизительно 30 секунд.
+Максимальное число модулей, которое может быть запущено
+одновременно ограничивается максимальным числом
+одновременно открытых файлов в операционной системе приблизительно
+между 60 и 256.
+</p><p>
+Модули просто передают текстовые команды во внутрь <i>fvwm</i>.
+Текстовые команды форматируются также как в случае
+задания команд для мыши в файле .fvwm2rc. Также
+передается некоторая дополнительная информация, также, как
+например, в модуле FvwmButtons. Модуль FvwmButtons
+описывается собственной страницей man. The FvwmButtons
+module is documented in its own man page.
+</p><p>
+<b>ICCCM COMPLIANCE</b> <i>fvwm2</i> пытается быть совместимым с
+ICCCM 1.1. Кроме того, свойства ICCCM сделали бы возможным
+для приложений принимать ЛЮБУЮ строку, в которой не
+содержаться "горячие" клавиши, которые использованы в
+<i>fvwm2</i> и многих других менеджерах окон.
+</p><p>
+</p></dd><dt>Одно из свойств ICCCM которым обладает окно это</dt><dd>
+<p>
+</p></dd><dt>WMINTS(WMINTS):</dt><dd>
+<p>
+Клиент принимает ввод или фокус ввода: Ложь
+</p><p>
+</p></dd><dt>не должно было бы дать </dt><dd>
+<p>
+фокус ввода клавиатуры оконного
+менеджера. Однако, эти окна могут взять фокус ввода сами.
+Некоторые же приложения включают это свойство и в любом
+случае еще ожидают, что оконнный менеджер даст им фокус
+клавиатуры, но <i>fvwm2</i> предоставляет оконный стиль "Linience",
+который позволит <i>fvwm2</i> не замечать этого правила
+ICCCM.
+</p><p>
+</p></dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>M4&lt;/bf&gt; &lt;bf&gt;Preprocessing</h2>
+
+<p>
+M4 pre-processing управляется модулем в <i>fvwm2</i>. Для более
+детального описания смотрите man FvwmM4. В кратце, если
+вы хотите чтобы <i>fvwm2</i> проверял ваши файлы с помощью M4,
+то замените слово "Read" на "FvwmM4" в вашем файле
+</p><p>
+fvwm2 -f "FvwmM4 .fvwm2rc"
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>Cpp&lt;/bf&gt; &lt;bf&gt;Preprocessing</h2>
+
+<p>
+Cpp это препроцессор языка С. <i>fvwm2</i> предлагает Cpp
+обработку, которую отражает M4 pre-processing. Для поиска
+данных об этом, перечитайте секцию M4 снова, но замените
+"m4" на "cpp".
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>Auto-raise&lt;/bf&gt; <b>(автоматическое перемешение окна</b> &lt;bf&gt;наверх)</h2>
+
+<p>
+Окна могут быть автоматически помещены наверх когда они
+принимают фокус или через некоторое количество миллисекунд
+после принятия фокуса при использовании модуля FvwmAuto.
+</p><p>
+</p><dl compact="">
+<dt><b>ОПЦИИ</b></dt><dd>
+<p>
+Это опции командной строки что воспринимаются <i>fvwm2</i>:
+</p><p>
+</p></dd><dt><i>-f &lt;config command&gt;</i></dt><dd>
+<p>
+Заставляет Fvwm использовать &lt;config command&gt;
+вместо "Read".
+</p><p>
+Заставляет <i>fvwm</i> использовать <i>config_command</i> как команду
+инициализации вместо "Read .fvwm2rc". (Заметим,
+что может быть задано до 10 <b>-f</b> и <b>-cmd</b> параметров и
+они выполняться по порядку)
+</p><p>
+</p></dd><dt><i>-debug</i> Помещает </dt><dd>
+<p>
+транзакции X в синхронном режиме, который
+ужасно медленно, но гарантирует, что сообщения
+о внутренних ошибках <i>fvwm2</i> корректны.
+</p><p>
+</p></dd><dt><i>-d displayname</i></dt><dd>
+<p>
+Управление осуществляется дисплеем "displayname"
+вместо имени взятом из переменной окружения
+$DISPLAY.
+</p><p>
+</p></dd><dt><i>-s</i> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;В&nbsp;много-экранном&nbsp;дисплее,&nbsp;запускает&nbsp;Fvwm&nbsp;только&nbsp;на
+экране названном в переменной окружения $DISPLAY
+или предоставленном ранее через опцию -d. Обычно
+<i>fvwm2</i> пытается запуститься на всех экранах
+многоэкранного дисплея.
+</p><p>
+</p></dd><dt><i>-version</i></dt><dd>
+<p>
+Печатает версию Fvwm на stderr.
+</p><p>
+</p></dd><dt><b>КОНФИГУРАЦИОННЫЙ ФАЙЛ</b></dt><dd>
+<p>
+Конфигурационный файл используется для описания
+клавиатуры, задания функций мыши, цветов, размера
+вертикального десктопа и др. Обычно конфигурационный файл
+называется .fvwm2rc. Используя встроенную команду "Read",
+он легко читает другие заданные вами конфигурационные
+файлы.
+</p><p>
+</p></dd><dt>Строки </dt><dd>
+<p>
+начинающиеся с `#' будут игнорированы. В строках
+начинающихся с `*' ожидаются команды конфигурации модуля
+(или команды конфигурации для самого <i>fvwm2</i>).
+</p><p>
+<i>fvwm</i> не делает различий между командами конфигурации и
+встроенными командами, таким образом любая команда,
+упомянутая в секции внутренних команд может быть помещена
+в строку <i>fvwm2</i> для выполнения, так как он читает
+конфигурационный файл, или она может быть помещена как
+выполняемая команда в меню или присвоена кнопке мыши или
+клавише клавиатуры. Она может использоваться пользователем
+и при инициализации и во время работы.
+</p><p>
+</p></dd><dt><b>ВСТРОЕННЫЕ ФУНКЦИИ</b></dt><dd>
+<p>
+<i>fvwm2</i> поддерживает некоторое количество встроенных
+функций, которые могут быть присвоены клавиатуре или
+кнопкам мыши. Если ожидает найти встроенную функцию в
+команде, но не находит ее, он проверяет описанна ли
+команда, которую он встретил,но не понял в выражении типа
+"Function &lt;команда&gt;" или "Module &lt;команда&gt;". Это
+позволяет комплексным функциям или модулям быть вызванными
+способом выглядящим довольно прозрачно.
+</p><p>
+Пример: файл .fvwm2rc содержит строку "HelpMe". <i>fvwm2</i>
+будет искать встроенную команду называемую "HelpMe" и не
+найдет ее. Затем он будет искать заданную пользователем
+комплексную функцию, названную "HelpMe". Если такая
+функция существует, то <i>fvwm2</i> попытается ее выполнить.
+</p><p>
+</p></dd><dt>Кавычки </dt><dd>
+<p>
+требуются только когда есть необходимость
+заставить <i>fvwm2</i> рассматривать два и более слова как один
+агрумент. Однако допускается использование кавычек и для
+аргумента из одного слова. Если вы хотите заключить в
+кавычки символ в вашем тексте, вы должны использовать
+обратные и прямые апострофы - вот так ``&lt;символ&gt;''.
+Например, если вы имеете pop-up меню с названием WindowOps,
+то кавычки вам не нужны - пишите: Popup Window-Ops,
+но если вы замените символ "-" на пробел, то вам будут
+нужны кавычки: Popup "Window Ops".
+</p><p>
+AddButtonStyle <i>button [state] [style] [</i> -- <i>[!]flag ... ]</i>
+Добавляет стиль кнопки к <i>button</i>. <i>button</i> может быть
+номером кнопки или "All", "Left" или "Right". <i>state</i>
+может быть "ActiveUp," "ActiveDown" или "Inactive."
+Если <i>state</i> опускается, то стиль добавляется к
+каждому состоянию. Если стиль кнопки и флаги
+находятся в круглых скобках, то множество
+определений состояний может быть помещено в одну
+строку. Флаги для дополнительных стилей кнопок не
+могут быть изменены после их задания.
+</p><p>
+</p></dd><dt>Кнопки </dt><dd>
+<p>
+рисуются в порядке их задания, начиная с
+более нового ButtonStyle, с добавлением AddButtonStyle.
+Для очистки стиля стека стиля кнопки,
+измените флаги стиля, а для подробностей описания
+стилей и флагов смотрите команду ButtonStyle.
+Примеры:
+</p><p>
+ButtonStyle 1 Pixmap led.xpm -- Top Left
+ButtonStyle 1 ActiveDown HGradient 8 grey black
+ButtonStyle All -- UseTitleStyle
+AddButtonStyle 1 ActiveUp (Pixmap a.xpm) ActiveDown (Pixmap b.xpm -- Top)
+AddButtonStyle 1 Vector 4 50x30@1 70x70@0 30x70@0 50x30@1
+</p><p>
+</p></dd><dt>Первоначально </dt><dd>
+<p>
+для этого примера все состояния
+кнопок устанавливаются в pixmap. Вторая строка
+замещает состояние ActiveDown на градиент (это
+перекрывает назначение pixmap что было сделано в
+предыдущей строке). Затем, флаг UseTitleStyle
+устанавливается для всех кнопок, что заставит <i>fvwm</i>
+рисовать все стили установленные через TitleStyle
+перед прорисовкой кнопок. Наконец, AddButtonStyle
+используется для помещения добавочных pixmaps в оба
+состояния ActiveUp и ActiveDown и стиль кнопки Vector
+рисуется поверху всех состояний.
+</p><p>
+AddTitleStyle <i>[state] [style] [</i> -- <i>[!]flag ... ]</i>
+Добавляет стиль заголовка для полосы заголовка
+окна. <i>state</i> должен быть одним из "ActiveUp,"
+"ActiveDown," или "Inactive." Если <i>state</i>
+опускается, то стить добавляется к каждому
+состоянию. Если стиль и флаг помещены в круглые
+скобки, то в одной строке может быть помещено
+множество определений состояний. Эта команда сходна
+с командой AddButtonStyle (смотрите выше).
+</p><p>
+</p></dd><dt>Полосы </dt><dd>
+<p>
+заголовков прорисовываются в порядке их
+определения, начиная с более нового TitleStyle, с
+добавлением AddTitleStyle. Для очиски стека стилей
+заголовков изменить флаги состояния, а для описания
+стилей и флагов смотрите команды TitleStyle и ButtonStyle.
+</p><p>
+AddToDecor <i>decor</i>
+</p><p>
+Добавить или откланяет команды для декора
+названного <i>decor</i>. Декор это какое-либо имя,
+которое дается для установки команд, которые
+привязывают стили кнопок, стили полос заголовков
+окон, стили границ окна, цвета и шрифты окна. Если
+<i>decor</i> не существует, то он создается; в противном
+случае он модифицируется.
+</p><p>
+</p></dd><dt>Созданные декоры действуют точно также как и </dt><dd>
+<p>
+декор
+fvwm по умолчанию без каких-либо переопределений
+стилей. Данный декор может быть применен к
+установке окон с опцией UseDecor комады Style.
+Модифицируя существуюший декор можно привязать его
+к окнам, которым в данный момент он назначен.
+</p><p>
+AddToDecor используется также как команды AddToMenu
+и AddToFunc, за исключением того, что меню и
+функции замещаются командами ButtonStyle, AddButtonStyle,
+TitleStyle, AddTitleStyle, BorderStyle,
+HilightColor и WindowFont. Декоры созданные
+AddToDecor могут впоследствии изменятся опциями
+ChangeDecor, DestroyDecor, UpdateDecor, и UseDecor
+команды Style.
+</p><p>
+</p></dd><dt>Следующий </dt><dd>
+<p>
+пример создает декор и стить, оба
+названные "flatness." Несмотря на одинаковое имя,
+это разные вещи:
+</p><p>
+AddToDecor flatness
+</p><p>
++ ButtonStyle All ActiveUp (-- flat) Inactive (-- flat)
++ TitleStyle -- flat&lt;/p&gt;
++ BorderStyle -- HiddenHandles NoInset
++ HilightColor white navy&lt;/p&gt;
+Style "flatness" UseDecor flatness,Color white/grey40,HandleWidth 4
+</p><p>
+Style "xterm" UseStyle flatness
+</p><p>
+</p></dd><dt>Существующий декор </dt><dd>
+<p>
+окна может быть переназначен
+ChangeDecor или командой Style и следующей за ней
+командой Recapture. Внешний вид всех окон или
+конкретный декор может быть обновлен UpdateDecor
+(полезно после модификации внешнего вида; изменение
+опций Style требует вызова Recapture вместо UpdateDecor).
+Декор может быть уничтожен через вызов
+DestroyDecor.
+</p><p>
+AddToMenu
+</p><p>
+Начинает или добавляет определение меню. Обычно
+определение меню выглядит где-то так:
+</p><p>
+</p></dd><dt>AddToMenu Utilities "Utilities" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Title
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Xterm"&nbsp;Exec&nbsp;xterm&nbsp;-e&nbsp;tcsh
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Rxvt"&nbsp;Exec&nbsp;rxvt
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Remote&nbsp;Logins"&nbsp;Popup&nbsp;Remote-Logins
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Top"&nbsp;Exec&nbsp;rxvt&nbsp;-T&nbsp;Top&nbsp;-n&nbsp;Top&nbsp;-e&nbsp;top
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Calculator"&nbsp;Exec&nbsp;xcalc
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Xman"&nbsp;Exec&nbsp;xman
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Xmag"&nbsp;Exec&nbsp;xmag
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"emacs"&nbsp;Exec&nbsp;xemacs
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Mail"&nbsp;MailFunction&nbsp;xmh&nbsp;"-font&nbsp;fixed"
+</p><p>
+</p></dd><dt>"" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nop
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Modules"&nbsp;Popup&nbsp;Module-Popup
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;""&nbsp;Nop
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Exit&nbsp;Fvwm"&nbsp;Popup&nbsp;Quit-Verify
+</p><p>
+</p></dd><dt>Меню может быть вызвано через</dt><dd>
+<p>
+</p></dd><dt>Mouse 1 R </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;A&nbsp;Menu&nbsp;Utilities&nbsp;Nop
+</p><p>
+</p></dd><dt>или</dt><dd>
+<p>
+</p></dd><dt>Mouse 1 R </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;A&nbsp;Popup&nbsp;Utilities
+</p><p>
+</p></dd><dt>В меню не имеется каких-либо символов </dt><dd>
+<p>
+конца меню.
+Меню не должны определятся в смежной области файла
+.fvwm2rc. Заключенная в кавычки порция в
+приведенном выше примере это метка меню, которая
+будет видна в меню, когда пользователь вызовет его.
+Оставшаяся часть это встроеннвя команда, которая
+будет вызвана если пользователь выберет этот пункт
+меню. Пустая метка меню ("") и функция Nop
+используются для вставки разделителя в меню.
+</p><p>
+</p></dd><dt>Если </dt><dd>
+<p>
+метка меню содержит подстроку, которая
+</p><p>
+</p></dd><dt>содержит </dt><dd>
+<p>
+звездочки, то ожидается, что текст между
+звездочками это имя файла иконки (в xpm или bitmap
+формате), которая будет вставлена в меню. Например
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Calculator*xcalc.xpm*"&nbsp;Exec&nbsp;xcalc
+</p><p>
+вставляет пункт меню с меткой "calculator" с
+картинкой калькулятора сверху метки. А в случае
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"*xcalc.xpm*"&nbsp;Exec&nbsp;xcalc
+</p><p>
+</p></dd><dt>будет видна только картинка.</dt><dd>
+<p>
+</p></dd><dt>Если метка меню содержит подстроку которая содержит</dt><dd>
+<p>
+символ "%", то ожидается, что текст между символами
+процентов содержит имя файла иконки (в xpm или
+bitmap формате), которая будет вставлена слева или
+справа от метки меню. Например
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Calculator%xcalc.xpm%"&nbsp;Exec&nbsp;xcalc
+</p><p>
+вставляет пункт меню с меткой "calculator" с
+картинкой калькулятора справа от надписи. В случае
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"%xcalc.xpm%"&nbsp;Exec&nbsp;xcalc
+</p><p>
+</p></dd><dt>будет </dt><dd>
+<p>
+видна только картинка. Картинки для
+использования в таких случаях должны быть
+маленикими (около 16x16 точек)
+</p><p>
+AddToFunc
+</p><p>
+Начинает или добавляет описание функции. Пример:
+</p><p>
+</p></dd><dt>AddToFunc Move-or-Raise </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;Raise
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"M"&nbsp;Move
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"D"&nbsp;Lower
+</p><p>
+Функция с именем Move-or-Raise может быть вызвана
+из меню или через клавиатуру и мышь:
+</p><p>
+</p></dd><dt>Mouse 1 TS </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;Move-or-Raise
+</p><p>
+</p></dd><dt>Порция, заключенная </dt><dd>
+<p>
+в кавычки говорит, какой вид
+действия будет выполнять соманду, которая следует
+за ней. "I" ставится для НЕМЕДЛЕННОГО выполнения, и
+запуск происходит как только вызывается функция.
+"M" ставится для ДЕЙСТВИЯ, т.е. если пользователь
+запускает перемещение мыши. "C" ставится для
+НАЖАТИЯ, т.е. если пользователь нажимает и
+отпускает кнопку мыши в короткий период времени.
+"D" ставится для ДВОЙНОГО НАЖАТИЯ. Действие "I" в
+этом случае будет запущено по нажатию кнопки мыши,
+если функция вызывается уже с активным окном.
+</p><p>
+Специальные символы $w и от $0 до $9 доступны
+в комплексных функциях, макросах или других
+функциях какие вы захотите использовать для их
+вызова. Вместе с макросом, $w расширяется до
+id-окна (выражается в шестнадцатиричной системе,
+например 0x10024c) того окна для которого был
+вызван макрос.Символы от $0 до $9 это агрументы для
+макроса, таким образом если вы вызываете
+</p><p>
+Key F10 R A Function MailFunction xmh "-font fixed"
+</p><p>
+и MailFunction это
+</p><p>
+</p></dd><dt>AddToFunc MailFunction </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;Next&nbsp;[$0]&nbsp;Iconify&nbsp;-1
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;Next&nbsp;[$0]&nbsp;focus
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;None&nbsp;[$0]&nbsp;Exec&nbsp;$0&nbsp;$1
+</p><p>
+</p></dd><dt>То следующая строка функции становится</dt><dd>
+<p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;None&nbsp;[xmh]&nbsp;Exec&nbsp;xmh&nbsp;-font&nbsp;fixed
+</p><p>
+</p></dd><dt>Извлечение </dt><dd>
+<p>
+выполняется как только функция
+запустится, таким образом вы можете использовать
+некоторую функцию со всеми видами различных
+аргументов.Я могу использовать
+</p><p>
+Key F11 R A Function MailFunction zmail "-bg pink"
+</p><p>
+в каком либо .fvwm2rc, если захочу. А вот пример
+использования символа $w:
+</p><p>
+</p></dd><dt>AddToFunc PrintFunction </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;Raise
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;Exec&nbsp;xdpr&nbsp;-id&nbsp;$w
+</p><p>
+</p></dd><dt>Заметим,что $$ будет преобразовано в $.</dt><dd>
+<p>
+</p></dd><dt><i>Beep</i> </dt><dd>
+<p>
+Так можно сделать гудок на терминале.
+</p><p>
+<i>BorderStyle [state] [style] [ -- [!]flag ... ]</i>
+Задает стиль границ для окон. <i>state</i> может быть или
+"Active" или "Inactive." Если <i>state</i> опускается, то
+стиль устанавливается для обоих состояний. Если
+стиль и флаг помещены в круглые скобки, то в одной
+строке может быть помещено множество определений
+состояний.
+</p><p>
+<i>style</i> это поднабор доступных ButtonStyles, и может
+быть только TiledPixmap (одинаковые pixmaps,
+которые совпадают по цветам контура для этого
+случая то, что надо). Если символ "!" предшествует
+какому-нибудь флагу, то поведение флага меняется на
+противоположное. Если <i>style</i> не определено, то один
+раз, можно изменить флаги без сброса данного стиля.
+</p><p>
+Флаг "HiddenHandles" прячет линии управления углов
+для окон с управлением (эта опция не имеет эффекта
+для NoHandle окон). По умолчанию HiddenHandles
+запрещается.
+</p><p>
+Флаг "NoInset" дополняет HiddenHandles. Если он
+задан, то внутренний контур вокруг рамки окна не
+рисуется. Если HiddenHandles не задан, то этот
+флаг ничего не делает.
+</p><p>
+</p></dd><dt>Для оформления активной и </dt><dd>
+<p>
+неактивной границ окна
+текстурной pixmap нужно задать:
+</p><p>
+BorderStyle Active TiledPixmap marble.xpm
+BorderStyle Inactive TiledPixmap granite.xpm
+BorderStyle Active -- HiddenHandles NoInset
+</p><p>
+</p></dd><dt>Для очистки стиля для обоих состояний:</dt><dd>
+<p>
+BorderStyle Simple
+</p><p>
+</p></dd><dt>Для очистки одного состояния:</dt><dd>
+<p>
+BorderStyle Active Simple
+</p><p>
+</p></dd><dt>Для сброса флага для данного состояния:</dt><dd>
+<p>
+BorderStyle Inactive -- !NoInset
+</p><p>
+</p></dd><dt>Кнопки </dt><dd>
+<p>
+полосы заголовка окна могут наследовать
+стиль границы окна с флагом UseBorderStyle
+(смотрите ButtonStyle).
+</p><p>
+ButtonStyle <i>button [state] [style] [</i> -- <i>[!]flag ... ]</i>
+Задает стиль для кнопки полосы заголовка окна. <i>but_</i>t<i>on</i>
+это номер кнопки полосы заголовка окна между 0
+и 9 включительно или "All", "Left", "Right", или
+"Reset." Кнопка нумеруется как описано в секции
+Mouse (см. ниже). Если стиль и флаг помещены в
+круглые скобки, то в одной строке может быть
+помещено множество определений состояний.
+</p><p>
+<i>state</i> это то состояния кнопки, которое должно быть
+установлено. Состояния кнопки задаются как:
+"ActiveUp" и "ActiveDown", что соответствует
+ненажатому и нажатому состояниям кнопок активный
+окон; в то время как состояние "Inactive" означает
+кнопки на неактивных окнах.
+</p><p>
+Если <i>state</i> это ActiveUp, ActiveDown или Inactive,
+то устанавливается особое состояние кнопки. Если
+<i>state</i> опускается, каждое состояние будет
+установлено. Задание стиля уничтожает текущий стиль
+(используйте AddButtonStyle для того чтобы этого не
+происходило).
+</p><p>
+Если <i>style</i> опускается, то флаги, которые зависят от
+состояния могут быть установлены для первичного
+стиля кнопки без уничтожения текущего стиля.
+Примеры (каждая стока должна рассматриваться
+независимо):
+</p><p>
+ButtonStyle Left -- flat
+</p><p>
+ButtonStyle All ActiveUp (-- flat) Inactive (-- flat)
+</p><p>
+</p></dd><dt>Первая строка устанавливает каждое состояние кнопок</dt><dd>
+<p>
+слева в flat в то время как вторая установливает
+только состояния ActiveUp и Inactive на каждую
+кнопку flat (изменяются только флаги;
+индивидуальные стили кнопок не изменяются).
+</p><p>
+</p></dd><dt>Если </dt><dd>
+<p>
+вы хотите сбросить все кнопки в состояние по
+</p><p>
+</p></dd><dt>умолчанию:</dt><dd>
+<p>
+ButtonStyle Reset
+</p><p>
+Для сброса ActiveUp состояния кнопки 1 в состояние
+по умолчанию:
+</p><p>
+ButtonStyle 1 ActiveUp Default
+</p><p>
+</p></dd><dt>Для </dt><dd>
+<p>
+сброса всех состояний кнопоки 1 в состояния по
+умолчанию кнопки номер 2:
+</p><p>
+ButtonStyle 1 Default 2
+</p><p>
+</p></dd><dt>Для любой заданной кнопки, </dt><dd>
+<p>
+множество определенний
+состояний может быть задано в одной строке, где
+стили и флаги заключены в круглые скобки. Если в
+одной строке только одно описание, то скобки не
+нужны.
+</p><p>
+<i>flags</i> влияют на заданные <i>state</i>. Если "!"
+предшествует <i>flag</i>, то его поведение меняется на
+противоположное. Доступные зависимые от состояния
+флаги для всех стилей описываются здесь (следующий
+ButtonStyle имеет дело с флагами, зависимыми от
+состояния).
+</p><p>
+"Raised" заставляет использовать выпуклый рельеф.
+</p><p>
+"Sunk" заставляет использовать вдавленный рельеф.
+</p><p>
+"Flat" блокирует рельеф.
+</p><p>
+"UseTitleStyle" заставляет состояние заданной
+кнопки переключится в текущий стиль заголовка окна
+вместо переключения в собственные стили кнопки.
+Флаги Raised, Flat и Sunk параметра TitleStyle
+игнорируются так как они являются избыточными для
+данного случая.
+</p><p>
+"UseBorderStyle" заставляет кнопку наследовать
+опции BorderStyle.
+</p><p>
+Raised, Sunk и Flat взаимно исключают друг друга и
+могут быть заданы только для первоначального ButtonStyle.
+UseTitleStyle и UseBorderStyle также
+взаимно ислючающие (однако выключены могут быть
+оба). По умолчанию используется Raised вместе с
+выключенными UseBorderStyle и UseTitleStyle.
+</p><p>
+<b>Важное замечание</b> по состоянию ActiveDown. Когда
+кнопка нажимается ее релиеф изменяется на
+противоположный. Именно поэтому для получения
+состояния вдавленного ActiveDown вы должны задать
+противоположный релиеф (т.е. для получения видимого
+нажатого состояния кнопки, которая имеет выпуклое
+состояние нужно задать Sunk для ActiveDown). Это
+поведение правильно, но может поначалу вызвать
+недоумение.
+</p><p>
+</p></dd><dt>Стили кнопки классифицируются как </dt><dd>
+<p>
+недеструктивные,
+частично деструктивные или полностью деструктивные.
+Недеструктивные стили не ничего не делают с image.
+Частично деструктивные могут работать со некоторыми
+или всеми частями используемого image (т.е.
+pixmap). Полностью деструктивные стили работают с
+полносью внутренними image (т.е. Solid или один из
+градиентных стилей). Таким образом, стили с
+AddButtonStyle (или AddTitleStyle для полосы
+заголовка окна), надо использовать рационально,
+чтобы смешанный набор стилей делал минимальное
+перерисовывание.
+</p><p>
+</p></dd><dt>Доступные </dt><dd>
+<p>
+стили и их аргументы в данный момент
+следующие (зависят от опций компиляции, некоторые
+стили могут быть недоступны).
+</p><p>
+Стиль "Simple" ничего не делает. Он не имеет
+аргументов, и является примером недеструктивного
+стиля.
+</p><p>
+Стиль "Default" условно имеет один аргумент: номер
+которые задает количество номеров кнопок для
+загрузки. Если задана команла стиля ButtonStyle или
+AddButtonStyle, то агрумент необязателен (если
+задано, то будет перекрываться текущая кнопка).
+Если используется команда отличная от ButtonStyle
+или AddButtonStyle, то количество должно быть
+определено.
+</p><p>
+Стиль "Solid" заполняет кнопку сплошным цветом.
+Цвет рельефа границы окна не изменяется. Цвет
+должен быть задан как одиночный аргумент. Этот
+стиль полностью деструктивный.
+</p><p>
+Стиль "Vector" прорисовывает линии по шаблону. Так
+как это стандартный стиль кнопки, то ключевое слово
+"Vector" необязательно. Вот маленький примерчик:
+</p><p>
+ButtonStyle 2 Vector 4 50x30@1 70x70@0 30x70@0 50x30@1
+</p><p>
+</p></dd><dt>где </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;оформление&nbsp;кнопки&nbsp;2&nbsp;заключается&nbsp;в
+использловании 4-точечного шаблона состоящего из
+линии идущей с (x=50,y=30) по (70,70) в цвете тени
+(@0), и затем к (30,70) в цвете тени, и наконец к
+(50,30) в цвете выделения (@1). Слишком сложно?
+Смотрите примеры в .fvwm2rc. Этот стиль частично
+деструктивный.
+</p><p>
+Стили "VGradient" и "HGradient" задают градиентные
+стили. Префиксы H и V задают горизонатльное и
+вертикальное управление.
+</p><p>
+</p></dd><dt>Этот стиль имеет две формы:</dt><dd>
+<p>
+</p></dd><dt>Первая форма задает линейный градиент. Аргументы:</dt><dd>
+<p>
+общее число цветов (между 2 и 128),
+первоначальный цвет и финальный цвет.
+</p><p>
+</p></dd><dt>Вторая </dt><dd>
+<p>
+форма определяет нелинейный градиент.
+Аргументы: общее число цветов (между 2 и 128),
+затем количество сегментов. Для кадого сегмента
+определяется стартовый цвет, процент увеличения и
+затем конечный цвет. Каждая последоваетельность
+сегментов начинается с цвета последнего сегмента.
+Все проценты должны быть в пределах 100.
+</p><p>
+</p></dd><dt>Пример:</dt><dd>
+<p>
+TitleStyle VGradient 16 3 Red 20 Blue 30 Black 50 Grey
+</p><p>
+</p></dd><dt>Градиентный стиль полностью деструктивный.</dt><dd>
+<p>
+Стиль "Pixmap" отображает pixmap. Pixmap должен
+быть определен как аргумент. Например, следующее
+должно задать для кнопки 2 некоторую pixmap для
+обоих состояний и для кнопки 4 различные pixmap для
+состояний up, down и inactive.
+</p><p>
+ButtonStyle 2 Pixmap my_pixmap.xpm
+ButtonStyle 4 ActiveUp (Pixmap up.xpm) ActiveDown (Pixmap down.xpm)
+ButtonStyle 4 Inactive Pixmap inactive.xpm
+</p><p>
+Спецификация pixmap может быть дана как полное или
+короткое имя файла (см. PixmapPath). Если pixmap не
+найден, то стиль кнопки становится Simple.
+Возможные флаги для стиля Pixmap следующие: "Left,"
+"Right", "Top" и "Bottom." Они могу быть
+использованы для выравнивания pixmap (по умолчанию
+центруется для обоих состояний). Pixmap выводится
+прозрачно на цвет "None". Этот стиль частично
+деструктивный.
+</p><p>
+Стиль "MiniIcon" прорисовывает миниатюрные иконки
+на кнопке, которые определяются с опцией MiniIcon
+комадны Style. Этот стиль кнопок не имеет
+аргументов. Например:
+</p><p>
+</p></dd><dt>Style "*" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MiniIcon&nbsp;mini-bx2.xpm
+</p><p>
+</p></dd><dt>Style "xterm" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MiniIcon&nbsp;mini-term.xpm
+</p><p>
+</p></dd><dt>Style "Emacs" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MiniIcon&nbsp;mini-doc.xpm
+</p><p>
+ButtonStyle 1 MiniIcon
+</p><p>
+Стиль "TiledPixmap" позволяет позволяет приделать
+pixmap на фон кнопок. Одна pixmap определяется как
+аргумент Прозрачность pixmap не используется. Этот
+стиль полностью деструктивный.
+</p><p>
+ButtonStyle <i>button</i> - <i>[!]flag ...</i>
+</p><p>
+Устанавливает независимые от состояния флаги для
+заданной кнопки <i>button</i>. Каждый флаг отделяется
+пробелом. Если префикс "!" предшествует флагу, то
+флаг меняет свое поведение на противоположное.
+</p><p>
+"MWMButton" может быть назначен кнопке максимизации
+для окон с опцией MWMButtons команды Style (это
+обычно назначается одиночной кнопке). Когда окно
+</p><p>
+</p></dd><dt>максимизированно, </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;этот&nbsp;флаг&nbsp;заставляет
+инвертироватся линии описанные а стиле кнопки Vector.
+Этот флаг включен для крайней правой кнопки по
+умолчанию.
+</p><p>
+ChangeDecor <i>decor</i>
+</p><p>
+Изменяет декор окна на <i>decor</i>. <i>decor</i> это "Default,"
+или имя декора заданного через AddToDecor. Если
+вызов происходит из окна или его границы, то это
+окно изменяется. Если вызов происходит из главного
+окна, то пользователю позволят выбрать нужное окно.
+ChangeDecor меняет только атрибуты, которые могут
+быть установленв командой AddToDecor.
+</p><p>
+ChangeDecor "CustomDecor1"
+</p><p>
+<i>ClickTime delay</i>
+</p><p>
+Задает максимальную задержку (в миллисекундах)
+между нажатиям кнопки и ее отпусканием для
+встроенной функции, которая рассматривает нажатие
+кнопок мыши. По умолчанию задержка равна 150
+миллисекундам.
+</p><p>
+<i>Close</i> Если окно принимает протокол удаления окна, то
+некоторое сообщение посылается окну ответившего
+ему для изящного удаления себя самого. Если
+окно не понимает протокол удаления окна, то окно
+уничтожаестся.
+</p><p>
+<i>ColormapFocus [FollowsMouse | FollowsFocus]</i>
+По умолчанию, <i>fvwm2</i> устанавливает карту цветов
+окна, в котором находится курсор. Если вы
+используете ColormapFocus FollowsFocus, то
+установленная карта цветов будет такой же для окна,
+которое в данный момент имеет фокус клавиатуры.
+</p><p>
+<i>CursorMove horizontal vertical</i>
+</p><p>
+Перемещает указатель мыши на horisontal страниц по
+X и vertical страниц по Y. Или один или оба
+параметра могут быть отрицательны. И horisontal и
+vertical величины выражаются в процентах страниц,
+таким образом "CursorMove 100 100" переместит
+курсор вниз и влево на одну полную страницу.
+"CursorMove 50 25" переместит курсор влево
+наполовину страницы и вниз на четвертую часть
+страницы. Функция CursorMove не может быть вызвана
+из pop-up меню.
+</p><p>
+<i>Delete</i> Посылает сообщение окну ответившему, что оно
+удалит само себя, хорошо для выхода из приложения.
+</p><p>
+<i>Desk &lt;arg1&gt; &lt;arg2&gt;</i>
+</p><p>
+Изменяет desktop на другой.
+</p><p>
+Если <i>arg1</i> не нуль, то следующий номер desktop'а
+будет равен текущему номеру desktop'а плюс <i>arg1</i>.
+Номера desktop'ов могут быть отрицательны.
+</p><p>
+Если <i>arg1</i> ноль, то новый номер desktop'а будет
+равнятся <i>arg2</i>.
+</p><p>
+Номер активных desktop'ов определяется динамически.
+Только desktop'ы, которые содержат окна или что в
+данный момент отображены являются активными.
+Номера desktop'ов могут лежать в диапазоне от
+2147483647 до -2147483647 (надеюсь этого хватит?)
+</p><p>
+<i>DeskTopSize &lt;Horizontal&gt; &lt;Vertical&gt;</i>
+</p><p>
+Задает размер виртуального desktop'а в единицах
+физического размера экрана.
+</p><p>
+<i>Destroy</i>
+</p><p>
+Грубо уничтожает окно приложения.
+</p><p>
+<i>DestroyFunc</i>
+</p><p>
+Удаляет функцию, так что последующие ссылки на нее
+больше не верны. Вы можете использлвать эту
+возможность для изменения содержимого функции во
+время сессии <i>fvwm2</i>. Функция может быть перезадана,
+используя AddToFunc.
+</p><p>
+DestroyFunc "PrintFunction"
+</p><p>
+DestroyDecor <i>decor</i>
+</p><p>
+Удаляет <i>decor</i> заданный через AddToDecor, так что
+последующие ссылки на него больше неправильны.
+Окна, использующие этот <i>decor</i> переключаются на
+декор fvwm по умолчанию. Декор названный "Default"
+не может быть удален.
+</p><p>
+DestroyDecor "CustomDecor1"
+</p><p>
+<i>DestroyMenu</i>
+</p><p>
+Удаляет меню, так что в последствии описание для
+него больше не доступно. Вы можете использовать это
+для измениния содержимого меню во время <i>fvwm2</i>
+сессии. Меню может быть перестроено при
+использовании AddToMenu.
+</p><p>
+DestroyMenu "Utilities"
+</p><p>
+<i>DestroyModuleConfig</i>
+</p><p>
+Удаляет конфигурационные строки модуля, таким
+образом могут быть введены новые конфигурационные
+строки вместо старых. Вы можете использовать данную
+возможность как способ запуска модуля во время
+<i>fvwm2</i> сессии без перезапуска самого <i>fvwm2</i>. Можно
+использовать шаблоны для замены части имени.
+</p><p>
+DestroyModuleConfig FvwmFormFore
+DestroyModuleConfig FvwmButtons*
+</p><p>
+Echo <i>string</i>
+</p><p>
+Выдает сообщение на stderr. Можно использовать для
+отладки в вашем .fvwm2rc.
+</p><p>
+Echo Beginning style defs...
+</p><p>
+<i>EdgeResistance scrolling moving</i>
+</p><p>
+</p></dd><dt>Говорит как жестко будет изменятся </dt><dd>
+<p>
+поле простотра
+desktop'а при перемещении мыши вверх к пределу
+экрана и как жестко будет перемещаться окно вверх
+к пределу экрана.
+Первый параметр говорит сколько миллисекунд
+указатель мыши должен удерживаться на границе
+экрана перед тем как <i>fvwm2</i> изменит поле просмотра.
+Это предназначается для людей использующих "EdgeScroll
+100 100", и которых самих достает
+случайный сдвиг страниц, когда они этого не хотят.
+</p><p>
+</p></dd><dt>Второй </dt><dd>
+<p>
+параметр говорит на какое количество точек
+вверх за границу экрана должна быть перемещена
+граница окна перед действительными перемещениями
+частично отключенного экрана.
+</p><p>
+Заметим, что с "EdgeScroll 0 0", он замедлит
+возможность перемещать окно или изменять размер
+окна через границу текущего экрана. При задании
+первого парамертра в EdgeResistance 10000 этот тип
+действия станет невозможен. С EdgeResistance
+меньше, чем 10000, но больше 0 перемещение страниц
+выше становится трудным, но не невозможным.
+</p><p>
+<i>EdgeScroll horizontal vertical</i>
+</p><p>
+Задает процентную долю страницы для скроллинг,
+когда курсор встает на границу страницы. Если вы не
+хотите попадать на другие страницы или делать
+скроллинг когда вы находитесь на границе
+страницы, то вам нужно включить строку "EdgeScroll
+0 0" в ваш файл .fvwm2rc. Если вы хотите пустые
+страницы используйте "EdgeScroll 100 100". Оба
+параметра и <i>horisontal</i> и <i>vertical</i> должны быть
+положительными числами.
+</p><p>
+Если <i>horisontal</i> и <i>vertical</i> заданы больше 1000, то
+скроллинг будет обрезаться вокруг границы desktop'а.
+Если использвано "EdgeScroll 100000 100000",
+<i>fvwm2</i> будет делать скроллинг пустых страниц
+обрезая их вокруг границы desktop'а.
+</p><p>
+<i>Exec command</i>
+</p><p>
+Выполняет <i>command</i>. Exec не требует добавления
+`exec'.
+</p><p>
+</p></dd><dt>Следующий </dt><dd>
+<p>
+пример назначает функциональную клавишу
+F1 в главное окно, без модификаторов, для
+выполнения функции. Программа rxvt будет запущена с
+представленными агрументами.
+</p><p>
+Key F1 R N Exec rxvt -fg yellow -bg blue -e /bin/tcsh
+</p><p>
+<i>ExecUseShell [shell]</i>
+</p><p>
+Задает команде Exec использование определенного
+shell, или значени переменной окружения $SHELL,
+если не задан этот параметр, вместо shell по
+умолчанию (/bin/sh).
+</p><p>
+ExecUseShell
+</p><p>
+ExecUseShell /usr/local/bin/tcsh
+</p><p>
+FlipFocus
+</p><p>
+Переключает фокус между последними окнами, где был
+фокус.
+</p><p>
+<i>Focus</i> Делает поле просмотра или окно видимым выбранным
+окном. Помещает фокус ввод клавиатуры в выбранное
+окно. Помещает окно поверх остальных если это
+необходимо для того чтобы окно стало видимым.
+Помещает указатель в выбранном окне в режим
+focus-follows-mouse. Не разворачивает окно из
+иконки.
+</p><p>
+<i>Function FunctionName</i>
+</p><p>
+Используется для назначения предварительно
+определенной функции клавиатуре или кнопке мыши.
+</p><p>
+</p></dd><dt>Следующий пример назначает </dt><dd>
+<p>
+левую кнопку мыши для
+вызова функции "Move-or-Raise", чье определение
+было предоставлено в примере выше. После выполнения
+этого разначения <i>fvwm2</i> будет выполнять функцию
+Move-or-Raise как только левая кнопка мыши будет
+нажата на полосе заголока окна.
+</p><p>
+Mouse 1 T A Function Move-or-Raise
+</p><p>
+Ключевое слово "Function" может быть опущено если
+FunctionName не совпадает с именем какой-либо
+встроенной функции <i>fvwm2</i>.
+</p><p>
+GlobalOpts <i>[options]</i>
+</p><p>
+Это ВРЕМЕННАЯ КОМАНДА, используемая для установки
+некоторых глобальных опций, которые будут
+впоследствии управлять параметрами Style (или
+опциями параметров Style). В данный момент есть
+следующие опции: SmartPlacementIsReallySmart/SmartPlacementIsNormal,
+ClickToFocusDoesntPassClick/ClickToFocusPassesClick,
+ClickToFocusDoesntRaise/ClickToFocusRaises,
+MouseFocusClickDoes
+ntRaise/MouseFocusClickRaises
+</p><p>
+GlobalOpts ClickToFocusDoesntPassClick, ClickToFocusDoesntRaise
+</p><p>
+<i>GotoPage x y</i>
+</p><p>
+Перемещает поле просмотра desktop'а на страницу с
+координатами (x,y). Верхняя левая страница это
+(0,0), верняя правая (N,0), где N это число
+меньшее, чем текущее число горизонтальных страниц,
+описанное в команде DeskTopSize. Левая нижняя
+страница это (0,M) и нижняя правая страница это
+(N,M), где M это вертикальный размер desktop'а как
+задано в команде DeskTopSize. Функция GotoPage не
+может быть использована в pop-up меню.
+</p><p>
+<i>HilightColor textcolor backgroundcolor</i>
+</p><p>
+Задает цвета текста и фона для оформления окна,
+которое находится в данный момент в фокусе
+клавиатуры.
+</p><p>
+<i>IconFont fontname</i>
+</p><p>
+Говорит <i>fvwm2</i> использовать шрифт fontname для
+пометки иконок. Если этот параметр опущен, то
+будет использован шрифт меню (заданный через
+конфигурационный параметр MenuFont)
+</p><p>
+<i>Iconify [value]</i>
+</p><p>
+Сворачивает окно в иконку если оно уже не свернуто
+или разворачивает обратно если оно уже свернуто.
+Если необязательный аргумент value положителен, то
+только свертывание будет допустимо. Если он
+отрицателен, то допустимо будет только
+развертывание.
+</p><p>
+<i>IconPath path</i>
+</p><p>
+Задает раздельный список полных имен директорий,
+где могут находится одноцветные иконки (bitmap).
+Каждое имя директории должно начинаться со слэша.
+Могут быть использованы переменные окружения (т.е.
+$HOME или ${HOME}).
+</p><p>
+Замечание: Если используется FvwmM4 для проверки
+ваших rc файлов, то m4 может захотеть зарубить вам
+слово "include", которое возможно будет указано в
+команде IconPath или PixmapPath. Для устранения
+этого добавьте undefine(`include') перед командой
+IconPath или лучше используйте опцию `-m4-prefix'
+для того, чтобы все директивы m4 имели перификс
+"m4 (см. man FvwmM4).
+</p><p>
+<i>Key keyname Context Modifiers Function</i>
+</p><p>
+Назначает клавише клавиатуры опеределенную
+встроенную функцию <i>fvwm2</i>. Присвоение происходит
+также как для мыши за исключением того, что номер
+кнопки мыши заменяется на имя клавиши. keyname
+может быть задано как одно из имен определенных в
+/usr/include/keysymdef.h, с опущенным XK. Поля
+context и Modifiers задаются также как и для мыши.
+</p><p>
+</p></dd><dt>Следующий </dt><dd>
+<p>
+пример назначает всплытие списка окон по
+нажатию Alt-Ctrl-Shift-F11:
+</p><p>
+Key F11 A SCM WindowList
+</p><p>
+</p></dd><dt>Назначение клавиши для кнопки </dt><dd>
+<p>
+в полосе заголовка
+окна не говорит, что кнопка покажется, если также
+не существует назанчение этой кнопки для мыши.
+</p><p>
+<i>KillModule name</i>
+</p><p>
+Заставляет модуль, которой был вызван с именем name
+совершить самоубийство ;). name может включать
+шаблон (wild-cards).
+</p><p>
+<i>Lower</i> Позволяет пользователю опустить окно вниз.
+</p><p>
+<i>Maximize [horizontal vertical]</i>
+</p><p>
+Без этих необязательных аргументов Maximize
+заставляет окно переключаться из полноэкранного
+размера в его нормальный размер и обратно.
+</p><p>
+С необязательными аргументами horisontal и vertical,
+которые выражаются как процентные доли полного
+экрана, пользователь может контролировать новый
+размер окна. Если horisontal больше чем ноль, то
+размер окна по горизонтали будет установлен в
+horisontal*screenidth/100. Аналогично и по
+вертикали. Следующий пример добавит кнопку в полосе
+заловка окна для переключения окна в полный
+размер экрана по вертикали:
+</p><p>
+Mouse 0 4 A Maximize 0 100
+</p><p>
+</p></dd><dt>Следующий </dt><dd>
+<p>
+пример заставит окна переключаться в
+</p><p>
+</p></dd><dt>полный размер по горизонтали:</dt><dd>
+<p>
+Mouse 0 4 A Maximize 100 0
+</p><p>
+</p></dd><dt>Эта </dt><dd>
+<p>
+строка делает окно размеров в половину размера
+экрана в каждом направлении:
+</p><p>
+Mouse 0 4 A Maximize 50 50
+</p><p>
+</p></dd><dt>Величины больше </dt><dd>
+<p>
+чем 100 можно использовать, но
+осторожно.
+</p><p>
+Если буква "p" добавляется к каждой координате
+(horisontal и/или vertical), то это говорит о том,
+что величины параметров заданы в точках.
+</p><p>
+<i>Menu menu-name double-сlick-action</i>
+</p><p>
+Заставляет всплыть заданное ранее pop-up меню в
+манере "sticky". То есть, если пользователь
+вызывает меню по нажатию кнопки вместо вызова из
+другого меню, то меню всегда будет вверху.
+Команда double-click-action будет вызвана если
+пользователь сделал двойное нажатие при вызове
+меню.
+</p><p>
+MenuStyle <i>forecolor backcolor shadecolor font style</i>
+Устанавливает стиль меню. Когда используется
+монохромный режим, цвета игнорируются. Теневой цвет
+- это один из цветов, что используется для
+прорисовки курсора-выбора выбора в меню, который
+запрещается (или нерекомендуется) при mwm-hints,
+которые имеет заданное приложение. Опция стиля
+"fvwm" или "mwm", которые изменяют способ работы
+меню.
+</p><p>
+<i>Module ModuleName</i>
+</p><p>
+Задает модуль который будет вызван во время
+инициализации. В настоящее время доступны следующие
+модули (включая модули <i>fvwm2</i>): FvwmAudio (издаются
+звуки при действиях менеджера окон), FvwmAuto
+(модуль автоматического вытаскивания окна на верх),
+FvwmBacker (для изменения цвета фона когда
+происходит изменение desktop'ов), FvwmBanner (для
+отображения XPM), FvwmButtons (создает
+настраиваемую панель инструментов), FvwmCpp (для
+предобработки вашего .fvwm2rc с использованием
+Cpp), FvwmIdent (для получения информации об
+окне), FvwmM4 (для предобработки вашего .fvwm2rc с
+помощью m4), FvwmPager (мини версия десктоп'а),
+FvwmSave (записывает состояние desktop'а в стиле
+.xinitrc), FvwmSaveDesk (записывает состояние
+десктопа в командах <i>fvwm2</i>), FvwmScroll (помещает
+полосу скроллинга в некоторые окна), FvwmTalk (для
+интерактивного запуска команд <i>fvwm2</i>), FvwmTaskBar
+(панель задач как в Win95) и FvwmWinList (список
+окон). Эти модули имеют свои страницы в man.
+Могут быть и другие модули.
+</p><p>
+</p></dd><dt>Модули </dt><dd>
+<p>
+могут быть транзитными программами с
+короткими временем жизни или как FvwmButtons
+могут работать во время всей X сессии. Модули
+будут уничтожены менеджером окон при презапуске или
+выходе, если это будет возможно. Смотрите секцию
+introdution по модулям. Ключевое слово "module"
+может быть опущено если ModuleName легко отличимо
+от всех встроенных имен и имен функций.
+</p><p>
+<i>ModulePath</i>
+</p><p>
+Задает раздельный список путей для поиска модулей
+<i>fvwm2</i>. Могут использоваться переменные окружения
+(т.е. $HOME или ${HOME}).
+</p><p>
+<i>Mouse Button Context Modifiers Function</i>
+Описывает присвоение действий для мыши. <i>Button</i> это
+номер кнопки мыши. Если Button нуль, то некоторая
+кнопка будет выполнять специальную функцию. Context
+описывает область применения присвоенного
+действия. Допустимые значения context следующие: R
+- для главного окна, W - для окна приложения, T для
+полосы заголовка окна, S - для бордюра окна, F
+- для углов окна. I - для Icon окна и от 0 до 9 для
+кнопок на полосе заголовка окна. Возможны и
+комбинации этих букв. A - для любых context
+исключая кнопки заголовка окна. Для примера, context
+FST будет работать, когда мышь находится
+где-нибудь на бордюре окна, исключая кнопки на
+полосе заголовка окна.
+</p><p>
+<i>Modifiers</i> - это любые комбинации из букв: N - без
+модификаторов, S - для shift, M - для Meta, C - для
+Сtrl или A - для всех. Например, модификатор SM
+будет работать, когда будут нажаты вместе
+клавиши Meta и Shift. X11 модифицирует от mod1 до
+mod5, которые представляются как цифры от 1 до 5.
+</p><p>
+<i>Function</i> это одна из функций <i>fvwm2</i>.
+</p><p>
+</p></dd><dt>Кнопки </dt><dd>
+<p>
+на полосе заголовка окна нумеруются с
+нечетными номерами слева и с четными справа от
+заголовка окна.Кнопки с меньшими номерами
+располагаются ближе к границам окна. Смотрите как
+указано ниже
+</p><p>
+</p></dd><dt>1 3 5 7 9 0 8 6 4 2</dt><dd>
+<p>
+</p></dd><dt>Кнопка, которая имеет самый большой нечетный номер,</dt><dd>
+<p>
+и к которой привязано какое-либо действие определят
+количество кнопок прорисовываемых слева полосы
+заголовка. Кнопка, которая имеет самый большой
+четный номер, и к которой привязано какое-либо
+</p><p>
+</p></dd><dt>дейтствие </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;определят&nbsp;количество&nbsp;кнопок
+прорисовываемых справа полосы заголовка. Действие
+может быть привязано или к кнопке мыши или к
+клавиатурной клавише.
+</p><p>
+<i>Move [ x y ]</i>
+</p><p>
+Позволяет пользователю перемещать окно. Если вызов
+происходит где-нибудь в окне или на бордюре окна,
+то оно будет перемещено. Если вызов происходит из
+главного окна, то пользователю будет позволено
+выбрать окно для перемещения.
+</p><p>
+Если представлены необязательные аргументы x и y,
+то окно будет перемещено таким образом, чтобы его
+верхний левый угол находился в положении (x,y). x
+и y - это процентные доли экрана, но если к
+каждой координате добавлена буква "p", то в этом
+случае координаты задаются в точках.
+</p><p>
+</p></dd><dt>Примеры:</dt><dd>
+<p>
+Mouse 1 T A Move
+</p><p>
+Mouse 2 T A Move 10 10&lt;/p&gt;
+Mouse 3 T A Move 10p 10p
+</p><p>
+</p></dd><dt>В первом примере пользователь будет перемещать окно</dt><dd>
+<p>
+в интерактивном режиме, во втором, окно, чей
+заголовок был выбран будет перемещено так, чтобы
+его левый верхний угол находился в положении 10% по
+ширине и 10% по высоте экрана. Третий пример
+аналогичен первому, только положение окна задатеся
+точками а не процентами.
+</p><p>
+</p></dd><dt><i>Nop</i> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;Ничего&nbsp;не&nbsp;делает.&nbsp;Используется&nbsp;доя&nbsp;вставки&nbsp;пустой
+строки или разделителя в меню. Если пунк меню задан
+как Nop " ", то вставляется пустая линия, а если
+Nop "", то вставляется разделитель. Может также
+быть использован как для меню при двойном щелчке
+мыши.
+</p><p>
+<i>Next [conditions] command</i>
+</p><p>
+Выполняет command (обычно Focus) для следующего
+окна отвечающего всем conditions (условиям).
+Условия включают "iconic","!iconic","CurrentDesk",
+"Visible","!Visible" и "CurrentScreen". В
+добавление, условие может включать имя окна. Имя
+окна же может включать шаблон (символы "*" и
+"?"). Имя окна, класс и ресурс будут рассмотрены,
+при попытке дальнейшего поиска окна.
+</p><p>
+<i>None [conditions] command</i>
+</p><p>
+Выполняет command (обычно Focus) для следующего
+окна отвечающего всем conditions (условиям).
+Условия включают "iconic","!iconic","CurrentDesk",
+"Visible","!Visible" и "CurrentScreen". В
+добавление, условие может включать имя окна. Имя
+окна же может включать шаблон (символы "*" и
+"?"). Имя окна, класс и ресурс будут рассмотрены,
+при попытке дальнейшего поиска окна.
+</p><p>
+<i>OpaqueMoveSize percentage</i>
+</p><p>
+Говорит <i>fvwm2</i> максимальный размер окна, с которым
+было бы использовано перемещение окна как
+сплошного. Percentage - это процентная доля всей
+экранной области. С "OpaqueMove 0" все окна будут
+перемещены с использованием традиционного
+растягивающего контура. С "OpaqueMove 100" все окна
+будут перемещаться как сплошные. По умолчанию
+установлено "OpaqueMove 5", что позволяет
+перемещать маленькие окна целиком, а большие с
+помощью растягивающегося контура.
+</p><p>
+<i>PipeRead cmd</i>
+</p><p>
+Заставляет <i>fvwm2</i> читать команды выведенные из
+программы с именем <i>cmd</i>. Полезно для построения
+динамических меню, основанных, например, на
+содержимом директории.
+</p><p>
+<i>PixmapPath path</i>
+</p><p>
+Задает раздельный список путей, где будут искаться
+цветные pixmap иконки. Каждый путь должен
+начинаться со слэша. Допускается использование
+переменных окружения (т.е. $HOME or ${HOME}).
+</p><p>
+<i>Popup PopupName</i>
+</p><p>
+Выполняет две функции: назначает меню клавише или
+кнопке мыши, и назначает подменю в меню. Форматы
+для этих двух функций различаются слабо.
+</p><p>
+Для назначения определенного ранее pop-up меню
+клавише или кнопке мыши:
+</p><p>
+</p></dd><dt>Следующий </dt><dd>
+<p>
+пример назначает кнопки мыши 2 и 3 для
+вызова pop-up меню "Window Ops". Меню будет
+вызвано если будут нажаты кнопки 2 или 3 в углах
+окна, на сторонах окна или в полосе заголовка,
+без модификаторов (ctrl, shift или meta).
+</p><p>
+Mouse 2 FST N Popup "Window Ops"
+Mouse 3 FST N Popup "Window Ops"
+</p><p>
+Pop-up меню могут быть назначены клавишам и при
+использовании встроенной функции Key. Pop-up меню
+могут быть вызваны без использования мыши при
+назначении клавиш и с ними можно работать
+используя клавиши up, down и enter.
+</p><p>
+Для назначения заданных ранее pop-up меню другим
+меню, используйте подменю:
+</p><p>
+Следующий пример задает подменю "QuitVerify" и
+назначает его в главное меню,названное "RootMenu":
+</p><p>
+AddToMenu Quit-Verify "Really Quit Fvwm?" Title
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Yes,&nbsp;Really&nbsp;Quit"&nbsp;Quit
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Restart&nbsp;Fvwm2"&nbsp;Restart&nbsp;fvwm2
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Restart&nbsp;Fvwm&nbsp;1.xx"&nbsp;Restart&nbsp;fvwm
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;""&nbsp;Nop
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"No,&nbsp;Don't&nbsp;Quit"&nbsp;Nop
+</p><p>
+AddToMenu RootMenu "Root Menu" Title
++ "Open an XTerm Window" Popup NewWindowMenu
+</p><p>
+</p></dd><dt>+ "Login as Root" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Exec&nbsp;xterm&nbsp;-fg&nbsp;green&nbsp;-T&nbsp;Root&nbsp;-n&nbsp;Root&nbsp;-e&nbsp;su&nbsp;+
+</p><p>
+</p></dd><dt>"Login as Anyone" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popup&nbsp;AnyoneMenu
+</p><p>
+</p></dd><dt>+ "Remote Hosts" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popup&nbsp;HostMenu
+</p><p>
+</p></dd><dt>+ "" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nop
+</p><p>
+</p></dd><dt>+ "X utilities" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popup&nbsp;Xutils
+</p><p>
+</p></dd><dt>+ "" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nop
+</p><p>
+</p></dd><dt>+ "Fvwm Modules" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popup&nbsp;Module-Popup
+</p><p>
+</p></dd><dt>+ "Fvwm Window Ops" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popup&nbsp;Window-Ops
+</p><p>
+</p></dd><dt>+ "" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nop
+</p><p>
+</p></dd><dt>+ "Previous Focus" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;Prev&nbsp;[*]&nbsp;Focus
+</p><p>
+</p></dd><dt>+ "Next Focus" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;[*]&nbsp;Focus
+</p><p>
+</p></dd><dt>+ "" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nop
+</p><p>
+</p></dd><dt>+ "Refresh screen" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;Refresh
+</p><p>
+</p></dd><dt>+ "Recapture screen" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recapture
+</p><p>
+</p></dd><dt>+ "" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nop
+</p><p>
+</p></dd><dt>+ "Reset X defaults" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exec&nbsp;xrdb&nbsp;-load&nbsp;$HOME/.Xdefaults
+</p><p>
+</p></dd><dt>+ "" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nop
+</p><p>
+</p></dd><dt>+ "" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nop
+</p><p>
+</p></dd><dt>+ "Quit" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popup&nbsp;Quit-Verify
+</p><p>
+Popup отличается от Menu в том, что pop-up меню не
+остаются если пользователь нажмет кнопку мыши. При
+стиле Twm, вы долны удерживать кнопку и выбирать
+пункты меню перемещая мышь. Menu предоставляет меню
+в стиле Motif или Microsoft-Windows.
+</p><p>
+<i>Prev [conditions] &lt;command&gt;</i>
+</p><p>
+Выполняет command (обычно Focus) для предыдущего
+окна отвечающего всем conditions (условиям).
+Условия включают "iconic","!iconic","CurrentDesk",
+"Visible","!Visible" и "CurrentScreen". В
+добавление, условие может включать имя окна. Имя
+окна же может включать шаблон (символы "*" и
+"?"). Имя окна, класс и ресурс будут рассмотрены,
+при попытке дальнейшего поиска окна.
+</p><p>
+</p></dd><dt><i>Quit</i> </dt><dd>
+<p>
+Выход из <i>fvwm2</i>, и обычно и из X тоже.
+</p><p>
+<i>Raise</i> Позволяет пользователю поднять окно на верх.
+</p><p>
+<i>RaiseLower</i>
+</p><p>
+Попеременно опускает окно вниз или поднимает
+наверх.
+</p><p>
+<i>Read filename</i>
+</p><p>
+Заставляет <i>fvwm2</i> читать команды из файла с
+именем filename.
+</p><p>
+<i>Recapture</i>
+</p><p>
+Заставляет <i>fvwm2</i> переинициализировать все в данных
+окнах. Это необходимо чтобы были использованы более
+</p><p>
+</p></dd><dt>поздние </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;параметры&nbsp;стиля.&nbsp;Операция
+переинициальзации заметно медленная.
+</p><p>
+<i>Refresh</i>
+</p><p>
+Заставляет все окна на экране перерисовать самих
+себя.
+</p><p>
+<i>RefreshWindow</i>
+</p><p>
+Заставляет текущее (или выбранное) окна
+перерисовать себя.
+</p><p>
+<i>Resize [x y]</i>
+</p><p>
+Позволяет пользователю изменять размер окна.
+</p><p>
+Если представлены необязательные агрументы x и y,то
+размеры окна будут изменены так чтобы
+соответствовать размеру x на y, где x и y это
+процентные доли экрана, исключая использование
+буквы "p", ибо тогда координаты берутся в точках.
+</p><p>
+<i>Restart WindowManagerName</i>
+</p><p>
+Заставляет <i>fvwm2</i> перезапускать самого себя если
+WindowManagerName это "fvwm2" или переключаться в
+альтернативный менеджер окон если он указан. Если
+менеджер окон не находится в пути поиска, заданном
+по умолчанию, то вы должны использовать полное имя
+WindowManagerName.
+</p><p>
+</p></dd><dt>Это команда не допускает </dt><dd>
+<p>
+использование амперсанда
+или переменных окружения. В примерах ниже два
+первых неправильные, но третий OK:
+</p><p>
+Key F1 R N Restart fvwm &amp;
+Key F1 R N Restart /bin/fvwm
+Key F1 R N Restart /home/nation/bin/fvwm
+</p><p>
+<i>SendToModule modulename string</i>
+</p><p>
+Посылает произвольную строку (кавычки не требуются)
+всем модулям, совпадающим с <i>modulename</i>, которое
+может содержать шаблоны. Это дает эффект только
+если модуль понимает данные строки и может работать
+с ними. Может быть использовано для обмена
+информацией между модулями или реализации в модулях
+более комплексных команд.
+</p><p>
+<i>Scroll horizontal vertical</i>
+</p><p>
+Прокручивает поле просмотра виртуального desktop'а
+на horisontal страниц по оси x и vertical страниц
+по y. Один или оба параметра могут быть
+отрицательными и выражают процентные доли
+страниц, так что "Scroll 100 100" соответствует
+прокрутке на одну полную страницу вниз и влево.
+"Scroll 50 25" соответствует прокрутке на половину
+страницы влево и на четверть страницы вниз. Функция
+прокрутки не может быть вызвана из pop-up меню.
+Обычно прокрутка останавливается по достижении
+границ desktop'а.
+</p><p>
+Если horisontal и vertical больше, чем 1000, то
+прокрутка все равно будет происходить до границы
+desktop'а. Если "Scroll 100000 0" выполняется
+дальше и дальше, то <i>fvwm2</i> будет перемещать на
+следующую страницу desktop'а при каждом выполнении
+и будет останавливаться на границе desktop'а, таким
+образом каждая страница попадает в оборот.
+Если буква "p" добавлена к координате, то она
+рассматривается не в процентах а в точках.
+</p><p>
+<i>Stick</i> "Приклеевает" окно, если оно еще не "приклеено" или
+отклеивает в противном случае.
+</p><p>
+<i>Style windowname options</i>
+</p><p>
+Эта команда заменяет такие старые глобальные
+команды в Fvwm версий 1.xx как NoBorder, NoTitle,
+StartsOnDesk, Sticky, StaysOnTop, Icon, WindowListSkip,
+CirculateSkip, SuppressIcons, BoundaryWidth,
+NoBoundaryWidth, StdForeColor, и StdBackColor
+на одну мощную и понятную команду. Эта
+команда используется для установки определенных
+аттрибутов окна или установки стилей менеджера окон
+по умолчанию.
+</p><p>
+<i>windowname</i> может быть именем окна, классом или
+строкой ресурса и может содержать шаблоны
+('*','?'), которые используются в именах фалйов
+Unix.
+</p><p>
+</p></dd><dt>Заметим - окнам которые </dt><dd>
+<p>
+не имеют имени (WMAME)
+дается имя "Untitled", а окнам которые не имеют
+класса (WMLASS, res_class) дается Class="NOClass" и
+наконец окнам что не имеют ресурса (WMLASS,
+res_name) дается Resource = "NoResource".
+</p><p>
+<i>options</i> - это раздельный список команд содежащий
+некоторые или все ключевые слова: BorderWidth,
+HandleWidth, NoIcon/Icon, MiniIcon, IconBox, NoTitle/Title,
+NoHandles/Handles, WindowListSkip/WindowListHit,
+CirculateSkip/CirculateHit, StaysOnTop/StaysPut,
+Sticky/Slippery, StartIconic/StartNormal,
+Color, ForeColor, BackColor, StartsOnDesk/StartsAnyWhere,
+IconTitle/NoIconTitle, MWMButtons/FvwmButtons,
+MWMBorder/FvwmBorder,
+</p><p>
+MWMDecor/NoDecorHint, MWMFunctions/NoFuncHint, HintOverride/NoOverride,
+</p><p>
+</p></dd><dt>NoButton/Button, </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OLDecor/NoOLDecor,
+StickyIcon/SlipperyIcon, SmartPlacement/DumbPlacement,
+RandomPlacement/ActivePlacement,
+DecorateTransient/NakedTransient,
+SkipMapping/ShowMapping, UseDecor, UseStyle, NoPPosition/UsePPosition,
+Lenience/NoLenience, ClickToFocus/SloppyFocus/MouseFocus|FocusFollowsMouse.
+</p><p>
+</p></dd><dt>Вышеперечисленный список некоторых </dt><dd>
+<p>
+опций дан как
+опция-стиля/противоположная-опция-стиля.
+Противоположная-опция-стиля используется <i>fvwm2</i> по
+умолчанию и нужна только если вы хотите
+переопределить поведение по умолчанию.
+</p><p>
+Icon берется как строчный (без кавычек) агрумент,
+который является именем файла формата pixmap или
+bitmap.
+</p><p>
+IconBox имеет 4-ре числовых аргумента:
+</p><p>
+</p></dd><dt>IconBox </dt><dd>
+<p>
+l t r b
+</p><p>
+Где l - левая координата, t - верхняя, r -правая и
+b - нижняя. Отрицательные координаты показывают
+расстояние от правого или нижнего краев экрана. Сам
+же IconBox - это окно на экране куда Fvwm будет
+пытаться поместить иконки так чтобы они не
+закрывали другие.
+</p><p>
+MiniIcon задает pixmap для использования ее как
+миниатюрную иконку для окна. Миниатюрная иконка
+может быть прорисована в кнопке полосы заголовка
+окна (см. ButtonStyle) и может использоваться
+различными модулями fvwm (FvwmWinList, FvwmIconMan
+и FvwmTaskBar). Эта опция берет имя pixmap как
+аргумент.
+</p><p>
+StartsOnDesk имеет числовой агрумент - это номер
+desktop'а, на который будет помещено окно при
+инициализации. Заметим, что стандартные Xt
+программы могут также определять данный параметр
+через ресурс (т.е. "-xrm `*Desk: 1'").
+</p><p>
+StaysOnTop делает окно таким, чтобы оно всегда
+находилось поверх других окон. Это может быть
+полезно для часов или почтового бокса, которые
+должны быть видны всегда. Если окну явно дали
+команду опустится под другие, то оно не будет
+пытыться вернуть обратно, пока ему явно не дадут
+команду всплыть наверх. StaysPut (по умолчанию)
+позволяет окну быть нормальным.
+</p><p>
+BorderWidth имеет числовой аргумент который
+является шириной бордюра окна, если оно не имеет
+resize-handles.
+</p><p>
+HandleWidth имеет числовой аргумент, который
+является шириной бордюра для помещения окна, если
+оно не имеет resize-handles.
+</p><p>
+Button и NoButton имеют числовой аргумент , который
+является номером кнопки полосы заголовка окна, что
+может быть опущена или включена.
+</p><p>
+StickyIcon делает окно "приклеенным", когда оно
+свернуто в иконку. Оно будет развернуто наверх
+активного desktop'а.
+</p><p>
+MWMButtons создает видимость нажатой кнопки
+максимизации когда окно максимицируется. Смотрите
+флаг MWMButton в ButtonStyle для подробностей.
+</p><p>
+MWMBorder делает 3-D контур более закрытым как у
+mwm.
+</p><p>
+MWMDecor говорит <i>fvwn95</i> попытаться определить и
+использовать рекомендации по оформлению mwm'а. Это
+иногда используют нектоторые приложения.
+</p><p>
+MWMFunctions говорит <i>fvwm2</i> попытаться определить
+и использовать рекомендации mwm'а по запрещенным
+операциям, что иногда используется приложениями.
+HintOverride говорит <i>fvwm2</i> не использовать
+опрерации, которые были бы запрещены в mwm, но
+<i>fvwm2</i> все равно позволяет выполнять эти операции.
+</p><p>
+OLDecor говорит <i>fvwm2</i> пытаться определить и
+использовать рекомендации olwm и olvwm, что
+используют многие старые приложения XView и OLIT.
+</p><p>
+Color берет два аргумента. Первый - это цвет текста
+метки окна и второй это нормальный цвет фона
+оформления окна. Два цвета разделяются слэшем. Если
+использование слэша вызывает проблемы, то разделите
+их опциями ForeColor и BackColor.
+</p><p>
+UseDecor имеет один аргумент: имя декора,
+созданного AddToDecor. Если UseDecor не задается,
+то используется декор "Default". Окна вообще-то не
+содержат декоров, но всегда они им всенла
+назначаются. Если декор впоследствии изменен
+AddToDecor, то изменения будут видны для всех окон,
+которым был назначен данный декор. Декор для окна
+может быть переназначен ChangeDecor.
+</p><p>
+UseStyle имеет один аргумент который является
+именем другого стиля. Этот путь позволяет вам не
+связывая имена окон, легко наследовать одинаковые
+черты не вводя их повторно. Например: `Style
+"rxvt" UseStyle "XTerm"'.
+</p><p>
+SkipMapping говорит fvwm2 не переключать окно на
+другой desktop, когда происходит его инициализация
+(полезно с StartsOnDesk).
+</p><p>
+Lenience говорит fvwm2 игнорировать преобразование
+в ICCCM, которое состоит в том, что если приложение
+устанавливает поле ввода структуры wm_hints в
+False, то оно никогда не хочет, чтобы оконные
+менеджер давал ему фокус ввода. Из приложений
+которые нуждаются в этом, мне известны только sxpm
+и что является глупым багом с тривиальным
+исправлением и не имеет специального эфекта на
+программу в любом случае. Наверное некоторые старые
+приложнния тоже имеют эту проблему.
+</p><p>
+ClickToFocus говорит fvwm2 дать фокус окну, когда
+внутри него нажата кнопка мыши. MouseFocus (или его
+псевдоним FocusFollowsMouse) говорит fvwm2 дать
+окну фокус как только указатель будет введен в
+окно. Обычно установлен SloppyFocus, но он не дает
+фокус если указатель покидает окно перемещаясь в
+главное окно или в окно ClickToFocus (пока вы не
+нажмете на нем кнопку мыши), что делает возможным
+перемещать мышь без потери фокуса.
+</p><p>
+NoPPosition говорит <i>fvwm2</i> игнорировать поле PPosition,
+когда добавляются новые окна. Приверженность
+к полю PPosition требуется для некоторых
+приложений, но если вы не имеете одного из них,
+это доставляют головную боль.
+</p><p>
+RandomPlacement говорит создаваемому окну не
+требовать у пользователя разместить его на
+экране, а разместится самостоятельно используя
+случайные координаты. Для лучшей работы
+используйте и RandomPlacement и SmartPlacement.
+</p><p>
+SmartPlacement говорит создаваемому окну
+разместится самостоятельно, используя для окна
+незанятое другими окнами пространство на desktop'е.
+Если такового не окажется, то пользователю придется
+разместить окно самому или вызовется RandomReplacement,
+если он был задан. Для лучшей работы
+используйте и RandomPlacement и SmartPlacement.
+</p><p>
+</p></dd><dt>Например:</dt><dd>
+<p>
+Style "*" NoTitle,Icon unknown1.xpm, BorderWidth 4,HandleWidth 5
+</p><p>
+</p></dd><dt># теперь, специальные установки окна:</dt><dd>
+<p>
+</p></dd><dt>Style "Fvwm*" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NoHandles,Sticky,WindowListSkip,BorderWidth&nbsp;0
+</p><p>
+</p></dd><dt>Style "Fvwm Pager" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StaysOnTop,&nbsp;BorderWidth&nbsp;0
+</p><p>
+</p></dd><dt>Style "*lock" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NoHandles,Sticky,StaysOnTop,WindowListSkip
+</p><p>
+</p></dd><dt>Style "xbiff" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sticky,&nbsp;WindowListSkip
+Style "FvwmButtons" NoHandles,Sticky,WindowListSkip
+</p><p>
+</p></dd><dt>Style "sxpm" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NoHandles
+Style "makerkit"
+</p><p>
+</p></dd><dt>Style "xterm" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Title,&nbsp;Color&nbsp;black/grey
+</p><p>
+</p></dd><dt>Style "rxvt" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Icon&nbsp;term.xpm
+</p><p>
+</p></dd><dt>Style "xterm" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Icon&nbsp;rterm.xpm
+</p><p>
+</p></dd><dt>Style "xcalc" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Icon&nbsp;xcalc.xpm
+</p><p>
+</p></dd><dt>Style "xbiff" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Icon&nbsp;mail1.xpm
+</p><p>
+</p></dd><dt>Style "xmh" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Icon&nbsp;mail1.xpm,&nbsp;StartsOnDesk&nbsp;2
+</p><p>
+</p></dd><dt>Style "xman" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Icon&nbsp;xman.xpm
+</p><p>
+</p></dd><dt>Style "matlab" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Icon&nbsp;math4.xpm,&nbsp;StartsOnDesk&nbsp;3
+</p><p>
+</p></dd><dt>Style "xmag" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Icon&nbsp;magnifyinglass2.xpm
+</p><p>
+</p></dd><dt>Style "xgraph" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Icon&nbsp;graphs.xpm
+Style "FvwmButtons" Icon toolbox.xpm
+</p><p>
+</p></dd><dt>Style "Maker" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StartsOnDesk&nbsp;1
+</p><p>
+</p></dd><dt>Style "signal" </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StartsOnDesk&nbsp;3
+</p><p>
+</p></dd><dt>Заметим, </dt><dd>
+<p>
+что все свойства окон будут всегда
+складываться. В вышепреведенном примере "FvwmPager"
+берет свойство StaysOnTop через имя окна, но
+также берет NoHandles, Sticky и WindowListSkip из
+"Fvwm*". Он также возмет свойство NoTitle так как
+оно определено для "*". Если определены стили,
+которые конфликтуют, то будет использовано
+последнее определение.
+</p><p>
+Если установлен аттрибут NoIcon то заданные окна
+будут просто исчезнет при сворачивании. Окно может
+быть восстановлено через окно списка. Если
+установлен аттрибут Icon без аргумента, то аттрибут
+NoIcon очищается, но иконка не задается. Вот
+пример, который позволяет иметь иконку только
+модулю FvwmPager:
+</p><p>
+Style "*" NoIcon
+</p><p>
+Style "Fvwm Pager" Icon
+</p><p>
+<i>Title</i> Ничего не делает. Используется для вставки строки
+заголовка в popup меню.
+</p><p>
+<i>TitleStyle [justification] [height num]</i>
+</p><p>
+Устанавливает атрибуты для полосы заголовка окна.
+Выравнивание может быть "Centered", "RightJustified,"
+или "LeftJustified." <i>height</i> устанавливает
+высоту полосы заголовка в точках. По умолчанию
+установлено Centered и высота WindowFont. Параметр
+<i>height</i> должен быть установлен после команды WindowFont
+так как WindowFont сбрасывает высоту по
+умолачанию для заданного шрифта:
+</p><p>
+TitleStyle LeftJustified Height 24
+</p><p>
+<i>TitleStyle [state] [style] [ -- [!]flag ... ]</i>
+Устанавливает стиль для полосы заголовка окна.
+<i>state</i> может быть "ActiveUp," "ActiveDown," или
+"Inactive." Если <i>state</i> опускается, то стиль
+добавляется к каждому состоянию. Если заключить в
+круглых скобках стиль и флаги, то можно задавать
+множество опредлений состояний в одной строке.
+<i>style</i> может быть опущено так, что флаги могут быть
+установлены без уничтожения текущего стиля.
+</p><p>
+Если символ "!" предшествует <i>flag</i>, то его поведение
+меняется на противоположное. Допустимые флаги для
+каждого состояния это "Raised," "Flat," и "Sunk"
+(они взаимно исключающие). По умолчанию Raised. См.
+замечание в ButtonStyle касающееся состояния
+ActiveDown. Примеры:
+</p><p>
+TitleStyle ActiveUp HGradient 16 navy black
+TitleStyle ActiveDown (Solid red -- flat) Inactive (TiledPixmap wood.xpm)
+TitleStyle ActiveUp (-- Flat) ActiveDown (-- Raised) Inactive (-- Flat)
+</p><p>
+Это устанавливает состояние ActiveUp к
+горизонтальному градиенту, состояние ActiveDown в
+сплошной красный цвет, и состояние Inactive в
+фоновый pixmap. Наконец, ActiveUp устанавливается
+как flat, в то время как ActiveDown устанавливается
+в sunk (флаг Raised для состояния ActiveDown
+заставляет выставить Sunk для инверсии рельефа), и
+Inactive также устанавливает в flat. Пример, в
+котором устанавливаются флаги для всех состояний:
+</p><p>
+TitleStyle -- flat
+</p><p>
+</p></dd><dt>Чтобы выглядело плоским:</dt><dd>
+<p>
+TitleStyle -- flat
+</p><p>
+ButtonStyle All ActiveUp (-- flat) Inactive (-- flat)
+</p><p>
+<i>UpdateDecor decor</i>
+</p><p>
+Обновляет офрмление окна.<i>decor</i> это необязательный
+аргумент который задает <i>decor</i> который будет
+обновлен. Если он задан, то только окна которым
+назначен данный <i>decor</i> будут обновлены. Эта команда
+полезна для употребления после ButtonStyle,
+TitleStyle или BorderStyle (возможно использовать и
+c AddToDecor). Если задан неверный decor, то все
+окна будут обновлены. Эта команда менее
+распостранена чем Recapture, но ничего не делает с
+опциями стиля окна как делает Recapture.
+</p><p>
+<i>WarpToWindow x y</i>
+</p><p>
+Помещает курсор для соответствующего окна.
+Параметры x и y по умолчанию определяют процентную
+долю опускания окна из верхнего левого угла (или
+число точек, если `p' добавляется к цифрам).
+</p><p>
+<i>Wait name</i>
+</p><p>
+Это встроенная функция предназначается для
+использования только в функциях <i>fvwm2</i>. Она
+выполняет функцию ожидания пока выводится новое имя
+окна name. <i>fvwm2</i>     остается полность
+работоспособным во время ожидания. Это полезно при
+использовании InitFuction если вы пытаетесь
+запустить окно на специфичном desktop'е:
+</p><p>
+AddToFunc InitFunction "I" exec xterm -geometry 80x64+0+0
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;Wait&nbsp;xterm
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;Desk&nbsp;0&nbsp;2
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;Exec&nbsp;xmh&nbsp;-font&nbsp;fixed&nbsp;-geometry&nbsp;507x750+0+0
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;Wait&nbsp;xmh
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;Desk&nbsp;0&nbsp;0
+</p><p>
+В приведенной выше функции запускается xterm на
+текущем desktop'е, ждет пока он отобразит сам себя,
+затем переключается на desktop 2 и запускает xmh.
+После xmh управление переключается на desktop 0.
+</p><p>
+WindowsDesk <i>arg1 [arg2]</i>
+</p><p>
+Перемещает выбранное окно на другой десктоп.
+</p><p>
+Если <i>arg1</i> не ноль, то следующий номер десктопа
+вычисляется как номер текущего десктопа плюс <i>arg1</i>.
+Номер декстопов монут быть отрицательными.
+</p><p>
+Если <i>arg1</i> ноль, то новый номер десктопа будет <i>arg2</i>.
+</p><p>
+</p></dd><dt>Если </dt><dd>
+<p>
+задан только один аргумент, то выбранное окно
+перемещается на десктоп заданный как rg1<i>.
+</i></p><p><i>
+WindowFont fontname</i>
+</p><p>
+Говорит fvwm2 использовать фонт fontname вместо
+"fixed" для заголовков окон.
+</p><p>
+WindowId <i>id func</i>
+</p><p>
+Функция WindowId похожа на функции Next и Prev, за
+исключением того, что она смотрит на заданный <i>id</i>
+окна и запускат для него заданную функцию <i>func</i>.
+</p><p>
+WindowId 0x34567890 Raise
+</p><p>
+WindowId 0x34567890 WarpToWindow 50 50
+</p><p>
+</p></dd><dt>Очень полезно для функций испольщующихся с функцией</dt><dd>
+<p>
+WindowList.
+</p><p>
+<i>WindowList options</i>
+</p><p>
+Создает и показывает pop-up меню, в котором видны
+заголоки и геометрия каждого из окон, которые
+отображены на desktop'е. Геометрия свернутых окон
+показывается в круглых скобках. Выбор пункта меню
+из этого окна по умолчанию запустит функцию WindowListFunc
+с id окна который устанавливается в $0.
+По умолчанию WindowListFunc выглядит так:
+</p><p>
+AddToFunc WindowListFunc "I" WindowId $0 Iconify -1
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;WindowId&nbsp;$0&nbsp;Focus
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;WindowId&nbsp;$0&nbsp;Raise
+</p><p>
+</p></dd><dt>+ </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I"&nbsp;WindowId&nbsp;$0&nbsp;WarpToWindow&nbsp;5p&nbsp;5p
+</p><p>
+Вы можете уничтожить встроенную WindowListFunc и
+создать свою собственную если вас что-то не
+устраивает.
+</p><p>
+<i>options</i> применимые к WindowList иогут быть "NoGeometry",
+"Function &lt;funcname&gt;", "Desk &lt;desknum&gt;",
+"CurrentDesk", "NoIcons", "Icons", "OnlyIcons",
+"NoNormal", "Normal", "OnlyNormal", "NoSticky",
+"Sticky", "OnlySticky", "NoOnTop", "OnTop", "OnlyOnTop",
+"Unsorted", "UseIconName".
+</p><p>
+(Заметим - в обычном случае не NoIconic, NoSticky,
+NoOnTop)
+</p><p>
+Если вы указали в функции через "Function &lt;funcname&gt;",
+$0 это id окна:
+</p><p>
+AddToFunc IFunc "I" WindowId $0 Iconify
+WindowList Function IFunc, NoSticky, CurrentDesk, NoIcons
+</p><p>
+Если вы хотите использовать WindowList как менеджер
+иконок, вы можете вызывать его так:
+</p><p>
+WindowList OnlyIcons, Sticky, OnTop, Geometry
+</p><p>
+(Заметим - Опции "Only" существенно стирают все
+другие...)
+</p><p>
+WindowShade [ <i>opt</i> ]
+</p><p>
+Переключает состояние shade окна для окон с
+заголовками. Окна в состоянии shade показываю
+только строку заголовка. Если <i>opt</i> не задано, то
+состояние окна shade переключается на
+противоположное. Если <i>opt</i> есть 1, то окно
+переключается в состояние shade. Если <i>opt</i> есть 2,
+то окно переключается в состояние не-shade.
+Максимизированные окна и окна без заголовков не
+могут быть в состоянии shade.
+</p><p>
+<i>XORvalue number</i>
+</p><p>
+Изменяет значение битов для задания цвета
+растягивающейся рамки, получающейся при изменении
+размера или перемещении окна.
+</p><p>
+</p></dd><dt><i>+</i> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Используется&nbsp;для&nbsp;добавления&nbsp;следующей&nbsp;заданной
+функции или меню. Смотрите AddToFunc и AddToMenu.
+</p><p>
+</p></dd><dt><b>ПЕРЕКЛЮЧАТЕЛИ КЛАВИАТУРЫ</b></dt><dd>
+<p>
+Все (Я думаю) операции менеджера окон могут быть
+выполнены с помощью клавиатуры, таким образом возможно
+выполнение операций в отсутствии мыши. Добавим, что для
+прокрутки по виртуальному desktop'у могут быть назначены
+</p><p>
+</p></dd><dt>клавиши </dt><dd>
+<p>
+также как и для функций move, resize вызова меню
+и многих других. Для этого могут быть использованы
+модифкаторы задействующие клавиши shift, ctrl. Однажды
+встроенная функция запускается и указатель перемещается,
+используя клавиши up, down, left, и right, и завершая
+действие нажатием return. Удерживая нажатой клавишу shift
+можно заставить указатель перемещаться большими шагами, а
+удерживая клавишу ctrl можно заставить указатель
+перемещаться меньшими шагами. Стандартное управление
+перемщением курсора в emacs и vi это (^n, ^p, ^f, ^b, и
+^j, ^k, ^h, ^l) может быть использовано вместо стрелок.
+</p><p>
+</p></dd><dt><b>СТАНДАРТНАЯ КОНФИГУРАЦИЯ</b></dt><dd>
+<p>
+Простой конфигурационый файл .fvwm2rc поставляется в
+дистрибутиве fvwm2. Внутри довольно хорошо все описано и
+может быть использовано в качестве исходной конфигурации
+fvwm2.
+</p><p>
+Вместе с руководством в Debian'е, вы также увидите примеры
+в /usr/doc/fvwm2/examples.
+</p><p>
+</p></dd><dt><b>ИСПОЛЬЗОВАНИЕ СОБСТВЕННЫХ МНОГОЭКРАННЫХ ДИСПЛЕЕВ</b></dt><dd>
+<p>
+Если аргумент командной строки -s не задан, fvwm2
+автоматически запускается на каждый экран заданного
+дисплея. После fvwm2 запускает независимую нить на каждый
+экран. Перезапуск fvwm2 должен быть выполнен отдельно
+для каждого экрана. Использование EdgeScroll 0 0 очень
+рекомендуется для многоэкранных дисплеев.
+</p><p>
+</p></dd><dt>Вам также </dt><dd>
+<p>
+может понадобится при выходе выходить из
+каждого экрана для полного завершения сессии.
+</p><p>
+</p></dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+<p>
+As of fvwm 0.99 there were exactly 39.342 unidentified
+bugs. Identified bugs have mostly been fixed, though.
+Since then 9.34 bugs have been fixed. Assuming that there
+are at least 10 unidentified bugs for every identified
+one, that leaves us with 39.342 - 9.32 + 10 * 9.34 =
+123.402 unidentified bugs. If we follow this to its logical
+conclusion we will have an infinite number of unidentified
+bugs before the number of bugs can start to diminish,
+at which point the program will be bug-free. Since
+this is a computer program infinity = 3.4028e+38 if you
+don't insist on double-precision. At the current rate of
+bug discovery we should expect to achieve this point in
+3.37e+27 years. I guess I better plan on passing this
+thing on to my children....
+</p><p>
+Known bugs can be found in the BUGS file in the distribution,
+and in the TO-DO list.
+</p><p>
+Bug reports can be sent to the FVWM mailing list (see the
+FAQ).
+</p><p>
+</p><dl compact="">
+<dt><b>АВТОР</b></dt><dd>
+<p>
+Robert Nation при помощи кучи народа, основываясь на коде
+<i>twm</i>, который написал Tom LaStrange. Rob после этого
+отошел от дел, а поддержку продолжает Charles Hines.
+</p><p>
+</p></dd><dt>Перевод </dt><dd>
+<p>
+с английского сделал Виктор Вислобоков
+(2:5054/<a href="mailto:8.34@Fidonet.org">8.34@Fidonet.org</a>)
+</p><p>
+</p><p>
+</p></dd></dl>
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">M4&lt;/bf&gt; &lt;bf&gt;Preprocessing</a></dt><dd>
+</dd><dt><a href="#lbAF">Cpp&lt;/bf&gt; &lt;bf&gt;Preprocessing</a></dt><dd>
+</dd><dt><a href="#lbAG">Auto-raise&lt;/bf&gt; <b>(автоматическое перемешение окна</b> &lt;bf&gt;наверх)</a></dt><dd>
+</dd><dt><a href="#lbAH">ОШИБКИ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="fvwm2" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,530 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ldapmodrdn (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ldapmodrdn"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ldapmodrdn" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ldapmodrdn (8)</font><hr><li> <a href="/man.shtml?topic=ldapmodrdn&amp;category=1&amp;russian=4"><u>ldapmodrdn</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ldapmodrdn&amp;category=1&amp;russian=3"><u>ldapmodrdn</u></a> (1) <font color="#555555"> ( Разные man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ldapmodrdn&amp;category=1&amp;russian=0"><u>ldapmodrdn</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ldapmodrdn&amp;category=8&amp;russian=0"><u>ldapmodrdn</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+{{header}}
+{{translator-igorchubin}}
+Оригинал: [<a href="http://linux.die.net/man/1/ldapmodrdn">http://linux.die.net/man/1/ldapmodrdn</a> <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldapmodrdn&amp;category=1">ldapmodrdn</a>(1)]
+<p>
+Эта страница является переводом официальной man-страницы программы ldapmodrdn, предназначенной для переименования 
+записей в LDAP-каталоге. 
+<a name="lbAB">&nbsp;</a>
+</p><h2>Имя</h2>
+
+<p>
+
+ldapmodrdn - инструмент для переименования записей LDAP
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>Синтаксис</h2>
+
+<p>
+
+ldapmodrdn [-r] [-n] [-v] [-c] [-M[M]] [-d debuglevel] [-D binddn] [-W] [-w passwd] [-y passwdfile] [-H ldapuri] 
+[-h ldaphost] [-p ldapport] [-P 2|3] [-O security-properties] [-I] [-Q] [-U authcid] [-R realm] [-x] [-X authzid] 
+[-Y mech] [-Z[Z]] [-f file] [dn rdn] 
+<a name="lbAD">&nbsp;</a>
+</p><h2>Описание</h2>
+
+<p>
+
+ldapmodrdn это интерфейс к библиотечному вызову <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap_modrdn2&amp;category=3">ldap_modrdn2</a>(3), доступный из командной строки.
+</p><p>
+ldapmodrdn соединяется с LDAP-сервером, привязывается к нему и модифицирует RDN записи. Информация считывается со 
+стандарнтого потока ввода, из файла (если задан ключ .RS
+</p><pre>-f
+</pre>
+
+
+)
+или из командной строки (dn и rdn).
+<p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>Опции</h2>
+
+<p>
+
+</p><p>
+</p><dl compact="">
+<dt><b>-r</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Удалить&nbsp;старые&nbsp;RDN&nbsp;значения&nbsp;записи.&nbsp;По&nbsp;умолчанию&nbsp;старые&nbsp;значения&nbsp;остаются.
+</dd><dt><b>-n</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Показать&nbsp;что&nbsp;должно&nbsp;быть&nbsp;сделано,&nbsp;но&nbsp;не&nbsp;выполнять&nbsp;поиск&nbsp;на&nbsp;самом&nbsp;деле.&nbsp;Может&nbsp;быть&nbsp;полезно&nbsp;в&nbsp;сочетании&nbsp;с&nbsp;опцией&nbsp;.RS
+<pre>-v
+</pre>
+
+
+<br>&nbsp;для&nbsp;отладки.
+</dd><dt><b>-v</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Запустить&nbsp;в&nbsp;разговорчивом&nbsp;(verbose)&nbsp;режиме;&nbsp;диагностические&nbsp;сообщения&nbsp;должны&nbsp;выводиться&nbsp;на&nbsp;стандартный&nbsp;поток&nbsp;вывода.&nbsp;
+</dd><dt><b>-c</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Режим&nbsp;непрерывного&nbsp;исполнения.&nbsp;Ошибки&nbsp;выводятся,&nbsp;но&nbsp;<i>ldapmodrdn</i>&nbsp;продолжает&nbsp;модификацию.&nbsp;По&nbsp;умолчанию,&nbsp;ldapmodrdn&nbsp;
+завершается при первой ошибке. .TP
+<b>-M[M]</b>
+
+<br>
+
+<br>&nbsp;Включить&nbsp;контроль&nbsp;DSA&nbsp;IT.&nbsp;-MM&nbsp;делает&nbsp;контроль&nbsp;критичным.
+</dd><dt><b>-d debuglevel</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Установить&nbsp;уровень&nbsp;отладки&nbsp;LDAP&nbsp;равным&nbsp;<i>debuglevel</i>.&nbsp;Программа&nbsp;ldapsearch&nbsp;должна&nbsp;быть&nbsp;откомпилирована&nbsp;с&nbsp;опцией&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>LDAP_DEBUG
+</pre>
+
+</dd></dl>
+
+, иначе эта опция не будет иметь эффекта.
+</dd><dt><b>-f file</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;Считать&nbsp;информацию,&nbsp;необходимую&nbsp;для&nbsp;модификации,&nbsp;из&nbsp;файла,&nbsp;а&nbsp;не&nbsp;из&nbsp;стандартного&nbsp;потока&nbsp;вывода&nbsp;или&nbsp;командной&nbsp;строки.&nbsp;.TP
+<b>-x</b>
+
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Использовать&nbsp;простую&nbsp;аутентификацию&nbsp;вместо&nbsp;SASL.&nbsp;
+</dd><dt><b>-D </b><i>binddn</i>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Привязаться&nbsp;к&nbsp;каталогу&nbsp;от&nbsp;имени&nbsp;<i>binddn</i>.&nbsp;
+</dd><dt><b>-W</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Спросить&nbsp;пароль&nbsp;в&nbsp;командной&nbsp;строке&nbsp;в&nbsp;ходе&nbsp;простой&nbsp;аутентификации.
+</dd><dt><b>-w </b><i>passwd</i>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Использовать&nbsp;<i>passwd</i>&nbsp;как&nbsp;пароль&nbsp;в&nbsp;ходе&nbsp;простой&nbsp;аутентификации.
+</dd><dt><b>-y </b><i>passwdfile</i>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Взять&nbsp;всю&nbsp;необходимую&nbsp;для&nbsp;простой&nbsp;аутентификации&nbsp;информацию&nbsp;из&nbsp;файла&nbsp;<i>passwdfile</i>.
+</dd><dt><b>-H </b><i>ldapuri</i>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Указать&nbsp;URI&nbsp;LDAP-сервера;&nbsp;допускаются&nbsp;только&nbsp;поля&nbsp;протокол/хост/порт;&nbsp;в&nbsp;качестве&nbsp;аргумента&nbsp;ожидается&nbsp;список&nbsp;URI,&nbsp;
+разделённых пробелами или запятыми. .TP
+<b>-h </b><i>ldaphost</i>
+
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Указать&nbsp;хост,&nbsp;на&nbsp;котором&nbsp;работает&nbsp;LDAP-сервер.&nbsp;Не&nbsp;рекомендуется&nbsp;использовать.&nbsp;Используйте&nbsp;вместо&nbsp;этого&nbsp;.RS
+<pre>-H
+</pre>
+
+
+<br>&nbsp;
+</dd><dt><b>-p </b><i>ldapport</i>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Указать&nbsp;TCP-порт,&nbsp;на&nbsp;котором&nbsp;работает&nbsp;LDAP-сервер.&nbsp;Не&nbsp;рекомендуется&nbsp;использовать.&nbsp;Используйте&nbsp;вместо&nbsp;этого&nbsp;.RS
+<pre>-H
+</pre>
+
+
+<br>&nbsp;
+</dd><dt><b>-P 2|3</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Указать,&nbsp;какую&nbsp;версию&nbsp;протокола&nbsp;LDAP&nbsp;использовать.&nbsp;
+</dd><dt><b>-O security-properties</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Задать&nbsp;параметры&nbsp;безопасности&nbsp;SASL.&nbsp;
+</dd><dt><b>-I</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Включить&nbsp;интерактивный&nbsp;режим&nbsp;SASL.&nbsp;Всегда&nbsp;спрашивать.&nbsp;По&nbsp;умолчанию:&nbsp;спрашивать&nbsp;только&nbsp;при&nbsp;необходимости.&nbsp;.TP
+<b>-Q</b>
+
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Включить&nbsp;молчаливый&nbsp;(quiet)&nbsp;режим&nbsp;SASL.&nbsp;Никогда&nbsp;не&nbsp;спрашивать.&nbsp;
+</dd><dt><b>-U </b><i>authcid</i>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Задать&nbsp;аутентификационный&nbsp;ID&nbsp;для&nbsp;SASL.&nbsp;Форма&nbsp;ID&nbsp;зависит&nbsp;от&nbsp;того,&nbsp;какой&nbsp;механизм&nbsp;аутентификации&nbsp;в&nbsp;действительности&nbsp;используется.&nbsp;
+</dd><dt><b>-R </b><i>realm</i>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Задать&nbsp;realm&nbsp;аутентификационного&nbsp;ID&nbsp;для&nbsp;SASL.&nbsp;Форма&nbsp;realm&nbsp;зависит&nbsp;от&nbsp;того,&nbsp;какой&nbsp;механизм&nbsp;аутентификации&nbsp;в&nbsp;действительности&nbsp;
+используется. .TP
+<b>-X </b><i>authzid</i>
+
+<br>
+
+<br>&nbsp;Задать&nbsp;запрашиваемые&nbsp;авторизационный&nbsp;ID&nbsp;для&nbsp;SASL.&nbsp;authzid&nbsp;может&nbsp;быть&nbsp;в&nbsp;одной&nbsp;из&nbsp;форм:&nbsp;dn:&lt;distinguished&nbsp;name&gt;&nbsp;или&nbsp;u:&lt;username&gt;&nbsp;
+</dd><dt><b>-Y </b><i>mech</i>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Указать&nbsp;какой&nbsp;SASL-механизм&nbsp;использовать&nbsp;для&nbsp;аутентификации.&nbsp;Если&nbsp;не&nbsp;указан,&nbsp;программа&nbsp;выберет&nbsp;лучший&nbsp;механизм&nbsp;из&nbsp;
+тех, что знает сервер. .TP
+<b>-Z[Z]</b>
+
+<br>
+
+<br>&nbsp;Расширенный&nbsp;режим&nbsp;StartTLS&nbsp;(Transport&nbsp;Layer&nbsp;Security).&nbsp;Если&nbsp;задать&nbsp;-ZZ,&nbsp;тогда&nbsp;операция&nbsp;обязательно&nbsp;должна&nbsp;быть&nbsp;успешной.&nbsp;
+<p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>Входной формат</h2>
+
+<p>
+
+Если заданы аргументы командной строки (dn и rdn), RDN записи с DN равным 
+</p><dl compact=""><dt></dt><dd>
+<pre>dn
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;изменится&nbsp;и&nbsp;станет&nbsp;равным&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>rdn
+</pre>
+
+</dd></dl>
+
+<p>
+В противном случае, содержимое файла (или стандартного потока ввода, если 
+</p><dl compact=""><dt></dt><dd>
+<pre>-f
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;не&nbsp;используется)&nbsp;должно&nbsp;включать
+в себя одну или больше записей.
+<p>
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Distinguished&nbsp;Name&nbsp;(DN)
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Relative&nbsp;Distinguished&nbsp;Name&nbsp;(RDN)
+</p><p>
+Одна или несколько пустых строк разделяют пары DN/RDN между собой.
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>Примеры</h2>
+
+<p>
+
+</p><p>
+Если предположить, то что файл 
+</p><dl compact=""><dt></dt><dd>
+<pre>/tmp/entrymods
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;существует&nbsp;и&nbsp;имеет&nbsp;следующее&nbsp;содержимое:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    cn=Modify Me,dc=example,dc=com
+    cn=The New Me
+
+</pre>
+
+</dd></dl>
+
+команда:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>    ldapmodrdn -r -f /tmp/entrymods
+
+</pre>
+
+</dd></dl>
+
+изменит RDN записи "Modify Me" с "Modify Me" на "The New Me", а старый cn, "Modify Me" будет удалён. 
+<a name="lbAH">&nbsp;</a>
+<h2>Диагностика</h2>
+
+<p>
+
+Код завершения равен 0, если ошибок не было. Если ошибки были, код завершения отличен от 0 и на стандартный поток ошибок отправляются 
+диагностические сообщения. 
+<a name="lbAI">&nbsp;</a>
+</p><h2>См.также</h2>
+
+<p>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldapadd&amp;category=1">ldapadd</a>(1), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldapdelete&amp;category=1">ldapdelete</a>(1), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldapmodify&amp;category=1">ldapmodify</a>(1), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldapsearch&amp;category=1">ldapsearch</a>(1), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap.conf&amp;category=5">ldap.conf</a>(5), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap&amp;category=3">ldap</a>(3), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap_modrdn2&amp;category=3">ldap_modrdn2</a>(3)
+</p><p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2>Автор</h2>
+
+<p>
+
+The OpenLDAP Project &lt;<a href="http://www.openldap.org/">http://www.openldap.org/</a>&gt;
+</p><p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>Благодарности</h2>
+
+<p>
+
+OpenLDAP разрабатывается и спопровождается в рамках проекта The OpenLDAP Project (<a href="http://www.openldap.org/).">http://www.openldap.org/).</a> OpenLDAP 
+базируется на University of Michigan LDAP 3.3 Release. 
+<a name="lbAL">&nbsp;</a>
+</p><h2> Перевод </h2>
+
+<p>
+
+</p><p>
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Игорь&nbsp;Чубин&nbsp;&lt;igor&nbsp;ar&nbsp;chub.in&gt;
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">Имя</a></dt><dd>
+</dd><dt><a href="#lbAC">Синтаксис</a></dt><dd>
+</dd><dt><a href="#lbAD">Описание</a></dt><dd>
+</dd><dt><a href="#lbAE">Опции</a></dt><dd>
+</dd><dt><a href="#lbAF">Входной формат</a></dt><dd>
+</dd><dt><a href="#lbAG">Примеры</a></dt><dd>
+</dd><dt><a href="#lbAH">Диагностика</a></dt><dd>
+</dd><dt><a href="#lbAI">См.также</a></dt><dd>
+</dd><dt><a href="#lbAJ">Автор</a></dt><dd>
+</dd><dt><a href="#lbAK">Благодарности</a></dt><dd>
+</dd><dt><a href="#lbAL"> Перевод </a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ldapmodrdn" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

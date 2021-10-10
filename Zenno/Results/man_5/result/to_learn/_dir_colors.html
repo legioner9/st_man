@@ -1,0 +1,670 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN dir_colors (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, dir_colors"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="dir_colors" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">dir_colors (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=dir_colors&amp;category=5&amp;russian=0"><u>dir_colors</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=dir_colors&amp;category=5&amp;russian=2"><u>dir_colors</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+dir_colors - файл конфигурации для утилиты <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dircolors&amp;category=1">dircolors</a>(1)
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Программа
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ls&amp;category=1">ls</a></b>(1)
+
+использует переменную окружения
+<b>LS_COLORS</b>
+
+для определения цветов, которыми должны отображаться имена файлов.
+Эта переменная окружения обычно устанавливается командой типа
+<p>
+</p><dl compact=""><dt></dt><dd>
+eval `dircolors some_path/dir_colors`
+</dd></dl>
+
+<p>
+Эта команда обычно находится в стандартном файле инициализации, типа
+<i>/etc/profile</i>
+
+или
+<i>/etc/csh.cschrc</i>
+
+(См. также
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dircolor&amp;category=1">dircolor</a></b>(1).)
+
+Обычно здесь используется файл
+<i>/etc/DIR_COLORS</i>,
+
+настройки в котором переопределяются файлом
+<i>.dir_colors</i>
+
+в домашнем каталоге пользователя.
+</p><p>
+
+Этот файл конфигурации состоит из нескольких операторов, по одному в
+строке.  Все, что находится после символа "решетка" (#), считается
+комментарием, если этот символ находится в начале строки или перед ним 
+находится как минимум один пробел.  Пустые строки игнорируются.
+</p><p>
+
+<i>Глобальная</i>
+
+секция файла состоит из всех операторов перед первым оператором
+<b>TERM</b>.
+
+Операторы в глобальной секции файла действуют для всех типов
+терминалов.  После глобальной секции находится одна или более
+<i>Терминал-специфичных</i>
+
+каждая из которых начинается с оператора
+<b>TERM</b>,
+
+который Задаёт тип терминала (тот же, что задан переменной окружения
+<b>TERM</b>),
+
+к которому применяются все последующие объявления. Для любого теминала,
+глобальные настройки всегда можно перекрыть терминал-специфичными.
+</p><p>
+
+Распознаются нижеследующие операторы (регистр букв неважен):
+</p><p>
+
+</p><dl compact="">
+<dt><b>TERM </b><i>terminal-type</i>
+
+</dt><dd>
+Начинает секцию, специфичную для терминала, и указывает, к какому типу 
+терминала она применима.  Можно использовать несколько операторов
+<b>TERM</b>,
+
+чтобы создать секцию, применимую к нескольким типам терминалов.
+</dd><dt><b>COLOR yes|all|no|none|tty</b>
+
+</dt><dd>
+(Только для Slackware; игнорируется GNU
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dircolors&amp;category=1">dircolors</a></b>(1).)
+
+Указывает, что расцветка должна быть всегда разрешена (<i>yes</i> или
+<i>all</i>); никогда не разрешена (<i>no</i> или <i>none</i>) или
+разрешена, только если вывод происходит на терминальное устройство
+(<i>tty</i>).  По умолчанию -- <i>no</i>.
+</dd><dt><b>EIGHTBIT yes|no</b>
+
+</dt><dd>
+(Только для Slackware; игнорируется GNU
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dircolors&amp;category=1">dircolors</a></b>(1).)
+
+Указывает, разрешены ли по умолчанию восьмибитные символы ISO 8859.
+Из соображений совместимости можно также указывать 1 (означает
+<i>yes</i>) или 0 (означает <i>no</i>).  По умолчанию -- <i>no</i>.
+</dd><dt><b>OPTIONS </b><i>options</i>
+
+</dt><dd>
+(Только для Slackware; игнорируется GNU
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dircolors&amp;category=1">dircolors</a></b>(1).)
+
+Добавляет опцию командной строки к стандартной командной строке
+<b>ls</b>.
+
+Здесь можно указать любую разрешенную опцию команды
+<b>ls</b>,
+
+причем нужно указать начальный знак минус.  Заметьте, что
+<b>dircolors</b>
+
+не проверяет, верны ли эти опции.
+</dd><dt><b>NORMAL </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт цвет, используемый для нормального (не имя файла) текста.
+</dd><dt><b>FILE </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт цвет, используемый для обычного файла.
+</dd><dt><b>DIR </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт цвет, используемый для каталогов.
+</dd><dt><b>LINK </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт цвет, используемый для символьных ссылок.
+</dd><dt><b>ORPHAN </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт цвет, используемый для битой символьной ссылки (указывающей 
+на несуществующий файл).  Если этот цвет не задан, то
+<b>ls</b>
+
+будет использовать вместо него цвет
+<b>LINK</b>.
+
+</dd><dt><b>MISSING </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт цвет, используемый для пропавшего файла (несуществующего файла, 
+на который указывает символьная ссылка).  Если этот цвет не задан, то
+<b>ls</b>
+
+будет использовать вместо него цвет
+<b>FILE</b>.
+
+</dd><dt><b>FIFO </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт цвет, используемый для FIFO (именованного канала).
+</dd><dt><b>SOCK </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт цвет, используемый для сокета.
+</dd><dt><b>DOOR </b><i>color-sequence</i>
+
+</dt><dd>
+(Поддерживается, начиная с file-utils 4.1)
+Задаёт цвет, используемый для файлов типа door (Solaris 2.5 и выше).
+</dd><dt><b>BLK </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт цвет, используемый для специального файла блочного устройства.
+</dd><dt><b>CHR </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт цвет, используемый для специального файла символьного
+устройства.
+</dd><dt><b>EXEC </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт цвет, используемый для файла с установленным атрибутом
+выполнения.
+</dd><dt><b>LEFTCODE </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт
+<i>левый код</i>
+
+для не-ISO&nbsp;6429 терминалов (см. ниже).
+</dd><dt><b>RIGHTCODE </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт
+<i>правый код</i>
+
+для не-ISO&nbsp;6429 терминалов (см. ниже).
+</dd><dt><b>ENDCODE </b><i>color-sequence</i>
+
+</dt><dd>
+Задаёт
+<i>конечный код</i>
+
+для не-ISO&nbsp;6429 терминалов (см. ниже).
+</dd><dt><b>*</b><i>extension</i> <i>color-sequence</i></dt><dd>
+Задаёт цвет, используемый для файлов, чьи имена заканчиваются на
+заданное расширение
+<i>extension</i>.
+
+</dd><dt><b> .</b><i>extension</i> <i>color-sequence</i></dt><dd>
+То же самое, что и <b>*</b>.<i>extension</i>.  Задаёт цвет, используемый 
+для файлов, чьи имена заканчиваются на .<i>extension</i>.  Заметьте,
+что точка входит в состав расширения, и из-за этого невозможно указать 
+расширение, не начинающееся с точки, например
+<b>~</b>
+
+для резервных копий редактора
+<b>emacs</b>.
+
+Эта форма записи считается устаревшей.
+</dd></dl>
+<a name="lbAD">&nbsp;</a>
+<h2>ЦВЕТОВЫЕ ПОСЛЕДОВАТЕЛЬНОСТИ ISO 6429 (ANSI)</h2>
+
+Большинство цветных ASCII-терминалов в настоящее время используют
+цветовые последовательности ISO 6429 (ANSI), а многие распространенные 
+терминалы, не поддерживающие цвет, включая
+<b>xterm</b>,
+
+а также широко используемый и клонируемый DEC VT100, распознают
+цветовые коды ISO 6429 и без последствий удаляют их из выходного
+потока или же эмулируют их.
+<b>ls</b>
+
+по умолчанию использует коды ISO 6429, если включена расцветка.
+<p>
+Цветовые последовательности ISO 6429 составлены из последовательности
+чисел, разделенных точками с запятой.  Самые распространенные коды
+таковы:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+
+
+<pre> 0     восстановление цвета по умолчанию
+ 1     включить яркие цвета
+ 4     подчеркнутый текст
+ 5     мигающий текст
+30     черный текст
+31     красный текст
+32     зеленый текст
+33     желтый (или коричневый) текст
+34     синий текст
+35     фиолетовый текст
+36     cyan текст
+37     белый (или серый) текст
+40     черный фон
+41     красный фон
+42     зеленый фон
+43     желтый (или коричневый) фон
+44     синий фон
+45     фиолетовый фон
+46     cyan фон
+47     белый (или серый) фон
+</pre>
+
+</dd></dl>
+
+<p>
+Не все команды будут работать на любой системе или устройстве
+отображения.
+</p><p>
+
+<b>ls</b>
+
+использует следующие значения по умолчанию:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+
+
+<pre><b>NORMAL</b>   0       Нормальный текст (не имя файла)
+<b>FILE</b>     0       Обычный файл
+<b>DIR</b>      32      Каталог
+<b>LINK</b>     36      Символьная ссылка
+<b>ORPHAN</b>   неопределено       Сломанная символьная ссылка
+<b>MISSING</b>  неопределено       Потерявшийся файл
+<b>FIFO</b>     31      Именованный канал (FIFO)
+<b>SOCK</b>     33      Сокет
+<b>BLK</b>      44;37   Блочное устройство
+<b>CHR</b>      44;37   Символьное устройство
+<b>EXEC</b>     35      Исполняемый файл
+</pre>
+
+</dd></dl>
+
+<p>
+Некоторые терминальные программы неправильно распознают установку
+цвета по умолчанию.  Если весь текст становится расцвеченным после
+того, как вы просматриваете листинг каталога, измените коды
+<b>NORMAL</b>
+
+и
+<b>FILE</b>
+
+на цифровые коды для нормального цвета текста и фона.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ДРУГИЕ ТИПЫ ТЕРМИНАЛОВ (СЛОЖНЫЕ КОНФИГУРАЦИИ)</h2>
+
+Если у вас есть терминал (или принтер!) с поддержкой цвета (или
+другими возможностями выделения), который использует другой набор
+кодов, вы все равно сможете создать подходящие настройки.  Для этого
+нужно использовать операторы 
+<b>LEFTCODE</b>,
+
+<b>RIGHTCODE</b>
+
+и
+<b>ENDCODE</b>.
+
+<p>
+
+При выводе имени
+<b>ls</b>
+
+генерирует такую последовательность:
+<b>LEFTCODE</b>
+
+<i>typecode</i>
+
+<b>RIGHTCODE</b>
+
+<i>filename</i>
+
+<b>ENDCODE</b>,
+
+где
+<i>typecode</i>--
+
+цветовая последовательность, зависящая от типа или имени файла.  Если 
+<b>ENDCODE</b>
+
+не определен, то вместо него будет использоваться последовательность
+<b>LEFTCODE NORMAL RIGHTCODE</b>.
+
+Назначение левого (LEFTCODE) и правого (RIGHTCODE) кодов -- просто
+уменьшить количество информации, которую нужно набирать (а также
+спрятать уродливые escape-последовательности от пользователя).  Если
+они не подходят для вашего терминала, их можно выключить, поместив
+соответствующее ключевое слово на отдельной строке.
+</p><p>
+
+<b>ЗАМЕЧАНИЕ:</b>
+
+Если
+<b>ENDCODE</b>
+
+определен в глобальной секции файла настроек, то его
+<i>нельзя</i>
+
+переопределить в секции, специфической для терминала.  Это означает,
+что все определения
+<b>NORMAL</b>
+
+не приведут ни к какому результату.  Однако, можно использовать
+различные 
+<b>ENDCODE</b>,
+
+что и приведет к нужному результату.
+<a name="lbAF">&nbsp;</a>
+</p><h2>ESCAPE ПОСЛЕДОВАТЕЛЬНОСТИ</h2>
+
+Для того, чтобы указать в цветовых последовательностях или расширениях 
+имен файлов контрольные символы или пробелы, можно использовать либо
+нотацию в стиле языка C, с помощью обратной косой черты, либо нотацию
+в стиле программы
+<b>stty</b>,
+
+с помощью символа ^.  Нотация в стиле языка C включает в себя такие
+символы:
+<p>
+</p><dl compact=""><dt></dt><dd>
+
+
+<pre><b>\a</b>      Bell (ASCII 7)
+<b>\b</b>      Backspace (ASCII 8)
+<b>\e</b>      Escape (ASCII 27)
+<b>\f</b>      Form feed (ASCII 12)
+<b>\n</b>      Newline (ASCII 10)
+<b>\r</b>      Carriage Return (ASCII 13)
+<b>\t</b>      Tab (ASCII 9)
+<b>\v</b>      Vertical Tab (ASCII 11)
+<b>\?</b>      Delete (ASCII 127)
+<b>\</b><i>nnn</i> Любой символ (восьмеричная запись)
+<b>\x</b><i>nnn</i>        Любой символ (шестнадцатеричная запись)
+<b>\_</b>      Пробел
+<b>\\</b>     Обратная косая черта (\)
+<b>\^</b>      Caret (^)
+<b>\#</b>      Символ "диез" (#)
+</pre>
+
+</dd></dl>
+
+<p>
+Заметьте, что escape-символы необходимы, чтобы использовать пробел,
+обратную косую черту, "крышечку" или контрольные символы в любом месте
+строки, а также символ "решетки" в качестве первого символа в строке.
+<a name="lbAG">&nbsp;</a>
+</p><h2>ЗАМЕЧАНИЯ</h2>
+
+По умолчанию
+<b>LEFTCODE</b>
+
+и
+<b>RIGHTCODE</b>,
+
+использующиеся в терминалах ISO 6429, заданы так:
+<p>
+</p><dl compact=""><dt></dt><dd>
+
+
+<pre><b>LEFTCODE</b>  \e[
+<b>RIGHTCODE</b> m
+</pre>
+
+</dd></dl>
+
+<p>
+По умолчанию
+<b>ENDCODE</b>
+
+не определен.
+<a name="lbAH">&nbsp;</a>
+</p><h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dircolors&amp;category=1">dircolors</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ls&amp;category=1">ls</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stty&amp;category=1">stty</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=xterm&amp;category=1">xterm</a></b>(1)
+
+<a name="lbAI">&nbsp;</a>
+<h2>FILES</h2>
+
+<dl compact="">
+<dt><i>/etc/DIR_COLORS</i>
+
+</dt><dd>
+Общесистемный файл конфигурации.
+</dd><dt><i>~/.dir_colors</i>
+
+</dt><dd>
+Пользовательский файл конфигурации.
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Эта страница описывает файл
+<b>dir_colors</b>,
+
+который можно найти в пакете fileutils-4.1 package;
+другие версии могут немного отличаться.  
+Исправления и дополнения присылайте по адресу <a href="mailto:aeb@cwi.nl">aeb@cwi.nl</a>.
+Отчеты об ошибках в этой программе присылайте по адресу
+<a href="mailto:fileutils-bugs@gnu.ai.mit.edu">fileutils-bugs@gnu.ai.mit.edu</a>.
+<a name="lbAK">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевёл с английского Виктор Вислобоков &lt;<a href="mailto:corochoone@perm.ru">corochoone@perm.ru</a>&gt; 2004
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">ЦВЕТОВЫЕ ПОСЛЕДОВАТЕЛЬНОСТИ ISO 6429 (ANSI)</a></dt><dd>
+</dd><dt><a href="#lbAE">ДРУГИЕ ТИПЫ ТЕРМИНАЛОВ (СЛОЖНЫЕ КОНФИГУРАЦИИ)</a></dt><dd>
+</dd><dt><a href="#lbAF">ESCAPE ПОСЛЕДОВАТЕЛЬНОСТИ</a></dt><dd>
+</dd><dt><a href="#lbAG">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAI">FILES</a></dt><dd>
+</dd><dt><a href="#lbAJ">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAK">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="dir_colors" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

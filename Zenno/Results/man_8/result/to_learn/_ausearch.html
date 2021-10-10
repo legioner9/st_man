@@ -1,0 +1,386 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ausearch (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ausearch"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ausearch" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ausearch (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=ausearch&amp;category=8&amp;russian=0"><u>ausearch</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=ausearch&amp;category=8&amp;russian=2"><u>ausearch</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+ausearch - поиск по журналу аудита
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>ausearch</b>
+
+[<i>опции</i>]
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Программа <b>ausearch</b> является инструментом поиска по журналу аудита. <b>ausearch</b> может также принимать данные со стандартного ввода (stdin) до тех пор, пока на входе будут необработанные данные логов. Все условия, указанные в параметрах, объединяются логическим И. К примеру, при указании <b>-m</b> и <b>-ui</b> в качестве параметров будут показаны события, соответствующие заданному типу и идентификатору пользователя.
+<p>
+Стоит отметить, что каждый системный вызов ядра из пользовательского пространства и возвращение данных в пользовательское пространство имеет один уникальный (для каждого системного вызова) идентификатор события.
+</p><p>
+Различные части ядра могут добавлять дополнительные записи. Например, в событие аудита для системного вызова "open" добавляется запись PATH с именем файла. ausearch показывает все записи события вместе. Это означает, что при запросе определенных записей результат может содержать записи SYSCALL.
+</p><p>
+Также помните, что не все типы записей содержат указанную информацию. Например, запись PATH не содержит имя узла или loginuid.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОПЦИИ</h2>
+
+<dl compact="">
+<dt><b>-a</b>,&nbsp;<b>--event</b>&nbsp;<i>audit-event-id</i>
+
+</dt><dd>
+Искать события с заданным <i>идентификатором события</i>. Сообщения обычно начинаются примерно так: msg=audit(1116360555.329:2401771). Идентификатор события - это число после ':'. Все события аудита, связанные с одним системным вызовом имеют одинаковый идентификатор.
+</dd><dt><b>-c</b>,&nbsp;<b>--comm</b>&nbsp;<i>comm-name</i>
+
+</dt><dd>
+Искать события с заданным <i>comm name</i>. comm name - имя исполняемого файла задачи.
+</dd><dt><b>-f</b>,&nbsp;<b>--file</b>&nbsp;<i>file-name</i>
+
+</dt><dd>
+Искать события с заданным <i>именем файла</i>.
+</dd><dt><b>-ga</b>,&nbsp;<b>--gid-all</b>&nbsp;<i>all-group-id</i>
+
+</dt><dd>
+Искать события с заданным эффективным или обычным <i>идентификатором группы</i>.
+</dd><dt><b>-ge</b>,&nbsp;<b>--gid-effective</b>&nbsp;<i>effective-group-id</i>
+
+</dt><dd>
+Искать события с заданным <i>эффективным идентификатором группы</i> или именем группы.
+</dd><dt><b>-gi</b>,&nbsp;<b>--gid</b>&nbsp;<i>group-id</i>
+
+</dt><dd>
+Искать события с заданным <i>идентификатором группы</i> или именем группы.
+</dd><dt><b>-h</b>,&nbsp;<b>--help</b>
+
+</dt><dd>
+Справка
+</dd><dt><b>-hn</b>,&nbsp;<b>--host</b>&nbsp;<i>host-name</i>
+
+</dt><dd>
+Искать события с заданным <i>именем узла</i>. Имя узла может быть именем узла, полным доменным именем или цифровым сетевым адресом.
+</dd><dt><b>-i</b>,&nbsp;<b>--interpret</b>
+
+</dt><dd>
+Транслировать числовые значения в текстовые. Например, идентификатор пользователя будет оттранслирован в имя пользователя. Трансляция выполняется c использованием данных с той машины, где запущен <b>ausearch</b>. Т.е. если вы переименовали учетные записи пользователей или не имеете таких же учетных записей на вашей машине, то вы можете получить результаты, вводящие в заблуждение.
+</dd><dt><b>-if</b>,&nbsp;<b>--input</b>&nbsp;<i>file-name</i>
+
+</dt><dd>
+Использовать указанный <i>файл</i> вместо логов аудита. Это может быть полезно при анализе логов с другой машины или при анализе частично сохраненных логов.
+</dd><dt><b>-k</b>,&nbsp;<b>--key</b>&nbsp;<i>key-string</i>
+
+</dt><dd>
+Искать события с заданным <i>ключевым словом</i>.
+</dd><dt><b>-m</b>,&nbsp;<b>--message</b>&nbsp;<i>message-type</i>&nbsp;|&nbsp;<i>comma-sep-message-type-list</i>
+
+</dt><dd>
+Искать события с заданным <i>типом</i>. Вы можете указать <i>список значений, разделенных запятыми</i>. Можно указать несуществующий в событиях тип <b>ALL</b>, который позволяет получить все сообщения системы аудита. Список допустимых типов большой и будет показан, если указать эту опцию без значения. Тип сообщения может быть строкой или числом. В списке значений этого параметра в качестве разделителя используются запятые и пробелы недопустимы.
+</dd><dt><b>-o</b>,&nbsp;<b>--object</b>&nbsp;<i>SE-Linux-context-string</i>
+
+</dt><dd>
+Искать события с заданным <i>контекстом</i> (объектом).
+</dd><dt><b>-p</b>,&nbsp;<b>--pid</b>&nbsp;<i>process-id</i>
+
+</dt><dd>
+Искать события с заданным <i>идентификатором процесса</i>.
+</dd><dt><b>-pp</b>,&nbsp;<b>--ppid</b>&nbsp;<i>parent-process-id</i>
+
+</dt><dd>
+Искать события с заданным <i>идентификатором родительского процесса</i>.
+</dd><dt><b>-r</b>,&nbsp;<b>--raw</b>
+
+</dt><dd>
+Необработанный вывод. Используется для извлечения записей для дальнейшего анализа.
+</dd><dt><b>-sc</b>,&nbsp;<b>--success</b>&nbsp;<i>syscall-name-or-value</i>
+
+</dt><dd>
+Искать события с заданным <i>системным вызовом</i>. Вы можете указать его номер или имя. Если вы указали имя, оно будет проверено на машине, где запущен <b>ausearch</b>.
+</dd><dt><b>-se</b>,&nbsp;<b>--context</b>&nbsp;<i>SE-Linux-context-string</i>
+
+</dt><dd>
+Искать события с заданным <i>контекстом SELinux</i> (stcontext/subject или <i>tcontext</i>/object).
+</dd><dt><b>-su</b>,&nbsp;<b>--subject</b>&nbsp;<i>SE-Linux-context-string</i>
+
+</dt><dd>
+Искать события с заданным контекстом SELinux - <i>scontext</i> (subject).
+</dd><dt><b>-sv</b>,&nbsp;<b>--success</b>&nbsp;<i>success-value</i>
+
+</dt><dd>
+Искать события с заданным <i>флагом успешного выполнения</i>. Допустимые значения: 
+<b>yes (успешно)</b>
+
+и
+<b>no</b>(неудачно).
+
+</dd><dt><b>-te</b>,&nbsp;<b>--end</b>&nbsp;[<i>end-date</i>]&nbsp;[<i>end-time</i>]
+
+</dt><dd>
+Искать события, которые произошли раньше (или во время) указанной временной точки. Формат даты и времени зависит от ваших региональных настроек. Если дата не указана, то подразумевается текущий день (
+<b>today</b>
+
+). Если не указано время, то подразумевается текущий момент (
+<b>now</b>
+
+). Используйте 24-часовую нотацию времени, а не AM/PM. Например, дата может быть задана как 10/24/2005, а время - как 18:00:00.
+<p>
+Вы можете также использовать ключевые слова: <b>now</b> (сейчас), <b>recent</b>, <b>today</b>, <b>yesterday</b>, <b>this-week</b>, <b>this-month</b>, <b>this-year</b>. <b>today</b> означает первую секунду после полуночи текущего дня. <b>recent</b> - 10 минут назад. <b>yesterday</b> - первую секунду после полуночи предыдущего дня. <b>this-week</b> означает первую секунду после полуночи первого дня текущей недели, первый день недели определяется из ваших региональных настроек (см. <b>localtime</b>). <b>this-month</b> означает первую секунду после полуночи первого числа текущего месяца. <b>this-year</b> означает первую секунду после полуночи первого числа первого месяца текущего года.
+</p></dd><dt><b>-ts</b>,&nbsp;<b>--start</b>&nbsp;[<i>start-date</i>]&nbsp;[<i>start-time</i>]
+
+</dt><dd>
+Искать события, которые произошли после (или во время) указанной временной точки. Формат даты и времени зависит от ваших региональных настроек. Если дата не указана, то подразумевается текущий день (
+<b>today</b>
+
+). Если не указано время, то подразумевается полночь (
+<b>midnight</b>
+
+). Используйте 24-часовую нотацию времени, а не AM/PM. Например, дата может быть задана как 10/24/2005, а время - как 18:00:00.
+<p>
+Вы можете также использовать ключевые слова: <b>now</b> (сейчас), <b>recent</b>, <b>today</b>, <b>yesterday</b>, <b>this-week</b>, <b>this-month</b>, <b>this-year</b>. <b>today</b> означает первую секунду после полуночи текущего дня. <b>recent</b> - 10 минут назад. <b>yesterday</b> - первую секунду после полуночи предыдущего дня. <b>this-week</b> означает первую секунду после полуночи первого дня текущей недели, первый день недели определяется из ваших региональных настроек (см. <b>localtime</b>). <b>this-month</b> означает первую секунду после полуночи первого числа текущего месяца. <b>this-year</b> означает первую секунду после полуночи первого числа первого месяца текущего года.
+</p></dd><dt><b>-tm</b>,&nbsp;<b>--terminal</b>&nbsp;<i>terminal</i>
+
+</dt><dd>
+Искать события с заданным <i>терминалом</i>. Некоторые демоны (такие как cron и atd) используют имя демона как имя терминала.
+</dd><dt><b>-ua</b>,&nbsp;<b>--uid-all</b>&nbsp;<i>all-user-id</i>
+
+</dt><dd>
+Искать события, у которых любой из идентификатора пользователя, эффективного идентификатора пользователя или loginuid (auid) совпадают с заданным <i>идентификатором пользователя</i>.
+</dd><dt><b>-ue</b>,&nbsp;<b>--uid-effective</b>&nbsp;<i>effective-user-id</i>
+
+</dt><dd>
+Искать события с заданным <i>эффективным идентификатором пользователя</i>.
+</dd><dt><b>-ui</b>,&nbsp;<b>--uid</b>&nbsp;<i>user-id</i>
+
+</dt><dd>
+Искать события с заданным <i>идентификатором пользователя</i>.
+</dd><dt><b>-ul</b>,&nbsp;<b>--loginuid</b>&nbsp;<i>login-id</i>
+
+</dt><dd>
+Искать события с заданным <i>идентификатором пользователя</i>. Все программы, которые его используют, должны использовать pam_loginuid.
+</dd><dt><b>-v</b>,&nbsp;<b>--verbose</b>
+
+</dt><dd>
+Показать версию и выйти
+</dd><dt><b>-w</b>,&nbsp;<b>--word</b>
+
+</dt><dd>
+Совпадение с полным словом. Поддерживается для имени файла, имени узла, терминала и контекста SELinux.
+</dd><dt><b>-x</b>,&nbsp;<b>--executable</b>&nbsp;<i>executable</i>
+
+</dt><dd>
+Искать события с заданным <i>именем исполняемой программы</i>.
+<p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=auditd&amp;category=8">auditd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pam_loginuid&amp;category=8">pam_loginuid</a></b>(8).
+
+<p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+Перевод с английского Николай Шафоростов &lt;<a href="mailto:shafff@ukr.net">shafff@ukr.net</a>&gt; 2007
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAG">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ausearch" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

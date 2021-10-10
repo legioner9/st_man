@@ -1,0 +1,333 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ccd (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ccd"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ccd" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ccd (4)</font><hr><li> <a href="/man.shtml?topic=ccd&amp;category=4&amp;russian=1"><u>ccd</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ccd&amp;category=4&amp;russian=0"><u>ccd</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>ccd(4)</h1></td>
+<td><h2 align="center">Устройства и драйверы устройств</h2></td>
+<td><h1 align="right">ccd(4)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+
+<p><b>ccd</b> - драйвер "склееных" дисков (Concatenated Disk driver)</p>
+
+<h2><a name="synopsis">СИНТАКСИС</a></h2>
+<dl><dt></dt><dd><tt>
+<b>device ccd</b>
+</tt></dd></dl>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<p>Драйвер <b>ccd</b> позволяет комбинировать несколько дисков/разделов в один виртуальный диск.</p>
+
+<p>В этом документе предполагается, что читатель знает, как создавать ядра, как правильно конфигурировать
+диски и устройства в файле конфигурации ядра, и как разбивать диски на разделы.</p>
+
+<p>Учтите, что "неформатированные" (raw) разделы дисков нельзя объединять в виртуальный диск.
+Ядро работает только с компонентами-разделами типа <b>FS_BSDFFS</b> (утилита 
+<b><a href="/man.shtml?topic=disklabel&amp;category=8">disklabel(8)</a></b> показывает их тип как "<b>4.2BSD</b>").</p>
+
+<p>Чтобы включить поддержку драйвера <b>ccd</b> в ядро, необходимо добавить в файл конфигурации ядра
+строку, аналогичную следующей:</p>
+
+<pre>device    ccd       # concatenated disk devices
+</pre>
+
+<p>Начиная с версии FreeBSD 3.0, не обязательно конфигурировать поддержку драйвера <b>ccd</b> 
+в ядре - можно использовать его как загружаемый модуль ядра. Простой запуск утилиты 
+<a href="/man.shtml?topic=ccdconfig&amp;category=8"><b>ccdconfig(8)</b></a> загрузит соответствующий модуль в ядро.</p>
+
+<p>Разделы в <b>ccd</b> могут либо соединяться последовательно, либо чередоваться. Для последовательного
+соединения разделов укажите <i>коэффициент чередования</i> (interleave factor) 0. Учтите, что
+при указании коэффициента чередования 0 <i>зеркалирование</i> (mirroring) использовать нельзя.</p>
+
+<p>Для конфигурирования устройств <b>ccd</b> имеется отдельная утилита. Подробнее о ней см. на
+странице справчоного руководства <a href="/man.shtml?topic=ccdconfig&amp;category=8"><b>ccdconfig(8)</b></a>.</p>
+
+<h3>Коэффициент чередования</h3>
+
+<p>Если для устройства <b>ccd</b> чередование задано корректно, достигается эффект "разбиения
+на полосы" ("striping"), что может повысить производительность последовательного чтения/записи.
+Коэффициент чередования задается в единицах <b>DEV_BSIZE</b> (обычно - 512 байтов).
+Для записей большого объема, оптимальный коэффициент чередования обычно совпадает с размером дорожки,
+а для чтения большого объема он должен составлять около четверти дорожки. (Учтите, что это в большой
+степени зависит от количества и скорости вращения дисков.) Например, при наличии восьми
+дисков со скоростью вращения 7200 об/мин. на двух шинах Fast-Wide SCSI получаем значение 128
+для записей и 32 для чтений. Больший коэффициент чередования дает лучшие результаты при многозадачной
+работе за счет локализации файлового ввода-вывода данного процесса на одном диске. Производительность
+при последовательном чтении при этом снижается, но при работе большого количества задач производительность
+последователного чтения обычно не столь существенна.</p>
+
+<p>Коэффициент чередования необходимо задавать при использовании зеркалирования, даже если имеется
+всего два диска (т.е. организация работы с ними будет одной и той же, независимо от коэффициента
+чередования). Коэффициент чередования будет определять, однако, как распределяются операции ввода-вывода,
+и рекомендуется задавать значение от 128 и больше.</p>
+
+<p>Драйвер <b>ccd</b> предлагает опцию для организации диска четности, но в настоящее время она 
+не реализована.</p>
+     
+<p>Максимальная производительность достигается, если все составляющие диски имеют одинаковую геометрию
+и размер. Оптимальное разбиение на полосы невозможно при использовании дисков различных типов.</p>
+
+<p>Для задач, требующих случайного доступа, например, для серверов дискуссионных групп, желательно
+использовать коэффициенты чередования побольше (например, 65,536). Учтите, что драйвер <b>ccd</b> 
+не сможет существенно ускорить работу приложений, для которых критичным является время 
+поиска нужной позиции в файле (seek-time). Большие значения коэффициента чередования, по крайней мере,
+уменьшат вероятность того, что для чтения одного каталога или файла придется позиционировать головки
+двух дисков.</p>
+
+<h3>Зеркалирование дисков</h3>
+
+<p>Можно сконфигурировать <b>ccd</b> для "зеркалирования" любого четного количества дисков. О том,
+какие для этого необходимо задать флаги, см. на странице справочного руководства 
+<a href="/man.shtml?topic=ccdconfig&amp;category=8"><b>ccdconfig(8)</b></a>. Например, при наличии конфигурации <b>ccd</b> 
+с четырьмя дисками, первые два диска будут завязаны в зеркальную пару со вторыми двумя. Запись
+будет выполняться на оба компонента зеркальной пары. Чтение будет выполняться с любого из зеркальных
+компонентов, в зависимости от того, какой из них драйвер сочтет более оптимальным использовать. Если
+при чтении произойдет сбой, драйвер автоматически попытается прочитать тот же сектор с зеркального
+компонента. В настоящее время <b>ccd</b> использует <i>модель сдвоенной зоны поиска</i> (dual seek zone model) 
+для оптимизации чтений в многозадачной среде по сравнению с последовательным чтением.</p>
+
+<p>В случае сбоя диска его можно восстановить с помощью утилиты <a href="/man.shtml?topic=dd&amp;category=1"><b>dd(1)</b></a>.</p>
+
+<p>Учтите, что однодисковое устройство <b>ccd</b> отличается от исходного раздела. В частности, это
+означает, что при наличии файловой системы на двухдисковом зеркале <b>ccd</b> и сбое одного из
+диско, нельзя смонтировать и использовать оставшийся раздел сам по себе; его надо будет
+сконфигурировать как однодисковое устройство <b>ccd</b>. Нельзя заменить диск, содержащий
+зеркальный раздел <b>ccd</b>, не создав предварительно резервную копию раздела. Потом можно
+будет заменить диск и восстановить раздел.</p>
+
+<h2><a name="warnings">ПРЕДУПРЕЖДЕНИЯ</a></h2>
+
+<p>Если один (или несколько) дисков, составляющих виртуальный диск <b>ccd</b>, перестанет работать, потеряна
+будет вся файловая система, если только не используется зеркалирование дисков.</p>
+
+<p>Если теряется один из дисков в зеркальной паре, создать резервную копию данных будет можно. 
+Если происходит ошибка записи, однако, чтение данных из соответствующего сектора может давать
+непредсказуемые результаты. Могут быть выданы данные до записи, а могут - и записанные данные.
+При возникновении ошибки записи необходимо как можно скорее восстановить и перегенерировать данные.</p>
+
+<p>Изменение коэффициента чередования или других параметров для диска <b>ccd</b> обычно приводит к
+уничтожению ранее содержавшихся на нем данных.</p>
+
+<h2><a name="files">ФАЙЛЫ</a></h2>
+<dl>
+<dt><b>/dev/ccd*</b></dt><dd>
+Специальные файлы устройств <b>ccd</b>
+</dd></dl>
+
+<h2><a name="history">ИСТОРИЯ</a></h2>
+
+<p>Драйвер "склееных" дисков был первоначально написан в университете штата Юта (University of Utah).</p>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=dd&amp;category=1"><b>dd(1)</b></a>,
+	<a href="/man.shtml?topic=ccdconfig&amp;category=8"><b>ccdconfig(8)</b></a>,
+	<a href="/man.shtml?topic=config&amp;category=8"><b>config(8)</b></a>,
+	<a href="/man.shtml?topic=disklabel&amp;category=8"><b>disklabel(8)</b></a>,
+	<a href="/man.shtml?topic=fsck&amp;category=8"><b>fsck(8)</b></a>,
+	<a href="/man.shtml?topic=mount&amp;category=8"><b>mount(8)</b></a>,
+	<a href="/man.shtml?topic=newfs&amp;category=8"><b>newfs(8)</b></a>,
+	<a href="/man.shtml?topic=vinum&amp;category=8"><b>vinum(8)</b></a>
+</dd></dl>
+
+<p align="center">FreeBSD 4.9, 9 августа 1995 года</p>
+
+<p align="center"><font size="-2">Copyleft (no c) - Fuck copyright! 
+2003 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ccd" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

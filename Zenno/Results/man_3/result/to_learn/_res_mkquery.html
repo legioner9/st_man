@@ -1,0 +1,413 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN res_mkquery (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, res_mkquery"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="res_mkquery" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">res_mkquery (3)</font><hr><li> <a href="/man.shtml?topic=res_mkquery&amp;category=3&amp;russian=1"><u>res_mkquery</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=res_mkquery&amp;category=3&amp;russian=0"><u>res_mkquery</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=res_mkquery&amp;category=3&amp;russian=2"><u>res_mkquery</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+res_init, res_query, res_search, res_querydomain, res_mkquery, res_send,
+dn_comp, dn_expand - программы разрешения (resolving) имен
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<pre><b>#include &lt;<a href="file:/usr/include/netinet/in.h">netinet/in.h</a>&gt;</b>
+<b>#include &lt;<a href="file:/usr/include/arpa/nameser.h">arpa/nameser.h</a>&gt;</b>
+<b>#include &lt;<a href="file:/usr/include/resolv.h">resolv.h</a>&gt;</b>
+<b>extern struct state _res;</b>
+
+<b>int res_init(void);</b>
+
+<b>int res_query(const char *</b><i>dname</i><b>, int </b><i>class</i><b>, int </b><i>type</i><b>,</b>
+<dl compact=""><dt></dt><dd><b>unsigned char *</b><i>answer</i><b>, int </b><i>anslen</i><b>);</b>
+</dd></dl>
+
+<b>int res_search(const char *</b><i>dname</i><b>, int </b><i>class</i><b>, int </b><i>type</i><b>,</b>
+<dl compact=""><dt></dt><dd><b>unsigned char *</b><i>answer</i><b>, int </b><i>anslen</i><b>);</b>
+</dd></dl>
+
+<b>int res_querydomain(const char *</b><i>name</i><b>, const char *</b><i>domain</i><b>,</b>
+<dl compact=""><dt></dt><dd><b>int </b><i>class</i><b>, int </b><i>type</i><b>, unsigned char *</b><i>answer</i><b>,</b>
+<b>int </b><i>anslen</i><b>);</b>
+</dd></dl>
+
+<b>int res_mkquery(int </b><i>op</i><b>, const char *</b><i>dname</i><b>, int </b><i>class</i><b>,</b>
+<dl compact=""><dt></dt><dd><b>int </b><i>type</i><b>, char *</b><i>data</i><b>, int </b><i>datalen</i><b>, struct rrec *</b><i>newrr</i><b>,</b>
+<b>char *</b><i>buf</i><b>, int </b><i>buflen</i><b>);</b>
+</dd></dl>
+
+<b>int res_send(const char *</b><i>msg</i><b>, int </b><i>msglen</i><b>, char *</b><i>answer</i><b>,</b>
+<dl compact=""><dt></dt><dd><b>int </b><i>anslen</i><b>);</b>
+</dd></dl>
+
+<b>int dn_comp(unsigned char *</b><i>exp_dn</i><b>, unsigned char *</b><i>comp_dn</i><b>,</b>
+<dl compact=""><dt></dt><dd><b>int </b><i>length</i><b>, unsigned char **</b><i>dnptrs</i><b>, unsigned char *</b><i>exp_dn</i><b>,</b>
+<b>unsigned char **</b><i>lastdnptr</i><b>);</b>
+</dd></dl>
+
+<b>int dn_expand(unsigned char *</b><i>msg</i><b>, unsigned char *</b><i>eomorig</i><b>,</b>
+<dl compact=""><dt></dt><dd><b>unsigned char *</b><i>comp_dn</i><b>, unsigned char *</b><i>exp_dn</i><b>,</b>
+<b>int </b><i>length</i><b>);</b>
+</dd></dl>
+</pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Эти функции создают запросы к серверам доменных имен и интерпретируют
+полученные от серверов результаты.
+<p>
+
+Функция <b>res_init()</b> считывает конфигурационные файлы
+(см. resolv+(8)) для получения имени домена по умолчанию, порядка поиска и
+адреса(-ов) серверов имени. Если не задан сервер, то делается попытка
+поиска локального хоста. Если не задан домен, то это рассматривается
+как использование локального хоста. Использование может быть
+отменено переменной окружения LOCALDOMAIN. Функция <b>res_init()</b>
+обычно выполняется перед первым вызовом других функций.
+</p><p>
+
+Функция <b>res_query()</b> запрашивает у сервера имени полное имя домена
+<i>name</i> заданного типа <i>type</i> и класса <i>class</i>.
+Ответ помещается в буфер <i>answer</i> длиной <i>anslen</i>,
+заданный вызывающей программой.
+</p><p>
+
+Функция <b>res_search()</b> создает запрос и ждет ответа, как и
+<b>res_query()</b>, но при этом еще определяет правила работы
+и поиска, контролируемые RES_DEFNAMES и RES_DNSRCH
+(см. ниже описание опции <i>_res</i>).
+</p><p>
+
+Функция <b>res_querydomain()</b> делает запрос с помощью <b>res_query()</b>
+на сложение имен <i>name</i> и <i>domain</i>.
+</p><p>
+
+Следующие функции являются процедурами низкого уровня, которые
+используются <b>res_query()</b>.
+</p><p>
+
+Функция <b>res_mkquery()</b> создает сообщение-запрос в <i>buf</i>
+длиной <i>buflen</i> для имени домена <i>dname</i>. Тип <i>op</i> запроса
+обычно равен QUERY, вообще же он может быть любым типом, определенным
+в <i>&lt;<a href="file:/usr/include/arpa/nameser.h">arpa/nameser.h</a>&gt;</i>. В данный момент <i>newrr</i> не используется.
+</p><p>
+
+Функция <b>res_send()</b> посылает заранее созданный запрос в
+<i>msg</i> длиной <i>msglen</i> и возвращает ответ в <i>answer</i>
+длиной <i>anslen</i>. Если до этого не вызывался <b>res_init()</b>,
+то в этом случае он будет вызван.
+</p><p>
+
+Функция <b>dn_comp()</b> "сжимает" имя домена <i>exp_dn</i> и сохраняет
+его в буфере <i>comp_dn</i> длиной <i>length</i>. Компрессия использует
+массив указателей <i>dnptrs</i> на предварительно "сжатые" имена в
+текущем сообщении. Первый указатель обозначает начало сообщения, а весь
+список оканчивается NULL. Предел массива определяется <i>lastdnptr</i>.
+Если <i>dnptr</i> равно NULL, то имя домена не является "сжатым". Если
+<i>lastdnptr</i> равно NULL, то список меток не обновляется.
+</p><p>
+
+Функция dn_expand() делает "сжатое" имя домена <i>comp_dn</i>
+полным; оно затем сохраняется в буфере <i>exp_dn</i> длиной <i>length</i>.
+"Сжатое" имя содержится в запросе или ответном сообщении, и <i>msg</i>
+указывает на начало сообщения.
+</p><p>
+
+Функции резольвера используют общую конфигурацию и информацию о
+состоянии системы, содержащиеся в структуре <i>_res</i>, а эта структура
+определена в <i>&lt;<a href="file:/usr/include/resolv.h">resolv.h</a>&gt;</i>. Единственным полем, которым может нормально
+управлять пользователь, является <i>_res.options</i>. Это поле содержит
+поразрядное ``ИЛИ'' следующих параметров:
+</p><p>
+</p><dl compact="">
+<dt><b>RES_INIT</b>
+
+</dt><dd>
+(является истинным, если вызван <b>res_init()</b>);
+</dd><dt><b>RES_DEBUG</b>
+
+</dt><dd>
+(печатать отладочное сообщение);
+</dd><dt><b>RES_AAONLY</b>
+
+</dt><dd>
+(принимать только авторизованные ответы. <b>res_send()</b> продолжает
+работу, пока не найдет авторизованный ответ, или возвращает ошибку [в
+данный момент не реализовано].);
+</dd><dt><b>RES_USEVC</b>
+
+</dt><dd>
+(использовать TCP-соединение для запросов вместо датаграмм
+пользовательского протокола данных);
+</dd><dt><b>RES_PRIMARY</b>
+
+</dt><dd>
+(делать запрос только начальный сервер доменного имени сервера);
+</dd><dt><b>RES_IGNTC</b>
+
+</dt><dd>
+(игнорировать ошибки округления. Не пытаться повторять операцию с
+помощью TCP [в данный момент не реализовано].);
+</dd><dt><b>RES_RECURSE</b>
+
+</dt><dd>
+(установить в запросах бит рекурсии. Рекурсия выполняется сервером имени
+домена, а не функцией <b>res_send()</b> [включено по умолчанию].);
+</dd><dt><b>RES_DEFNAMES</b>
+
+</dt><dd>
+(если опция запущена, то <b>res_search()</b> добавит имя домена по
+умолчанию к именам с одним компонентом в имени (не содержащим точек)
+[включено по умолчанию].);
+</dd><dt><b>RES_STAYOPEN</b>
+
+</dt><dd>
+(используется вместе с RES_USEVC для поддержания TCP-соединения запросов);
+</dd><dt><b>RES_DNSRCH</b>
+
+</dt><dd>
+(если опция запущена, то <b>res_search()</b> будет искать имена хостов в
+текущем и родительском домене. Эта опция используется
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gethostbyname&amp;category=3">gethostbyname</a></b>(3)
+
+[включено по умолчанию].).
+</dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+В случае успешного завершения работы Функция <b>res_init()</b> возвращает 0,
+а при ошибках возвращает -1.
+<p>
+
+Функции <b>res_query()</b>, <b>res_search()</b>, <b>res_querydomain()</b>,
+<b>res_mkquery()</b> и <b>res_send()</b> возвращают длину ответа
+или -1 при ошибках.
+</p><p>
+
+Функции <b>dn_comp()</b> и <b>dn_expand()</b> возвращают длину "сжатого" имени,
+или -1 при ошибках.
+<a name="lbAF">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<pre>/etc/resolv.conf          файл конфигурации резольвера
+/etc/host.conf            файл конфигурации резольвера
+</pre>
+
+<a name="lbAG">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+BSD 4.3
+<a name="lbAH">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gethostbyname&amp;category=3">gethostbyname</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hostname&amp;category=7">hostname</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=named&amp;category=8">named</a></b>(8),
+
+<b>resolv+</b>(8)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="res_mkquery" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

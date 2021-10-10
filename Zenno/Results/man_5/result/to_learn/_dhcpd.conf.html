@@ -1,0 +1,1277 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN dhcpd.conf (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, dhcpd.conf"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="dhcpd.conf" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">dhcpd.conf (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=dhcpd.conf&amp;category=5&amp;russian=0"><u>dhcpd.conf</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=dhcpd.conf&amp;category=5&amp;russian=2"><u>dhcpd.conf</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+
+dhcpd.conf - файл конфигурации демона dhcpd
+
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+
+Файл dhcpd.conf содержит информацию о настройках 
+<i>dhcpd</i>, сервера DHCP разработанного в ISC
+
+<p>
+
+
+Файл dhcpd.conf имеет простой текстовый формат. Разбор файла производится
+встроенным в dhcpd парсером. Файл может содержать дополнительные пробелы,
+символы табуляции и пустые строки для придания более читабельного вида.
+Ключевые слова не чувствительны к регистру. Комментарии могут располагаться
+в любом месте, он только не в кавычках. Комментарии начинаются с символа #
+и продолжаются до конца строки.
+
+</p><p>
+
+
+По существу файл состоит из секций-объявлений вида: имя_секции {...}.
+В фигурных скобках могут быть заключены другие секции(подсекции) и параметры
+
+</p><p>
+
+
+Параметры используются для что бы определить поведение сервера:
+
+</p><dl compact="">
+<dt>*</dt><dd>
+<br>&nbsp;что&nbsp;и&nbsp;как&nbsp;делать&nbsp;(например&nbsp;на&nbsp;какой&nbsp;срок&nbsp;выдавать&nbsp;адрес)
+</dd><dt>*</dt><dd>
+<br>&nbsp;делать&nbsp;ли&nbsp;вообще&nbsp;(например&nbsp;выдавать&nbsp;ли&nbsp;адреса&nbsp;неизвестным&nbsp;клиентам)
+</dd><dt>*</dt><dd>
+<br>&nbsp;какие&nbsp;дополнительные&nbsp;параметры,&nbsp;кроме&nbsp;IP&nbsp;адреса,&nbsp;предоставлять&nbsp;клиенту
+(например шлюз по умолчанию или адреса серверов DNS).
+
+</dd></dl>
+<p>
+
+
+Секции-объявления используются для:
+
+</p><dl compact="">
+<dt>*</dt><dd>
+<br>&nbsp;описания&nbsp;топологии&nbsp;сети&nbsp;
+</dd><dt>*</dt><dd>
+<br>&nbsp;описания&nbsp;клиентов&nbsp;сети
+</dd><dt>*</dt><dd>
+<br>&nbsp;описания&nbsp;адресов&nbsp;которые&nbsp;должны&nbsp;предоставлены&nbsp;клиентам
+</dd><dt>*</dt><dd>
+<br>&nbsp;присвоить&nbsp;группу&nbsp;параметров&nbsp;одновременно&nbsp;в&nbsp;нескольким&nbsp;секциям
+
+При присвоении параметров нескольким секциям одновременно, все параметры должны быть
+определены перед определением любых секций зависящих от этих параметров.
+</dd></dl>
+<p>
+
+
+
+Секции описывающие топологию сети включают следующие подсекции:
+<br>&nbsp;<i>shared-network</i>&nbsp;и&nbsp;&nbsp;<i>subnet</i>.
+Если клиентам в подсети адреса назначаются динамически, то 
+инструкция <i>range</i> должна быть использована в секции 
+<i>subnet</i>. Для клиентов со статически назначенными адресами, или для конфигураций
+в которых обслуживаются только известные клиенты, для каждого из них должен быть 
+описан параметр <i>host</i>
+Если необходимо присвоить значения параметрам, в нескольких подсекциях,
+которые не сгруппированы на основе принадлежности к одной подсети, то их можно
+сгруппировать, поместив в секцию <i>group</i>.
+</p><p>
+
+
+
+Для каждой обслуживаемой подсети, и для каждой подсети к которой подключен dhcp сервер,
+должны быть объявлены секции <i>subnet</i>, которые говорят серверу как распознать
+какой адрес к какой подсети относится. Секция <i>subnet</i> требуется для каждой подсети
+даже если в ней нет динамически выделяемых адресов.
+
+</p><p>
+
+
+Иногда случается что в одном физическом сегменте сосуществуют несколько IP подсетей.
+Например в организации существует требование использовать 8-битные маски подсетей, 
+но сеть разрослась до размеров превышающих 254 хоста, в этом случае необходимо использовать
+две подсети с 8-битными масками до тех пор пока новый ethernet сегмент не будет добавлен.
+В этом случае секции <i>subnet</i> описывающие две эти подсети могут быть заключены в 
+секцию <i>shared-network</i>.
+
+</p><p>
+
+
+В некоторых случаях встречаются топологии когда клиенты находятся болле чем в одной
+подсети, и в этом случае бывает предпочтительно назначить этим клиентам набор параметров
+отличный от тех что назначаются другим клиентам в той же подсети. Клиенты которые
+явно объявляются в подсекциях <i>host</i>, могут быть объединены в группу
+с помощью объявления <i>group</i>, и в этой секции указываются параметры общие для
+всей группы. Для клиентов чьи адреса назначаются динамически не существует способа
+назначения параметров всей группе иначе как сгруппировав в соответствии в топологией сети.  
+
+</p><p>
+
+
+
+Когда клиент загружается, начальные параметры определяются в соответствующем клиенту
+объявлении <i>host</i>, затем проверяется секция <i>group</i> (если она существует)
+которая содержит в себе <i>host</i>, далее проверяется секция <i>subnet</i> соответствующая
+подсети в которой находится клиент, после этого проверяется указаны ли какие-нибудь параметры 
+в секции <i>shared-network</i>(если есть), содержащей нашу подсеть, ну и наконец
+проверяются глобальные параметры, которые могут быть указаны перед всеми объявлениями.
+
+</p><p>
+
+
+Когда dhcpd ищет секцию <i>host</i> для соответствующего клиента, он следует 
+следующим правилам:
+сперва ищется объявление <i>host</i> где указан параметр <i>fixed-address</i>
+и секция <i>subnet</i> или <i>shared network</i> совпадает с подсетью в которой 
+находится клиент. Если нет соответствующих записей, dhcpd ищет объявление <i>host</i> 
+без параметра <i>fixed-address</i>. Если подходящих записей не найдено, то dhcpd считает
+что нет записей для этого клиента, даже если они есть для этого клиента в другой подсети.
+
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ПРИМЕРЫ</h2>
+
+
+<p>
+
+
+Типичный файл dhcpd.conf выглядит примерно так:
+
+
+<i>global parameters...</i>
+
+shared-network ISC-BIGGIE {
+<br>&nbsp;&nbsp;<i>shared-network-specific&nbsp;parameters...</i>
+<br>&nbsp;&nbsp;subnet&nbsp;204.254.239.0&nbsp;netmask&nbsp;255.255.255.224&nbsp;{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>subnet-specific&nbsp;parameters...</i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;range&nbsp;204.254.239.10&nbsp;204.254.239.30;
+<br>&nbsp;&nbsp;}
+<br>&nbsp;&nbsp;subnet&nbsp;204.254.239.32&nbsp;netmask&nbsp;255.255.255.224&nbsp;{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>subnet-specific&nbsp;parameters...</i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;range&nbsp;204.254.239.42&nbsp;204.254.239.62;
+<br>&nbsp;&nbsp;}
+}
+
+subnet 204.254.239.64 netmask 255.255.255.224 {
+<br>&nbsp;&nbsp;<i>subnet-specific&nbsp;parameters...</i>
+<br>&nbsp;&nbsp;range&nbsp;204.254.239.74&nbsp;204.254.239.94;
+}
+
+group {
+<br>&nbsp;&nbsp;<i>group-specific&nbsp;parameters...</i>
+<br>&nbsp;&nbsp;host&nbsp;zappo.test.isc.org&nbsp;{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>host-specific&nbsp;parameters...</i>
+<br>&nbsp;&nbsp;}
+<br>&nbsp;&nbsp;host&nbsp;beppo.test.isc.org&nbsp;{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>host-specific&nbsp;parameters...</i>
+<br>&nbsp;&nbsp;}
+<br>&nbsp;&nbsp;host&nbsp;harpo.test.isc.org&nbsp;{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>host-specific&nbsp;parameters...</i>
+<br>&nbsp;&nbsp;}
+}
+
+
+Пример 1
+
+
+
+</p><p>
+
+
+
+Первая строка в примере - место для глобальных параметров. Это может быть
+доменное имя организации, адреса DNS серверов (если они едины в пределах организации) и т.д.
+Например
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option&nbsp;domain-name&nbsp;&amp;quot;isc.org&amp;quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option&nbsp;domain-name-servers&nbsp;ns1.isc.org,&nbsp;ns2.isc.org;
+
+
+Пример 2
+
+
+
+</p><p>
+
+
+Как видно в примере 2, возможно задание адресов хостов через доменные имена
+вместо цифровой записи IP адресов. Если разрешение указанного имени дает более
+одного IP адреса (такое случается :), оба адреса предоставляются клиенту.
+
+</p><p>
+
+
+В примере 1 видно, что как секция shared-network так и секция subnet 
+могут иметь собственные параметры. Например сеть  <i>ISC-BIGGIE</i> 
+принадлежит целому подразделению, например отделу учета и если этот 
+отдел в имеет собственный DNS-домен, то среди параметров специфических 
+для секции shared-network нужно было бы указать:
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option&nbsp;domain-name&nbsp;&amp;quot;accounting.isc.org&amp;quot;;
+
+
+</p><p>
+
+
+Ко всем подсетям объявленным в секции shared-network будет относиться 
+опция domain-name со значением &amp;quot;accounting.isc.org&amp;quot;
+в отличие от &amp;quot;isc.org&amp;quot;.
+</p><p>
+
+
+Наиболее очевидной причиной наличия 
+subnet-specific параметров является
+наличие в каждой подсети собственного шлюза, к примеру в каждой секции
+subnet должен быть указан параметр вида:
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option&nbsp;routers&nbsp;204.254.239.1;
+
+
+</p><p>
+
+
+В последнем параметре адрес указан в числовой форме - это не обязательно,
+если у вас определены различные имена для каждого интерфейса маршрутизатора,
+то предпочтительнее указать именно имя. Однако во многих случаях есть только 
+одно имя для всех IP адресов маршрутизатора, и использование этого имени  
+в параметре routers становиться не возможным.
+
+</p><p>
+
+
+В примере 
+1 присутствует секция <i>group</i>, которая позволяет 
+задать параметры для трех хостов - zappo, beppo и harpo.
+Как видите эти хосты находятся в домене test.isc.org. Используя объявление
+<i>group</i> можно переопределить имя домена для указанных хостов:
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option&nbsp;domain-name&nbsp;&amp;quot;test.isc.org&amp;quot;;
+
+
+</p><p>
+
+
+
+Так же, учитывая имя домена(test), проведем эксперимент и исследуем 
+механизм выделения адресов сервером DHCP - установим некоторые
+значения значительно меньше чем по умолчанию:
+</p><p>
+
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max-lease-time&nbsp;120;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default-lease-time&nbsp;120;
+
+
+</p><p>
+
+
+Как вы наверное заметили одни параметры начинаются с ключевого слова 
+<i>option</i>, 
+а другие нет. Параметры начинающиеся с <i>option</i>
+соответствуют реальным параметрам, которые передаются клиентам.
+Те же параметры что не начинаются на <i>option</i> используются 
+для управления поведением сервера DHCP (например на какой срок выдаются
+адреса) или для указания параметров которые не являются опциональными
+в протоколе DHCP (например  server-name и filename).
+
+</p><p>
+
+
+В примере 1, каждый хост имеет 
+<i>host-specific</i> параметры.
+Это может быть опция <i>hostname</i>, задающая имя хоста,
+имя файла для загрузки (<i>filename</i> параметр) и адрес сервера
+с которого этот файл должен быть загружен (next-server параметр).
+Любой параметр может быть указан в любом месте где он имеет смысл, и
+область действия параметра определяется секцией в которой он появляется.
+
+</p><p>
+
+
+
+Представте себе что у вас куча NCD X-Terminals разных моделей и Вы желаете
+указать загрузочные файлы для каждой модели. Один из путей сделать это - 
+создать секции host для каждого терминала и используя объявление
+group сгруппировать их по моделям:
+
+
+group {
+<br>&nbsp;&nbsp;filename&nbsp;&amp;quot;Xncd19r&amp;quot;;
+<br>&nbsp;&nbsp;next-server&nbsp;ncd-booter;
+
+<br>&nbsp;&nbsp;host&nbsp;ncd1&nbsp;{&nbsp;hardware&nbsp;ethernet&nbsp;0:c0:c3:49:2b:57;&nbsp;}
+<br>&nbsp;&nbsp;host&nbsp;ncd4&nbsp;{&nbsp;hardware&nbsp;ethernet&nbsp;0:c0:c3:80:fc:32;&nbsp;}
+<br>&nbsp;&nbsp;host&nbsp;ncd8&nbsp;{&nbsp;hardware&nbsp;ethernet&nbsp;0:c0:c3:22:46:81;&nbsp;}
+}
+
+group {
+<br>&nbsp;&nbsp;filename&nbsp;&amp;quot;Xncd19c&amp;quot;;
+<br>&nbsp;&nbsp;next-server&nbsp;ncd-booter;
+
+<br>&nbsp;&nbsp;host&nbsp;ncd2&nbsp;{&nbsp;hardware&nbsp;ethernet&nbsp;0:c0:c3:88:2d:81;&nbsp;}
+<br>&nbsp;&nbsp;host&nbsp;ncd3&nbsp;{&nbsp;hardware&nbsp;ethernet&nbsp;0:c0:c3:00:14:11;&nbsp;}
+}
+
+group {
+<br>&nbsp;&nbsp;filename&nbsp;&amp;quot;XncdHMX&amp;quot;;
+<br>&nbsp;&nbsp;next-server&nbsp;ncd-booter;
+
+<br>&nbsp;&nbsp;host&nbsp;ncd1&nbsp;{&nbsp;hardware&nbsp;ethernet&nbsp;0:c0:c3:11:90:23;&nbsp;}
+<br>&nbsp;&nbsp;host&nbsp;ncd4&nbsp;{&nbsp;hardware&nbsp;ethernet&nbsp;0:c0:c3:91:a7:8;&nbsp;}
+<br>&nbsp;&nbsp;host&nbsp;ncd8&nbsp;{&nbsp;hardware&nbsp;ethernet&nbsp;0:c0:c3:cc:a:8f;&nbsp;}
+}
+
+
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОБЪЯВЛЕНИЯ</h2>
+
+
+<p>
+
+
+
+<b>Секция-объявление</b>
+
+<i>shared-network</i>
+
+</p><p>
+
+
+
+<br>&nbsp;<b>shared-network</b>&nbsp;<i>имя</i>&nbsp;<b>{</b>
+<br>&nbsp;&nbsp;&nbsp;[&nbsp;<i>параметры</i>&nbsp;]
+<br>&nbsp;&nbsp;&nbsp;[&nbsp;<i>объявления</i>&nbsp;]
+<br>&nbsp;<b>}</b>
+
+
+</p><p>
+
+
+
+Секция <i>shared-network</i> сообщает серверу DHCP что несколько IP-подсетей
+используют один физический сегмент. Каждая подсеть в такой сети объявляется
+внутри секции <i>shared-network</i>. Параметры указанные для <i>shared-network</i>
+используются при загрузке клиента если значения указанные в секциях 
+subnet или host не переопределяют их. Если для какой-либо подсети 
+указан диапазон динамически раздаваемых адресов, эти адреса собираются в
+общий пул и назначаются клиентам по мере необходимости. Нет способа различать
+к какой IP-подсети принадлежит клиент.
+
+</p><p>
+
+
+
+Параметр <i>Имя</i>
+<br>&nbsp;-&nbsp;должнен&nbsp;быть&nbsp;именем&nbsp;этой&nbsp;"общей"&nbsp;сети.&nbsp;Это&nbsp;имя&nbsp;используется&nbsp;в&nbsp;
+информационных и отладочных сообщениях  и желательно что бы оно достаточно 
+полно описывало сеть. Имя может имет синтаксис обычного доменного имени( однако
+никогда не используется в качестве такового), или это может быть произвольное
+имя, заключенное в кавычки.
+</p><p>
+
+
+
+<b>Секция-объявление</b>
+
+<i>subnet</i>
+
+
+</p><p>
+
+
+
+<br>&nbsp;<b>subnet</b>&nbsp;<i>subnet-number</i>&nbsp;<b>netmask</b>&nbsp;<i>netmask</i>&nbsp;<b>{</b>
+<br>&nbsp;&nbsp;&nbsp;[&nbsp;<i>параметры</i>&nbsp;]
+<br>&nbsp;&nbsp;&nbsp;[&nbsp;<i>объявления</i>&nbsp;]
+<br>&nbsp;<b>}</b>
+
+
+</p><p>
+
+
+
+Секция <i>subnet</i>  используется для предоставления серверу DHCP дополнительной информации - 
+принадлежит ли данный IP адрес указанной подсети. Еще эта секция используется для предоставления 
+клиентам специфичных для подсети параметров и для указания диапазонов динамически распределяемых 
+адресов. 
+</p><p>
+
+
+
+Параметр
+<br>&nbsp;<i>subnet-number</i>
+<br>&nbsp;должен&nbsp;быть&nbsp;IP&nbsp;адресом&nbsp;или&nbsp;доменным&nbsp;именем&nbsp;которое&nbsp;резолвится&nbsp;
+в номер подсети которую он описывает.
+
+Параметр <i>netmask</i>
+<br>&nbsp;должен&nbsp;быть&nbsp;IP&nbsp;адресом&nbsp;или&nbsp;доменным&nbsp;именем&nbsp;которое&nbsp;резолвится&nbsp;в&nbsp;значение&nbsp;соответствующее
+маске описываемой подсети. 
+
+Параметры <i>subnet-number</i> и 
+<i>netmask</i> однозначно определяют подсеть и принадлежность
+IP адреса  к этой подсети.
+</p><p>
+
+
+
+Затрудняюсь перевести следующий абзац :-(
+Although a netmask must be given with every subnet declaration, it is
+recommended that if there is any variance in subnet masks at a site, a
+subnet-mask option statement be used in each subnet declaration to set
+the desired subnet mask, since any subnet-mask option statement will
+override the subnet mask declared in the subnet statement.
+</p><p>
+
+
+
+<b>Секция-объявление</b>
+<br>&nbsp;<i>range</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>range</b>&nbsp;[&nbsp;<b>dynamic-bootp</b>&nbsp;]&nbsp;<i>начало_диапазона</i>&nbsp;[&nbsp;<i>конец_диапазона</i>]<b>;</b>
+
+
+</p><p>
+
+
+
+Для любой подсети адреса которой присваиваются динамически, должен быть указан хотя бы один диапазон с
+помощью секции <i>range</i>. В параметрах указывается начальный и конечный адреса диапазона. Все IP 
+адреса в диапазоне должны принадлежать той подсети к описанию которой относится секция range.
+Параметр <i>dynamic-bootp</i> указывается в случае если предполагается назначать адреса из диапазона
+клиентам по протоколу BOOTP. Если указан только один адрес, то параметр <i>конец_диапазона</i> может быть
+опущен.
+</p><p>
+
+
+
+<b>Секция-объявление</b>
+<br>&nbsp;<i>host</i>
+
+</p><p>
+
+
+
+<br>&nbsp;<b>host</b>&nbsp;<i>имя_хоста</i>&nbsp;{
+<br>&nbsp;&nbsp;&nbsp;[&nbsp;<i>параметры</i>&nbsp;]
+<br>&nbsp;&nbsp;&nbsp;[&nbsp;<i>объявления</i>&nbsp;]
+<br>&nbsp;<b>}</b>
+
+
+</p><p>
+
+
+
+Необходима хотя бы 
+одна секция <b>host</b>
+<br>&nbsp;для&nbsp;каждого&nbsp;BOOTP&nbsp;клиента,&nbsp;обслуживаемого&nbsp;сервером.
+Так же <b>host</b>
+<br>&nbsp;может&nbsp;быть&nbsp;указана&nbsp;для&nbsp;DHCP&nbsp;клиентов,&nbsp;хотя&nbsp;это&nbsp;и&nbsp;не&nbsp;обязательно,&nbsp;если&nbsp;только
+не требуется  раздача адресов только определенным клиентам.
+</p><p>
+
+
+
+Если требуется обеспечить выдачу фиксированных адресов и конфигурацию клиентов по протоколам DHCP 
+или BOOTP 
+в более чем одной подсети, то можно указать несколько адресов с помощью параметра 
+<i>fixed-address</i>
+<br>&nbsp;или&nbsp;указать&nbsp;несколько&nbsp;секций&nbsp;<b>host</b>
+</p><p>
+
+
+
+Если клиентские параметры меняются в зависимости от сети к которой подключен клиент, то необходимо 
+использовать множественные записи
+<b>host</b>
+
+</p><p>
+
+
+
+<i>имя_хоста</i>
+<br>&nbsp;-&nbsp;имя&nbsp;идентифицирующее&nbsp;хост.&nbsp;Если&nbsp;в&nbsp;описании&nbsp;хоста&nbsp;опция&nbsp;<i>hostname</i>&nbsp;не&nbsp;указана,&nbsp;то
+используется значение <i>имя_хоста</i>.
+</p><p>
+
+
+
+Объявления <i>Host</i> сопоставляются с реальными DHCP или BOOTP клиентами путем сравнения опции
+dhcp-client-identifier указанной в секции <i>host</i> со значением предоставленным клиентом, или
+если клиент не предоставляет dhcp-client-identifier, то путем сравнения опции <i>hardware</i>
+<br>&nbsp;и&nbsp;
+аппаратного (mac) адреса клиента. Клиенты BOOTP нормально не предоставляют <i>dhcp-client-identifier</i>,
+так что при работе по протоколу BOOTP необходимо использовать mac-адреса.
+</p><p>
+
+
+
+<b>Секция-объявление</b>
+<br>&nbsp;<i>group</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>group</b>&nbsp;{
+<br>&nbsp;&nbsp;&nbsp;[&nbsp;<i>параметры</i>&nbsp;]
+<br>&nbsp;&nbsp;&nbsp;[&nbsp;<i>объявления</i>&nbsp;]
+<br>&nbsp;<b>}</b>
+
+
+</p><p>
+
+
+
+Секция group используется для присвоения одного или нескольких параметров группе
+объявлений. Параметры могут быть одновременно присвоены группе секций hosts, shared networks,
+subnets, или даже groups.
+</p><p>
+
+
+
+<a name="lbAF">&nbsp;</a>
+</p><h2>ALLOW and DENY</h2>
+
+
+<p>
+
+
+
+Параметры <i>allow</i>
+<br>&nbsp;и&nbsp;<i>deny</i>
+<br>&nbsp;используются&nbsp;для&nbsp;контроля&nbsp;над&nbsp;поведением&nbsp;демона&nbsp;dhcp&nbsp;в&nbsp;отношении
+различных видов запросов.
+</p><p>
+
+
+
+<b>Ключевое слово</b>
+<i>unknown-clients</i>
+
+</p><p>
+
+
+
+<br>&nbsp;<b>allow&nbsp;unknown-clients;</b>
+<br>&nbsp;<b>deny&nbsp;unknown-clients;</b>
+</p><p>
+
+
+
+Параметр <b>unknown-clients</b> используется что бы сообщить серверу как поступать с
+неизвестными клиентами. По умолчанию выдача адресов неизвестным клиентам разрешена.
+</p><p>
+
+
+
+<b>Ключевое слово</b>
+<i>bootp</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>allow&nbsp;bootp;</b>
+<br>&nbsp;<b>deny&nbsp;bootp;</b>
+</p><p>
+
+
+
+Параметр <b>bootp</b> сообщает серверу dhcp обрабатывать или нет bootp-запросы.
+По умолчанию bootp-запросы разрешены.
+</p><p>
+
+
+
+<b>Ключевое слово</b>
+<i>booting</i>
+
+</p><p>
+
+
+
+<br>&nbsp;<b>allow&nbsp;booting;</b>
+<br>&nbsp;<b>deny&nbsp;booting;</b>
+</p><p>
+
+
+
+Параметр <b>booting</b> сообщает серверу обрабатывать ли запрос конкретного клиента.
+Имеет смысл только если присутствует в описании host и действует только на
+соответствующий хост. По умолчанию разрешено, в противном случае хост не сможет получать
+свой адрес и другие параметры.
+</p><p>
+
+
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>ПАРАМЕТРЫ</h2>
+
+
+<p>
+
+
+
+<b>Параметр</b>
+
+<i>default-lease-time</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>default-lease-time</b>&nbsp;<i>время</i><b>;</b>
+</p><p>
+
+
+
+<i>Время</i>
+<br>&nbsp;-&nbsp;промежуток&nbsp;времени&nbsp;в&nbsp;секундах,&nbsp;на&nbsp;который&nbsp;выделяется&nbsp;адрес&nbsp;клиенту,&nbsp;в&nbsp;случае
+если клиент самостоятельно не указал время использования адреса.
+</p><p>
+
+
+
+<b>Параметр</b>
+
+<i>max-lease-time</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>max-lease-time</b>&nbsp;<i>время</i><b>;</b>
+</p><p>
+
+
+
+<i>Время</i>
+<br>&nbsp;-&nbsp;максимальный&nbsp;промежуток&nbsp;времени&nbsp;в&nbsp;секундах,&nbsp;на&nbsp;который&nbsp;выделяется&nbsp;адрес&nbsp;клиенту.
+</p><p>
+
+
+
+<b>Параметр</b>
+
+<i>hardware</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>hardware</b>&nbsp;<i>тип_железа</i>&nbsp;<i>аппаратный_адрес</i><b>;</b>
+</p><p>
+
+
+
+Для того что бы BOOTP клиент был опознан сервером, его mac-адрес должен быть объявлен с помощью
+параметра <i>hardware</i> в секции <i>host</i>
+
+Параметр <i>тип_железа</i>
+<br>&nbsp;-&nbsp;тип&nbsp;физического&nbsp;интерфейса.&nbsp;В&nbsp;настоящее&nbsp;время&nbsp;используются&nbsp;только
+
+<b>ethernet</b>
+<br>&nbsp;и&nbsp;<b>token-ring</b>
+<br>&nbsp;и&nbsp;возможно&nbsp;скоро&nbsp;будет&nbsp;реализованы&nbsp;другие&nbsp;типы,&nbsp;особенно&nbsp;
+<b>fddi</b>
+
+
+<i>аппаратный_адрес</i>
+<br>&nbsp;-&nbsp;записывается&nbsp;как&nbsp;набор&nbsp;шестнадцатеричных&nbsp;значений&nbsp;(&nbsp;от&nbsp;0&nbsp;до&nbsp;ff&nbsp;)&nbsp;разделенных
+двоеточиями.
+
+should be a set of hexadecimal octets (numbers from 0 through ff)
+seperated by colons.  Параметр <i>hardware</i> можно использовать и для DHCP клиентов.
+</p><p>
+
+
+
+<b>Параметр</b>
+
+<i>filename</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>filename</b>&nbsp;<b>&amp;quot;</b><i>имя_файла</i><b>&amp;quot;;</b>
+</p><p>
+
+
+
+Параметр <i>filename</i> указывает имя файла, используемого для начальной загрузки клиента.
+<i>имя_файла</i>
+
+<br>&nbsp;должно&nbsp;быть&nbsp;записано&nbsp;в&nbsp;формате&nbsp;понятном&nbsp;тому&nbsp;сервису&nbsp;передачи&nbsp;файлов,&nbsp;
+посредством которого клиент будет пытаться загрузить этот файл.
+</p><p>
+
+
+
+<b>Параметр</b>
+
+<i>server-name</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>server-name</b>&nbsp;<b>&amp;quot;</b><i>имя_сервера</i><b>&amp;quot;;</b>
+</p><p>
+
+
+
+Параметр <i>server-name</i> используется, что бы сообщить клиенту имя сервера который его обслуживает. 
+<i>Имя_сервера</i> - имя сервера, сообщаемое клиенту.
+</p><p>
+
+
+
+<b>Параметр</b>
+
+<i>next-server</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>next-server</b>&nbsp;<i>имя_сервера</i><b>;</b>
+</p><p>
+
+
+
+Параметр <i>next-server</i> используется для указания клиенту адреса сервера с которого должен быть
+получен загрузочный файл (тот самый файл что указан в параметре <i>filename</i>). Имя_сервера
+может быть IP адресом или доменным именем. Если этот параметр не указан, то используется адрес DHCP
+сервера.
+</p><p>
+
+
+
+<b>Параметр</b>
+
+<i>fixed-address</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>fixed-address</b>&nbsp;<i>адрес</i>&nbsp;[<b>,</b>&nbsp;<i>адрес</i>&nbsp;...&nbsp;]<b>;</b>
+</p><p>
+
+
+
+Параметр <i>fixed-address</i> используется для назначения одного или нескольких постоянных адресов
+клиенту. Параметр может присутствовать только в секции <i>host</i>. Если указано более одного 
+адреса, то клиенту будет присвоен адрес соответствующий подсети к которой подключен клиент в данный 
+момент. Если нет адресов соответствующих подсети в которую включен клиент, то считается что этот
+клиент не соответствует объявлению host и эти адреса ему не присваиваются. Каждый  <i>адрес</i>
+может быть IP адресом или доменным именем, которое резолвится в один или несколько IP адресов.
+</p><p>
+
+
+
+<b>Параметр</b>
+
+<i>dynamic-bootp-lease-cutoff</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>dynamic-bootp-lease-cutoff</b>&nbsp;<i>дата</i><b>;</b>
+</p><p>
+
+
+
+Параметр <i>dynamic-bootp-lease-cutoff</i> устанавливает момент времени в который все адреса назначенные
+клиентам BOOTP должны быть освобождены. Так как клиенты BOOTP не имеют возможности продлить
+срок использования полученных адресов и не могут определить что срок аренды истек, то по умолчанию
+клиентам BOOTP адреса выделяются на неограниченный срок. Однако в некоторых случаях оказывается 
+полезным установить параметр <i>dynamic-bootp-lease-cutoff</i>, например в учебном заведении
+при окончании семестра или в ночное время когда предприятие не работает а все компьютеры выключены.
+</p><p>
+
+
+
+<i>дата</i>
+<br>&nbsp;-&nbsp;срок&nbsp;окончания&nbsp;действия&nbsp;всех&nbsp;адресов&nbsp;выделенных&nbsp;BOOTP&nbsp;клиентам.&nbsp;Дата&nbsp;указывается&nbsp;
+в следующем формате:
+
+
+W ГГГГ/ММ/ДД ЧЧ:ММ:СС
+
+
+</p><p>
+
+
+
+W - день недели в виде числа от 0 (воскресенье) до 6 (суббота). 
+ГГГГ - год 
+ММ - месяц 1..12 
+ДД - день месяца 1..31 
+ЧЧ - часы 0..23 
+ММ - минуты 0..59 
+СС - секунды 0..59 
+Время указывается в GMT, а не местное. 
+</p><p>
+
+
+
+<b>Параметр</b>
+
+<i>dynamic-bootp-lease-length</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>dynamic-bootp-lease-length</b>&nbsp;<i>время_в_секундах</i><b>;</b>
+</p><p>
+
+
+
+Параметр <i>dynamic-bootp-lease-length</i> используется для указания срока на 
+который выделяется адрес BOOTP клиенту. В некоторых организациях возможна ситуация 
+что по прошествии определенного времени можно быть уверенным что выделенный адрес 
+уже не используется. Период задается числом секунд. Если клиент перезагружается 
+в момент когда срок указанный в этом параметре еще не истек, то период аренды
+адреса заново устанавливается в указанное значение. Таким образом часто перезагружаемые 
+BOOTP клиенты могут постоянное удерживать свой адрес. Необходимо заметить 
+что при настройке параметра, следует быть осторожным.
+</p><p>
+
+
+
+<b>Параметр</b>
+
+<i>get-lease-hostnames</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>get-lease-hostnames</b>&nbsp;<i>on/off</i><b>;</b>
+</p><p>
+
+
+
+Параметр <i>get-lease-hostnames</i> сообщает серверу dhcp следует ли выполнять преобразование 
+IP адресов в соответствующие им имена и использовать полученные имена в качестве значения параметра
+<i>hostname</i>. Если значение параметра - истина, тогда преобразование выполняется для каждого адреса в
+диапазоне. По умолчанию или если значение - ложь, преобразование не выполняется.
+</p><p>
+
+
+
+<b>Параметр</b>
+
+<i>use-host-decl-names</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>use-host-decl-names</b>&nbsp;<i>on/off</i><b>;</b>
+</p><p>
+
+
+
+Если параметр <i>use-host-decl-names</i> имеет значение - on (включено), то для каждого объявления 
+хоста, находящегося в зоне действия параметра, значение использованное в объявлении host{} предоставляется
+клиенту в качестве его имени.
+Например конструкция:
+</p><p>
+
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;group&nbsp;{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use-host-decl-names&nbsp;on;
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;host&nbsp;joe&nbsp;{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hardware&nbsp;ethernet&nbsp;08:00:2b:4c:29:32;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fixed-address&nbsp;joe.fugue.com;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<br>&nbsp;&nbsp;&nbsp;&nbsp;}
+
+эквивалентна следующей:
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;host&nbsp;joe&nbsp;{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hardware&nbsp;ethernet&nbsp;08:00:2b:4c:29:32;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fixed-address&nbsp;joe.fugue.com;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option&nbsp;host-name&nbsp;&amp;quot;joe&amp;quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+
+
+</p><p>
+
+
+
+Дополнительный параметр <i>option host-name</i> указанный в объявлении host{} имеет больший приоритет 
+по сравнению с <i>use-host-decl-names</i> что позволяет переопределить имя хоста при включенном 
+<i>use-host-decl-names</i>
+</p><p>
+
+
+
+Параметр
+
+<i>authoritative</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>authoritative;</b>
+</p><p>
+
+
+
+<br>&nbsp;<b>not&nbsp;authoritative;</b>
+</p><p>
+
+
+Обычно DHCP сервер предполагает что конфигурационная информация описывающая сегмент сети правильна и "авторитетна"
+Так что если клиент запрашивает IP адрес и сервер знает что этот адрес не правилен, то сервер ответит клиенту
+сообщением DHCPNAK, что является предложением клиенту отказаться от этого адреса и запросить новый. 
+</p><p>
+
+
+Если до конфигурации DHCP сервера каким-то образом допустили кого-нибудь кто не является сетевым администратором и
+даже не претендует на это звание, то в соответствующей секции нужно указать параметр
+&amp;quot;not authoritative&amp;quot; 
+</p><p>
+
+
+
+Обычно, бывает достаточно написать <b>not authoritative;</b> в начале файла конфигурации. Однако, если сервер
+поддерживает несколько различных сегментов, то лучше объявлять авторитетность сервера в пределах
+обслуживаемых им подсетей.
+</p><p>
+
+
+
+Параметр
+<i>use-lease-addr-for-default-route</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>use-lease-addr-for-default-route</b>&nbsp;<i>on/off</i><b>;</b>
+</p><p>
+
+
+
+Если параметр <i>use-lease-addr-for-default-route</i> установлен в "on" для соответствующего сегмента сети, то
+вместо посылки клиенту значения указанного в дополнительном параметре option routers ( или не посылки ничего
+если адреса маршрутизаторов не заданы ), клиенту посылаются IP адреса уже назначенные сервером. На клиенте это 
+вызывает запросы  ARP по всем этим адресам, что может быть очень полезным если ваш маршрутизатор сконфигурирован
+как proxy ARP.
+</p><p>
+
+
+
+Параметр 
+<i>always-reply-rfc1048</i>
+</p><p>
+
+
+
+<br>&nbsp;<b>always-reply-rfc1048</b>&nbsp;<i>on/off</i><b>;</b>
+</p><p>
+
+
+
+Некоторые BOOTP клиенты ожидают ответа от сервера в стиле RFC1048, но сами не следуют RFC1048 при посылке
+запросов. Если в вашей сети имеется такой проблемный клиент, который не воспринимает параметры передаваемые
+ему сервером и если в логах появляется сообщение &amp;quot;(non-rfc1048)&amp;quot; , то можно воспользоваться
+этим параметром.
+</p><p>
+
+
+
+Если у вас все клиенты требуют работы в стиле RFC1048, то можно использовать параметр <b>always-reply-rfc1048</b>
+
+Параметр может быть указан в любом объявлении в этом случае воздействует только на тех клиентов, которые
+соответствуют указанной зоне действия.
+</p><p>
+
+
+
+Параметр
+<i>server-identifier</i>
+
+</p><p>
+
+
+
+<br>&nbsp;<b>server-identifier&nbsp;</b><i>имя_хоста</i><b>;</b>
+</p><p>
+
+
+Параметр 
+server-identifier отсылается клиенту и должен являться IP адресом
+DHCP сервера, правильными для той подсети в которой находится клиент и достижимым
+для всех клиентов этой подсети. 
+</p><p>
+
+
+
+Использование 
+server-identifier не рекомендовано, единственная причина использования - 
+переопределить значение по умолчанию если оно по какой-нибудь причине не верно. Значением
+по умолчанию является первый IP адрес из присвоенных физическому интерфейсу на который пришел
+клиентский запрос. 
+</p><p>
+
+
+Обычно параметр <i>server-identifier</i> используется когда физический интерфейс с несколькими
+IP адресами, и адрес сообщаемый сервером клиенту не подходит некоторым или всем клиентам
+обслуживаемым этим интерфейсом. Другой частый случай когда для интерфейса определен алиас
+и необходимо что бы клиенты использовали именно его.
+</p><p>
+
+
+Задание значения для параметра dhcp-server-identifier эквивалентно использованию 
+параметра server-identifier.
+</p><p>
+
+
+
+<a name="lbAH">&nbsp;</a>
+</p><h2>ДОПОЛНИТЕЛЬНЫЕ ПАРАМЕТРЫ</h2>
+
+
+<p>
+
+
+Дополнительные параметры используемые в dhcpd.conf описаны в руководстве
+<br>&nbsp;по
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcp-options&amp;category=5">dhcp-options</a>(5)</b>
+
+
+<a name="lbAI">&nbsp;</a>
+</p><h2>СМОТРИТЕ ДОПОЛНИТЕЛЬНО</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd.conf&amp;category=5">dhcpd.conf</a>(5), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd.leases&amp;category=5">dhcpd.leases</a>(5), RFC2132, RFC2131.
+
+
+<a name="lbAJ">&nbsp;</a>
+<h2>АВТОРЫ</h2>
+
+Сервер <b>dhcpd (8)</b>
+написан Ted Lemon &lt;<a href="mailto:mellon@vix.com">mellon@vix.com</a>&gt;
+по контракту с Vixie Labs. Финансирование осуществлялось ISC. Информацию об ISC можно найти их сайте в интернет: 
+<b><a href="http://www.isc.org/isc.">http://www.isc.org/isc.</a></b>
+
+
+<a name="lbAK">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевод выполнен Лаптевым Андреем - 
+&lt;<a href="mailto:lantan@chat.ru">lantan@chat.ru</a>&gt;
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОБЪЯВЛЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ALLOW and DENY</a></dt><dd>
+</dd><dt><a href="#lbAG">ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">ДОПОЛНИТЕЛЬНЫЕ ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAI">СМОТРИТЕ ДОПОЛНИТЕЛЬНО</a></dt><dd>
+</dd><dt><a href="#lbAJ">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAK">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="dhcpd.conf" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

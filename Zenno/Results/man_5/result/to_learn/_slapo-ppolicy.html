@@ -1,0 +1,1153 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN slapo-ppolicy (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, slapo-ppolicy"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="slapo-ppolicy" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">slapo-ppolicy (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=slapo-ppolicy&amp;category=5&amp;russian=0"><u>slapo-ppolicy</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+slapo-ppolicy - наложение slapd политики паролей.
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+/usr/local/etc/openldap/slapd.conf
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<p>
+
+Наложение
+<b>ppolicy</b>
+
+представляет собой реализацию самых последних предложений IETF в области
+политики паролей для LDAP. Когда наложение применяется к базе данных какого-либо
+механизма манипуляции данными, оно перехватывает, декодирует и применяет
+специфические элементы управления политики паролей ко всем аспектам использования
+этой базы данных, изменениям, вносимым в поля паролей пользователя и т.п.
+
+Наложение предоставляет различные механизмы управления паролями. Среди них
+установка срока действия паролей, как минимального, так и максимального,
+контроль повторного использования и дублирования паролей, блокировка учётной записи,
+обязательное переназначение пароля, контроль допустимого содержимого паролей и даже
+управление отсрочкой блокировки. С разными группами пользователей могут быть связаны
+разные политики паролей, ограничений на количество создаваемых политик паролей не накладывается.
+
+Имейте ввиду, что некоторые из этих политик не имеют силы, когда операция по работе с паролем
+пользователя выполняется от имени идентификационной сущности
+<b>rootdn</b>;
+
+на все операции, выполняемые от имени любой другой идентификационной сущности,
+могут накладываться ограничения, например, контроль доступа. Для этого наложения требуется,
+чтобы в целевой базе данных было настроено rootdn.
+
+Обратите внимание, что предложения IETF в области политики паролей для LDAP имеют смысл при работе
+с парольным атрибутом, имеющим одно значение, а атрибут userPassword позволяет хранить несколько
+значений. Реализация наложения ppolicy, несмотря на спецификацию атрибута userPassword,
+позволяет задавать ему только одно значение.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>КОНФИГУРАЦИЯ</h2>
+
+Приводимые параметры
+<b>slapd.conf</b>
+
+применяются к наложению ppolicy. Они должны указываться после директивы
+<b>overlay</b>.
+
+<dl compact="">
+<dt><b>ppolicy_default &lt;policyDN&gt;</b>
+
+</dt><dd>
+Указывает DN записи с объектным классом pwdPolicy, которая будет использоваться, когда для конкретной
+пользовательской записи не задана специфичная политика. Когда для записи нет специфичной политики
+и не задана политика по умолчанию, никакой политики применяться не будет.
+</dd><dt><b>ppolicy_forward_updates</b>
+
+</dt><dd>
+Указывает, что изменения состояния политики (такие, как фиксация неудачных попыток подключения,
+блокировки и т.п.), произошедшие в результате выполнения операций Bind на потребителе репликации,
+должны быть перенаправлены на главный сервер вместо того, чтобы записываться напрямую в локальную
+базу данных потребителя. Такая настройка применима только на потребителе репликации, для её работы
+также требуется установка директивы
+<b>updateref</b>
+
+и настройка наложения
+<b>chain</b>.
+
+</dd><dt><b>ppolicy_hash_cleartext</b>
+
+</dt><dd>
+Указывает, что пароли в виде открытого текста, присутствующие в запросах Add и Modify, перед сохранением
+в базу данных должны быть захэшированы. Это нарушает информационную модель X.500/LDAP, но может быть
+необходимо для работы с LDAP-клиентами, которые не используют для управления паролями расширенную операцию
+модификации пароля Password Modify. Рекомендуется, чтобы при использовании этого параметра всем пользователям
+каталога был запрещён доступ на выполнение сравнения, поиска и чтения парольных атрибутов.
+</dd><dt><b>ppolicy_use_lockout</b>
+
+</dt><dd>
+При попытке выполнить подсоединение (Bind) от имени заблокированной записи,
+клиент всегда будет получать ответ LDAP
+<b>InvalidCredentials</b>.
+
+По умолчанию, когда с запросом Bind был предоставлен элемент управления Password Policy, в ответ
+будет включён элемент управления Password Policy, в котором не будет задан специальный код ошибки.
+Этот параметр изменяет элемент управления Password Policy ответа так, чтобы он включал код ошибки
+<b>AccountLocked</b>.
+
+Имейте ввиду, что отправка кода ответа
+<b>AccountLocked</b>
+
+предоставляет злоумышленнику полезную информацию; в системах, для которых безопасность критически важна,
+не следует включать этот параметр.
+<p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ОБЪЕКТНЫЙ КЛАСС</h2>
+
+Наложение
+<b>ppolicy</b>
+
+зависит от объектного класса
+<b>pwdPolicy</b>.
+
+Определение этого объектного класса:
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.2.1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdPolicy'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;AUXILIARY
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;top
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MUST&nbsp;(&nbsp;pwdAttribute&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MAY&nbsp;(
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwdMinAge&nbsp;$&nbsp;pwdMaxAge&nbsp;$&nbsp;pwdInHistory&nbsp;$
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwdCheckQuality&nbsp;$&nbsp;pwdMinLength&nbsp;$
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwdExpireWarning&nbsp;$&nbsp;pwdGraceAuthnLimit&nbsp;$
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwdLockout&nbsp;$&nbsp;pwdLockoutDuration&nbsp;$
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwdMaxFailure&nbsp;$&nbsp;pwdFailureCountInterval&nbsp;$
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwdMustChange&nbsp;$&nbsp;pwdAllowUserChange&nbsp;$
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwdSafeModify&nbsp;$&nbsp;pwdMaxRecordedFailure&nbsp;)&nbsp;)
+</dd></dl>
+
+<p>
+В данной реализации также предоставляется дополнительный объектный класс
+<b>pwdPolicyChecker</b>,
+
+используемый для проверки качества паролей (смотрите ниже):
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4754.2.99.1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdPolicyChecker'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;AUXILIARY
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SUP&nbsp;top
+<br>&nbsp;&nbsp;&nbsp;&nbsp;MAY&nbsp;(&nbsp;pwdCheckModule&nbsp;)&nbsp;)
+</dd></dl>
+
+
+У каждой учётной записи, которая должна попадать под управление той или иной политики паролей,
+должен быть атрибут
+<b>pwdPolicySubentry</b>,
+
+содержащий DN корректной записи с объектным классом
+<b>pwdPolicy</b>,
+
+либо она может просто использовать политику паролей, настроенную как политика по умолчанию.
+Таким способом различные пользователи могут попадать под управление разных политик.
+<p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>АТРИБУТЫ ОБЪЕКТНОГО КЛАССА</h2>
+
+
+В этом разделе разъясняется значение и порядок применения атрибутов объектного класса
+<b>pwdPolicy</b>.
+
+
+<p>
+<b>pwdAttribute</b>
+
+
+Значением этого атрибута является имя атрибута, к которому применяется политика паролей.
+Например, политика паролей может применяться к атрибуту
+<b>userPassword</b>.
+
+
+Примечание: в данной реализации единственным значением, приемлемым для
+<b>pwdAttribute</b>,
+
+является
+<i> userPassword .</i>
+
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.1
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdAttribute'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;objectIdentifierMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.38&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdMinAge</b>
+
+
+Значением этого атрибута является количество секунд, которое должно пройти между разрешёнными
+модификациями пароля. При отсутствии этого атрибута подразумевается, что минимальный срок
+действия пароля составляет ноль секунд, то есть пароли могут модифицироваться когда угодно
+и сколь угодно часто.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.2
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdMinAge'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdMaxAge</b>
+
+
+Значением этого атрибута является количество секунд, после которого модифицированный пароль будет
+считаться устаревшим. При отсутствии этого атрибута или когда его значением является 0,
+подразумевается, что срок действия пароля не ограничен.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.3
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdMaxAge'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdInHistory</b>
+
+
+Этот атрибут используется для указания максимального количества паролей,
+которые будут храниться в качестве значений атрибута
+<b>pwdHistory</b>
+
+записи пользователя. При отсутствии атрибута
+<b>pwdInHistory</b>
+
+или когда его значением является ноль (0), подразумевается,
+что бывшие в употреблении пароли не будут сохраняться в атрибуте
+<b>pwdHistory</b>,
+
+и их можно будет использовать повторно. Проверка истории паролей не осуществляется,
+если операция модификации пароля пользователя выполняется от имени
+<b>rootdn</b>,
+
+пароль в этом случае также сохраняется в истории.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.4
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdInHistory'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdCheckQuality</b>
+
+
+Этот атрибут указывает, будет ли при модификации или добавлении пароля осуществляться проверка его
+синтаксиса, и то, каким образом она будет осуществляться. При отсутствии этого атрибута или когда
+его значением является ноль (0), проверка синтаксиса выполняться не будет. Если его значением
+является 1, сервер будет пытаться проверить синтаксис пароля, и, если не сможет выполнить проверку
+(пароль захэширован на стороне клиента или по какой-либо другой причине), этот пароль будет принят.
+Если значением атрибута является 2, сервер будет пытаться проверить синтаксис пароля, и,
+если не сможет выполнить проверку, он отклонит пароль и вернёт ошибку.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.5
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdCheckQuality'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdMinLength</b>
+
+
+Если проверка синтаксиса пароля включена (смотрите описание атрибута
+<b>pwdCheckQuality</b>
+
+выше), в значении этого атрибута указывается минимальное количество символов, из которых может
+состоять пароль. При отсутствии этого атрибута, ограничений на минимальную длину пароля не накладывается.
+Если серверу указано проверять длину пароля и он не может это сделать (пароль захэширован на стороне
+клиента или по какой-либо другой причине), то, в зависимости от значения атрибута
+<b>pwdCheckQuality</b>,
+
+он либо примет пароль без проверки (если значение
+<b>pwdCheckQuality</b>
+
+- 0 или 1), либо отклонит его (если значение
+<b>pwdCheckQuality</b>
+
+- 2).
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.6
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdMinLength'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdExpireWarning</b>
+
+
+Значением этого атрибута является максимальное количество секунд, которое остаётся до момента
+истечения срока действия пароля. Если до окончания срока действия пароля остаётся указанное
+количество секунд или меньше, пользователю, проходящему аутентификацию при подсоединении к каталогу,
+будет возвращено предупреждающее сообщение об истечении срока действия пароля. При отсутствии этого
+атрибута или когда его значением является ноль (0), предупреждающие сообщения отправляться не будут.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.7
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdExpireWarning'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdGraceAuthnLimit</b>
+
+
+Значением этого атрибута является количество раз, которое пользователь может произвести аутентификацию
+с использованием пароля, срок действия которого истёк. При отсутствии этого атрибута или когда его
+значением является ноль (0), пользователям с просроченными паролями будет запрещено производить
+аутентификацию при подсоединении к каталогу.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.8
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdGraceAuthnLimit'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdLockout</b>
+
+
+В этом атрибуте указывается действие, которое следует предпринять серверу, когда пользователь выполнил
+определённое количество неудачных попыток аутентификации при подсоединении к каталогу. Когда
+<b>pwdLockout</b>
+
+включен (имеет значение "TRUE"), пользователю будет запрещено пытаться пройти аутентификацию после того,
+как он произвёл заданное количество неудачных попыток подсоединения подряд. Максимальное количество
+неудачных попыток подсоединения, которые разрешено выполнить подряд, указывается в атрибуте
+<b>pwdMaxFailure</b>.
+
+При отсутствии атрибута
+<b>pwdLockout</b>
+
+или когда его значением является "FALSE", разрешено выполнять аутентификацию независимо от того,
+сколько неудачных попыток подсоединения подряд уже было сделано.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.9
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdLockout'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;booleanMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.7
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdLockoutDuration</b>
+
+
+Значением этого атрибута является количество секунд, во время которых пароль нельзя будет
+использовать для аутентификации пользователя при подсоединении к каталогу после того, как было
+предпринято слишком много попыток неудачного подсоединения подряд (смотрите описания атрибутов
+<b>pwdLockout</b>
+
+и
+<b>pwdMaxFailure</b>).
+
+При отсутствии атрибута
+<b>pwdLockoutDuration</b>
+
+или когда его значением является ноль (0), пароль нельзя будет снова использовать для
+аутентификации пользователя, пока блокировка не будет сброшена администратором.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.10
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdLockoutDuration'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdMaxFailure</b>
+
+
+Значением этого атрибута является количество выполненных подряд неудачных попыток подсоединения
+к каталогу, после которого пароль нельзя будет использовать для аутентификации пользователя.
+При отсутствии атрибута
+<b>pwdMaxFailure</b>
+
+или когда его значением является ноль (0), пользователю будет разрешено продолжать попытки
+аутентификации независимо от того, как много неудачных попыток подсоединения подряд уже было
+предпринято от имени DN этого пользователя (смотрите также описание атрибутов
+<b>pwdLockout</b>
+
+и
+<b>pwdLockoutDuration</b>).
+
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.11
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdMaxFailure'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdMaxRecordedFailure</b>
+
+
+Значением этого атрибута является максимальное количество неудачных попыток подсоединения, сведения
+о которых будут храниться в записи пользователя. При отсутствии атрибута
+<b>pwdMaxRecordedFailure</b>
+
+или когда его значением является ноль (0), в качестве значения по умолчанию будет использоваться
+значение атрибута
+<b>pwdMaxFailure</b>.
+
+Если и оно равно нулю, значением по умолчанию будет 5.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.16
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdMaxRecordedFailure'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdFailureCountInterval</b>
+
+
+Значением этого атрибута является количество секунд, после которого сведения о предыдущих
+выполненных подряд неудачных попытках подсоединения удаляются из счётчика неудачных попыток, даже
+если не было выполнено ни одной удачной попытки аутентификации. При отсутствии атрибута
+<b>pwdFailureCountInterval</b>
+
+или когда его значением является ноль (0), счётчик неудачных попыток будет сброшен только
+после выполнения удачной аутентификации.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.12
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdFailureCountInterval'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;integerMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.27
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdMustChange</b>
+
+
+В этом атрибуте указывается, должны или нет пользователи менять свои пароли при первом подсоединении
+к каталогу после того, как пароль был установлен или переназначен администратором. Если атрибут
+<b>pwdMustChange</b>
+
+имеет значение "TRUE", пользователи должны будут изменить свои пароли. При отсутствии атрибута
+<b>pwdMustChange</b>
+
+или когда его значением является "FALSE", от пользователей не требуется изменять свои пароли.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.13
+<br>&nbsp;&nbsp;NAME&nbsp;'pwdMustChange'
+<br>&nbsp;&nbsp;EQUALITY&nbsp;booleanMatch
+<br>&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.7
+<br>&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdAllowUserChange</b>
+
+
+В этом атрибуте указывается, разрешено или нет пользователям менять свои собственные пароли.
+При отсутствии атрибута
+<b>pwdAllowUserChange</b>
+
+или когда его значением является "TRUE", пользователям разрешено менять свои пароли. Если атрибут
+установлен в "FALSE", пользователям не разрешено менять свои пароли.
+</p><p>
+
+Примечание: подразумевается, что когда атрибут
+<b>pwdAllowUserChange</b>
+
+установлен в "TRUE", пользователи всё-таки могут изменять пароли других пользователей (если это
+позволяет контроль доступа). Данное ограничение распространяется только на собственный пароль
+пользователя. Также следует отметить, что атрибут
+<b>pwdAllowUserChange</b>
+
+был определён в спецификации политики паролей в основном для того, чтобы обеспечить возможность
+грубого контроля доступа к парольному атрибуту для систем, где не реализована воможность тонкого
+контроля доступа. Поскольку в OpenLDAP имеется развитая подсистема контроля доступа, использовать
+этот атрибут не рекомендуется, лучше применять ACL (смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.access&amp;category=5">slapd.access</a></b>(5)).
+
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.14
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdAllowUserChange'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;booleanMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.7
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdSafeModify</b>
+
+
+В этом атрибуте указывается, требуется или нет при смене пароля пользователем посылать существующий
+пароль вместе с новым паролем. Если атрибут
+<b>pwdSafeModify</b>
+
+имеет значение "TRUE", существующий пароль должен быть отправлен вместе с новым паролем. При отсутствии
+этого атрибута, или когда его значением является "FALSE", посылать существующий пароль не требуется.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.15
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdSafeModify'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;booleanMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.7
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdCheckModule</b>
+
+
+В этом атрибуте указывается имя определённого пользователем подгружаемого модуля, в котором должна
+содержаться функция check_password(). Эта функция будет вызываться после успешного прохождения
+всех встроенных проверок качества пароля, которые производятся, когда атрибут
+<b>pwdCheckQuality</b>
+
+установлен в 1 или 2. Вызов функции будет происходить в соответствии со следующим прототипом функции:
+</p><dl compact=""><dt></dt><dd>
+int
+<i>check_password</i>
+
+(char *pPasswd, char **ppErrStr, Entry *pEntry);
+</dd></dl>
+
+Параметр
+<b>pPasswd</b>
+
+содержит пароль пользователя в виде открытого текста, параметр
+<b>ppErrStr</b>
+
+содержит двойной указатель, позволяющий функции возвращать пригодное для чтения человеком сообщение
+о любой обнаруженной в ходе проверки ошибке. Необязательный параметр
+<b>pEntry</b>,
+
+если он не NULL, содержит указатель на запись каталога, пароль которой проверяется. Если строка (строки)
+<b>ppErrStr</b>
+
+представляет собой NULL, то
+<i>funcName</i>
+
+не должна пытаться использовать её (их). Если вызываемая функция возвращает значение LDAP_SUCCESS,
+значит пароль прошёл проверку, любое другое значение говорит о том, что пароль является неприемлемым.
+В последнем случае сервер вернёт клиенту ошибку, кроме того, для возвращения пригодного для чтения
+человеком текстового разъяснения этой ошибки может быть использована строка
+<b>ppErrStr</b>.
+
+Область памяти под строку сообщения об ошибке должна быть выделена динамически,
+поскольку slapd очистит её, вызвав free().
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.4754.1.99.1
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdCheckModule'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;caseExactIA5Match
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.26
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE&nbsp;)
+</dd></dl>
+
+
+Примечание: определённый пользователем подгружаемый модуль, имя которого указано в атрибуте
+<b>pwdCheckModule</b>,
+
+должен находиться в том месте, где
+<b>slapd</b>
+
+ищет свои стандартные исполняемые модули (переменная PATH).
+
+Примечание:
+<b>pwdCheckModule</b>
+
+- нестандартное расширение предложений по политикам паролей LDAP.
+<p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>ОПЕРАЦИОННЫЕ АТРИБУТЫ</h2>
+
+
+Операционные атрибуты, используемые модулем
+<b>ppolicy</b>,
+
+задаются в записи пользователя. Большинство из этих атрибутов не предназначено для изменения
+напрямую пользователями; в них помещается информация, позволяющая отследить действия пользователя.
+Описание этих атрибутов приводится здесь для того, чтобы администраторы и пользователи понимали,
+как работает модуль
+<b>ppolicy</b>.
+
+<p>
+
+Обратите внимание, что в текущих предложениях IETF по политике паролей не определено, какое
+поведение ожидается от этих операционных атрибутов в условиях репликации. В общем случае, попытки
+аутентификации, выполняемые на подчинённом сервере, влияют только на копии таких операционных
+атрибутов, находящиеся в базе данных этого подчинённого сервера, и не влияют на какие-либо
+операционные атрибуты записи пользователя на главном сервере. Изменения операционных атрибутов,
+происходящие вследствие попыток аутентификации на главном сервере, обычно будут реплицироваться на
+подчинённые серверы (и перезаписывать при этом любые изменения, произошедшие на подчинённых
+серверах). Такое поведение не гарантируется и подлежит изменению при появлении формальной спецификации.
+</p><p>
+<b>userPassword</b>
+
+
+Атрибут
+<b>userPassword</b>,
+
+строго говоря, не является составной частью модуля
+<b>ppolicy</b>.
+
+Однако этот атрибут отслеживается и контролируется этим модулем. Определение этого атрибута можно
+найти в стандартном наборе схемы данных OpenLDAP.
+</p><p>
+<b>pwdPolicySubentry</b>
+
+
+Этот атрибут указывает на запись с объектным классом
+<b>pwdPolicy</b>,
+
+которая будет определять политику паролей для данного конкретного пользователя каталога. Если атрибут
+<b>pwdPolicySubentry</b>
+
+существует, его значением должно быть DN корректной записи с объектным классом
+<b>pwdPolicy</b>.
+
+Если этого атрибута нет в записи пользователя, модуль
+<b>ppolicy</b>
+
+будет применять для пользователя, ассоциированного с DN аутентификации, политику паролей по умолчанию.
+Если политики паролей по умолчанию не существует, никаких правил политики паролей применяться не будет.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.23
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdPolicySubentry'
+<br>&nbsp;&nbsp;&nbsp;DESC&nbsp;'Запись&nbsp;pwdPolicy,&nbsp;применяемая&nbsp;для&nbsp;этого
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;объекта'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;distinguishedNameMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.12
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE
+<br>&nbsp;&nbsp;&nbsp;NO-USER-MODIFICATION
+<br>&nbsp;&nbsp;&nbsp;USAGE&nbsp;directoryOperation)
+</dd></dl>
+
+<p>
+<b>pwdChangedTime</b>
+
+
+В этом атрибуте указывается время последнего изменения пароля данной записи. Это значение
+используется политикой устаревания пароля для определения того, что время жизни пароля превысило
+допустимо возможное и этот пароль нельзя использовать для аутентификации. Если атрибута
+<b>pwdChangedTime</b>
+
+нет в записи пользователя, пароль этого пользователя не будет устаревать.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.16
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdChangedTime'
+<br>&nbsp;&nbsp;&nbsp;DESC&nbsp;'Время&nbsp;последнего&nbsp;изменения&nbsp;пароля'
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.24
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;generalizedTimeMatch
+<br>&nbsp;&nbsp;&nbsp;ORDERING&nbsp;generalizedTimeOrderingMatch
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE
+<br>&nbsp;&nbsp;&nbsp;NO-USER-MODIFICATION
+<br>&nbsp;&nbsp;&nbsp;USAGE&nbsp;directoryOperation)
+</dd></dl>
+
+<p>
+<b>pwdAccountLockedTime</b>
+
+
+Значением этого атрибута является время, когда учётная запись пользователя была заблокирована.
+Если учётная запись была заблокирована, её пароль нельзя больше использовать для аутентификации
+пользователя при подсоединении к каталогу. Если значением атрибута
+<b>pwdAccountLockedTime</b>
+
+является 000001010000Z, учётная запись пользователя считается заблокированной на неопределённое
+время, разблокировать её может только администратор. Имейте ввиду, что блокировка учётных записей
+работает, только если атрибут политики паролей
+<b>pwdLockout</b>
+
+установлен в "TRUE".
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.17
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdAccountLockedTime'
+<br>&nbsp;&nbsp;&nbsp;DESC&nbsp;'Время&nbsp;блокировки&nbsp;учётной&nbsp;записи&nbsp;пользователя'
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.24
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;generalizedTimeMatch
+<br>&nbsp;&nbsp;&nbsp;ORDERING&nbsp;generalizedTimeOrderingMatch
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE
+<br>&nbsp;&nbsp;&nbsp;NO-USER-MODIFICATION
+<br>&nbsp;&nbsp;&nbsp;USAGE&nbsp;directoryOperation)
+</dd></dl>
+
+<p>
+<b>pwdFailureTime</b>
+
+
+Значениями этого атрибута являются отметки времени каждой последовательной неудачной попытки
+аутентификации, произведённой от имени DN этой записи каталога (то есть, учётной записи). Если
+количество таких отметок времени превышает допустимое количество попыток неудачной аутентификации
+(смотрите описание атрибута
+<b>pwdMaxFailure</b>
+
+политики паролей) и атрибут
+<b>pwdLockout</b>
+
+политики паролей установлен в "TRUE", учётная запись может быть заблокирована (смотрите описание атрибута
+<b>pwdLockout</b>
+
+политики паролей). Если количество отметок времени превышает разрешённое в атрибутах
+<b>pwdMaxFailure</b>
+
+или
+<b>pwdMaxRecordedFailure</b>,
+
+избыточные отметки могут быть удалены. При совершении успешной аутентификации от имени DN этой
+записи каталога (то есть этой учётной записи), атрибуты
+<b>pwdFailureTime</b>
+
+будут удалены из записи.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.19
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdFailureTime'
+<br>&nbsp;&nbsp;&nbsp;DESC&nbsp;'Отметки&nbsp;времени&nbsp;последних&nbsp;последовательных
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;неудачных&nbsp;попыток&nbsp;аутентификации'
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.24
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;generalizedTimeMatch
+<br>&nbsp;&nbsp;&nbsp;ORDERING&nbsp;generalizedTimeOrderingMatch
+<br>&nbsp;&nbsp;&nbsp;NO-USER-MODIFICATION
+<br>&nbsp;&nbsp;&nbsp;USAGE&nbsp;directoryOperation&nbsp;)
+</dd></dl>
+
+<p>
+<b>pwdHistory</b>
+
+
+В этом атрибуте сохраняется история ранее использованных паролей этого DN (то есть этой учётной записи).
+Значения этого атрибута представляют собой строку в следующем формате:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<p>
+pwdHistory=
+</p><dl compact=""><dt></dt><dd>
+time "#" syntaxOID "#" length "#" data
+</dd></dl>
+
+<p>
+time=
+</p><dl compact=""><dt></dt><dd>
+время в формате с синтаксисом GeneralizedTime, как определено в разделе 3.3.13 RFC4517.
+</dd></dl>
+
+<p>
+
+syntaxOID = numericoid
+</p><dl compact=""><dt></dt><dd>
+строковое представление точечно-цифрового OID, который определяет синтаксис, используемый для хранения
+пароля. Формат numericoid описан в разделе 1.4 RFC4512.
+</dd></dl>
+
+<p>
+length = NumericString
+</p><dl compact=""><dt></dt><dd>
+Количество октетов в поле data. Синтаксис NumericString описан в разделе 3.3.23 RFC4517.
+</dd></dl>
+
+<p>
+data =
+</p><dl compact=""><dt></dt><dd>
+Двоичное представление пароля в формате, указанном в поле syntaxOID.
+</dd></dl>
+
+<p>
+</p></dd></dl>
+
+<p>
+Такой формат позволяет серверу хранить и пересылать историю ранее использованных паролей.
+Для того, чтобы можно было корректно проводить сравнение со значениями этого атрибута,
+время в поле time указывается в формате GMT.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.20
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdHistory'
+<br>&nbsp;&nbsp;&nbsp;DESC&nbsp;'История&nbsp;паролей&nbsp;пользователя'
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.40
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;octetStringMatch
+<br>&nbsp;&nbsp;&nbsp;NO-USER-MODIFICATION
+<br>&nbsp;&nbsp;&nbsp;USAGE&nbsp;directoryOperation)
+</dd></dl>
+
+<p>
+<b>pwdGraceUseTime</b>
+
+
+Значения этого атрибута составляют список отметок времени выполнения подсоединения к каталогу после
+того, как срок действия пароля записи истёк. Эти подсоединения после истечения срока действия пароля
+носят название "<i>отложенная блокировка</i>". Если количество дополнительных подсоединений превысило
+допустимое количество таких подсоединений (смотрите описание атрибута
+<b>pwdGraceLoginLimit</b>
+
+политики паролей), то учётную запись с этим DN больше нельзя будет использовать для аутентификации
+до тех пор, пока администратор не поменяет значение атрибута
+<b>userPassword</b>
+
+этой записи каталога.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.21
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdGraceUseTime'
+<br>&nbsp;&nbsp;&nbsp;DESC&nbsp;'Отметки&nbsp;времени&nbsp;выполнения&nbsp;подсоеденений
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;после&nbsp;истечения&nbsp;срока&nbsp;действия&nbsp;пароля'
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.24
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;generalizedTimeMatch
+<br>&nbsp;&nbsp;&nbsp;NO-USER-MODIFICATION
+<br>&nbsp;&nbsp;&nbsp;USAGE&nbsp;directoryOperation)
+</dd></dl>
+
+<p>
+<b>pwdReset</b>
+
+
+Этот атрибут указывает на то, была или нет блокировка пароля пользователя сброшена администратором
+и должен ли пользователь поменять его при совершении первой аутентификации для подсоединения
+к каталогу от имени этого DN. Если атрибут
+<b>pwdReset</b>
+
+имеет значение "TRUE", то блокировка пароля была сброшена и пользователь должен сменить пароль при
+первой аутентификации. При отсутствии этого атрибута, либо если он установлен в "FALSE",
+от пользователя не требуется менять свой пароль после сброса блокировки администратором.
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+(  1.3.6.1.4.1.42.2.27.8.1.22
+<br>&nbsp;&nbsp;&nbsp;NAME&nbsp;'pwdReset'
+<br>&nbsp;&nbsp;&nbsp;DESC&nbsp;'Индикатор&nbsp;того,&nbsp;что&nbsp;блокировка&nbsp;пароля
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;была&nbsp;сброшена'
+<br>&nbsp;&nbsp;&nbsp;EQUALITY&nbsp;booleanMatch
+<br>&nbsp;&nbsp;&nbsp;SYNTAX&nbsp;1.3.6.1.4.1.1466.115.121.1.7
+<br>&nbsp;&nbsp;&nbsp;SINGLE-VALUE
+<br>&nbsp;&nbsp;&nbsp;USAGE&nbsp;directoryOperation)
+</dd></dl>
+
+<p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>ПРИМЕРЫ</h2>
+
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>database bdb
+suffix dc=example,dc=com
+...
+overlay ppolicy
+ppolicy_default "cn=Standard,ou=Policies,dc=example,dc=com"
+</pre>
+
+</dd></dl>
+
+<p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap&amp;category=3">ldap</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-config&amp;category=5">slapd-config</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-chain&amp;category=5">slapd-chain</a></b>(5).
+
+<p>
+
+"Руководство администратора OpenLDAP" (<a href="http://www.OpenLDAP.org/doc/admin/,">http://www.OpenLDAP.org/doc/admin/,</a> <a href="http://pro-ldap.ru/tr/admin24/).">http://pro-ldap.ru/tr/admin24/).</a>
+</p><p>
+
+Предложения IETF по политике паролей LDAP документированы в черновом документе
+"draft-behera-ldap-password-policy-09.txt", авторы P. Behera, L. Poitou и J. Sermersheim.
+</p><p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>ВОЗМОЖНЫЕ НЕТОЧНОСТИ</h2>
+
+Спецификация политики паролей LDAP пока не является утверждённым стандартом и всё ещё находится
+в развитии. Пока работы над спецификацией не будут завершены, код данного модуля может меняться.
+<p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>ПРИЗНАНИЕ ЗАСЛУГ</h2>
+
+
+Данный модуль написан в 2004 году. Автор - Howard Chu из Symas Corporation,
+значительный вклад внесли также Neil Dunbar и Kartik Subbarao из Hewlett-Packard.
+
+Материалы данной man-страницы во многом беззастенчиво позаимствованы из спецификации, на которой
+основан модуль политики паролей. Это предложения IETF по политике паролей LDAP, написанные в 2005
+году P. Behera, L. Poitou и J. Sermersheim, и документированные в черновом документе
+"draft-behera-ldap-password-policy-09.txt".
+
+
+
+<b>Программное обеспечение OpenLDAP</b>
+
+разработано и поддерживается проектом OpenLDAP &lt;<a href="http://www.openldap.org/">http://www.openldap.org/</a>&gt;.
+<b>Программное обеспечение OpenLDAP</b>
+
+является производным от релиза 3.3 LDAP Мичиганского Университета.
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">КОНФИГУРАЦИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ОБЪЕКТНЫЙ КЛАСС</a></dt><dd>
+</dd><dt><a href="#lbAG">АТРИБУТЫ ОБЪЕКТНОГО КЛАССА</a></dt><dd>
+</dd><dt><a href="#lbAH">ОПЕРАЦИОННЫЕ АТРИБУТЫ</a></dt><dd>
+</dd><dt><a href="#lbAI">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAK">ВОЗМОЖНЫЕ НЕТОЧНОСТИ</a></dt><dd>
+</dd><dt><a href="#lbAL">ПРИЗНАНИЕ ЗАСЛУГ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="slapo-ppolicy" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

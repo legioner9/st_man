@@ -1,0 +1,744 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN pam_tcb (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, pam_tcb"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="pam_tcb" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">pam_tcb (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=pam_tcb&amp;category=5&amp;russian=0"><u>pam_tcb</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=pam_tcb&amp;category=5&amp;russian=2"><u>pam_tcb</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=pam_tcb&amp;category=8&amp;russian=0"><u>pam_tcb</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=pam_tcb&amp;category=8&amp;russian=2"><u>pam_tcb</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>Название</h2>
+
+<b>pam_tcb -</b>
+
+PAM-модуль, реализующий поддержку схемы управления теневыми паролями TCB для
+всех групп управления, определенных в PAM:
+authentication, account, session, и password management.
+<p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>Описание</h2>
+
+<b>pam_tcb -</b>
+
+это модуль PAM, предназначенный для работы с Unix-аккаунтами и поддерживающий
+все определенные в PAM группы управления (PAM management groups):
+authentication, account management, session management, и password management.
+<b>pam_tcb</b>
+
+является заменителем использующихся в традиционной для Unix схеме модулей
+<b>pam_unix</b>
+
+и
+<b>pam_pwdb</b>.
+
+<dl compact="">
+<dt><b>authentication</b>
+
+</dt><dd>
+Модуль
+<b>pam_tcb</b>
+
+использует только функции
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getpwnam&amp;category=3">getpwnam</a></b>(3)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getspnam&amp;category=3">getspnam</a></b>(3)
+
+для получения информации, необходимой для аутентификации пользователей.
+Для хеширования паролей используется функция
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crypt_ra&amp;category=3">crypt_ra</a></b>(3)
+
+либо
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crypt&amp;category=3">crypt</a></b>(3).
+
+Это значит, в частности, что модуль
+<b>pam_tcb</b>
+
+использует NSS и поддерживает все методы хеширования, поддерживаемые
+системными библиотеками (такими как libcrypt).
+</dd><dt><b>account management</b>
+
+</dt><dd>
+Если информация об аккаунте доступна с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getspnam&amp;category=3">getspnam</a></b>(3),
+
+подсистема
+<b>pam_tcb</b>,
+
+реализующая account management, проверяет срок действия пароля и аккаунта.
+При этом используются поля теневой записи, подробно описанной в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=shadow&amp;category=5">shadow</a></b>(5).
+
+Приложения, использующие PAM, должны соответствующим образом обрабатывать код
+возврата и, возможно, использовать password management group для смены
+истекшего пароля.
+</dd><dt><b>session management</b>
+
+</dt><dd>
+По умолчанию,
+<b>pam_tcb</b>
+
+протоколирует открытие и закрытие сессий PAM с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></b>(3).
+
+В качестве syslog
+<i>facility</i>
+
+используется
+<b>LOG_AUTH</b>
+
+и, если не указан параметр
+<b>noopenlog</b>,
+
+в качестве
+<i>ident</i>
+
+используется "pam_tcb".
+Эту функциональность можно отключить с помощью параметра
+<b>nolog</b>
+
+(см. ниже).
+</dd><dt><b>password management</b>
+
+</dt><dd>
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pam_chauthtok&amp;category=3">pam_chauthtok</a></b>(3)
+
+выполняется в две стадии при обработке стека password management:
+<b>PAM_PRELIM_CHECK</b>
+
+и
+<b>PAM_UPDATE_AUTHTOK</b>.
+
+Во время стадии
+<b>PAM_PRELIM_CHECK</b>,
+
+модуль
+<b>pam_tcb</b>
+
+может, в зависимости от параметров, запросить пароль, и всегда проверяет
+старый пароль.
+Это позволяет использовать в стеке password management модуль контроля и
+обеспечения качества паролей типа
+<b>pam_passwdqc</b>
+
+до
+<b>pam_tcb</b>,
+
+избавляя такой модуль от необходимости выполнения задач, возлагаемых на
+<b>pam_tcb</b>.
+
+Собственно смена пароля происходит во время стадии
+<b>PAM_UPDATE_AUTHTOK</b>.
+
+<p>
+Во время смены пароля модуль
+<b>pam_tcb</b>
+
+может вносить изменения в следующие базы паролей:
+</p><p>
+файл
+<i>/etc/passwd</i>,
+
+см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=passwd&amp;category=5">passwd</a></b>(5);
+
+<br>
+
+файл
+<i>/etc/shadow</i>
+
+см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=shadow&amp;category=5">shadow</a></b>(5);
+
+<br>
+
+структура, расположенная в
+<i>/etc/tcb/</i>
+
+см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcb&amp;category=5">tcb</a></b>(5);
+
+<br>
+
+NIS и NIS+.
+</p><p>
+</p></dd></dl>
+<a name="lbAD">&nbsp;</a>
+<h2>Параметры</h2>
+
+Большинство параметров, использующихся в модулях
+<b>pam_unix</b>
+
+и
+<b>pam_pwdb</b>,
+
+используются в модуле
+<b>pam_tcb</b>
+
+и имеют тот же смысл.
+Впрочем, есть некоторые семантические различия, описанные ниже.
+Все логические параметры по умолчанию выключены.
+Значения по умолчанию для остальных параметров приведены ниже.
+<dl compact="">
+<dt><b>debug</b>
+
+</dt><dd>
+Выводить отладочную информацию при помощи
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></b>(3).
+
+</dd><dt><b>audit</b>
+
+</dt><dd>
+Выводить более детальную отладочную информацию, включая неизвестные имена
+пользователей. Есть риск того, что таким образом в лог попадут пароли,
+введенные по ошибке пользователями вместо имен.
+</dd><dt><b>noopenlog</b>
+
+</dt><dd>
+В обычной ситуации модуль
+<b>pam_tcb</b>
+
+вызывает
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=openlog&amp;category=3">openlog</a></b>(3)
+
+с аргументом
+<i>ident</i>
+
+"pam_tcb" до протоколирования и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=closelog&amp;category=3">closelog</a></b>(3)
+
+после. Параметр
+<b>noopenlog</b>
+
+выключает этот механизм.
+</dd><dt><b>nolog</b>
+
+</dt><dd>
+Выключить протоколирование.
+</dd><dt><b>blank_nolog</b>
+
+</dt><dd>
+Не протоколировать неудачные попытки аутентификации в случае, если введен
+пустой пароль. Если этот параметр не используется, некоторые приложения,
+например,
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a></b>(8),
+
+могут порождать ложные предупреждения.
+</dd><dt><b>nullok</b>
+
+</dt><dd>
+Разрешить пустые пароли.
+</dd><dt><b>use_first_pass</b>
+
+</dt><dd>
+Не запрашивать пароль у пользователя, вместо этого взять значение из
+<b>PAM_AUTHTOK</b>
+
+и, возможно,
+<b>PAM_OLDAUTHTOK</b>.
+
+</dd><dt><b>try_first_pass</b>
+
+</dt><dd>
+В качестве пароля использовать значения из
+<b>PAM_AUTHTOK</b>
+
+и, возможно,
+<b>PAM_OLDAUTHTOK</b>,
+
+и запросить пароль у пользователя в случае, если значения соответствующих
+переменных PAM не определены.
+</dd><dt><b>use_authtok</b>
+
+</dt><dd>
+Действовать аналогично
+<b>use_first_pass</b>,
+
+используя только (новое) значение
+<b>PAM_AUTHTOK</b>.
+
+Этот параметр предназначен для организации стеков модулей для password management.
+</dd><dt><b>not_set_pass</b>
+
+</dt><dd>
+Запретить модулю изменять значения вышеупомянутых переменных PAM.
+</dd><dt><b>likeauth</b>
+
+</dt><dd>
+Будучи вызванным как credential setting module, возвращать то же значение,
+что было возвращено во время аутентификации.
+</dd><dt><b>passwd</b>
+
+</dt><dd>
+Если указан этот параметр,
+<b>pam_tcb</b>
+
+может использовать второе поле пользовательской записи (обычно из файла
+<i>/etc/passwd</i>)
+
+в качестве хеша пароля.
+Детали см. ниже.
+</dd><dt><b>shadow</b>
+
+</dt><dd>
+Если указан этот параметр,
+<b>pam_tcb</b>
+
+может использовать второе поле теневой пользовательской записи (обычно из файла
+<i>/etc/shadow</i>
+
+или из теневого файла по схеме TCB) в качестве хеша пароля.
+Детали см. ниже.
+</dd><dt><b>nisplus</b>
+
+</dt><dd>
+Если указан этот параметр,
+<b>pam_tcb</b>
+
+будет пытаться устанавливать EUID пользователя непосредственно перед
+получением хеша пароля.
+Этот параметр необходимо указывать при использовании NIS+.
+Детали см. ниже.
+</dd><dt><b>write_to</b>=
+
+</dt><dd>
+Этот параметр определяет, где модуль
+<b>pam_tcb</b>
+
+должен хранить хеши новых паролей при смене паролей.
+Возможные значения: "passwd", "shadow", "tcb", и "nis".
+Значение по умолчанию: "shadow".
+</dd><dt><b>md5</b>
+
+</dt><dd>
+При обновлении паролей пользователей хешировать новые пароли с помощью
+устаревшего алгоритма, заимствованного из FreeBSD и основанного на MD5.
+</dd><dt><b>prefix</b>=
+
+</dt><dd>
+При обновлении паролей пользователей генерировать
+<i>salt</i>
+
+с указанным префиксом (который, в свою очередь, определяет, какой метод
+будет применен для хеширования пароля).
+Значение по умолчанию для префикса - "$2a$", что соответствует
+<b>bcrypt</b>-
+
+методу, основанному на Blowfish и поддерживающему изменяемое число итераций.
+</dd><dt><b>count</b>=
+
+</dt><dd>
+Число итераций, используемых криптографическим алгоритмом при хешировании
+паролей. Значение по умолчанию - 0; в этом случае применяется количество
+итераций по умолчанию для выбранного криптоалгоритма.
+<p>
+Рекомендуется переопределять это значение. За информацией по поддерживаемым
+методам хеширования, их свойствам и параметрам обращайтесь к
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crypt&amp;category=3">crypt</a></b>(3).
+
+</p></dd><dt><b>plain_crypt</b>
+
+</dt><dd>
+Использовать
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crypt&amp;category=3">crypt</a></b>(3)
+
+вместо
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crypt_ra&amp;category=3">crypt_ra</a></b>(3).
+
+Это может понадобиться в случае, если в системной библиотеке нет
+реентерабельной реализации выбранного метода хеширования.
+</dd><dt><b>nodelay</b>
+
+</dt><dd>
+Не задерживать выполнение при неудачных попытках аутентификации.
+</dd><dt><b>fork</b>
+
+</dt><dd>
+Создавать специальный подпроцесс для доступа к теневым файлам.
+При использовании этого параметра можно быть уверенным в том, что после вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pam_end&amp;category=3">pam_end</a></b>(3)
+
+в адресном пространстве процесса не останется важной информации о паролях.
+С другой стороны, применение этого параметра может негативно повлиять на
+работоспособность некоторых сложных приложений, и требует некоторых
+дополнительных ресурсов системы, что может несколько снизить
+производительность.
+</dd><dt><b>helper</b>=
+
+</dt><dd>
+Если хеш пароля не может быть получен модулем
+<b>pam_tcb</b>
+
+и UID аутентифицируемого пользователя совпадает с real UID того пользователя,
+под которым работает модуль, то
+<b>pam_tcb</b>
+
+запускает привилегированную вспомогательную программу для получения хеша
+пароля, необходимого для выполнения аутентификации.
+Этот параметр указывает путь к вспомогательной программе.
+Если указан пустой путь, то никакой вспомогательной программы запущено не
+будет.
+Значение по умолчанию -
+<i>/sbin/tcb_chkpwd</i>.
+
+<p>
+</p></dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>Получение хешей паролей</h2>
+
+Модуль
+<b>pam_tcb</b>
+
+использует следующий алгоритм для получение хеша пароля пользователя:
+<p>
+
+
+<br>
+
+если (указан параметр
+<b>passwd</b>
+
+и поле
+<b>pw_passwd</b>
+
+не равно ни "x", ни "*NP*")
+<br>
+
+
+<br>
+
+использовать поле
+<b>pw_passwd</b>
+
+в качестве хеша;
+
+<br>
+
+если (указан параметр
+<b>nisplus</b>)
+
+{
+
+<br>
+
+попытаться установить EUID соответствующего пользователя;
+если не удалось, то признать попытку неудачной;
+<br>
+
+<br>
+
+получить
+<b>struct spwd</b>
+
+пользователя с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getspnam&amp;category=3">getspnam</a></b>(3);
+
+<br>
+
+<br>
+
+восстановить прежний EUID;
+<br>
+
+<br>
+
+использовать поле
+<b>sp_pwdp</b>
+
+в качестве хеша;
+
+<br>
+
+}
+<br>
+
+если (указан параметр
+<b>shadow</b>
+
+и поле
+<b>pw_passwd</b>
+
+равно "x")
+
+<br>
+
+использовать поле
+<b>sp_pwdp</b>
+
+в качестве хеша;
+
+<br>
+
+если все вышеперечисленное не удалось, признать попытку неудачной.
+
+
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>Дефекты</h2>
+
+Текущая реализация модуля
+<b>pam_tcb</b>
+
+не является thread-safe (равно как
+<b>pam_unix</b>
+
+и
+<b>pam_pwdb</b>).
+
+<p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>Авторы</h2>
+
+Rafal Wojtczuk &lt;<a href="mailto:nergal@owl.openwall.com">nergal@owl.openwall.com</a>&gt;, Solar Designer &lt;<a href="mailto:solar@owl.openwall.com">solar@owl.openwall.com</a>&gt;
+- реализация схемы TCB для ОС Openwall GNU/*/Linux.
+<dl compact="">
+<dt>Dmitry V. Levin &lt;<a href="mailto:ldv@alt-linux.org">ldv@alt-linux.org</a>&gt; - аудит кода,</dt><dd>
+адаптация схемы TCB для ОС ALT Linux,
+перевод документации по TCB на русский язык.
+</dd><dt>Реализация PAM-модуля</dt><dd>
+<b>pam_tcb</b>
+
+призвана обеспечивать обратную совместимость с
+<b>pam_unix</b>,
+
+ввиду чего некоторые решения были заимствованы из
+<b>pam_unix</b>.
+
+Некоторые менее критичные фрагменты кода, а также в некоторой мере композиция
+кода взяты из реализации модуля
+<b>pam_unix</b>
+
+в Linux-PAM.
+Имена соавторов
+<b>pam_unix</b>
+
+приведены в каталоге orig_copyright/ исходного кода схемы TCB.
+<p>
+</p></dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>Ссылки</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crypt&amp;category=3">crypt</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=crypt_ra&amp;category=3">crypt_ra</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getpwnam&amp;category=3">getpwnam</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getspnam&amp;category=3">getspnam</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=shadow&amp;category=3">shadow</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=login.defs&amp;category=5">login.defs</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=passwd&amp;category=5">passwd</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=shadow&amp;category=5">shadow</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcb&amp;category=5">tcb</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pam&amp;category=8">pam</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcb_convert&amp;category=8">tcb_convert</a></b>(8)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">Название</a></dt><dd>
+</dd><dt><a href="#lbAC">Описание</a></dt><dd>
+</dd><dt><a href="#lbAD">Параметры</a></dt><dd>
+</dd><dt><a href="#lbAE">Получение хешей паролей</a></dt><dd>
+</dd><dt><a href="#lbAF">Дефекты</a></dt><dd>
+</dd><dt><a href="#lbAG">Авторы</a></dt><dd>
+</dd><dt><a href="#lbAH">Ссылки</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="pam_tcb" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

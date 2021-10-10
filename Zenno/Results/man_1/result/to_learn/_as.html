@@ -1,0 +1,442 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN as (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, as"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="as" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">as (1)</font><hr><li> <a href="/man.shtml?topic=as&amp;category=1&amp;russian=4"><u>as</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=as&amp;category=1&amp;russian=1"><u>as</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=as&amp;category=1&amp;russian=0"><u>as</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=as&amp;category=1&amp;russian=2"><u>as</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li>
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>НАЗВАНИЕ</h2>
+
+<p>
+GNU as - переносимый GNU ассемблер.
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>СИНТАКСИС</h2>
+
+<p>
+&lt;bf&gt;as [-a[dhlns]=<i>файл</i>]] [-D] [--defsym SYM=VAL] [-f] [-I
+<i>путь</i>] [-K] [-L] [-M | --mri] [-o <i>обьектный_файл</i>] [-R] [-v]
+[-w] [-- | <i>файлы</i>...]&lt;/bf&gt;
+</p><p>
+<i>опции только для i960:</i>
+</p><p>
+<b>[-ACA|-ACA_A|-ACB|-ACC|-AKA|-AKB|-AKC|-AMC] [-b]
+[-no-relax]</b>
+</p><p>
+<i>опции только для m680x0:</i>
+</p><p>
+<b>[-l] [-mc68000|-mc68010|-mc68020]</b>
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+GNU <b>as</b> - это один из семейства ассемблеров. Если вы
+используете (или хотите использовать) GNU ассемблер при
+одной архитектуре машины, то вы должны найти совершенно
+похожее окружение, когда вы используете его на другой
+архитектуре. Каждая версия имеет много общего с другими,
+включая форматы обьектных файлов, многие директивы (часто
+называемые <i>псевдо-опциями)</i> и синтаксис ассемблера.
+<p>
+</p><dl compact="">
+<dt>Для информации по синтаксису и псевдо-опциям </dt><dd>
+<p>
+используется
+GNU <b>as</b>, смотрите секцию `<b>as</b>' в <b>info</b> (или руководство <i>Using
+as: The GNU Assembler</i>).
+</p><p>
+<b>as</b>    поначалу предполагалось использовать для
+ассемблирования вывода компилятора GNU C <b>gcc</b> для
+использования компановщиком <b>ld</b>. Тем не менее, <b>as</b>
+попытались сделать корректно работающим, мировым
+ассемблером. Это не значит, что <b>as</b>    всегда использует
+такой же синтаксис как и другой ассемблер, работающий для
+той же архитектуры; например, мы знаем несколько
+несовместимых версий ассемблерного синтаксиса для 680x0.
+</p><p>
+Когда вы запускаете <b>as</b>    он ассемблирует точно одну
+исходную программу. Исходная программа состоит из одного
+или нескольких файлов.(Стандартный ввод - это тоже файл.)
+</p><p>
+Если <b>as</b> не было дано имен файлов, то он пытается читать
+один входной файл из стандартного ввода <b>as</b> который обычно
+представляет собой ваш терминал. Вы можете ввести <b>ctl-D</b>
+чтобы сказать <b>as</b>      что больше нет программ для
+ассемблирования. Используйте` <b>--</b> ` в вашей командной
+строке, если вам точно нужен стандартный ввод.
+</p><p>
+</p></dd><dt><b>as</b> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;может&nbsp;выводить&nbsp;предупреждающие&nbsp;сообщения&nbsp;и&nbsp;сообщения
+об ошибках в стандратный файл ошибок (обычно ваш
+терминал). Этого не должно происходить когда <b>as</b>
+запускается компилятором автоматически. Предупреждения
+выводятся так, чтобы <b>as</b> не прекращал ассемблирование
+нужной программы; ошибки говорят о серьезных проблемах и
+приводят к остановке ассемблирования.
+</p><p>
+</p></dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>ОПЦИИ</h2>
+
+<p>
+</p><dl compact="">
+<dt><b>-a</b> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Включает&nbsp;ассемблерные&nbsp;листинги.&nbsp;Эта&nbsp;опция&nbsp;имеет
+различные подопции. <b>d</b> игнорирует директивы
+отладки. <b>h</b> включает внутрь исходный код высокого
+уровня; доступно только если файл с исходным
+текстом программы был скомпилирован с опцией <b>-g. l</b>
+включает внутрь ассемблерный листинг. <b>n</b> игнорирует
+обработку форм. <b>s</b> включает внутрь список символов.
+<b>=</b> <i>файл</i> устанавливает имя файла листинга; данная
+подопция должна быть последней. Подопции
+включенные по умолчанию это <b>hls.</b>
+</p><p>
+</p></dd><dt><b>-D</b> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Эта&nbsp;опция&nbsp;допускается&nbsp;только&nbsp;для&nbsp;сценариев
+совместимых с вызовами для других ассемблеров; она
+ничего не делает.
+</p><p>
+</p></dd><dt><b>--defsym SYM=VALUE</b></dt><dd>
+<p>
+Определяет символ SYM как величину VALUE перед
+ассемблированием входного файла. VALUE должна быть
+целой константой. Как и в C, приставка 0x говорит о
+шестнадцатиричном числе, а приставка 0 об
+восьмиричном.
+</p><p>
+</p></dd><dt><b>-f</b> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;``fast''&nbsp;пропускает&nbsp;обработку&nbsp;препроцессором
+(присваевает исходный текст выходу компилятора).
+</p><p>
+</p></dd><dt><b>-I</b> <i>путь</i></dt><dd>
+<p>
+Добавить <i>путь</i> в список поиска директив <b>.include</b>
+</p><p>
+</p></dd><dt><b>-K</b> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Показывать&nbsp;предупреждения&nbsp;когда&nbsp;различные&nbsp;таблицы
+изменяются для длинного смещения.
+</p><p>
+</p></dd><dt><b>-L</b> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Позволять&nbsp;(в&nbsp;таблице&nbsp;символов)&nbsp;локальные&nbsp;символы,
+начинающиеся с ` <b>L</b> `
+</p><p>
+</p></dd><dt><b>-M, --mri</b></dt><dd>
+<p>
+Ассемблирование в формате совместимом с MRI.
+</p><p>
+</p></dd><dt><b>-o</b> <i>обьектный_файл</i></dt><dd>
+<p>
+Имя обьектного_файла который делает <b>as</b>
+</p><p>
+</p></dd><dt><b>-R</b> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Поместить&nbsp;секцию&nbsp;данных&nbsp;в&nbsp;секцию&nbsp;текста
+</p><p>
+</p></dd><dt><b>-v</b> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Выдает&nbsp;версию&nbsp;<b>as</b>
+</p><p>
+</p></dd><dt><b>-W</b> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Игнорировать&nbsp;предупреждающее&nbsp;сообщение
+</p><p>
+</p></dd><dt><i>--</i> | <i>файлы...</i></dt><dd>
+<p>
+Исходные файлы для ассемблирования или стандартный
+ввод ( <b>--</b>)
+</p><p>
+</p></dd><dt><b>-Avar</b> </dt><dd>
+<p>
+<i>(Когда настроено для Intel 960.)</i> Задает какой
+вариант архитектуры Intel 960 используется.
+</p><p>
+</p></dd><dt><b>-b</b> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>(Когда&nbsp;настроено&nbsp;для&nbsp;Intel&nbsp;960.)</i>&nbsp;Добавляет&nbsp;код&nbsp;для
+сбора статистики о заданных ветвлений.
+</p><p>
+</p></dd><dt><b>-no-relax</b></dt><dd>
+<p>
+<i>(Когда настроено для Intel 960.)</i> Не изменять
+инструкции compare-and-branch (проверки и
+ветвления) для длинного смещения; выдавать ошибку,
+если необходимо.
+</p><p>
+</p></dd><dt><b>-l</b> </dt><dd>
+<p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>(Когда&nbsp;настроено&nbsp;для&nbsp;Motorola&nbsp;68000).</i>
+Укорачивает ссылки на неопределеные символы до
+одного слова, вместо двух.
+</p><p>
+</p></dd><dt><b>-mc68000</b>|<b>-mc68010</b>|<b>-mc68020</b></dt><dd>
+<p>
+<i>(Когда настроено для Motorola 68000).</i>
+Определяет процессор из семейства 68000 (по
+умолчанию 68020)
+</p><p>
+</p></dd><dt>Опции </dt><dd>
+<p>
+могут быть в любом порядке и могут находится перед,
+после или между именами файлов. Порядок имен файлов строго
+определен.
+</p><p>
+</p></dd><dt>` </dt><dd>
+<p>
+<b>--</b> ` (два тире) это имя стандартного ввода, точно также
+как и просто имя входного файла для <b>as</b> Исключая ` <b>--</b> `
+любые аргументы командной строки, что начинаются с тире (`
+<b>-</b> `) являются опциями. Каждая опция изменяет поведение <b>as</b>
+. Если не задано опций, то работают опции по умолчанию.
+После символа ` <b>-</b> ` позволяется одна или несколько букв;
+при этом важен регистр букв.
+Все опции необязательны.
+</p><p>
+Опция ` <b>-o</b> ` ожидает одного имени файла. Имя файла может
+или непосредственно следовать за буквой опции (для
+совместимости с другими ассемблерами) или может быть
+следующим аргументом в командной строке (стандарт GNU).
+</p><p>
+</p></dd><dt>Эти две команды эквивалентны:</dt><dd>
+<p>
+<b>as -o my-object-file.o mumble.s
+as -omy-object-file.o mumble.s</b>
+</p><p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+`<b>as</b>' раздел в <b>info</b> ; <i>Using as: The GNU Assembler</i> ; <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gcc&amp;category=1">gcc</a>(1)</b>
+,
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ld&amp;category=1">ld</a>(1)</b>
+.
+<p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>ПРАВА</h2>
+
+Copyright (c) 1991, 1992 Free Software Foundation, Inc.
+<p>
+Permission is granted to make and distribute verbatim
+copies of this manual provided the copyright notice and
+this permission notice are preserved on all copies.
+</p><p>
+Permission is granted to copy and distribute modified versions
+of this manual under the conditions for verbatim
+copying, provided that the entire resulting derived work
+is distributed under the terms of a permission notice
+identical to this one.
+</p><p>
+Permission is granted to copy and distribute translations
+of this manual into another language, under the above conditions
+for modified versions, except that this permission
+notice may be included in translations approved by the
+Free Software Foundation instead of in the original
+English.
+</p><p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAG">ПРАВА</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="as" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

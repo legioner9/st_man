@@ -1,0 +1,729 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN systemd (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, systemd"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="systemd" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">systemd (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=systemd&amp;category=1&amp;russian=0"><u>systemd</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li><font color="#555555">Ключ <a href="/keywords/systemd.html"><u>systemd</u></a> обнаружен в базе ключевых слов.</font></li><pre>NAME
+       systemd, init - systemd System and Service Manager
+
+SYNOPSIS
+       systemd [OPTIONS...]
+
+       init [OPTIONS...] {COMMAND}
+
+DESCRIPTION
+       systemd представляет собой системный и сервисный менеджер для операционной
+       системы Linux. При выполнении в качестве первого процесса загрузки (PID-1),
+       он выступает в качестве системы инициализации , которая запускает и 
+       поддерживает сервисы пользовательского пространства.
+ 
+       Для совместимости с SysV, если systemd вызывается как init и PID которого
+       не 1, он будет выполнять telinit и передавать все аргументы командной 
+       строки без изменений. Это означает, что init и telinit в основном 
+       эквивалентны, если вызывается из нормального сеанса. Смотрите telinit(8) 
+       для получения дополнительной информации.
+
+       При запуске, в качестве системной инстанции, systemd интерпретирует файл
+       конфигурации system.conf, в противном случае user.conf. Смотрите 
+       systemd.conf (5) для получения дополнительной информации.
+
+OPTIONS
+       Понимает следующие опции:
+
+       -h, --help
+           Печать короткого текста помощи и выход.
+
+       --test
+           Определяет последовательность запуска, выводит ее и выходит. Эта 
+           опция полезна только для отладки.
+
+
+       --dump-configuration-items
+           Вывод используемых элементов конфигурации модулей. Выводится 
+           краткий, но полный список элементов конфигурации, которые 
+           используются в настроечных файлах модулей.
+           
+       --introspect=
+           Извлечение данных самоанализа D-Bus интерфейса. В основном, это 
+           полезно во время инсталляции для получения данных, пригодных для 
+           репозитория D-Bus интерфейсов. При желании имя интерфейса для данных 
+           самоанализа может быть указано. Если оно опущено, данные самоанализа 
+           выводятся для всех интерфейсов.           
+
+       --unit=
+           Установить по умолчанию модуль для активации при запуске. Если не 
+           указано, то по умолчанию - default.target.
+
+       --system, --user
+           Говорит systemd запустить системную инстанцию (соответственно, 
+           пользовательскую инстанцию), даже если ID процесса не равен 1 
+           (соответственно равен 1), т.е. systemd не выполняется (соответственно
+           выполняется) в качестве процесса инициализации. Обычно нет 
+           необходимости задавать эти опции,так как systemd автоматически 
+           определяет режим своего запуска. Эти варианты, следовательно, мало 
+           полезны, кроме случае отладки. Обратите внимание, что не 
+           обеспечивается загрузка и поддержка полной системы с systemd 
+           запущенной в режиме --system при PID не равном 1. На практике, 
+           задание опции --system явно имеет смысл только в сочетании с опцией
+           --test.
+
+       --dump-core
+           Дамп ядра при крахе. Эта опция не имеет эффекта, в случае запуска
+           в пользовательской инстанции.
+
+       --crash-shell
+           Запускать shell при крахе. Эта опция не имеет эффекта, в случае 
+           запуска в пользовательской инстанции.
+
+       --confirm-spawn
+           Запрашивать подтверждение при размножении процессов.Эта опция не имеет
+           эффекта, в случае запуска в пользовательской инстанции.
+
+       --show-status=
+           Показывать сжатую статусную информацию о сервисах при загрузке.
+           Эта опция не имеет эффекта при выполнении в пользовательской инстанции.
+           Принимает булевский аргумент, который может быть пропущен, что 
+           интерпретируется как true.
+
+       --sysv-console=
+           Определяет будет ли вывод SysV скрипта инициализации направлен на
+           консоль. Эта опции не будет иметь эффекта при выполнении в 
+           пользовательской инстанции. Принимает булевский аргумент, который
+           может быть пропущен, что интерпретируется как true.
+
+       --log-target=
+           Задает приемник для логов. Аргумент должен быть одним из следующих
+           console, syslog, kmsg,  syslog-or-kmsg, null.
+
+       --log-level=
+           Задает уровень журналирования. В качестве аргумента принимается
+           числовой уровень журналирования или хорошо известные syslog(3)
+           символические имена (в нижнем регистре):emerg, alert, crit, err, 
+           warning, notice, info, debug.
+
+       --log-color=
+           Выделение важных журнальных сообщений. Аргумент - булевое
+           значение. Если аргумент пропущен, то по умолчанию считается true.
+
+       --log-location=
+           Включать расположения в коде в журнальные сообщения. Это наиболее
+           значимо для целей отладки. Аргумент - булевое значение. Если аргумент 
+           пропущен, то по умолчанию считается true.
+
+       --default-standard-output=, --default-standard-error=
+           Задает вывод оп умолчанию или соответственно вывод ошибок для
+           всех сервисов и сокетов, тоесть управляет значение по умолчанию
+           для StandardOutput= и соответственно для StandardExecute= (см.
+           systemd.exec(5) для деталей). Воспринимает одно из следующих
+           значений inherit, null, tty, syslog, syslog+console, kmsg, 
+           kmsg+console. Если аргумент пропущен, то по умолчанию считается
+           inherit.
+
+CONCEPTS
+       systemd предусматривает систему зависимостей между "разными" элементами 
+       называемыми "units"(юнит). Юниты инкапсулируют различные объекты, которые 
+       важны для загрузки системы и поддержки. Большинство юнитов настроены 
+       в файлах конфигурации юнитов, чей синтаксис и базовый набор опций 
+       описан в systemd.unit (5), однако некоторые из них создаются 
+       автоматически из других конфигураций или динамически из системных
+       структур. Юниты могут быть "active"( что подразумевает started, bound,
+       plugged in, ... в зависимости от типа устройства, см. ниже), или 
+       "inactive" ( что подразумевает stopped, unbound, unplugged, ...), а 
+       также находиться в процессе активировании или деактивации, то есть 
+       между двумя состояниями (эти состояния называются 'activating', 
+       'deactivating'). Также возможно специальное состояние "failed", которое
+       очень похоже на "inactive" и возникает, когда сервис потерпел неудачу
+       на некотором пути ( процесс возвратил код ошибки на выходе, или потерпел
+       крах, или тайм-аут операции). Если это состояние возникает, то причина
+       будет зарегистрирована в журнале, для дальнейшего использования. 
+       Обратите внимание, что различные типы юнитов могут иметь ряд дополнительных
+       подсостояний, которые отображаются на пять обобщенных состояний юнитов, 
+       описанных здесь.
+
+       Доступны следующие типы юнитов:
+
+        1. Service units, которые управляют демонами и процессами, из которых 
+           они состоят. За деталями обращайтесь к systemd.service(5).
+
+        2. Socket units, которые инкапсулируют локальные IPC или сетевые сокеты
+           в системе, полезные при socket-based активации. За деталями об socket 
+           units обращайтесь к systemd.socket(5), за деталями по socket-based
+           активации и другим формам активации обращайтесь к daemon(7).
+
+        3. Target units полезны для группировки юнитов или обеспечения хорошо
+           известных точек синхронизации в процессе загрузки, смотрите 
+           systemd.target(5).
+
+        4. Device units представляют устройства ядра в systemd и могут быть 
+           использованы для выполнения device-based активации. Более подробную 
+           информацию смотрите в systemd.device(5).
+        
+        5. Mount units управляют точками монтирования в файловой системе, за
+           деталями обращайтесь к systemd.mount(5).
+
+        6. Automount units обеспечивают возможности автомонтирования, для 
+           монтирования файловых систем "по требованию", а также параллелизации
+           загрузки. Смотрите systemd.automount(5).
+
+        7. Snapshot units могут быть использованы для временного сохранения
+           состояний множества юнитов systemd, которые позже могут быть 
+           восстановлены при активации сохраненного snapshot unit. За 
+           дополнительной информацией обращайтесь к systemd.snapshot(5).
+           
+        8. Timer units используются для запуска активации других юнитов
+           основываясь на таймерах. Вы можете найти детали в systemd.timer(5).
+
+        9. Swap units очень похожи  на mount units и инкапсулируют разделы
+           или файлы подкачки памяти операционной системы. Они описаны в 
+           systemd.swap(5).
+
+       10. Path units могут быт использованы для активации других сервисов
+           когда объекты файловой системы меняются или модифицируются.
+           Обращайтесь к systemd.path(5).
+       
+       Юниты именуются как свои конфигурационные файлы. Некоторые юниты имеют
+       свою особенную семантику. Детальный список доступен в systemd.special(7).
+
+       
+       systemd известны различные виды зависимостей, в том числе зависимости 
+       требования положительные и отрицательные (например, Requires= и 
+       Conflicts=), а также зависимости очередности (After= и Before=). NB: 
+       зависимости очередности и требования ортогональны. Если только зависимость
+       требования существует между двумя юнитами (например, foo.service 
+       требует bar.service), но не зависимость очередности (например, после 
+       foo.service bar.service), и оба запрошены на запуск, то они будут 
+       запускаться параллельно. Это общий шаблон, что обе зависимости требования
+       и очередности существуют между двумя юнитами. Также отметим, что 
+       большинство зависимостей неявно создается и поддерживается systemd. 
+       В большинстве случаев нет необходимости объявлять дополнительные 
+       зависимости вручную, однако это можно сделать.
+       
+       Прикладные программы и юниты (через зависимости) могут потребовать 
+       изменения состояния юнитов. В systemd эти требования инкапсулируются 
+       в 'jobs' и поддерживается в job очереди. Jobs могут успешно выполниться,
+       или могут потерпеть неудачу, их выполнение упорядочены согласно 
+       зависимости очередности юнитов, на которую они были запланированы.
+
+       При загрузке systemd активизирует юнит типа target default.target, чья 
+       работа заключается в активации загружаемых сервисов и других загружаемых
+       юнитов, потянув их с помощью зависимостей. Обычно имя этого юнита просто 
+       псевдоним (ссылка) либо на graphical.target (для полнофункциональных 
+       загрузок в пользовательский интерфейс) или на multi-user.target (для 
+       ограниченной только консолью загрузки при использования во встроенных 
+       или серверных средах, или им подобных; подмножество graphical.target).
+       Впрочем на усмотрение администратора оставлена возможность сделать его
+       в псевдонимом к любому другому юниту типа target. Подробнее об этих 
+       юнитах типа target смотрите systemd.special(7).
+       
+       Процессы потомки systemd помещаются в отдельный Linux группы управления 
+       с именами как у юнитов, к которым они принадлежат в собственной иерархии
+       systemd.(смотрите cgroups.txt [1] для получения дополнительной информации
+       о группах управления, или коротко cgroups"). systemd использует это,
+       чтобы эффективно отслеживать процессы. Информация о группе управления
+       поддерживается в ядре, и доступна с помощью иерархии файловой системы
+       (под /sys/fs/cgroup/systemd/), или в таких инструментов, как ps(1) 
+       (ps xawf -eo pid,user,cgroup,args особенно полезна, чтобы получить 
+       список всех процессов и юнитов systemd, которым они принадлежат).
+       
+       systemd в большой степени совместима с системой SysV init: SysV init 
+       скрипты поддерживаются и просто читаются как файлы конфигурации 
+       альтернативного (хотя и ограниченного) формата . Обеспечивается SysV 
+       /dev/initctl интерфейс и доступна совместимая реализация различных 
+       SysV клиентских инструментов. Кроме того, поддерживаются различные 
+       устоявшиеся Unix функциональности, такие как /etc/fstab или базы 
+       данных utmp.
+       
+       systemd имеет минимальную систему трансакций : если требуется 
+       запустить или выключить юнит, то он и все его зависимости будут
+       добавлены во временную трансакцию. Далее, следует проверка является 
+       ли трансакция последовательной (является ли порядок всех юнитов не 
+       зацикленным). Если это не так, systemd постарается исправить это, 
+       и удалит из трансакции jobs, не являющиеся необходимыми,
+       что может избавить от зацикливания. Также, systemd пытается подавить
+       не являющиеся необходимыми jobs в трансакции, которые могут остановить
+       запущенный сервис. Наконец, проверяется, является ли jobs из трансакции 
+       противоречивыми jobs, которые уже находятся очереди, и тогда возможно 
+       трансакция будет прервана. Если все работает, и трансакция является 
+       последовательной и сведено к минимуму ее влияние,то она объединяется со 
+       всеми уже ожидающий обработки jobs и добавляется в очередь выполнения.
+       Фактически это означает, что до выполнения затребованной операции, 
+       systemd будет проверять, что она имеет смысл, исправлять ее, если 
+       возможно, и если она действительно не может работать отменит ее.
+       
+       Systemd содержит встроенную реализацию различных задач, которые должны 
+       быть выполнены как часть процесса загрузки. Например, устанавливает
+       имя хоста или конфигурирует петлевое устройство сети. Также настраивает
+       и монтирует различные файловые системы API, такие как /sys или /proc.
+       
+       Для получения дополнительной информации о понятиях и идеях стоящих за 
+       systemd, пожалуйста, обратитесь к Original Design Document[2].
+       
+       Обратите внимание, что некоторые, но не все интерфейсы, предоставляемые 
+       systemd охвачены Interface Stability Promise[3].
+
+DIRECTORIES
+       Каталоги системных юнитов
+           системный администратор systemd читает конфигурацию юнитов из 
+           различных каталогов. Пакеты, которые хотят установить файлы юнитов, 
+           должны разместить их в каталог, возвращаемый командой 
+           pkg-config systemd --variable=systemdsystemunitdir 
+           Другие проверяемыми каталогами являются /usr/local/lib/systemd/system 
+           и /usr/lib/systemd/system. 
+           Пользовательская конфигурация всегда имеет приоритет. 
+           pkg-config systemd --variable=systemdsystemconfdir возвращает 
+           путь к каталогу системной конфигурации. Пакеты должны изменять 
+           содержимое этих каталогов только командами enable и disable 
+           инструмента systemctl(1). 
+           
+       Каталоги пользовательских юнитов 
+           Подобные правила применяются для каталогов пользовательских юнитов. 
+           Однако, находить юниты здесь следует по спецификации 
+           XDG Base Directory [4]. Приложения должны поместить свои файлы юнитов
+           в каталог, возвращенный командой 
+           pkg-config systemd --variable=systemduserunitdir. Глобальная 
+           конфигурация выполнена в каталоге, о котором сообщает команда 
+           pkg-config systemd --variable=systemduserconfdir. Команды  enable 
+           и disable инструмента systemctl(1) могут обращаться с обоими видами 
+           юнитов глобальными (то есть для всех пользователей) и частными (для 
+           одного пользователя) разрешая/запрещая их.
+           
+       Каталоги скриптов SysV init 
+           Местоположение каталогов скриптов SysV init варьируется между 
+           дистрибутивами. Если systemd не может найти родной unit файл для
+           требуемого сервиса, он будет искать скрипт SysV init того же самого 
+           имени (с удаленным суффиксом .service).
+           
+       Каталог механизма ссылок SysV runlevel
+           Местоположение каталога механизма ссылок SysV runlevel различно 
+           между дистрибутивами. systemd учитывает механизм ссылок, определяя,
+           должен ли сервис быть включен. Обратите внимание на то, что 
+           service unit с встроенным unit конфигурационным файлом не может 
+           быть запущен, при активизации его в механизме ссылок SysV runlevel.
+
+SIGNALS
+       SIGTERM
+           После получения этого сигнала системный менеджер systemd 
+           сериализует его состояние, перезапускает себя и десереализует 
+           сохраненное состояние снова. В основном это эквивалентно:
+           systemctl daemon-reexec.
+           
+           Пользовательский менеджер systemd запустит exit.target unit, когда
+           примет этот сигнал. В основном это эквивалентно:
+           systemctl --user start exit.target.
+
+       SIGINT
+           После получения этого сигнала системный менеджер systemd запустит
+           юнит ctrl-alt-del.target. В основном это эквивалентно:
+           systemctl start ctl-alt-del.target.
+
+           Пользовательский менеджер systemd обойдется с этим сигналом тем
+           же способом что и сигналом SIGTERM.
+
+       SIGWINCH
+           Когда будет получен этот сигнал, системный менеджер запустит 
+           юнит kbrequest.target. В основном это эквивалентно:
+           systemctl start kbrequest.target.
+           
+           Пользовательский менеджер systemd игнорирует этот сигнал.
+
+       SIGPWR
+           Когда будет получен этот сигнал, системный менеджер запустит 
+           юнит sigpwr.target. В основном это эквивалентно:
+           systemctl start sigpwr.target.
+           
+       SIGUSR1
+           Когда будет получен этот сигнал, системный менеджер будет 
+           пытаться пересоединиться к шине D-Bus.
+
+       SIGUSR2
+           Когда будет получен этот сигнал, системный менеджер запишет в лог
+           целиком свое состояние в человеко читаемой форме. Записанные данные
+           будут такие же как выводимые командой: systemctl dump.
+           
+       SIGHUP
+           Перезагрузка полностью конфигурации демона. В основном это 
+           еквивалентно: systemctl daemon-reload.
+
+       SIGRTMIN+0
+           Входит в режим по умолчанию, запускает юнит default.target.
+           В основном это эквивалентно: systemctl start default.target.
+           
+       SIGRTMIN+1
+           Входит в спасательный режим, запускает юнит rescue.target. 
+           В основном это эквивалентно: systemctl isolate rescue.target.
+           
+       SIGRTMIN+2
+           Входит в аварийный режим, запускает юнит emergency.service. 
+           В основном это эквивалентно: systemctl isolate emergency.service.
+
+       SIGRTMIN+3
+           Останавливает машину, запускает юнит halt.target. В основном
+           это эквивалентно: systemctl start halt.target.
+
+       SIGRTMIN+4
+           Выключение питания компьютера, запускает юнит poweroff.target. 
+           В основном это эквивалентно systemctl start poweroff.target.
+
+       SIGRTMIN+5
+           Перезапуск машины, запуск юнита reboot.target. В основном это
+           эквивалентно: systemctl start reboot.target.
+
+       SIGRTMIN+6
+           Перезапуск машины через kexec, запуск юнита kexec.target. 
+           В основном это эквивалентно: systemctl start kexec.target.
+
+       SIGRTMIN+13
+           Немедленный останов машины.
+
+       SIGRTMIN+14
+           Немедленное отключение питания машины.
+
+       SIGRTMIN+15
+           Немедленная перезагрузка машины.
+
+       SIGRTMIN+16
+           Немедленная перезагрузка машины с kexec.
+
+       SIGRTMIN+20
+           Делает возможным вывод статусных сообщений на консоль, будь то
+           вызванная параметром systemd.show_status=1 в командной строке ядра.
+
+       SIGRTMIN+21
+           Отмена возможности вывода статусных сообщений на консоль, будь то
+           вызванная параметром systemd.show_status=0 в командной строке ядра.
+
+ENVIRONMENT
+       $SYSTEMD_LOG_LEVEL
+           systemd читает log level из этой переменной окружения. Эта 
+           настройка может быть переопределена с помощью опции --log-level=.
+
+       $SYSTEMD_LOG_TARGET
+           systemd читает целевой журнал из этой переменной окружения. Эта
+           настройка может быть переопределена с помощью опции --log-target=.
+
+       $SYSTEMD_LOG_COLOR
+           Управляет будет ли systemd выделять цветом важные журнальные 
+           сообщения. Эта настройка может быть переопределена с помощью
+           опции --log-color=.
+
+       $SYSTEMD_LOG_LOCATION
+           Управляет будет ли systemd выводить номер строки в исходном коде 
+           вместе с журнальными сообщениям. Это поведение может быть 
+           переопределено с помощью опции --log-location=.
+
+       $XDG_CONFIG_HOME, $XDG_CONFIG_DIRS, $XDG_DATA_HOME, $XDG_DATA_DIRS
+           Пользовательский менеджер systemd использует эти переменные в
+           соответствии с XDG Base Directory спецификацией [4] что найти
+           ее конфигурацию.
+
+       $SYSTEMD_UNIT_PATH
+           Задает где systemd ищет файлы юнитов.
+
+       $SYSTEMD_SYSVINIT_PATH
+           Задает где systemd ищет скрипты SysV init.
+
+       $SYSTEMD_SYSVRCND_PATH
+           Задает где systemd ищет скрипты системы ссылок runlevel SysV init. 
+
+       $LISTEN_PID, $LISTEN_FDS
+           Устанавливается systemd для контролируемых процессов во время
+           socket-based активации. Смотрите See sd_listen_fds(3) для 
+           большей информации.
+
+       $NOTIFY_SOCKET
+           Устанавливается systemd для контролируемых процессов для 
+           уведомлений о статусе и завершении запуска. Смотрите 
+           See sd_notify(3) для большей информации.
+
+KERNEL COMMAND LINE
+       Когда запущен в системной инстанции systemd разбирает несколько
+       аргументов командной строки ядра:
+
+       systemd.unit=
+           Переопределяет юнит, который активируется при загрузке. По
+           умолчанию это default.target. Это может быть использовано для
+           временной загрузки в другой загрузочный юнит, как например
+           rescue.target или emergency.service. Смотрите systemd.special(7)
+           для детальной информации об этих юнитах.
+
+       systemd.dump_core=
+           Принимает булевый аргумент. Если true, то systemd делает core
+           dump когда рушится. В противном случае core dump не создается.
+           По умолчанию true.
+
+       systemd.crash_shell=
+           Принимает булевский аргумент. Если true, то systemd порождает 
+           shell, когда рушится. В противном случае shell не порождается. По 
+           умолчанию false, из соображений безопасности, так как shell
+           не защищен никакой парольной аутентификацией.
+
+       systemd.crash_chvt=
+           Принимает аргумент целое число. Если положительное, то systemd
+           активирует заданный виртуальный терминал когда рушится. По
+           умолчанию -1.
+
+       systemd.confirm_spawn=
+           Принимает булевский аргумент. Если true то запрашивается
+           подтверждение когда порождается процесс. По умолчанию false.
+
+       systemd.show_status=
+           Принимает булевский аргумент. Если true, то выводит на консоль
+           в сжатом виде изменения статуса сервисов в течении загрузки. По 
+           умолчанию true.
+
+       systemd.sysv_console=
+           Принимает булевский аргумент. Если true то вывод скрипты SysV init
+           будет направлен на консоль. По умолчанию true, но если quiet передан
+           как опция командной строки ядра, то в этом случае по умолчанию false.
+
+       systemd.log_target=, systemd.log_level=, systemd.log_color=,
+       systemd.log_location=
+           Управляет выводом в лог с тем же эффектом ка и
+           $SYSTEMD_LOG_TARGET, $SYSTEMD_LOG_LEVEL, $SYSTEMD_LOG_COLOR,
+           $SYSTEMD_LOG_LOCATION environment variables described above.
+
+       systemd.default_standard_output=, systemd.default_standard_error=
+           Управляет стандартным выводом/выводом ошибки для сервисов по 
+           умолчанию с тем  же эффектом как и аргументы командной строки
+           описанные выше --default-standard-output= и 
+           --default-standard-error= соответственно.
+
+SOCKETS AND FIFOS
+       /run/systemd/notify
+           Сокет уведомления состояния демона. Это сокет AF_UNIX datagram
+           используется для реализации логики уведомления демона, которое
+           осуществляется посредством sd_notify(3).
+
+       /run/systemd/logger
+           Используется внутренне юнитом systemd-logger.service для 
+           соединения STDOUT и/или STDERR порожденных просессов с syslog
+           или буфером журналов ядра. Это AF_UNIX потоковый сокет.
+           
+       /run/systemd/shutdownd
+           Используется внутренне инструментом shutdown(8) для выполнения
+           задержанного выключения. Это AF_UNIX datagram сокет.
+
+       /run/systemd/private
+           Предназначен для внутреннего использования в качестве канала связи 
+           между systemctl (1) и systemd процессами. Это AF_UNIX потоковый сокет. 
+           Этот интерфейс является частным systemd и не должен использоваться 
+           во внешних проектах.
+
+       /dev/initctl
+           Ограниченная поддержка совместимости клиентского интерфейса SysV, 
+           реализованная systemd-initctl.service unit. Это именованный канал 
+           в файловой системе. Этот интерфейс является устаревшим и не должны 
+           использоваться в новых приложениях.
+
+SEE ALSO
+       systemctl(1), systemadm(1), systemd-notify(1), daemon(7), sd-daemon(7),
+       systemd.unit(5), systemd.special(5), pkg-config(1)
+
+AUTHOR
+       Lennart Poettering <lennart@poettering.net>
+           Developer
+
+NOTES
+        1. cgroups.txt
+           http://www.kernel.org/doc/Documentation/cgroups/cgroups.txt
+
+        2. Original Design Document
+           http://0pointer.de/blog/projects/systemd.html
+
+        3. Interface Stability Promise
+           http://www.freedesktop.org/wiki/Software/systemd/InterfaceStabilityPromise
+
+        4. XDG Base Directory specification
+           http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
+
+
+
+systemd                           06/16/2011                        SYSTEMD(1)
+</lennart@poettering.net></pre>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="systemd" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

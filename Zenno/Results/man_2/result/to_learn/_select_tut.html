@@ -1,0 +1,1018 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN select_tut (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, select_tut"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="select_tut" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">select_tut (2)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=select_tut&amp;category=2&amp;russian=0"><u>select_tut</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=select_tut&amp;category=2&amp;russian=2"><u>select_tut</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+select, pselect, FD_CLR, FD_ISSET, FD_SET, FD_ZERO - synchronous I/O multiplexing
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/sys/time.h">sys/time.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/sys/types.h">sys/types.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/unistd.h">unistd.h</a>&gt;</b>
+
+<p>
+<b>int select(int </b><i>nfds</i><b>, fd_set *</b><i>readfds</i><b>,</b>
+
+<b>fd_set *</b><i>writefds</i><b>, fd_set *</b><i>exceptfds</i><b>,</b>
+
+<b>struct timeval *</b><i>utimeout</i><b>);</b>
+
+</p><p>
+<b>int pselect(int </b><i>nfds</i><b>, fd_set *</b><i>readfds</i><b>,</b>
+
+<b>fd_set *</b><i>writefds</i><b>, fd_set *</b><i>exceptfds</i><b>,</b>
+
+<b>const struct timespec *</b><i>ntimeout</i><b>, sigset_t *</b><i>sigmask</i><b>);</b>
+
+</p><p>
+<b>FD_CLR(int </b><i>fd</i><b>, fd_set *</b><i>set</i><b>);</b>
+
+<br>
+
+<b>FD_ISSET(int </b><i>fd</i><b>, fd_set *</b><i>set</i><b>);</b>
+
+<br>
+
+<b>FD_SET(int </b><i>fd</i><b>, fd_set *</b><i>set</i><b>);</b>
+
+<br>
+
+<b>FD_ZERO(fd_set *</b><i>set</i><b>);</b>
+
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Функция
+<b>select</b> (или <b>pselect</b>)
+является основной функцией большинства программ на языке C,
+эффективно обрабатывающих одновременно более одного файловового
+дескриптора (или сокета). Ее аргументами являются три массива
+файловых дескрипторов:
+<i>readfds</i>, <i>writefds</i> и <i>exceptfds</i>.
+Как правило, при использовании <b>select</b> программа ожидает "изменения
+состояния" одного или более файловых дескрипторов. Под "изменением
+состояния" понимается появление новых символов в потоке, с которым связан
+файловый дескриптор, <i>или</i> появление во внутренних буферах ядра
+места для записи в поток, <i>или</i> возникновение ошибки, связанной
+с файловым дескриптором (в случае сокета или канала это происходит,
+когда другая сторона закрывает соединение).
+<p>
+Суммируя вышесказанное, <b>select</b> просто следит за несколькими
+файловыми дескрипторами и является стандартным вызовом Unix для этих
+целей.
+</p><p>
+Массивы файловых дескрипторов называются
+<i>наборами файловых дескрипторов</i>.
+Каждый набор объявлен, как тип <b>fd_set</b> и его
+содержимое может быть изменено макросами 
+<b>FD_CLR</b>, <b>FD_ISSET</b>, <b>FD_SET</b> и <b>FD_ZERO</b>.
+Обычно <b>FD_ZERO</b> является первой функцией, используемой со
+свежеобъявленным набором. После этого, отдельные файловые дескрипторы
+могут быть по-очереди добавлены с помощью <b>FD_SET</b>.
+<b>select</b> изменяет содержимое наборов в соответсвие с правилами,
+описанными ниже; после вызова <b>select</b> вы можете проверить,
+находится ли ваш файловый дескриптор все еще в наборе с помощью
+макроса <b>FD_ISSET</b>, возвращающей ненулевое значение, если дескриптор
+присутствует в наборе, и ноль, если не присутствует. 
+<b>FD_CLR</b> удаляет файловый дескриптор из набора, хотя
+практическая ценность этого в хорошей программе сомнительна.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>АРГУМЕНТЫ</h2>
+
+<dl compact="">
+<dt><i>readfds</i></dt><dd>
+Этот набор служит для слежения за операциями чтения. После возврата из
+<b>select</b> <i>readfds</i> очищается от всех дескрипторов файлов, за
+исключением тех, для которых возможно немедленное чтение функциями
+<b>recv()</b> (для сокетов) или <b>read()</b> (для каналов, файлов и
+сокетов).
+</dd><dt><i>writefds</i></dt><dd>
+Этот набор служит для слежения за появлением места для записи данных в
+любой из файловых дескрипторов набора. После возврата из <b>select</b>
+<i>writefds</i> очищатся от всех файловых дескрипторов, за исключением
+тех, для которых возможна немедленная запись функциями <b>send()</b>
+(для сокетов) или <b>write()</b> (для каналов, файлов и сокетов).
+</dd><dt><i>exceptfds</i></dt><dd>
+Этот набор служит для слежения за исключениями или ошибками,
+связанными с любым из файловых дескрипторов набора. На самом деле
+слежение производится за появлением внепоточных (<i>out-of-band - OOB</i>)
+данных. Внепоточные данные посылаются через сокет с помощью флага
+<b>MSG_OOB</b> и, в действительности, <i>exceptfds</i> работает только
+для сокетов. Более подробно об этом написанов <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recv&amp;category=2">recv</a></b>(2) и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=send&amp;category=2">send</a></b>(2). После возврата из <b>select</b> <i>exceptfds</i>
+очищается от всех файловых дескрипторов, кроме тех, для которых
+доступны внепоточные данные. Прочитать можно лишь один байт
+внепоточных данных (это делается с помощью <b>recv()</b>). Записать
+внепоточные данные можно в любой момент. Эта операция является
+неблокируемой. Поэтому нет необходимости в четвертом наборе, который
+мог бы служить для слежения за возможностью записи внепоточных данных
+в сокет.
+</dd><dt><i>nfds</i></dt><dd>
+Это целое число содержит значение, на единицу большеее максимального
+файлового дескриптора любого из наборов. Другими словами, при
+добавлении файловых дескрипторов в наборы необходимо подсчитывать
+максимальное целое значение любого из них, затем увеличить это
+значение на единицу и передать как аргумент <i>nfds</i> функции
+<b>select</b>.
+</dd><dt><i>utimeout</i></dt><dd>
+<dl compact=""><dt></dt><dd>
+Этот аргумент задает наибольшее время, которое функция <b>select</b>
+будет ожидать изменения состояния дескрипторов. Если за это время
+ничего не произойдет, то функция возвратит управление вызвавшей
+программе. Если значение этого аргумента равно <b>NULL</b>, то
+<b>select</b> будет ожидать бесконечно. <i>utimeout</i> может быть
+установлен в ноль секунд; в этом случае <b>select</b> возвратит
+управление немедленно. Структура <b>struct timeval</b> определена как
+<p>
+
+</p><pre>struct timeval {
+ time_t tv_sec;    /* секунды */
+ long tv_usec;     /* микросекунды */
+};
+</pre>
+
+</dd></dl>
+
+</dd><dt><i>ntimeout</i></dt><dd>
+<dl compact=""><dt></dt><dd>
+Этот аргумент имеет то же значение, что и <i>utimeout</i>, но структура
+<b>struct timespec</b> позволяет указывать время с точностью до наносекунд:
+<p>
+
+</p><pre>struct timespec {
+    long tv_sec;    /* секунды */
+    long tv_nsec;   /* наносекунды */
+};
+</pre>
+
+</dd></dl>
+
+</dd><dt><i>sigmask</i></dt><dd>
+Этот аргумент содержит набор сигналов, которые разрешены во время
+вызова <b>pselect</b> (см. <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigaddset&amp;category=3">sigaddset</a></b>(3) и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigprocmask&amp;category=2">sigprocmask</a></b>(2)). В качестве аргумента может быть передан NULL; в
+этом случае при входе в функцию и выходе из нее набор разрешенных
+сигналов не меняется. В этом случае функция ведет себя как
+<b>select</b>.
+<p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>КОМБИНИРОВАНИЕ СИГНАЛОВ И ДАННЫХ СОБЫТИЙ</h2>
+
+<b>pselect</b> должен использоваться как в случае если вы ожидаете
+сигнала, так и в случае, если вы ожидаете данных из файлового
+дескриптора. Программы, обрабатывающие сигналы, как правило лишь
+выставляют в обработчике сигнала глобальный флаг, который означает,
+что событие должно быть обработано в главно цикле программы. Появление
+сигнала заставит <b>select</b> (или <b>pselect</b>) вернуть управление
+вызвавшей программе; при этом <b>errno</b> будет установлен в
+<b>EINTR</b>. Это поведение продиктовано необходимостью обработки
+сигналов программой (ее главным циклом) во избежание бесконечной
+блокировки <b>select</b>. В главном цикле программы должно быть
+условие, проверяющее глобальный флаг. Возникает вопрос: а что если
+сигнал придет после проверки этого условия, но до вызова <b>select</b>?
+В этом случае <b>select</b> навсегда заблокируется, хотя и есть
+ожидающее событие. Для разрешения этой проблемы существует функция
+<b>pselect</b>. Эта функция может быть использована для маскировки
+сигналов, которые не должны быть приняты нигде, кроме как внутри
+<b>pselect</b>. Например, предположим что интересующее нас событие -
+это завершение дочернего процесса. Перед запуском главного цикла мы
+должны заблокировать <b>SIGCHLD</b> с помощью <b>sigprocmask</b>. Наш
+вызов <b>pselect</b> разрешит <b>SIGCHLD</b> указав изначальную маску
+сигналов. Программ будет выглядеть так:
+<p>
+
+</p><pre>int child_events = 0;
+
+void child_sig_handler (int x) {
+    child_events++;
+    signal (SIGCHLD, child_sig_handler);
+}
+
+int main (int argc, char **argv) {
+    sigset_t sigmask, orig_sigmask;
+
+    sigemptyset (&amp;sigmask);
+    sigaddset (&amp;sigmask, SIGCHLD);
+    sigprocmask (SIG_BLOCK, &amp;sigmask,
+                                &amp;orig_sigmask);
+
+    signal (SIGCHLD, child_sig_handler);
+
+    for (;;) { /* главный цикл */
+        for (; child_events &gt; 0; child_events--) {
+            /* здесь обработка событий */
+        }
+        r = pselect (nfds, &amp;rd, &amp;wr, &amp;er, 0, &amp;orig_sigmask);
+
+        /* главная часть программы */
+    }
+}
+</pre>
+
+<p>
+
+Обратите внимание, что вышеуказанный вызов <b>pselect</b> может быть
+заменен:
+</p><p>
+
+</p><pre>        sigprocmask (SIG_BLOCK, &amp;orig_sigmask, 0);
+        r = select (nfds, &amp;rd, &amp;wr, &amp;er, 0);
+        sigprocmask (SIG_BLOCK, &amp;sigmask, 0);
+</pre>
+
+<p>
+
+но в этом случае все равно существует вероятность того, что сигнал
+будет получен после первого вызова <b>sigprocmask</b>, но до вызова
+<b>select</b>. Если вы все же решите сделать так, то разумно, как
+минимум, установить конечное время ожидания, чтобы процесс не
+блокировался. В настоящее время glibc работает таким образом.
+Ядро Linux не имеет встроенного вызова <b>pselect</b>.
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>ПРАКТИКА</h2>
+
+<p>
+Итак, какой прок от использования <b>select</b>? Разве нельзя просто
+считывать и записывать данные в файловые дескрипторы когда того
+захочется? Смысл использования select в том, что он следит за
+несколькими дескрипторами одновременно и корректно переводит процесс в
+режим ожидания, когда активности не наблюдается. Таким образом он
+позволяет вам одновременно обрабатывать несколько каналов и
+сокетов. Программисты Unix часто попадают в ситуацию, когда необходимо
+обработать ввод-вывод с более чем одного файловго дескриптора в то
+время как поток данных может быть неравномерным. Если вы создатите
+последовательность вызовов <b>read</b> и <b>write</b>, то вы можете
+попасть в ситуацию, когда один из вызовов будет ожидать данные из/в
+файлового дескриптора, в то время как другой будет простаивать, хотя
+данные для него уже появились. <b>select</b> позволяет эффективно
+справиться с такой ситуацией.
+</p><p>
+Классический пример использования <b>select</b> приведен на странице
+man <b>select</b>:
+</p><p>
+</p><pre>#include &lt;<a href="file:/usr/include/stdio.h">stdio.h</a>&gt;
+#include &lt;<a href="file:/usr/include/sys/time.h">sys/time.h</a>&gt;
+#include &lt;<a href="file:/usr/include/sys/types.h">sys/types.h</a>&gt;
+#include &lt;<a href="file:/usr/include/unistd.h">unistd.h</a>&gt;
+
+int
+main(void) {
+    fd_set rfds;
+    struct timeval tv;
+    int retval;
+
+    /* Следим ввели ли что-либо в stdin (fd 0). */
+    FD_ZERO(&amp;rfds);
+    FD_SET(0, &amp;rfds);
+    /* Ждем до 5 секунд. */
+    tv.tv_sec = 5;
+    tv.tv_usec = 0;
+
+    retval = select(1, &amp;rfds, NULL, NULL, &amp;tv);
+    /* На значение tv в данный момент полагаться нельзя! */
+
+    if (retval)
+        printf("Данные доступны.\n");
+        /* FD_ISSET(0, &amp;rfds) will be true. */
+    else
+        printf("Нет данных в течение 5 секунд.\n");
+
+    exit(0);
+}
+</pre>
+
+<p>
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПРИМЕР ПЕРЕНАПРАВЛЕНИЯ ПОРТА</h2>
+
+<p>
+Пример ниже лучше демонстрирует возможности <b>select</b>. Программа
+осуществляет перенаправление одного порта TCP на другой.
+</p><p>
+
+</p><pre>#include &lt;<a href="file:/usr/include/stdlib.h">stdlib.h</a>&gt;
+#include &lt;<a href="file:/usr/include/stdio.h">stdio.h</a>&gt;
+#include &lt;<a href="file:/usr/include/unistd.h">unistd.h</a>&gt;
+#include &lt;<a href="file:/usr/include/sys/time.h">sys/time.h</a>&gt;
+#include &lt;<a href="file:/usr/include/sys/types.h">sys/types.h</a>&gt;
+#include &lt;<a href="file:/usr/include/string.h">string.h</a>&gt;
+#include &lt;<a href="file:/usr/include/signal.h">signal.h</a>&gt;
+#include &lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;
+#include &lt;<a href="file:/usr/include/netinet/in.h">netinet/in.h</a>&gt;
+#include &lt;<a href="file:/usr/include/arpa/inet.h">arpa/inet.h</a>&gt;
+#include &lt;<a href="file:/usr/include/errno.h">errno.h</a>&gt;
+
+static int forward_port;
+
+#undef max
+#define max(x,y) ((x) &gt; (y) ? (x) : (y))
+
+static int listen_socket (int listen_port) {
+    struct sockaddr_in a;
+    int s;
+    int yes;
+    if ((s = socket (AF_INET, SOCK_STREAM, 0)) &lt; 0) {
+        perror ("socket");
+        return -1;
+    }
+    yes = 1;
+    if (setsockopt
+        (s, SOL_SOCKET, SO_REUSEADDR,
+         (char *) &amp;yes, sizeof (yes)) &lt; 0) {
+        perror ("setsockopt");
+        close (s);
+        return -1;
+    }
+    memset (&amp;a, 0, sizeof (a));
+    a.sin_port = htons (listen_port);
+    a.sin_family = AF_INET;
+    if (bind
+        (s, (struct sockaddr *) &amp;a, sizeof (a)) &lt; 0) {
+        perror ("bind");
+        close (s);
+        return -1;
+    }
+    printf ("ожидание соединений на порту %d\n",
+            (int) listen_port);
+    listen (s, 10);
+    return s;
+}
+
+static int connect_socket (int connect_port,
+                           char *address) {
+    struct sockaddr_in a;
+    int s;
+    if ((s = socket (AF_INET, SOCK_STREAM, 0)) &lt; 0) {
+        perror ("socket");
+        close (s);
+        return -1;
+    }
+
+    memset (&amp;a, 0, sizeof (a));
+    a.sin_port = htons (connect_port);
+    a.sin_family = AF_INET;
+
+    if (!inet_aton
+        (address,
+         (struct in_addr *) &amp;a.sin_addr.s_addr)) {
+        perror ("неправильный формат адрес IP");
+        close (s);
+        return -1;
+    }
+
+    if (connect
+        (s, (struct sockaddr *) &amp;a,
+         sizeof (a)) &lt; 0) {
+        perror ("connect()");
+        shutdown (s, SHUT_RDWR);
+        close (s);
+        return -1;
+    }
+    return s;
+}
+
+#define SHUT_FD1 {                      \
+        if (fd1 &gt;= 0) {                 \
+            shutdown (fd1, SHUT_RDWR);  \
+            close (fd1);                \
+            fd1 = -1;                   \
+        }                               \
+    }
+
+#define SHUT_FD2 {                      \
+        if (fd2 &gt;= 0) {                 \
+            shutdown (fd2, SHUT_RDWR);  \
+            close (fd2);                \
+            fd2 = -1;                   \
+        }                               \
+    }
+
+#define BUF_SIZE 1024
+
+int main (int argc, char **argv) {
+    int h;
+    int fd1 = -1, fd2 = -1;
+    char buf1[BUF_SIZE], buf2[BUF_SIZE];
+    int buf1_avail, buf1_written;
+    int buf2_avail, buf2_written;
+
+    if (argc != 4) {
+        fprintf (stderr,
+                 "Использование\n\tfwd &lt;слушаемый-порт&gt; \
+&lt;порт-куда-перенаправлять&gt; &lt;IP-адрес-куда-перенаправлять&gt;\n");
+        exit (1);
+    }
+
+    signal (SIGPIPE, SIG_IGN);
+
+    forward_port = atoi (argv[2]);
+
+    h = listen_socket (atoi (argv[1]));
+    if (h &lt; 0)
+        exit (1);
+
+    for (;;) {
+        int r, nfds = 0;
+        fd_set rd, wr, er;
+        FD_ZERO (&amp;rd);
+        FD_ZERO (&amp;wr);
+        FD_ZERO (&amp;er);
+        FD_SET (h, &amp;rd);
+        nfds = max (nfds, h);
+        if (fd1 &gt; 0 &amp;&amp; buf1_avail &lt; BUF_SIZE) {
+            FD_SET (fd1, &amp;rd);
+            nfds = max (nfds, fd1);
+        }
+        if (fd2 &gt; 0 &amp;&amp; buf2_avail &lt; BUF_SIZE) {
+            FD_SET (fd2, &amp;rd);
+            nfds = max (nfds, fd2);
+        }
+        if (fd1 &gt; 0
+            &amp;&amp; buf2_avail - buf2_written &gt; 0) {
+            FD_SET (fd1, &amp;wr);
+            nfds = max (nfds, fd1);
+        }
+        if (fd2 &gt; 0
+            &amp;&amp; buf1_avail - buf1_written &gt; 0) {
+            FD_SET (fd2, &amp;wr);
+            nfds = max (nfds, fd2);
+        }
+        if (fd1 &gt; 0) {
+            FD_SET (fd1, &amp;er);
+            nfds = max (nfds, fd1);
+        }
+        if (fd2 &gt; 0) {
+            FD_SET (fd2, &amp;er);
+            nfds = max (nfds, fd2);
+        }
+
+        r = select (nfds + 1, &amp;rd, &amp;wr, &amp;er, NULL);
+
+        if (r == -1 &amp;&amp; errno == EINTR)
+            continue;
+        if (r &lt; 0) {
+            perror ("select()");
+            exit (1);
+        }
+        if (FD_ISSET (h, &amp;rd)) {
+            unsigned int l;
+            struct sockaddr_in client_address;
+            memset (&amp;client_address, 0, l =
+                    sizeof (client_address));
+            r = accept (h, (struct sockaddr *)
+                        &amp;client_address, &amp;l);
+            if (r &lt; 0) {
+                perror ("accept()");
+            } else {
+                SHUT_FD1;
+                SHUT_FD2;
+                buf1_avail = buf1_written = 0;
+                buf2_avail = buf2_written = 0;
+                fd1 = r;
+                fd2 =
+                    connect_socket (forward_port,
+                                    argv[3]);
+                if (fd2 &lt; 0) {
+                    SHUT_FD1;
+                } else
+                    printf ("connect from %s\n",
+                            inet_ntoa
+                            (client_address.sin_addr));
+            }
+        }
+/* NB: считать внепоточные данные перед обычными */
+        if (fd1 &gt; 0)
+            if (FD_ISSET (fd1, &amp;er)) {
+                char c;
+                errno = 0;
+                r = recv (fd1, &amp;c, 1, MSG_OOB);
+                if (r &lt; 1) {
+                    SHUT_FD1;
+                } else
+                    send (fd2, &amp;c, 1, MSG_OOB);
+            }
+        if (fd2 &gt; 0)
+            if (FD_ISSET (fd2, &amp;er)) {
+                char c;
+                errno = 0;
+                r = recv (fd2, &amp;c, 1, MSG_OOB);
+                if (r &lt; 1) {
+                    SHUT_FD1;
+                } else
+                    send (fd1, &amp;c, 1, MSG_OOB);
+            }
+        if (fd1 &gt; 0)
+            if (FD_ISSET (fd1, &amp;rd)) {
+                r =
+                    read (fd1, buf1 + buf1_avail,
+                          BUF_SIZE - buf1_avail);
+                if (r &lt; 1) {
+                    SHUT_FD1;
+                } else
+                    buf1_avail += r;
+            }
+        if (fd2 &gt; 0)
+            if (FD_ISSET (fd2, &amp;rd)) {
+                r =
+                    read (fd2, buf2 + buf2_avail,
+                          BUF_SIZE - buf2_avail);
+                if (r &lt; 1) {
+                    SHUT_FD2;
+                } else
+                    buf2_avail += r;
+            }
+        if (fd1 &gt; 0)
+            if (FD_ISSET (fd1, &amp;wr)) {
+                r =
+                    write (fd1,
+                           buf2 + buf2_written,
+                           buf2_avail -
+                           buf2_written);
+                if (r &lt; 1) {
+                    SHUT_FD1;
+                } else
+                    buf2_written += r;
+            }
+        if (fd2 &gt; 0)
+            if (FD_ISSET (fd2, &amp;wr)) {
+                r =
+                    write (fd2,
+                           buf1 + buf1_written,
+                           buf1_avail -
+                           buf1_written);
+                if (r &lt; 1) {
+                    SHUT_FD2;
+                } else
+                    buf1_written += r;
+            }
+/* проверить, что запись данных получила считанные данные */
+        if (buf1_written == buf1_avail)
+            buf1_written = buf1_avail = 0;
+        if (buf2_written == buf2_avail)
+            buf2_written = buf2_avail = 0;
+/* одна из сторон закрыла соединение, продолжать
+   записывать, пока другая сторона не закончит */
+        if (fd1 &lt; 0
+            &amp;&amp; buf1_avail - buf1_written == 0) {
+            SHUT_FD2;
+        }
+        if (fd2 &lt; 0
+            &amp;&amp; buf2_avail - buf2_written == 0) {
+            SHUT_FD1;
+        }
+    }
+    return 0;
+}
+</pre>
+
+<p>
+
+Вышеприведенная программа правильно перенаправляет большую чать
+соединений TCP, включая внепоточные данные, передаваемые серверами
+<b>telnet</b>. Она справляется со сложной проблемой поддержания
+одновременного двустороннего обмена данными. Возможно, вы решите, что
+эффективнее использовать <b>fork()</b> и выделить отдельный подпроцесс
+для каждого потока. На самом деле это сложнее, чем кажется. Другой
+идеей может быть использование неблокирующего ввода-вывода с помощью
+<b>ioctl()</b>. Это также может вызвать проблемы из за того, что
+придется использовать неэффективные таймауты.
+</p><p>
+Программа не обрабатывает более одного соединения, однако она может
+быть легко добработана для этого с путем добавления связанного списка
+буферов - по одному на каждое соединение. В данный момент новые
+соединения приводят к закрытию текущего.
+</p><p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>ВЫБОР ПРАВИЛА</h2>
+
+<p>
+Многие из тех, кто пытался использовать <b>select</b>, сталкивались с
+поведением, которое трудно понять, и которое приводила к
+непереносимым или просто плохим результатам. Например, вышеприведенная
+программа тщательно спланирована так, чтобы ни в каком случае не
+блокироваться, хотя для ее файловых дескрипторов не установлен
+неблокирующий режим (см. <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ioctl&amp;category=2">ioctl</a></b>(2)). Несложно перечислить
+неочевидные ошибки, которые лишат всех преимуществ использования
+<b>select</b>, поэтому я приведу список основных моментов, на которые
+нужно обращать внимание при использовании <b>select</b>.
+</p><p>
+</p><dl compact="">
+<dt><b>1.</b></dt><dd>
+Всегда старайтесь использовать <b>select</b> без указания времени
+ожидания. Ваша программа не должна ничего делать, если нет
+данных. Код, зависимый от времени ожидания, обычно плохо переносим и
+сложен для отладки.
+</dd><dt><b>2.</b></dt><dd>
+Для повышения эффективности значение <i>ndfs</i> должно быть правильно
+вычислено как указано выше.
+</dd><dt><b>3.</b></dt><dd>
+Файловые дескрипторы не должны добавляться в наборы, если вы не
+планируете после вызова <b>select</b> проверить результат и
+соответсвующим образом отреагировать.См. следующее правило.
+</dd><dt><b>4.</b></dt><dd>
+После возврата из <b>select</b> должны быть проверены все файловые
+дескрипторы во всех наборах. В каждый дескриптор, готовый к записи,
+должны быть записаны данные, и из каждого дескриптора, готового к
+чтению, данные должны быть прочитаны, и т.д.
+</dd><dt><b>5.</b></dt><dd>
+Функции <b>read()</b>, <b>recv()</b>, <b>write()</b> и
+<b>send()</b> <i>не</i> обязательно считывают/записывают данные в полном
+объеме. Такое, конечно, возможно при низком траффике или быстром
+потоке, однако происходит далеко не всегда. Вы должны рассчитывать,
+что ваши функции получают/отправляют только один байт за раз.
+</dd><dt><b>6.</b></dt><dd>
+Никогда не считывайте/записывайте побайтно, если только вы не
+асболютно уверены в том, что нужно обработать небольшой объем
+данных. Крайне неэффективно считывать/записывать меньшее количество
+байт, чем вы можете поместь в буфер за один раз. Буферы в
+вышеприведенном примере имеют размер 1024 байта, однако могут быть
+легко увеличены до максимального размера пакета в вашей локальной
+сети.
+</dd><dt><b>7.</b></dt><dd>
+Функции <b>read()</b>, <b>recv()</b>, <b>write()</b> и
+<b>send()</b>, также как и <b>select()</b> могут возвратить -1 с errno
+установленным в <b>EINTR</b> или <b>EAGAIN</b> (<b>EWOULDBLOCK</b>), что
+не является ошибкой. Такие ситуации должны быть правильно обработаны
+(в вышеприведенной программе этого не сделано). Если ваша программа не
+собирается принимать сигналы, то маловероятно, что вы получите
+<b>EINTR</b>. Если ваша программа не использует неблокирующий
+ввод-вывод, то вы не получите <b>EAGAIN</b>. В любом случае, вы должны
+обрабатывать эти ошибки для полноты.
+</dd><dt><b>8.</b></dt><dd>
+Никогда не вызывайте <b>read()</b>, <b>recv()</b>, <b>write()</b>
+или <b>send()</b> с размером буфера, равным нулю.
+</dd><dt><b>9.</b></dt><dd>
+Кроме случаев, описанных в <b>7.</b>, функции <b>read()</b>,
+<b>recv()</b>, <b>write()</b> и <b>send()</b> никогда не возвращают
+значение меньшее единицы, если не произошла ошибка. Например,
+<b>read()</b> при работе с каналом, на котором противоположная сторона
+завершила работу, возвращает ноль, <i>но</i> возвращает ноль только
+один раз (все последующие операции чтения или записи возвратят -1). 
+Если хотя бы одна из этих функций вернула 0 или -1, то вы
+<i>НЕ</i> должны больше использовать этот дескриптор. В примере выше я
+немедленно закрываю дескриптор и устанавливаю его в -1 для
+предотвращения его включения в набор.
+</dd><dt><b>10.</b></dt><dd>
+Значение времени ожидания должно быть инициализировано при каждом
+новом вызове <b>select</b>, так как некоторые операционные системы
+изменяют структуру.
+</dd><dt><b>11.</b></dt><dd>
+Я слышал, что сокетный уровень в Windows не обрабатывает правильно
+внепоточные данные. Кроме того, он неправильно работает с <b>select</b>
+при отсутствии файловых дескрипторов. Отсутствие файловых дескрипторов
+- это полезный способ перевести процесс в режим ожидания на период
+времени меньше секунды.
+<p>
+</p></dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>ЭМУЛЯЦИЯ USLEEP</h2>
+
+В системах, не имеющих функции <b>usleep</b>, вы можете использовать
+<b>select</b> с конечной задержкой и без файловых дескрипторов
+следующим образом:
+<p>
+
+</p><pre>    struct timeval tv;
+    tv.tv_sec = 0;
+    tv.tv_usec = 200000;  /* 0.2 секунды */
+    select (0, NULL, NULL, NULL, &amp;tv);
+</pre>
+
+<p>
+
+Это гарантированно работает только на системах Unix.
+</p><p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+<p>
+При удачно завершении <b>select</b> возвращает общее число
+дескрипторов, которые еще присутствкют в наборах.
+</p><p>
+При выходе из <b>select</b> по окончании времени ожидания все наборы
+файловых дескрипторов должны быть пусты (но могут быть не пусты на
+некторых системах). Возвращаемое значение при этом гарантировано равно
+нулю.
+</p><p>
+Значение -1 сообщает об ошибке, при этом <b>errno</b> устанавливается
+соответствующим образом. В случае ошибки содержимое наборов и
+структуры времени ожидания не определено и не должно быть использовано.
+<b>pselect</b> никогда не изменяет <i>ntimeout</i>.
+</p><p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>EBADF</b></dt><dd>
+Набор содержит неправильный дескриптор файла. Эта ошибка возвращается,
+если вы включили в набор файловый дескриптор, уже закрытый функцией
+<b>close</b>, или если с файловым дескриптором произошла какая-либо
+ошибка. Вы не должны добавлять в наборы файловые дескрипторы,
+вернувшие ошибку при чтении или записи.
+</dd><dt><b>EINTR</b></dt><dd>
+Был получен сигнал, такой как <b>SIGINT</b> или <b>SIGCHLD</b> или другой.
+В этом случае необходимо пересоздать наборы и попробовать еще раз.
+</dd><dt><b>EINVAL</b></dt><dd>
+Значение <i>ndfs</i> отрицательно или в
+<i>utimeout</i> или в <i>ntimeout</i> указано некорректное значение.
+</dd><dt><b>ENOMEM</b></dt><dd>
+Внутренняя ошибка выделения памяти.
+<p>
+</p></dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+В общем случае, все операционные системы, поддерживающие сокеты,
+поддерживают также и <b>select</b>. Некоторые считают <b>select</b>
+экзотической и редко используемой функцией. На самом деле многие
+программы без нее становятся чрезвычайно сложными. <b>select</b> может
+быть использована для решения задач переносимым и эффективным
+способом, вместо которого многие программисты пытаются использовать
+подпроцессы, ветвления процессов, IPC, сигналы, разделение памяти и
+другие грязные методы. <b>pselect</b> - это более новая функция,
+используемая не так часто.
+<p>
+
+Системный вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=poll&amp;category=2">poll</a></b>(2)
+
+имеет такую же функциональность, как и <b>select</b>,
+но с более грубым поведением. Он менее портируем, чем <b>select</b>.
+</p><p>
+<a name="lbAN">&nbsp;</a>
+</p><h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+4.4BSD (функция <b>select</b> впервые появилась в 4.2BSD).  В общем
+случае переносима на/с несовместимые с BSD системы, поддерживающие
+сокеты BSD (включая варианты System V). Однако стоит обратить внимание
+на то, что варианты в System V обычно меняют переменную времени
+ожидания перед выходом, а варианты в BSD этого не делают.
+<p>
+
+Функция <b>pselect</b> описана в IEEE Std 1003.1g-2000 (POSIX.1g).
+Она есть в glibc2.1 и более поздних версиях. В glibc2.0 есть функция с
+таким именем, но она не имеет аргумента <i>sigmask</i>.
+</p><p>
+<a name="lbAO">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=accept&amp;category=2">accept</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ioctl&amp;category=2">ioctl</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=poll&amp;category=2">poll</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recv&amp;category=2">recv</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=select&amp;category=2">select</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=send&amp;category=2">send</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigaddset&amp;category=3">sigaddset</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigdelset&amp;category=3">sigdelset</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigemptyset&amp;category=3">sigemptyset</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigfillset&amp;category=3">sigfillset</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigismember&amp;category=3">sigismember</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sigprocmask&amp;category=2">sigprocmask</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></b>(2)
+
+<p>
+<a name="lbAP">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+Эта страница руководства была написана Полом Широм (Paul Sheer).
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">АРГУМЕНТЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">КОМБИНИРОВАНИЕ СИГНАЛОВ И ДАННЫХ СОБЫТИЙ</a></dt><dd>
+</dd><dt><a href="#lbAG">ПРАКТИКА</a></dt><dd>
+</dd><dt><a href="#lbAH">ПРИМЕР ПЕРЕНАПРАВЛЕНИЯ ПОРТА</a></dt><dd>
+</dd><dt><a href="#lbAI">ВЫБОР ПРАВИЛА</a></dt><dd>
+</dd><dt><a href="#lbAJ">ЭМУЛЯЦИЯ USLEEP</a></dt><dd>
+</dd><dt><a href="#lbAK">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAL">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAM">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAN">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAO">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAP">АВТОРЫ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="select_tut" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

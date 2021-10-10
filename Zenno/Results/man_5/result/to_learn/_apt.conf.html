@@ -1,0 +1,381 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN apt.conf (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, apt.conf"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="apt.conf" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">apt.conf (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=apt.conf&amp;category=5&amp;russian=0"><u>apt.conf</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=apt.conf&amp;category=5&amp;russian=2"><u>apt.conf</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+apt.conf - файл с настройками для APT
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<b>apt.conf</b> - это основной файл с настройками для инструментов APT, все инструменты используют данный файл с настройками и общий анализатор командной строки для предоставления унифицированного окружения. Когда какой-либо  инструмент APT начинает свою работу, он читает <b>/etc/apt/apt.conf</b>, затем читает настройки заданные переменной окружения <b>$APT_CONFIG</b> и наконец применяет опции командной строки для перекрытия директив настройки и возможно загрузки дополнительных файлов с настройками.
+<p>
+
+Файл с настройками организовывается в виде дерева с опциями сконцентрированными по функциональным группам. Спецификация опции осуществляется с помощью нотации из двух двоеточий, например <i>APT::Get::Assume-Yes</i> - это опция внутри группы инструментов APT, для инструмента GET. Опции не наследуют от своих родительских групп.
+</p><p>
+
+Синтаксически язык настроек основывается на инструментах ISC, таких как bind и dhcp. Каждая строка имеет форму
+</p><dl compact=""><dt></dt><dd>
+APT::Get::Assume-Yes "true";
+</dd></dl>
+
+Строку нужно завершать точкой с запятой, а кавычки необязательны. Указанием фигурных скобок можно открыть новый контекст:
+<p>
+</p><pre> 
+APT {
+  Get {
+    Assume-Yes "true";
+    Fix-Broken "true";
+  };
+};
+
+</pre>
+
+<p>
+где текст разбит по строкам с добавлением пробелов для удобства чтения.
+Списки могут быть созданы путем открытия нового контекста включая одиночное слово, заключенное в кавычки, за которым должна следовать точка с запятой. Обычно файл с настройками <i>/usr/doc/apt/examples/apt.conf</i> и
+<i>/usr/doc/apt/examples/configure-index</i> (или <i>/usr/share/doc/apt*/examples/configure-index</i> в Conectiva) являются хорошим руководством на тему того, как должны выглядеть файлы с настройками.
+</p><p>
+
+Все инструменты APT понимают опцию -o, которая позволяет указать нужную директиву настройки в командной строке. Синтаксис такой: за полным именем опции (например APT::Get::Assume-Yes) должен следовать знак равенства и новое значение этой опции. Списки могут быть дополнены также через добавление завершающего :: к имени списка.
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ГРУППА APT</h2>
+
+Это группа опций управляет общим поведением APT, а также содержит опции общие для всех инструментов.
+<dl compact="">
+<dt><b>Architecture</b></dt><dd>
+Архитектура системы; устанавливает архитектуру, которая используется, когда происходит выкачивание файлов и обработка списков пакетов. Внутренняя установка по умолчанию соответствует той архитектуре для которой был скомпилирован apt.
+</dd><dt><b>Ignore-Hold</b></dt><dd>
+Игнорировать пакеты в состоянии Hold. Общие опции заставляют систему разрешения проблем в APT игнорировать эти пакеты при выполнении операций.
+</dd><dt><b>Clean-Installed</b></dt><dd>
+По умолчанию включено. Когда включена возможность автоматической очистки, будет производится удаление любого пакета, который больше не может быть выкачан из кэша. Если эту опцию выключить, то пакеты, которые установлены локально также исключаются из списка очистки -- но при этом APT не будет предоставлять возможности для их переустановки.
+</dd><dt><b>Immediate-Configure</b></dt><dd>
+Запретить немедленную настройку; Это опасная опция запрещает некоторый код APT, который обычно выполняется и который заставляет APT делать некоторые вызовы dpkg. Указывать эту опцию может быть необходимо на некоторых особо медленных однопользовательских системах, но очень опасно и может привести к ошибке сценария установки пакетов. Используйте эту опцию на свой страх и риск. Эта опция не возымеет никакого значения на системах базирующихся на RPM.
+</dd><dt><b>Force-LoopBreak</b></dt><dd>
+Никогда не разрешайте эту опцию если вы -действительно- не знаете, что она делает. Она дает возможность APT временно удалить необходимые для работы системы пакеты, чтобы разбить зацикливание в случаях Conflicts/Conflicts или Conflicts/Pre-Depend между двумя необходимыми в работе системы пакетами. ТАКИЕ ЗАЦИКЛИВАНИЯ НИКОГДА НЕ ДОЛЖНЫ СУЩЕСТВОВАТЬ И ЯВЛЯЮТСЯ ГРУБЕЙШЕЙ ОШИБКОЙ. Данная опция будет работать, если необходимые для работы системы пакеты - это не tar, gzip, libc, dpkg, bash или любые другие, от которых зависят эти пакеты.
+</dd><dt><b>Cache-Limit</b></dt><dd>
+APT использует фиксированный размер файла кэша в памяти для хранения информации доступной информации. Данная опция устанавливает размер этого кэша.
+</dd><dt><b>Get</b></dt><dd>
+Подсекция Get управляет инструментом <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt-get&amp;category=8">apt-get</a>(8)</b>, пожалуйста смотрите подробности в документации по этой программе.
+</dd><dt><b>Cache</b></dt><dd>
+Подсекция Cache управляет инструментом <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt-cache&amp;category=8">apt-cache</a>(8)</b>, пожалуйста смотрите подробности в документации по этой программе.
+</dd><dt><b>CDROM</b></dt><dd>
+Подсекция CDROM управляет инструментом <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt-cdrom&amp;category=8">apt-cdrom</a>(8)</b>, пожалуйста смотрите подробности в документации по этой программе.
+</dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>ГРУППА Acquire </h2>
+
+Группа опций <b>Acquire</b> управляет получением пакетов и обработчиками URI.
+<dl compact="">
+<dt><b>Queue-Mode</b></dt><dd>
+Режим очереди; <b>Queue-Mode</b> может принимать значение <b>host</b> или <b>access</b>, которые определяют как APT будет распараллеливать исходящие соединения. Значение <b>host</b> означает, что будет открываться одно соединение для каждого нужного узла, а <b>access</b> означает, что будет открываться одно соединение для каждого URI.
+</dd><dt><b>Retries</b></dt><dd>
+Количество выполняемых попыток. Если оно отлично от нуля, то apt в случае возникновения ошибок будет пытаться выкачать файлы заданное количество раз.
+</dd><dt><b>Source-Symlinks</b></dt><dd>
+Использовать символьные ссылки для архивов источников. Если опция установлена в true, то когда это возможно, на архивы с источниками будет сделана символьная ссылка вместо копирования. Значение true установлено по умолчанию.
+</dd><dt><b>http</b></dt><dd>
+HTTP URI; http::Proxy -- это используемый http proxy по умолчанию. Он пишется в стандартной форме <i><a href="http://[[user][:pass]@]host[:port]/">http://[[user][:pass]@]host[:port]/</a></i>. Прокси на каждый узел также могут быть заданы в форме http::Proxy::&lt;узел&gt; вместе со специальным словом <i>DIRECT</i> означающим, что прокси использовать не недо. Переменная окружения <i>$http_proxy</i> перекрывает эти установки.
+</dd><dt></dt><dd>
+Для управления кэшем с HTTP/1.1 прокси кэшами, предоставляются три настройки. <b>No-Cache</b> говорит, что прокси в любом случае не должен использовать свой кэшированный ответ, <b>Max-Age</b> посылается только для индексных файлов и говорит кэшу обновить эти объекты, если они старше, чем заданное количество секунд. Debian обновляет свои индексные файлы каждый день, так что по умолчанию установлен как раз 1 день. <b>No-Store</b> говорит, что кэш никогда не должен хранить этот запрос, эта настройка устанавливается только для архивных файлов. Это может быть полезно для предотвращения появления в кэше прокси очень больших .deb файлов. Замечание: Squid 2.0.2 не поддерживает все эти опции. 
+</dd><dt></dt><dd>
+Опция <b>timeout</b> устанавливает таймер таймаута, используемый данным методом, это влияет на все функции, включая таймаут соединения и таймаут приема данных.
+</dd><dt></dt><dd>
+Еще одна настройка предоставляются для управления глубиной в случаях, когда удаленный сервер не соответствует RFC или имеет ошибки (как Squid 2.0.2) Acquire::http::Pipeline-Depth может принимать значения от 0 до 5 говоря как
+много исходящих запросов может сделать APT.
+</dd><dt><b>ftp</b></dt><dd>
+FTP URI; ftp::Proxy -- это используемый ftp proxy по умолчанию. Он пишется в стандартной форме <i><a href="ftp://[[user][:pass]@]host[:port]/">ftp://[[user][:pass]@]host[:port]/</a></i> и перекрывается переменной окружения ftp_proxy. Для использования ftp прокси вам нужно будет установить сценарий ftp::ProxyLogin  в файле с настройками. Этот параметр задает команду для отправки ответов прокси серверу при установке соединения. Пожалуйста смотрите пример того как это делается в  <i>/usr/doc/apt/examples/configure-index</i>. Доступны следующие подстановки переменных  $(PROXY_USER), $(PROXY_PASS), $(SITE_USER), $(SITE_PASS), $(SITE) и $(SITE_PORT).  Каждая из них является частичкой соответствующего URI.
+</dd><dt></dt><dd>
+Опция <b>timeout</b> устанавливает таймер таймаута, используемый данным методом, это влияет на все функции, включая таймаут соединения и таймаут приема данных.
+</dd><dt></dt><dd>
+Для управления пассивным режимом предоставляется несколько настроек. Обычно, для безопасной работы оставляют включенным пассивный режим, он работает в любом окружении. Однако, некоторые ситуации требуют, чтобы пассивный режим был запрещен и вместо него был использован режим порта ftp. Обычно это нужно для соединений, которые осуществляются через прокси или специфический узел (Смотрите пример файла с настройками)
+</dd><dt></dt><dd>
+Возможно использование прокси FTP через HTTP при установке переменной окружения <i>ftp_proxy</i> в http URL - смотрите обсуждение метода http на предмет синтаксиса. Вы не можете сделать это в файле с настройками и это не рекомендуется, так как использование FTP через HTTP снижает производительность.
+</dd><dt><b>cdrom</b></dt><dd>
+CDROM URI; только устанавливает точку монтирования для CDROM URI, cdrom::Mount которая должна быть точкой монтирования для устройства CDROM как задано в /etc/fstab. Есть возможность предоставить альтернативные команды mount и umount если ваша точка монтирования не может быть указана в fstab (как в случае с SMB mount). Надо поместить "/cdrom/"::Mount "foo"; внутри блока cdrom. Важно, чтобы имелся завершающий символ "/". Команда umount может быть задана с использованием слова UMount.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>КАТАЛОГИ</h2>
+
+Секция <b>Dir::State</b> содержит каталоги, которые имеют отношение к информации о состоянии пакетов. <b>lists</b> -- это  каталог где помещается список выкаченных пакетов и <b>status</b> -- это имя файла status для dpkg. <b>Dir::State</b> содержит каталог по умолчанию, который является приставкой для всех под-элементов, если они не начинаются с <i>/</i> или <i>./</i>. <b>xstatus</b> и <b>userstatus</b> будут использованы в будущем.
+<p>
+
+<b>Dir::Cache</b> 
+содержит местоположение локальной информации кэша, такой как два кэша пакетов <b>srcpkgcache</b> и <b>pkgcache</b>, а также местоположение полученных архивов, <b>Dir::Cache::archives</b>. Как и <b>Dir::State</b> каталог по умолчанию содержится в <b>Dir::Cache</b>
+</p><p>
+
+<b>Dir::Etc</b> содержит местоположение файлов с настройками, <b>sourcelist</b> дает местоположение списка источников, а <b>main</b> является файлом с настройками по умолчанию (установки здесь эффекта не имеют)
+</p><p>
+
+Бинарные программы указываются через <b>Dir::Bin</b>. <b>methods</b> задает местоположение обработчиков методов и <b>gzip</b>, <b>dpkg</b>, <b>rpm</b>, <b>apt-get</b>, <b>dpkg-source</b>, <b>dpkg-buildpackage</b> и <b>apt-cache</b> задает местоположение соответствующих программ.
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>APT в DSelect</h2>
+
+Когда APT используется как метод в <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dselect&amp;category=8">dselect</a>(8)</b>, поведение по умолчанию могут изменить различные директивы. Они находятся в секции <b>DSelect</b>. 
+<dl compact="">
+<dt><b>Clean</b></dt><dd>
+Режим очистки кэша; директива может принимать значения: always, auto, prompt и never. always будет удалять все архивы после того, как они выкачены, в то время как auto будет удалять только те архивы, которые больше не могут быть выкачены (например, заменены на новые версии).
+</dd><dt><b>Options</b></dt><dd>
+Содержимое этой переменной передается программе <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt-get&amp;category=8">apt-get</a>(8)</b> как опции командной строки, когда эта программа запускается для фазы установки.
+</dd><dt><b>UpdateOptions</b></dt><dd>
+Содержимое этой переменной передается программе <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt-get&amp;category=8">apt-get</a>(8)</b> как опции командной строки, когда эта программа запускается для фазы обновления.
+</dd><dt><b>PromptAfterUpdate</b>"</dt><dd>
+Если установлено true, то операция [U]pdate в dselect всегда будет выдавать приглашение для продолжения. По умолчанию приглашение выдается только при ошибках.
+<p>
+</p></dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>Как APT вызывает dpkg</h2>
+
+Вот некоторые директивы настройки, управляющие тем, как APT вызывает dpkg. Они находятся в секции <b>DPkg</b>.
+<dl compact="">
+<dt><b>Options</b></dt><dd>
+Это список опций передаваемых dpkg. Эти опции должны быть заданы в списковой нотации и каждый элемент списка передается как один аргумент для dpkg.
+</dd><dt><b>Pre-Invoke</b>, <b>Post-Invoke</b></dt><dd>
+Это список команд shell для запуска перед/после вызова dpkg. Как и в опции <b>Options</b> они должны быть указаны в списковой нотации. Эти команды вызываются по порядку, используя /bin/sh, и в случае неудачного выполнения любой из них APT завершит свою работу.
+</dd><dt><b>Pre-Install-Pkgs</b></dt><dd>
+Это список команд shell для запуска перед вызовом dpkg. Как и в опции <b>Options</b> они должны быть указаны в списковой нотации. Эти команды вызываются по порядку, используя /bin/sh, и в случае неудачного выполнения любой из них APT завершит свою работу. Apt передает этим командам на стандартный ввод имена всех .deb файлов, которые он будет устанавливать по одному в строке.
+</dd><dt><b>Run-Directory</b></dt><dd>
+APT изменяет рабочий каталог на заданный перед вызовом dpkg, по умолчанию это /.
+</dd><dt><b>Build-Options</b></dt><dd>
+Эти опции передаются программе dpkg-buildpackage для компиляции пакетов, по умолчанию компилируются все бинарные пакеты и запрещается подпись.
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>ОПЦИИ ОТЛАДКИ</h2>
+
+Большинство опций в секции <b>debug</b> не интересны обычному пользователю, однако <b>Debug::pkgProblemResolver</b> показывает интересные данные о ходе процесса dist-upgrade. <b>Debug::NoLocking</b> запрещает блокировку файлов, так что apt может делать некоторые операции в режиме не-root и <b>Debug::pkgDPkgPM</b> (или <b>Debug::pkgRPMPM</b>) будет выдавать командную строку для каждого вызова dpkg. <b>Debug::IdentCdrom</b> запретит подключение данных statfs в  идентификаторах (ID) CDROM.
+<a name="lbAJ">&nbsp;</a>
+<h2>ПРИМЕРЫ</h2>
+
+<b>/usr/doc/apt/examples/configure-index.gz</b> или <b>/usr/share/doc/apt*/configure-index</b> содержит пример файла с настройками, показывающими значения по умолчанию для всех возможных опций.
+<a name="lbAK">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+/etc/apt/apt.conf
+<a name="lbAL">&nbsp;</a>
+<h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt-cache&amp;category=8">apt-cache</a>(8)</b>, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=apt-get&amp;category=8">apt-get</a>(8)</b>
+<a name="lbAM">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+Смотри <a href="http://bugs.debian.org/apt.">http://bugs.debian.org/apt.</a> Если вы хотите отправить отчет об ошибке в <b>apt-cache</b>, пожалуйста смотрите <b>/usr/doc/debian/bug-reporting.txt</b> или команду <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bug&amp;category=1">bug</a>(1)</b>. Если вы используете систему базирующуюся на RPM, то в этом случае, пожалуйста, воспользуйтесь <a href="http://distro.conectiva.com.br/bugzilla/.">http://distro.conectiva.com.br/bugzilla/.</a>
+<a name="lbAN">&nbsp;</a>
+<h2>АВТОР</h2>
+
+apt-get была написана командой APT &lt;<a href="mailto:apt@packages.debian.org">apt@packages.debian.org</a>&gt; и портирован на системы базирующиеся на RPM Alfredo K. Kojima, &lt;<a href="mailto:kojima@conectiva.com.br">kojima@conectiva.com.br</a>&gt;, из Conectiva S.A.
+<a name="lbAO">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевод с английского сделал Виктор Вислобоков &lt;<a href="mailto:victor_v@permonline.ru">victor_v@permonline.ru</a>&gt;
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">ГРУППА APT</a></dt><dd>
+</dd><dt><a href="#lbAE">ГРУППА Acquire </a></dt><dd>
+</dd><dt><a href="#lbAF">КАТАЛОГИ</a></dt><dd>
+</dd><dt><a href="#lbAG">APT в DSelect</a></dt><dd>
+</dd><dt><a href="#lbAH">Как APT вызывает dpkg</a></dt><dd>
+</dd><dt><a href="#lbAI">ОПЦИИ ОТЛАДКИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAK">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAL">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAM">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAN">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAO">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="apt.conf" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

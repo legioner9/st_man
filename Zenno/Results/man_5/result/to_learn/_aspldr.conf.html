@@ -1,0 +1,442 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN aspldr.conf (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, aspldr.conf"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="aspldr.conf" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">aspldr.conf (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=aspldr.conf&amp;category=5&amp;russian=0"><u>aspldr.conf</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+aspldr.conf - конфигурационный файл для ASPLoader
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<p>
+
+Этот файл (по умолчанию
+<i>/etc/aspldr.conf</i>),
+
+считывается установщиком загрузчика системы aspldr (см. <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=aspldr&amp;category=8">aspldr</a>(8)).
+</p><p>
+
+Конфигурационный файл состоит из нескольких разделов, каждый из которых начинается с
+<b>[названия_раздела]</b>. Существуют два вида разделов: разделы операционных систем (ОС)
+и общие разделы.
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОБЩИЕ РАЗДЕЛЫ</h2>
+
+Существуют два общих раздела - <b>[ACTIVATOR]</b> и <b>[BOOTMGR]</b>.
+<p>
+
+Раздел <b>[ACTIVATOR]</b> содержит инструкции о том, куда записывается 
+сектор загрузки, и может обрабатывать такие команды:
+</p><dl compact="">
+<dt><b>language </b><i>en|ru|ja</i>
+
+</dt><dd>
+Определяет язык ASPLoader (английский, русский, японский). По умолчанию - английский.
+</dd><dt><b>mbrdev </b><i>имя_устройства</i>
+
+</dt><dd>
+Позволяет вам указать устройство, на котором необходимо обновить запись начальной загрузки (MBR).
+</dd><dt><b>path </b><i>путь</i>
+
+</dt><dd>
+Для вывода своего меню ASPLoader требует наличия дополнительных файлов, расположенных по умолчанию в каталоге
+<i>/boot/aspldr</i>.
+
+Данный параметр изменяет этот путь.
+</dd><dt><b>biosnum </b><i>номер</i>
+
+</dt><dd>
+Определяет номер жесткого диска (начиная с 1), на котором содержится файл загрузки.
+</dd><dt><b>bootfile </b><i>имя_файла</i>
+
+</dt><dd>
+Полный путь к файлу загрузки. По умолчанию это
+<i>/boot/aspldr.map</i>.
+
+</dd><dt><b>writeboot </b><i>[on|off]</i>
+
+</dt><dd>
+Определяет, переписывать загрузочный сектор при работе, или нет. По умолчанию - не переписывать (off).
+</dd><dt><b>writembr </b><i>[on|off]</i>
+
+</dt><dd>
+Определяет, переписывать запись начальной загрузки при работе, или нет. По умолчанию - не переписывать (off).
+</dd></dl>
+<p>
+
+</p><p>
+
+Раздел <b>[BOOTMGR]</b> определяет поведение загрузчика ASPLoader. 
+Он может содержать такие команды:
+</p><dl compact="">
+<dt><b>align </b><i>right|center|left</i>
+
+</dt><dd>
+Определяет выравнивание названий в меню при загрузке (по левому краю, по центру, по правому краю).
+По умолчанию названия выравниваются по левому краю.
+</dd><dt><b>automatic </b><i>on|off</i>
+
+</dt><dd>
+Если параметр включен (on), то меню выбора операционной системы ASPLoader при старте не показывается,
+а грузится определенная по умолчанию операционная система, пока не нажата клавиша "ESC". По умолчанию параметр выключен (off).
+</dd><dt><b>clock </b><i>12|24</i>
+
+</dt><dd>
+Определяет формат времени (12-часовой или 24-часовой) часов в ASPLoader. По умолчанию определен 24-часовой формат.
+</dd><dt><b>default </b><i>название_системы</i>
+
+</dt><dd>
+Определяет, какую операционную систему загружать по умолчанию. 
+<i>Название_системы</i>
+
+должно соответствовать одному из названий разделов из операционных систем.
+</dd><dt><b>delay </b><i>число</i>
+
+</dt><dd>
+Определяет задержку, во время которой ожидается нажатие на клавишу "ESC" (в 1/10 секунды). По умолчанию - 5.
+</dd><dt><b>icons </b><i>on|off</i>
+
+</dt><dd>
+Если установлено в "on", то показывает значки в меню. По умолчанию - "on".
+</dd><dt><b>logo </b><i>on|off</i>
+
+</dt><dd>
+Если установлено в "on", то показывает логотип и информацию об авторских правах. По умолчанию - "on".
+</dd><dt><b>menu </b><i>on|off</i>
+
+</dt><dd>
+Позволяет Вам выключать подменю при выборе системы для загрузки в ASPLoader. По умолчанию - "on".
+</dd><dt><b>numbers </b><i>on|off</i>
+
+</dt><dd>
+Если установлено в "off", то меню выбора системы для загрузки не будет пронумеровано. По умолчанию - "on".
+</dd><dt><b>savelast </b><i>on|off</i>
+
+</dt><dd>
+Если установлено в "on", то ASPLoader запомнит последнюю выбранную систему загрузки и 
+определит ее как систему для загрузки по умолчанию. По умолчанию - "off".
+</dd><dt><b>timeout </b><i>число</i>
+
+</dt><dd>
+Устанавливает количество секунд для выбора системы для загрузки; после истечения 
+этого времени загрузится система по умолчанию. По умолчанию этот параметр равен 30 секундам.
+</dd><dt><b>video </b><i>pseudographics|graphics|text</i>
+
+</dt><dd>
+Определяет видеорежим меню ASPLoader (псевдографический, графический, текстовый). По умолчанию - графический.
+Заметим, что программа VMware немного некорректно работает с псевдографикой.
+<p>
+</p></dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>РАЗДЕЛ ОПЕРАЦИОННЫХ СИСТЕМ</h2>
+
+Раздел операционных систем определяет пункты меню для загрузки во время работы ASPLoader.
+Среди всех разделов существует один особый элемент, называемый <b>[SEPARATOR]</b>.
+При его использовании в меню загрузчика рисуется разделяющая линия.
+<p>
+
+Остальные разделы имеют такой формат: [метка@Нормально читаемое название] ,
+где <b>метка</b> - уникальное внутреннее название этого раздела, а
+<b>Нормально читаемое название</b> - описание раздела, которое будет видно в меню загрузчика.
+</p><p>
+
+Следующие команды определены для использовании в описании разделов операционных систем:
+</p><dl compact="">
+<dt><b>initrd </b><i>имя_файла</i>
+
+</dt><dd>
+Полное имя файла начального электронного диска. Имеет значение только для разделов, 
+описывающих пункты меню для систем Linux.
+</dd><dt><b>kernel </b><i>имя_файла</i><b>[аргументы]</b>
+
+</dt><dd>
+Полное имя файла для загрузки ядра Linux.
+<i>Аргументами</i>
+
+могут быть любые параметры для ядра Linux, в большинстве случаев вы будете использовать
+хотя-бы параметры root=/dev/&lt;root_устройство&gt; и ro.
+</dd><dt><b>lilo </b><i>аргументы</i>
+
+</dt><dd>
+Если у Вас есть другая версия Linux, установленная на машине, и эта версия использует
+загрузчик lilo, записанный в загрузочный сектор своего root-раздела, то этот параметр
+позволит вам запустить из загрузчика ASPLoader загрузчик lilo. Обычно используется
+вместе с параметром <b>sysboot</b>.
+</dd><dt><b>sysboot </b><i>[раздел]</i><b>[a:|b:]</b>
+
+</dt><dd>
+Параметр sysboot загружает и исполняет загрузочный сектор с указанного раздела
+диска (формат &lt;номер-диска&gt;-&lt;номер-раздела&gt;, например для второго раздела на первом диске - 1-2).
+Особые формы записи "a:" и "b:" используются для загрузки с первого или второго
+флоппи-дисковода соответственно. Это бывает удобно, если вы хотите грузится с
+дискет, но в BIOS загрузка с них отключена.
+</dd><dt><b>vga </b><i>ask|normal|number</i>
+
+</dt><dd>
+Устанавливает видеорежим при загрузке Linux.
+<i>ask</i>
+
+запросит номер видеорежима при загрузке,
+<i>number</i>
+
+позволяет Вам сразу указать номер видеорежима при загрузке.
+По умолчанию видеорежим обычный (normal).
+<p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ПРИМЕР</h2>
+
+Пример, приведенный ниже, определяет конфигурацию из 4-х пунктов меню
+(два разных ядра linux на одном разделе, раздел Windows 2K 
+и загрузку с дискеты). Windows установлена на /dev/hda1, а загрузчик
+записан в главной загрузочной записи (MBR). Время показывается в 12-часовом
+формате, язык загрузчика - русский.
+<dl compact="">
+<dt></dt><dd>
+<pre>[<a href="mailto:linux@ASPLinux">linux@ASPLinux</a>]
+icon linux
+kernel /boot/vmlinuz mem=188M root=/dev/hda6 ro
+initrd /boot/initrd.img
+
+[<a href="mailto:linux1@ASPLinux">linux1@ASPLinux</a> Test Kernel]
+icon linux
+kernel /boot/bzImage root=/dev/hda6 ro
+initrd /boot/initrd.img
+
+[SEPARATOR]
+
+[<a href="mailto:nt1@Windows">nt1@Windows</a> 2001]
+icon windows
+sysboot 1-1
+
+[SEPARATOR]
+
+[<a href="mailto:floppy@Boot">floppy@Boot</a> from floppy]
+icon floppy
+sysboot a:
+
+[BOOTMGR]
+video graphics
+default linux
+timeout 30
+clock 12
+
+[ACTIVATOR]
+writeboot off
+writembr on
+biosnum 1
+mbrdev /dev/hda
+language ru
+</pre>
+
+</dd></dl>
+<p>
+
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=aspldr&amp;category=8">aspldr</a>(8).
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">ОБЩИЕ РАЗДЕЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAE">РАЗДЕЛ ОПЕРАЦИОННЫХ СИСТЕМ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРИМЕР</a></dt><dd>
+</dd><dt><a href="#lbAG">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="aspldr.conf" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

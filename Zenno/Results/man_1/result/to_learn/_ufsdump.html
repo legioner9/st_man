@@ -1,0 +1,646 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ufsdump (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ufsdump"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ufsdump" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ufsdump (1)</font><hr><li> <a href="/man.shtml?topic=ufsdump&amp;category=1&amp;russian=4"><u>ufsdump</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ufsdump&amp;category=1&amp;russian=0"><u>ufsdump</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ufsdump&amp;category=4&amp;russian=4"><u>ufsdump</u></a> (4) <font color="#555555"> ( Solaris man: Специальные файлы /dev/* )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Команды сопровождения</h1></td>
+<td><h1 align="right">ufsdump(1M)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>ufsdump</b> - инкрементное резервное копирование файловой системы</p>
+
+<h2>СИНТАКСИС</h2>
+<dl>
+<dt></dt><dd><tt>
+/usr/sbin/ufsdump [ <b>опции</b> ] [ <b>аргументы</b> ] <b>файлы</b>
+</tt></dd>
+</dl>
+
+<h2>ОПИСАНИЕ</h2>
+
+<p>Утилита <b>ufsdump</b> выполняет резервное копирование всех указанных 
+<b>файлов</b> (обычно это либо вся файловая система, либо файлы в файловой 
+системе, изменившиеся после определенной даты) на ленту, на дискеты или в 
+файл на диске. В ходе работы <b>ufsdump</b> файловая система должна 
+быть неактивной; в противном случае, результат работы <b>ufsdump</b> может
+оказаться несогласованным, а корректное восстановление файлов - невозможным.
+Файловая система неактивна, если она демонтирована или если 
+система работает в однопользовательском режиме. Файловая система 
+не считается неактивной, если в одном из ее поддеревьев изменяются 
+файлы или каталоги.</p>
+
+<p><b>опции</b> - строка однобуквенных опций <b>ufsdump</b>.</p>
+
+<p>В качестве <b>аргументов</b> можно передавать несколько строк, 
+связываемые с опциями по порядку. Т.е. первый аргумент относится к 
+первой опции, требующей аргумента, второй аргумент относится ко 
+второй опции, требующей аргумента, и т.д.</p>
+
+<p><b>Файлы</b> являются обязательным аргументом, причем должны указываться 
+в командной строке последними. Поробнее см. в разделе 
+<a href="#operands">"ОПЕРАНДЫ"</a>.</p>
+
+<p>Утилита <b>ufsdump</b> может автоматически выявлять конец носителя в 
+большинстве устройств. Как следствие, опции 
+<b><a href="#d">d</a></b>, <b><a href="#s">s</a></b> и <a href="#t"><b>t</b></a> не 
+обязательны для создания многотомных резервных копий, кроме тех 
+случаев, когда <b>ufsdump</b> не понимает, как определить конец носителя 
+на устройстве, или файлы придется восстанавливать на системе со 
+старой версией команды <b>restore</b>.</p>
+
+<h2>ОПЦИИ</h2>
+
+<p>Поддерживаются следующие опции:</p>
+
+<table width="100%" border="0">
+<tbody><tr><td valign="top" width="25%"><a name="level"><b>0-9</b></a></td><td>
+"Уровень" резервной копии. Все указанные <b>файлы</b>, изменившиеся с 
+момента резервного копирования более низкого уровня, копируются в 
+<i>файл резервной копии</i> (обычно, это ленточное устройство). Например, 
+если резервная копия "уровня 2" была сделана в понедельник, а 
+затем была сделана резервная копия "уровня 4" во вторник, в 
+резервную копию "уровня 3" в среду попадут все файлы, измененные 
+или добавленные с момента создания резервной копии "уровня 2" (в 
+понедельник). Резервная копия "уровня 0" включает всю файловую 
+систему в целом.</td></tr>
+
+<tr><td valign="top"><a name="a"><b>a архивный_файл</b></a></td><td>
+Архивный файл. Сохраняет содержание резервной копии в указанном 
+архивном файле для использования командой <a href="/man.shtml?topic=ufsrestore&amp;category=1"><b>ufsrestore(1M)</b></a> для 
+определения, входит ли указанный файл в восстанавливаемую 
+резервную копию.</td></tr>
+
+<tr><td valign="top"><a name="b"><b>b размер</b></a></td><td>
+Коэффициент блокирования. Задает количество блоков для одной 
+операции при записи на ленту. По умолчанию записывается по 20 блоков на ленту с
+плотностью менее 6250BPI (байтов на дюйм). Стандартный коэффициент блокирования 
+для лент с плотностью 6250BPI и выше - 64. Стандартный коэффициент блокирования 
+для картриджных лент (опция c) - 126. Максимальный коэффициент блокирования для 
+большинства стриммеров - 126. Примечание: коэффициент блокирования задается в 
+512-байтовых блоках, для обеспечения совместимости с командой 
+<a href="/man.shtml?topic=tar&amp;category=1"><b>tar(1)</b></a>.</td></tr>
+
+<tr><td valign="top"><a name="c"><b>c</b></a></td><td>
+Картридж. Устанавливает стандартные значения, подходящие для картриджей,
+А не для стандартной полудюймовой ленты. При этом устанавливается плотность
+1000BPI и коэффициент блокирования 126. Поскольку утилита <b>ufsdump</b> может
+автоматически выявлять конец носителя, обычно имеет значение только коэффициент
+блокирования. При использовании картриджных лент, если эта опция <b>не</b> задана,
+<b>ufsdump</b> будет немного неверно определять емкость ленты. 
+Если вместе с этой опцией заданы опции 
+<a href="#b"><b>b</b></a>, <a href="#d"><b>d</b>, </a><a href="#s"><b>s</b></a>
+или <a href="#t"><b>t</b></a>, их значения будут
+изменять стандартные значения, устанавливаемые этой опцией.</td></tr>
+
+<tr><td valign="top"><a name="d"><b>d bpi</b></a></td><td>
+Плотность ленты. Обычно не требуется, поскольку утилита ufsdump может
+Выявлять конец носителя. Этот параметр можно использовать для задания емкости
+ленты, используемой лентопротяжным механизмом. Стандартной считается плотность
+6250BPI, кроме случаев использования опции c для картрижда, когда предполагается
+плотность 1000BPI на дорожку. Для ленточных устройств типичны следующие
+значения:
+
+<dl>
+<dt>Лента 1/2 дюйма </dt>
+<dd>6250 BPI</dd>
+<dt>Лента 1/4 дюйма </dt>
+<dd>1000 BPI </dd>
+</dl>
+
+Плотности лент и другие опции описаны на странице справочного руководства
+<a href="st7.html&quot;"><b>st(7D)</b></a>.
+</td></tr>
+
+<tr><td valign="top"><a name="D"><b>D</b></a></td><td>
+Дискета. Резервное копирование на дискету.</td></tr>
+
+<tr><td valign="top"><a name="f"><b>f файл </b></a></td><td>
+Резервное копирование в файл. Выполнять резервное копирование в указанный <b>файл</b>,
+а не на устройство <b>/dev/rmt/0</b>. Если в качестве файла указан дефис (<b>-</b>), резервное
+копирование выполняется в стандартный выходной поток.
+<p>
+Если имя файла имеет вид <b>машина:устройство</b>, резервное копирование ведется на
+указанную машину по сети с помощью команды <a href="/man.shtml?topic=rmt&amp;category=1"><b>rmt(1M)</b></a>. Поскольку команда
+<b>ufsdump</b> обычно выполняется от имени пользователя <b>root</b>, имя локальной
+машины должно быть указано в файле <b>/.rhosts</b> на удаленной машине. Если
+файл задан в виде <b>пользователь@машина:устройство</b>, утилита <b>ufsdump</b> попытается
+работать от имени указанного пользователя на удаленной машине. 
+Указанный пользователь на удаленной машине должен иметь файл <b>.rhosts</b>,
+позволяющий обращаться к удаленной машине без пароля одноименному локальному
+пользователю.</p>
+</td></tr>
+
+<tr><td valign="top"><a name="l"><b>l</b></a></td><td>
+Автозагрузка. При достижении конца ленты до завершения резервного копирования,
+отключить устройство и подождать его готовности в течение двух минут. Это 
+позволяет устройству с автозагрузчиком (stackloader) загрузить новую ленту. Если 
+устройство будет готово в течение двух минут, резервное копирование
+продолжается. Если же нет, запросить следующую ленту и ждать.</td></tr>
+
+<tr><td valign="top"><a name="L"><b>L строка</b></a></td><td>
+Задает на ленте метку в виде указанной <b>строки</b>. Длина строки не 
+должна превосходить 16 символов. Более длинная строка усекается и выдается
+предупреждение, но резервное копирование продолжается. Метка ленты специфична 
+для формата ufsdump и не имеет ничего общего со стандартными метками лент IBM 
+или лент стандарта ANSI.</td></tr>
+
+<tr><td valign="top"><a name="N"><b>N имя_устройства</b></a></td><td>
+Использует указанное <b>имя_устройства</b> при записи информации в файл
+<b>/etc/dumpdates</b> (см. опцию <a href="#u"><b>u</b></a>) и при сравнении с информацией в файле
+<b>/etc/dumpdates</b> в ходе инкрементного архивирования. Указанное <b>имя_устройства</b>
+не может содержать пробелов, как определяется для функции
+<b>scanf(3C)</b>, и чувствительно к регистру символов.</td></tr>
+
+<tr><td valign="top"><a name="n"><b>n</b></a></td><td>
+Уведомляет всех операторов из группы <b>sys</b>, что <b>ufsdump</b> требует внимания 
+путем посылки им сообщений на терминалы, аналогично команде <a href="/man.shtml?topic=wall&amp;category=1"><b>wall(1M)</b></a>
+По умолчанию такие сообщения выдаются только на терминалы (например, 
+на консоль), на которых зарегистрирован пользователь, запустивший 
+утилиту <b>ufsdump</b>.</td></tr>
+
+<tr><td valign="top"><a name="o"><b>o</b></a></td><td>
+Отключение. Отключает привод при завершении резервного копирования
+или при достижении конца носителя, перемотав предварительно ленту или
+выбросив дискету. Для некоторых автоматически загружаемых 8 мм лент,
+лента автоматически выбрасывается из устройства. Это предотвращает 
+использование устройства и непреднамеренную перезапись носителя 
+другим "торопящимся" процессом.</td></tr>
+
+<tr><td valign="top"><a name="s"><b>s размер</b></a></td><td>
+Задает <b>размер</b> тома, на который выполняется резервное копирование.
+Обычно эта опция не нужна, поскольку утилита <b>ufsdump</b> может выявлять
+конец носителя. При достижении указанного размера <b>ufsdump</b> ждет, пока
+пользователь сменит ленту. Утилита <b>ufsdump</b> интерпретирует указанный
+<b>размер</b> как длину в футах для лент и картриджей, и как количество 
+1024-байтовых блоков для дискет. Значение надо задавать немного меньше
+реального физического размера носителя (например, 425 для 450-футового
+картриджа). Стандартные значения определяются опцией <a href="#c"><b>c</b></a> для картриджей
+и опцией <a href="#D"><b>D</b></a> для дискет:
+<dl>
+<dt>лента 1/2 дюйма </dt>
+<dd>2300 футов</dd>
+<dt>картридж 1/4 дюйма емкостью 60 Мбайтов </dt>
+<dd>425 футов</dd>
+<dt>картридж 1/4 дюйма емкостью 150 Мбайтов </dt>
+<dd>700 футов</dd>
+<dt>дискета</dt>
+<dd>1422 блока (соответствует дискете емкостью 1.44 Мбайта, на которой
+один цилиндр зарезервирован для информации сбойных блоков)</dd>
+</dl>
+</td></tr>
+
+<tr><td valign="top"><a name="S"><b>S</b></a></td><td>
+Оценка размера. Определяет, сколько места необходимо для выполнения
+резервного копирования, реально его не выполняя, и выдает примерный
+размер резервной копии в байтах. Это полезно для инкрементных
+резервных копий, поскольку позволяет определить, сколько томов
+носителей необходимо.</td></tr>
+
+<tr><td valign="top"><a name="t"><b>t дорожек</b></a></td><td>
+Задает количество дорожек для картриджной ленты. Обычно эта опция
+не нужна, поскольку утилита <b>ufsdump</b> может выявлять конец носителя.
+По умолчанию принято значение 9 дорожек. Опция <b>t</b> несовместима с 
+опцией <a href="#D"><b>D</b></a>. Для устройств, поддерживаемых Sun, используются слеудющие
+значения:
+<dl>
+<dt>картридж 1/4 дюйма емкостью 60 Мбайтов </dt>
+<dd>   9 дорожек</dd>
+<dt>картридж 1/4 дюйма емкостью 150 Мбайтов </dt>
+<dd>   18 дорожек</dd>
+</dl>
+</td></tr>
+          
+<tr><td valign="top"><a name="T"><b>T время_ожидания[hms]</b></a></td><td>
+Устанавливает, сколько ждать завершения команды автоматической загрузки. Эта
+опция игнорируется, если вместе с ней не задана опция <a href="#l"><b>l</b></a>. 
+Стандартное время ожидания - две минуты. Единицы измерения времени
+можно задавать с помощью суффиксов <b>h</b> (часы), <b>m</b> (минуты) или <b>s</b> (секунды).
+По умолчанию время задается в минутах.</td></tr>
+
+<tr><td valign="top"><a name="u"><b>u</b></a></td><td>
+Обновляет записи о резевном копировании. Добавляет запись в файл
+<b>/etc/dumpdates</b> для каждой успешно скопированной файловой системы,
+включающую имя файловой системы (или <b>имя_устройства</b>, указанное в 
+опции <a href="#N"><b>N</b></a>), дату и уровень резервной копии.</td></tr>
+
+<tr><td valign="top"><a name="v"><b>v</b></a></td><td>
+Проверка. После записи каждой ленты или дискеты сравнивает содержимое
+носителя с исходной файловой системой. В случае расхождений требует
+вставить новый носитель и повторяет процесс резервного копирования и 
+проверки. Файловая система <b>не должна</b> быть смонтирована. Эту опцию нельзя
+использовать для проверки регервной копии, направляемой в стандартный
+выходной поток.</td></tr>
+
+<tr><td valign="top"><a name="w"><b>w</b></a></td><td>
+Предупреждение. Выдает список файловых систем, не скопированных в течение
+дня. Эта информация получается на основе файлов <b>/etc/dumpdates</b> и 
+<b>/etc/vfstab</b>. При указании опции <b>w</b> все остальные опции игнорируются. После
+выдачи списка программа <b>ufsdump</b> немедленно завершает работу.</td></tr>
+
+<tr><td valign="top"><a name="W"><b>W</b></a></td><td>
+Предупреждение с выделением. Аналогична опции <b>w</b>, но выдает информацию
+о всех файловых системах, упоминающихся в файле <b>/etc/dumpdates</b>, включая даты
+и уровни их последнего резервного копирования. Не скопированные в течение дня
+файловые системы выделяются.</td></tr>
+</tbody></table>
+
+<h2><a name="operands">ОПЕРАНДЫ</a></h2>
+
+<p>Поддерживаются следующие операнды:</p>
+
+<dl>
+<dt><b>файлы</b></dt>
+<dd>
+Задает файлы для резервного копирования. Обычно задается специальный
+символьный файл, представляющий всю файловую систему в целом (например, 
+<b>/dev/rdsk/c0t3d0s6</b>). Инкрементные резервные копии (до уровня 9), включающие
+только файлы, изменившиеся с определенной даты, поддерживаются только для
+файловых систем в целом. Но можно задавать и отдельные файлы или каталоги.
+При этом копируются все указанные каталоги и отдельные файлы, к которым
+может получить доступ пользователь, выполняющий команду <b>ufsdump</b>.
+Эта резервная копия эквивалентна резервной копии уровня 0 указанной части
+файловой системы, но по ее заврешении не обновляется файл <b>/etc/dumpdates</b>,
+даже если указана опция <a href="#u"><b>u</b></a>. Во всех случаях указанные файлы должны находиться
+в одной и той же файловой системе, причем, локальной по отношению к системе,
+в которой выполняется команда <b>ufsdump</b>.
+<p>
+Операнд <b>файлы</b> - обязательный и должен быть последним аргументом
+командной строки. </p>
+</dd></dl>
+
+<p>Если никакие опции не указаны, предполагаются опции
+<b>9uf  /dev/rmt/0 файлы</b>.</p>
+
+<h2>ИСПОЛЬЗОВАНИЕ</h2>
+
+<p>Описание особенностей работы утилиты ufsdump с файлами размером более
+2 Гбайтов (2**31 байтов) см. на странице справочного руководства 
+<a href="/man.shtml?topic=largefile&amp;category=5"><b>largefile(5)</b></a>.</p>
+
+<h2>ПРИМЕРЫ</h2>
+
+<h3>Пример 1: Пример простой команды ufsdump.</h3>
+
+<p>Для полного резервного копирования корневой файловой системы на секции
+<b>c0t3d0</b> на картридж 0 емкостью 150 Мбайтов, используйте команду:</p>
+
+<tt>example# ufsdump 0cfu /dev/rmt/0 /dev/rdsk/c0t3d0s0</tt>
+
+<p>Для создания и проверки инкрементной резервной копии уровня 5
+файловой системы <b>/usr</b> на диске <b>c0t3d0</b>, на ленту 1/2 дюйма в ленточном
+устройстве 1 используйте команду:</p>
+
+<tt>example# ufsdump 5fuv /dev/rmt/1 /dev/rdsk/c0t3d0s6</tt>
+
+<h2>СТАТУС ВЫХОДА</h2>
+
+<p>В ходе работы команда <b>ufsdump</b> выдает много подробных сообщений. По завершении
+<b>ufsdump</b> возвращает следующие коды выхода:</p>
+
+<table border="0">
+<tbody><tr><td width="15%">0</td> <td>Нормальное завершение.</td></tr>
+<tr><td>1</td> <td>Выявлены ошибки при запуске.</td></tr>
+<tr><td>3</td> <td>Аварийное прекращение без попыток обработки контрольной 
+точки.</td></tr>
+</tbody></table>
+
+<h2>ФАЙЛЫ</h2>
+
+<dl>
+<dt><b>/dev/rmt/0</b></dt><dd>
+Стандартное устройство резервного копирования</dd> 
+<dt><b>/etc/dumpdates</b></dt><dd>
+Записи дат резервного копирования</dd>
+<dt><b>/etc/group</b></dt><dd>
+Используется для поиска группы sys</dd>
+<dt><b>/etc/hosts</b></dt><dd>
+Необходим для получения доступа к удаленной системе с ленточным устройством</dd>
+<dt><b>/etc/vfstab</b></dt><dd>
+Список файловых систем</dd>
+</dl>
+
+<h2>АТРИБУТЫ</h2>
+
+<p>Описание следующих атрибутов см. на странице справочного руководства
+<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>:</p>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступность</td>
+<td>SUNWcsu</td></tr>
+</tbody></table>
+
+<h2>ССЫЛКИ</h2>
+
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=cpio&amp;category=1"><b>cpio(1)</b></a>,
+	<a href="/man.shtml?topic=tar&amp;category=1"><b>tar(1)</b></a>,
+	<a href="/man.shtml?topic=dd&amp;category=1"><b>dd(1M)</b></a>,
+	<a href="/man.shtml?topic=devnm&amp;category=1"><b>devnm(1M)</b></a>,
+	<a href="/man.shtml?topic=prtvtoc&amp;category=1"><b>prtvtoc(1M)</b></a>,
+	<a href="/man.shtml?topic=rmt&amp;category=1"><b>rmt(1M)</b></a>,
+	<a href="/man.shtml?topic=shutdown&amp;category=1"><b>shutdown(1M)</b></a>,
+	<a href="/man.shtml?topic=ufsrestore&amp;category=1"><b>ufsrestore(1M)</b></a>,
+	<a href="/man.shtml?topic=volcopy&amp;category=1"><b>volcopy(1M)</b></a>,
+	<a href="/man.shtml?topic=wall&amp;category=1"><b>wall(1M)</b></a>,
+	<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>,
+	<a href="/man.shtml?topic=largefile&amp;category=5"><b>largefile(5)</b></a>,
+	<a href="/man.shtml?topic=st&amp;category=7"><b>st(7D)</b></a>
+</dd></dl>
+
+<h2><a name="notes">ПРИМЕЧАНИЯ</a></h2>
+
+<h3>&nbsp;&nbsp;&nbsp;  Ошибки чтения</h3>
+
+<p>Если количество ошибок чтения файловой системы не превышает 32,
+они игнорируются.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Процессы лентопротяжек</h3>
+
+<p>Поскольку для каждой лентопротяжки (reel) требуется новый процесс, родительские
+процеесы для уже записанных фрагментов повисают до тех пор, пока не будет записана
+вся лента.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Вмешательство оператора</h3>
+
+<p>Утилита <b>ufsdump</b> требует вмешательства оператора в следующих случаях:
+конец носителя, завершение резервного копирования, ошибка записи тома,
+ошибка открытия тома или ошибка чтения диска (если этих ошибок больше 32).
+Помимо предупреждения всех операторов, предполагаемого опцией <a href="#n"><b>n</b></a>, утилита 
+<b>ufsdump</b> взаимодействует с оператором через управляющий терминал, с которого
+она была запущена, если больше не может продолжать работу или что-то идет
+принципиально неправильно. На все запросы, выдаваемые <b>ufsdump</b>, <b>необходимо</b>
+ответить да (<b>yes</b>) или нет (<b>no</b>).</p>
+
+<p>Поскольку резервное копирование диска может потребовать много времени и
+работы, <b>ufsdump</b> обрабатывает контрольную точку в начале каждого тома. Если
+при записи тома происходит ошибка по любой причине, утилита <b>ufsdump</b> будет,
+после подтверждения оператором, перезапускаться с места контрольной точки
+после замены сбойного носителя.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Рекомендуемый график резервного копирования </h3>
+
+<p>Принципиально важно регулярно выполнять полное резервное копирование,
+"уровня 0". При выполнении полного резервного копирования переводите
+машину в однопользовательский режим с помощью 
+команды <a href="/man.shtml?topic=shutdown&amp;category=1"><b>shutdown(1M)</b></a>.
+В процессе подготовки к полному резервному копированию неплохо будет
+почистить стример и головки. Инкрементное резервное копирование тоже
+имеет смысл выполнять в однопользовательском режиме.</p>
+
+<p>Инкрементное резервное копирование позволяет чаще копировать
+и восстановливать активно изменяющиеся файлы с минимальными затратами
+времени и носителей. Однако, это не дается даром. Во первых, интервал между
+резервными копированиями должен быть как можно меньше (не реже, чем раз в
+день). Чтобы уберечься от потери данных в результате сбоя носителя (это бывает,
+хоть и редко), храните активные файлы (как минимум) на двух наборах томов.
+Еще необходимо постараться свести к минимуму ненужное дублирование файлов,
+а значит, потери времени оператора и напрасную трату носителей. Третье
+соображение - простота поиска и восстановления конкретной версии скопированного
+файла. Следующее четырехнедельное расписание является разумным компромиссом
+между всеми этими целями.</p>
+
+<table width="60%" border="1">
+<tbody><tr><td>&nbsp;</td><td>Вс</td><td>Пн</td><td>Вт</td><td>Ср</td><td>Чт</td><td>Пт</td></tr>
+<tr><td>Week 1:</td><td>Полное</td><td>5</td><td>5</td><td>5</td><td>5</td><td>3</td></tr>
+<tr><td>Week 2:</td><td>&nbsp;</td><td>5</td><td>5</td><td>5</td><td>5</td><td>3</td></tr>
+<tr><td>Week 3:</td><td>&nbsp;</td><td>5</td><td>5</td><td>5</td><td>5</td><td>3</td></tr>
+<tr><td>Week 4:</td><td>&nbsp;</td><td>5</td><td>5</td><td>5</td><td>5</td><td>3</td></tr>
+</tbody></table>
+
+<p>Хотя инкрементные копии, создаваемые со вторника по пятницу содержат
+"избыточные" экзмепляры файлов, скопированных в понедельник, такая схема
+гарантирует, что любой изменившийся в течение недели файл может быть
+восстановлен с инкрементой резервной копии за предыдущий день.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Приоритет процесса ufsdump</h3>
+
+<p>Утилита <b>ufsdump</b> использует несколько процессов для одновременного чтения с
+диска и записи на носитель. Из-за применяемого способа синхронизации этих
+процессов,  любая попытка выполнять резервное копирование с поправкой
+приоритета nice '-5' или меньше с большой вероятностью приведет к замедлению,
+а не к ускорению работы утилиты <b>ufsdump</b>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Перекрывающиеся секции</h3>
+
+<p>Большинство дисков содержит одну или несколько перекрывающихся <i>секций</i>, 
+поскольку секция 2 обычно представляет весь диск. Другие секции имеют
+разные размеры и обычно не перекрываются. Например, в типичной конфигурации
+корневая файловая система помещается на секции 0, область подкачки - на
+секции 1, файловая система <b>/opt</b> - на секции 5, а файловая система 
+<b>/usr</b> - на секции 6.</p>
+
+<p>Необходимо подчеркнуть, что утилита <b>ufsdump</b> копирует по одной файловой
+системе <b>ufs</b> за раз. С учетом приведенного выше сценария, когда секции
+0 и 2 начинаются с одного смещения, применение <b>ufsdump</b> к секции 2 с намерением
+скопировать весь диск приведет к копированию только корневой файловой
+системы на секции 0. Для резервного копирования диска в целом необходимо
+отдельно копировать файловые системы на каждой из секций.</p>
+
+<h3>ОШИБКИ</h3>
+
+<p>Файл <b>/etc/vfstab</b> не позволяет задавать желаемую частоту резервного копирования
+(как файл <b>/etc/fstab</b>). Следовательно, опции 
+<a href="#w"><b>w</b></a> и <a href="#W"><b>W</b></a> предполагают, что файловые
+системы должны копироваться ежедневно, что ограничивает полезность этих опций.</p>
+
+<p align="center">Последнее изменение: 2 ноября 2000 года</p>
+
+<p align="center"><font size="-2">
+Copyright 2002 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ufsdump" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

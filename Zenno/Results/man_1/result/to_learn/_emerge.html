@@ -1,0 +1,694 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN emerge (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, emerge"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="emerge" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">emerge (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=emerge&amp;category=1&amp;russian=0"><u>emerge</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=emerge&amp;category=8&amp;russian=0"><u>emerge</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Portage 2.0.48</h1></td>
+<td><h2 align="center">Gentoo Linux</h2></td>
+<td><h1 align="right">emerge(1)</h1></td>
+</tr>
+</tbody></table>
+
+<a name="name"><h2>ИМЯ</h2></a>
+<p><b>emerge</b> - интерфейс командной строки к системе портежей (Portage system)</p>
+
+<a name="synopsis"><h2>СИНТАКСИС</h2></a>
+
+<dl><dt></dt><dd><tt>
+emerge [<b>опции</b>] [<b>действие</b>] [<b>ebuild</b> | <b>файл_tbz2</b> | <b>класс</b> | <b>зависимость</b>] ...<br>
+emerge [<b>опции</b>] [<b>действие</b>] <b>файл_ebuild</b><br>
+emerge sync | rsync<br>
+emerge --help -h [system | config | sync]<br>
+emerge --version
+</tt></dd></dl>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<p><b>emerge</b> - это полный интерфейс командной строки к системе портежей.       
+Он используется, в основном, для установки пакетов, причем, <b>emerge</b>
+может автоматически обрабатывать любые зависимости, которые заданы в 
+требуемом пакете. Утилита <b>emerge</b> может также обновлять дерево
+портежей, давая доступ к новым и обновленным пакетам. Утилита <b>emerge</b>
+также обеспечивает беспроблемное обновление версий установленных пакетов.
+Она позволяет работать с пакетами как в виде исходных кодов, так и в двоичном
+виде, а аткже может использоваться для создания двоичных пакетов с целью
+дальнейшего распространения.</p>
+
+<h2>Пакеты EBUILD, файлы TBZ2, классы и зависимости</h2>
+
+<p>Основное назначение утилиты <b>emerge</b> - установка пакетов.
+Устанавливаемые пакеты можно задать одним из четырех основных способов:
+как пакет ebuild, как файл tbz2, как класс или как зависимость.</p>
+
+<dl>
+<dt><b>ebuild</b></dt><dd>
+<b>ebuild</b> необходимо задавать, как минимум, в виде допустимого имени
+каталога пакетов портежей (valid Portage package  directory name) без
+указания версии или категории, например, <b>portage</b> или <b>python</b>.  Можно добавлять также категорию и номер версии, например, 
+<b>sys-apps/portage</b> или <b>python-2.2.1-r2</b>. Утилита <b>emerge</b>
+игнорирует завершающую косую черту, так что, можно использовать
+автоматическое завершение имени файла. В качестве значения <b>ebuild</b>
+можно также задавать реальное имя файла, например,
+<b>/usr/portage/app-admin/python/python-2.2.1-r2.ebuild</b>.       
+<br><br></dd>
+<dt><b>файл_tbz2</b></dt><dd>
+<b>Файл_tbz2</b> должен быть корректным файлом <b>.tbz2</b>, созданным с
+помощью команды ebuild  <b>&lt;пакет&gt;-&lt;версия&gt;.ebuild пакет</b>
+или <b>emerge --buildpkg [категория/]&lt;пакет&gt;</b>, или 
+<b>quickpkg /var/db/pkg/&lt;категория&gt;/&lt;пакет&gt;</b>.       
+<br><br></dd>
+<dt><b>класс</b></dt><dd>
+Классы пакетов - удобный способ обозначить большую группу пакетов.
+В настоящее время поддерживается два класса: <b>system</b> и
+<b>world</b>. Класс <b>system</b> содержит набор пакетов, считающихся необходимыми 
+для правильной работы системы. Класс <b>world</b> содержит
+все пакеты в системе плюс все пакеты, перечисленные в файле
+<b>/var/cache/edb/world</b>. (Подробнее см. далее в разделе
+<a href="#files"><b>ФАЙЛЫ</b></a>.) Учтите, что эти команды
+обычно используются вместе с <b>--update</b>.
+<br><br></dd>
+<dt><b>зависимость</b></dt><dd>
+Зависимость описывает ограничения на пакет, который необходимо установить.
+Например, <b>&gt;=dev-lang/python-2.2.1-r2</b> соответствует последней
+доступной версии языка Python, большей или равной <b>2.2.1-r2</b>. Аналогично,
+<b>&lt;dev-lang/python-2.0</b> соответствует последней доступной версии
+языка Python до 2.0. Учтите, что во многих командных интерпретаторах
+потребуется маскировать символы вроде '<b>&lt;</b>' и '<b>=</b>';
+чтобы избежать проблем с маскировкой, берите зависимость в
+одиночные или двойные кавычки.
+</dd>
+</dl>
+
+<h2><a name="actions">ДЕЙСТВИЯ</a></h2>
+<dl>
+<dt>Нет действия</dt><dd>
+Если действие не указано, в систему добавляются указанные пакеты и 
+удовлетворяются все их зависимости. В качестве аргументов можно указывать
+пакеты ebuild, файлы tbz2, классы или зависимости. Учтите, что для установки
+файла tbz2 необходимо указать опцию <a href="#usepkg"><b>--usepkg</b></a>. 
+Пакеты добавляются в конце файла <b>world</b>, так что они учитываются 
+при последующих обновлениях.       
+<br><br></dd>
+<dt><a name="clean"><b>clean</b></a> (<b><a name="c">-c</a></b>)</dt><dd>
+Очищает систему, удаляя пакеты, не влияющие на функциональность системы.
+В качестве аргументов можно указывать пакеты ebuild, классы или зависимости.
+Например, <b>emerge clean binutils</b> удаляет старые версии <b>binutils</b>;
+<b>emerge clean net-www/mozilla-0.9.9-r2</b> удаляет указанную версию
+Mozilla. Использовать эту команду, в общем случае, безопасно. Учтите, что пакеты
+в единственном экземпляре (unslotted packages) команда <b>clean</b> не
+удаляет.       
+<br><br></dd>
+<dt><a name="depclean"><b>depclean</b></a></dt><dd>
+Выявляет все пакеты, установленные в системе без видимой причины. Утилита
+<b>emerge</b> генерирует список пакетов, которые должны быть установлены,
+на основе списка системных пакетов и файла <b>world</b>. Затем она
+сравнивает этот список со списком фактически установленных пакетов;
+найденные различия выдаются как ненужные пакеты, которые предлагается
+удалить.<br>
+ПРЕДУПРЕЖДЕНИЕ: Удаление некоторых пакетов может привести к тому,
+что пакеты, связанные с удаленными, перестанут работать и начнут сообщать 
+о недостающих библиотеках. Снова установите с помощью <b>emerge</b> пакет, 
+который перестал работать, и эта проблема будет решена. Учтите, что
+изменения флагов <b>USE</b> могут существенно повлиять на результат,
+выдаваемый при выполнении действия <b>depclean</b>.
+<br><br></dd>
+<dt><a name="help"><b>help</b></a> (<b><a name="h">-h</a></b>)</dt><dd>
+Выводит (в стандартный выходной поток) справочную информацию по утилите <b>emerge</b>. Добавление одного из
+прочих перечисленных дополнительных аргументов приводит к выводу
+более детальной справочной информации по соответствующему действию. Встроенная
+справочная документация утилиты <b>emerge</b> обновляется чаще, чем эта страница
+справочного руководства; обратитесь к ней при возникновении проблем, которые
+не поможет решить эта страница справочного руководства.
+<br><br></dd>
+<dt><a name="info"><b>info</b></a></dt><dd>
+Выдает информацию для включения в отчеты об ошибках. Эта информация помогает разработчикам
+при решении проблем, о которых вы сообщаете. Включайте, пожалуйста, эту информацию
+при посылке отчета об ошибке. Расширенную информацию можно получить при указании
+опции <b>--verbose</b>.       
+<br><br></dd>
+<dt><a name="inject"><b>inject</b></a> (<b><a name="i">-i</a></b>)</dt><dd>
+При указании этого действия для пакета вставляется "заглушка" так, что система потрежей
+считает его установленным. Это удобно если необходимо, например, установить
+двоичную версию XFree86 для нетривиальной видеокарты или просто добавить собственные 
+пакеты. Необходимо указать категорию и конкретную версию вставляемого пакета.
+Например, <b>emerge inject sys-kernel/gentoo-sources-2.4.19</b>.
+<br><br></dd>
+<dt><a name="prune"><b>prune</b></a> (<b><a name="P">-P</a></b>)</dt><dd>
+ПРЕДУПРЕЖДЕНИЕ: Это действие может удалить важные пакеты! Удаляются все, кроме
+последних, версий соответствующих пакетов. Если для пакета есть несколько
+слотов, остается только последняя версия в каждом слоте. При этом не происходит
+проверки зависимостей, поэтому могут быть удалены пакеты, необходимые для
+нормальной работы системы. Используйте действие <a href="#clean"><b>clean</b></a> вместо <b>prune</b>,
+если не уверены абсолютно в том, что делаете. В качестве аргуменгтов можно указывать
+пакеты ebuild, классы или зависимости -- примеры см. в описании действия
+<a href="#clean"><b>clean</b></a>.       
+<br><br></dd>
+<dt><a name="regen"><b>regen</b></a></dt><dd>  
+Проверяет и обновляет кеш зависимостей для всех пакетов 
+ebuild в дереве портежей. Кеш используется для ускорения поиска и построения
+деревьев зависимостей. Эта команда не рекомендуется для пользователей <b>rsync</b>,
+поскольку <b>rsync</b> обновляет кеш, используя кеши на сервере. Если вы не знаете,
+чем отличается "пользователь <b>rsync</b>" от других пользователей, значит, вы -
+"пользователь <b>rsync</b>" :). Пользователи <b>rsync</b> должны просто
+выполнить команду <b>emerge sync</b> для регенерации кеша.       
+<br><br></dd>
+<dt><a name="search"><b>search</b></a> (<b><a name="s">-s</a></b>)</dt><dd>
+Ищет соответствия переданной строке в дереве портежей. Искомая строка представляет
+собой регулярное выражение. Например, команда <b>emerge search "^kde"</b>
+ищет любой пакет, имя которого начинается с "<b>kde</b>";
+команда <b>emerge  search  "gcc$"</b> ищет любой пакет, имя которого заканчивается на
+"<b>gcc</b>"; команда <b>emerge search "office"</b> ищет любой пакет, имя которого
+содержит слово "<b>office</b>". Если поиск необходимо выполнять и в описании пакета,
+используйте опцию <a href="#searchdesc"><b>--searchdesc</b></a>.       
+<br><br></dd>
+<dt><a name="sync"><b>sync</b></a></dt><dd>   
+Инициирует обновление дерева портежей с одного из зеркал <b>rsync.gentoo.org</b>. Учтите,
+что любые изменения, выполненные в дереве портежей, при этом будут стерты. За исключением
+специальных случаев, для обновления используется <b>rsync</b>. Чтобы узнать, как избежать
+удаления изменения, см. описание <b>PORTDIR_OVERLAY</b> на странице справочного руководства 
+<b>make.conf(5)</b>.       
+<br><br></dd>
+<dt><a name="unmerge"><b>unmerge</b></a> (<b><a name="C">-C</a></b>)</dt><dd>
+<b>ПРЕДУПРЕЖДЕНИЕ</b>: При этом могут быть удалены важные пакеты! Удаляются все 
+соответствующие пакеты. Проверка зависимостей не выполняется, поэтому могут быть удалены
+пакеты, необходимые для нормальной работы системы. В качестве аргументов можно задавать
+пакеты ebuild, классы или зависимости - примеры см. выше в 
+описании <a href="#clean"><b>clean</b></a>.</dd>
+</dl>
+
+<h2><a name="options">ОПЦИИ</a></h2>
+<dl>
+<dt><a name="buildpkg"><b>--buildpkg</b></a> (<b><a name="b">-b</a></b>)</dt><dd>
+Говорит <b>emerge</b> о необходимости построить двоичные пакеты для всех 
+соответствующих пакетов ebuild, помимо их обычного добавления в дерево. Полезно для тех,
+кто занимается поддержкой пакетов или при администрировании нескольких систем Gentoo  Linux
+(строим один раз, устанавливаем пакеты <b>tbz2</b> с помощью  <b>emerge</b> везде). Пакет
+будет создан в каталоге <b>${PKGDIR}/All</b>. В качестве альтернативы для уже включенных
+в дерево пакетов можно использовать опцию <a href="#quickpkg"><b>quickpkg</b></a>, которая
+создает пакеты <b>tbz2</b> из "живой" файловой системы.       
+<br><br></dd>
+<dt><a name="buildpkgonly"><b>--buildpkgonly</b></a> (<b><a name="B">-B</a></b>)</dt><dd>
+Создает двоичные пакеты для всех обработанных пакетов <b>ebuild</b>, не включая их фактически
+в дерево пакетов. Проблема только в том, что все зависимости времени построения уже
+должны быть включены в систему с помощью <b>emerge</b>.
+<br><br></dd>
+<dt><a name="changelog"><b>--changelog</b></a> (<b><a name="l">-l</a></b>)</dt><dd>
+Используйте эту опцию вместе с действием <a href="#pretend"><b>--pretend</b></a>. В результате,
+будут показаны записи <b>ChangeLog</b> для всех пакетов, которые будут обновляться.       
+<br><br></dd>
+<dt><a name="columns"><b>--columns</b></a></dt><dd>
+При использовании совместно с <a href="#pretend"><b>--pretend</b></a> выдает имена пакетов,
+новую и старую версию выравненными по столбцам для простоты вырезания и копирования.
+<br><br></dd>
+<dt><a name="debug"><b>--debug</b></a> (<b><a name="d">-d</a></b>)</dt><dd>
+Требует от <b>emerge</b> работать в отладочном режиме. В этом режиме среда построения <b>bash</b>
+будет работать с опцией <b>-x</b>, выдавая детальную отладочную информацию  в стандартных выходной
+поток. Опция <b>--debug</b> отлично подходит для поиска синтаксических ошибок <b>bash</b>.
+<br><br></dd>
+<dt><a name="deep"><b>--deep</b></a> (<b><a name="D">-D</a></b>)</dt><dd>
+При использовании совместно с опцией <a href="#update"><b>--update</b></a>, этот флаг требует
+от <b>emerge</b> учитывать все дерево зависимостей пакетов, а не просто проверять непосредственные
+зависимости пакетов. Это, например, позволяет учесть обновления в библиотеках, не перечисленных
+явно в зависимостях пакета.       
+<br><br></dd>
+<dt><a name="emptytree"><b>--emptytree</b></a> (<b><a name="e">-e</a></b>)</dt><dd>
+Создает видимость того, что дерево установленных пакетов содержит только <b>glibc</b>;
+эту опцию стоит использовать совместно с <a href="#pretend"><b>--pretend</b></a>. Она позволяет
+разработчикам получить полное представление о дереве всех зависимостей пакета и перестраивать
+деревья в целом с использованием новейших версий библиотек.
+<br><br></dd>
+<dt><a name="fetchonly"><b>--fetchonly</b></a> (<b><a name="f">-f</a></b>)</dt><dd>
+Вместо создания пакета, просто выбирает (fetches) все пакеты (главный пакет и все его
+зависимости).       
+<br><br></dd>
+<dt><a name="noconfmem"><b>--noconfmem</b></a></dt><dd>
+Требует от портежей не учитывать записи слияния, показывающий, что файл конфигурации в каталоге
+<b>CONFIG_PROTECT</b> уже был включен в дерево. Система портежей обычно будет включать такие 
+файлы только раз, чтобы не заставлять пользователя возиться с одной и той же конфигурацией
+несколько раз. Этот флаг приведет к включению файла конфгиурации каждый раз.       
+<br><br></dd>
+<dt><a name="nodeps"><b>--nodeps</b></a> (<b><a name="O">-O</a></b>)</dt><dd>
+Включает указанные пакеты, не включая зависимости. Учтите, что процесс построения может закончиться
+неудачно, если зависимости окажутся не удовлетворенными.
+<br><br></dd>
+<dt><a name="noreplace"><b>--noreplace</b></a> (<b><a name="n">-n</a></b>)</dt><dd>
+Пропускает указанные в командной строке пакеты, если они уже были установлены. Без этой опции любые указанные
+в командной строке пакеты, пакеты ebuild или зависимости <b>будут</b> приводить к повторному включению
+соответствующего пакета системой Portage, даже если он уже установлен. Учтите, что зависимости система
+Portage по умолчанию повторно не включает.
+<br><br></dd>
+<dt><a name="nospinner"><b>--nospinner</b></a></dt><dd>
+Отключает для сеанса "крутилку" (spinner). "Крутилка" активируется, если команда подана с
+терминала (TTY). Этот флаг отключает ее, независимо от устройства.       
+<br><br></dd>
+<dt><a name="oneshot"><b>--oneshot</b></a></dt><dd>
+Включает пакеты как обычно, но не добавляет в профиль <b>world</b> с целью дальнейшего обновления.       
+<br><br></dd>
+<dt><a name="onlydeps"><b>--onlydeps</b></a> (<b><a name="o">-o</a></b>)</dt><dd>
+Включает (или делает вид, что включает) зависимости указанных пакетов, а не сами пакеты.       
+<br><br></dd>
+<dt><a name="pretend"><b>--pretend</b></a> (<b><a name="p">-p</a></b>)</dt><dd>
+Вместо реального включения просто показывает, что <b>должно</b> устанавливаться, если не
+указать <b>--pretend</b>. Использование опции <b>--pretend</b> настоятельно рекомендуется перед
+установкой любого незнакомого пакета. В выдаваемом результате <b>N</b> = новый, <b>U</b> = обновление, 
+<b>R</b> = замена, <b>B</b> = блокируется уже установленным пакетом.
+<br><br></dd>
+<dt><a name="quiet"><b>--quiet</b></a> (<b><a name="-q">-q</a></b>)</dt><dd>
+Результаты могут отличаться, но, в общем случае, объем выдаваемых системой портежей 
+результатов сокращается или выдача уплотняется.       
+<br><br></dd>
+<dt><a name="resume"><b>--resume</b></a></dt><dd>
+Возобновляет последнее действие по включению пакетов. Учтите, пожалуйста, что возобновить можно
+только действие, закончившиеся с ошибкой из-за сбоя. Если делать нечего, будет просто выдано
+сообщение об успешном выполнении.       
+<br><br></dd>
+<dt><a name="searchdesc"><b>--searchdesc</b></a> (<b><a name="S">-S</a></b>)</dt><dd>
+Сопоставляет строку поиска с полем описания и именем пакета. Учтите, что сопоставление с регулярным
+выражением ведется и в описании пакета.
+<br><br></dd>
+<dt><a name="skipfirst"><b>--skipfirst</b></a></dt><dd>
+Это действие допустимо только совместно с <a href="#resume"><b>--resume</b></a>. 
+Оно удаляет первый пакет в списке кандидатов на возобновление установки, так, чтобы
+включение могло продолжиться даже при наличии неисправимой или несущественной ошибки.
+Эту опцию надо использовать только в случаях, когда пропуск пакета не нарушает зависимости.       
+<br><br></dd>
+<dt><a name="update"><b>--update</b></a> (<b><a name="u">-u</a></b>)</dt><dd>
+Обновляет пакеты до самой новой из доступных версий. Учтите, что <b>--update</b> еще не обладает
+всеми необходимыми возможностями. Он не будет автоматически обновлять зависимости пакетов
+в файле <b>world</b>, если их самих там еще нет.       
+<br><br></dd>
+<dt><a name="upgradeonly"><b>--upgradeonly</b></a> (<b><a name="U">-U</a></b>)</dt><dd>
+Обновляет пакеты, исключая обновления, приводящие к понижению версии устанавливаемого пакета. 
+Слоты (SLOTs) учитываются на простейшем уровне.
+<br><br></dd>
+<dt><a name="usepkg"><b>--usepkg</b></a> (<b><a name="k">-k</a></b>)</dt><dd>
+Требует от <b>emerge</b> использовать двоичные пакеты (из каталога <b>$PKGDIR</b>), если они есть,
+избегая этим, по возможности, продолжительных компиляций. Эта опция полезна для установок с
+компакт-дисков; можно выполнить <b>export PKGDIR=/mnt/cdrom/packages</b>, а затем использовать
+эту опцию, чтобы <b>emerge</b> "вытягивала" пакеты с CD для удовлетворения зависимостей.
+<br><br></dd>
+<dt><a name="usepkgonly"><b>--usepkgonly</b></a> (<b><a name="K">-K</a></b>)</dt><dd>
+Работает так же, как и <a href="#usepkg"><b>--usepkg</b></a>, но включает только двоичные пакеты.
+Все необходимые двоичные пакеты должны быть доступны на момент проверки зависимостей или <b>emerge</b>
+просто прекратит работу.
+<br><br></dd>
+<dt><a name="verbose"><b>--verbose</b></a> (<b><a name="v">-v</a></b>)</dt><dd>
+Требует от <b>emerge</b> работать в многословном (verbose) режиме. В настоящее время этот флаг приводит
+к тому, что <b>emerge</b> выдает сообщения об ошибках GNU info, если они будут.       
+<br><br></dd>
+<dt><a name="version"><b>--version</b></a> (<b><a name="V">-V</a></b>)</dt><dd>
+Выдает номер версии <b>emerge</b>. Эту опцию нельзя сочетать с другими; имя и формат действия
+при этом не важны.</dd>
+</dl>
+
+<h2><a name="output">ВЫДАВАЕМЫЕ РЕЗУЛЬТАТЫ</a></h2>
+
+<p>При использовании <b>emerge</b> с флагами <b>pretend</b>/<b>verbose</b>, результаты на первый взгляд
+могут показаться сложными для понимания. Этот раздел объясняет, что означает вся эта "стенографическая" 
+информация.</p>
+<dl>
+<dt><b>[blocks B ] app-text/dos2unix (from pkg app-text/hd2u-0.8.0)</b></dt><dd>              
+Пакет <b>Dos2unix</b> блокирует включение в дерево пакета <b>hd2u</b>. Блокирование выявляется,
+когда два пакета перекрываются по файлам или могут вызвать те или иные повреждения в системе.
+Однако обычно включать одновременно блокирующие друг друга пакеты не нужно, поскольку обычно
+они обеспечивают одинаковые возможности.       
+<br><br></dd>
+<dt><b>[ebuild N ] app-games/qstat-25c</b></dt><dd>
+Пакет <b>Qstat</b> - новый в вашей системе и будет включаться в дерево с помощью <b>emerge</b> впервые.       
+<br><br></dd>
+<dt><b>[ebuild R ] sys-apps/sed-4.0.5</b></dt><dd>
+Пакет <b>sed 4.0.5</b> уже был включен, но если выполнить команду еще раз, система портежей
+повторно включит этот пакет (в данном случае, <b>sed</b>).
+<br><br></dd>
+<dt><b>[ebuild F ] media-video/realplayer-8-r6</b></dt><dd>
+Пакет <b>realplayer</b> требует, чтобы вы загрузили исходники вручную. При попытке включить пакет в дерево,
+если исходные тексты пакета не найдены, система портежей остановится и выдаст инструкции о том, как загрузить
+недостающие файлы.       
+<br><br></dd>
+<dt><b>[ebuild U ] net-fs/samba-2.2.8_pre1 [2.2.7a]</b></dt><dd>
+Пакет <b>Samba 2.2.7a</b> уже был включен и может быть обновлен до версии <b>2.2.8_pre1</b>.
+<br><br></dd>
+<dt><b>[ebuild UD] media-libs/libgd-1.8.4 [2.0.11]</b></dt><dd>
+Пакет <b>Libgd 2.0.11</b> уже был включен, но если выполнить команду, система портежей 
+автоматически понизит (Downgrade) версию пакета до 1.8.4. Это может произойти, если более новая
+версия пакета была замаксирована, поскольку оказалась поврежденной или создает угрозу защите системы,
+а исправление еще не выпущено.
+<p>Еще это может произойти потому, что пакет, который вы пытаетесь включить с помощью <b>emerge</b> 
+требует для успешного включения более старую версию пакета. В данном случае, библиотека <b>libgd 2.x</b> 
+несовместима с libgd 1.x. Это означает, что пакеты, созданные с использованием <b>libgd 1.x</b>, не
+скомпилируются с версией <b>2.x</b>, и ее надо понизить, прежде чем удастся эти пакеты успешно установить.</p>
+</dd>
+<dt><b>[ebuild U-] x11-base/xfree-4.3.0 [4.2.99.902]</b></dt><dd>
+Дефис (<b>-</b>) представляет отсутствие информации о слоте (SLOT information) пакета <b>Xfree</b>.
+Это происходит, когда предыдущая версия была просто "впрыснута" (подробнее см. описание действия
+<a href="#inject"><b>inject</b></a>), или оказалась настолько старой, что соответствующий слот 
+не существует. В любом случае, более новая версия <b>Xfree</b> доступна для обновления.
+<br><br></dd>
+<dt><b>[ebuild U ] net-analyzer/nmap-3.15_beta2 [3.15_beta1] -gtk -gnome</b></dt><dd>
+Значения <b>-gtk</b> и <b>-gnome</b> отражают статус USE-переменных при включении пакета <b>nmap</b>.
+Здесь мы видим, что <b>nmap</b> может использовать USE-переменные <b>gtk</b> и <b>gnome</b>,
+но в текущих установках переменные <b>gtk</b> и <b>gnome</b> отключены. Поэтому дополнительная
+поддержка <b>gtk</b> и <b>gnome</b> не будет включена в <b>nmap</b> при его установке.
+<p><b>Примечание</b>: Статус <b>USE</b> выдается только если используются опции 
+<a href="#pretend"><b>--pretend</b></a> и <a href="#verbose"><b>--verbose</b></a>.</p></dd>
+</dl>
+
+<h2><a name="notes">ПРИМЕЧАНИЯ</a></h2>
+
+<p>Практически всегда надо перед любой попыткой установки или обновления выполнять ее же, но с
+опцией <a href="#pretend"><b>--pretend</b></a>. Это позволяет увидеть, что будет сделано,
+а также выявить блокирующие пакеты, которые надо будет предварительно удалить. Это тем более важно 
+для классов <b>system</b> и <b>world</b>, которые могут вызвать обновление большого количества
+пакетов, если дерево портежей было существенно изменено.</p>
+
+<p>Обычно также имеет смысл использовать опцию <a href="#update"><b>--update</b></a>, 
+которая позволяет игнорировать уже полностью обновленные пакеты, но обновлять при этом все остальные.
+При установке пакета с неустановленными зависимостями, если зависимости эти не указаны явно в списке
+параметров, они не будут добавляться в файл <b>world</b>. Если необходимо внести зависимости в файл <b>world</b>
+для дальнейшего обновления, не забудьте явно указать их в качестве параметров <b>emerge</b>.</p>
+
+<p>В команжной строке можно указывать USE-переменные, переопределяющие значения, указанные в стандартных местах,
+что позволяет избежать использования ряда нежелательных зависимостей. Флаги USE, заданные в командной строке,
+НЕ запоминаются. Например, команда <b>USE="-x -gnome" emerge  mc</b> установит пакет <b>mc</b> с указанными
+установками USE.</p>
+
+<p>Если команда <b>emerge --update system</b> или <b>emerge --update world</b> не сработает с выдачей
+сообщений об ошибках, причина может быть в том, что пакет ebuild использует новую возможность, которой
+нет в этой версии утилиты <b>emerge</b>. Можно сначала выполнить <b>emerge --update portage</b> для 
+обновления до последней версии, которая должна поддерживать любые необходимые новые возможности.</p>
+
+<h2>ЗАМАСКИРОВАННЫЕ ПАКЕТЫ</h2>
+
+<p>ПРИМЕЧАНИЕ: Будьте осторожны при использовании пакетов, находящихся в стадии разработки. Проблемы
+и ошибки, возникающие в результате неправильного использования замаскированных пакетов, приводят
+к напрасной трате времени разработчиков Gentoo. Подумайте заранее, сможете ли справиться с проблемами,
+которые могут возникнуть.</p>       
+
+<p>Маски в системе портежей обеспечивают три основные функции: они позволяют задать период тестирования,
+в течение которого пакеты могут использоваться на машинах; они предотвращают использование пакета, который
+начал сбоить, и позволяют маскировать существующие пакеты, поломанные или угрожающие защите. Маскирование
+можно делать двумя способами: с помощью файла <b>package</b>.<b>mask</b> и с помощью ключевых слов. 
+Как демаскировать пакет при использовании этих способов описано ниже. Учтите также, что если утилите 
+<b>emerge</b> передается пакет ebuild, то все виды максировки игнорируются и <b>emerge</b> будет пытаться
+включить пакет в систему.</p>       
+
+<dl>
+<dt>package.mask</dt><dd>
+Файл <b>package.mask</b>, в основном, используется для блокирования пакетов, вызывающих проблемы
+везде или на некоторых машинах. Он находится 
+в каталоге <b>${PORTDIR}/profiles</b>.
+Пакеты можно демаскировать в файле путем добавления символа комментария (<b>#</b>) 
+в начале строки, маскирующей пакет.<br><br></dd>
+<dt><a name="keywords">КЛЮЧЕВЫЕ СЛОВА</a></dt><dd>
+Ключевые слова (<b>KEYWORDS</b>) также используются для маскировки пакетов,
+находящихся на стадии тестирования. Есть определяющие архитектуру ключевые слова для
+каждого пакета, позволяющие системе портежей определить, с какими системами
+совместим пакет. Пакеты, компилирующиеся на некоторой архитектуре, но не считающиеся
+"стабильными", миаскируются путем указания тильды (<b>~</b>) перед названием
+архитектуры. Утилита <b>emerge</b> проверяет значение переменной среды 
+<b>ACCEPT_KEYWORDS</b>, прежде чем разрешить или запретить включение пакета, 
+замаскированного с помощью КЛЮЧЕВЫХ СЛОВ. 
+<p>Чтобы проинформировать утилиту <b>emerge</b>, что необходимо построить эти "тестовые"
+версии пакетов, можно установить переменной <b>ACCEPT_KEYWORDS</b> значение "<b>~arch</b>",
+где <b>arch</b> - одно из значений: <b>x86</b>, <b>ppc</b>, <b>sparc</b>, <b>mips</b>,
+<b>alpha</b>, <b>arm</b>, <b>hppa</b>. Например, команда 
+<b>ACCEPT_KEYWORDS="~x86" emerge xfree</b> приведет к тому, что <b>emerge</b> будет
+учитывать замаскированные ключевыми словами версии <b>XFree</b> в качестве
+потоенциальных кандидатов на обновление.</p>  
+<p>ПРЕДУПРЕЖДЕНИЕ: Не устанавливайте этой переменной значение, отличающееся от
+соответствующего вашей архитектуре.</p></dd>
+</dl>
+
+<h2><a name="reporting_bugs">КАК СООБЩАТЬ ОБ ОШИБКАХ</a></h2>
+
+<p>Пожалуйста, сообщайте о любых обнаруженных ошибках через наш web-сайт:</p>
+<a href="http://bugs.gentoo.org"><b>http://bugs.gentoo.org/</b></a><p></p>           
+<p>Пожалуйста, включайте в отчет об ошибке результат, который выдает утилита 
+<b>emerge</b>.</p>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+
+<dl><dt></dt><dd>
+<b>emerge --help</b>, 
+<b>ebuild(1)</b>, 
+<b>ebuild(5)</b>, 
+<b>make.conf(5)</b><br>
+Ряд вспомогательных приложений находится в каталоге <b>/usr/lib/portage/bin</b>.
+Пакет <b>app-admin/gentoolkit</b> содержит полезные сценарии, например,
+<b>qpkg</b> (средство запросов к пакетам).
+</dd></dl>
+
+<h2><a name="files">ФАЙЛЫ</a></h2>
+<dl>
+<dt><b>/var/cache/edb/world</b></dt><dd>
+Содержит список всех указанных пользователем пакетов. Можно без опаски редактировать этот
+файл, добавляя пакеты, которые необходимо учитывать при обновлении класса
+<b>world</b>, и удаляя те, котоирые обновлять прри этом не нужно.       
+<br><br></dd>
+<dt><b>/etc/make.conf</b></dt><dd>
+Содержит перременные для процесса построения пакетов, переопределяя значения, заданные
+в <b>make.globals</b>. Именно этот файл надо редактировать вместо перечисленных далее.
+<br><br></dd>
+<dt><b>/etc/make.profile/make.defaults</b></dt><dd>
+Содерржит специфические для профиля переменные для процесса построения пакетов. Не
+редактируйте этот файл.
+<br><br></dd>
+<dt><b>/etc/make.profile/use.defaults</b></dt><dd>
+Содержит список пакетов, которые, в случае установки, приводят к установке по
+умолчанию соответствующего флага использования (use flag). Не редактируйте этот файл.
+<br><br></dd>
+<dt><b>/usr/portage/profiles/use.desc</b></dt><dd>
+Содержит основной список флагов <b>USE</b> с описаниями их функций. Не редактируйте
+этот файл.
+<br><br></dd>
+<dt><b>/etc/make.profile/virtuals</b></dt><dd>
+Содержит список стандартных пакетов, используемых для разрешения виртуальных
+зависимостей. Не редактируйте этот файл.
+<br><br></dd>
+<dt><b>/var/cache/edb/virtuals</b></dt><dd>
+Содержит список пакетов, используемых для разрешения виртуальных зависимостей.
+В случае, когда поиск виртуальных зависимостей заканчивается неудачно,
+можно переупорядочить записи соответствующих виртуальных зависимостей в этом файле.
+Первый пакет, указанный после <b>virtual</b>, используется для сопоставления с <b>virtual</b>.
+<br><br></dd>
+<dt><b>/etc/make.profile/package</b></dt><dd>
+Содержит список пакетов, используемых для базовой системы. Классы <b>system</b> 
+и <b>world</b> учитывают содержимое этого файла. Не редактируйте его.
+<br><br></dd>
+<dt><b>/etc/make.globals</b></dt><dd>
+Содержит стандартные переменные для процесса построения. Не редактируйте этот файл.</dd>
+</dl>
+
+<h2><a name="authors">АВТОРЫ</a></h2>
+
+<p>
+Daniel Robbins &lt;drobbins@gentoo.org&gt;<br>
+Geert Bevin &lt;gbevin@gentoo.org&gt;<br>
+Achim Gottinger &lt;achim@gentoo.org&gt;<br>
+Nicholas Jones &lt;carpaski@gentoo.org&gt;<br>
+Phil Bordelon &lt;sunflare@gentoo.org&gt;<br>
+Mike Frysinger &lt;vapier@gentoo.org&gt;
+</p>
+
+<h2><a name="cvs">ЗАГОЛОВОК CVS</a></h2>
+
+<pre>$Id: emerge.1,v 1.43 2003/09/13 18:49:44 vapier Exp $</pre>
+
+<p align="center">Последнее изменение: январь, 2003 года</p>
+
+<p align="center"><font size="-2">
+Copyleft (no c) - Fuck copyright!, 2003 
+<a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="emerge" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

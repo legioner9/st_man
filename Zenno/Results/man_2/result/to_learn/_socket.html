@@ -1,0 +1,666 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN socket (2) Системные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, socket"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="socket" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">socket (2)</font><hr><li> <a href="/man.shtml?topic=socket&amp;category=2&amp;russian=1"><u>socket</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=socket&amp;category=2&amp;russian=0"><u>socket</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=socket&amp;category=2&amp;russian=2"><u>socket</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=socket&amp;category=3&amp;russian=4"><u>socket</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=socket&amp;category=3&amp;russian=5"><u>socket</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=socket&amp;category=4&amp;russian=2"><u>socket</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=socket&amp;category=7&amp;russian=0"><u>socket</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=socket&amp;category=7&amp;russian=2"><u>socket</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=socket&amp;category=9&amp;russian=1"><u>socket</u></a> (9) <font color="#555555"> ( FreeBSD man: Ядро )</font></li><li><font color="#555555">Ключ <a href="/keywords/socket.html"><u>socket</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+socket - создает конечную точку соединения
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/sys/types.h">sys/types.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;</b>
+
+<p>
+<b>int socket(int </b><i>domain</i><b>, int </b><i>type</i><b>, int </b><i>protocol</i><b>);</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<b>Socket</b>
+
+создает конечную точку соединения и возвращает ее описатель.
+<p>
+
+Параметр
+<i>domain</i>
+
+задает домен соединения: выбирает набор протоколов, которые будут
+использоваться для создания соединения. Такие наборы описаны в
+<b>&lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;</b>.
+
+В настоящее время распознаются такие форматы:
+</p><p>
+
+<table>
+<tbody><tr valign="top"><td>Название</td><td>Назначение</td><td>Страница руководства<br></td></tr>
+<tr valign="top"><td>
+<b>PF_UNIX,&nbsp;PF_LOCAL</b>
+
+</td><td>
+Локальное соединение
+</td><td>
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=unix&amp;category=7">unix</a></b>(7)
+
+<br></td></tr>
+<tr valign="top"><td>
+<b>PF_INET</b>
+
+</td><td>IPv4 протоколы Интернет</td><td>
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7)
+
+<br></td></tr>
+<tr valign="top"><td>
+<b>PF_INET6</b>
+
+</td><td>IPv6 протоколы Интернет</td><td><br></td></tr>
+<tr valign="top"><td>
+<b>PF_IPX</b>
+
+</td><td>IPX - протоколы Novell</td><td><br></td></tr>
+<tr valign="top"><td>
+<b>PF_NETLINK</b>
+
+</td><td>
+Устройство для взаимодействия с ядром
+</td><td>
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netlink&amp;category=7">netlink</a></b>(7)
+
+<br></td></tr>
+<tr valign="top"><td>
+<b>PF_X25</b>
+
+</td><td>Протокол ITU-T X.25 / ISO-8208</td><td>
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=x25&amp;category=7">x25</a></b>(7)
+
+<br></td></tr>
+<tr valign="top"><td>
+<b>PF_AX25</b>
+
+</td><td>
+Протокол AX.25 - любительское радио
+</td><td><br></td></tr>
+<tr valign="top"><td>
+<b>PF_ATMPVC</b>
+
+</td><td>ATM - доступ к низкоуровневым PVC</td><td><br></td></tr>
+<tr valign="top"><td>
+<b>PF_APPLETALK</b>
+
+</td><td>Appletalk</td><td>
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ddp&amp;category=7">ddp</a></b>(7)
+
+<br></td></tr>
+<tr valign="top"><td>
+<b>PF_PACKET</b>
+
+</td><td>
+Низкоуровневый пакетный интерфейс
+</td><td>
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=packet&amp;category=7">packet</a></b>(7)
+
+<br></td></tr>
+</tbody></table>
+
+</p><p>
+
+Сокет имеет тип
+<i>type</i>,
+
+задающий семантику коммуникации.
+В настоящее время определены следующие типы:
+</p><dl compact="">
+<dt><b>SOCK_STREAM</b>
+
+</dt><dd>
+Обеспечивает создание двусторонних надежных и последовательных потоков байтов
+,
+поддерживающих соединения. Может также поддерживаться механизм
+<br>&nbsp;внепоточных&nbsp;данных.
+</dd><dt><b>SOCK_DGRAM</b>
+
+</dt><dd>
+Поддерживает датаграммы (ненадежные сообщения с ограниченной
+длиной и не поддерживающие соединения).
+</dd><dt><b>SOCK_SEQPACKET</b>
+
+</dt><dd>
+Обеспечивает работу последовательного двустороннего канала для 
+передачи датаграмм
+<br>&nbsp;с&nbsp;поддержкой&nbsp;соединений;&nbsp;датаграммы&nbsp;имеют&nbsp;ограниченную
+длину; от получателя требуется за один раз прочитать целый пакет.
+</dd><dt><b>SOCK_RAW</b>
+
+</dt><dd>
+Обеспечивает доступ к низкоуровневому сетевому протоколу.
+</dd><dt><b>SOCK_RDM</b>
+
+</dt><dd>
+Обеспечивает надежную доставку датаграмм без гарантии, что они будут расположены
+по порядку.
+</dd><dt><b>SOCK_PACKET</b>
+
+</dt><dd>
+Устарел и не должен использоваться в новых программах; см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=packet&amp;category=7">packet</a></b>(7).
+
+</dd></dl>
+<p>
+
+Некоторые типы сокетов могут быть не включены в определенные
+наборы протоколов; например,
+<b>SOCK_SEQPACKET</b>
+
+не включен в набор
+<b>AF_INET</b>.
+
+</p><p>
+
+Параметр
+<i>protocol</i>
+
+задает конкретный протокол, который работает с сокетом. Обычно
+существует только один протокол, задающий конкретный тип сокета
+в определенном семействе протоколов, в этом случае
+<i>protocol</i>
+
+может быть определено, как 0.
+Однако, возможно существование
+нескольких таких протоколов (в этом случае и используется данный параметр).
+Номер протокола зависит от используемого ``домена
+коммуникации'', см.~
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=protocols&amp;category=5">protocols</a></b>(5).
+
+См.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getprotoent&amp;category=3">getprotoent</a></b>(3),
+
+где описано, как соотносить имена протоколов с их номерами.
+</p><p>
+
+Сокеты типа
+<b>SOCK_STREAM</b>
+
+являются соединениями полнодуплексных байтовых потоков, похожими на каналы. Они не
+сохраняют границы записей. Потоковый сокет должен быть в состоянии
+<i>соединения</i>
+
+перед тем, как из него можно будет отсылать данные или принимать их 
+в нем.
+Соединение с другим сокетом создается с помощью системного вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2).
+
+После соединения данные можно передавать, с помощью системных вызовов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+,
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></b>(2)
+
+или одного из вариантов следующих системных вызовов:
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=send&amp;category=2">send</a></b>(2)
+
+,
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recv&amp;category=2">recv</a></b>(2).
+
+Когда сеанс закончен, выполняется команда
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=close&amp;category=2">close</a></b>(2).
+
+Внепоточные данные могут передаваться, как описано в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=send&amp;category=2">send</a></b>(2),
+
+а приниматься, как описано в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recv&amp;category=2">recv</a></b>(2).
+
+</p><p>
+
+Коммуникационные протоколы, которые реализуют
+<b>SOCK_STREAM</b>,
+
+следят, чтобы данные не были потеряны или дублированы.
+Если часть данных, для которых имеется место в буфере протокола, не может быть 
+передана за определенное время, соединение считается "мертвым".
+Когда в сокете включен флаг
+<b>SO_KEEPALIVE</b>,
+
+протокол каким-либо способом проверяет, не отключена ли еще другая сторона.
+Сигнал
+<b>SIGPIPE</b>
+
+появляется, если процесс посылает или принимает данные, пользуясь
+"разорванным" потоком; это приводит к тому, что процессы,
+не обрабатывающие сигнал, завершаются. Сокеты
+<b>SOCK_SEQPACKET</b>
+
+используют те же самые системные вызовы, что и сокеты
+<b>SOCK_STREAM</b>.
+
+Единственное отличие в том, что вызовы
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+возвращают только запрошенное количество данных, а остальные данные пришедшего
+пакета не будут учитываться.  Границы сообщений во входящих
+датаграммах сохраняются.
+</p><p>
+
+Сокеты
+<b>SOCK_DGRAM</b>
+
+и
+<b>SOCK_RAW</b>
+
+позволяют посылать датаграммы принимающей стороне, заданной при вызове
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=send&amp;category=2">send</a></b>(2).
+
+Датаграммы обычно принимаются с помощью вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvfrom&amp;category=2">recvfrom</a></b>(2),
+
+который возвращает следующую датаграмму с соответствующим обратным
+адресом.
+</p><p>
+
+<b>SOCK_PACKET</b>
+
+- это устаревший тип сокета, позволявший получать необработанные
+пакеты прямо от драйвера устройства.  Используйте вместо него
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=packet&amp;category=7">packet</a></b>(7).
+
+</p><p>
+
+Системный вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2)
+
+с аргументом
+<b>F_SETOWN</b>
+
+может использоваться для задания группы процессов, которая будет
+получать сигнал
+<b>SIGURG</b>,
+
+когда прибывают внепоточные данные; или сигнал
+<b>SIGPIPE</b>,
+
+когда соединение типа
+<b>SOCK_STREAM</b>
+
+неожиданно обрывается.
+Этот вызов также можно использовать, чтобы задать процесс или группу
+процессов, которые получают асинхронные уведомления о событиях ввода-вывода 
+с помощью
+<b>SIGIO.</b>
+
+Использование
+<b>F_SETOWN</b>
+
+эквивалентно использованию вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ioctl&amp;category=2">ioctl</a></b>(2)
+
+с аргументом
+<b>FIOSETOWN </b>
+
+или
+<b>SIOCSPGRP</b>.
+
+</p><p>
+</p><p>
+
+Когда сеть сообщает модулю протокола об ошибке (например, в случае IP,
+используя ICMP-сообщение), то для сокета устанавливается флаг
+ожидающей ошибки. Следующая операция этого сокета вернет код
+ожидающей ошибки. Некоторые протоколы позволяют очереди ошибок в сокете 
+получить детальную информацию об ошибке; см.
+<b>IP_RECVERR</b>
+
+в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7)<b>.</b>
+
+</p><p>
+
+Операции сокетов контролируются их
+<i>параметрами</i>.
+
+Эти параметры описаны в
+<b>&lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;</b>.
+
+Функции
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setsockopt&amp;category=2">setsockopt</a></b>(2)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getsockopt&amp;category=2">getsockopt</a></b>(2)
+
+используются, чтобы установить и получить необходимые параметры соответственно.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+В случае ошибки возвращается -1; в противном случае возвращается
+описатель, ссылающийся на сокет.
+<a name="lbAF">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>EPROTONOSUPPORT</b>
+
+</dt><dd>
+Тип протокола или указанный протокол не поддерживаются в этом домене.
+</dd><dt><b>EAFNOSUPPORT</b>
+
+</dt><dd>
+Реализация не поддерживает указанное семейства адресов.
+</dd><dt><b>ENFILE</b>
+
+</dt><dd>
+Недостаточно памяти, чтобы создать новый сокет.
+</dd><dt><b>EMFILE</b>
+
+</dt><dd>
+Переполнение таблицы с файлами процесса.
+</dd><dt><b>EACCES</b>
+
+</dt><dd>
+Нет доступа к созданию сокета указанного типа и/или протокола.
+</dd><dt><b>ENOBUFS</b> или <b>ENOMEM</b>
+
+</dt><dd>
+Недостаточно памяти для создания сокета.
+</dd><dt><b>EINVAL</b>
+
+</dt><dd>
+Неизвестный протокол или недоступный набор протоколов.
+</dd></dl>
+<p>
+
+Другие ошибки могут быть созданы модулями
+<br>&nbsp;протоколов&nbsp;более&nbsp;низкого&nbsp;уровня.
+<a name="lbAG">&nbsp;</a>
+</p><h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+4.4BSD (системный вызов
+<b>socket</b>
+
+появился в 4.2BSD). Обычно переносим в не-BSD системы и с них
+(включая варианты System V).
+<a name="lbAH">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+В наборах протоколов BSD 4.* используются константы PF_UNIX,
+PF_INET и т.д., тогда как AF_UNIX и т.п. используется для указания
+семейства адресов. Однако, в странице руководства BSD записано:
+"Вообще, набор протоколов совпадает с семейством адресов", и во всех последующих
+стандартах используется AF_*.
+<a name="lbAI">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<b>SOCK_UUCP</b>
+
+до сих пор не реализован.
+<a name="lbAJ">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=accept&amp;category=2">accept</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bind&amp;category=2">bind</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getpeername&amp;category=2">getpeername</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getsockname&amp;category=2">getsockname</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getsockopt&amp;category=2">getsockopt</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ioctl&amp;category=2">ioctl</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=listen&amp;category=2">listen</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recv&amp;category=2">recv</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=select&amp;category=2">select</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=send&amp;category=2">send</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=shutdown&amp;category=2">shutdown</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socketpair&amp;category=2">socketpair</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getprotoent&amp;category=3">getprotoent</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcp&amp;category=7">tcp</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=udp&amp;category=7">udp</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=unix&amp;category=7">unix</a></b>(7)
+
+<p>
+
+lqВводное Руководство по межпроцессной коммуникации в 4.3 BSDrq
+(lqAn Introductory 4.3 BSD Interprocess Communication Tutorialrq)
+перепечатано и называется
+<i>Дополнительные документы для программиста UNIX, Том~1</i>,
+
+<i></i>(<i>UNIX Programmer's Supplementary Documents Volume~1</i>).
+
+</p><p>
+
+lqРуководство по межпроцессной коммуникации в BSDrq
+перепечатано и называется
+<i>Дополнительные документы для программиста UNIX, Том~1</i>,
+
+<i></i>(<i>UNIX Programmer's Supplementary Documents Volume~1</i>).
+
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAG">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAH">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAI">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="socket" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

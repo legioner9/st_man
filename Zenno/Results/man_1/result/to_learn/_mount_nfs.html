@@ -1,0 +1,533 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN mount_nfs (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, mount_nfs"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="mount_nfs" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">mount_nfs (1)</font><hr><li> <a href="/man.shtml?topic=mount_nfs&amp;category=1&amp;russian=4"><u>mount_nfs</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=mount_nfs&amp;category=1&amp;russian=0"><u>mount_nfs</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=mount_nfs&amp;category=8&amp;russian=1"><u>mount_nfs</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>mount(1M_NFS)</h1></td>
+<td><h1 align="center">(NFS)</h1></td>
+<td><h1 align="right">mount(1M_NFS)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>mount</b>, <b>umount</b> - монтирование или демонтирование удаленных ресурсов NFS</p>
+
+<h2>СИНТАКСИС</h2>
+<dl><dt></dt><dd><tt>
+mount [-F nfs] [-r] [-o <b>специфические_опции</b>] 
+   {<b>сервер</b>:<b>путь</b> | <b>точка_монтирования</b>}<br>
+mount [-F nfs] [-r] [-o <b>специфические_опции</b>] 
+   <b>сервер</b>:<b>путь</b> <b>точка_монтирования</b><br>
+umount [-o <b>специфические_опции</b>] 
+   {<b>сервер</b>:<b>путь</b> | <b>точка_монтирования</b>}
+</tt></dd></dl>
+
+<h2>ОПИСАНИЕ</h2>
+
+<p>Команда <b>mount</b> для NFS связывает указанный полным путем каталог на сервере 
+с заданной полным путем <b>точкой_монтирования</b> (которая должна уже 
+существовать) в локальной файловой системе. <b>mount</b> поддерживает таблицу 
+смонтированных файловых систем в файле <b>/etc/mnttab</b>, описанном на странице 
+справочного руководства <a href="/man.shtml?topic=mnttab&amp;category=4"><b>mnttab(4)</b></a>.</p>
+
+<p>Команда <b>umount</b> для NFS находится в файле <b>/usr/lib/fs/nfs/umount</b> и 
+вызывается командой <b>umount</b> (см. <a href="/man.shtml?topic=mount&amp;category=1"><b>mount(1M)</b></a>) 
+общего назначения. <b>umount</b> демонтирует файловую систему и удаляет 
+соответствующую запись из файла <b>/etc/mnttab</b>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Файлы</h3>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td width="20%"><b>/etc/mnttab</b></td><td>
+таблица смонтированных файловых систем</td></tr>
+<tr><td><b>/etc/dfs/fstypes</b></td><td>
+стандартный тип распределенной файловой системы</td></tr>
+<tr><td><b>/etc/vfstab</b></td><td>
+таблица автоматически монтируемых ресурсов</td></tr>
+</tbody></table>
+
+<h3>&nbsp;&nbsp;&nbsp;   Коды возврата</h3>
+<p>Команда <b>mount</b> для NFS возвращает следующие значения:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td width="10%"><b>0</b></td>	<td>Успешный выход</td></tr>
+<tr><td><b>32</b></td>	<td>Ошибка использования</td></tr>
+<tr><td><b>47</b></td>	<td>Не удается открыть файл <b>mnttab</b></td></tr>
+<tr><td><b>48</b></td>	<td>Не удается заблокировать файл <b>mnttab</b></td></tr>
+<tr><td><b>70</b></td>	<td>Повтор операции монтирования</td></tr>
+<tr><td><b>71</b></td>	<td>Отказ от повторений операции монтирования</td></tr>
+<tr><td><b>72</b></td>	<td>Укажите <b>сервер</b>:<b>путь</b></td></tr>
+<tr><td><b>73</b></td>	<td>Недопустимая опция</td></tr>
+<tr><td><b>74</b></td>	<td>Сервер не отвечает</td></tr>
+<tr><td><b>75</b></td>	<td>Не удается получить адрес службы nfs</td></tr>
+<tr><td><b>76</b></td>	<td>Не удается согласовать защищенный протокол</td></tr>
+<tr><td><b>77</b></td>	<td>В доступе отказано</td></tr>
+<tr><td><b>78</b></td>	<td>Нет такого каталога</td></tr>
+</tbody></table>
+
+<p>Команда <b>umount</b> для NFS возвращает следующие значения:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td width="10%"><b>0</b></td>	<td>Успешный выход</td></tr>
+<tr><td><b>33</b></td>	<td>Ошибка использования</td></tr>
+<tr><td><b>34</b></td>	<td>Нет права доступа</td></tr>
+<tr><td><b>35</b></td>	<td>Каталог/ресурс не смонтирован</td></tr>
+<tr><td><b>36</b></td>	<td>Точка монтирования занята</td></tr>
+</tbody></table>
+
+<h2>ИСПОЛЬЗОВАНИЕ</h2>
+
+<p>Если каталог <b>точка_монтирования</b> был не пустым перед операцией 
+монтирования, его содержимое остается скрытым, пока ресурс <b>сервер</b>:<b>путь</b> не будет 
+демонтирован. Если <b>сервер</b>:<b>путь</b> указан в файле <b>vfstab</b>, в командной строке 
+можно указывать как <b>сервер</b>:<b>путь</b>, так и <b>точку_монтирования</b>, и <b>mount</b> 
+выберет необходимую информацию из <b>vfstab</b>.</p>
+
+<p>Учтите, что если каталог, в который должна монтироваться файловая система, 
+является символьной связью, файловая система монтируется в каталог, на 
+который ссылается символьная связь, а не поверх самой символьной связи.</p>
+
+<p>Эти команды может выполнять только привилегированный пользователь.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Опции</h3>
+<p>Команда <b>mount</b> поддерживает следующие опции:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="10%"><a name="F"><b>-F</b></a></td><td>
+Задает <i>тип файловой системы</i> (FSType). Если опция <b>-F</b> не указана, 
+<b>mount</b> будет брать тип файловой системы из файла <b>/etc/vfstab</b>, если в 
+нем существует запись для монтируемой файловой системы.</td></tr>
+<tr><td valign="top"><a name="r"><b>-r</b></a></td><td>
+Монтирует указанную файловую систему только для чтения.</td></tr>
+<tr><td valign="top"><a name="o"><b>-o</b></a></td><td>
+Задает специфические для файловой системы опции в виде списка, 
+через запятую, из приведенных ниже ключевых слов.
+<table cellspacing="4" border="0">
+<tbody><tr><td valign="top" width="15%"><a name="pre"><b>pre4.0</b></a></td><td>
+Позволяет монтировать ресурсы с систем до 
+SVR4.0 или других старых реализаций. Эту 
+опцию необходимо использовать, когда сервер 
+NFS не позволяет пользователю на клиенте 
+принадлежать более, чем к восьми группам. 
+Если для такого сервера опция <b>pre4.0</b> не 
+используется, команда mount на клиенте 
+закончится неудачей и будет выдано следующее сообщение:<br>
+<br>
+<tt> 
+nfs mount: сервер:путь server not responding: RPC: Authentication error; why = Invalid client credential.
+</tt>
+</td></tr>
+<tr><td valign="top"><a name="rw_ro"><b>rw | ro</b></a></td><td>
+Ресурс <b>сервер</b>:<b>путь</b> монтируется <i>для чтения и записи</i> 
+или <i>только для чтения</i>. По умолчанию используется <b>rw</b>.
+</td></tr>
+<tr><td valign="top"><a name="suid_nosuid"><b>suid | nosuid</b></a></td><td>
+Учитывается или не учитывается бит <b>setuid</b>. По умолчанию используется <b>suid</b>.
+</td></tr>
+<tr><td valign="top"><a name="remount"><b>remount</b></a></td><td>
+Если файловая система смонтирована только 
+для чтения, перемонтирует ее для чтения и записи.
+</td></tr>
+<tr><td valign="top"><a name="bg_fg"><b>bg | fg</b></a></td><td>
+Если первая попытка закончилась неудачей, 
+повторить ее как <i>фоновый процесс</i> или 
+процесс переднего плана (<i>приоритетный процесс</i>). По умолчанию используется <b>fg</b>.
+</td></tr>
+<tr><td valign="top"><a name="retry"><b>retry=n</b></a></td><td>
+Сколько раз пытаться выполнить операцию монтирования. По умолчанию - 10000.
+</td></tr>
+<tr><td valign="top"><a name="port"><b>port=n</b></a></td><td>
+Номер порта IP на сервере. По умолчанию используется <b>NFS_PORT</b>.
+</td></tr>
+<tr><td valign="top"><a name="grpid"><b>grpid</b></a></td><td>
+Создает файл с идентификатором группы 
+(GID), совпадающим с текущим 
+идентификатором группы вызывающего 
+процесса. Это поведение можно изменить для 
+каждого каталога отдельно путем установки 
+бита set-GID родительского каталога; в этом 
+случае, идентификатор группы совпадает с 
+идентификатором группы родительского 
+каталога (см. <a href="/man.shtml?topic=open&amp;category=2"><b>open(2)</b></a> и <a href="/man.shtml?topic=mkdir&amp;category=2"><b>mkdir(2)</b></a>). Файлы, 
+созданные в файловых системах, 
+смонтированных без опции <b>grpid</b>, будут 
+соответствовать семантике BSD; то есть, 
+идентификатор группы безусловно наследуется 
+от родительского каталога.
+</td></tr>
+<tr><td valign="top"><a name="rsize"><b>rsize=n</b></a></td><td>
+Установить размер буфера чтения равным <b>n</b> байтам.
+</td></tr>
+<tr><td valign="top"><a name="wsize"><b>wsize=n</b></a></td><td>
+Установить размер буфера записи равным <b>n</b> байтам.
+</td></tr>
+<tr><td valign="top"><a name="timeo"><b>timeo=n</b></a></td><td>
+Установить время ожидания NFS равным <b>n</b> десятых долей секунды.
+</td></tr>
+<tr><td valign="top"><a name="retrans"><b>retrans=n</b></a></td><td>
+Установить количество повторных передач NFS равным n.
+</td></tr>
+<tr><td valign="top"><a name="soft_hard"><b>soft | hard</b></a></td><td>
+Возвращать ошибку, если сервер не отвечает, 
+или продолжать запросы, пока сервер не 
+ответит. По умолчанию используется <b>hard</b>.
+</td></tr>
+<tr><td valign="top"><a name="intr"><b>intr</b></a></td><td>
+Позволяет прерываниям с клавиатуры 
+прекращать процесс, висящий в ожидании 
+ответа от <i>жестко смонтированной</i> (hard-mounted) файловой системы.
+</td></tr>
+<tr><td valign="top"><a name="secure"><b>secure</b></a></td><td>
+Использует более защищенный протокол для транзакций NFS.
+</td></tr>
+<tr><td valign="top"><a name="noac"><b>noac</b></a></td><td>
+Подавляет <i>кеширование атрибутов</i> (attribute caching).
+</td></tr>
+<tr><td valign="top"><a name="acregmin"><b>acregmin=n</b></a></td><td>
+Сохраняет кешированные атрибуты как 
+минимум <b>n</b> секунд после изменения файла.
+</td></tr>
+<tr><td valign="top"><a name="acregmax"><b>acregmax=n</b></a></td><td>
+Сохраняет кешированные атрибуты не более <b>n</b> 
+секунд после изменения файла.
+</td></tr>
+<tr><td valign="top"><a name="acdirmin"><b>acdirmin=n</b></a></td><td>
+Сохраняет кешированные атрибуты как 
+минимум <b>n</b> секунд после изменения каталога.
+</td></tr>
+<tr><td valign="top"><a name="acdirmax"><b>acdirmax=n</b></a></td><td>
+Сохраняет кешированные атрибуты не более <b>n</b> 
+секунд после изменения каталога.
+</td></tr>
+<tr><td valign="top"><a name="axtimeo"><b>actimeo=n</b></a></td><td>
+Устанавливает минимальное и максимальное 
+время хранения атрибутов для обычных файлов и каталогов равным <b>n</b> секунд.
+</td></tr>
+<tr><td valign="top"><a name="manthreads"><b>maxthreads=n</b></a></td><td>
+Устанавливает максимальное количество 
+потоков асинхронного ввода/вывода равным <b>n</b>.
+</td></tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+
+<p>Следующие опции доступны для команд <b>mount</b> и <b>umount</b> для NFS:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="30%"><b>сервер:путь</b></td><td>
+Здесь <b>сервер</b> - это машина, предоставляющая 
+удаленный ресурс, а <b>путь</b> - это полный путь к ресурсу.</td></tr>
+<tr><td valign="top"><b>точка_монтирования</b></td><td>
+Имя локального каталога, в который будет смонтирован удаленный ресурс.</td></tr>
+</tbody></table>
+
+<h3>&nbsp;&nbsp;&nbsp;   Фоновый или приоритетный процесс</h3>
+
+<p>Если файловая система NFS монтируется с опцией <b>bg</b>, это означает, что команда 
+<b>mount</b> должна выполнять повторные попытки как фоновый процесс, если демон 
+монтирования на сервере (<a href="/man.shtml?topic=mountd&amp;category=1"><b>mountd(1M)</b></a>) не отвечает. <b>mount</b> 
+повторяет запрос столько раз, сколько указано в опции <b>retry=n</b>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Жесткое или мягкое монтирование</h3>
+
+<p>После того, как файловая система смонтирована, каждый запрос NFS, 
+сделанный в ядре, ожидает ответа <b>timeo=n</b> десятых долей секунды. Если ответ 
+не получен, время ожидания умножается на два и запрос передается повторно. 
+Когда количество повторных передач достигает числа, указанного в опции 
+<b>retrans=n</b>, файловая система, смонтированная с опцией <b>soft</b> (<i>мягко</i>), возвращает 
+при запросе ошибку; а смонтированная с опцией <b>hard</b> (<i>жестко</i>), выдает 
+предупреждение и продолжает попытки выполнить запрос. Если сервер NFS 
+остановлен, процесс, пытающийся обратиться к файловой системе этого сервера, 
+смонтированной с опцией <b>hard</b>, повиснет, пока сервер не будет запущен снова.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Чтение-запись или только чтение</h3>
+
+<p>Файловые системы NFS, монтируемые в режиме <b>rw</b> (чтение-запись), должны 
+использовать опцию <b>hard</b>. Если сервер останавливается, когда пользователь 
+записывает файл, запись будет продолжена, когда сервер снова заработает, и 
+записываемые данные не будут потеряны.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Защищенные файловые системы</h3>
+
+<p>Опцию <b>secure</b> необходимо указывать, если сервер требует защищенного 
+монтирования файловой системы NFS.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Атрибуты файлов</h3>
+
+<p>Кеш атрибутов сохраняет атрибуты файлов на клиенте. Для сброса (изменения) 
+атрибутов файла устанавливается определенное время. Если файл изменен до 
+завершения времени сброса, оно увеличивается и отсчитывается со времени 
+последнего изменения (исходя из предположения, что недавно измененные 
+файлы, вероятно, скоро снова изменятся). Имеется минимальная и максимальная 
+продолжительность времени сброса для обычных файлов и для каталогов. 
+Установка <b>actimeo=n</b> увеличивает время сброса до <b>n</b> как для обычных файлов, 
+так и для каталогов.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Примеры</h3>
+
+<p>Чтобы смонтировать удаленную файловую систему:</p>
+<dl><dt></dt><dd><tt>
+	mount -F nfs serv:/usr/src /usr/src
+</tt></dd></dl>
+
+<p>Чтобы мягко смонтировать удаленную файловую систему:</p>
+<dl><dt></dt><dd><tt>
+	mount -F nfs -o soft serv:/usr/src /usr/src
+</tt></dd></dl>
+
+<p>Чтобы жестко смонтировать удаленную файловую систему:</p>
+<dl><dt></dt><dd><tt>
+	mount -F nfs -o hard serv:/usr/src /usr/src
+</tt></dd></dl>
+
+<p>Чтобы смонтировать файловую систему с буфером чтения размером 1024 байта:</p>
+<dl><dt></dt><dd><tt>
+	mount -F nfs -o rsize=1024 serv:/usr/src /usr/src
+</tt></dd></dl>
+
+<p>Чтобы смонтировать файловую систему, допуская только 3 повторных попытки 
+выполнения команды <b>mount</b>:</p>
+<dl><dt></dt><dd><tt>
+	mount -F nfs -o retry=3 serv:/usr/src /usr/src
+</tt></dd></dl>
+
+<p>Чтобы демонтировать удаленную файловую систему <b>сервер</b>:<b>путь</b></p>
+<dl><dt></dt><dd><tt>
+	umount serv:/usr/src
+</tt></dd></dl>
+<p>где <b>serv</b> - это имя сервера, а <b>/usr/src</b> - путь к файловой системе на сервере.</p>
+
+<p>Чтобы демонтировать удаленную файловую систему, смонтированную в 
+<b>точку_монтирования</b></p>
+<dl><dt></dt><dd><tt>
+	umount /usr/src
+</tt></dd></dl>
+<p>где <b>/usr/src</b> - точка монтирования ресурса.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;   Предупреждения</h3>
+
+<p>При монтировании ресурсов быстрого сервера имеет смысл использовать опции 
+монтирования <b>rsize=1024,wsize=1024</b>. Их желательно использовать, поскольку 
+быстрые серверы вызывают переполнение данных в драйвере Ethernet на 
+медленных клиентских машинах. Одним из симптомов этой проблемы является 
+выдача следующего сообщения на консоль клиентских машин:</p>
+<dl><dt></dt><dd><tt>
+	RPC: Timed out
+</tt></dd>M</dl>
+
+<p>Еще одним симптомом этой проблемы может быть кажущееся зависание 
+клиентской машины с выдачей на ее консоль сообщения:</p>
+<dl><dt></dt><dd><tt>
+	NFS server hostname not responding, still trying
+</tt></dd>M</dl>
+
+<p>Учтите также, что при монтировании по NFS одного файла его нельзя будет 
+открыть с флагом <b>O_CREAT</b>. Информацию о флаге <b>O_CREAT</b> см. на странице 
+справочного руководства <a href="/man.shtml?topic=open&amp;category=2"><b>open(2)</b></a>.</p>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=mnttab&amp;category=4"><b>mnttab(4)</b></a>,
+	<a href="/man.shtml?topic=mount&amp;category=1"><b>mount(1M)</b></a>,
+	<a href="/man.shtml?topic=mount&amp;category=2"><b>mount(2)</b></a>,
+	<a href="/man.shtml?topic=mountall&amp;category=1"><b>mountall(1M)</b></a>,
+	<a href="/man.shtml?topic=open&amp;category=2"><b>open(2)</b></a>,
+	<a href="/man.shtml?topic=umount&amp;category=2"><b>umount(2)</b></a>,
+	<a href="/man.shtml?topic=vfstab&amp;category=4"><b>vfstab(4)</b></a>
+</dd></dl>
+
+<p align="center"><font size="-2">Copyright 1994 Novell, Inc.<br>
+Copyright 1999 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="mount_nfs" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

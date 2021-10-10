@@ -1,0 +1,494 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN useradd (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, useradd"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="useradd" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">useradd (1)</font><hr><li> <a href="/man.shtml?topic=useradd&amp;category=1&amp;russian=4"><u>useradd</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=useradd&amp;category=1&amp;russian=0"><u>useradd</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=useradd&amp;category=8&amp;russian=0"><u>useradd</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=useradd&amp;category=8&amp;russian=2"><u>useradd</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>useradd(1M)</h1></td>
+<td><h1 align="right">useradd(1M)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>useradd</b> - добавление нового регистрационного имени пользователя в 
+системе</p>
+
+<h2>СИНТАКСИС</h2>
+<dl><dt></dt>
+  <dd><tt>
+useradd [-u <b>идентификатор</b> [-o] [-i]] [-g <b>группа</b>]  
+   [-G <b>группа</b>[[<b>,группа</b>] . . .]] [-d <b>каталог</b>] [-s <b>shell</b>] 
+   [-c <b>комментарий</b>] [-m [-k <b>skel_dir</b>]] [-f <b>inactive</b>] 
+   [-e <b>expire</b>] [-p <b>passgen</b>] [-a <b>событие</b>[<b>,</b> . . .]] <b>рег_имя</b>
+  </tt></dd>
+</dl>
+
+<h2>ОПИСАНИЕ</h2>
+<p>Вызов <b>useradd</b> обычно добавляет новую запись о пользователе в файлы данных 
+системы <i>идентификации и проверки идентичности</i> (Identification and 
+Authentication - I&amp;A). Исключением являются пользователи <i>сетевой 
+информационной службы</i> (Network Information Service или, сокращенно, NIS). 
+Она также позволяет задать принадлежность к дополнительным группам для 
+пользователя (опция <b>-G</b>) и создать для него начальный каталог (опция <b>-m</b>). 
+Новое регистрационное имя блокируется до тех пор, пока не будет выполнена 
+команда <a href="/man.shtml?topic=passwd&amp;category=1"><b>passwd(1)</b></a>.</p>
+<p>
+Сразу после установки стандартные значения для различных параметров 
+указаны в файле <b>/etc/default/useradd</b>. Стандартные значения для тех из 
+перечисленных ниже опций, которые предполагают использование стандартных 
+значений, можно изменить с помощью команды <a href="/man.shtml?topic=defadm&amp;category=1"><b>defadm</b></a>.</p>
+<p>
+Записи системного файла, создаваемые с помощью этой команды, имеют 
+ограничение длины - 512 символов в строке. Если для нескольких опций заданы 
+длинные аргументы, это ограничение может быть нарушено.</p>
+<p>
+Поддерживаются следующие опции:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td width="30%"><b>-u идентификатор</b></td>
+<td>
+Идентификационный номер пользователя (UID). 
+Этот номер должен быть неотрицательным целым 
+числом, не превосходящим <b>MAXUID</b>, 
+определенный в <b>sys/param.h</b>. По умолчанию 
+используется следующий доступный (уникальный) 
+не устаревший UID, больший 99. Эта опция 
+игнорируется, если новое регистрационное имя 
+будет администрироваться сетевой информационной 
+службой (NIS). Подробнее об этом см. ниже в 
+разделе <a href="#nis">"Регистрационные имена сетевой 
+информационной службы"</a>.</td></tr>
+<tr><td><b>-o</b></td>
+<td>
+Эта опция позволяет сдублировать UID (сделать его 
+не уникальным). Поскольку защита системы в 
+целом, а также целостность <i>контрольного журнала</i> 
+(audit trail) и <i>учетной информации</i> 
+(accounting information) в частности, зависит от 
+однозначного соответствия каждого UID 
+определенному лицу, использовать эту опцию не 
+рекомендуется (чтобы обеспечить учет действий 
+пользователей).</td></tr>
+<tr><td><b>-i</b></td>
+<td>
+Позволяет использовать устаревший идентификатор 
+UID.</td></tr>
+<tr><td><b>-g группа</b></td>
+<td>
+Целочисленный идентификатор или символьное имя 
+существующей группы. Эта опция задает <i>основную 
+группу</i> (primary group) для нового пользователя. По 
+умолчанию используется стандартная группа, 
+указанная в файле <b>/etc/default/useradd</b>. Эта опция 
+игнорируется, если новое регистрационное имя 
+будет администрироваться сетевой информационной 
+службой (NIS). См. раздел <a href="#nis">"Регистрационные имена 
+сетевой информационной службы"</a> ниже.</td></tr>
+<tr><td><b>-G группа[[,группа] . . .]</b></td>
+<td>
+Один или несколько элементов в списке через 
+запятую, каждый из которых представляет собой 
+целочисленный идентификатор или символьное имя 
+существующей группы. Этот список определяет 
+<i>принадлежность к дополнительным группам</i> 
+(supplementary group membership) для пользователя. 
+Повторения игнорируются. Количество элементов в 
+списке не должно превосходить <b>NGROUPS_MAX-
+1</b>, поскольку общее количество дополнительных 
+групп для пользователя плюс основная группа не 
+должно превосходить <b>NGROUPS_MAX</b>. Эта опция 
+игнорируется, если новое регистрационное имя 
+будет администрироваться сетевой информационной 
+службой (NIS). См. раздел <a href="#nis">"Регистрационные имена 
+сетевой информационной службы"</a> ниже.</td></tr>
+<tr><td><b>-d каталог</b></td>
+<td>
+<i>Начальный каталог</i> (home directory) нового 
+пользователя. Длина этого поля не должна 
+превосходить 256 символов. По умолчанию 
+используется <b>HOMEDIR/рег_имя</b>, где <b>HOMEDIR</b> - 
+базовый каталог для начальных каталогов новых 
+пользователей, а <b>рег_имя</b> - регистрационное имя 
+нового пользователя.
+</td></tr><tr><td><b>-s shell</b></td>
+<td>
+Полный путь к программе, используемой в качестве 
+начального командного интерпретатора для 
+пользователя сразу после регистрации. Длина этого 
+поля не должна превосходить 256 символов. По 
+умолчанию это поле - пустое, что заставляет систему 
+использовать стандартный командный 
+интерпретатор <a href="/man.shtml?topic=sh&amp;category=1"><b>/usr/bin/sh</b></a>. В качестве значения <b>shell</b> 
+должен быть указан существующий выполняемый 
+файл.</td></tr>
+<tr><td><b>-c комментарий</b></td>
+<td>
+Любая текстовая строка. Обычно, это краткое 
+описание регистрационного имени и используется 
+сейчас для указания фамилии и имени реального 
+пользователя. Эта информация хранится в записи 
+пользователя в файле <a href="/man.shtml?topic=passwd&amp;category=4"><b>/etc/passwd</b></a>. Длина этого поля 
+не должна превосходить 128 символов.</td></tr>
+<tr><td><b>-m</b></td>
+<td>
+Создает начальный каталог нового пользователя, 
+если он еще не существует. Если каталог уже 
+существует, добавляемый пользователь должен 
+иметь права на доступ к указанному каталогу.</td></tr>
+<tr><td><b>-k skel_dir</b></td>
+<td>
+Копирует содержимое каталога <b>skel_dir</b> в 
+начальный каталог нового пользователя, вместо 
+содержимого стандартного "скелетного" каталога, 
+<b>/etc/skel</b>. Каталог <b>skel_dir</b> должен существовать. 
+Стандартный "скелетный" каталог содержит 
+стандартные файлы, определяющие среду работы 
+пользователя. Заданный администратором каталог 
+<b>skel_dir</b> может содержать аналогичные файлы и 
+каталоги, созданные для определенной цели.</td></tr>
+<tr><td><b>-f inactive</b></td>
+<td>
+Максимально допустимое количество дней между 
+использованиями регистрационного имени, когда 
+это имя еще не объявляется недействительным. 
+Обычно в качестве значений используются 
+положительные целые числа.</td></tr>
+<tr><td><b>-e expire</b></td>
+<td>
+Дата, начиная с которой регистрационное имя 
+больше нельзя будет использовать; после этой даты 
+никакой пользователь не сможет получить доступ 
+под этим регистрационным именем. (Эта опция 
+удобна при создании временных регистрационных 
+имен.) Вводить значение аргумента <b>expire</b> 
+(представляющего собой дату) можно в любом 
+формате (кроме Julian date). Например, можно 
+ввести <tt>10/6/99</tt> или <tt>October 6, 1999</tt>.</td></tr>
+<tr><td><b>-p passgen</b></td>
+<td>
+Указывает, что поле FLAG в файле <a href="/man.shtml?topic=shadow&amp;category=4"><b>/etc/shadow</b></a> 
+должно быть установлено в указанное значение. К 
+этому полю обращается команда <a href="/man.shtml?topic=passwd&amp;category=1"><b>passwd</b></a>, чтобы 
+определить, действует ли для данного пользователя 
+генератор паролей. Если опция <b>-p</b> явно не задана, 
+проверяется запись <b>FORCED_PASS</b> в файле 
+<b>/etc/default/useradd</b>, чтобы определить значение для 
+соответствующего поля в <b>/etc/shadow</b>. Если записи 
+<b>FORCED_PASS</b> нет в <b>/etc/default/useradd</b>, в 
+соответствующем поле записи в <b>/etc/shadow</b> 
+значения не будет. Если значение <b>FORCED_PASS</b> 
+равно 1, запись в <b>/etc/shadow</b> получает значение 1. 
+Если значение <b>passgen</b> не пустое и не является 
+печатным символом ASCII, выдается 
+диагностическое сообщение.</td></tr>
+<tr><td><b>-a событие</b></td>
+<td>
+Список типов или классов событий через запятую, 
+образующих <i>маску аудита</i> (audit mask) для 
+пользователя. Сразу после установки системы 
+стандартной маски аудита для пользователя нет, но 
+ее можно задать в файле <b>/etc/default/useradd</b> с 
+помощью команды <a href="/man.shtml?topic=defadm&amp;category=1"><b>defadm</b></a>. Эту опцию можно 
+использовать, только если установлены утилиты 
+аудита (Auditing Utilities). (Чтобы узнать, какие 
+пакеты установлены в системе, выполните команду 
+<a href="/man.shtml?topic=pkginfo&amp;category=1"><b>pkginfo</b></a>.)</td></tr>
+<tr><td><b>рег_имя</b></td>
+<td>
+Строка печатных символов, задающая 
+регистрационное имя для нового пользователя. В 
+ней не должно быть двоеточий (<b>:</b>) и символов 
+перевода строки (<b>\n</b>). Она также не должна 
+начинаться с прописной буквы.
+</td></tr></tbody></table>
+<p>
+Учтите, что многие из стандартных значений для рассмотренных выше 
+параметров можно изменить с помощью команды <a href="/man.shtml?topic=defadm&amp;category=1"><b>defadm</b></a>, предназначенной для 
+работы с файлом <b>/etc/default/useradd</b>. Эти стандартные значения применяются 
+только для локальных пользователей. Для пользователей NIS стандартные 
+значения задаются в базе данных сетевой информационной службы. Чтобы 
+изменить стандартные значения NIS, необходимо задать опции в командной 
+строке.
+
+</p><h3>&nbsp;&nbsp;&nbsp;<a name="nis">Регистрационные имена сетевой информационной службы</a></h3>
+<p>
+Если регистрационное имя начинается с символа <b>+</b>, (например, <b>+chris</b>), 
+определением пользователя будет управлять сетевая информационная служба 
+(NIS). Значения по умолчанию будут определяться на основе базы данных NIS, а 
+не файла <b>/etc/defaults/useradd</b>. Значения аргументов для опций <b>-u</b>, <b>-g</b> и <b>-G</b> будут 
+молча проигнорированы, если эти опции заданы. Вместо этого, значения 
+идентификатора пользователя и идентификатора группы будут взяты из базы 
+данных NIS. Подробнее см. страницу справочного руководства <a href="/man.shtml?topic=passwd&amp;category=4"><b>passwd(4)</b></a>. 
+Учтите, что при добавлении пользователя NIS регистрационное имя должно уже 
+существовать в базе данных NIS. Например, чтобы добавить регистрационное 
+имя <b>chris</b> как имя пользователя NIS, <b>chris</b> уже должен существовать в базе 
+данных NIS. Затем необходимо вызвать <b>useradd</b> с регистрационным именем 
+<b>+chris</b>, чтобы указать, что необходимо добавить пользователя <b>chris</b> как 
+пользователя NIS, а не как локального пользователя.
+
+</p><h2>ФАЙЛЫ</h2>
+<dl><dt></dt><dd>
+<b>/etc/default/useradd</b><br>
+<b>/etc/group</b><br>
+<b>/etc/passwd</b><br>
+<b>/etc/security/ia/ageduid</b><br>
+<b>/etc/security/ia/audit</b> (если установлены утилиты аудита - Auditing Utilties)<br>
+<b>/etc/security/ia/index</b><br>
+<b>/etc/security/ia/master</b><br>
+<b>/etc/shadow</b><br>
+<b>/etc/skel</b>
+</dd>
+</dl>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=defadm&amp;category=1"><b>defadm(1M)</b></a>, 
+	<a href="/man.shtml?topic=groupadd&amp;category=1"><b>groupadd(1M)</b></a>, 
+	<a href="/man.shtml?topic=groupdel&amp;category=1"><b>groupdel(1M)</b></a>,
+	<a href="/man.shtml?topic=groupmod&amp;category=1"><b>groupmod(1M)</b></a>,
+	<a href="/man.shtml?topic=logins&amp;category=1"><b>logins(1M)</b></a>, 
+	<a href="/man.shtml?topic=passwd&amp;category=1"><b>passwd(1)</b></a>,
+	<a href="/man.shtml?topic=userdel&amp;category=1"><b>userdel(1M)</b></a>,
+	<a href="/man.shtml?topic=usermod&amp;category=1"><b>usermod(1M)</b></a>,
+	<a href="/man.shtml?topic=users&amp;category=1"><b>users(1BSD)</b></a>,
+	<a href="/man.shtml?topic=passwd&amp;category=4"><b>passwd(4)</b></a>
+</dd></dl>
+
+<h2>ДИАГНОСТИКА</h2>
+<p>
+Команда <b>useradd</b> завершается с кодом возврата 0 в случае успеха. При 
+возникновении ошибок могут быть выданы следующие сообщения:</p>
+
+<dl><dt></dt><dd>
+<br>Неверный синтаксис командной строки. <br>
+<tt>The command line syntax was invalid.</tt></dd>
+<dt></dt><dd>
+<br>В опции задан недопустимый аргумент. <br>
+<tt>An invalid argument was provided with an option.</tt></dd>
+<dt></dt><dd>
+<br>Указанный в опции -u идентификатор уже используется, а опция -o не 
+указана.<br> 
+<tt>The uid specified with the -u option is already in use and the -o option was not 
+specified.</tt></dd>
+<dt></dt><dd>
+<br>Указанная в опции -g группа не существует.<br> 
+<tt>The group specified with the -g option does not exist.</tt></dd>
+<dt></dt><dd>
+<br>Указанное регистрационное имя не уникально.<br>
+<tt>The specified login is not unique.</tt></dd>
+<dt></dt><dd>
+<br>Не удалось изменить /etc/group. Регистрационное имя добавлено в файл 
+/etc/passwd, но не в файл /etc/group.<br> 
+<tt>Cannot update /etc/group. The login was added to the /etc/passwd file but not 
+to the /etc/group file.</tt></dd>
+<dt></dt><dd>
+<br>Не удалось создать начальный каталог (в опции -m) или не удалось 
+выполнить копирование skel_dir в начальный каталог.<br> 
+<tt>Unable to create the home directory (with the -m option) or unable to complete 
+the copy of skel_dir to the home directory.</tt></dd>
+<dt></dt><dd>
+<br>Идентификатор недостаточно устарел. Выберите другой.<br> 
+<tt>uid not aged sufficiently. Choose another.</tt></dd>
+<dt></dt><dd>
+<br>Была указана недопустимая опция -a; системная служба не установлена.<br>
+<tt>An invalid option -a was specified; system service not installed.</tt></dd>
+<dt></dt><dd>
+<br>Указан недопустимый тип или класс события аудита.<br> 
+<tt>An invalid audit event type or class event was specified.</tt></dd>
+
+</dl>
+
+<p align="center"><font size="-2">Copyright 1994 Novell, Inc.<br>
+Copyright 2000 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="useradd" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

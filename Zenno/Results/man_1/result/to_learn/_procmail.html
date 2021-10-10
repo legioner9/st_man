@@ -1,0 +1,729 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN procmail (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, procmail"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="procmail" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">procmail (1)</font><hr><li> <a href="/man.shtml?topic=procmail&amp;category=1&amp;russian=4"><u>procmail</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=procmail&amp;category=1&amp;russian=0"><u>procmail</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=procmail&amp;category=1&amp;russian=2"><u>procmail</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li><font color="#555555">Ключ <a href="/keywords/procmail.html"><u>procmail</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+procmail - автономный обработчик почты
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<pre><b>procmail</b> [<b>-ptoY</b>] [<b>-f</b> <i>от_кого</i>]
+        [<i>параметр</i><b>=</b><i>значение</i> | <i>файл_настроек</i>] ...
+<b>procmail</b> [<b>-toY</b>] [<b>-f</b> <i>от_кого</i>] [<b>-a</b> <i>аргумент</i>] ...
+        <b>-d</b> <i>получатель</i> ...
+<b>procmail</b> [<b>-ptY</b>] <b>-m</b> [<i>параметр</i><b>=</b><i>значение</i>] ... <i>файл_настроек</i>
+        [<i>аргумент</i>] ...
+<b>procmail</b> [<b>-toY</b>] [<b>-a</b>  <i>аргумент</i>] <b>-z</b>
+<b>procmail -v</b>
+</pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Для быстрого запуска смотри <b>ПРИМЕЧАНИЯ</b> в конце этого документа.
+<dl compact="">
+<dt>Вызов <b>procmail</b> происходит автоматически, посредством механизма файла <b>.forward</b> сразу по прибытию почты. Альтернативным способом является, если установлено системным администратором, вызов непосредственно из MTA. Сначала, при вызове, он устанавливает значения по умолчанию для некоторых переменных окружения, считывает почтовое сообщение из стандартного ввода до EOF, отделяет тело сообщения от заголовка и затем, если не имеется аргументов командной строки, он ищет файл <b>$HOME/.procmailrc</b>. Согласно способам обработки в этом файле, только-что прибывшее почтовое сообщение определяется в необходимую папку (и не только). Если конфигурационный файл не найден или обработка файла закончилась неудачей, в этом случае <b>procmail</b> сохраняет почту в системном почтовом ящике по умолчанию.</dt><dd>
+</dd><dt>Если не имеется файлов конфигурации и в командной строке не указано <b>-p</b>, <b>procmail</b>, прежде чем прочитать $HOME/.procmailrc, интерпретирует команды из <b>/etc/procmailrc</b> (если имеется таковой). При создании /etc/procmailrc должны соблюдаться предосторожности, так как если того допустят обстоятельства, программа будет выполняться с правами суперпользователя (вопреки, разумеется, $HOME/.procmailrc).</dt><dd>
+</dd><dt>При выполнении suid root или привилегиями суперпользователя, <b>procmail</b> будет в состоянии выполняться с функциональными расширениями для обратной совместимости с агентом доставки почты.</dt><dd>
+</dd><dt><b>Procmail</b> также может быть использован как основное средство фильтрации почты. То есть, если существуют условия, предоставляющие возможность вызова <b>procmail</b> из специального правила sendmail.</dt><dd>
+</dd><dt>Формат файла конфигурации детально описан в страницах руководства пользователя <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=procmailrc&amp;category=5">procmailrc</a></b>(5).</dt><dd>
+</dd><dt>Сбалансированная техника оценки детально описана в страницах руководства пользователя <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=procmailsc&amp;category=5">procmailsc</a></b>(5).</dt><dd>
+</dd><dt>Примеры настроек для файлов конфигурации можно найти в страницах руководства пользователя <b> <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=procmailex&amp;category=5">procmailex</a></b>(5).</dt><dd>
+</dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h3><b>Сигналы</b></h3>
+
+<dl compact="">
+<dt><b>TERMINATE</b></dt><dd>
+Преждевременно завершить работу и повторно постановить почту в очередь.
+</dd><dt><b>HANGUP</b></dt><dd>
+Преждевременно завершить работу и отвергнуть почту.
+</dd><dt><b>INTERRUPT</b></dt><dd>
+Преждевременно завершить работу и отвергнуть почту.
+</dd><dt><b>QIUT</b></dt><dd>
+Преждевременно завершить работу и молча потерять почту.
+</dd><dt><b>ALARM</b></dt><dd>
+Форсировать время ожидания (см. <b>TIMEOUT</b>)
+</dd><dt><b>USR1</b></dt><dd>
+Аналогично <b>VERBOSE</b>=off
+</dd><dt><b>USR2</b></dt><dd>
+Аналогично <b>VERBOSE</b>=on
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ОПЦИИ</h2>
+
+<b>-v</b>
+<b>Procmail</b> отобразит свою версию, конфигурационные параметры, с которыми он был собран, и завершит работу.
+<dl compact="">
+<dt><b>-p</b></dt><dd>
+Не сбрасывать старые значения переменных окружения. Обычно <b>procmail</b> при старте очищает все значения переменных окружения, за исключением значения временной зоны (TZ). Однако в любом случае, любые значения по умолчанию переназначат предустановленные значения переменных окружения, т.е. <b>procmail</b> не обратит внимания на предопределённые значения переменных, а лишь перепишет их своими собственными. Для получения списка определяемых <b>procmail</b> переменных обратитесь к страницам руководства пользователя <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=procmailrc&amp;category=5">procmailrc</a></b>(5). Если одновременно используются <b>-p</b> и <b>-m</b>, то список переопределяемых переменных сужается до <i>LOGNAME</i>, <i>HOME</i>, <i>SHELL</i>, <i>ORGMAIL</i> и <i>MAILDIR</i>.
+</dd><dt><b>-t</b></dt><dd>
+Смягчает последствия ошибок при доставке почты. То есть, если <b>procmail</b> не в состоянии доставить посту по назначению, почта не отбрасывается, а возвращается в очередь отправки. Через некоторое время будет предпринята другая попытка доставить почту.
+</dd><dt><b>-f</b> <i>от_кого</i></dt><dd>
+Заставляет <b>procmail</b> подменять в поле "From" значение <i>от_кого</i> как отправителя (вместо <b>-f</b> может быть использовано устаревшее <b>-p</b>). Если <i>от_кого</i> содержит только -, как единственное значение, в этом случае <b>procmail</b> лишь обновит временной штамп поля "From" (если таковой имеется, если нет, то он будет создан).
+</dd><dt><b>-o</b></dt><dd>
+Вместо предоставления возможности создания строк "From" любому, кто пожелает, просто переписывает подделки.
+</dd><dt><b>-Y</b></dt><dd>
+Подразумевает традиционный почтовый ящик в формате Berkeley, игнорируя любые поля <b>Content-Length:</b>.
+</dd><dt><b>-a</b> <i>аргумент</i></dt><dd>
+Это устанавливает $1 равным <i>аргумент</i>. Каждое сочетание <b>-a</b> <i>аргумент</i> установит следующий номер переменной ($2, $3, и т.д.). Это может быть использовано для передачи <b>procmail</b> мета информации. Обычно это делается передачей $@х-информации из правил почтовой программы sendmail.
+</dd><dt><b>-d</b> <i>получатель ...</i></dt><dd>
+Это включает режим непосредственной доставки. Доставка будет произведена локальному пользователю <i>получатель</i>. Это разумеется возможно только в том случае, если <b>procmail</b> имеет привилегии супер-пользователя (или <b>procmail</b> выполняется с euid и egid получателя). <b>Procmail</b> сменит идентификатор пользователя на uid подразумеваемого получателя и доставит почту, как если бы был вызван получателем без параметров (т.е., если не найдено файла конфигурации, доставляется как обычная почта). Эта опция несовместима с <b>-p</b>.
+</dd><dt><b>-m</b></dt><dd>
+Переводит <b>procmail</b> в режим работы почтового фильтра общего назначения. В этом режиме в командной строке должен быть указан один <i>файл_конфигурации</i>. После него может быть указано неограниченное количество аргументов. Если <i>файл_конфигурации</i> является абсолютным путём, начинающимся с <b>/etc/procmailrcs/</b> без ссылок на вышестоящие каталоги (то есть, не может быть упомянут каталог уровнем выше), в этом случае <b>procmail</b>, при отсутствии нарушений безопасности, принимает тождество владельца <i>файла_конфигурации</i> (или символической ссылки). Варианты расширенного использования этой опции вы должны искать ниже, в разделе <b>ПРИМЕРЫ</b>.
+</dd><dt><b>-z</b></dt><dd>
+Включает режим LMTP, когда <b>procmail</b> действует как RFC2033 LMTP-сервер. Доставка осуществляется в той же манере и с теми же ограничениями, как доставка с использованием <b>-d</b>. Эта опция несовместима с <b>-p</b> и <b>-f</b>.
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>АРГУМЕНТЫ</h2>
+
+Любые аргументы, содержащие '=', рассматриваются как назначение переменных окружения, они <i>все</i> будут рассмотрены после того, как назначены значения по умолчанию и до того, как открыт файл конфигурации.
+Подразумевается, что любые другие параметры, являются путями <i>файлов_конфигурации</i> (как абсолютные, так и  начинающиеся с `. / ' относительно текущего каталога; <b>любой другой относительный путь</b> рассматривается относительно $HOME, если не указана опция <b>-m</b>, в этом случае все относительные пути рассматриваются относительно текущего каталога); <b>procmail</b> начнет с первого встреченного в командной строке. Все последующие будут рассматриваться лишь в том случае, если предшествующие имеют не подходящую HOST-директиву или в случае, если они не должны существовать.
+<p>
+
+Если не задано <i>файлов_конфигурации</i>, то проверяется <b>$HOME/.procmailrc</b>. Если и он не может быть найден, обработка продолжается в соответствии с установками переменных окружения по умолчанию и указанными в командной строке.
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПРИМЕРЫ</h2>
+
+Примеры для составления файла конфигурации можно найти на страницах руководства пользователя <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=procmailex&amp;category=5">procmailex</a></b>(5). Образец небольшого файла конфигурации можно найти ниже, в секции <b>ПРИМЕЧАНИЯ</b>.
+<p>
+
+Если вы недостаточно хорошо знакомы с синтаксисом sendmail.cf, то остальную часть этой секции можно пропустить.
+</p><p>
+
+Типичным является использование опции <b>-m</b> при вызове <b>procmail</b> из правила в файле sendmail.cf. Для этого самым подходящим способом является создание дополнительного вызова почтовой программы <b>procmail</b> в вашем файле sendmail.cf (в дополнение к возможно уже имеющемуся там вызову "локальной" почтовой программы, запускающему <b>procmail</b>). Для создания такого правила с <b>procmail</b> я бы предложил что-нибудь наподобие:
+</p><dl compact=""><dt></dt><dd>
+Mprocmail, P=/usr/bin/procmail, F=mSDFMhun, S=11, R=21, A=procmail -m $h $g $u
+</dd></dl>
+
+Это позволит вам использовать правила подобные следующим (наиболее вероятно правило 0) для фильтрации почты при помощи <b>procmail</b> (обратите пожалуйста внимание на наличие табуляции в начале строки для обозначения продолжения правила, и табуляцию, используемую для отделения комментариев):
+<pre>R$*&lt;@some.where&gt;$*
+        $#procmail $@/etc/procmailrcs/some.rc $:$1@some.where.procmail$2
+R$*&lt;@$*.procmail&gt;$*
+        $1&lt;@$2&gt;$3       Already filtered, map back
+</pre>
+
+<p>
+/etc/procmailrc/файл.rc при этом, должен иметь следующее содержание:
+</p><p>
+
+</p><pre>SENDER = "&lt;$1&gt;"                 # поправка для пустых адресов отправителей
+SHIFT = 1                       # удалить это из $@
+</pre>
+
+<p>
+
+</p><pre>:0                              # выбросить всю ненужную почту
+* ^Subject:.*junk
+/dev/null
+</pre>
+
+<p>
+
+</p><pre>:0 w                            # передать всю оставшуюся почту
+! -oi -f "$SENDER" "$@"
+</pre>
+
+Следите за тем, чтобы при пересылке внутренней почты при отправке почты, если адрес подпадает под первое правило из /etc/procmailrc/файл.rc, не возник бесконечный почтовый цикл.
+<a name="lbAI">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<b>/etc/passwd</b>
+используется для назначения получателю переменных окружения LOGNAME, HOME и SHELL
+<dl compact="">
+<dt><b>/var/spool/mail/$LOGNAME</b></dt><dd>
+системный почтовый ящик; и системный почтовый ящик, и непосредственно каталог, в котором он находится, будут созданы заново при каждом запуске <b>procmail</b>, даже если один из них отсутствует
+</dd><dt><b>/etc/procmailrc</b></dt><dd>
+начальный глобальный файл конфигурации
+</dd><dt><b>/etc/procmailrcs/</b></dt><dd>
+специальный привилегированный путь для файлов конфигурации
+</dd><dt><b>$HOME/.procmailrc</b></dt><dd>
+файл настроек по умолчанию
+</dd><dt><b>/var/spool/mail/$LOGNAME.lock</b></dt><dd>
+файл блокировки для системного почтового ящика (не используется автоматически если $DEFAULT не соответствует
+<br>&nbsp;/var/spool/mail/$LOGNAME&nbsp;и&nbsp;<b>procmail</b>&nbsp;доставляет&nbsp;в&nbsp;$DEFAULT)
+</dd><dt><b>/usr/sbin/sendmail</b></dt><dd>
+программа пересылки почты по умолчанию
+</dd><dt><b>_????`hostname`</b></dt><dd>
+временные "уникальные" файлы нулевой длины создаваемые <b>procmail</b>
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=procmailrc&amp;category=5">procmailrc</a></b>(5), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=procmailsc&amp;category=5">procmailsc</a></b>(5), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=procmailex&amp;category=5">procmailex</a></b>(5), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sh&amp;category=1">sh</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=csh&amp;category=1">csh</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mail&amp;category=1">mail</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mailx&amp;category=1">mailx</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=binmail&amp;category=1">binmail</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=uucp&amp;category=1">uucp</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=aliases&amp;category=5">aliases</a></b>(5), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmail&amp;category=8">sendmail</a></b>(8), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=egrep&amp;category=1">egrep</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=grep&amp;category=1">grep</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=biff&amp;category=1">biff</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=comsat&amp;category=8">comsat</a></b>(8), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lockfile&amp;category=1">lockfile</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=formail&amp;category=1">formail</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=1">cron</a></b>(1)
+<a name="lbAK">&nbsp;</a>
+<h2>ДИАГНОСТИКА</h2>
+
+<dl compact="">
+<dt>Autoforwarding mailbox found</dt><dd>
+Системный почтовый ящик имеет установленный suid или sgid бит. <b>Procmail</b> завершит работу с кодом возврата EX_NOUSER, подразумевая, что в этот почтовый ящик почта доставляться не должна.
+</dd><dt>Bad substitution of "x"</dt><dd>
+Задано неверное имя переменной окружения.
+</dd><dt>Closing brace unexpected</dt><dd>
+Отсутствует соответствующая открывающая скобка (вложенный блок).
+</dd><dt>Conflicting options</dt><dd>
+Конфликтующие комбинации опций.
+</dd><dt>Conflicting "x" suppressed</dt><dd>
+Флаг "х" не совместим с некоторыми другими флагами в данных правилах.
+</dd><dt>Couldn't create "x"</dt><dd>
+Системный почтовый ящик отсутствует и не может быть создан.
+</dd><dt>Couldn't create maildir part "x"</dt><dd>
+В почтовом каталоге "х" отсутствуют один или более необходимых подкаталогов и <b>procmail</b> не в состоянии создать их.
+</dd><dt>Couldn't create or rename temp file "x"</dt><dd>
+Произошла ошибка при доставке в каталог "х".
+</dd><dt>Couldn't determine implicit lockfile from "x"</dt><dd>
+Не обнаружено редиректоров типа `&gt;&gt;', используется обычный `$LOCKEXT', как файл локальной блокировки.
+</dd><dt>Couldn't read "x"</dt><dd>
+<b>Procmail</b> не в состоянии открыть файл конфигурации, либо это не постоянный файл или <b>procmail</b> не в состоянии открыть MH-каталог для поиска файла с наивысшей нумерацией.
+</dd><dt>Couldn't unlock "x"</dt><dd>
+Файл блокировки уже существует или недостаточно прав доступа на запись в каталог с этим файлом.
+</dd><dt>Deadlock attempted on "x"</dt><dd>
+Файл блокировки, указанный в настройках, аналогичен ещё активному $LOCKFILE.
+</dd><dt>Denying special privileges for "x"</dt><dd>
+<b>Procmail</b> не принимает идентификатор файла конфигурации, так как обнаружено нарушение защиты (например, <b>-p</b> или переназначение переменной в командной строке) или у <b>procmail</b> недостаточно привилегий для выполнения этого.
+</dd><dt>Descriptor "x" was not open</dt><dd>
+<b>Procmail</b> запущен, но нет подключения в stdin, stdout или stderr (возможно попытка нарушить защиту).
+</dd><dt>Enforcing stricter permissions on "x"</dt><dd>
+Системный почтовый ящик получателя имел нарушения в защите, <b>procmail</b> восстановил защиту.
+</dd><dt>Error while writing to "x"</dt><dd>
+Несуществующий каталог, нет прав на запись, конвейер разрушен или переполнение диска.
+</dd><dt>Exceeded LINEBUF</dt><dd>
+Обнаружено переполнение буфера, слишком маленький LINEBUF, установлен PROCMAIL_OVERFLOW.
+</dd><dt>MAILDIR is not an absolute path</dt><dd>
+MAILDIR не является абсолютным путём.
+</dd><dt>MAILDIR path too long</dt><dd>
+Слишком длинный путь MAILDIR.
+</dd><dt>ORGMAIL is not an absolute path</dt><dd>
+ORGMAIL не является абсолютным путём.
+</dd><dt>ORGMAIL path too long</dt><dd>
+Слишком длинный путь ORGMAIL.
+</dd><dt>default rcfile is not an absolute path</dt><dd>
+Файл конфигурации по умолчанию не является абсолютным путём.
+</dd><dt>default rcfile path too long</dt><dd>
+Указанный путь к файлу конфигурации в развёрнутом виде длиннее, чем LINEBUF или не запущен с разделителем файла.
+</dd><dt>Excessive output quenched from "x"</dt><dd>
+Программа или фильтр "х" пытается воспроизвести слишком много исходящей информации для текущего LINEBUF, остальное будет отвергнуто и будет установлен PROCMAIL_OVERFLOW.
+</dd><dt>Extraneous x ignored</dt><dd>
+Строка действия или другой флаг в правиле делают флаг "х" бесполезным.
+</dd><dt>Failed forking "x"</dt><dd>
+Таблица процессов заполнена (и исчерпан NORESRETRY).
+</dd><dt>Failed to execute "x"</dt><dd>
+Программа отсутствует в пути или не может быть выполнена.
+</dd><dt>Forced unlock denied on "x"</dt><dd>
+Отсутствуют права доступа на запись в каталог в котором находится <b>файл_блокировки</b> "х" или более чем один <b>procmail</b> пытается в настоящий момент установить блокировку.
+</dd><dt>Forcing lock on "x"</dt><dd>
+<b>файл_блокировки</b> "x" должен быть принудительно удалён из-за превышения времени ожидания (смотри также <b>LOCKTIMEOUT</b>).
+</dd><dt>Incomplete recipe</dt><dd>
+Начало правила найдено, но непонятен EOF.
+</dd><dt>Insufficient privileges</dt><dd>
+Либо для <b>procmail</b> необходимы привилегии супер-пользователя, либо должен быть правильный (e)uid <b>и</b> (e)gid для запуска в режиме доставки. Почта будет отброшена.
+</dd><dt>Invalid regexp "x"</dt><dd>
+Регулярное выражение "х" содержит ошибки (скорее всего что-то отсутствует или что-то лишнее).
+</dd><dt>Kernel-lock failed</dt><dd>
+При попытке использования вызовов блокировки ядра один из них закончился неудачно (обычно обозначает ошибку ОС), <b>procmail</b> игнорирует эту ошибку и продолжит обработку.
+</dd><dt>Kernel-unlock failed</dt><dd>
+Смотри выше.
+</dd><dt>Lock failure on "x"</dt><dd>
+Может возникать только если вы указали какое-то по настоящему нереальное (и недопустимое) имя файла блокировки или если <b>файл_блокировки</b> не может быть создан из-за недостаточных прав или не существующих подкаталогов.
+</dd><dt>Lost "x"</dt><dd>
+<b>Procmail</b> попытался клонировать себя, н не обнаружил файла конфигурации "х" (который был либо удалён, либо это был относительный путь и вы изменили каталог, с момента последнего открытия его <b>procmail</b>.
+</dd><dt>Missing action</dt><dd>
+Текущее правило оказалось неполным.
+</dd><dt>Missing closing brace</dt><dd>
+Вложенный блок начат, но не закончен (отсутствует соответствующая завершающая скобка).
+</dd><dt>Missing name</dt><dd>
+Опции <b>-f</b> необходим дополнительный аргумент.
+</dd><dt>Missing argument</dt><dd>
+Вы указали опцию <b>-а</b>, но забыли указать аргумент.
+</dd><dt>Missing rcfile</dt><dd>
+Вы указали опцию <b>-m</b>, <b>procmail</b> ожидает имя файла конфигурации как аргумент.
+</dd><dt>Missing recipient</dt><dd>
+Ву указали опцию <b>-d</b> или вызвали <b>procmail</b> под другим именем и он ожидает одного или более получателей как аргумент.
+</dd><dt>No space left to finish writing "x"</dt><dd>
+Файловая система содержащая "х" не имеет достаточно свободного места, допускающего доставку сообщения в файл.
+</dd><dt>Out of memory</dt><dd>
+Недостаток свободного места в свопе (и исчерпан NORESRETRY).
+</dd><dt>Processing continued</dt><dd>
+Непонятные опции в командной строке игнорированы, обработка производится как обычно.
+</dd><dt>Program failure (nnn) of "x"</dt><dd>
+Программа, запущенная <b>procmail</b>, возвратила nnn вместо EXIT_SUCCESS (=0); если nnn отрицательное, то это сигнализирует, что программа прекратила выполнение.
+</dd><dt>Quota exceeded while writing "x"</dt><dd>
+Квота на размер файла, для получателя на файловой системе "х", не позволяет осуществить доставку сообщения в файл.
+</dd><dt>Renaming bogus "x" into "x"</dt><dd>
+Обнаружен поддельный системный почтовый ящик получателя, <b>procmail</b> выполнил уклоняющий маневр.
+</dd><dt>Rescue of unfiltered data succeeded/failed</dt><dd>
+Фильтрация не удалась, <b>procmail</b> попытался вернуть оригинальный текст.
+</dd><dt>Skipped: "x"</dt><dd>
+Нечего делать с "х" в файле конфигурации (синтаксическая ошибка), игнорируется.
+</dd><dt>Suspicious rcfile "x"</dt><dd>
+Владелец файла конфигурации не является получателем или супер-пользователем, файл или каталог, содержащий этот файл, был доступен на запись всем, или это был файл конфигурации по умолчанию($HOME/.procmailrc) и он, либо каталог содержащий его, был доступен для записи всей группе (файл конфигурации не был использован).
+</dd><dt>Terminating prematurely whilst waiting for ...</dt><dd>
+<b>Procmail</b> получил сигнал во время ожидания ...
+</dd><dt>Timeout, terminating "x"</dt><dd>
+Превышено время ожидания программы или фильтра "х".
+</dd><dt>Timeout, was waiting for "x"</dt><dd>
+Превышено время ожидания программы, фильтра или файла "х". Если это была программа или фильтр, то он больше не будет выполнен.
+</dd><dt>Truncated file to former size</dt><dd>
+Файл не мог быть успешно доставлен, поэтому он был усечен до его прежнего размера.
+</dd><dt>Truncating "x" and retrying lock</dt><dd>
+"х" не выглядит подходящим именем файла или файл не пуст.
+</dd><dt>Unable to treat as directory "x"</dt><dd>
+Либо префикс к "х" должен обозначать, что это должен быть MH или maildir каталог, либо он приводился как второстепенный каталог для обращения, но уже существует и не является каталогом.
+</dd><dt>Unexpected EOL</dt><dd>
+Отсутствует завершающая кавычка или попытка выхода EOF.
+</dd><dt>Unknown user "x"</dt><dd>
+Указанный получатель не имеет соответствующего идентификатора пользователя (uin).
+</dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h2>РАСШИРЕННАЯ ДИАГНОСТИКА</h2>
+
+Расширенная диагностика может быть задействована установкой переменной VORBOSE.
+<dl compact="">
+<dt>[pid] time &amp; date</dt><dd>
+Идентификатор процесса и временная метка <b>procmail</b>. Создаётся каждый раз, когда <b>procmail</b> регистрирует диагностику, если с момента создания последней временной метки прошла хотя бы секунда.
+</dd><dt>Acquiring kernel-lock</dt><dd>
+<b>Procmail</b> попытается использовать блокировку ядра для наиболее часто открываемого (дескриптора) файла.
+</dd><dt>Assigning "x"</dt><dd>
+Назначение переменной окружения.
+</dd><dt>Assuming identity of the recipient, VERBOSE=off</dt><dd>
+Сбрасывает все привилегии (если таковые имеются), полностью отключает расширенную диагностику.
+</dd><dt>Bypassed locking "x"</dt><dd>
+Каталог почтового спула оказался недоступен для <b>procmail</b>, это возлагается исключительно на блокировки ядра.
+</dd><dt>Executing "x"</dt><dd>
+Запускается программа "х". Если она запускается напрямую из <b>procmail</b> (без оболочки-посредника), <b>procmail</b> покажет аргументы, разделённые запятыми.
+</dd><dt>HOST mismatched "x"</dt><dd>
+Эта машина называется "х", HOST содержит что-то ещё.
+</dd><dt>Locking "x"</dt><dd>
+Создаётся файл блокировки "х".
+</dd><dt>Linking to "x"</dt><dd>
+Создаётся жёсткая ссылка между папками каталогов.
+</dd><dt>Match on "x"</dt><dd>
+Условие соответствует.
+</dd><dt>Matched "x"</dt><dd>
+Назначаем "х" равным <b>MATCH</b>.
+</dd><dt>No match on "x"</dt><dd>
+Условие не соответствует, настройки пропущены.
+</dd><dt>Non-zero exitcode (nnn) by "x"</dt><dd>
+Программа запущенная <b>procmail</b> как условие или как действие в конфигурации с флагом "W", вместо EXIT_SUCCESS (=0) возвратило nnn; использование указывает на то, что это не абсолютно неожиданное состояние.
+</dd><dt>Notified comsat: "$<a href="mailto:LOGNAME@offset">LOGNAME@offset</a>:file"</dt><dd>
+Отправлено comsat/biff уведомление, что почта для пользователя $LOGNAME поступила со 'смещением' (offset) в 'файле'.
+</dd><dt>Opening "x"</dt><dd>
+"х" открыт для дополнения.
+</dd><dt>Rcfile: "x"</dt><dd>
+Файл конфигурации изменён в "х".
+</dd><dt>Reiterating kernel-lock</dt><dd>
+При переборе нескольких методов блокировки файлов, один из них завершился неудачей. <b>Procmail</b> будет повторять попытки до достижения положительного результата наиболее быстрым способом.
+</dd><dt>Score: added newtotal "x"</dt><dd>
+Это условие оценивает "добавленные" баллы, которые затем результатируются в балл "newtotal".
+</dd><dt>Unlocking "x"</dt><dd>
+Удаление файла блокировки "х".
+</dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h2>ПРЕДОСТЕРЕЖЕНИЯ</h2>
+
+Вы должны создавать сценарий оболочки, использующий файл блокировки (<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lockfile&amp;category=1">lockfile</a></b>(1)), раньше, чем будет вызвана ваша почтовая оболочка для обработки любого почтового ящика, отличного от системного (пока, разумеется, ваша почтовая оболочка использует те же самые файлы блокировки (локальные или глобальные), определённые в вашем файле конфигурации).
+<p>
+
+В случае возникновения ситуации, когда вам крайне необходимо уничтожить процесс <b>procmail</b> прежде, чем он закончит своё выполнение самостоятельно, сначала попробуйте воспользоваться обычной командой уничтожения (например, <i>НЕ</i> командой kill -9, для справки смотри подсекцию <i>Сигналы</i>), иначе некоторые <i>файлы блокировок</i> могут остаться неудалёнными.
+</p><p>
+
+Остерегайтесь при использовании опции <b>-t</b> возникновения ситуации, когда <b>procmail</b> не в состоянии повторить доставку почты (например, по причине некорректно составленного файла конфигурации), что может привести к переполнению очереди почтовых сообщений подлежащих отправке. Это одинаково плохо, как для администратора, так и для пользователей.
+</p><p>
+
+Файл <b>/etc/procmailrc</b> должен выполняться с привилегиями суперпользователя, поэтому будьте крайне осторожны с тем, что вы в нём указываете. Значение <b>SHELL</b> должно быть эквивалентно значению для получателя, поэтому, если <b>procmail</b> использует вызов командного интерпретатора, желательно побеспокоиться об установке безопасных значений заранее. Смотри также: <b>DROPPRIVS</b>.
+</p><p>
+
+Имейте ввиду, если разрешено выполнение <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chown&amp;category=1">chown</a></b>(1) над файлами в <i>/etc/procmailrc/</i>, то права владения на них могут быть изменены их владельцами на суперпользователя (root) (или ещё кого-либо). Для большей безопасности убедитесь, что права на выполнение в этом каталоге принадлежат суперпользователю.
+</p><p>
+
+<b>Procmail</b> не является подходящим средством предоставления совместного доступа к одному почтовому ящику для нескольких пользователей, например, когда у вас единая учётная запись POP для почты всего вашего домена. Вы можете сконфигурировать свой MTA так, чтобы он добавлял определённые заголовки в конверт письма, по которым <b>Procmail</b> будет определять для кого поступило данное сообщение, но в целом, это не лучший способ. Возможно, вы захотите исследовать таблицы виртуальных пользователей, предоставляемых вашим MTA, или проверить производительность функции "multidrop" у Fetchmail.
+<a name="lbAN">&nbsp;</a>
+</p><h2>ОШИБКИ</h2>
+
+После принудительного удаления файла блокировки, <b>procmail</b> ожидает 
+$SUSPEND секунд перед созданием нового файла блокировки, таким образом другой процесс не сможет по ошибке удалить заново созданный файл блокировки.
+<p>
+
+<b>Procmail</b> использует постоянный сигнал TERMINATE для прерывания любого выполняемого фильтра, но он не проверяет, отреагировал фильтр на этот сигнал или нет. Вдобавок, сигнал посылается непосредственно фильтру, но не его потомкам.
+</p><p>
+
+Продолженное поле <b>Content-Length</b>: обрабатывается некорректно.
+</p><p>
+
+Новые строки в продолженных заголовках при совпадении пропускаются, вместо того, чтобы обрабатываться как единая строка, каковыми они и являются.
+<a name="lbAO">&nbsp;</a>
+</p><h2>ПРОЧЕЕ</h2>
+
+Если в заголовке сообщения имеется поле <b>Content-Length</b>, но не указана опция <b>-Y</b>, <b>procmail</b> обрежет поле для соответствия правильному размеру. <b>Procmail</b> не изменяет размер поля.
+<p>
+
+Если в заголовке сообщения не имеется поля <b>Content-Length</b> или указана опция <b>-Y</b> и <b>procmail</b> добавит сообщение к почтовому ящику, то любые строки в теле сообщения похожие на заголовки, будут предварены символом "&gt;" (обезопасив, тем самым, поддельные заголовки). Для поиска таких заголовков подходит следущее регулярное выражение:
+</p><dl compact=""><dt></dt><dd>
+`\nFrom '
+</dd></dl>
+
+Если в /etc/passwd отсутствует имя получателя, используемое в режиме непосредственной доставки, <b>procmail</b> производит обработку так, как будто режим непосредственной доставки не задействован. Если не используется непосредственной режим доставки и <b>procmail</b> выполняется с uid не имеющим соответствующей записи в /etc/passwd, то HOME по умолчанию устанавливается равным /, LOGNAME по умолчанию #uid, SHELL по умолчанию /bin/sh и ORGMAIL по умолчанию /var/run/dead.letter.
+<p>
+
+Если при работе в режиме непосредственной доставки отсутствует строка заголовка "From", то <b>procmail</b> создаст её сам. Если имеется хотя бы один, то <b>procmail</b> оставит его в неприкосновенности. Если <b>procmail</b> вызван пользователем, не принадлежащим к группе root или mail, но  должен создать или обработать новую строку "From", то он создаёт дополнительную строку "From" для того, чтобы было легче отличить поддельное сообщение.
+</p><p>
+
+В целях безопасности <b>procmail</b> использует абсолютный $HOME-зависящий файл конфигурации, принадлежащий получателю или супер-пользователю (root), недоступный для записи никому, кроме владельца, с домашним каталогом, также недоступным для записи никому, кроме владельца. $HOME/.procmailrc также имеет дополнительные ограничения по доступу на запись для группы и не должен находиться в каталоге, доступном на запись для группы.
+</p><p>
+
+Если /var/spool/mail/$LOGNAME является поддельным почтовым ящиком (например, не принадлежит получателю, недоступен для записи, является символической или жесткой ссылкой), <b>procmail</b> ещё до начала работы переименует его в "BOGUS.$LOGNAME.", оканчивающийся в inode-sequence-code. Если это отключить невозможно, <b>ORGMAIL</b> <i>не</i> будет иметь начального значения и следовательно запретит доставку без правильного файла конфигурации.
+</p><p>
+
+Если /var/spool/mail/$LOGNAME является допустимым почтовым ящиком, но при этом имеет слишком слабые ограничения для доступа к нему, то <b>procmail</b> попытается исправить эту ситуацию. Чтобы этого избежать убедитесь, что имеете установленные биты u+x.
+</p><p>
+
+Если производится доставка в каталоги, MH-каталоги или каталоги maildir, ву вас <b>нет</b> необходимости в использовании файлов блокировки, для предотвращения запуска нескольких копий <b>procmail</b> одновременно.
+</p><p>
+
+Доставка в MH-каталоги отнимает несколько большее время, чем доставка в обычные каталоги или почтовые ящики, так как <b>procmail</b> вынужден отыскивать следующий доступный номер (вместо использования первого же доступного имени файла).
+</p><p>
+
+В общих случаях, если не указана опция <b>-t</b>, <b>procmail</b> при ошибке возвращает EX_CANTCREAT, в противном случае - EX_TEMPFAIL.
+</p><p>
+
+Для того, чтобы сделать "просеивание" заголовков более непротиворечивым, <b>procmail</b> связывает все длинные поля заголовков, но только для внутреннего использования. При дальнейшей доставке почты поля разбиваются также, как и ранее.
+</p><p>
+
+Если <b>procmail</b> вызывается с именем не начинающемся с "procmail" (например, если он слинкован с другим именем и вызван также), то он переходит в режим непосредственной доставки и ожидает имена получателей как аргументы командной строки (как будто было указано -d).
+</p><p>
+
+Comsat/biff уведомления выполнены с использованием udp. Они отсылаются единожды, когда <b>procmail</b> создаёт правильную запись в файле журнала. Уведомление имеет следующий развёрнутый формат (насколько это вообще возможно, когда доставка производится не в файл):
+</p><p>
+</p><pre>   $LOGNAME@смещение_сообщения_в_почтовом_ящике:абсолютный_путь_к_почтовому_ящику
+</pre>
+
+<p>
+
+Каждый раз, когда сам <b>procmail</b> открывает файл для доставки, то он использует ядерные блокировки <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2).
+</p><p>
+
+<b>Procmail</b> является NFS-устойчивым и не имеет проблем с 8-ым битом.
+<a name="lbAP">&nbsp;</a>
+</p><h2>ПРИМЕЧАНИЯ</h2>
+
+Вызов <b>procmail</b> с -h или -? опциями приведёт к отображению справки командной строки и короткой справки конфигурационных флагов.
+<p>
+
+Имеется превосходный FAQ для новичков о почтовых фильтрах (и <b>procmail</b> в частности); его ведёт Nancy McGough &lt;<a href="mailto:nancym@ii.com">nancym@ii.com</a>&gt; и его можно получить отправив сообщение по адресу <a href="mailto:mail-server@rtfm.mit.edu">mail-server@rtfm.mit.edu</a> со следующим содержимым:
+</p><dl compact=""><dt></dt><dd>
+send usenet/news.answers/mail/filtering-faq
+</dd></dl>
+
+<p>
+
+Вместо использования системного вызова <b>procmail</b>, в момент прибытия почты, вы можете управлять вызовом <b>procmail</b> самостоятельно. В этом случае, ваш $HOME/.forward (убедитесь, чтобы он <b>был</b> доступен всем для чтения) должен содержать строку, указанную ниже. Убедитесь, что вы включили двойные и одинарные кавычки, и если на вашем сайте используется smrsh (the SendMail Restricted SHell), это должен быть <i>абсолютный</i> путь.
+</p><dl compact=""><dt></dt><dd>
+"|exec /usr/bin/procmail"
+</dd></dl>
+
+<p>
+
+<b>Procmail</b> также может быть вызван для последующей обработки заполненного системного почтового ящика. Это может быть полезно не хотите или не можете использовать файл $HOME/.forward (в этом случае периодически вызывается нижеследующий сценарий из <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=1">cron</a></b>(1), или когда вы приступаете к чтению почты):
+</p><pre>#!/bin/sh
+
+ORGMAIL=/var/spool/mail/$LOGNAME
+
+if cd $HOME &amp;&amp;
+  test -s $ORGMAIL &amp;&amp;
+  lockfile -r0 -l1024 .newmail.lock 2&gt;/dev/null
+  then
+  trap "rm -f .newmail.lock" 1 2 3 13 15
+  umask 077
+  lockfile -l1024 -ml
+  cat $ORGMAIL &gt;&gt;.newmail &amp;&amp;
+  cat /dev/null &gt;$ORGMAIL
+  lockfile -mu
+  formail -s procmail &lt;.newmail &amp;&amp;
+  rm -f .newmail
+  rm -f .newmail.lock
+fi
+exit 0
+</pre>
+
+<dl compact="">
+<dt><b>Пример маленького $HOME/.procmailrc</b></dt><dd>
+<pre>PATH=/bin:/usr/bin:/usr/bin
+MAILDIR=$HOME/Mail      #you'd better make sure it exists
+DEFAULT=$MAILDIR/mbox   #completely optional
+LOGFILE=$MAILDIR/from   #recommended
+
+:0:
+* ^From.*berg
+from_me
+
+:0
+* ^Subject:.*Flame
+/dev/null
+</pre>
+
+</dd></dl>
+<p>
+
+Другие примеры содержимого файла конфигурации можно найти на страницах руководства пользователя <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=procmailex&amp;category=5">procmailex</a></b>(5).
+<a name="lbAQ">&nbsp;</a>
+</p><h2>ИСХОДНЫЕ ТЕКСТЫ</h2>
+
+Эта программа является частью <i>procmail mail-processing-package</i> (v3.22) доступного по адресу <a href="http://www.procmail.org/">http://www.procmail.org/</a> или <a href="ftp://ftp.procmail.org">ftp.procmail.org</a> in <b>pub/procmail/</b>.
+<a name="lbAR">&nbsp;</a>
+<h2>СПИСОК РАССЫЛКИ</h2>
+
+Для вопросов относящихся к любой программе, входящей в пакет <b>procmail</b> существуют следующие списки рассылки:
+<dl compact=""><dt></dt><dd>
+&lt;<a href="mailto:procmail-users@procmail.org">procmail-users@procmail.org</a>&gt;
+<dl compact=""><dt></dt><dd>
+для вопросов/ответов.
+</dd></dl>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+&lt;<a href="mailto:procmail-users-request@procmail.org">procmail-users-request@procmail.org</a>&gt;
+<dl compact=""><dt></dt><dd>
+для запросов подписки.
+</dd></dl>
+
+</dd></dl>
+
+<p>
+
+Если вы желаете быть в курсе относительно новых версий и официальных патчей, отправьте запрос о подписке по адресу .RS
+<a href="mailto:procmail-announce-request@procmail.org">procmail-announce-request@procmail.org</a>
+
+(этот лист рассылки работает в режиме "только для чтения").
+<a name="lbAS">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+Stephen R. van den Berg
+<dl compact=""><dt></dt><dd>
+&lt;<a href="mailto:srb@cuci.nl">srb@cuci.nl</a>&gt;
+</dd></dl>
+
+Philip A. Guenther
+<dl compact=""><dt></dt><dd>
+&lt;<a href="mailto:guenther@sendmail.com">guenther@sendmail.com</a>&gt;
+</dd></dl>
+
+Перевод: Aleksandr Blokhin &lt;<a href="mailto:sass@altlinux.ru">sass@altlinux.ru</a>&gt;
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAE"><b>Сигналы</b></a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAF">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAG">АРГУМЕНТЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAI">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAK">ДИАГНОСТИКА</a></dt><dd>
+</dd><dt><a href="#lbAL">РАСШИРЕННАЯ ДИАГНОСТИКА</a></dt><dd>
+</dd><dt><a href="#lbAM">ПРЕДОСТЕРЕЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAN">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAO">ПРОЧЕЕ</a></dt><dd>
+</dd><dt><a href="#lbAP">ПРИМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAQ">ИСХОДНЫЕ ТЕКСТЫ</a></dt><dd>
+</dd><dt><a href="#lbAR">СПИСОК РАССЫЛКИ</a></dt><dd>
+</dd><dt><a href="#lbAS">АВТОРЫ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="procmail" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

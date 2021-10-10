@@ -1,0 +1,529 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN unicode (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, unicode"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="unicode" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">unicode (7)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=unicode&amp;category=7&amp;russian=0"><u>unicode</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=unicode&amp;category=7&amp;russian=2"><u>unicode</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li><font color="#555555">Ключ <a href="/keywords/unicode.html"><u>unicode</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+Unicode - унифицированный набор символов
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Международный стандарт
+<b>ISO 10646</b>
+
+дает определение
+<b>Universal Character Set (UCS) (Универсальный Набор Символов - Уникод)</b>.
+
+UCS содержит все символы других стандартов и кодировок. Его использование гарантирует
+<b>полную взаимозаменяемость</b>,
+
+то есть таблицы для конвертирования могут быть построены таким образом, что
+не произойдет потери информации при конвертировании строки из одной кодировки в
+UCS и обратно. UCS содержит символы, необходимые для представления практически всех 
+известных сейчас языков. В него включены не только такие языки, как латинский, 
+греческий, кириллица, иврит, арабский, армянский, грузинский, но также и японские, 
+китайские и корейские идеограммы, а также такие языки, как бенгальский, тамильский, 
+тайский, малайский, тибетский, хмерский, рунический, эфиопский, лаосский, 
+чероки, монгольский, Gurmukhi, Gujarati, Hiragana, Katakana, Hangul, Devanagari,
+Oriya, Telugu, Kannada, Bopomofo, Canadian Syllabics, Ogham, Myanmar, Sinhala, 
+Thaana, Yi и многие другие.
+Для неперечисленных выше языков постоянно ведутся работы для поиска
+их самой оптимальной кодировки для копьютеров. Это не только такие языки,
+как различные иероглифические языки и языки из индо-европейской 
+исторической группы, но и некоторые искуственные языки, такие как
+Tengwar, Cirth, и Klingon.
+Также UCS содержит большое множество графических, типографических, 
+математических и научных символов, используемых в таких программах, как
+TeX, PostScript, APL, MS-DOS, MS-Windows, Macintosh, шрифты OCR и многих 
+других текстовых процессорах и издательских системах, и таких символов
+постоянно добавляется еще больше.
+Стандарт UCS (ISO 10646) описывает 
+<i>архитектуру 31-битных наборов символов</i>
+
+, состоящую из 128 24-битных
+<i>групп</i>,
+
+каждая из которых разделена на 256 16-битных
+<i>плоскостей</i>
+
+каждая из которых состоит из 256 8-битных
+<i>строк</i>
+
+и 256
+<i>колонок</i>,
+
+каждая для одного символа. 
+Часть 1 стандарта
+(<b>ISO 10646-1</b>)
+
+определяет первые 65534 позиций кодов (с 0x0000 по 0xfffd), каждая из которых образует
+<i>Basic Multilingual Plane (BMP) (Основную Многоязычную Матрицу)</i>,
+
+являющуюся плоскостью 0 в группе 0. Часть 2 стандарта
+(<b>ISO 10646-2</b>)
+
+добавляет символы в группу 0 извне BMP в некоторые
+<i>дополнительные плоскости</i>
+
+в диапазон от 0x10000 до 0x10ffff. Пока нет планов по добавлению символов за предел
+0x10ffff в существующий стандарт, хотя в обозримом будущем во всем пространстве кода
+в действительности будет использоваться только малая часть группы 0.
+BMP содержит все символы, используемые в других наборах символов.
+Дополнительные плоскости, добаляемые ISO 10646-2 
+покрывают некоторые особенные, специальные и экзотические символы 
+используемые в науке, печати словарей, издательской индустрии
+протоколах высокого уровня и некоторыми энузиастами.
+<p>
+
+Представление каждого символа в UCS как 2-байтного слова основывается на форме
+<b>UCS-2</b>
+
+(только для символов BMP), поскольку
+<b>UCS-4</b>
+
+является представлением каждого символа 4-байтным словом.
+Также существуют 2 формы кодировки
+<b>UTF-8</b>
+
+для совместимости со старыми программами с обработкой ASCII-кодировок и
+<b>UTF-16</b>
+
+для совместимости с обработкой не-BMP символов до 0x10ffff программами UCS-2.
+</p><p>
+
+Символы UCS от 0x0000 до 0x007f идентичны обычному
+<b>US-ASCII</b>
+
+набору символов, а символы в диапазоне от 0x0000 до 0x00ff идентичны символам в
+<b>ISO 8859-1 Latin-1</b>.
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>КОМБИНИРОВАНИЕ СИМВОЛОВ</h2>
+
+Некоторые позиции в
+<b>UCS</b>
+
+зарезервированы для
+<b>комбинированных символов</b>.
+
+Они аналогичны символам печатной машинки, обозначающим букву с ударением без пробела.
+Комбинированные символы лишь добавляют ударение к предыдущему символу. Наиболее
+употребимые символы, требующие ударения, имеют свой собственный код в UCS,
+и таким образом комбинированные символы позволяют добавить ударение или другой 
+диакритический знак к символу. Комбинированные символы всегда следуют за буквой, 
+к которой они относятся. Например, немецкий символ "умляут-А" (латинская заглавная буква 
+А с диэрезой) может быть представлен как зарезервированный специальный символ UCS
+с кодом 0x00c4, или как комбинация обыкновенной латинской заглавной буквы А и 
+последующим символом комбинированной диэрезы: 0x0041 0x0308.
+<p>
+
+Комбинированные символы являются очень необходимым инструментом для
+кодировки символов тайского языка, для математики и для пользователей
+International Phonetic Alphabet (Международного Фонетического Алфавита).
+<a name="lbAE">&nbsp;</a>
+</p><h2>УРОВНИ РЕАЛИЗАЦИИ</h2>
+
+Так как не все системы могут поддерживать такой сложный механизм, как 
+реализацию комбинированных символов, то стандарт ISO 10646-1 
+предусматривает следующие три 
+<i>уровня реализации</i>
+
+UCS:
+<dl compact="">
+<dt>Уровень 1</dt><dd>
+Комбинированные символы и символы 
+<b>Hangul Jamo </b>
+
+(особая, сложная кодировка корейского, где слоги кодируются по два 
+или по три гласных кода) не поддерживаются.
+</dd><dt>Уровень 2</dt><dd>
+Как и в случае с символами уровня 1, некоторые комбинированные символы не
+используются в некоторых языках, где они не особо важны (например: идиш, 
+арабские, бенгальские, малайские, тайские, лаосские и т.д. языки).
+</dd><dt>Уровень 3</dt><dd>
+Все символы
+<b>UCS</b>
+
+поддерживаются.
+</dd></dl>
+<p>
+
+<b>Стандарт Unicode 3.0</b>
+
+, опубликованный
+<b>Unicode Consortium</b>
+
+, содержит полный уровнень реализации
+<b>UCS Basic Multilingual Plane</b>
+
+- уровень 3, как описано в стандарте ISO 10646-1:2000. 
+К 
+<b>Unicode 3.1</b>
+
+также добавлены дополнительные уровни ISO 10646-2.
+Стандарт Unicode и технические сообщения, публикуемые 
+Unicode Consortium, обеспечивают много дополнительной информации
+и семантике и рекомендациях по использованию разных символов.
+Также поясняются руководящие принципы и алгоритмы для
+редактирования, сортировки, сравнения, нормализации,
+преобразований и выводе строк Unicode.
+<a name="lbAF">&nbsp;</a>
+</p><h2>УНИКОД В LINUX</h2>
+
+В системах GNU/Linux, типа C
+<b>wchar_t</b>
+
+ялвяется 32-битным целым типом со знаком. Его значения всегда 
+интерпретируются библиотеками C как значения кодов
+<b>UCS</b>
+
+(во всех локалях), правилом, по которому библиотеки GNU C сигнализируют
+приложениям ою этом, является определение константы
+<b>__STDC_ISO_10646__</b>
+
+по стандарту ISO C 99.
+<p>
+UCS/Unicode может использоваться подобно ASCII в потоках ввода/вывода,
+терминальных соединениях, текстовых файлах, названиях файлов и в переменных окружения
+в многобайтовых кодировках
+<b>UTF-8</b>,
+
+совместимых с ASCII. Для обозначения использования UTF-8 как кодировки во всех
+приложениях должна быть выбрана применимая 
+<b>локаль</b>
+
+через переменные окружения (например,
+"LANG=en_GB.UTF-8").
+</p><p>
+
+Функция
+<b>nl_langinfo(CODESET)</b>
+
+возвращает название выбранной кодировки. 
+Библиотечные функции, такие как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=wctomb&amp;category=3">wctomb</a></b>(3)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mbsrtowcs&amp;category=3">mbsrtowcs</a></b>(3)
+
+могут использоваться для преобразования внутренних символов
+<b>wchar_t</b>
+
+и строк в кодировку системных символов и наоборот, а
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=wcwidth&amp;category=3">wcwidth</a></b>(3)
+
+определяет, на сколько позиций (0-2) сместился курсор при выводе символа.
+</p><p>
+
+В Linux, в общем на текущий момент может использоваться только BMP на уровне реализации 1.
+Также поддерживается до двух комбинированных символов на основной символ для
+некоторых языков (в частности тайский) некоторыми эмуляторами терминала UTF-8
+и шрифтами ISO 10646 (уровня 2), но в общем должны использоваться, где это возможно,
+предварительно созданные символы (Unicode называет это
+<b>Нормализацией форм С</b>).
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>ЗАКРЫТАЯ ОБЛАСТЬ</h2>
+
+В
+<b>BMP</b>
+
+символы с 0xe000 до 0xf8ff никогда не будут использованы стандартными 
+символами и зарезервированы для использования системой. В Linux
+эта область делится на две части: 
+первая (с 0xe000 по 0xefff) может использоваться конечным пользователем, а вторая
+(так называемая зона Linux), начинающаяся с 0xf000 и заканчивающаяся 0xf8ff,
+которая может использоваться всеми пользователями Linux. Регистрацией символов
+этой части занимается H. Peter Anvin &lt;<a href="mailto:Peter.Anvin@linux.org">Peter.Anvin@linux.org</a>&gt;.
+<a name="lbAH">&nbsp;</a>
+<h2>ЛИТЕРАТУРА</h2>
+
+<dl compact="">
+<dt>*</dt><dd>
+Information technology --- Universal Multiple-Octet Coded Character
+Set (UCS) --- Part 1: Architecture and Basic Multilingual Plane.
+International Standard ISO/IEC 10646-1, International Organization
+for Standardization, Geneva, 2000.
+Это официальная документация о
+<b>UCS</b>.
+
+Доступна в формате PDF-файла на CD-ROM или на <a href="http://www.iso.ch/.">http://www.iso.ch/.</a>
+</dd><dt>*</dt><dd>
+The Unicode Standard, Version 3.0.
+The Unicode Consortium, Addison-Wesley,
+Reading, MA, 2000, ISBN 0-201-61633-5.
+</dd><dt>*</dt><dd>
+S. Harbison, G. Steele. C: A Reference Manual. Fourth edition,
+Prentice Hall, Englewood Cliffs, 1995, ISBN 0-13-326224-3.
+<p>
+Хорошая книга о программировании на языке C. Четвертое издание включает в себя
+описание поправки, сделанной в стандарте ISO C 90 в 1994 году, (ISO/IEC 9899:1990).
+Эта поправка добавляет к стандарту большое количество новых библиотечных функций C
+для поддержки различных наборов символов, но пока еще не покрывает весь стандарт
+ISO C 99, который расширяет поддержку широких и многобайтовых символов.
+</p></dd><dt>*</dt><dd>
+Unicode Technical Reports.
+<dl compact=""><dt></dt><dd>
+<a href="http://www.unicode.org/unicode/reports/">http://www.unicode.org/unicode/reports/</a>
+</dd></dl>
+
+</dd><dt>*</dt><dd>
+Markus Kuhn: UTF-8 and Unicode FAQ for Unix/Linux.
+<dl compact=""><dt></dt><dd>
+<a href="http://www.cl.cam.ac.uk/~mgk25/unicode.html">http://www.cl.cam.ac.uk/~mgk25/unicode.html</a>
+<p>
+Обеспечивает информацией о подписке на список рассылки о
+<b>linux-utf8</b>,
+
+являющийся наилучшим местом для поиска решений об использовании Unicode в Linux.
+</p></dd></dl>
+
+</dd><dt>*</dt><dd>
+Bruno Haible: Unicode HOWTO.
+<dl compact=""><dt></dt><dd>
+<a href="ftp://ftp.ilog.fr/pub/Users/haible/utf8/Unicode-HOWTO.html">ftp://ftp.ilog.fr/pub/Users/haible/utf8/Unicode-HOWTO.html</a>
+</dd></dl>
+
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+В момент написания этой страницы поддержка библиотекой GNU C Library для локалей
+<b>UTF-8</b>
+
+была уже сформирована, поддержка XFree86 была разработана до более хорошего уровня,
+но работа над созданием приложений (в большинстве своем - небольших редакторов),
+пригодных для использования в локалях
+<b>UTF-8</b>,
+
+шла еще полным ходом. 
+Сейчас общая поддержка
+<b>UCS</b>
+
+под Linux обеспечивается для CJK символами двойном ширины и иногда
+даже простой перестройкой комбинированных символов, но все-же обычно
+не включает в себя поддержку для языков, использующих направление написания
+справа налево, или требования замены лигатур, то есть таких, как иврит,
+арабский и индийский языки. Эти языки сейчас поддерживаются только в
+некоторых GUI-приложениях (пограммы просмотра HTML, текстовые редакторы)
+с расширенными возможностями обработки символов.
+<a name="lbAJ">&nbsp;</a>
+<h2>АВТОРЫ</h2>
+
+Markus Kuhn &lt;<a href="mailto:mgk25@cl.cam.ac.uk">mgk25@cl.cam.ac.uk</a>&gt;
+<a name="lbAK">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=utf-8&amp;category=7">utf-8</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=charsets&amp;category=7">charsets</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setlocale&amp;category=3">setlocale</a></b>(3)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">КОМБИНИРОВАНИЕ СИМВОЛОВ</a></dt><dd>
+</dd><dt><a href="#lbAE">УРОВНИ РЕАЛИЗАЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">УНИКОД В LINUX</a></dt><dd>
+</dd><dt><a href="#lbAG">ЗАКРЫТАЯ ОБЛАСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAH">ЛИТЕРАТУРА</a></dt><dd>
+</dd><dt><a href="#lbAI">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAK">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="unicode" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

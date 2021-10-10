@@ -1,0 +1,627 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN gzip (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, gzip"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="gzip" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">gzip (8)</font><hr><li> <a href="/man.shtml?topic=gzip&amp;category=1&amp;russian=4"><u>gzip</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=gzip&amp;category=1&amp;russian=1"><u>gzip</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=gzip&amp;category=1&amp;russian=0"><u>gzip</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=gzip&amp;category=1&amp;russian=2"><u>gzip</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=gzip&amp;category=8&amp;russian=0"><u>gzip</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Пользовательские команды</h1></td>
+<td><h1 align="right">gzip(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+
+<p><b>gzip</b>, <b>gunzip</b>, <b>gzcat</b> - сжатие (упаковка) и 
+распаковка файлов</p> 
+
+<h2>СИНТАКСИС</h2>
+<dl>
+<dt></dt><dd><tt>
+gzip [ -acdfhlLnNrtvV19 ] [-S <b>суффикс</b>] [ <b>имя</b> ... ]<br>
+gunzip [ -acfhlLnNrtvV ] [-S <b>суффикс</b>] [ <b>имя</b> ... ]<br>
+gzcat [ -fhLV ] [ <b>имя</b> ... ]
+</tt></dd>
+</dl>
+
+<h2>ОПИСАНИЕ</h2>
+
+<p>Утилита <b>gzip</b> уменьшает размер указанных файлов за счет кодирования
+по <i>алгоритму Лемпела-Зива</i> (Lempel-Ziv coding - LZ77). По возможности
+каждый файл заменяется одноименным файлом с расширением <b>.gz</b>, с
+сохранением тех же прав доступа, владельца и времени изменения.
+(Стандартное расширение - <b>-gz</b> для ОС VMS, <b>z</b> для MSDOS, OS/2 FAT,
+Windows NT FAT и Atari.) Если файлы не указаны или в качестве имени
+файла указан дефис (<b>-</b>), содержимое стандартного входного потока
+сжимается и направляется в стандартный выходной поток. Утилита <b>gzip</b>
+будет пытаться сжимать только обычные файлы. В частности, она будет
+игнорировать символические связи.</p>
+
+<p>Если имя сжатого файла - слишком длинное для соответствующей
+файловой системы, утилита <b>gzip</b> его усекает. Утилита <b>gzip</b> пытается
+усечь только те части имени файла, которые длиннее 3 символов.
+(Часть имени ограничивается точками.) Если имя состоит только из
+коротких частей, усекаются самые длинные части. Например, если имена
+файлов должны быть не длиннее 14 символов, файл <b>gzip.msdos.exe</b> после
+сжатия получает имя <b>gzi.msd.exe.gz</b>. Имена не усекаются в системах, не
+имеющих ограничений на длину имени файла.</p>
+
+<p>По умолчанию, утилита <b>gzip</b> сохраняет имя и время изменения сжимаемого
+файла. Они используются при разжатии файла с использованием опции <a href="#N"><b>-N</b></a>.
+Это удобно, когда имя сжатого файла было усечено или когда после
+переноса не сохранилась временная отметка файла.</p>
+
+<p>Сжатые файлы могут быть восстановлены в исходный вид с помощью
+<b>gzip -d</b>, <b>gunzip</b> или <b>gzcat</b>. Если исходное имя файла до сжатия не
+подходит для текущей файловой системы, на иснове исходного имени
+конструируется новое, допустимое.</p>
+
+<p>Утилита <b>gunzip</b> принимает список файлов в командной строке
+и заменяет каждый файл, имя которого заканчивается суффиксом <b>.gz</b>,
+<b>-gz</b>, <b>.z</b>, <b>-z</b>, <b>_z</b> или <b>.Z</b> и который начинается с соответствующей
+сигнатуры распакованным файлом без расширения. Утилита <b>gunzip</b>
+также распознает специальные расширения <b>.tgz</b> и <b>.taz</b> в качестве
+сокращений для <b>.tar.gz</b> и <b>.tar.Z</b>, соответственно. При сжатии утилита
+<b>gzip</b>, при необходимости, использует расширение <b>.tgz</b> вместо усечения
+имени файла с расширением <b>.tar</b>.</p>
+
+<p>Утилита <b>gunzip</b> в настоящее время может разжимать файлы, созданные
+утилитами <b>gzip</b>, <b>zip</b>, <b>compress</b>, <b>compress -H</b> или <b>pack</b>. Формат
+входных данных определяется автоматически. При использовании первых
+двух форматов, <b>gunzip</b> проверяет 32-битовую <i>контрольную сумму CRC</i>.
+Для формата <b>pack</b>, <b>gunzip</b> проверяет длину распакованного файла. 
+Стандартный формат <b>compress</b> не предполагает возможности проверки
+согласованности. Однако, утилита <b>gunzip</b> иногда способна выявить
+сбойный файл с расширением <b>.Z</b>. Если при разжатии файла с расширением
+<b>.Z</b> вы получаете сообщение об ошибке, не думайте, что этот файл 
+корректен только потому, что стандартная утилита <b>uncompress</b> не
+сообщает об ошибках. Это просто означает, что стандартная утилита
+<b>uncompress</b> не проверяет входные данные и молча генерирует "мусорные"
+результаты. Формат <b>compress -H</b> в SCO (метод сжатия <b>lzh</b>) не
+включает контрольной суммы CRC, но позволяет выполнять определенные
+проверки согласованности.</p>
+
+<p>Файлы, сжатые с помощью утилиты <b>zip</b> могут быть распакованы с
+помощью <b>gzip</b> только если они имеют один компонент, сжатый по методу
+'<b>deflation</b>'. Эта возможность предназначена для упрощения преобразования
+файлов <b>tar.zip</b> в формат <b>tar.gz</b>. Для распаковки <b>zip</b>-файлов из нескольких
+компонентов используйте вместо <b>gunzip</b> утилиту <b>unzip</b>.</p>
+
+<p>Команда <b>gzcat</b> идентична <b>gunzip -c</b>. (В некоторых системах утилита
+<b>zcat</b> может устанавливаться как <b>gzcat</b>, чтобы сохранилась исходная связь
+с <b>compress</b>.) Утилита <b>gzcat</b> распаковывает либо список файлов, заданный
+в командной строке, либо стандартный входной поток, и записывает
+распакованные данные в стандартный выходной поток. Утилита <b>gzcat</b>
+будет распаковывать файлы, имеющие соответствующую сигнатуру,
+независимо от наличия суффикса <b>.gz</b>.</p>
+
+<p>Утилита <b>gzip</b> использует алгоритм Лемпела-Зива (Lempel-Ziv), как и
+утилиты <b>zip</b> и <b>PKZIP</b>. Степень сжатия зависит от размера входного файла
+и распределения типичных подстрок. Обычно файлы типа исходных кодов
+программ или текстов на английском языке упаковываются на 60-70%.
+Степень сжатия обычно намного лучше, чем достигаемая алгоритмом LZW
+(который используется в <b>compress</b>), кодированием Хафмана (Huffman
+coding, используемым утилитой <b>pack</b>), или адаптивным кодированием
+Хафмана (как в утилите <b>compact</b>).</p>
+
+<p>Сжатие выполняется всегда, даже если сжатый файл несколько больше 
+исходного. В худшем случае файл увеличивается на несколько байтов 
+заголовка файла <b>gzip</b> плюс 5 байтов на каждый блок размером 32 Кбайта,
+что означает рост порядка 0.015% для больших файлов. Учтите, что
+фактическое количество блоков диска, занимаемых файлом, практически
+никогда не увеличивается. Утилита <b>gzip</b> сохраняет права доступа, 
+владельца и временные отметки файлов при сжатии и распаковке.</p>
+
+<h2>ОПЦИИ</h2>
+<dl>
+<dt><b><a name="a">-a --ascii</a></b></dt><dd>
+Текстовый режим ascii: преобразует символы конца строки на базе
+локальных установок. Эта опция поддерживается только на некоторых
+системах, отличных от Unix. Для MSDOS, CR LF преобразуется при сжатии 
+в LF, а LF преобразуется в CR LF при распаковке.
+<br><br></dd>
+<dt><b><a name="c">-c --stdout --to-stdout</a></b></dt><dd>
+Выдает результат в стандартный выходной поток; исходные файлы не 
+изменяются. Если имеется несколько входных файлов, результат состоит 
+из последовательности независимо сжатых компопнентов. Для получения 
+большей степени сжатия, конкатенируйте все входные файлы перед 
+сжатием.
+<br><br></dd>
+<dt><b><a name="d">-d --decompress --uncompress</a></b></dt><dd>
+Распаковка.
+<br><br></dd>
+<dt><b><a name="f">-f --force</a></b></dt><dd>
+Принудительно упаковывает или распаковывает файл даже если он имеет 
+несколько связей или результирующий файл уже существует, или если 
+сжатые данные читаются с терминала или записываются на терминал. Если 
+входные данные не соответствуют формату, распознаваемому утилитой <b>gzip</b> 
+и если указана также опция <a href="#c"><b>--stdout</b></a>, копирует входные данные в 
+стандартный выходной поток без изменений, что позволяет утилите <b>gzcat</b> 
+работать как <b>cat</b>. Если опция <b>-f</b> не задана, и утилита не работает в 
+фоновом режиме, <b>gzip</b> запрашивает у пользователя, надо ли 
+перезаписывать существующий файл.
+<br><br></dd>
+<dt><b><a name="h">-h --help</a></b></dt><dd>
+Выдает справочную информацию и завершает работу.
+<br><br></dd>
+<dt><b><a name="l">-l --list</a></b></dt><dd>
+Для каждого сжатого файла выдает следующие поля:
+<dl><dt></dt><dd>
+<tt>compressed size</tt>: размер сжатого файла <br>
+<tt>uncompressed size</tt>: размер исходного файла <br>
+<tt>ratio</tt>: коэффициент сжатия (0.0% если неизвестен)<br>
+<tt>uncompressed_name</tt>: имя файла до сжатия 
+</dd></dl>
+
+Размер разжатого файла имеет значение -1 для файлов, формат которых не
+поддерживается утилитой <b>gzip</b>, например, для сжатых файлов с 
+расширением <b>.Z</b>. Для получения исходного размера файла, можно
+использовать команду:
+<dl><dt></dt><dd><tt>
+	gzcat file.Z | wc -c
+</tt></dd></dl>
+
+В сочетании с опцией <a href="#v"><b>--verbose</b></a> выдаются также следующие поля:
+<dl><dt></dt><dd>
+<tt>method</tt>: метод сжатия<br>
+<tt>crc</tt>: 32-битовая контрольная сумма (CRC) не сжатых данных<br>
+<tt>date &amp; time</tt>: временная отметка исходного файла
+</dd></dl>
+
+В настоящее время поддерживаются следующие методы сжатия:
+<b>deflate</b>, <b>compress</b>, <b>lzh</b> (аналог <b>compress -H</b> в SCO) и <b>pack</b>.
+Для файлов не в формате <b>gzip</b> в качестве контрольной суммы
+<b>crc</b> выдается значение <b>ffffffff</b>.
+
+<p>Если указана опция <a href="#N"><b>--name</b></a>, в качестве имени, даты и времени
+изменения исходного несжатого файла выдаются значения,
+хранящиеся в сжатом файле, если они доступны.</p>
+
+<p>Если указана опция <a href="#v"><b>--verbose</b></a> для всех файлов выдаются также
+общие размеры и коэффициенты сжатия, за исключением случаев,
+когда размеры не известны. Если указана опция <a href="#q"><b>--quiet</b></a>, заголовки
+и общие значения не выдаются.</p>
+</dd>
+<dt><b><a name="L">-L --license</a></b></dt><dd>
+Выдает лицензию <b>gzip</b> и завершает работу.
+<br><br></dd>
+<dt><b><a name="n">-n --no-name</a></b></dt><dd>
+При сжатии по умолчанию не сохраняет имя и временную отметку исходного
+файла. (Исходное имя всегда сохраняется, если имя после сжатия 
+придется усекать.) При распаковке не восстанавливает исходное имя файла,
+если оно есть (просто удаляет суффикс <b>gzip</b> у имени сжатого файла)
+и не восстанавливает исходную временную отметку, если она есть (она
+просто копируется из сжатого файла). Эта опция является
+стандартной при распаковке.
+<br><br></dd>
+<dt><b><a name="N">-N --name</a></b></dt><dd>
+При сжатии всегда сохраняет исходное имя файла и временную отметку;
+так и происходит по умолчанию. При распаковке восстанавливает исходное
+имя и временную отметку файла, если они доступны. Эта опция полезна
+в системах с ограничениями на длину имени файла или когда после переноса
+файлов была потеряна временная отметка.
+<br><br></dd>
+<dt><b><a name="q">-q --quiet</a></b></dt><dd>
+Подавляет выдачу любых предупреждений.
+<br><br></dd>
+<dt><b><a name="r">-r --recursive</a></b></dt><dd>
+Рекурсивно проходит по структуре каталогов. Если любое из имен файлов,
+указанных в командной строке, представляет собой каталог, утилита <b>gzip</b>
+перейдет в этот каталог и сожмет все находящиеся в нем файлы
+(или разожмет их в случае <b>gunzip</b>).
+<br><br></dd>
+<dt><b><a name="S">-S .suf --suffix .suf</a></b></dt><dd>
+Использует суффикс <b>.suf</b> вместо <b>.gz</b>. Можно задать любой суффикс,
+но не стоит использовать другие суффиксы, кроме <b>.z</b> и <b>.gz</b>, чтобы избежать
+недоразумений при переносе файлов на другие системы. Пустой суффикс
+вынуждает программу <b>gunzip</b> попытаться распаковать все указанные файлы,
+независимо от суффикса, как в следующем примере:
+<dl><dt></dt><dd><tt>
+gunzip -S "" *    (*.* for MSDOS)
+</tt></dd></dl>
+
+В прежних версиях <b>gzip</b> использовался суффикс <b>.z</b>. Этот суффикс был изменен,
+чтобы избежать конфликтов с программой <a href="/man.shtml?topic=pack&amp;category=1"><b>pack(1)</b></a>.
+<br><br></dd>
+<dt><b><a name="t">-t --test</a></b></dt><dd>
+Проверка. Проверяет целостность сжатого файла.
+<br><br></dd>
+<dt><b><a name="v">-v --verbose</a></b></dt><dd>
+Подробна выдача. Выдает имя и процент сжатия для каждого сжимаемого или
+разжимаемого файла.
+<br><br></dd>
+<dt><b><a name="V">-V --version</a></b></dt><dd>
+Версия. Выдает номер версии и использованные опции компиляции и завершает
+работу.
+<br><br></dd>
+<dt><b><a name="speed">-# --fast --best</a></b></dt><dd>
+Управляет скоростью сжатия, задавая ее указанной цифрой <b>#</b>, 
+причем опция <b>-1</b> или <b>--fast</b> задает самый быстрый метод
+(с наименьшим коэффициентом сжатия), а <b>-9</b> или <b>--best</b> задает
+самый медленный метод (с наибольшим коэффициентом сжатия).
+Стандартный уровень сжатия - <b>-6</b> (т.е. имеется определенное
+смещение в сторону повышения коэффициента сжатия за счет
+снижения скорости).
+<br><br></dd>
+</dl>
+
+<h2>РАСШИРЕННЫЕ ВАРИАНТЫ ИСПОЛЬЗОВАНИЯ</h2>
+
+<p>Можно конкатенировать несколько сжатых файлов. В этом случае
+утилита <b>gunzip</b> будет извлекать все файлы сразу. Например:</p>
+<dl><dt></dt><dd><tt>
+gzip -c file1 &gt; foo.gz<br>
+gzip -c file2 &gt;&gt; foo.gz
+</tt></dd></dl>
+После этого команда
+<dl><dt></dt><dd><tt>
+gunzip -c foo
+</tt></dd></dl>
+будет эквивалентна команде
+<dl><dt></dt><dd><tt>
+cat file1 file2
+</tt></dd></dl>
+
+<p>В случае повреждения одного из компонентов файла <b>.gz</b>, другие
+компоненты можно восстановить (если удалить поврежденный компонент).
+Однако большей степени сжатия можно достичь, сжимая все компоненты сразу:</p>
+<dl><dt></dt><dd><tt>
+cat file1 file2 | gzip &gt; foo.gz
+</tt></dd></dl>
+
+сжимается лучше, чем
+<dl><dt></dt><dd><tt>
+gzip -c file1 file2 &gt; foo.gz
+</tt></dd></dl>
+
+<p>Если необходимо переупаковать конкатенированые файлы для
+получения большей степени сжатия, используйте команду следующего вида:</p>
+<dl><dt></dt><dd><tt>
+gzip -cd old.gz | gzip &gt; new.gz
+</tt></dd></dl>
+
+<p>Если сжатый файл состоит из нескольких компонентов, размер исходного
+файла и контрольная сумма CRC, выдаваемые опцией <b>--list</b>, относятся
+только к последнему компоненту. Если необходимо узнать исходный
+размер всех компонентов, можно использовать команду:</p>
+<dl><dt></dt><dd><tt>
+gzip -cd file.gz | wc -c
+</tt></dd></dl>
+
+<p>Если необходимо создать единый архивынй файл с несколькими компонентами
+так, чтобы можно было извлекать независимо друг от друга, используйте 
+архиватор типа <b>tar</b> или <b>zip</b>. Утилита GNU <b>tar</b> поддерживает опцию <b>-z</b>
+для прозрачного вызова утилиты <b>gzip</b>. Утилита <b>gzip</b> дополняет программу <b>tar</b>,
+но не заменяет ее.</p>
+
+<h2>СРЕДА</h2>
+
+<p>Переменная среды <b>GZIP</b> может задавать набор стандартных опций для
+<b>gzip</b>. Эти опции интерпретируются первыми и могут переопределяться
+явными параметрами командной строки. Например:</p>
+<dl><dt></dt><dd>
+для <b>sh</b>:  <tt>GZIP="-8v --name"; export GZIP</tt><br>
+для <b>csh</b>:  <tt>setenv GZIP "-8v --name"</tt><br>
+для <b>MSDOS</b>: <tt>set GZIP=-8v --name</tt>
+</dd></dl>
+
+<p>В ОС Vax/VMS соответствующая переменная среды называется 
+<b>GZIP_OPT</b>, чтобы избежать конфликта с именем программы.</p>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=gznew&amp;category=1"><b>gznew(1)</b></a>,
+	<a href="/man.shtml?topic=gzcmp&amp;category=1"><b>gzcmp(1)</b></a>,
+	<a href="/man.shtml?topic=gzmore&amp;category=1"><b>gzmore(1)</b></a>,
+	<a href="/man.shtml?topic=gzforce&amp;category=1"><b>gzforce(1)</b></a>,
+	<a href="/man.shtml?topic=gzexe&amp;category=1"><b>gzexe(1)</b></a>,
+	<a href="/man.shtml?topic=zip&amp;category=1"><b>zip(1)</b></a>,
+	<a href="/man.shtml?topic=unzip&amp;category=1"><b>unzip(1)</b></a>,
+	<a href="/man.shtml?topic=compress&amp;category=1"><b>compress(1)</b></a>,
+	<a href="/man.shtml?topic=pack&amp;category=1"><b>pack(1)</b></a>
+</dd></dl>
+
+<h2>ДИАГНОСТИКА</h2>
+
+<p>Статус выхода обычно имеет значение 0; если возникает ошибка,
+статус выхода имеет значение 1. Если выдавались предупреждения,
+статус выхода имеет значение 2.</p>
+<dl>
+<dt><tt>Usage: gzip [-cdfhlLnNrtvV19] [-S suffix] [file ...]</tt></dt><dd>
+В командной строке заданы недопустимые опции.
+<br><br></dd>
+<dt><tt>file: not in gzip format</tt></dt><dd>
+Указанный программе <b>gunzip</b> файл не был сжат утилитой <b>gzip</b>.
+<br><br></dd>
+<dt><tt>file: Corrupt input. Use gzcat to recover some data.</tt></dt><dd>
+Сжатый файл был поврежден. Данные до точки сбоя могут быть восстановлены
+с помощью команды
+<dl><dt></dt><dd><tt>
+	gzcat file &gt; recover
+</tt></dd></dl>
+</dd>
+<dt><tt>file: compressed with xx bits, can only handle yy bits</tt></dt><dd>
+Файл был сжат (с помощью алгоритма LZW) программой, способной работать
+с большим количеством битов, чем код распаковки на данной машине.
+Сожмите файл заново с помощью утилиты <b>gzip</b>, сжимающей лучше и
+использующей меньше памяти.
+<br><br></dd>
+<dt><tt>file: already has .gz suffix -- no change</tt></dt><dd>
+Предполагается, что файл уже сжат. Переименуйте файл и попробуйте еще раз.
+<br><br></dd>
+<dt><tt>file already exists; do you wish to overwrite (y or n)?</tt></dt><dd>
+Ответьте утвердительно (<b>y</b>), если хотите заменить существующий
+файл, или отрицательно (<b>n</b>), если не хотите.
+<br><br></dd>
+<dt><tt>gunzip: corrupt input</tt></dt><dd>
+Был получен сигнал <b>SIGSEGV</b>, что обычно вызвано повреждением входного
+файла.
+<br><br></dd>
+<dt><tt>xx.x%</tt></dt><dd>
+Процент входного файла, сэкономленный за счет сжатия.
+(Только для опций <a href="#v"><b>-v</b></a> и <a href="#l"><b>-l</b></a>.)
+<br><br></dd>
+<dt><tt>-- not a regular file or directory: ignored</tt></dt><dd>
+Если входной файл не является обычным файлом или каталогом, 
+(т.е. это символическая связь, сокет, именованный канал FIFO или 
+специальный файл устройства, он не изменяется.
+<br><br></dd>
+<dt><tt>-- has xx other links: unchanged</tt></dt><dd>
+Входной файл имеет несколько связей; он не изменняется. Поробнее
+о связях см. на странице справочного руководства <a href="/man.shtml?topic=ln&amp;category=1"><b>ln(1)</b></a>. Для
+принудительного сжатия файлов с несколькими связями используйте
+флаг <a href="#f"><b>-f</b></a>.
+<br><br></dd>
+</dl>
+
+<h2>АВТОРСКИЕ ПРАВА</h2>
+
+<p>Copyright (C) 1987, 88, 89, 90, 91, 92, 1993 Free Software
+Foundation, Inc.</p>
+
+<p>Эта программа является свободно распространяемым программным
+обеспечением; вы можете распространять и/или изменять ее в
+соответствии с условиями Генеральной общественной лицензии
+GNU (<a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>),
+опубликованной Фондом 
+свободно распространяемого программного обеспечения (Free Software 
+Foundation); либо версии 2, либо (по вашему выбору) любой более
+поздней версии.</p>
+
+<p>Эта программа распространяется в надежде, что она окажется полезной,
+но БЕЗО ВСЯКИХ ГАРАНТИЙ; даже без подразумеваемой гарантии 
+ТОВАРНОЙ ПРИГОДНОСТИ или ПРИГОДНОСТИ ДЛЯ КОНКРЕТНОЙ ЦЕЛИ. 
+Подробнее см. в Генеральной общественной лицензии GNU.</p>
+
+<p>Вы должны были получить экземпляр Генеральной общественной лицензии
+GNU вместе с этой программой; если же нет, обратитесь за ней по адресу
+Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.</p>
+
+<h2>ПОТЕНЦИАЛЬНЫЕ ПРОБЛЕМЫ</h2>
+
+<p>При записи сжатых данных на ленту обычно необходимо дополнять
+результат нулями до границы блока. При чтении данных и передаче их
+для распаковки утилите <b>gunzip</b>, она выявляет дополнительный "мусор"
+после сжатых данных и, по умолчанию, выдает предупреждение. Чтобы
+подавить выдачу этого предупреждения, используйте опцию <a href="#q"><b>--quiet</b></a>.
+Эту опцию можно задать в переменной среды <b>GZIP</b>, как в следующем
+примере:</p>
+<dl><dt></dt><dd>
+для <b>sh</b>: <tt>GZIP="-q"; tar -xfz --block-compress /dev/rst0</tt><br>
+для <b>csh</b>: <tt>(setenv GZIP -q; tar -xfz --block-compr /dev/rst0)</tt>
+</dd></dl>
+
+<p>В примере выше утилита <b>gzip</b> вызывается неявно опцией <b>-z</b>
+утилиты GNU <b>tar</b>. Проверьте, что при чтении и записи сжатых данных на
+ленты используется один и тот же размер блока (опция <b>-b</b>
+программы <b>tar</b>). (В этом примере предполагается использование
+GNU-версии программы <b>tar</b>.)</p>
+
+<h2>ОШИБКИ</h2>
+
+<p>Опция <b>--list</b> выдает некорректные размеры, если они превышают 2 Гбайта.
+Опция <b>--list</b> выдает значение размера <b>-1</b> и контрольной суммы crc - 
+<b>ffffffff</b>, если сжатый файл находится на носителе, не допускающем
+произвольную адресацию (non seekable media).</p>
+
+<p>В некоторых редких случаях опция <b>--best</b> дает худшее сжатие, чем стандартный
+уровень сжатия (<b>-6</b>). Некоторые особо избыточные файлы сжимаются утилитой 
+<b>compress</b> лучше, чем утилитой <b>gzip</b>.</p>
+
+<h2>ПРИМЕЧАНИЯ</h2>
+
+<p>Исходные коды для утилиты <b>gzip</b> доступны в пакете <b>SUNWgzipS</b>.</p>
+
+<p align="center"><font size="-2">
+Copyright 2002 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="gzip" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

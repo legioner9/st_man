@@ -1,0 +1,514 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN pdnsd-ctl (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, pdnsd-ctl"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="pdnsd-ctl" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">pdnsd-ctl (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=pdnsd-ctl&amp;category=8&amp;russian=0"><u>pdnsd-ctl</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+
+
+<h1><a name="имя" id="имя">ИМЯ</a></h1>
+<div class="level1">
+
+<p>
+
+pdnsd-ctl - управление pdnsd
+</p>
+
+</div>
+
+<h1><a name="обзор" id="обзор">ОБЗОР</a></h1>
+<div class="level1">
+
+<p>
+
+pdnsd-ctl [-c каталог_кэша] [-q] команда [опции]
+</p>
+
+</div>
+
+<h1><a name="описание" id="описание">ОПИСАНИЕ</a></h1>
+<div class="level1">
+
+<p>
+
+pdnsd-ctl управляет pdnsd - прокси <acronym title="Domain Name Server">DNS</acronym>-сервером с постоянным кэшем. Отметим, что должен быть включен сокет управления состоянием (указанием опции в командной строке pdnsd или в конфигурационном файле), перед тем как Вы сможете использовать pdnsd-ctl.
+</p>
+
+</div>
+
+<h2><a name="c_каталог_кэша" id="c_каталог_кэша">-c каталог_кэша</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает каталог кэша (должен совпадать с настройками pdnsd). Это необходимо только если каталог отличается от каталога, заданного по умолчанию при компиляции.
+</p>
+
+</div>
+
+<h2><a name="q" id="q">-q</a></h2>
+<div class="level2">
+
+<p>
+
+Подавление сообщений об ошибках, если указанная команда или что-то другое идёт неправильно.
+</p>
+
+</div>
+
+<h1><a name="команды" id="команды">КОМАНДЫ</a></h1>
+<div class="level1">
+
+</div>
+
+<h2><a name="help" id="help">help</a></h2>
+<div class="level2">
+
+<p>
+
+[нет опций]
+</p>
+
+<p>
+Вывести краткую справку по командам.
+</p>
+
+</div>
+
+<h2><a name="version" id="version">version</a></h2>
+<div class="level2">
+
+<p>
+
+[нет опций]
+</p>
+
+<p>
+Вывести информацию о версии.
+</p>
+
+</div>
+
+<h2><a name="status" id="status">status</a></h2>
+<div class="level2">
+
+<p>
+
+[нет опций]
+</p>
+
+<p>
+Вывести описание состояния кэша pdnsd, нити статуса и настройки. Также показывает, какие удалённые серверы имён считаются доступными.
+</p>
+
+</div>
+
+<h2><a name="server" id="server">server</a></h2>
+<div class="level2">
+
+<p>
+
+(индекс|метка) (up|down|retest) [dns1[,dns2[,]]]
+</p>
+
+<p>
+Задаёт состояние серверов с заданным индексом или меткой для включения, выключения или принудительного перезапуска теста. Индекс назначается по порядку определения в pdnsd.conf и начинается с 0. Используйте команду status, чтобы увидеть индексы. Вы можете указать all вместо индекса, чтобы произвести действие над всеми серверами, имеющимися у pdnsd.
+</p>
+
+<p>
+На выбор, третий аргумент может задавать последовательнй список IP-адресов, разделённых запятыми или пробелами. Этот список заменит адреса серверов имён, используемых pdnsd в заданной секции server. Эта возможность полезна для настройки pdnsd во время работы, для динамического учёта данных <acronym title="Domain Name Server">DNS</acronym> в сценариях, вызванных ppp или DHCP-клиентами. Последний аргумент может также быть пустой строкой, что вызовет удаление существующих IP-адресов и соответственно вызовет переход секции server в неактивное состояние.
+</p>
+
+</div>
+
+<h2><a name="record" id="record">record</a></h2>
+<div class="level2">
+
+<p>
+
+имя (delete|invalidate)
+</p>
+
+<p>
+Удаляет или аннулирует записи с заданным доменным именем, если они присутствуют в кэше. Аннулирование означает, что записи будут помечены как устаревшие, и при возможности будут перезагружены. Для локальных записей (то есть записей, которые были заданы в конфигурационном файле в секции rr, записи, прочитанные из файлов в стиле hosts и записи, добавленные с использованием pdnsd-ctl) аннулирование не действует. Однако сработает удаление.
+</p>
+
+</div>
+
+<h2><a name="source" id="source">source</a></h2>
+<div class="level2">
+
+<p>
+
+имя_файла владелец [время_жизни] [(on|off)] [noauth]
+</p>
+
+<p>
+Загрузка файл в стиле hosts. Работает подобно использованию опции source pdnsd. Владелец и время жизни используются так же, как в секции source. Время жизни по умолчанию 900 секунд (указывать его не обязательно). Следующая опция задаёт опцию server_aliases, по умолчанию она отключена. noauth используется для того, чтобы сделать домены не полномочными (это то же самое, что и установка опции authrec=off в конфигурационном файле, ознакомьтесь со страницей руководства <a href="/dokuwiki/man/pdnsd.conf_5?DokuWiki=9b1fcb4b64cf9397a0f2808c489deab9" class="wikilink1" title="man:pdnsd.conf_5">pdnsd.conf(5)</a>, чтобы узнать что это означает). имя_файла - это имя того файла, который должен быть прочитан pdnsd.
+</p>
+
+</div>
+
+<h2><a name="add" id="add">add</a></h2>
+<div class="level2">
+
+<p>
+
+a адрес имя [время_жизни] [noauth]
+</p>
+
+<p>
+aaaa адрес имя [время_жизни] [noauth]
+</p>
+
+<p>
+ptr имя_узла [время_жизни] [noauth]
+</p>
+
+<p>
+cname имя_узла [время_жизни] [noauth]
+</p>
+
+<p>
+mx имя_узла приоритет [время_жизни] [noauth]
+</p>
+
+<p>
+Добавляет запись заданного типа в кэш pdnsd, замещая существующие записи с тем же именем и типом. Второй аргумет используется как значение опции в секции rr, совпадающей по имени с первым аргументом. (Например, команда add mx mail 10 будет соответствовать опции mx=mail,10;, указанной в секции rr конфигурационного файла.) Время_жизни опционально, по умолчанию 900 секунд. noauth используется для того, чтобы сделать домены не полномочными (это подобно установке authrec=off в конфигурационном файле, обратитесь к странице руководства <a href="/dokuwiki/man/pdnsd.conf_5?DokuWiki=9b1fcb4b64cf9397a0f2808c489deab9" class="wikilink1" title="man:pdnsd.conf_5">pdnsd.conf(5)</a> чтобы узнать что это означает). Если Вы хотите, что бы не было других записей, кроме только что добавленных в кэш, выполните pdnsd-ctl record имя delete перед добавлением записи.
+</p>
+
+</div>
+
+<h2><a name="neg" id="neg">neg</a></h2>
+<div class="level2">
+
+<p>
+
+имя [тип] [время_жизни]
+</p>
+
+<p>
+Добавляет отрицательно кэшированные записи в кэш pdnsd, замещая существующие записи с тем же именем и типом. Если не задан тип, весь домен будет закэширован отрицательно. Для отрицательно кэшированных записей будет немедленно возвращён ответ об ошибке, без предварительного запроса других серверов. Время_жизни опционально, по умолчанию 900 секунд.
+</p>
+
+</div>
+
+<h2><a name="config" id="config">config</a></h2>
+<div class="level2">
+
+<p>
+
+имя_файла
+</p>
+
+<p>
+Перезагружает конфигурационный файл pdnsd.
+</p>
+
+<p>
+Конфигурационный файл должен принадлежать пользователю, от имени которого будет запущен pdsnd, и быть доступным для чтения тому пользователю, uid которого указан в опции run_as. Если не указано имя файла, будет перезагружен конфигурационный файл, использованный при запуске. Отметим, что некоторые изменения в конфигурации, такие как порт или IP-адрес, которые прослушивает pdnsd, не могут быть выполнены таким образом и Вы получите сообщение об ошибке. В этих случаях Вы должны вместо этого перезапустить pdnsd.
+</p>
+
+</div>
+
+<h2><a name="empty-cache" id="empty-cache">empty-cache</a></h2>
+<div class="level2">
+
+<p>
+
+[[+|-]имя ...]
+</p>
+
+<p>
+Удалить все элементы кэша, совпадающие с правилами включений/исключений.
+</p>
+
+<p>
+Если не были указаны аргументы, кэш полностью опустошается, очищая все существующие записи. Заметим, что это также удалит локальные записи, определённые в конфигурационном файле. Для восстановления локальных записей сразу после этого запустите pdnsd-ctl config.
+</p>
+
+<p>
+Если указан один или более аргументов, они интерпретируются как имена включений/исключений. Если аргумент начинается с '+' имя будет включено. Если аргумент начинается с '-', оно будет исключено. Если аргумент не начинается с '+' или '-', подразумевается '+'. Если доменное имя записи в кэше оканчивается одним из имён в списке, применяется первое совпадение. Если совпададение включающее, запись в кэше удаляется, иначе - она остаётся. Если совпадений не найдено, действие по умолчанию - не удалять.
+</p>
+
+</div>
+
+<h2><a name="dump" id="dump">dump</a></h2>
+<div class="level2">
+
+<p>
+
+[имя]
+</p>
+
+<p>
+Выводит информацию об имени, хранящуюся в кэше. Если имя начинается с точки и это не корневой домен, будет напечатана информация об именах в кэше оканчивающихся заданным именем (включая имя без ведущей точки). Если имя не указано, будет выведена информация обо всех именах в кэше.
+</p>
+
+</div>
+
+<h2><a name="list-rrtypes" id="list-rrtypes">list-rrtypes</a></h2>
+<div class="level2">
+
+<p>
+
+[нет опций]
+</p>
+
+<p>
+Список доступных типов ресурсных записей для команды neg. Отметим, что они могут быть использованы только в команде neg, не в add!
+</p>
+
+</div>
+
+<h1><a name="ошибки" id="ошибки">ОШИБКИ</a></h1>
+<div class="level1">
+
+<p>
+
+Если Вы перенаправляете вывод команды dump на вход программы, которая читает только часть вывода и блокируется (как more или less), нити pdnsd, пытающиеся добавить новые записи к кэшу, будут приостановлены до закрытия канала. В таком случае предпочтительно захватывать вывод в файл.
+</p>
+
+<p>
+Сообщайте авторам о любых других ошибках.
+</p>
+
+</div>
+
+<h1><a name="авторы" id="авторы">АВТОРЫ</a></h1>
+<div class="level1">
+
+<p>
+
+Томас Мёстль (Thomas Moestl <a href="mailto:tmoestl@gmx.net" class="mail JSnocheck" title="tmoestl@gmx.net">tmoestl@gmx.net</a>)
+</p>
+
+<p>
+Пол Ромбаутс (Paul Rombouts <a href="mailto:p.a.rombouts@home.nl" class="mail JSnocheck" title="p.a.rombouts@home.nl">p.a.rombouts@home.nl</a>) (для версий 1.1.8b1-par и позже)
+</p>
+
+<p>
+Последняя правка: 23 декабря 2005, Пол Ромбаутс (Paul Rombouts).
+</p>
+
+</div>
+
+<h1><a name="автор_перевода" id="автор_перевода">АВТОР ПЕРЕВОДА</a></h1>
+<div class="level1">
+
+<p>
+
+Перевод на русский язык выполнил Владимир Ступин <a href="mailto:wheelof@gmail.com" class="mail JSnocheck" title="wheelof@gmail.com">wheelof@gmail.com</a>
+</p>
+
+</div>
+
+<h1><a name="см._также" id="см._также">СМ. ТАКЖЕ</a></h1>
+<div class="level1">
+
+<p>
+
+<a href="?topic=pdnsd&amp;category=8" class="wikilink1" title="man:pdnsd_8">pdnsd(8)</a>, <a href="/dokuwiki/man/pdnsd.conf_5?DokuWiki=9b1fcb4b64cf9397a0f2808c489deab9" class="wikilink1" title="man:pdnsd.conf_5">pdnsd.conf(5)</a>
+</p>
+
+</div>
+
+        
+      
+    
+      <div class="stylefoot">
+        <div class="meta">
+          <div class="user">
+                    </div>
+          <div class="doc">
+          man/pdnsd-ctl_8.txt · Последние изменения: 2009-02-05 20:23 (внешнее изменение)          </div>
+        </div>
+      </div>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="pdnsd-ctl" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

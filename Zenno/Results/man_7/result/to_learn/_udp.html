@@ -1,0 +1,439 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN udp (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, udp"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="udp" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">udp (7)</font><hr><li> <a href="/man.shtml?topic=udp&amp;category=4&amp;russian=1"><u>udp</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=udp&amp;category=4&amp;russian=2"><u>udp</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=udp&amp;category=7&amp;russian=4"><u>udp</u></a> (7) <font color="#555555"> ( Solaris man: Макропакеты и соглашения )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=udp&amp;category=7&amp;russian=0"><u>udp</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=udp&amp;category=7&amp;russian=2"><u>udp</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li><font color="#555555">Ключ <a href="/keywords/udp.html"><u>udp</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+udp - протокол UDP (User Datagram Protocol) поверх протокола IPv4.
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>#include &lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/netinet/in.h">netinet/in.h</a>&gt;</b>
+
+<br>
+
+<b>udp_socket = socket(PF_INET, SOCK_DGRAM, 0); </b>
+
+<p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Это реализация User Datagram Protocol (Протокола Пользовательских
+Датаграмм, UDP), который описан в RFC768. 
+Он обеспечивает ненадежную передачу датаграмм без установления соединения.
+При пересылке пакеты могут дублироваться, а их порядок может быть нарушен.  UDP
+генерирует и проверяет контрольные суммы, чтобы отловить ошибки передачи.
+<p>
+При создании UDP-сокета его локальный и удаленный адрес не указываются.
+Датаграммы могут быть посланы немедленно с помощью 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendto&amp;category=2">sendto</a></b>(2)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmsg&amp;category=2">sendmsg</a></b>(2),
+
+с правильным адресом назначения в качестве аргумента.
+Когда для сокета вызывается 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2),
+
+то устанавливается адрес назначения по умолчанию и с этого момента датаграммы 
+могут отсылаться с помощью 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=send&amp;category=2">send</a></b>(2)
+
+или 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=write&amp;category=2">write</a></b>(2),
+
+без указания адреса назначения.
+При этом все еще сохраняется возможность послать пакет другому адресату,
+передавая его адрес процедурам
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendto&amp;category=2">sendto</a></b>(2)
+
+или 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmsg&amp;category=2">sendmsg</a></b>(2).
+
+Для получения пакетов сокет сначала можно привязать к локальному адресу
+с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bind&amp;category=2">bind</a></b>(2).
+
+В противном случае сокетный уровень автоматически присвоит свободный
+локальный порт из диапазона, заданного в
+<i>net.ipv4.ip_local_port_range</i>,
+
+и привяжет сокет к
+<b>INADDR_ANY</b>.
+
+</p><p>
+Все операции приема возвращают только один пакет.  Если пакет меньше, чем 
+размер буфера приема, то он возвращается целиком; если пакет больше, 
+то он обрезается и устанавливается флаг 
+<b>MSG_TRUNC</b>.
+
+<i>MSG_WAITALL</i>
+
+не поддерживается.
+</p><p>
+Опции IP могут быть посланы или получены при помощи опций сокета, описанных в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7).
+
+Они обрабатываются ядром, если включено соответствующее sysctl-значение
+(но даже если оно отключено, опции все равно передаются пользователю). Смотри 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7).
+
+</p><p>
+Если при отсылке установлен флаг 
+<b>MSG_DONTROUTE</b>,
+
+то адрес назначения должен указывать на адрес локального интерфейса,
+и пакеты посылаются только на этот интерфейс.  
+</p><p>
+UDP фрагментирует пакет, если его общий размер превышает значение MTU 
+(Maximum Transmission Unit) интерфейса. 
+Более дружелюбной для сети альтернативой является использование метода
+обнаружения MTU маршрута,
+который описан в разделе 
+<b>IP_PMTU_DISCOVER </b>
+
+страницы руководства 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7).
+
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ФОРМАТ АДРЕСА</h2>
+
+UDP использует формат адреса IPv4 
+<b>sockaddr_in</b>,
+
+который описан в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7).
+
+<p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>ОБРАБОТКА ОШИБОК</h2>
+
+Все фатальные ошибки будут передаваться пользователю в виде 
+кода ошибки, который возвращается, даже если сокет не соединен. 
+Это относится также и к асинхронным ошибкам, полученным из сети.  Вы
+можете получить ошибку, относящуюся к более раннему пакету, посланному
+на том же сокете.
+Такое поведение отличается от поведения
+многих других реализаций BSD-сокетов, которые никогда не передают коды ошибок,
+если на сокете не установлено соединение.  Поведение Linux в этом
+случае соответствует
+<b>RFC1122</b>.
+
+<p>
+Для совместимости со старым кодом можно установить опцию SOL_SOCKET 
+<b>SO_BSDCOMPAT</b>,
+
+чтобы получать удаленные ошибки, только если сокет был соединен (кроме ошибок 
+<b>EPROTO</b>
+
+и 
+<b>EMSGSIZE</b>).
+
+Однако лучше исправить код, чтобы он правильно обрабатывал ошибки,
+чем использовать эту опцию. 
+Ошибки, возникшие локально, передаются всегда.
+</p><p>
+Если включена опция 
+<b>IP_RECVERR</b>,
+
+то все ошибки хранятся в очереди ошибок сокета 
+и могут быть получены с помощью функции 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvmsg&amp;category=2">recvmsg</a></b>(2)
+
+с установленным флагом 
+<b>MSG_ERRQUEUE</b>.
+
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>IOCTL</h2>
+
+К нижеперечисленным ioctl можно обратиться с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ioctl&amp;category=2">ioctl</a></b>(2).
+
+Правильный синтаксис таков:
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre><b>int</b><i> value;</i>
+<i>error</i><b> = ioctl(</b><i>tcp_socket</i><b>, </b><i>ioctl_type</i><b>, &amp;</b><i>value</i><b>);</b>
+</pre>
+
+</dd></dl>
+
+<dl compact="">
+<dt><b>SIOCINQ</b>
+
+</dt><dd>
+В качестве параметра получает указатель на целое число.  Возвращает
+размер следующей ожидающей датаграммы в байтах, помещая их в это целое
+число, или же 0, если нет ожидающей датаграммы.
+</dd><dt><b>SIOCOUTQ</b>
+
+</dt><dd>
+Возвращает количество байт данных в локальной очереди отправки.
+Поддерживается только в Linux 2.4 и выше.
+</dd></dl>
+<p>
+
+Дополнительно поддерживаются все ioctl, документированные в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7).
+
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>КОДЫ ОШИБОК</h2>
+
+Все коды ошибок, описанные в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7)
+
+или 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7),
+
+могут быть получены при посылке или приеме на сокете UDP. 
+<p>
+<b>ECONNREFUSED</b>
+
+С адресом назначения не связан ни один получатель. Эта ошибка может 
+быть вызвана предыдущим пакетом, посланным через этот сокет.
+</p><p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>ВЕРСИИ</h2>
+
+Опция IP_RECVERR появилась только в Linux 2.2.
+<p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+Эту страницу руководства написал Andi Kleen.
+<p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=raw&amp;category=7">raw</a></b>(7).
+
+<p>
+RFC768, где описан UDP.
+<br>
+
+RFC1122, где описаны требования к хосту.
+<br>
+
+RFC1191, где описан процесс обнаружения MTU маршрута.
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ФОРМАТ АДРЕСА</a></dt><dd>
+</dd><dt><a href="#lbAF">ОБРАБОТКА ОШИБОК</a></dt><dd>
+</dd><dt><a href="#lbAG">IOCTL</a></dt><dd>
+</dd><dt><a href="#lbAH">КОДЫ ОШИБОК</a></dt><dd>
+</dd><dt><a href="#lbAI">ВЕРСИИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAK">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="udp" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

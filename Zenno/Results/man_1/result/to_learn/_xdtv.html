@@ -1,0 +1,1364 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN xdtv (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, xdtv"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="xdtv" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">xdtv (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=xdtv&amp;category=1&amp;russian=0"><u>xdtv</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>NAME</h2>
+<pre>XdTV (программа под X11 основанная на xawtv) это софт для просмотра  TV.
+Она взаимодействует с AleVT для Teletext и с Nxtvepg для NextView, использует video4linux API.
+Может использовать деинтерлейс фильтры и записывать видео с помощью кодеков: 
+FFMpeg(&gt;=0.4.6), XviD(0.9 &amp; 1.x), Ogg Theora (&gt;=1.0alpha5) &amp; Vorbis, DivX4/5.
+Имеются возможности по подключению плагинов.
+<a name="lbAC">&nbsp;</a>
+</pre><h2>SYNOPSIS</h2>
+
+<b>XdTV [ options ]</b>
+
+<a name="lbAD">&nbsp;</a>
+<h2>DESCRIPTION</h2>
+
+<b>XdTV</b>
+
+простая программа для просмотра TV в Линуксе. Использует
+виджеты Athena. (xaw, xaw3d, xawM, xaw95 или neXtaw)
+<b>XdTV</b>
+
+поддерживает bttv драйвер и v4l &amp; v4l2.
+
+<b>XdTV</b>
+
+считывает конфигурационный файл $HOME/.xdtv/xdtvrc при запуске.  Этот
+файл содержит доступные  ТВ каналы и некоторые опции вроде стандарта ТВ.
+При первом пуске
+<b>XdTV</b>
+
+создает файл с установками по умолчанию. Вы должны потом
+отредактировать файл под свои нужды.
+<a name="lbAE">&nbsp;</a>
+<h2>OPTIONS</h2>
+
+<dl compact="">
+<dt><b>-b depth</b>
+
+</dt><dd>
+устанавливает
+<b>depth</b>
+
+глубину цвета в битах. Может понадобиться для 24/32 битных режимов. Вообще, наивысшая производительность в режиме grabdisplay была достигнута при 16 битах.
+</dd><dt><b>-f</b>
+
+</dt><dd>
+запуск в полноэкранном режиме.
+</dd><dt><b>-n</b>
+
+</dt><dd>
+не считывать файл конфигурации ($HOME/.xdtv/xdtvrc).
+</dd><dt><b>-o filename</b>
+
+</dt><dd>
+указать выходной файл для ppm &amp; jpeg граббинга (по умолчанию snap000.ppm или snap000.jpeg)
+</dd><dt><b>-v level</b>
+
+</dt><dd>
+Выводить много сообщений,
+<b>level</b>
+
+может быть 0 (по умолчанию), 1 или 2.  Только для отладки. Если
+<b>level</b>
+
+не указан, уровень 1 принимается.
+</dd><dt><b>-x</b>
+
+</dt><dd>
+выключает использование X11 расширений (DGA, VidMode).
+</dd><dt><b>-d</b>
+
+</dt><dd>
+выключает  X11 DGA расширение.
+</dd><dt><b>-D adr</b>
+
+</dt><dd>
+устанавливает адрес фреймбуфера в adr. Нужен для overlay
+режима, если DGA недоступен (необходимы права администратора, использоватьс осторожностью!).
+</dd><dt><b>-c video_device</b>
+
+</dt><dd>
+video4linux видеоустройство. Для devfs систем по умолчанию /dev/v4l/video или /dev/v4l/video0. Для не-devfs систем по умолчанию /dev/video или /dev/video/video0 или /dev/video0.
+Заметьте, что на /proc системах устройство видео определяется автоматически.
+</dd><dt><b>-C vbi_device</b>
+
+</dt><dd>
+video4linux vbi устройство. Для devfs систем по умолчанию /dev/v4l/vbi или /dev/v4l/vbi0. Для не-devfs систем по умолчанию /dev/vbi или /dev/video/vbi или /dev/vbi0.
+Заметьте, что на /proc системах устройство видео vbi определяется автоматически.
+</dd><dt><b>-noxv | -no-xv</b>
+
+</dt><dd>
+выключает поддержку Xvideo если он скомпилирован.
+</dd><dt><b>-xvport number</b>
+
+</dt><dd>
+устанавливает Xvideo Image порт (по умолчанию в первый пригодный, если Xvideo доступен).
+Пригодный - поддерживающий YUY2.
+</dd><dt><b>-noxvпо умолчаниюs</b>
+
+</dt><dd>
+Обычно xdtv устанавливает XVideo праметр (например, контраст...) в значение по умолчанию.
+Эта опция выключает такой порядок. (полезно для сломанных адаптеров)
+</dd><dt><b>-noplugin</b>
+
+</dt><dd>
+отключает все установленные плагины.
+</dd><dt><b>-plugin pathfile</b>
+
+</dt><dd>
+включает указанный плагин.
+</dd><dt><b>-plugindir pathdir</b>
+
+</dt><dd>
+указывает каталог с плагинами (по умолчанию =/usr/local/lib/xdtv-plugins)
+</dd><dt><b>-probe_memcpy</b>
+
+</dt><dd>
+включает тестирование различных способов быстрой memcpy функции.
+</dd><dt><b>-rec_fps fps</b>
+
+</dt><dd>
+устанавливает частоту кадров для записи (по умолчанию = 25.0)
+</dd><dt><b>-rec_display on|off</b>
+
+</dt><dd>
+устанавливает display режим для записи (по умолчанию = 1)
+</dd><dt><b>-rec_width width</b>
+
+</dt><dd>
+устанавливает горизонтальное разрешение для записи (по умолчанию = 384),
+если равен 0,  то устанавливается в 4/3 высоты (верт. разрешения)
+</dd><dt><b>-rec_height height</b>
+
+</dt><dd>
+задает верт. разрешение для записи (по умолчанию = 288),
+если равен 0,  то устанавливается в 3/4 ширины (гориз. разрешения)
+</dd><dt><b>-rec_videobr br</b>
+
+</dt><dd>
+устанавливает битрейт записи в br кбит/с (по умолчанию = 800)
+</dd><dt><b>-rec_stereo on|off</b>
+
+</dt><dd>
+активировать стерео режим (по умолчанию = выкл)
+</dd><dt><b>-rec_audiofreq freq</b>
+
+</dt><dd>
+устанавливает частоту аудио для записи (по умолчанию = 44100Hz)
+</dd><dt><b>-rec_audiofmt u8|s16le</b>
+
+</dt><dd>
+устанавливает формат аудио для записи (по умолчанию = s16le)
+</dd><dt><b>-rec_audiobuf size</b>
+
+</dt><dd>
+устанавливает размер аудио буфера(по умолчанию = 1764)
+</dd><dt><b>-rec_fragments number</b>
+
+</dt><dd>
+устанавливает число аудио фрагментов (по умолчанию = 48)
+</dd><dt><b>-rec_fragmentsize size</b>
+
+</dt><dd>
+устанавливает размер аудио фрагмента (по умолчанию = 2048)
+</dd><dt><b>-rec_acodec codec_name</b>
+
+</dt><dd>
+устанавливает записывающий аудио кодек (по умолчанию = "LAME MP3")
+</dd><dt><b>-rec_mp3cbr br</b>
+
+</dt><dd>
+активирует MP3 CBR и устанавливает битрейт в  br кбит/с
+(по умолчанию = активирован, 128 kbit/s)
+</dd><dt><b>-rec_mp3vbr quality</b>
+
+</dt><dd>
+активирует MP3 VBR и устанавливает качество сжатия (0=лучшее, 9=худшее)
+(по умолчанию = выкл, качество = 8)
+</dd><dt><b>-rec_vcodec codec_name</b>
+
+</dt><dd>
+установить записывающий видео кодек
+</dd><dt><b>-rec_container container_name</b>
+
+</dt><dd>
+указать контейнер для записи
+</dd><dt><b>-rec_maxgap gap</b>
+
+</dt><dd>
+устанавливает макс. разрыв между аудио и видео в секундах при записи
+(по умолчанию = 0.08 сек)
+</dd><dt><b>-rec_delay value</b>
+
+</dt><dd>
+устанавливает задержку между аудио и видео во время записи в секундах
+(по умолчанию = 0.00). Значение может быть положительным или отрицательным.
+Значение задержки всегда будет между
+value-gap и value+gap. Используйте эту опцию,
+если заметите, что задержка всегда одинакова 
+в ваших записях, но 0.00 это всегда хорошо.
+</dd><dt><b>-rec_sub on|off</b>
+
+</dt><dd>
+показывает, записаны ли субтитры
+(субтитры записываются в формате MPlayer's MPsub).
+</dd><dt><b>-rec_chg on|off</b>
+
+</dt><dd>
+позволяет менять канал во время записи.
+</dd><dt><b>-rec_filename filename</b>
+
+</dt><dd>
+установить имя avi файла
+(по умолчанию = divx_path/movie-channel-date.avi)
+</dd><dt><b>-rec_maxsize s</b>
+
+</dt><dd>
+установить макс. размер записываемого файла в s Mb.
+(по умолчанию = 1024 для ФС MSDOS, иначе 4096)
+</dd><dt><b>-rec_stream on|off</b>
+
+</dt><dd>
+включает http экспорт записи
+(XdTV будет работать как http stream сервер)
+</dd><dt><b>-rec_http_port</b>
+
+</dt><dd>
+установить порт для http stream (по умолчанию = 63427)
+</dd><dt><b>-e cmd_1; cmd_2; cmd_3;...cmd_n</b>
+
+</dt><dd>
+выполнить команды во время запуска
+см. <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=xdtv_cmd&amp;category=1">xdtv_cmd</a>(1) список команд
+</dd><dt><b>-nowd</b>
+
+</dt><dd>
+отключить украшение окон при старте
+</dd><dt><b>-stayontop</b>
+
+</dt><dd>
+Запуск с активацией stay on top.
+</dd><dt><b>-h</b>
+
+</dt><dd>
+показывает короткое сообщение по использованию.
+</dd><dt><b>-version</b>
+
+</dt><dd>
+текущая версия XdTV.
+</dd><dt><b>-v4l2</b>
+
+</dt><dd>
+включает v4l2 драйвер. По умолчанию, если у вас не включен
+v4l2, то v4l1 включается автоматически; с этой опцией,
+если у вас нет v4l2, XdTV умрет.
+</dd><dt><b>-v4l1</b>
+
+</dt><dd>
+включает устаревший v4l1 драйвер. Не рекомендуется, т.к. драйверы,
+которые дают v4l2, могут неустойчиво работать в режиме v4l1.
+</dd><dt><b>-xvtv </b>
+
+</dt><dd>
+взаимодействовать с TV-картой через X-сервер
+(нужен Xvideo, и ваша TV-карта должна быть опознана Иксами.
+Не работает с grabdisplay).
+</dd><dt><b>-xvtv_overlay on|off</b>
+
+</dt><dd>
+использовать XVideo для overlay , если возможно, все другие операции
+используют обычный драйвер. Работает с v4l2 драйверами,
+т.к. устройство должно поддерживать "множественные открытия".
+(по умолчанию = вкл с v4l2 и если XvVideo порт называется video4linux)
+</dd><dt><b>-xvtvport</b>
+
+</dt><dd>
+установить Xvideo Video порт (по умолчанию первый доступный).
+</dd><dt><b>-novbi </b>
+
+</dt><dd>
+не открывать устройство телетекста.
+</dd><dt><b>-capture overlay|grabdisplay|off</b>
+
+</dt><dd>
+использовать указанный режим захвата для всех каналов при запуске.
+</dd><dt><b>-nbufs nbufs</b>
+
+</dt><dd>
+установить число забуференных ядром кадров (по умолчанию=3).
+</dd><dt><b>-capt_width width</b>
+
+</dt><dd>
+установить макс. ширину захватываемых кадров (по умолчанию=maximum=768)
+</dd><dt><b>-capt_height height</b>
+
+</dt><dd>
+то же, что -capt_width опция. (по умолчанию=maximum=576)
+</dd><dt><b>-force_capt_width width</b>
+
+</dt><dd>
+указать ширину захв. кадров (по умолчанию=0 что означает не указывать,
+-1 означает макс. ширину(768 для pal, 640 для ntsc).
+</dd><dt><b>-force_capt_height height</b>
+
+</dt><dd>
+то же что -force_capt_width опция. (по умолчанию=0=выкл)
+-1 означает макс. высоту(576 для pal, 480 для ntsc).
+</dd><dt><b>-only_capt_width width</b>
+
+</dt><dd>
+аналог -force_capt_width, только сильнее
+</dd><dt><b>-only_capt_height height</b>
+
+</dt><dd>
+аналог -force_capt_height, только сильнее
+</dd><dt><b>-fullscreen_mode 1 | 2 | 3</b>
+
+</dt><dd>
+выберите метод для запуска полного экрана.
+</dd><dt><b>-avi filename.avi</b>
+
+</dt><dd>
+считывать кадры из filename.avi. (только для тестирования)
+</dd><dt><b>-avibench</b>
+
+</dt><dd>
+(требует вкл. -avi опции)
+не делать задержки между двумя кадрами; остановить при достижении конца файла
+и показать статистику использования ЦП.
+</dd><dt><b>-avi_audiofragments number</b>
+
+</dt><dd>
+установить число аудио фрагментов для чтения из файла (по умолчанию=2, 16 для sunaudio)
+</dd><dt><b>-avi_audiofragmentsize size</b>
+
+</dt><dd>
+установить размер аудио фрагментов для чтения из файла (по умолчанию=2048)
+</dd><dt><b>-avinoaudioout</b>
+
+</dt><dd>
+не воспроизводить аудио при чтении из файла.
+</dd><dt><b>-sub on|off</b>
+
+</dt><dd>
+вкл/выкл субтитры (по умолчанию=выкл)
+</dd><dt><b>-xosd</b>
+
+</dt><dd>
+использовать библиотеку  xosd для показа osd. (в разработке)
+</dd><dt><b>-noalsa | -nooss | -nosunaudio</b>
+
+</dt><dd>
+не использовать соотв. драйвер для управления звуком
+</dd><dt><b>-mixer_dev</b>
+
+</dt><dd>
+выбрать микшер.
+(по умолчанию=по умолчанию для alsa, /dev/mixer для oss и sunaudio)
+</dd><dt><b>-mixer_tvchan</b>
+
+</dt><dd>
+выбрать канал микшера, соответствующий ТВ
+(по умолчанию=Line для alsa, line для oss, inputs.line для sunaudio)
+</dd><dt><b>-mixer_pcmchan</b>
+
+</dt><dd>
+выбрать канал микшера, соотв. цифровому аудио
+(по умолчанию=PCM для alsa, pcm для oss, inputs.dac для sunaudio)
+</dd><dt><b>-audio_dev</b>
+
+</dt><dd>
+выбрать звуковое устройство.
+(по умолчанию=по умолчанию для alsa, /dev/dsp для oss, /dev/sound для sunaudio)
+</dd><dt><b>-restoresnd on|off</b>
+
+</dt><dd>
+показать, сохраняет ли XdTV установленные настройки звука при выходе.
+(по умолчанию=off, работает только с alsa)
+</dd><dt><b>-respectnullsnd on|off</b>
+
+</dt><dd>
+Показывает, учитывает ли XdTV отсутствие звука при запуске.
+(по умолчанию = выкл, работает только с oss и alsa)
+</dd><dt><b>-bktr_mode nr</b>
+
+</dt><dd>
+выбирает формат захвата по его номеру
+(см. поддерживаемые форматы XdTV) (для BSD)
+вы должны указать подходящий праметр для опции -grabfmt
+</dd><dt><b>-bktr_read</b>
+
+</dt><dd>
+использовать read вместо mmap (медленно, используйте только в случае глюков драйвера)
+(only for BSD)
+</dd><dt><b>-doublekey on/off</b>
+
+</dt><dd>
+включить "двойные кнопки" (по умолчанию=вкл если больше 10 каналов)
+</dd><dt><b>-doublekey_firstisone on/off</b>
+
+</dt><dd>
+показывает, имеет ли первая станция номер 1, и не 0, нужно для doublekey
+(по умолчанию=выкл за искл. случаев когда lirc-key-1 установлен в keypad 0
+или горячая клавиша первого канала - 1, KP_1 или KP_End)
+</dd><dt><b>-noxawpopup</b>
+
+</dt><dd>
+выключить всплытие xaw
+</dd><dt><b>-nopixmap</b>
+
+</dt><dd>
+выкл. использование pixmaps рисунков для кнопок. 
+</dd><dt><b>-theme name</b>
+
+</dt><dd>
+загружает тему соответствующую name (например, "-theme aqua"). 
+По умолчанию грузится тема указанная в конфиге. 
+Если никакая тема не указана, то грузится тема по умолчанию. Каждая тема должна быть
+установлена независимо. Несколько версий каждой 
+темы могут быть установлены (например, aqua theme на франц. и на англ. языках), программа
+загрузит версию, соответствующую текущему языку.
+</dd><dt><b>-nodecoinit</b>
+
+</dt><dd>
+Для оконных менеджеров, у которых проблемы с украшением окон (ffwm, ff2wm)
+</dd><dt><b>-nowmhooks</b>
+
+</dt><dd>
+отключает WM специфичные операции: fullscreen by wm, stayontop...
+</dd><dt><b>-nowmfs</b>
+
+</dt><dd>
+не использовать WM Fullscreen. Полезно для получения полного экрана
+покрывающего все другие окна.
+</dd><dt><b>-ybar nr</b>
+
+</dt><dd>
+установить высоту черных бордюров для общей высоты в 1000:
+nr=125 для 16:9, nr=200 для 20:9 (по умолчанию=0)
+</dd><dt><b>-grabfmt -grabfmt yuyv|yuv420|rgb32...</b>
+
+</dt><dd>
+включает формат захваченных кадров картой
+</dd><dt><b>-xvfmt yuyv|yuv420|rgb32...</b>
+
+</dt><dd>
+включает формат, используемый XVideo адаптером
+</dd><dt><b>-x11fmt gray1|gray4|rgb4|gray8|hi240|rgb8|rgb16|rgb24|rgb32...</b>
+
+</dt><dd>
+включает формат, используемый x11 окном
+</dd><dt><b>-vop op1:op2:op3...</b>
+
+</dt><dd>
+выполняет операции над видео.
+</dd><dt><b>-aop op1:op2:op3...</b>
+
+</dt><dd>
+выполняет операции над аудио.
+</dd><dt><b>-vop_autograb on|off</b>
+
+</dt><dd>
+автоматически входить в grabdisplay режим когда vop активирован
+(по умолчанию=вкл)
+</dd><dt><b>-novop</b>
+
+</dt><dd>
+запрещает любые операции с видео.
+</dd><dt><b>-noaop</b>
+
+</dt><dd>
+запрещает любые операции с видео.
+TP
+
+-xineramascreen number|off|auto
+указывает где full display должен быть инициирован.
+("off" означает что xinerama не используется (по умолчанию),
+"auto" означает что экран строится исходя из текущей позиции)
+</dd><dt><b>-dvb</b>
+
+</dt><dd>
+использовать dvb TV-карту. (в разработке...)
+</dd><dt><b>-alevt_arg</b>
+
+</dt><dd>
+<pre>Вы должны записывать аргументы AleVT в кавычках
+
+--help or -h
+--version or -v
+--debug or -debug
+-copyright or -©
+-editor or -ed
+-display or -d &lt;dpy&gt;                                            $DISPLAY
+-geometry or -g &lt;geo&gt;                                           41x25
+-finetune or -f &lt;-4..4|auto&gt;                                    0
+-child or -c ppp[.ss]
+[-parent] or -p ppp[.ss]                                        900
+-[no]erc or -[n]e                                               enabled
+-[no]bell or -[n]b                                              enabled
+-[no]fixvbioffset or [n]fvbio                                   enabled
+-charset or -latin latin-1/2/koi8-r/koi/iso8859-7/el            latin-1
+
+Порядок важен!  Каждый номер страницы открывает окно
+с прежде указанными геометрией, устройством, дисплеем.
+
+ppp[.ss] означает номер страницы и опционально номер
+подстраницы (например 123.4).  Если номер подстраницы опущен
+то показывается первая переданная подстраница.
+
+Опция -child требует родительское окно. Так что
+она должна быть обеспечена им или другим дочерним окном.
+
+Чтобы узнать больше о AleVT опциях, смотрите его ман.
+
+</pre>
+
+</dd><dt><b>XdTV это X приложение. Так что вы можете использовать любые параметры <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=X11&amp;category=1">X11</a>(1):</b>
+
+</dt><dd>
+<pre>-iconic : запустить XdTV невидимым.
+
+-xrm resourcestring : Эта опция указывает имя ресурса
+и значение для перекрытия значений по умолчанию.  Очень полезна для
+установления ресурсов которые не имеют явных командных аргументов.
+
+например:
+xdtv -xrm "xdtv.onscreen*foreground:red (получить OSD красный)
+xdtv -xrm 'xdtv.vtx.label.font: -*-*-bold-r-normal-*-16-*-*-*-m-*-iso8859-1'
+все ресурсы из XdTV.ad могут временно изменяться
+этим методом.
+
+</pre>
+
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>GETTING STARTED</h2>
+
+Просто запустите XdTV, она может работать без файла конфигурации.  Потом
+проверьте опции (правый клик мыши) и выставьте настройки
+(TV стандарт, источник видео, таблица частот).  Используя курсор вы
+можете контролировать тюнер и TВ каналы.
+
+Если найдете канал, запустите ваш любимый текстовый редактор и вставьте его
+в $HOME/.xdtv/xdtvrc config file.  А можете 
+использовать новый редактор каналов.  Горячая клавиша 'E' запустит его.
+<b>Предупреждение:</b>
+
+Создание конфиг файла с использованием редактора каналов уничтожит
+все ваши комментарии в конфиге.
+<a name="lbAG">&nbsp;</a>
+<h3>Функции мыши</h3>
+
+Левая кнопка мыши вызывает меню со всеми ТВ каналами найденными в 
+конфиге. Средняя клавиша переключает на след. канал. Правая
+клавиша вызывает окно со множеством функций и кнопок.
+
+<a name="lbAH">&nbsp;</a>
+<h3>Клавиатурные сокращения</h3>
+
+<pre>
+A            <b>A</b>udio вкл/выкл
+Shift+A      Аудио вкл/выкл, минуя TV-карту. (полезно когда звук
+             потерян из-за плохого приема)
+Ctrl+A       Старт/Стоп встроенного AleVT Videotext/Teletext декодера/смотрелки
+Alt+A        Вызвать окно параметров AleVT
+B            Устанавливает украшение окон
+C            Вызывает <b>C</b>hannels окно
+Ctrl+D       Выбрать деинтерлейс-фильтр
+E            Вызвать Channels <b>E</b>ditor
+F            <b>F</b>ullscreen вкл/выкл
+G            <b>G</b>rab рисунок (полный размер, ppm)
+Ctrl+G       <b>G</b>rab рисунок (оконный размер, ppm)
+H            Показывает текущее время в заголовке окна или OSD
+             в полноэкр. режиме
+Ctrl+H       Вызвать помощь (только в TВ &amp; Главном окне опций)
+J            Грабить рисунок (полный размер, <b>j</b>peg)
+Ctrl+J       Грабить рисунок (в окне, <b>j</b>peg)
+K            Вызвать окно настроек плагинов
+O            Вызвать <b>O</b>ptions окно
+P            Переключатель субтитров: вкл/выкл
+Alt+P        Вернуться на страницу субтитров. Работает с Ctrl+P и P
+Ctrl+P       Показать субтитры: выберите номер страницы
+Shift+P      Введите номер страницы субтитров
+R            Записать видео (старт/стоп)
+Alt+R        Опции записи видео
+Ctrl+R       Опции записи аудио
+Shift+R      Опции стриминга
+S            Краткая статистика записи
+Shift+S      Сохранить конфиг
+T            "Always on Top" функция, работающая с любым Gnome-совместимым
+             оконным менеджером или с любым NET_WM совместимым оконным менеджером
+V            <b>V</b>ideo (захват) переключатель: overlay/grabdisplay/off
+Shift+V      Предпросмотр записываемого видео.
+Shift+X      Окно Xosd опций
+X            Окно X11 опций
+Ctrl+X       Вкл / выкл Xosd
+Z            Переключатель каналов (<b>z</b>apping, настраивает каждый канал
+             неск. секунд)
+Ctrl+Z       Быстрый переключатель каналов
+             
+ 
+0            Установить аудио в auto
+1            Установить аудио в mono
+2            Установить аудио в stereo
+
+up/down      вверх/вниз на один канал
+left/right   тонкая настройка
+pgup/pgdown  на станцию вверх/вниз
+Ctrl+up      искать след. канал
+
+ESC          <b>Q</b>uit
+
+F1           Вызвать nxtvepg заголовок снова
+F5           Уменьшить яркость до -512
+F6           Повысить яркость до +512
+F7           Уменьшить насыщенность до -512
+F8           Повысить насыщенность до -512
+F9           Уменьшить контрастность до -512
+F10          Повысить контрастность до +512
+F11          Уменьшить цветность до -512
+F12          Повысить цветность до +512
+
++/-          Звук сильнее/слабее
+Enter        убрать звук
+
+End         уменьшить черные рамки
+Home          увеличить черные рамки
+
+Ветки содержат некоторую строку (TV station ID), строки содержат
+настройки для этого канала. Обычно строки канала достаточно.
+
+Есть еще несколько других опций.  Они доступны как для канала
+(и будут использованы для него) так и до первого канала (будут
+использованы по умолчанию для всех станций). Второй вариант полезен для
+настроек вроде ТВ стандарта. См. пример ниже.
+
+Вот детальное описание опций:
+<dl compact="">
+<dt><b>fine = n</b>
+</dt><dd>тонкая настройка (аналог клавиш право-лево), по умолчанию: 0
+</dd><dt><b>norm = pal | ntsc | secam</b>
+</dt><dd>выбрать ТВ стандарт, по умолчанию pal
+</dd><dt><b>key = keysym</b>
+</dt><dd>Горячая клавиша канала. Все X11 сочетания доступны. Вы можете указать
+сочетание с +, напиример ^F это "Ctrl+F".
+</dd><dt><b>capture = off | overlay | grabdisplay</b>
+</dt><dd>режим захвата: выкл., overlay (по умолчанию, TV card =&gt; video, 0% cpu) или
+grabdisplay (TV card =&gt; ОЗУ =&gt; X-Server =&gt; video, частота кадров зависит
+от загрузхки и размера кадра).
+</dd><dt><b>source = Television | Composite1 | Composite3 | SVHS</b>
+</dt><dd>источник сигнала
+</dd><dt><b>color = n</b>
+</dt><dd></dd><dt><b>bright = n</b>
+</dt><dd></dd><dt><b>hue = n</b>
+</dt><dd></dd><dt><b>contrast = n</b>
+</dt><dd>Диапазон значений 0-65535, по умолчанию 32768
+</dd><dt><b>deinterlace = none | bob | weave | greedy | onefield</b>
+</dt><dd>используемая деинтерлейс-функция
+</dd><dt><b>subpage = val (different from 888)</b>
+</dt><dd>позволяет сохранить страницу субтитров по умолчанию,
+которая будет показываться при каждом вызове "show subtitles".
+Следующие глобальные опции применимы только к первой станции. 
+Они могут быть перекрыты настройками каналов:
+</dd><dt><b>norm = pal | ntsc | secam</b>
+</dt><dd>ТВ стандарт, по умолчанию SECAM
+</dd><dt><b>capture = off | overlay | grabdisplay</b>
+</dt><dd>режим захвата: off, overlay (TV card =&gt; video, 0% cpu) или
+grabdisplay (по умолчанию TV card =&gt; ОЗУ =&gt; X-Server =&gt; video, частота кадров зависит
+от загрузки и размера кадра).
+</dd><dt><b>source = Television | Composite1 | Composite1 | SVHS</b>
+</dt><dd>источник видео
+</dd><dt><b>colorkey = value</b>
+</dt><dd>Если Xvideo включен, присаивает value  colorkey.
+</dd><dt><b>fullscreen = width x height</b>
+</dt><dd>указывает, какой видеорежим будет использован в полном экране.  Рабортает только с
+X11, также должна быть прописана правильная строка к этому режиму в вашем
+ X11 RC файле.
+</dd><dt><b>fullscreen_mode = 1 | 2 | 3</b>
+</dt><dd>выберите метод для запуска полного экрана.
+</dd><dt><b>windowsize = width x height</b>
+</dt><dd>указывает стартовый размер экрана при старте. Перекрывает то, что
+было записано в XdTV.ad файл.
+</dd><dt><b>wm-off-by = [+-]x[+-]y</b>
+</dt><dd>Некоторые WM обрабатывают static gravity неправильно (мне известны mwm и
+kwm).  Что-то не так с полноэкранным режимом.  С этими
+опциями вы можте исправлять смещение движущихся окон.
+ Например, wm-off-by = -4-24 вразумляет kwm (
+KDE window manager).
+</dd><dt><b>subpage = val (по умолчанию = 888)</b>
+</dt><dd>Позволяет сохранить страницу субтитров по умолчанию, которая будет показываться при каждом вызове
+ "show subtitles".
+</dd><dt><b>freqtab =</b>
+</dt><dd>Выбрать разбивку канал-частота.  Опции-&gt;Таблица частот
+вызывает меню со всеми доступными значениями (и позволяет переключать разбивку
+во время исполнения).
+</dd><dt><b>pixsize = width x height</b>
+</dt><dd>размер картинки канала (внутри окна Каналы).  0x0 выключает
+эту хвункцию.
+</dd><dt><b>mixer_tvchan = device</b>
+</dt><dd>Позволяет контролировать громкость звука через микшер звуковой платы. Устройство
+*не* /dev/mixer (которое установлено mixer_dev),
+а имя источника звука(line1 для меня, просто
+возьмите одну из микшерных прог и узнайте...).
+Громкость работает через клавиатуру: + выше, - ниже, Enter - подавить.
+</dd><dt><b>mixer_dev = xxx | mixer_pcmchan = xxx | audio_dev = xxx</b>
+</dt><dd>Продвинутый mixer/audio параметр, см. ОПЦЫИ
+</dd><dt><b>restoresnd = on|off</b>
+</dt><dd>см. опцию -restoresnd
+</dd><dt><b>respectnullsnd = on|off</b>
+</dt><dd>см. опцию -respectnullsnd
+</dd><dt><b>vop_autograb = on|off</b>
+</dt><dd>см. опцию -vop_autograb
+</dd><dt><b>subtitles = on|off</b>
+</dt><dd>Активация субтитров при запуске.
+</dd><dt><b>capture_size = val (по умолчанию = 768 x 576)</b>
+</dt><dd>Задать ширину и высоту захватываемых кадров;
+</dd><dt><b>blackborder = nr (по умолчанию = 0)</b>
+</dt><dd>задать высоту черных рамок (как -ybar option)
+</dd><dt><b>xawpopup = val (по умолчанию = on)</b>
+</dt><dd>Вкл./выкл. xawpopup
+</dd><dt><b>message_timer = val (по умолчанию = 5000)</b>
+</dt><dd>Сколько заголовок будет показываться на экране.
+</dd><dt><b>decoration = on|off</b>
+</dt><dd>Вкл. декорации при запуске.
+</dd><dt><b>stayontop = on|off</b>
+</dt><dd>Stay on Top активация при запуске.
+</dd><dt><b>xvport = number</b>
+</dt><dd>Xvideo Image порт (то же, что -xvport опция).
+</dd><dt><b>grab_filepath = val (по умолчанию = $HOME)</b>
+</dt><dd>путь для сохранения захваченных кадров.
+</dd><dt><b>jpeg_compression = val (по умолчанию = 75)</b>
+</dt><dd>Выбрать процент сжатия для захваченных jpeg.
+</dd><dt><b>xosd = on|off</b>
+</dt><dd>Xosd активация при запуске.
+</dd><dt><b>xosd_main_color = val (по умолчанию = lawngreen)</b>
+</dt><dd>Выбрать главный цвет текста xosd.
+</dd><dt><b>xosd_outline_color = val (по умолчанию = black)</b>
+</dt><dd>Выбрать аутлайновый цвет текста xosd.
+</dd><dt><b>xosd_outline_offset = val (по умолчанию = 0)</b>
+</dt><dd>Выбрать размер аутлайна
+</dd><dt><b>xosd_shadow_offset = val (по умолчанию = 0)</b>
+</dt><dd>Выбрать размер тени текста
+</dd><dt><b>xosd_main_font = val (по умолчанию = -*-bitstream vera sans mono-*-*-*-*-*-240-*-*-*-*-*-*)</b>
+</dt><dd>Выбрать главный шрифт текста xosd.
+</dd><dt><b>xosd_vtx_font = val (по умолчанию = -*-bitstream vera sans mono-*-*-*-*-*-180-*-*-*-*-*-*)</b>
+</dt><dd>Выбрать шрифт телетекста xosd.
+</dd><dt><b>container = name (default = AVI)</b>
+</dt><dd>Выбрать аудио/видео контейнер для записи.
+</dd><dt><b>codec = name (default = XviD)</b>
+</dt><dd>Выбрать видео кодек для записи.
+</dd><dt><b>width = val (по умолчанию = 384) 32 to 768 (modulo 32)</b>
+</dt><dd>Ширина видеокадров при записи.
+</dd><dt><b>height = val (по умолчанию = 288) 16 to 576 (modulo 16)</b>
+</dt><dd>Высота видеокадров при записи.
+</dd><dt><b>bitrate = val (по умолчанию = 800) in Kbit/s 1 to 10000 (modulo 1)</b>
+</dt><dd>Видео битрейт в kbits/s.
+</dd><dt><b>quality = val (по умолчанию = 1)</b>
+</dt><dd>Качество видео: от 1 до 5 для DivX, от 0 до 5 для FFMpeg и от 0 до 6 для XviD
+</dd><dt><b>stereo_mode = off | on (по умолчанию =off)</b>
+</dt><dd>Режим записи аудио: mono или stereo.
+</dd><dt><b>compress_audio = on | off (по умолчанию = on)</b>
+</dt><dd>Вкл / выкл сжатие звука при записи.
+</dd><dt><b>mp3_bitrate = val (по умолчанию = 128) 16 до 512 (modulo 16)</b>
+</dt><dd>При выборе CBR, этот параметр поможет вам выбрать постоянный
+MP3 аудио битрейт (kbits/s)
+</dd><dt><b>mp3_quality = val (по умолчанию = 5) 1 до 9 (modulo 1)</b>
+</dt><dd>MP3 уровень качества.
+</dd><dt><b>mp3_vbr_mode = on | off (по умолчанию =off)</b>
+</dt><dd>Вкл / выкл "Переменный битрейт" для записи MP3.
+</dd><dt><b>mp3_vbr_quality = val (по умолчанию = 8) от 1 до 8 (modulo 1)</b>
+</dt><dd>Установить уровень качества MP3 VBR.
+</dd><dt><b>fps = fps (по умолчанию = 25) от 1 до 30 (modulo 1)</b>
+</dt><dd>Frame per second. Этот параметр применяется для синхронизации
+видео и звука в AVI.
+</dd><dt><b>max_gap = val (по умолчанию = 80) от 1 до 500 ms (modulo 1)</b>
+</dt><dd>Возможный разрыв между аудио и видео в AVI.
+Этот параметр применяется для синхронизации
+видео и звука в AVI.
+</dd><dt><b>min_quantizer = val (default = 2) от 1 до 64 modulo 1</b>
+</dt><dd>Минимальный квантизер: чем он меньше, тем выше качество.
+Помогает изменить качество во время записи.
+Если необходимо постоянное качество, уравняйте MIN и MAX.
+</dd><dt><b>max_quantizer = val (по умолчанию = 8) 1 to 64 modulo 1</b>
+</dt><dd>Максимальный квантизер: чем он выше, тем хуже качество.
+Помогает изменить качество во время записи.
+Если необходимо постоянное качество, уравняйте MIN и MAX.
+</dd><dt><b>audio_buffer_size = val (по умолчанию = 1764) от 441 до 65535 modulo 441</b>
+</dt><dd>размер аудио буфера для записи.
+</dd><dt><b>audio_freq = val (по умолчанию = 44100)</b>
+</dt><dd>Частота звука при записи.
+</dd><dt><b>audio_fmt = val (по умолчанию = s16le)</b>
+</dt><dd>Формат записываемого звука.
+</dd><dt><b>divx_path = path (по умолчанию = $HOME или каталог откуда запускается XdTV)</b>
+</dt><dd>Выбрать каталог для сохранения записанных файлов.
+</dd><dt><b>maxsize = size (по умолчанию = 1024 для MSDOS , иначе 4096)</b>
+</dt><dd>установить макс. размер записываемого файла в s Mb.
+</dd><dt><b>display_frame = on | off (по умолчанию = on)</b>
+</dt><dd>Показывать кадры во время записи.
+</dd><dt><b>record_sub = on | off (по умолчанию = off)</b>
+</dt><dd>Вкл/выкл запись субтитров во время записи AVI.
+</dd><dt><b>record_chg = on | off (по умолчанию = off)</b>
+</dt><dd>Вкл/выкл смену каналов во время записи AVI.
+</dd><dt><b>record_delay = val (по умолчанию = 0,000000)</b>
+</dt><dd>задать разницу между аудио и видео в секундах
+</dd><dt><b>streaming_mode = on | off (по умолчанию = off)</b>
+</dt><dd>вкл. http export записи
+(XdTV заработает как http stream server)
+</dd><dt><b>streaming_http_port = val (по умолчанию = 63427)</b>
+</dt><dd>установить порт для http stream
+</dd><dt><b>preview_player = val (по умолчанию = mplayer -nofs -quiet -nosound)</b>
+</dt><dd>Просмотр записываемого видео в выбранном плеере.
+Можно также использовать
+xdtv -avinoaudioout -avi
+</dd><dt><b>alevt_по умолчаниюpage = val (по умолчанию = 100)</b>
+</dt><dd>Выбрать страницу телетекста по умолчанию. Если набрать 100 200 300
+то запустится 3 разных окна alevt с 100, 200 и 300
+как страниц по умолчанию.
+</dd><dt><b>alevt_finetune_mode = none | auto | manual</b>
+</dt><dd>Выбрать лучший метод для захвата сигнала телетекста.
+</dd><dt><b>alevt_finetune = val (по умолчанию = 1)</b>
+</dt><dd>Если alevt_finetune_mode = manual, это значение используется для тонкой настройки
+сигнала телетекста.
+</dd><dt><b>alevt_error_reduction = yes|no (по умолчанию = yes)</b>
+</dt><dd>Активировать алгоритм для подавления помех в телетексте.
+</dd><dt><b>alevt_error_bell = yes|no (по умолчанию = yes)</b>
+</dt><dd>Выдавать звуковой сигнал при ошибках.
+</dd><dt><b>alevt_vbioffset = yes|no (по умолчанию = yes)</b>
+</dt><dd> Вкл/выкл фикс смещения vbi. Эта ошибка возникает
+ на ядрах &gt;=2.6.16.  Обычно включен.
+</dd><dt><b>alevt_charset = latin-1 | latin-2 | koi8-r | iso8859-7 (по умолчанию = latin-1)</b>
+</dt><dd>Выбрать кодировку.
+</dd><dt></dt><dt><b>Если хотите знать больше о поддержке eventmap, читайте README.lirc.</b>
+</dt><dd></dd><dd></dd><dt><b>Если вы хотите получить больше онформации о продвинутых XviD и FFMpeg параметрах, </b>
+</dt><dd><b>прочитайте MPlayer маны. Там все понятно.</b>
+</dd><dt></dt></dl>
+</pre><a name="lbAI">&nbsp;</a>
+<h3>пример конфиг файла</h3>
+
+<dd>
+Во как мой конфиг выглядит:
+
+<pre>#
+# Global options
+#
+norm = SECAM
+capture = grab
+source = Television
+subpage = 888
+freqtab = secam-france
+
+mixer_tvchan = Line
+restoresnd = off
+respectnullsnd = off
+vop_autograb = on
+
+xawpopup = on
+message_timer = 5000
+decoration = off
+stayontop = on
+subtitles = on
+theme = default
+
+#
+# Fullscreen options
+#
+fullscreen = 1024 x 768
+fullscreen_mode = 3
+pixsize = 128 x 96
+windowsize = 256 x 192
+colorkey = 123456
+capture_size = 768 x 576
+
+#
+# Grab options
+#
+grab_filepath = /home/user
+jpeg_compression = 75
+
+#
+# XOSD options
+#
+xosd = on
+xosd_main_color = white
+xosd_outline_color = red
+xosd_outline_offset = 2
+xosd_shadow_offset = 2
+xosd_main_font = -*-bitstream vera sans-*-*-*-*-*-240-*-*-*-*-*-*
+xosd_vtx_font = -*-bitstream vera sans-*-*-*-*-*-180-*-*-*-*-*-*
+
+#
+# record options
+#
+codec = XviD
+width = 512
+height = 384
+bitrate = 800
+quality = 1
+stereo_mode = no
+audio_codec = LAME MP3
+mp3_bitrate = 128
+mp3_quality = 5
+mp3_vbr_mode = off
+mp3_vbr_quality = 8
+fps = 25
+max_gap = 80
+audio_fragments = 48
+audio_sizefragment = 2048
+min_quantizer = 2
+max_quantizer = 8
+audio_buffer_size = 1764
+audio_freq = 44100
+audio_fmt = s16le
+divx_path = /home/user
+maxsize = 692
+display_frame = yes
+record_sub = no
+record_chg = no
+record_delay = 0
+streaming_mode = off
+streaming_http_port = 63427
+preview_player = xdtv -avinoaudioout -avi
+
+#
+# record advanced options
+#
+ffmpeg_v4mv = no
+ffmpeg_naq = no
+ffmpeg_gray = no
+ffmpeg_gmc = no
+ffmpeg_qpel = no
+ffmpeg_ildct = no
+ffmpeg_keyint = 250
+ffmpeg_vmax_b_frames = 0
+ffmpeg_vlelim = 0
+ffmpeg_vcelim = 0
+ffmpeg_lumi_mask = 0
+ffmpeg_dark_mask = 0
+ffmpeg_tcplx_mask = 0
+ffmpeg_scplx_mask = 0
+ffmpeg_dia = 0
+ffmpeg_cmp = 0
+ffmpeg_subcmp = 0
+ffmpeg_trell = no
+ffmpeg_last_pred = 0
+ffmpeg_predia = 0
+ffmpeg_precmp = 0
+ffmpeg_umv = no
+ffmpeg_aic = no
+ffmpeg_mbd = 0
+ffmpeg_cbp = no
+ffmpeg_obmc = no
+ffmpeg_ss = no
+ffmpeg_aiv = no
+ffmpeg_loop = no
+ffmpeg_ilme = no
+xvid_vhq = 0
+xvid_bvhq = no
+xvid_chromame = no
+xvid_chroma_opt = no
+xvid_hqacpred = no
+xvid_trell = no
+xvid_cartoon = no
+xvid_gray = no
+xvid_interlacing = no
+xvid_turbo = yes
+xvid_qpel = no
+xvid_gmc = no
+xvid_keyint = 250
+xvid_frame_drop_ratio = 0
+xvid_vmax_b_frames = 0
+xvid_bquant_ratio = 150
+xvid_bquant_offset = 100
+xvid_packed = yes
+xvid_closed_gop = yes
+xvid_bframe_threshold = 0
+xvid_reaction_delay_factor = 16
+xvid_averaging_period = 100
+xvid_buffer = 100
+xvid_max_I_quantizer = 12
+xvid_min_I_quantizer = 2
+xvid_max_P_quantizer = 12
+xvid_min_P_quantizer = 2
+xvid_max_B_quantizer = 12
+xvid_min_B_quantizer = 2
+
+#
+# eventmap
+#
+lirc-key-0 = keypad 0
+repeat = 1
+lirc-key-1 = keypad 1
+repeat = 1
+lirc-key-2 = keypad 2
+repeat = 1
+lirc-key-3 = keypad 3
+repeat = 1
+lirc-key-4 = keypad 4
+repeat = 1
+lirc-key-5 = keypad 5
+repeat = 1
+lirc-key-6 = keypad 6
+repeat = 1
+lirc-key-7 = keypad 7
+repeat = 1
+lirc-key-8 = keypad 8
+repeat = 1
+lirc-key-9 = keypad 9
+repeat = 1
+lirc-key-ch+ = setstation next
+repeat = 0
+lirc-key-ch- = setstation prev
+repeat = 0
+lirc-key-vol+ = volume inc
+repeat = 0
+lirc-key-vol- = volume dec
+repeat = 0
+lirc-key-Mute = volume mute
+repeat = 1
+lirc-key-full_screen = fullscreen toggle
+repeat = 1
+lirc-key-source = setinput next
+repeat = 0
+lirc-key-record = record
+repeat = 0
+lirc-key-status = status
+repeat = 0
+lirc-key-preview = preview
+repeat = 0
+
+#
+# alevt options
+#
+alevt_defaultpage = 100
+alevt_finetune_mode = none
+alevt_finetune = 1
+alevt_error_reduction = yes
+alevt_error_bell = yes
+alevt_vbioffset = yes
+alevt_charset = latin-1
+
+#
+# Channel options
+#
+[TF1]
+channel = 25
+key = KP_End
+bright = 35920
+hue = 27689
+deinterlace = Linear Blend
+
+[France2]
+channel = 22
+key = KP_Down
+color = 13366
+bright = 33988
+hue = 32252
+contrast = 27996
+deinterlace = Linear Blend
+
+[France3]
+channel = 28
+key = KP_Next
+deinterlace = Linear Blend
+
+[Canal+]
+channel = K06
+key = KP_Left
+deinterlace = Linear Blend
+
+[Arte / La Cinquieme]
+channel = 30
+key = KP_Begin
+deinterlace = Linear Blend
+subpage = 150
+
+[M6]
+channel = 33
+key = KP_Right
+color = 18371
+norm = PAL
+deinterlace = Linear Blend
+
+[external]
+key = KP_Home
+source = Composite1
+deinterlace = Linear Blend
+
+</pre>
+
+<a name="lbAJ">&nbsp;</a>
+<h2>BUGS</h2>
+
+Чо это?
+<a name="lbAK">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+
+<a href="http://bytesex.org/xawtv/">http://bytesex.org/xawtv/</a> (xawtv homepage)
+
+<a href="http://bytesex.org/bttv/">http://bytesex.org/bttv/</a> (bttv driver homepage)
+
+<a href="http://lecker.essen.de/~froese/">http://lecker.essen.de/~froese/</a> (AleVT videotext decoder)
+
+<a name="lbAL">&nbsp;</a>
+<h2>AUTHOR</h2>
+
+Оригинальный xawtv от Gerd Knorr &lt;<a href="mailto:kraxel@bytesex.org">kraxel@bytesex.org</a>&gt;
+
+Пожалуйста
+<b>NOT</b>
+
+обращайтесь к нему по вопросам, касающимся XdTV.
+Это здорово загрузит его е-мэйл, на что ему абсолютно начхать.
+Задавайте вопросы на соответствующих форумах...
+
+Оригинальный AleVT видеотекст декодер от Edgar Toerning &lt;<a href="mailto:froese@gmx.de">froese@gmx.de</a>&gt;
+
+Пожалуйста
+<b>NOT</b>
+
+обращайтесь к нему по вопросам, касающимся встроенного в XdTV декодера AleVT.
+Это здорово загрузит его е-мэйл. Но и ему абсолютно начхать.
+Задавайте вопросы на соответствующих форумах...
+
+<a name="lbAM">&nbsp;</a>
+<h2>COPYRIGHT</h2>
+
+Copyright (C) 1997,1998 Gerd Knorr &lt;<a href="mailto:kraxel@bytesex.org">kraxel@bytesex.org</a>&gt;
+
+Copyright (C) 1998,1999,2000 Edgar Toerning &lt;<a href="mailto:froese@gmx.de">froese@gmx.de</a>&gt;
+
+Copyright (C) 2000,2003 Keuleu
+
+Copyright (C) 2003-2005 Alain, Bart, Blindman, Calimero, Cooly, CycyX, CuC, Nico, Mat, Maupatz, Pingus
+
+Copyright (C) 2006 Alain, CuC, Nico, Pingus
+
+Эта программа распостраняется свободно; вы можете передавать и/или изменять ее
+в соответствиис GNU General Public License опубликованной
+<br>&nbsp;Free&nbsp;Software&nbsp;Foundation;&nbsp;или&nbsp;версией&nbsp;2&nbsp;этой&nbsp;лицензии,&nbsp;или&nbsp;
+любой более поздней версии.
+
+Эта программа распостраняется в надежде,что она окажется полезной,
+но БЕЗ КАКИХ_ЛИБО ГАРАНТИЙ; без какой-либо гарантии пригодности для особых целей.  См.
+GNU General Public License для подробной информации.
+
+Вы должны получить копию GNU General Public License
+вместе с этой программой; если нет, пишите на Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">NAME</a></dt><dd>
+</dd><dt><a href="#lbAC">SYNOPSIS</a></dt><dd>
+</dd><dt><a href="#lbAD">DESCRIPTION</a></dt><dd>
+</dd><dt><a href="#lbAE">OPTIONS</a></dt><dd>
+</dd><dt><a href="#lbAF">GETTING STARTED</a></dt><dd>
+<dl>
+<dt><a href="#lbAG">Функции мыши</a></dt><dd>
+</dd><dt><a href="#lbAH">Клавиатурные сокращения</a></dt><dd>
+</dd><dt><a href="#lbAI">пример конфиг файла</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAJ">BUGS</a></dt><dd>
+</dd><dt><a href="#lbAK">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAL">AUTHOR</a></dt><dd>
+</dd><dt><a href="#lbAM">COPYRIGHT</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="xdtv" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</dd></body>
+<!---------------------------------------------  0  ---------------------------------------------->

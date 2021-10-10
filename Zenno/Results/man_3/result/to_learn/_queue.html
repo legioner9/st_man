@@ -1,0 +1,853 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN queue (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, queue"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="queue" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">queue (3)</font><hr><li> <a href="/man.shtml?topic=queue&amp;category=3&amp;russian=4"><u>queue</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=queue&amp;category=3&amp;russian=1"><u>queue</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=queue&amp;category=3&amp;russian=0"><u>queue</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=queue&amp;category=3&amp;russian=2"><u>queue</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=queue&amp;category=9&amp;russian=4"><u>queue</u></a> (9) <font color="#555555"> ( Solaris man: Ядро )</font></li><li><font color="#555555">Ключ <a href="/keywords/queue.html"><u>queue</u></a> обнаружен в базе ключевых слов.</font></li><br>BSD mandoc<br>
+BSD 4
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+<b>LIST_ENTRY</b>
+
+ 
+<b>LIST_HEAD</b>
+
+ 
+<b>LIST_INIT</b>
+
+ 
+<b>LIST_INSERT_AFTER</b>
+
+ 
+<b>LIST_INSERT_HEAD</b>
+
+ 
+<b>LIST_REMOVE</b>
+
+ 
+<b>TAILQ_ENTRY</b>
+
+ 
+<b>TAILQ_HEAD</b>
+
+ 
+<b>TAILQ_INIT</b>
+
+ 
+<b>TAILQ_INSERT_AFTER</b>
+
+ 
+<b>TAILQ_INSERT_HEAD</b>
+
+ 
+<b>TAILQ_INSERT_TAIL</b>
+
+ 
+<b>TAILQ_REMOVE</b>
+
+ 
+<b>CIRCLEQ_ENTRY</b>
+
+ 
+<b>CIRCLEQ_HEAD</b>
+
+ 
+<b>CIRCLEQ_INIT</b>
+
+ 
+<b>CIRCLEQ_INSERT_AFTER</b>
+
+ 
+<b>CIRCLEQ_INSERT_BEFORE</b>
+
+ 
+<b>CIRCLEQ_INSERT_HEAD</b>
+
+ 
+<b>CIRCLEQ_INSERT_TAIL</b>
+
+ 
+<b>CIRCLEQ_REMOVE</b>
+
+ - реализации списков, хвостовых и циклических очередей
+
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+Fd #include &lt;<a href="file:/usr/include/sys/queue.h">sys/queue.h</a>&gt;
+
+
+LIST_ENTRY (TYPE);<br>
+
+LIST_HEAD (HEADNAME TYPE);<br>
+
+LIST_INIT (LIST_HEAD *head);<br>
+
+LIST_INSERT_AFTER (LIST_ENTRY *listelm TYPE *elm LIST_ENTRY NAME);<br>
+
+LIST_INSERT_HEAD (LIST_HEAD *head TYPE *elm LIST_ENTRY NAME);<br>
+
+LIST_REMOVE (TYPE *elm LIST_ENTRY NAME);<br>
+
+
+TAILQ_ENTRY (TYPE);<br>
+
+TAILQ_HEAD (HEADNAME TYPE);<br>
+
+TAILQ_INIT (TAILQ_HEAD *head);<br>
+
+TAILQ_INSERT_AFTER (TAILQ_HEAD *head TYPE *listelm TYPE *elm TAILQ_ENTRY NAME);<br>
+
+TAILQ_INSERT_HEAD (TAILQ_HEAD *head TYPE *elm TAILQ_ENTRY NAME);<br>
+
+TAILQ_INSERT_TAIL (TAILQ_HEAD *head TYPE *elm TAILQ_ENTRY NAME);<br>
+
+TAILQ_REMOVE (TAILQ_HEAD *head TYPE *elm TAILQ_ENTRY NAME);<br>
+
+
+CIRCLEQ_ENTRY (TYPE);<br>
+
+CIRCLEQ_HEAD (HEADNAME TYPE);<br>
+
+CIRCLEQ_INIT (CIRCLEQ_HEAD *head);<br>
+
+CIRCLEQ_INSERT_AFTER (CIRCLEQ_HEAD *head TYPE *listelm TYPE *elm CIRCLEQ_ENTRY NAME);<br>
+
+CIRCLEQ_INSERT_BEFORE (CIRCLEQ_HEAD *head TYPE *listelm TYPE *elm CIRCLEQ_ENTRY NAME);<br>
+
+CIRCLEQ_INSERT_HEAD (CIRCLEQ_HEAD *head TYPE *elm CIRCLEQ_ENTRY NAME);<br>
+
+CIRCLEQ_INSERT_TAIL (CIRCLEQ_HEAD *head TYPE *elm CIRCLEQ_ENTRY NAME);<br>
+
+CIRCLEQ_REMOVE (CIRCLEQ_HEAD *head TYPE *elm CIRCLEQ_ENTRY NAME);<br>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Эти макросы определяют и оперируют тремя типами структур данных:
+списками, хвостовыми и циклическими очередями.
+Все три структуры поддерживают такие возможности:
+<ol><p>
+
+</p><li>
+
+Вставка нового элемента в начало списка.
+</li><li>
+
+Вставка нового элемента после любого элемента в списке.
+</li><li>
+
+Удаление любого эемента из списка.
+</li><li>
+
+Прохождение вперед по списку.
+</li></ol><p>
+
+</p><p>
+
+Списки являются простейшим примером из этих трех структур
+и поддерживают только вышеперечисленные возможности.
+</p><p>
+
+Хвостовые очереди имеют также такие возможности:
+</p><ol><p>
+
+</p><li>
+
+Элементы могут быть добавлены в конец списка.
+</li></ol><p>
+
+Однако:
+</p><ol><p>
+
+</p><li>
+
+Все вставки в список и удаления должны определять заголовок списка.
+</li><li>
+
+Каждый элемент заголовка требует двух указателей, а не одного.
+</li><li>
+
+Размер кода примерно на 15% больше, а операции работают примерно
+на 20% медленнее, чем в списке.
+</li></ol><p>
+
+</p><p>
+
+Циклические очереди имеют такие дополнительные возможности:
+</p><ol><p>
+
+</p><li>
+
+Элементы могут быть добавлены в конец списка.
+</li><li>
+
+Элементы могут быть добавлены перед другим элементом.
+</li><li>
+
+Можно переходить в обратном направлении, от конца - к началу.
+</li></ol><p>
+
+Однако:
+</p><ol><p>
+
+</p><li>
+
+Все вставки в список и удаления должны определять заголовок списка.
+</li><li>
+
+Каждый элемент заголовка требует двух указателей, а не одного.
+</li><li>
+
+Условие завершения при прохождении более сложное.
+</li><li>
+
+Размер кода примерно на 40% больше, а операции работают примерно
+на 45% медленнее, чем в списке.
+</li></ol><p>
+
+</p><p>
+
+В определениях макросов
+Fa TYPE
+
+является названием структуры, определяемой пользователем,
+которая должна содержать поле типа
+<b>LIST_ENTRY</b>
+
+ 
+<b>TAILQ_ENTRY</b>
+
+ 
+или
+<b>CIRCLEQ_ENTRY</b>
+
+ 
+с названием
+Fa NAME .
+
+Аргумент
+Fa HEADNAME
+
+является названием структуры, определяемой пользователем,
+которая должна быть объявлена, используя макрос
+<b>LIST_HEAD</b>
+
+ 
+<b>TAILQ_HEAD</b>
+
+ 
+или
+<b>CIRCLEQ_HEAD</b>
+
+ 
+Смотрите далее приведенные примеры для более подробного
+пояснения использования этих макросов.
+<a name="lbAE">&nbsp;</a>
+</p><h2>СПИСКИ</h2>
+
+Начало списка задается структурой, определяемой макросом
+<b>LIST_HEAD</b>
+
+ 
+Эта структура содержит один указательн на первый элемент списка.
+Элементы дважды связаны так, что любой элемент может быть удален
+без прохождения по всему списку.
+Новые элементы могут быть добавлены после существующего элемента
+или в начало списка.
+Структура
+Fa LIST_HEAD
+
+объявляется таким образом:
+
+<blockquote>
+<pre>LIST_HEAD(HEADNAME, TYPE) head;
+</pre>
+</blockquote>
+
+<p>
+
+где
+Fa HEADNAME
+
+является названием определяемой структуры, а
+Fa TYPE
+
+является типом элементов, связанных в списке.
+Указатель на заголовок списка может быть в дальнейшем быть объявлен, как:
+
+</p><blockquote>
+<pre>struct HEADNAME *headp;
+</pre>
+</blockquote>
+
+<p>
+
+(Названия
+<b>head</b>
+
+и
+<b>headp</b>
+
+выбираются пользователем.)
+</p><p>
+
+Макрос
+<b>LIST_ENTRY</b>
+
+объявляет структуру, соединяющую элементы в списке.
+</p><p>
+
+Макрос
+<b>LIST_INIT</b>
+
+инициализирует список, ссылающийся на
+Fa head .
+
+</p><p>
+
+Макрос
+<b>LIST_INSERT_HEAD</b>
+
+вставляет новый элемент
+Fa elm
+
+в начало списка.
+</p><p>
+
+Макрос
+<b>LIST_INSERT_AFTER</b>
+
+вставляет новый элемент
+Fa elm
+
+после элемента
+Fa listelm .
+
+</p><p>
+
+Макрос
+<b>LIST_REMOVE</b>
+
+удаляет элемент
+Fa elm
+
+из списка.
+<a name="lbAF">&nbsp;</a>
+</p><h2>ПРИМЕР СПИСКА</h2>
+
+
+<pre>LIST_HEAD(listhead, entry) head;
+struct listhead *headp;         /* заголовок списка */
+struct entry {
+        ...
+        LIST_ENTRY(entry) entries;      /* список */
+        ...
+} *n1, *n2, *np;
+
+LIST_INIT(&amp;head);                       /* инициализация списка */
+
+n1 = malloc(sizeof(struct entry));      /* вставка в начало */
+LIST_INSERT_HEAD(&amp;head, n1, entries);
+
+n2 = malloc(sizeof(struct entry));      /* вставка после */
+LIST_INSERT_AFTER(n1, n2, entries);
+                                        /* продвижение вперед */
+for (np = head.lh_first; np != NULL; np = np-&gt;entries.le_next)
+        np-&gt; ...
+
+while (head.lh_first != NULL)           /* удаление */
+        LIST_REMOVE(head.lh_first, entries);
+</pre>
+
+<a name="lbAG">&nbsp;</a>
+<h2>ХВОСТОВЫЕ ОЧЕРЕДИ</h2>
+
+Хвостовая очередь задается структурой, определяемой макросом
+<b>TAILQ_HEAD</b>
+
+ 
+Эта структура содержит пару указателей, один для первого элемента
+в очереди, а другой для последнего элемента в очереди.
+Элементы связаны дважды так, что любой элемент может быть удален
+без прохождения по всей очереди. Новые элементы могут быть добавлены
+в очередь после существующего элемента, в конец или в начало очереди,
+Структура
+Fa TAILQ_HEAD
+
+объявляется таким образом:
+
+<blockquote>
+<pre>TAILQ_HEAD(HEADNAME, TYPE) head;
+</pre>
+</blockquote>
+
+<p>
+
+где
+<b>HEADNAME</b>
+
+является названием определяемой структуры, а
+<b>TYPE</b>
+
+является типом связываемых элементов в хвостовой очереди.
+Указатель на заголовок хвостовой очереди может быть далее
+определен так:
+
+</p><blockquote>
+<pre>struct HEADNAME *headp;
+</pre>
+</blockquote>
+
+<p>
+
+(Названия
+<b>head</b>
+
+и
+<b>headp</b>
+
+выбираются пользователем.)
+</p><p>
+
+Макрос
+<b>TAILQ_ENTRY</b>
+
+объявляет структуру, связывающую элементы в хвостовой очереди.
+</p><p>
+
+Макрос
+<b>TAILQ_INIT</b>
+
+инициализирует хвостовую очередь, на которую ссылается
+Fa head .
+
+</p><p>
+
+Макрос
+<b>TAILQ_INSERT_HEAD</b>
+
+вставляет новый элемент
+Fa elm
+
+в начало хвостовой очереди.
+</p><p>
+
+Макрос
+<b>TAILQ_INSERT_TAIL</b>
+
+вставляет новый элемент
+Fa elm
+
+в конец хвостовой очереди.
+</p><p>
+
+Макрос
+<b>TAILQ_INSERT_AFTER</b>
+
+вставляет новый элемент
+Fa elm
+
+после элемента
+Fa listelm .
+
+</p><p>
+
+Макрос
+<b>TAILQ_REMOVE</b>
+
+удаляет элемент
+Fa elm
+
+из хвостовой очереди.
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПРИМЕР ХВОСТОВОЙ ОЧЕРЕДИ</h2>
+
+
+<pre>TAILQ_HEAD(tailhead, entry) head;
+struct tailhead *headp;         /* заголовок хвостовой очереди */
+struct entry {
+        ...
+        TAILQ_ENTRY(entry) entries;     /* хвостовая очередь */
+        ...
+} *n1, *n2, *np;
+
+TAILQ_INIT(&amp;head);                      /* инициализация очереди */
+
+n1 = malloc(sizeof(struct entry));      /* вставка в начало */
+TAILQ_INSERT_HEAD(&amp;head, n1, entries);
+
+n1 = malloc(sizeof(struct entry));      /* вставка в хвост */
+TAILQ_INSERT_TAIL(&amp;head, n1, entries);
+
+n2 = malloc(sizeof(struct entry));      /* вставка после */
+TAILQ_INSERT_AFTER(&amp;head, n1, n2, entries);
+                                        /* вперед по очереди */
+for (np = head.tqh_first; np != NULL; np = np-&gt;entries.tqe_next)
+        np-&gt; ...
+                                        /* удаление */
+while (head.tqh_first != NULL)
+        TAILQ_REMOVE(&amp;head, head.tqh_first, entries);
+</pre>
+
+<a name="lbAI">&nbsp;</a>
+<h2>ЦИКЛИЧЕСКИЕ ОЧЕРЕДИ</h2>
+
+Циклическая очередь задается структурой, определяемой макросом
+<b>CIRCLEQ_HEAD</b>
+
+ 
+Эта структура содержит пару указателей, один для первого элемента 
+в очереди, а другой для последнего элемента в очереди.
+Элементы связаны дважды так, что любой элемент может быть удален
+без прохождения по всей очереди. Новые элементы могут быть добавлены 
+в очередь после существующего элемента, в конец или в начало очереди,
+Структура
+Fa CIRCLEQ_HEAD
+
+объявляется так:
+
+<blockquote>
+<pre>CIRCLEQ_HEAD(HEADNAME, TYPE) head;
+</pre>
+</blockquote>
+
+<p>
+
+где
+<b>HEADNAME</b>
+
+является названием определяемой структуры, а
+<b>TYPE</b>
+
+является типом связываемых элементов в циклической очереди.
+Указатель на заголовок циклической очереди может быть далее определен, как:
+
+</p><blockquote>
+<pre>struct HEADNAME *headp;
+</pre>
+</blockquote>
+
+<p>
+
+(Названия
+<b>head</b>
+
+и
+<b>headp</b>
+
+выбираются пользователем.)
+</p><p>
+
+Макрос
+<b>CIRCLEQ_ENTRY</b>
+
+объявляет структура, соединяющую элементы в циклической очереди.
+</p><p>
+
+Макрос
+<b>CIRCLEQ_INIT</b>
+
+инициализирует циклическую очередь, на которую указывает
+Fa head .
+
+</p><p>
+
+Макрос
+<b>CIRCLEQ_INSERT_HEAD</b>
+
+вставляет новый элемент
+Fa elm
+
+в начало циклической очереди.
+</p><p>
+
+Макрос
+<b>CIRCLEQ_INSERT_TAIL</b>
+
+вставляет новый элемент
+Fa elm
+
+в конец циклической очереди.
+</p><p>
+
+Макрос
+<b>CIRCLEQ_INSERT_AFTER</b>
+
+вставляет новый элемент
+Fa elm
+
+после элемента
+Fa listelm .
+
+</p><p>
+
+Макрос
+<b>CIRCLEQ_INSERT_BEFORE</b>
+
+вставляет новый элемент
+Fa elm
+
+перед элементом
+Fa listelm .
+
+</p><p>
+
+Макрос
+<b>CIRCLEQ_REMOVE</b>
+
+удаляет элемент
+Fa elm
+
+из циклической очереди.
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ПРИМЕР ЦИКЛИЧЕСКОЙ ОЧЕРЕДИ</h2>
+
+
+<pre>CIRCLEQ_HEAD(circleq, entry) head;
+struct circleq *headp;                  /* заголовок циклической очереди */
+struct entry {
+        ...
+        CIRCLEQ_ENTRY(entry) entries;           /* циклическая очередь */
+        ...
+} *n1, *n2, *np;
+
+CIRCLEQ_INIT(&amp;head);                    /* инициализация циклической очереди */
+
+n1 = malloc(sizeof(struct entry));      /* вставка заголовка */
+CIRCLEQ_INSERT_HEAD(&amp;head, n1, entries);
+
+n1 = malloc(sizeof(struct entry));      /* вставка в хвост */
+CIRCLEQ_INSERT_TAIL(&amp;head, n1, entries);
+
+n2 = malloc(sizeof(struct entry));      /* вставка после */
+CIRCLEQ_INSERT_AFTER(&amp;head, n1, n2, entries);
+
+n2 = malloc(sizeof(struct entry));      /* вставка перед */
+CIRCLEQ_INSERT_BEFORE(&amp;head, n1, n2, entries);
+                                        /* вперед по очереди */
+for (np = head.cqh_first; np != (void *)&amp;head; np = np-&gt;entries.cqe_next)
+        np-&gt; ...
+                                        /* назад по очереди */
+for (np = head.cqh_last; np != (void *)&amp;head; np = np-&gt;entries.cqe_prev)
+        np-&gt; ...
+                                        /* удаление */
+while (head.cqh_first != (void *)&amp;head)
+        CIRCLEQ_REMOVE(&amp;head, head.cqh_first, entries);
+</pre>
+
+<a name="lbAK">&nbsp;</a>
+<h2>ПРИМЕЧАНИЯ ПО ИСТОРИИ</h2>
+
+Функции
+<b>queue</b>
+
+впервые появились в
+BSD 4.4
+ 
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">СПИСКИ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРИМЕР СПИСКА</a></dt><dd>
+</dd><dt><a href="#lbAG">ХВОСТОВЫЕ ОЧЕРЕДИ</a></dt><dd>
+</dd><dt><a href="#lbAH">ПРИМЕР ХВОСТОВОЙ ОЧЕРЕДИ</a></dt><dd>
+</dd><dt><a href="#lbAI">ЦИКЛИЧЕСКИЕ ОЧЕРЕДИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ПРИМЕР ЦИКЛИЧЕСКОЙ ОЧЕРЕДИ</a></dt><dd>
+</dd><dt><a href="#lbAK">ПРИМЕЧАНИЯ ПО ИСТОРИИ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="queue" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

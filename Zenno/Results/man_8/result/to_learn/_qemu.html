@@ -1,0 +1,2240 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN qemu (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, qemu"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="qemu" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">qemu (8)</font><hr><li> <a href="/man.shtml?topic=qemu&amp;category=1&amp;russian=2"><u>qemu</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=qemu&amp;category=8&amp;russian=0"><u>qemu</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/qemu.html"><u>qemu</u></a> обнаружен в базе ключевых слов.</font></li>
+Исходная версия: man:orig:qemu
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>Имя</h2>
+
+<p>
+
+qemu-doc - документация пользователя QEMU
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>Синтаксис</h2>
+
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+<br>&nbsp;использование:&nbsp;<b>qemu</b>&nbsp;[<i>options</i>]&nbsp;[<i>disk_image</i>]
+</dd></dl>
+
+<p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>Описание</h2>
+
+<p>
+
+</p><p>
+В QEMU симулируется работа следующих периферийных устройств:
+</p><p>
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;PCI-мост&nbsp;i440FX&nbsp;и&nbsp;мост&nbsp;PCI-ISA&nbsp;PIIX3
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;VGA-карта&nbsp;Cirrus&nbsp;CLGD&nbsp;5446&nbsp;PCI&nbsp;или&nbsp;dummy&nbsp;VGA-карта&nbsp;с&nbsp;расширениями&nbsp;VESA&nbsp;от&nbsp;Bochs&nbsp;(на&nbsp;аппаратном&nbsp;уровне,&nbsp;включая&nbsp;все&nbsp;нестандартные&nbsp;
+режимы) .br
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Мышь&nbsp;и&nbsp;клавиатура&nbsp;PS/2
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;2&nbsp;IDE-интерфейса&nbsp;с&nbsp;поддержкой&nbsp;жёсткого&nbsp;диска&nbsp;и&nbsp;CD-ROM'а
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Floppy-диск
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Сетевые&nbsp;адаптеры&nbsp;PCI/ISA&nbsp;PCI
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Последовательные&nbsp;порты
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Звуковая&nbsp;карта&nbsp;Creative&nbsp;SoundBlaster&nbsp;16
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Звуковая&nbsp;карта&nbsp;ENSONIQ&nbsp;AudioPCI&nbsp;ES1370
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Adlib(OPL2)&nbsp;&nbsp;чип&nbsp;совместимый&nbsp;с&nbsp;Yamaha&nbsp;YM3812
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Контроллер&nbsp;PCI&nbsp;UHCI&nbsp;USB&nbsp;и&nbsp;виртуальный&nbsp;USB-хаб.
+</p><p>
+Поддерживается многопроцессорность; до 255 процессоров.
+</p><p>
+Следует иметь в виду, что adlib доступен только в случае, когда QEMU был собран с ключом 
+</p><dl compact=""><dt></dt><dd>
+<pre>-enable-adlib
+</pre>
+
+</dd></dl>
+
+<p>
+В QEMU используется PC BIOS из проекта Bochs и VGA BIOS из проекта Plex86/Bochs, распространяющаяся по LGPL. 
+В QEMU используется эмуляция YM3812 от Tatsuyuki Satoh.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>Опции</h2>
+
+<p>
+
+Параметр <i>disk_image</i>  это образ жёсткого диска для жёсткого диска 0 с интерфейсом IDE.
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h3>Общие опции</h3>
+
+<p>
+
+</p><p>
+</p><dl compact="">
+<dt><b>-M machine</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Выбрать&nbsp;эмулируемую&nbsp;машину&nbsp;("-M&nbsp;?"&nbsp;покажет&nbsp;список)
+<p>
+</p></dd><dt><b>-fda file</b>
+
+</dt><dd>
+</dd><dt><b>-fdb file</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Использовать&nbsp;образ&nbsp;для&nbsp;флоппи-диска&nbsp;0/1.&nbsp;&nbsp;Можно&nbsp;использовать&nbsp;флоппи-дисковод&nbsp;хост-системы,&nbsp;если&nbsp;указать&nbsp;.RS
+<pre>/dev/fd0
+</pre>
+
+
+<br>&nbsp;в&nbsp;качестве&nbsp;имени&nbsp;файла.
+<p>
+</p></dd><dt><b>-hda file</b>
+
+</dt><dd>
+</dd><dt><b>-hdb file</b>
+
+</dt><dd>
+</dd><dt><b>-hdc file</b>
+
+</dt><dd>
+</dd><dt><b>-hdd file</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Использовать&nbsp;<i>file</i>&nbsp;как&nbsp;образ&nbsp;жёсткого&nbsp;диска&nbsp;0,&nbsp;1,&nbsp;2&nbsp;или&nbsp;3.
+<p>
+</p></dd><dt><b>-cdrom file</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Использовать&nbsp;файл&nbsp;как&nbsp;образ&nbsp;CD-ROM&nbsp;(нельзя&nbsp;использовать&nbsp;-hdc&nbsp;и&nbsp;-cdrom&nbsp;одновременно).&nbsp;&nbsp;Для&nbsp;того&nbsp;чтобы&nbsp;использовать&nbsp;
+CD-ROM хост-системы, нужно указать в качестве имени файл .RS
+<pre>/dev/cdrom
+</pre>
+
+
+<p>
+</p></dd><dt><b>-drive option[,option[,option[,...]]]</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Описать&nbsp;новый&nbsp;диск.&nbsp;Допустимые&nbsp;опции:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>file=file</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;Опция&nbsp;определяет,&nbsp;какой&nbsp;образ&nbsp;использовать&nbsp;для&nbsp;какого&nbsp;диска.
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>if=interface</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Опция&nbsp;указывает&nbsp;через&nbsp;интерфейс&nbsp;какого&nbsp;типа&nbsp;подключён&nbsp;диск.&nbsp;&nbsp;Доступные&nbsp;типы:&nbsp;&nbsp;ide,&nbsp;scsi,&nbsp;sd,&nbsp;mtd,&nbsp;floppy,&nbsp;pflash.&nbsp;.RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>bus=bus,unit=unit</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Опция&nbsp;указывает&nbsp;куда&nbsp;именно&nbsp;подключён&nbsp;диск,&nbsp;к&nbsp;какой&nbsp;шине&nbsp;(bus)&nbsp;и&nbsp;под&nbsp;каким&nbsp;номером&nbsp;(unit).
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>index=index</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Опция&nbsp;указывает&nbsp;куда&nbsp;подключен&nbsp;диск&nbsp;при&nbsp;помощи&nbsp;номера&nbsp;в&nbsp;списке&nbsp;доступных&nbsp;коннекторов&nbsp;интерфейса&nbsp;заданного&nbsp;типа.&nbsp;.RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>media=media</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Опция&nbsp;определяет&nbsp;тип&nbsp;носителя:&nbsp;disk&nbsp;или&nbsp;cdrom.
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>cyls=c,heads=h,secs=s[,trans=t]</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;У&nbsp;этих&nbsp;опций&nbsp;такой&nbsp;же&nbsp;смысл,&nbsp;как&nbsp;при&nbsp;использовании&nbsp;с&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>-hdachs
+</pre>
+
+</dd></dl>
+
+<p>
+</p></dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>snapshot=snapshot</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;snapshot&nbsp;включен&nbsp;("on")&nbsp;или&nbsp;выключен&nbsp;("off"),&nbsp;&nbsp;позволяет&nbsp;включить&nbsp;создание&nbsp;снапшотов&nbsp;для&nbsp;заданных&nbsp;дисков&nbsp;(см.&nbsp;.RS
+<pre>-snapshot
+</pre>
+
+</dd></dl>
+
+).
+</dd></dl>
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>cache=cache</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;кэш&nbsp;включен&nbsp;или&nbsp;выключен&nbsp;("on"&nbsp;или&nbsp;"off"),&nbsp;что&nbsp;указывает&nbsp;нужно&nbsp;ли&nbsp;использовать&nbsp;кэш&nbsp;хост-системы&nbsp;при&nbsp;доступе&nbsp;к&nbsp;данным.&nbsp;
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>format=format</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Указать&nbsp;явным&nbsp;образ&nbsp;формат&nbsp;дисков&nbsp;и&nbsp;не&nbsp;использовать&nbsp;автоопределение.&nbsp;&nbsp;Может&nbsp;использоваться&nbsp;для&nbsp;того&nbsp;чтобы&nbsp;указать&nbsp;.RS
+<pre>format=raw
+</pre>
+
+</dd></dl>
+
+, чтобы не интерпретировать заголовок формата, когда в нём нет уверенности.
+</dd></dl>
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<p>
+Вместо 
+</p><dl compact=""><dt></dt><dd>
+<pre>-cdrom
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;можно&nbsp;использовать:
+<p>
+qemu -drive file=file,index=2,media=cdrom
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<br>&nbsp;Вместо&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>-hda
+</pre>
+
+</dd></dl>
+
+, 
+<dl compact=""><dt></dt><dd>
+<pre>-hdb
+</pre>
+
+</dd></dl>
+
+, 
+<dl compact=""><dt></dt><dd>
+<pre>-hdc
+</pre>
+
+</dd></dl>
+
+, 
+<dl compact=""><dt></dt><dd>
+<pre>-hdd
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;можно&nbsp;использовать:
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        qemu -drive file=file,index=0,media=disk
+        qemu -drive file=file,index=1,media=disk
+        qemu -drive file=file,index=2,media=disk
+        qemu -drive file=file,index=3,media=disk
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;CDROM&nbsp;можно&nbsp;подключать&nbsp;как&nbsp;slave&nbsp;на&nbsp;ide0:
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        qemu -drive file=file,if=ide,index=1,media=cdrom
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Если&nbsp;аргумент&nbsp;"file="&nbsp;не&nbsp;указывается,&nbsp;привод&nbsp;считается&nbsp;пустым:
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        qemu -drive if=ide,index=1,media=cdrom
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Можно&nbsp;подсоединить&nbsp;SCSI-диск&nbsp;с&nbsp;ID&nbsp;6&nbsp;на&nbsp;шине&nbsp;#0:
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        qemu -drive file=file,if=scsi,bus=0,unit=6
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Вместо&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>-fda
+</pre>
+
+</dd></dl>
+
+, 
+<dl compact=""><dt></dt><dd>
+<pre>-fdb
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;можно&nbsp;использовать:
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        qemu -drive file=file,index=0,if=floppy
+        qemu -drive file=file,index=1,if=floppy
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;По&nbsp;умолчанию&nbsp;используется&nbsp;интерфейс&nbsp;IDE,&nbsp;а&nbsp;индекс&nbsp;автоматически&nbsp;увеличивается:
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        qemu -drive file=a -drive file=b"
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;интерпретируется&nbsp;как:
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        qemu -hda a -hdb b
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-boot [a|c|d|n]</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Загружаться&nbsp;с&nbsp;floppy&nbsp;(a),&nbsp;жёсткого&nbsp;диска&nbsp;(c),&nbsp;CD-ROM&nbsp;(d)&nbsp;или&nbsp;Etherboot&nbsp;(n).&nbsp;&nbsp;По&nbsp;умолчанию&nbsp;загрузка&nbsp;выполняется&nbsp;с&nbsp;жёсткого&nbsp;
+диска. .RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-snapshot</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Выполнять&nbsp;запись&nbsp;во&nbsp;временные&nbsp;файлы&nbsp;вместо&nbsp;фалов&nbsp;образа&nbsp;диска.&nbsp;&nbsp;В&nbsp;этом&nbsp;случае&nbsp;на&nbsp;используемый&nbsp;образ&nbsp;диска&nbsp;запись&nbsp;не&nbsp;выполняется.&nbsp;
+<br>&nbsp;Запись&nbsp;можно&nbsp;выполнить&nbsp;принудительно&nbsp;нажатием&nbsp;C-a&nbsp;s.&nbsp;.RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-no-fd-bootchk</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Отключает&nbsp;в&nbsp;Bochs&nbsp;BIOS&nbsp;проверку&nbsp;загрузочной&nbsp;записи&nbsp;для&nbsp;floppy-дисков.&nbsp;&nbsp;Может&nbsp;потребоваться&nbsp;для&nbsp;загрузки&nbsp;со&nbsp;старых&nbsp;floppy-дисков.&nbsp;
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-m megs</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Задаёт&nbsp;объём&nbsp;виртуальной&nbsp;памяти&nbsp;равным&nbsp;<i>megs</i>&nbsp;мегабайтов.&nbsp;По&nbsp;умолчанию&nbsp;128&nbsp;MiB.
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-smp n</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Симулирует&nbsp;многопроцессорную&nbsp;систему&nbsp;с&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>n
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;процессорами.&nbsp;Для&nbsp;PC&nbsp;поддерживается&nbsp;до&nbsp;255&nbsp;процессоров;&nbsp;для&nbsp;Sparc32&nbsp;Linux&nbsp;ограничивает&nbsp;количество&nbsp;процессоров,&nbsp;которые&nbsp;
+можно использовать, четырьмя. .RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-audio-help</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Показывает&nbsp;справку&nbsp;по&nbsp;аудио-подсистеме:&nbsp;список&nbsp;драйверов&nbsp;и&nbsp;настраиваемых&nbsp;параметров.
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-soundhw card1[,card2,...] or -soundhw all</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Включить&nbsp;поддержку&nbsp;выбранного&nbsp;звукового&nbsp;устройства.&nbsp;Для&nbsp;того&nbsp;чтобы&nbsp;посмотреть&nbsp;список&nbsp;всех&nbsp;доступных&nbsp;устройств,&nbsp;используйте&nbsp;
+? .RE
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        qemu -soundhw sb16,adlib hda
+        qemu -soundhw es1370 hda
+        qemu -soundhw all hda
+        qemu -soundhw ?
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-localtime</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Установить&nbsp;часы&nbsp;реального&nbsp;времени&nbsp;(real&nbsp;time&nbsp;clock)&nbsp;по&nbsp;локальному&nbsp;времени&nbsp;(по&nbsp;умолчанию&nbsp;устанавливается&nbsp;в&nbsp;UTC).&nbsp;&nbsp;Опция&nbsp;
+необходима для того, чтобы время шло правильно в системах MS-DOS и Windows. .RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-startdate date</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Установить&nbsp;начальное&nbsp;значение&nbsp;для&nbsp;часов&nbsp;реального&nbsp;времени&nbsp;(real&nbsp;time&nbsp;clock).&nbsp;Допустимые&nbsp;форматы&nbsp;даты:&nbsp;"now"&nbsp;или&nbsp;"2006-06-17T16:01:21",&nbsp;
+или "2006-06-17".  Значение по умолчанию: "now". .RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-pidfile file</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сохранить&nbsp;PID&nbsp;процесса&nbsp;QEMU&nbsp;в&nbsp;файле&nbsp;<i>file</i>.&nbsp;Полезно&nbsp;при&nbsp;запуске&nbsp;QEMU&nbsp;из&nbsp;скрипта.
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-daemonize</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Демонизировать&nbsp;процесс&nbsp;QEMU&nbsp;после&nbsp;инициализации.&nbsp;&nbsp;QEMU&nbsp;не&nbsp;будет&nbsp;отключаться&nbsp;от&nbsp;стандартных&nbsp;потоков,&nbsp;до&nbsp;тех&nbsp;пор&nbsp;пока&nbsp;не&nbsp;
+будет готов к соединениям через другие устройства.  Опция полезна в случаях, когда QEMU запускается другими процессами, 
+которые не хотят заниматься устранением гонок в ходе инициализации. .RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-win2k-hack</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Используется&nbsp;при&nbsp;инсталляции&nbsp;Windows&nbsp;2000,&nbsp;для&nbsp;того&nbsp;чтобы&nbsp;обойти&nbsp;баг&nbsp;с&nbsp;переполнением&nbsp;диска&nbsp;(disk&nbsp;full&nbsp;bug).&nbsp;После&nbsp;того&nbsp;
+как инсталляция завершена, эту опцию можно не использовать (при её использовании передача данных по IDE замедляется). 
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-option-rom file</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Загружает&nbsp;содержимое&nbsp;файла&nbsp;как&nbsp;опциональный&nbsp;ROM.&nbsp;&nbsp;Опция&nbsp;может&nbsp;быть&nbsp;полезной&nbsp;для&nbsp;загрузки&nbsp;таких&nbsp;вещей&nbsp;как&nbsp;EtherBoot.&nbsp;.RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>-name name</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Задать&nbsp;имя&nbsp;гостевой&nbsp;системы.&nbsp;Имя&nbsp;будет&nbsp;отображаться&nbsp;в&nbsp;заголовке&nbsp;окна&nbsp;SDL.&nbsp;&nbsp;Имя&nbsp;также&nbsp;используется&nbsp;для&nbsp;VNC-сервера.&nbsp;.RE
+</dd></dl>
+
+<p>
+</p></dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h3>Опции визуализации</h3>
+
+<p>
+
+</p><p>
+</p><dl compact="">
+<dt><b>-nographic</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;В&nbsp;нормальном&nbsp;режиме&nbsp;QEMU&nbsp;использует&nbsp;SDL&nbsp;для&nbsp;VGA-вывода.&nbsp;&nbsp;Используя&nbsp;эту&nbsp;опцию,&nbsp;можно&nbsp;вообще&nbsp;отключить&nbsp;графический&nbsp;вывод&nbsp;
+как таковой, так чтобы QEMU стало обычным консольным приложением.  Эмулируемый последовательный порт перенаправляется 
+на консоль. Следовательно, QEMU в этом режиме можно использовать для отладки ядра Linux через последовательную консоль. 
+<p>
+</p></dd><dt><b>-curses</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;В&nbsp;нормально&nbsp;режим&nbsp;QEMU&nbsp;использует&nbsp;SDL&nbsp;для&nbsp;визуализации.&nbsp;&nbsp;С&nbsp;этой&nbsp;опцией&nbsp;QEMU&nbsp;будет&nbsp;выводить&nbsp;VGA-вывод&nbsp;в&nbsp;текстовом&nbsp;режиме,&nbsp;
+используя интерфейс curses/ncurses. В графическом режиме ничего не выводится. 
+</dd><dt><b>-no-frame</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Не&nbsp;делать&nbsp;декоративное&nbsp;оформление&nbsp;вокруг&nbsp;SDL-окон.&nbsp;Использовать&nbsp;доступное&nbsp;пространство&nbsp;по&nbsp;максимуму.&nbsp;Это&nbsp;делает&nbsp;использование&nbsp;
+QEMU в выделенном окружении более удобным. 
+</dd><dt><b>-full-screen</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Запустить&nbsp;в&nbsp;полноэкранном&nbsp;режиме.
+<p>
+</p></dd><dt><b>-vnc display[,option[,option[,...]]]</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;По&nbsp;умолчанию,&nbsp;QEMU&nbsp;использует&nbsp;SDL&nbsp;для&nbsp;VGA-вывода.&nbsp;Используя&nbsp;эту&nbsp;опцию,&nbsp;можно&nbsp;заставить&nbsp;QEMU&nbsp;работать&nbsp;как&nbsp;VNC-сервер&nbsp;
+для экрана <i>display</i> и перенаправлять на этот сервер VGA-экран. Особенно полезно в этом режиме включить USB-планшет 
+(опция -usbdevice tablet).  При использовании VNC-дисплея нужно использовать ключ -k, для того чтобы указать какая 
+раскладка клавиатуры используется (при условии, что это не en-us).  Допустимый синтаксис параметра .RS
+<pre>display
+</pre>
+
+
+<br>&nbsp;такой:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>interface:d</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Будут&nbsp;разрешены&nbsp;только&nbsp;TCP-соединения&nbsp;через&nbsp;интерфейс&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>interface
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;к&nbsp;экрану&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>d
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;&nbsp;По&nbsp;соглашению&nbsp;используется&nbsp;TCP-порт&nbsp;с&nbsp;номером&nbsp;5900+d.&nbsp;Интерфейс&nbsp;можно&nbsp;не&nbsp;указывать,&nbsp;тогда&nbsp;сервер&nbsp;привязывается&nbsp;ко&nbsp;всем&nbsp;
+интерфейсам. .RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>unix:path</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Разрешаются&nbsp;соединения&nbsp;через&nbsp;доменные&nbsp;гнёзда&nbsp;UNIX,&nbsp;где&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>path
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;указывает&nbsp;местоположение&nbsp;соответствующего&nbsp;файла,&nbsp;через&nbsp;который&nbsp;прослушиваются&nbsp;соединения.
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>none</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VNC&nbsp;инициализируется,&nbsp;но&nbsp;не&nbsp;запускается.&nbsp;VNC-сервер&nbsp;можно&nbsp;будет&nbsp;запустить&nbsp;позже&nbsp;при&nbsp;помощи&nbsp;команды&nbsp;монитора&nbsp;<i>change</i>.&nbsp;
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<p>
+После значения 
+</p><dl compact=""><dt></dt><dd>
+<pre>display
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;могут&nbsp;указываться&nbsp;опциональные&nbsp;флаги,&nbsp;разделённые&nbsp;запятыми.&nbsp;Допустимые&nbsp;опции&nbsp;такие:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>password</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Требует&nbsp;обязательной&nbsp;парольной&nbsp;аутентификации&nbsp;для&nbsp;клиентских&nbsp;соединений.
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+Пароль устанавливается отдельно с помощью команды 
+<dl compact=""><dt></dt><dd>
+<pre>change
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;в&nbsp;<i>pcsys_monitor</i>.
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>tls</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Требует&nbsp;чтобы&nbsp;клиент&nbsp;при&nbsp;взаимодействии&nbsp;с&nbsp;VNC-сервером&nbsp;использовал&nbsp;TLS.&nbsp;&nbsp;В&nbsp;этом&nbsp;случае&nbsp;используются&nbsp;анонимные&nbsp;TLS-credentials,&nbsp;
+поэтому сеанс уязвим для man-in-the-middle-атак.  Рекомендуется сочетать эту опцию с опциями x509 или x509verify. 
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>x509=/path/to/certificate/dir</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Может&nbsp;использоваться&nbsp;только&nbsp;в&nbsp;сочетании&nbsp;с&nbsp;опцией&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>tls
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;&nbsp;Обозначает,&nbsp;что&nbsp;при&nbsp;установке&nbsp;TLS-сеанса&nbsp;необходимо&nbsp;использовать&nbsp;x509-credentials.&nbsp;Сервер&nbsp;отправит&nbsp;свой&nbsp;x509-сертификат&nbsp;
+клиенту. Рекомендуется чтобы на VNC-сервере был установлен пароль, который будет вводиться клиентом при подключении. 
+<br>&nbsp;Путь,&nbsp;который&nbsp;идёт&nbsp;за&nbsp;опцией,&nbsp;указывает&nbsp;откуда&nbsp;должны&nbsp;загружаться&nbsp;x509-сертификаты.&nbsp;Подробнее&nbsp;о&nbsp;том,&nbsp;как&nbsp;генерируются&nbsp;
+сертификаты описано в разделе "vnc_security". .RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>x509verify=/path/to/certificate/dir</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Может&nbsp;использоваться&nbsp;только&nbsp;в&nbsp;сочетании&nbsp;с&nbsp;опцией&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>tls
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;&nbsp;Обозначает,&nbsp;что&nbsp;при&nbsp;установке&nbsp;TLS-сеанса&nbsp;необходимо&nbsp;использовать&nbsp;x509-credentials.&nbsp;Сервер&nbsp;отправит&nbsp;свой&nbsp;x509-сертификат&nbsp;
+клиенту и попросит чтобы клиент прислал свой сертификат. Сервер проверит подлинность сертификата по сертификату CA, 
+и если проверка не пройдёт, откажет клиенту.  Если к CA есть доверие, то этого механизма аутентификации достаточно. В качестве 
+дополнительного уровня аутентификации можно использовать пароль. Путь, идущий за опцией, указывает откуда должны загружаться 
+сертфикаты.  Подробнее о том, как генерируются сертификаты описано в разделе "vnc_security". .RE
+</dd></dl>
+
+<p>
+</p></dd><dt><b>-k language</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Использовать&nbsp;раскладку&nbsp;клавиатуры&nbsp;<i>language</i>&nbsp;(например,&nbsp;"fr"&nbsp;для&nbsp;французской).&nbsp;&nbsp;Эта&nbsp;опция&nbsp;нужна&nbsp;только&nbsp;в&nbsp;тех&nbsp;случаях,&nbsp;
+когда не удаётся получить сырые коды клавиш (raw keycodes), например, на маке с некоторыми X-серверами или на VNC.  Обычно 
+в Linux и Windows этот ключ не используется. 
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Доступные&nbsp;раскладки:
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>
+    ar  de-ch  es  fo     fr-ca  hu  ja  mk     no  pt-br  sv
+    da  en-gb  et  fr     fr-ch  is  lt  nl     pl  ru     th
+    de  en-us  fi  fr-be  hr     it  lv  nl-be  pt  sl     tr
+
+</pre>
+
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<br>&nbsp;По&nbsp;умолчанию&nbsp;"en-us".
+</dd></dl>
+
+<p>
+</p></dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h3> Опции USB </h3>
+
+<p>
+
+</p><dl compact="">
+<dt><b>-usb</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Включить&nbsp;USB&nbsp;(скоро&nbsp;будет&nbsp;включено&nbsp;по&nbsp;умолчанию)
+<p>
+</p></dd><dt><b>-usbdevice devname</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Добавить&nbsp;USB-устройство&nbsp;<i>devname</i>.
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>mouse</i>
+<dl compact=""><dt></dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Виртуальная&nbsp;мышь.&nbsp;Перекрывает&nbsp;эмуляции&nbsp;мыши&nbsp;PS/2.
+</dd></dl>
+
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>tablet</i>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Устройство&nbsp;позиционирования,&nbsp;имеющее&nbsp;абсолютные&nbsp;координаты&nbsp;(как&nbsp;тачскрин).&nbsp;&nbsp;Это&nbsp;означает,&nbsp;что&nbsp;qemu&nbsp;сможет&nbsp;показывать&nbsp;
+правильные координаты мыши без её захвата. Перекрывает эмуляцию мыши PS/2. .RE
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>disk:file</i>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Устройства&nbsp;хранения&nbsp;(Mass&nbsp;storage&nbsp;device),&nbsp;основанные&nbsp;на&nbsp;файле&nbsp;<i>file</i>
+</dd></dl>
+
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>host:bus.addr</i>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Пробросить&nbsp;внутрь&nbsp;устройство,&nbsp;имеющее&nbsp;в&nbsp;хост-системе&nbsp;идентификатор&nbsp;<i>bus.addr</i>&nbsp;(только&nbsp;для&nbsp;Linux).&nbsp;.RE
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;<i>host:vendor_id:product_id</i>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Пробросить&nbsp;внутрь&nbsp;устройство,&nbsp;имеющее&nbsp;в&nbsp;хост-системе&nbsp;идентификатор&nbsp;<i>vendor_id:product_id</i>&nbsp;(только&nbsp;для&nbsp;Linux).&nbsp;
+</dd></dl>
+
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>serial:[vendorid=vendor_id][,productid=product_id]:dev</i>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serial-конвертер&nbsp;в&nbsp;символьное&nbsp;устройство&nbsp;хост-системы.&nbsp;О&nbsp;том&nbsp;какие&nbsp;устройства&nbsp;можно&nbsp;конвертировать&nbsp;см.&nbsp;в&nbsp;.RS
+<pre>-serial
+</pre>
+
+</dd></dl>
+
+<p>
+</p></dd></dl>
+
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>braille</i>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Устройство&nbsp;Брайля.&nbsp;Использует&nbsp;BrlAPI&nbsp;для&nbsp;вывода&nbsp;на&nbsp;настоящее&nbsp;или&nbsp;подложное&nbsp;устройство&nbsp;Брайля.&nbsp;.RE
+</dd></dl>
+
+<p>
+</p></dd></dl>
+</dd></dl>
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h3>Опции сети</h3>
+
+<p>
+
+</p><p>
+</p><dl compact="">
+<dt><b>-net nic[,vlan=n][,macaddr=addr][,model=type]</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Создать&nbsp;новую&nbsp;сетевую&nbsp;карту&nbsp;и&nbsp;подсоединить&nbsp;её&nbsp;к&nbsp;VLAN&nbsp;n&nbsp;(n&nbsp;=&nbsp;0&nbsp;по&nbsp;умолчанию).&nbsp;По&nbsp;умолчанию&nbsp;на&nbsp;PC&nbsp;в&nbsp;качестве&nbsp;сетевой&nbsp;карты&nbsp;используется&nbsp;
+ne2k_pci.  MAC-адрес сетевой карты можно поменять при помощи .RS
+<pre>macaddr
+</pre>
+
+
+<br>&nbsp;&nbsp;Если&nbsp;опция&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>-net
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;не&nbsp;задана,&nbsp;создаётся&nbsp;одна&nbsp;карта.&nbsp;&nbsp;Qemu&nbsp;может&nbsp;эмулировать&nbsp;несколько&nbsp;различных&nbsp;моделей&nbsp;сетевых&nbsp;карт.&nbsp;&nbsp;Допустимые&nbsp;значения&nbsp;
+для <i>type</i>: "i82551", "i82557b", "i82559er", "ne2k_pci", "ne2k_isa", "pcnet", "rtl8139", "smc91c111", "lance" 
+и "mcf_fec".  Не все устройства поддерживаются на всех платформах. Просмотреть список поддерживаемых устройств можно 
+при помощи .RS
+<pre>-net nic,model=?
+</pre>
+
+
+<p>
+</p></dd><dt><b>-net user[,vlan=n][,hostname=name]</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Использовать&nbsp;пользовательский&nbsp;(user&nbsp;mode)&nbsp;сетевой&nbsp;стек,&nbsp;которому&nbsp;для&nbsp;работы&nbsp;не&nbsp;требуются&nbsp;привилегии&nbsp;администратора.&nbsp;
+<br>&nbsp;Можно&nbsp;использовать&nbsp;опцию&nbsp;hostname=name,&nbsp;которая&nbsp;укажет&nbsp;встроенному&nbsp;DHCP-серверу,&nbsp;какое&nbsp;имя&nbsp;отправить&nbsp;клиенту.&nbsp;
+</dd><dt><b>-net tap[,vlan=n][,fd=h][,ifname=name][,script=file]</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Подключить&nbsp;TAP-интерфейс&nbsp;хост-системы&nbsp;к&nbsp;заданному&nbsp;VLAN&nbsp;n&nbsp;и&nbsp;настроить&nbsp;его&nbsp;с&nbsp;помощью&nbsp;сетевого&nbsp;скрипта.&nbsp;&nbsp;По&nbsp;умолчанию&nbsp;используется&nbsp;
+сетевой скрипт .RS
+<pre>/etc/qemu-ifup
+</pre>
+
+
+<br>&nbsp;Чтобы&nbsp;отключить&nbsp;исполнение&nbsp;скрипта,&nbsp;нужно&nbsp;указать&nbsp;script=no.&nbsp;&nbsp;Если&nbsp;имя&nbsp;не&nbsp;задано,&nbsp;оно&nbsp;автоматически&nbsp;задаётся&nbsp;при&nbsp;помощи&nbsp;
+операционной системы.  Для того чтобы подключиться к уже открытому интерфейсу, используется fd=h, который указывает 
+его дескриптор (handle). 
+<dl compact=""><dt></dt><dd>
+<pre>           
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Пример:
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        qemu linux.img -net nic -net tap
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Более&nbsp;сложный&nbsp;пример&nbsp;(две&nbsp;сетевые&nbsp;карты,&nbsp;каждая&nbsp;подключена&nbsp;к&nbsp;TAP-устройству)
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        qemu linux.img -net nic,vlan=0 -net tap,vlan=0,ifname=tap0 \
+                   -net nic,vlan=1 -net tap,vlan=1,ifname=tap1
+
+</pre>
+
+</dd></dl>
+
+</dd><dt><b>-net socket[,vlan=n][,fd=h][,listen=[host]:port][,connect=host:port]</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Соединяет&nbsp;VLAN&nbsp;n&nbsp;с&nbsp;VLAN&nbsp;другой&nbsp;виртуальной&nbsp;машины&nbsp;QEMU.&nbsp;Если&nbsp;задана&nbsp;опция&nbsp;listen,&nbsp;QEMU&nbsp;будет&nbsp;ждать&nbsp;входящего&nbsp;соединения&nbsp;
+на порту port (поле host опционально).  Опция connect указывает, что нужно подсоединиться к другому QEMU, который использует 
+опцию listen. Опция fd=h задаёт уже открытый TCP-сокет. 
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Пример:
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<pre>        # launch a first QEMU instance
+        qemu linux.img -net nic,macaddr=52:54:00:12:34:56 \
+                        -net socket,listen=:1234
+        # connect the VLAN 0 of this instance to the VLAN 0
+        # of the first instance
+        qemu linux.img -net nic,macaddr=52:54:00:12:34:57 \
+                        -net socket,connect=127.0.0.1:1234
+
+</pre>
+
+</dd></dl>
+
+</dd><dt><b>-net socket[,vlan=n][,fd=h][,mcast=maddr:port]</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Создаёт&nbsp;VLAN&nbsp;n,&nbsp;разделяемый&nbsp;с&nbsp;другими&nbsp;QEMU&nbsp;через&nbsp;сокет&nbsp;многоадресной&nbsp;рассылки.&nbsp;&nbsp;Получается&nbsp;общая&nbsp;шина&nbsp;для&nbsp;всех&nbsp;QEMU,&nbsp;которые&nbsp;
+используют один и тот же адрес и maddr и порт port. 
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;ЗАМЕЧАНИЯ:
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;1.&nbsp;&nbsp;Можно&nbsp;запустить&nbsp;несколько&nbsp;QEMU&nbsp;на&nbsp;разных&nbsp;хостах,&nbsp;и&nbsp;сделать&nbsp;чтобы&nbsp;все&nbsp;они&nbsp;использовали&nbsp;общую&nbsp;шину&nbsp;(только&nbsp;для&nbsp;этого&nbsp;нужно&nbsp;
+выполнить настройку многоадресной рассылки, multicast, для этих хостов). .RE
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;2.&nbsp;&nbsp;Поддержка&nbsp;mcast&nbsp;совместима&nbsp;с&nbsp;User&nbsp;Mode&nbsp;Linux&nbsp;(аргумент&nbsp;ethN=mcast),&nbsp;подробнее:&nbsp;<a href="http://user-mode-linux.sf.net">http://user-mode-linux.sf.net</a>&nbsp;
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;3.&nbsp;&nbsp;Для&nbsp;того&nbsp;чтобы&nbsp;указать&nbsp;уже&nbsp;открытый&nbsp;multicast-сокет&nbsp;UDP&nbsp;используется&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>fd=h
+</pre>
+
+</dd></dl>
+
+<p>
+</p></dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;Пример:
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        # launch one QEMU instance
+        qemu linux.img -net nic,macaddr=52:54:00:12:34:56 \
+                        -net socket,mcast=230.0.0.1:1234
+        # launch another QEMU instance on same "bus"
+        qemu linux.img -net nic,macaddr=52:54:00:12:34:57 \
+                        -net socket,mcast=230.0.0.1:1234
+        # launch yet another QEMU instance on same "bus"
+        qemu linux.img -net nic,macaddr=52:54:00:12:34:58 \
+                        -net socket,mcast=230.0.0.1:1234
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Пример&nbsp;(совместим&nbsp;с&nbsp;User&nbsp;Mode&nbsp;Linux):
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        # launch QEMU instance (note mcast address selected
+        # is UML's default)
+        qemu linux.img -net nic,macaddr=52:54:00:12:34:56 \
+                    -net socket,mcast=239.192.168.1:1102
+        # launch UML
+        /path/to/linux ubd0=/path/to/root_fs eth0=mcast
+
+</pre>
+
+</dd></dl>
+
+<dl compact="">
+<dt><b>-net none</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Указывает,&nbsp;что&nbsp;сетевые&nbsp;устройства&nbsp;конфигурироваться&nbsp;не&nbsp;должны.&nbsp;&nbsp;Используется&nbsp;чтобы&nbsp;перекрыть&nbsp;настройки&nbsp;по&nbsp;умолчанию&nbsp;
+(-net nic -net user), активирующиеся, если опцию -net не указывать вообще. 
+</dd><dt><b>-tftp dir</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;При&nbsp;использовании&nbsp;пользовательского&nbsp;сетевого&nbsp;стека&nbsp;(user&nbsp;mode&nbsp;network&nbsp;stack),&nbsp;активировать&nbsp;встроенный&nbsp;TFTP-сервер.&nbsp;
+<br>&nbsp;Файлы&nbsp;в&nbsp;каталоге&nbsp;.RS
+<pre>dir/
+</pre>
+
+</dd></dl>
+</dd></dl>
+
+<br>&nbsp;будут&nbsp;представлены&nbsp;в&nbsp;корне&nbsp;сервера.&nbsp;&nbsp;TFTP-клиент&nbsp;в&nbsp;гостевой&nbsp;системе&nbsp;должен&nbsp;быть&nbsp;настроен&nbsp;на&nbsp;бинарный&nbsp;режим&nbsp;(используется&nbsp;
+команда "bin" TFTP-клиента Unix). IP-адрес гостевой системы, как и обычно, 10.0.2.2. 
+</dd><dt><b>-bootp file</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;При&nbsp;использовании&nbsp;пользовательского&nbsp;сетевого&nbsp;стека&nbsp;(user&nbsp;mode&nbsp;network&nbsp;stack),&nbsp;передавать&nbsp;файл&nbsp;как&nbsp;имя&nbsp;файла&nbsp;для&nbsp;BOOTP.&nbsp;
+<br>&nbsp;В&nbsp;сочетании&nbsp;с&nbsp;-tftp,&nbsp;опция&nbsp;может&nbsp;использоваться&nbsp;для&nbsp;сетевой&nbsp;загрузки&nbsp;гостевой&nbsp;системы&nbsp;из&nbsp;локального&nbsp;каталога.&nbsp;
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Пример&nbsp;(с&nbsp;использованием&nbsp;pxelinux):
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        qemu -hda linux.img -boot n -tftp /path/to/tftp/files -bootp /pxelinux.0
+
+</pre>
+
+</dd></dl>
+
+</dd><dt><b>-smb dir</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;При&nbsp;использовании&nbsp;пользовательского&nbsp;сетевого&nbsp;стека&nbsp;(user&nbsp;mode&nbsp;network&nbsp;stack),&nbsp;активировать&nbsp;встроенный&nbsp;SMB-сервер,&nbsp;
+так чтобы Windows внутри гостевой системы могла прозрачно обращаться к файлам хост-системы. 
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;В&nbsp;гостевой&nbsp;Windows-системе&nbsp;строку
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        10.0.2.4 smbserver
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;нужно&nbsp;добавить&nbsp;в&nbsp;файл&nbsp;C:\WINDOWS\LMHOSTS&nbsp;(для&nbsp;Windows&nbsp;9x/Me)&nbsp;или&nbsp;C:\WINNT\SYSTEM32\DRIVERS\ETC\LMHOSTS&nbsp;(Windows&nbsp;
+NT/2000). .RE
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Каталог&nbsp;доступен&nbsp;как&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>\\smbserver\qemu
+</pre>
+
+</dd></dl>
+
+<p>
+</p></dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Обратите&nbsp;внимание,&nbsp;что&nbsp;SAMBA-сервер&nbsp;должен&nbsp;быть&nbsp;установлен&nbsp;в&nbsp;хост-системе&nbsp;в&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>/usr/sbin/smbd
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;QEMU&nbsp;тестировался&nbsp;с&nbsp;smbd&nbsp;версии&nbsp;2.2.7a&nbsp;из&nbsp;Red&nbsp;Hat&nbsp;9&nbsp;и&nbsp;с&nbsp;smbd&nbsp;версии&nbsp;3.0.10-1.fc3&nbsp;из&nbsp;Fedora&nbsp;Core&nbsp;3.&nbsp;.RE
+<p>
+</p><dl compact="">
+<dt><b>-redir [tcp|udp]:host-port:[guest-host]:guest-port  </b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;При&nbsp;использовании&nbsp;пользовательского&nbsp;сетевого&nbsp;стека&nbsp;(user&nbsp;mode&nbsp;network&nbsp;stack),&nbsp;перенаправлять&nbsp;входящие&nbsp;на&nbsp;хост&nbsp;и&nbsp;порт&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>host-port
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;обращения&nbsp;TCP&nbsp;и&nbsp;UDP&nbsp;на&nbsp;гостевые&nbsp;хост&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>guest-host
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;и&nbsp;порт&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>guest-port
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;&nbsp;Если&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>guest-host
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;не&nbsp;задан,&nbsp;его&nbsp;значение&nbsp;принимается&nbsp;равным&nbsp;10.0.2.15&nbsp;(адресу,&nbsp;который&nbsp;по&nbsp;умолчанию&nbsp;выдаётся&nbsp;встроенным&nbsp;DHCP-сервером).&nbsp;
+<p>
+</p><dl compact=""><dt></dt><dd>
+<br>&nbsp;Например,&nbsp;для&nbsp;того&nbsp;чтобы&nbsp;перенаправить&nbsp;соединение&nbsp;X11&nbsp;с&nbsp;экрана&nbsp;1&nbsp;на&nbsp;гостевой&nbsp;экран&nbsp;0,&nbsp;нужно&nbsp;использовать&nbsp;такие&nbsp;опции:&nbsp;.RE
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        # on the host
+        qemu -redir tcp:6001::6000 [...]
+        # this host xterm should open in the guest X11 server
+        xterm -display :1
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Для&nbsp;того&nbsp;чтобы&nbsp;перенаправить&nbsp;telnet-соединения&nbsp;с&nbsp;порта&nbsp;5555&nbsp;хоста&nbsp;на&nbsp;telnet-порт&nbsp;на&nbsp;гостевой&nbsp;системе,&nbsp;используйте&nbsp;
+опции: .RE
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>        # on the host
+        qemu -redir tcp:5555::23 [...]
+        telnet localhost 5555
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Теперь,&nbsp;когда&nbsp;на&nbsp;хост-системе&nbsp;вы&nbsp;даёте&nbsp;"telnet&nbsp;localhost&nbsp;5555",&nbsp;вы&nbsp;попадаете&nbsp;на&nbsp;telnet-сервер&nbsp;гостевой&nbsp;системы.&nbsp;.RE
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;Для&nbsp;Linux:&nbsp;При&nbsp;указании&nbsp;этой&nbsp;опции&nbsp;можно&nbsp;использовать&nbsp;заданное&nbsp;ядро&nbsp;Linux&nbsp;без&nbsp;его&nbsp;инсталляции&nbsp;на&nbsp;диск.&nbsp;&nbsp;Это&nbsp;удобно&nbsp;для&nbsp;тестирования&nbsp;
+разных ядер Linux. .RE
+<p>
+</p><dl compact="">
+<dt><b>-kernel bzImage</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Использовать&nbsp;bzImage&nbsp;в&nbsp;качестве&nbsp;ядра.
+<p>
+</p></dd><dt><b>-append cmdline</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Использовать&nbsp;cmdline&nbsp;как&nbsp;командную&nbsp;строку&nbsp;ядра
+<p>
+</p></dd><dt><b>-initrd file</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;Использовать&nbsp;file&nbsp;как&nbsp;initrd&nbsp;(начальный&nbsp;виртуальный&nbsp;диск).
+<p>
+</p></dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h3>Отладочные опции (для экспертов)</h3>
+
+<p>
+
+</p><p>
+</p><dl compact="">
+<dt><b>-serial dev</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Перенаправить&nbsp;виртуальный&nbsp;последовательный&nbsp;порт&nbsp;на&nbsp;символьное&nbsp;устройство&nbsp;в&nbsp;хост-системе&nbsp;.RS
+<pre>dev
+</pre>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;По&nbsp;умолчанию&nbsp;используется&nbsp;"vc"&nbsp;в&nbsp;графическом&nbsp;режиме&nbsp;и&nbsp;"stdio"&nbsp;в&nbsp;не&nbsp;графическом.
+<p>
+</p><dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Опцию&nbsp;можно&nbsp;указывать&nbsp;несколько&nbsp;раз.&nbsp;Можно&nbsp;симулировать&nbsp;до&nbsp;4&nbsp;последовательных&nbsp;портов.
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Для&nbsp;того&nbsp;чтобы&nbsp;отключить&nbsp;все&nbsp;порты,&nbsp;используется&nbsp;"
+<dl compact=""><dt></dt><dd>
+<pre>-serial none
+</pre>
+
+</dd></dl>
+
+".
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Доступные&nbsp;символьные&nbsp;устройства:
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>vc[:WxH]
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Виртуальная&nbsp;консоль.&nbsp;Опционально,&nbsp;ширина&nbsp;и&nbsp;высота&nbsp;могут&nbsp;задаваться&nbsp;в&nbsp;символах:
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>vc:800x600
+</pre>
+
+</dd></dl>
+
+<p>
+</p></dd></dl>
+
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ширину&nbsp;и&nbsp;высоту&nbsp;можно&nbsp;также&nbsp;задавать&nbsp;в&nbsp;символах:
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>vc:80Cx24C
+</pre>
+
+</dd></dl>
+
+<p>
+</p></dd></dl>
+
+</dd></dl>
+
+</dt></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>pty
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Только&nbsp;для&nbsp;Linux]&nbsp;Псевдотерминал&nbsp;(автоматически&nbsp;выделяется&nbsp;новый&nbsp;PTY)
+</dd></dl>
+
+<br>
+
+</dt><dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>none
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Устройство&nbsp;не&nbsp;выделяется.
+</dd></dl>
+
+</dt></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>null
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;пустое&nbsp;(void)&nbsp;устройство
+</dd></dl>
+
+</dt></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>/dev/XXX
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Только&nbsp;для&nbsp;Linux]&nbsp;Использовать&nbsp;tty&nbsp;хост-системы,&nbsp;например,&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>/dev/ttyS0
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;Параметры&nbsp;последовательного&nbsp;порта&nbsp;хост-системы&nbsp;устанавливаются&nbsp;в&nbsp;соответствии&nbsp;с&nbsp;параметрами&nbsp;эмулируемого&nbsp;порта.&nbsp;
+</dd></dl>
+
+</dt></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>/dev/parportN
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Только&nbsp;для&nbsp;Linux,&nbsp;только&nbsp;для&nbsp;параллельного&nbsp;порта]&nbsp;Использовать&nbsp;параллельный&nbsp;порт&nbsp;N&nbsp;хост-системы.&nbsp;Можно&nbsp;использовать&nbsp;
+возможности SPP и EPP параллельных портов. .RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>file:filename
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Записывать&nbsp;вывод&nbsp;в&nbsp;filename.&nbsp;Чтение&nbsp;невозможно.
+</dd></dl>
+
+</dt></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>stdio
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[только&nbsp;для&nbsp;Unix]&nbsp;стандартный&nbsp;ввод/вывод.
+</dd></dl>
+
+</dt></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>pipe:filename
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;использовать&nbsp;канал&nbsp;(pipe)&nbsp;filename.
+</dd></dl>
+
+</dt></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>COMn
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Только&nbsp;для&nbsp;Windows]&nbsp;Использовать&nbsp;последовательный&nbsp;порт&nbsp;<i>n</i>&nbsp;хоста
+</dd></dl>
+
+</dt></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>udp:[remote_host]:remote_port[@[src_ip]:src_port]
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сетевая&nbsp;консоль&nbsp;UDP&nbsp;(UDP&nbsp;Net&nbsp;Console).&nbsp;Если&nbsp;не&nbsp;указать&nbsp;remote_host&nbsp;или&nbsp;src_ip,&nbsp;принимается&nbsp;значение&nbsp;0.0.0.0.&nbsp;Если&nbsp;не&nbsp;задать&nbsp;
+src_port, выбирается случайный порт. .RE
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Если&nbsp;вам&nbsp;нужна&nbsp;простая&nbsp;readonly-консоль,&nbsp;можно&nbsp;использовать&nbsp;netcat&nbsp;или&nbsp;nc,&nbsp;нужно&nbsp;запустить&nbsp;qemu&nbsp;с&nbsp;ключами&nbsp;.RS
+<pre>-serial udp::4555
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;и&nbsp;nc&nbsp;с&nbsp;ключами&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>nc -u -l -p 4555
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;Как&nbsp;только&nbsp;QEMU&nbsp;выводит&nbsp;что-то&nbsp;на&nbsp;этот&nbsp;порт,&nbsp;оно&nbsp;появляется&nbsp;в&nbsp;сеансе&nbsp;netconsole.&nbsp;
+</dd></dl>
+
+</dt></dl>
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>               Если вы хотите отправлять символы обратно через netconsole или хотите много раз
+               запускать и останавливать qemu, надо сделать чтобы он использовать 
+               один и тот же порт-источник при каждом вызове. Для этого указать опцию
+               "-serial udp::<a href="mailto:4555@4556">4555@4556</a>" to qemu. Второй способ такой: использовать
+               пропатченную версию netcat, которая может прослушивать TCP-порт
+               и отправлять и получать данные по UDP. 
+               Если у вас есть такая версия netcat
+               (which activates telnet remote echo and single char
+               transfer),
+               можете использовать его, для того чтобы можно было telnet'ом
+               на порт 5555 получить доступ к порту QEMU. 
+
+               "Опции QEMU:"
+                   -serial udp::<a href="mailto:4555@4556">4555@4556</a>
+
+               "Опции netcat:"
+                   -u -P 4555 -L 0.0.0.0:4556 -t -p 5555 -I -T
+
+               "Опции telnet:"
+                   localhost 5555
+
+           "tcp:[host]:port[,server][,nowait][,nodelay]"
+               У сетевой консоли TCP (TCP Net Console) есть два режима работы.
+               Она может отправлять ввод/вывод в определённую точку,
+               а может ждать подключения из определённой точки.
+               По умолчанию сетевая консоль отправляет на определённый порт хоста.  
+               Если указана опция 
+<dl compact=""><dt></dt><dd>server
+</dd></dl></pre>
+
+</dd></dl>
+
+, QEMU будет ожидать клиентского подключения,
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>               и только когда оно произойдёт, продолжит работать,
+               за исключение случая, когда указана опция "nowait".  Опция "nodelay"
+               отключает алгоритм Нагеля.
+               Если <i>host</i> не задан, подразумевается 0.0.0.0.
+               Допускается не более одного TCP-соединения 
+               одновременно.  К соответствующему символьному устройству устройству можно подключаться                через telnet. 
+
+               "Пример, как отправить TCP-консоль на 192.168.0.2 порт 4444"
+                   -serial tcp:192.168.0.2:4444
+
+               "Пример, как слушать соединение на порту 4444"
+                   -serial tcp::4444,server
+
+               "Пример, как запустить сервер в режиме nowait на 192.168.0.100 порт 4444"
+                   -serial tcp:192.168.0.100:4444,server,nowait
+
+           "telnet:host:port[,server][,nowait][,nodelay]"
+               Использовать протокол Telnet вместо простых TCP-сокетов.  
+               Опция работает также как в случае, когда указана опция 
+<dl compact=""><dt></dt><dd>-serial tcp
+</dd></dl></pre>
+
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>               The difference is that the port acts like a telnet server or
+               client using telnet option negotiation.  This will also allow
+               you to send the MAGIC_SYSRQ sequence if you use a telnet that
+               supports sending the break sequence.  Typically in unix telnet
+               you do it with Control-] and then type "send break" followed by
+               pressing the enter key.
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>unix:path[,server][,nowait]
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Использовать&nbsp;доменное&nbsp;гнездо&nbsp;Unix&nbsp;вместо&nbsp;TCP-сокета.&nbsp;Опция&nbsp;работает&nbsp;также&nbsp;как&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>-serial tcp
+</pre>
+
+</dd></dl>
+
+, за исключением того, что для соединения используется сокет 
+<dl compact=""><dt></dt><dd>
+<pre>path
+</pre>
+
+</dd></dl>
+
+<p>
+</p></dd></dl>
+
+</dt></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b></b><dl compact=""><b><dt></dt></b><dd><b>
+</b>
+
+</dd><dd>
+<pre>&lt;nowiki&gt;"mon:dev_string"&lt;/nowiki&gt;
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;При&nbsp;помощи&nbsp;этой&nbsp;опции&nbsp;monitor&nbsp;можно&nbsp;вывести&nbsp;на&nbsp;другой&nbsp;последовательный&nbsp;порт.&nbsp;&nbsp;Доступ&nbsp;к&nbsp;монитору&nbsp;осуществляется&nbsp;при&nbsp;нажатии&nbsp;
+комбинации клавиш Ctrl-a, а потом c.  Подробнее о доступе к монитору смотрите в разделе .RS
+<pre>pcsys_keys
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;в&nbsp;описании&nbsp;ключа&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>-nographic
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;&nbsp;В&nbsp;качестве&nbsp;строки&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>dev_string
+</pre>
+
+</dd></dl>
+
+<br>&nbsp;должно&nbsp;быть&nbsp;указано&nbsp;одно&nbsp;из&nbsp;последовательных&nbsp;устройств,&nbsp;описанных&nbsp;выше.&nbsp;&nbsp;Пример,&nbsp;как&nbsp;можно&nbsp;переключить&nbsp;монитор&nbsp;на&nbsp;telnet-сервер,&nbsp;
+слушающий на порту 4444: .RE
+</dt></dl>
+</dd></dl>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>               "-serial mon:telnet::4444,server,nowait"
+
+</pre>
+
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>braille</b>
+
+</dt><dd>
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Устройство&nbsp;Брайля.&nbsp;Для&nbsp;вывода&nbsp;Брайля&nbsp;будет&nbsp;использоваться&nbsp;BrlAPI.
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<p>
+</p><dl compact="">
+<dt><b>-parallel dev</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Перенаправить&nbsp;вииртуальный&nbsp;параллельный&nbsp;порт&nbsp;на&nbsp;устройство&nbsp;хост-системы&nbsp;dev&nbsp;(те&nbsp;же&nbsp;устройства,&nbsp;что&nbsp;и&nbsp;для&nbsp;последовательного&nbsp;
+порта).  На Linux можно использовать .RS
+<pre>/dev/parportN
+</pre>
+
+</dd></dl>
+</dt></dl>
+
+, который указывает на устройство, подключенное к соответствующему параллельному порту.
+<p>
+</p><dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Опцию&nbsp;можно&nbsp;задавать&nbsp;до&nbsp;трёх&nbsp;раз,&nbsp;для&nbsp;того&nbsp;чтобы&nbsp;эмулировать&nbsp;до&nbsp;трёх&nbsp;параллельных&nbsp;портов.&nbsp;.RE
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Для&nbsp;того&nbsp;чтобы&nbsp;выключить&nbsp;параллельные&nbsp;порты&nbsp;используется&nbsp;"-parallel&nbsp;none".
+</dd></dl>
+
+<p>
+</p><dl compact="">
+<dt><b>-monitor dev</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Перенаправить&nbsp;монитор&nbsp;на&nbsp;устройство&nbsp;dev&nbsp;в&nbsp;хост-системе&nbsp;(те&nbsp;же&nbsp;устройства,&nbsp;что&nbsp;и&nbsp;при&nbsp;выборе&nbsp;последовательного&nbsp;порта).&nbsp;
+<br>&nbsp;По&nbsp;умолчанию&nbsp;используется&nbsp;"vc"&nbsp;в&nbsp;графическом&nbsp;режиме&nbsp;и&nbsp;"stdio"&nbsp;в&nbsp;не&nbsp;графическом.&nbsp;
+</dd><dt><b>-echr numeric_ascii_value</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Указать&nbsp;какой&nbsp;escape-символ&nbsp;будет&nbsp;переключать&nbsp;на&nbsp;монитор,&nbsp;когда&nbsp;монитор&nbsp;и&nbsp;последовательная&nbsp;консоль&nbsp;используют&nbsp;работают&nbsp;
+совместно.  По умолчанию при использовании опции .RS
+<pre>-nographic
+</pre>
+
+</dd></dl>
+</dd></dl>
+
+<br>&nbsp;используется&nbsp;значение&nbsp;0x01.&nbsp;&nbsp;0x01&nbsp;эквивалентно&nbsp;нажатию&nbsp;"Control-a".&nbsp;&nbsp;Можно&nbsp;выбрать&nbsp;любые&nbsp;другие&nbsp;символы&nbsp;из&nbsp;управляющих&nbsp;
+символов ascii, где числа от 1 до 26 отображаются на клавиши от Control-a до Control-z.  Например, можно использовать 
+любой из нижеприведённых вариантов для того чтобы повесить escape-символ на ctrl-t. 
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"-echr&nbsp;0x14"
+<p>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"-echr&nbsp;20"
+</p></dd></dl>
+
+<p>
+</p><dl compact="">
+<dt><b>-s  </b>
+
+</dt><dd>
+<br>&nbsp;Ожидать&nbsp;соединения&nbsp;gdb&nbsp;на&nbsp;порту&nbsp;1234.
+<p>
+</p></dd><dt><b>-p port</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Изменить&nbsp;порт&nbsp;соединения&nbsp;с&nbsp;gdb.&nbsp;Параметр&nbsp;<i>port</i>&nbsp;может&nbsp;быть&nbsp;или&nbsp;десятичным&nbsp;числом,&nbsp;указывающим&nbsp;TCP-порт,&nbsp;или&nbsp;файлом-устройством&nbsp;
+в хост-системе (те же устройства, что и для последовательного порта). 
+</dd><dt><b>-S  </b>
+
+</dt><dd>
+<br>&nbsp;Не&nbsp;запускать&nbsp;CPU&nbsp;сразу&nbsp;(для&nbsp;запуска&nbsp;нужно&nbsp;нажать&nbsp;"c"&nbsp;в&nbsp;мониторе).
+<p>
+</p></dd><dt><b>-d  </b>
+
+</dt><dd>
+<br>&nbsp;Выводить&nbsp;журнал&nbsp;(log)&nbsp;в&nbsp;
+<dl compact=""><dt></dt><dd>
+<pre>/tmp/qemu.log
+</pre>
+
+</dd></dl>
+
+<p>
+</p></dd><dt><b>-hdachs c,h,s,[,t]</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Задать&nbsp;физическую&nbsp;геометрию&nbsp;для&nbsp;жёсткого&nbsp;диска&nbsp;0&nbsp;(1&nbsp;&lt;=&nbsp;c&nbsp;&lt;=&nbsp;16383,&nbsp;1&nbsp;&lt;=&nbsp;h&nbsp;&lt;=&nbsp;16,&nbsp;1&nbsp;&lt;=&nbsp;s&nbsp;&lt;=&nbsp;63)&nbsp;и,&nbsp;опционально,&nbsp;режим&nbsp;трансляции&nbsp;
+BIOS (t=none, lba или auto). Обычно QEMU может сам предположить значение этих параметров.  Опция используется для образов 
+старых дисков MS-DOS. 
+</dd><dt><b>-L path</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Использовать&nbsp;заданный&nbsp;каталог&nbsp;path&nbsp;для&nbsp;BIOS,&nbsp;VGA&nbsp;BIOS&nbsp;и&nbsp;keymaps.
+<p>
+</p></dd><dt><b>-std-vga</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Эмулировать&nbsp;стандартный&nbsp;VGA-адаптер&nbsp;с&nbsp;расширениями&nbsp;Bochs&nbsp;VBE&nbsp;(по&nbsp;умолчанию&nbsp;Cirrus&nbsp;Logic&nbsp;GD5446&nbsp;PCI&nbsp;VGA).&nbsp;Если&nbsp;гостевая&nbsp;
+операционная система поддерживает VBE-расширения VESA 2.0 (например, Windows XP), и вы хотите использовать большие 
+разрешения (&gt;= 1280x1024x16), нужно включить эту опцию. 
+</dd><dt><b>-no-acpi</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Отключить&nbsp;поддержку&nbsp;ACPI&nbsp;(Advanced&nbsp;Configuration&nbsp;and&nbsp;Power&nbsp;Interface).&nbsp;&nbsp;Нужно&nbsp;использовать&nbsp;только&nbsp;если&nbsp;у&nbsp;гостевых&nbsp;систем&nbsp;
+проблемы с ACPI (только при эмуляции PC). 
+</dd><dt><b>-no-reboot</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Завершиться&nbsp;вместо&nbsp;перезагрузки.
+<p>
+</p></dd><dt><b>-loadvm file</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Начать&nbsp;с&nbsp;сохранённого&nbsp;ранее&nbsp;состояния&nbsp;("loadvm"&nbsp;в&nbsp;мониторе)
+<p>
+</p></dd><dt><b>-semihosting</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Включить&nbsp;эмуляцию&nbsp;semihosting&nbsp;syscall&nbsp;(только&nbsp;для&nbsp;ARM&nbsp;и&nbsp;M68K).
+<p>
+</p><dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;На&nbsp;ARM&nbsp;это&nbsp;реализует&nbsp;интерфейс&nbsp;"Angel".&nbsp;На&nbsp;M68K&nbsp;через&nbsp;libgloss&nbsp;реализуется&nbsp;"ColdFire&nbsp;GDB".&nbsp;.RE
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Обратите&nbsp;внимание,&nbsp;что&nbsp;это&nbsp;позволяет&nbsp;гостевым&nbsp;системам&nbsp;напрямую&nbsp;обращаться&nbsp;к&nbsp;файловой&nbsp;системе&nbsp;хоста,&nbsp;поэтому&nbsp;такой&nbsp;метод&nbsp;
+можно использовать только с операционными системами, которым вы доверяете. .RE
+<p>
+В ходе графической эмуляции можно использовать такие комбинации клавиш:
+</p><p>
+</p><dl compact="">
+<dt><b>Ctrl-Alt-f</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Переключиться&nbsp;в&nbsp;полноэкранный&nbsp;режим
+<p>
+</p></dd><dt><b>Ctrl-Alt-n</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Переключиться&nbsp;на&nbsp;виртуальную&nbsp;консоль&nbsp;<i>n</i>.&nbsp;Стандартная&nbsp;привязка&nbsp;консолей&nbsp;такая:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;Дисплей&nbsp;эмулируемой&nbsp;системы
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;Монитор&nbsp;QEMU
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;Последовательный&nbsp;порт
+</dd></dl>
+
+<p>
+</p></dd><dt><b>Ctrl-Alt</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Включить/выключить&nbsp;захват&nbsp;мыши&nbsp;и&nbsp;клавиатуры.
+<p>
+В виртуальных консолях, для того чтобы просмотреть более ранние записи, нужно использовать Ctrl-Up, Ctrl-Down, Ctrl-PageUp 
+и Ctrl-PageDown. 
+В ходе эмуляции, если используется опция 
+</p><dl compact=""><dt></dt><dd>
+<pre>-nographic
+</pre>
+
+</dd></dl>
+
+, список терминальных команд можно получить при помощи Ctrl-a h:
+<p>
+</p></dd><dt><b>Ctrl-a h</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Показать&nbsp;эту&nbsp;справку
+<p>
+</p></dd><dt><b>Ctrl-a x</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Завершить&nbsp;эмулятор
+<p>
+</p></dd><dt><b>Ctrl-a s</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сохранить&nbsp;данные&nbsp;диска&nbsp;в&nbsp;файл&nbsp;(если&nbsp;-snapshot)
+<p>
+</p></dd><dt><b>Ctrl-a t</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;включить/выключить&nbsp;временные&nbsp;пометки&nbsp;при&nbsp;записи&nbsp;в&nbsp;консоли&nbsp;(console&nbsp;timestamps)
+<p>
+</p></dd><dt><b>Ctrl-a b</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Отправить&nbsp;break&nbsp;(magic&nbsp;sysrq&nbsp;в&nbsp;Linux)
+<p>
+</p></dd><dt><b>Ctrl-a c</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Переключиться&nbsp;между&nbsp;монитором&nbsp;и&nbsp;консолью
+<p>
+</p></dd><dt><b>Ctrl-a Ctrl-a</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Отправить&nbsp;Ctrl-a
+<p>
+Эти опции специфичны для эмуляции PowerPC:
+</p><p>
+</p></dd><dt><b>-g WxH[xDEPTH]</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Установить&nbsp;начальный&nbsp;VGA-режиме.&nbsp;По&nbsp;умолчанию&nbsp;800x600x15.
+<p>
+</p><dl compact=""><dt></dt><dd>
+<br>&nbsp;Эти&nbsp;опции&nbsp;относятся&nbsp;только&nbsp;к&nbsp;эмуляции&nbsp;Sparc32:
+</dd></dl>
+
+<p>
+</p></dd><dt><b>-g WxHx[xDEPTH]</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Установить&nbsp;начальный&nbsp;графический&nbsp;режим&nbsp;TCX.&nbsp;По&nbsp;умолчанию&nbsp;1024x768x8,&nbsp;сейчас&nbsp;единственно&nbsp;возможный&nbsp;другой&nbsp;режим&nbsp;1024x768x24.&nbsp;
+<p>
+</p></dd><dt><b>-prom-env string</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Установить&nbsp;в&nbsp;NVRAM&nbsp;переменные&nbsp;OpenBIOS,&nbsp;например:
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>                   qemu-system-sparc -prom-env 'auto-boot?=false' \
+                    -prom-env 'boot-device=sd(0,2,0):d' -prom-env 'boot-args=linux single'
+
+</pre>
+
+</dd></dl>
+
+</dd><dt><b>-M [SS-5|SS-10|SS-20|SS-600MP|SS-2|SS-1000|SS-2000]</b>
+
+</dt><dd>
+<br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Установить&nbsp;тип&nbsp;эмулируемой&nbsp;машины.&nbsp;По&nbsp;умолчанию&nbsp;SS-5.
+<p>
+</p></dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+
+<a name="lbAK">&nbsp;</a>
+<h2>См.также</h2>
+
+<p>
+
+</p><p>
+В документации по QEMU в формате HTML можно найти 
+более полную и детальную информацию.
+</p><p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>Автор</h2>
+
+<p>
+
+Фабрис Беллар (Fabrice Bellard)
+</p><p>
+<a name="lbAM">&nbsp;</a>
+</p><h2> Перевод </h2>
+
+<p>
+
+</p><p>
+<br>
+
+<br>&nbsp;&nbsp;*&nbsp;&nbsp;Игорь&nbsp;Чубин&nbsp;&lt;igor&nbsp;ar&nbsp;chub.in&gt;
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">Имя</a></dt><dd>
+</dd><dt><a href="#lbAC">Синтаксис</a></dt><dd>
+</dd><dt><a href="#lbAD">Описание</a></dt><dd>
+</dd><dt><a href="#lbAE">Опции</a></dt><dd>
+<dl>
+<dt><a href="#lbAF">Общие опции</a></dt><dd>
+</dd><dt><a href="#lbAG">Опции визуализации</a></dt><dd>
+</dd><dt><a href="#lbAH"> Опции USB </a></dt><dd>
+</dd><dt><a href="#lbAI">Опции сети</a></dt><dd>
+</dd><dt><a href="#lbAJ">Отладочные опции (для экспертов)</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAK">См.также</a></dt><dd>
+</dd><dt><a href="#lbAL">Автор</a></dt><dd>
+</dd><dt><a href="#lbAM"> Перевод </a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="qemu" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

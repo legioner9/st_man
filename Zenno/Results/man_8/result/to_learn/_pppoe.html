@@ -1,0 +1,531 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN pppoe (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, pppoe"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="pppoe" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">pppoe (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=pppoe&amp;category=8&amp;russian=0"><u>pppoe</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=pppoe&amp;category=8&amp;russian=2"><u>pppoe</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/pppoe.html"><u>pppoe</u></a> обнаружен в базе ключевых слов.</font></li>
+
+
+<h1><a name="имя" id="имя">ИМЯ</a></h1>
+<div class="level1">
+
+<p>
+
+pppoe - PPPoE-клиент, работающий в пространстве пользователя
+</p>
+
+</div>
+
+<h1><a name="обзор" id="обзор">ОБЗОР</a></h1>
+<div class="level1">
+
+<p>
+
+pppd pty 'pppoe [опции_pppoe]' [опции_pppd]
+</p>
+
+<p>
+pppoe -A [опции_pppoe]
+</p>
+
+</div>
+
+<h1><a name="описание" id="описание">ОПИСАНИЕ</a></h1>
+<div class="level1">
+
+<p>
+
+pppoe - это PPPoE-клиент (Point-to-Point Protocol over Ethernet) для Linux и других UNIX-систем, работающий в пространстве пользователя. pppoe работает совместно с pppd - демоном PPP, чтобы создать PPP-соединение через Ethernet, которое используется многими DSL-провайдерами.
+</p>
+
+</div>
+
+<h1><a name="опции" id="опции">ОПЦИИ</a></h1>
+<div class="level1">
+
+</div>
+
+<h2><a name="i_интерфейс" id="i_интерфейс">-I интерфейс</a></h2>
+<div class="level2">
+
+<p>
+
+Опция -I указывает используемый Ethernet-интерфейс. В Linux это обычно eth0 или eth1. Интерфейс должен быть поднят перед запуском pppoe, но на нём не должен быть настроен IP-адрес.
+</p>
+
+</div>
+
+<h2><a name="t_тайм-аут" id="t_тайм-аут">-T тайм-аут</a></h2>
+<div class="level2">
+
+<p>
+
+Опция -T заставляет pppoe выйти, если в течение тайм-аут секунд в сеансе не обнаружен трафик. Я рекомендую чтобы вы использовали эту опцию как дополнительную меру безопасности. Но если вы используете эту опцию, вы должны убедиться, что PPP генерирует достаточно трафика, так чтобы тайм-аут обычно не срабатывал. Лучший способ достичь этого - использовать опцию <a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">lcp-echo-interval</a> pppd. Вы должны установить тайм-аут PPPoE примерно в 4 раза больше интервала LCP-эхо.
+</p>
+
+</div>
+
+<h2><a name="d_имя_файла" id="d_имя_файла">-D имя_файла</a></h2>
+<div class="level2">
+
+<p>
+
+Опция -D заставляет сбрасывать каждый пакет в файл с именем имя_файла. Предполагается использовать её только для отладки; она выводит большое количество информации и сильно уменьшает производительность.
+</p>
+
+</div>
+
+<h2><a name="v" id="v">-V</a></h2>
+<div class="level2">
+
+<p>
+
+Опция -V заставляет pppoe напечатать номер его версии и выйти.
+</p>
+
+</div>
+
+<h2><a name="a" id="a">-A</a></h2>
+<div class="level2">
+
+<p>
+
+Опция -A заставляет pppoe отправить пакет PADI и затем печатает имена концентраторов доступа из каждого принятого пакета PADO. Не используйте эту опцию совместно с pppd, опция -A предназначена только для интерактивного использования, чтобы получить интересующую информацию о концентраторе доступа.
+</p>
+
+</div>
+
+<h2><a name="s_имя_службы" id="s_имя_службы">-S имя_службы</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает имя желаемой службы. pppoe начнёт установку сеанса только с тем концентратором доступа, который может предоставить указанную службу. В большинстве случаев вы не должны указывать эту опцию. Используйте её только если вы знаете, что имеется несколько концентраторов доступа или знаете, что вам нужно определённое имя службы.
+</p>
+
+</div>
+
+<h2><a name="c_имя_концентратора_доступа" id="c_имя_концентратора_доступа">-C имя_концентратора_доступа</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает имя желаемого концентратора доступа. pppoe начнёт установку сеанса с указанным концентратором доступа. В большинстве случаев вы не должны указывать эту опцию. Используйте её только если вы знаете, что имеется несколько концентраторов доступа. Если указаны обе опции, <span class="curid"><a href="?topic=pppoe&amp;category=8" class="wikilink1" title="man:pppoe_8">-S</a></span> и -C, они обе должны подойти, чтобы pppoe начал установку сеанса.
+</p>
+
+</div>
+
+<h2><a name="u" id="u">-U</a></h2>
+<div class="level2">
+
+<p>
+
+Заставляет pppoe использовать метку Host-Uniq в своих пакетах обнаружения. Это позволит запустить несколько pppoe демонов, не создавая помехи наложением пакетов обнаружения. Вы должны снабдить этой опцией всех демонов pppoe, если вы собираетесь запустить несколько демонов одновременно.
+</p>
+
+</div>
+
+<h2><a name="s" id="s">-s</a></h2>
+<div class="level2">
+
+<p>
+
+Заставляет pppoe использовать синхронную инкапсуляцию PPP. Если вы используете эту опцию, тогда вы должны использовать опцию sync в pppd. Предпочтительно использовать эту опцию если она работает, потому что она сильно снижает накладные расходы CPU на pppoe. Однако она МОЖЕТ быть ненадёжной на медленных машинах  существует соревнование между записью данных pppd и чтением их pppoe. Если вы обнаружите ошибки или аварийные завершения программ при использовании синхронного PPP, отключите его  не пишите мне о поддержке!
+</p>
+
+</div>
+
+<h2><a name="m_mss" id="m_mss">-m MSS</a></h2>
+<div class="level2">
+
+<p>
+
+Заставляет pppoe фиксировать максимальный размер сегмента TCP на заданном значении. Поскольку из-за накладных расходов PPPoE максимальный размер сегмента PPPoE меньше, чем при нормальной инкапсуляции Ethernet. Это может вызывать проблемы на компьютерах в локальной сети за пределами шлюза, использующего PPPoE. Если у вас имеется локальная сеть за шлюзом, и шлюз подключается к Интернет посредством PPPoE, строго рекомендуется использовать опцию -m 1412. Это позволит не устанавливать MTU на всех узлах в локальной сети.
+</p>
+
+</div>
+
+<h2><a name="h_mac" id="h_mac">-H MAC</a></h2>
+<div class="level2">
+
+<p>
+
+Заставляет pppoe использовать указанный Ethernet MAC-адрес в качестве исходного адреса для отправки пакетов. MAC должен быть указан в виде AA:BB:CC:DD:EE:FF. Если указана эта опция, pppoe переведёт интерфейс в неразборчивый режим.
+</p>
+
+</div>
+
+<h2><a name="p_файл" id="p_файл">-p файл</a></h2>
+<div class="level2">
+
+<p>
+
+Заставляет pppoe записывать его идентификатор процесса в указанный файл. Это можно использовать для поиска и принудительного завершения процессов pppoe.
+</p>
+
+</div>
+
+<h2><a name="e_sessmac" id="e_sessmac">-e sess:mac</a></h2>
+<div class="level2">
+
+<p>
+
+Заставляет pppoe пропускать фазу обнаружения и перейти прямо к фазе сеанса. Сеанс задаётся идентификатором sess и MAC-адресом партнёра, указанным в mac. Этот режим не предназначен для нормального использования; он предназначен только для <a href="?topic=pppoe-server&amp;category=8" class="wikilink1" title="man:pppoe-server_8">pppoe-server(8)</a>.
+</p>
+
+</div>
+
+<h2><a name="n" id="n">-n</a></h2>
+<div class="level2">
+
+<p>
+
+Заставляет pppoe не открывать сокет обнаружения. Этот режим не предназначен для нормального использования; он предназначен только для <a href="?topic=pppoe-server&amp;category=8" class="wikilink1" title="man:pppoe-server_8">pppoe-server(8)</a>.
+</p>
+
+</div>
+
+<h2><a name="k" id="k">-k</a></h2>
+<div class="level2">
+
+<p>
+
+Заставляет pppoe завершить существующий сеанс отправкой кадра PADT, и затем выйти. Вы должны использовать опцию -e совместно с этой опцией для указания завершаемого сеанса. Это может быть использовано для закрытия сеансов, когда партнёр имеет ошибки в реализации процедуры завершения сеанса.
+</p>
+
+</div>
+
+<h2><a name="d" id="d">-d</a></h2>
+<div class="level2">
+
+<p>
+
+Заставляет pppoe произвести обнаружение, вывести информацию о сеансе и завершить работу. Информация о сеансе печатается в соответствии с форматом, ожидаемым опцией <span class="curid"><a href="?topic=pppoe&amp;category=8" class="wikilink1" title="man:pppoe_8">-e</a></span>. Эта опция позволяет вам начать обнаружение PPPoE, произвести некоторую другую работу, и затем начать действующий сеанс PPP. Будьте аккуратны; если вы используете эту опцию в цикле, вы можете создать много сеансов, которые могут раздражать вашего партнёра.
+</p>
+
+</div>
+
+<h2><a name="f_discsess" id="f_discsess">-f disc:sess</a></h2>
+<div class="level2">
+
+<p>
+
+Опция -f задаёт типы кадров Ethernet для кадров обнаружения и кадров сеансов PPPoE. Типы указываются как шестнадцатеричные числа, разделённые двоеточиями. Стандарт PPPoE использует типы кадров 8863:8864. Вы не должны использовать эту опцию, если вы не абсолютно уверены, что ваш партнёр работает с использованием нестандартных типов кадров. Если ваш провайдер использует нестандартные типы кадров, жалуйтесь!
+</p>
+
+</div>
+
+<h2><a name="h" id="h">-h</a></h2>
+<div class="level2">
+
+<p>
+
+Опция -h заставляет pppoe напечатать информацию об использовании и завершить работу.
+</p>
+
+</div>
+
+<h1><a name="за_кулисами_pppoe" id="за_кулисами_pppoe">ЗА КУЛИСАМИ PPPOE</a></h1>
+<div class="level1">
+
+<p>
+
+PPPoE (Point-to-Point over Ethernet) описан в <a href="/dokuwiki/man/rfc2516?DokuWiki=8aa08756d5e1d3c71855fb0bbaf260c0" class="wikilink2" title="man:rfc2516" rel="nofollow">RFC2516</a> и является протоколом, который предоставляет абстракцию сеанса, работающего поверх соединённых мостом Ethernet-сетей.
+</p>
+
+<p>
+PPPoE работает инкапсулируя кадры PPP в кадры Ethernet. Протокол имеет два чётких этапа: этап обнаружения и этап сеанса.
+</p>
+
+<p>
+На этапе обнаружения узел отправляет широковещательно особый кадр PADI (PPPoE Active Discovery Initiation) для обнаружения любых концентраторов доступа. Концентраторы доступа (обычно только один концентратор доступа) отвечают пакетами PADO (PPPoE Active Discovery Offer), анонсируя присутствие и предоставляемые ими службы. Узел выбирает один из концентраторов доступа и передаёт пакет PADR (PPPoE Active Discovery Request), запрашивающий сеанс. Концентратор доступа отвечает пакетом PADS (PPPoE Active Discovery Session-Confirmation). Затем протокол переходит на этап сеанса.
+</p>
+
+<p>
+На этапе сеанса узел и концентратор доступа обмениваются кадрами PPP вложенными в кадры Ethernet. Обычный MTU Ethernet - 1500 байт, но PPPoE добавляет к накладным расходам PPP-кадра два байта, что означает что наибольший MTU PPP-интерфейса - 1492 байта. Это приводит к различным проблемам, если вы используете Linux-машину как фильтрующий шлюз, и интерфейс за пакетным фильтром имеет MTU больше 1492. Фактически, для безопасности, я рекомендую установить на машины за фильтрующим шлюзом MTU 1412, чтобы в наихудшем случае разрешить TCP и IP опции в соответствующих заголовках.
+</p>
+
+<p>
+Обычно PPP использует LCP (Link Control Protocol - Протокол Управления Каналом) чтобы завершить канал PPP. Однако спецификация PPPoE разрешает завершать канал с помощью специального пакета PADT (PPPoE Active Discovery Terminate). Этот клиент распознаёт этот пакет и пытается завершиться корректно, если был принят запрос завершения сеанса PPP.
+</p>
+
+</div>
+
+<h1><a name="цели_проектирования" id="цели_проектирования">ЦЕЛИ ПРОЕКТИРОВАНИЯ</a></h1>
+<div class="level1">
+
+<p>
+
+Мои цели для этого PPPoE клиента были следующими, в порядке убывания важности:
+
+</p>
+<ul>
+<li class="level1"><div class="li"> Он должен работать.</div>
+</li>
+<li class="level1"><div class="li"> Он должен быть программой, работающей в пространстве пользователя, а не частью ядра.</div>
+</li>
+<li class="level1"><div class="li"> Код должен быть прост для чтения и сопровождения.</div>
+</li>
+<li class="level1"><div class="li"> Он должен быть полностью совместим с <a href="/dokuwiki/man/rfc2516?DokuWiki=8aa08756d5e1d3c71855fb0bbaf260c0" class="wikilink2" title="man:rfc2516" rel="nofollow">RFC2516</a>, предложенным стандартом PPPoE.</div>
+</li>
+<li class="level1"><div class="li"> Он никогда не должен зависать  если соединение повреждено, он может обнаружить это и выйти, позволяя сценарию-обёртке (wrapper) перезапустить соединение.</div>
+</li>
+<li class="level1"><div class="li"> Он должен быть довольно эффективным.</div>
+</li>
+</ul>
+
+<p>
+
+Я верю, что я достиг всех этих целей, но (конечно) открыт для предложений, исправлений и идей. Посетите мою домашнюю страницу <a href="http://www.roaringpenguin.com" class="urlextern" title="http://www.roaringpenguin.com" rel="nofollow">http://www.roaringpenguin.com</a>, чтобы узнать контактную информацию.
+</p>
+
+</div>
+
+<h1><a name="замечания" id="замечания">ЗАМЕЧАНИЯ</a></h1>
+<div class="level1">
+
+<p>
+
+Для наилучших результатов, вы должны задать pppd опцию mtu 1492. Я наблюдал проблемы с чрезмерно большими кадрами, если я не устанавливал эту опцию. Также, если pppoe запущен на фильтрующем шлюзе, все машины за фильтрующим шлюзом должны иметь MTU 1412.
+</p>
+
+<p>
+Если у вас есть проблемы, проверьте системные журналы. pppoe журналирует интересную информацию в системный журнал. Вы можете включить журналирование сообщений уровня отладки для получения полной диагностики.
+</p>
+
+</div>
+
+<h1><a name="авторы" id="авторы">АВТОРЫ</a></h1>
+<div class="level1">
+
+<p>
+
+pppoe был написан Дэвидом Ф. Сколлом (David F. Skoll) <a href="mailto:dfs@roaringpenguin.com" class="mail JSnocheck" title="dfs@roaringpenguin.com">dfs@roaringpenguin.com</a>, который был вдохновлён более ранними версиями Люка Страса (Luke Stras).
+</p>
+
+<p>
+Домашняя страница pppoe - <a href="http://www.roaringpenguin.com/pppoe/" class="urlextern" title="http://www.roaringpenguin.com/pppoe/" rel="nofollow">http://www.roaringpenguin.com/pppoe/</a>.
+</p>
+
+</div>
+
+<h1><a name="автор_перевода" id="автор_перевода">АВТОР ПЕРЕВОДА</a></h1>
+<div class="level1">
+
+<p>
+
+Перевод на русский язык выполнил Владимир Ступин <a href="mailto:wheelof@gmail.com" class="mail JSnocheck" title="wheelof@gmail.com">wheelof@gmail.com</a>
+</p>
+
+</div>
+
+<h1><a name="смотри_также" id="смотри_также">СМОТРИ ТАКЖЕ</a></h1>
+<div class="level1">
+
+<p>
+
+<a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">pppd(8)</a>, <a href="?topic=pppoe-sniff&amp;category=8" class="wikilink1" title="man:pppoe-sniff_8">pppoe-sniff(8)</a>, <a href="?topic=pppoe-server&amp;category=8" class="wikilink1" title="man:pppoe-server_8">pppoe-server(8)</a>, <a href="?topic=pppoe-relay&amp;category=8" class="wikilink1" title="man:pppoe-relay_8">pppoe-relay(8)</a>, /usr/share/doc/pppoe/README.Debian.gz
+
+</p>
+
+</div>
+
+        
+      
+    
+      <div class="stylefoot">
+        <div class="meta">
+          <div class="user">
+                    </div>
+          <div class="doc">
+          man/pppoe_8.txt · Последние изменения: 2009-02-05 20:24 (внешнее изменение)          </div>
+        </div>
+      </div>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="pppoe" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

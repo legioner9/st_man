@@ -1,0 +1,2813 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ip (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ip"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ip" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ip (8)</font><hr><li> <a href="/man.shtml?topic=ip&amp;category=1&amp;russian=0"><u>ip</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=ip&amp;category=4&amp;russian=1"><u>ip</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=ip&amp;category=4&amp;russian=2"><u>ip</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=ip&amp;category=7&amp;russian=4"><u>ip</u></a> (7) <font color="#555555"> ( Solaris man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=ip&amp;category=7&amp;russian=0"><u>ip</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=ip&amp;category=7&amp;russian=2"><u>ip</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ip&amp;category=8&amp;russian=0"><u>ip</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=ip&amp;category=8&amp;russian=2"><u>ip</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/ip.html"><u>ip</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+ip - показ и управление маршрутизацией, сетевыми интерфейсами и туннелями
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<p>
+
+
+<br>
+
+<b>ip</b>
+
+[ <i>ОПЦИИ</i> ] <i>ОБЪЕКТ</i> { <i>КОМАНДА</i> | 
+
+<b>help</b> }
+
+</p><p>
+</p><p>
+<br>
+
+<i>ОБЪЕКТ</i> := { 
+
+<b>link</b> | <b>addr</b> | <b>route</b> | <b>rule</b> | <b>neigh</b> | <b>tunnel</b> | maddr<b> | </b>mroute<b> | </b>monitor<b> }</b>
+
+</p><p>
+</p><p>
+<br>
+
+<i>ОПЦИИ</i> := { 
+
+<b>-V</b>[<i>ersion</i>] |
+<b>-s</b>[<i>tatistics</i>] |
+<b>-r</b>[<i>esolve</i>] |
+<b>-f</b>[<i>amily</i>] {
+<b>inet</b> | <b>inet6</b> | <b>ipx</b> | <b>dnet</b> | <b>link</b> } | 
+
+<b>-o</b>[<i>neline</i>] }
+</p><p>
+<br>
+
+<b>ip link set </b><i>ИНТЕРФЕЙС</i>
+
+{ <b>up</b> | <b>down</b> | <b>arp</b> { <b>on</b> | <b>off</b> } |
+
+<br>
+
+<b>promisc</b> { <b>on</b> | <b>off</b> } |
+
+<br>
+
+<b>allmulti</b> { <b>on</b> | <b>off</b> } |
+
+<br>
+
+<b>dynamic</b> { <b>on</b> | <b>off</b> } |
+
+<br>
+
+<b>multicast</b> { <b>on</b> | <b>off</b> } |
+
+<br>
+
+<b>txqueuelen</b>
+
+<i>КОЛИЧЕСТВО_ПАКЕТОВ</i> |
+
+<br>
+
+<b>name</b>
+
+<i>НОВОЕ_ИМЯ</i> |
+
+<br>
+
+<b>address</b>
+
+<i>LLADDR</i> |
+
+<b>broadcast </b>
+
+<i>LLADDR</i> |
+
+<br>
+
+<b>mtu</b>
+
+<i>MTU</i> }
+
+</p><p>
+<br>
+
+<b>ip link show</b>
+
+[ <i>ИНТЕРФЕЙС</i> ]
+
+</p><p>
+<br>
+
+<b>ip addr</b> { <b>add</b> | <b>del</b> } 
+
+<i>IFADDR</i><b> dev </b><i>СТРОКА</i>
+
+</p><p>
+<br>
+
+<b>ip addr</b> { <b>show</b> | <b>flush</b> } [ <b>dev</b>
+
+<i>СТРОКА</i> ] [ 
+
+<b>scope</b>
+
+<i>SCOPE-ID</i> ] [ 
+
+<b>to </b>
+
+<i>ПРЕФИКС</i> ] [ <i>СПИСОК_ФЛАГОВ</i> ] [ 
+
+<b>label</b>
+
+<i>ШАБЛОН</i> ]
+
+</p><p>
+<br>
+
+<i>IFADDR</i> := <i>ПРЕФИКС</i> | <i>ADDR</i>
+
+<b>peer</b>
+
+<i>ПРЕФИКС</i> [ 
+
+<b>broadcast</b>
+
+<i>АДРЕС</i> ] [ 
+
+<b>anycast</b>
+
+<i>АДРЕС</i> ] [ 
+
+<b>label</b>
+
+<i>СТРОКА</i> ] [ 
+
+<b>scope</b>
+
+<i>SCOPE-ID</i> ]
+
+</p><p>
+<br>
+
+<i>SCOPE-ID</i> := 
+
+[ <b>host</b> | <b>link</b> | <b>global</b> | 
+
+<i>ЧИСЛО</i> ]
+
+</p><p>
+<br>
+
+<i>СПИСОК_ФЛАГОВ</i> := [ <i>СПИСОК_ФЛАГОВ</i> ] <i>ФЛАГ</i>
+
+</p><p>
+<br>
+
+<i>ФЛАГ</i> := 
+
+[ <b>permanent</b> | <b>dynamic</b> | <b>secondary</b> | <b>primary</b> | tentative<b> | </b>deprecated<b> ]</b>
+
+</p><p>
+<br>
+
+<b>ip route</b> { 
+
+<b>list</b> | <b>flush</b> } 
+
+<i>СЕЛЕКТОР</i>
+
+</p><p>
+<br>
+
+<b>ip route get </b>
+
+<i>АДРЕС</i> [ 
+
+<b>from</b><i> АДРЕС </i><b>iif</b><i> СТРОКА</i>
+
+ ] [ <b>oif</b>
+
+<i>СТРОКА</i> ] [ 
+
+<b>tos</b>
+
+<i>TOS</i> ]
+
+</p><p>
+<br>
+
+<b>ip route</b> { <b>add</b> | <b>del</b> | <b>change</b> | <b>append</b> | replace<b> | </b>monitor<b> } </b>
+
+<i>МАРШРУТ</i>
+
+</p><p>
+<br>
+
+<i>СЕЛЕКТОР</i> := 
+
+[ <b>root</b>
+
+<i>ПРЕФИКС</i> ] [ 
+
+<b>match</b>
+
+<i>ПРЕФИКС</i> ] [ 
+
+<b>exact</b>
+
+<i>ПРЕФИКС</i> ] [ 
+
+<b>table</b>
+
+<i>TABLE_ID</i> ] [ 
+
+<b>proto</b>
+
+<i>RTPROTO</i> ] [ 
+
+<b>type</b>
+
+<i>ТИП</i> ] [ 
+
+<b>scope</b>
+
+<i>ДИАПАЗОН</i> ]
+
+</p><p>
+<br>
+
+<i>МАРШРУТ</i> := <i>NODE_SPEC</i> [ <i>INFO_SPEC</i> ]
+
+</p><p>
+<br>
+
+<i>NODE_SPEC</i> := [ <i>ТИП</i> ] <i>ПРЕФИКС</i> [
+
+<b>tos</b>
+
+<i>TOS</i> ] [ 
+
+<b>table</b>
+
+<i>TABLE_ID</i> ] [ 
+
+<b>proto</b>
+
+<i>RTPROTO</i> ] [ 
+
+<b>scope</b>
+
+<i>ДИАПАЗОН</i> ] [ 
+
+<b>metric</b>
+
+<i>МЕТРИКА</i> ]
+
+</p><p>
+<br>
+
+<i>INFO_SPEC</i> := <i>ФЛАГИ ПАРАМЕТРОВ NH</i> [
+
+<b>nexthop</b>
+
+<i>NH</i> ] ...
+
+</p><p>
+<br>
+
+<i>NH</i> := [ 
+
+<b>via</b>
+
+<i>АДРЕС</i> ] [ 
+
+<b>dev</b>
+
+<i>СТРОКА</i> ] [ 
+
+<b>weight</b>
+
+<i>ЧИСЛО</i> ] <i>NHFLAGS</i>
+
+</p><p>
+<br>
+
+<i>OPTIONS</i> := <i>FLAGS</i> [ 
+
+<b>mtu</b>
+
+<i>ЧИСЛО</i> ] [ 
+
+<b>advmss</b>
+
+<i>ЧИСЛО</i> ] [ 
+
+<b>rtt</b>
+
+<i>ЧИСЛО</i> ] [ 
+
+<b>rttvar</b>
+
+<i>ЧИСЛО</i> ] [ 
+
+<b>window</b>
+
+<i>ЧИСЛО</i> ] [ 
+
+<b>cwnd</b>
+
+<i>ЧИСЛО</i> ] [ 
+
+<b>ssthresh</b>
+
+<i>REALM</i> ] [ 
+
+<b>realms</b>
+
+<i>REALM</i> ]
+
+</p><p>
+<br>
+
+<i>ТИП</i> := [ 
+
+<b>unicast</b> | <b>local</b> | <b>broadcast</b> | <b>multicast</b> | throw<b> | </b>unreachable<b> | </b>prohibit<b> | </b>blackhole<b> | </b>nat<b> ]</b>
+
+</p><p>
+<br>
+
+<i>TABLE_ID</i> := [ 
+
+<b>local</b>| <b>main</b> | <b>default</b> | <b>all</b> |
+
+<i>ЧИСЛО</i> ]
+
+</p><p>
+<br>
+
+<i>ДИАПАЗОН</i> := [ 
+
+<b>host</b> | <b>link</b> | <b>global</b> |
+
+<i>ЧИСЛО</i> ]
+
+</p><p>
+<br>
+
+<i>ФЛАГИ</i> := [ 
+
+<b>equalize</b> ]
+
+</p><p>
+<br>
+
+<i>NHFLAGS</i> := [ 
+
+<b>onlink</b> | <b>pervasive</b> ]
+
+</p><p>
+<br>
+
+<i>RTPROTO</i> := [ 
+
+<b>kernel</b> | <b>boot</b> | <b>static</b> |
+
+<i>ЧИСЛО</i> ]
+
+</p><p>
+<br>
+
+<b>ip rule</b>
+
+ [ <b>list</b> | <b>add</b> | <b>del</b> | <b>flush</b> ]
+
+<i>СЕЛЕКТОР ДЕЙСТВИЕ</i>
+
+</p><p>
+<br>
+
+<i>СЕЛЕКТОР</i> := [ 
+
+<b>from</b>
+
+<i>ПРЕФИКС</i> ] [ 
+
+<b>to</b>
+
+<i>ПРЕФИКС</i> ] [ 
+
+<b>tos</b>
+
+<i>TOS</i> ] [ 
+
+<b>fwmark</b>
+
+<i>FWMARK[/МАСКА]</i> ] [ 
+
+<b>dev</b>
+
+<i>СТРОКА</i> ] [ 
+
+<b>pref</b>
+
+<i>ЧИСЛО</i> ]
+
+</p><p>
+<br>
+
+<i>ДЕЙСТВИЕ</i> := [ 
+
+<b>table</b>
+
+<i>TABLE_ID</i> ] [ 
+
+<b>nat</b>
+
+<i>АДРЕС</i> ] [ 
+
+<b>prohibit</b> | <b>reject</b> | <b>unreachable</b> ] [ <b>realms</b>
+
+[<i>SRCREALM</i>/]<i>DSTREALM</i> ]
+
+</p><p>
+<br>
+
+<i>TABLE_ID</i> := [ 
+
+<b>local</b> | <b>main</b> | <b>default</b> |
+
+<i>ЧИСЛО</i> ]
+
+</p><p>
+<br>
+
+<b>ip neigh</b> { <b>add</b> | <b>del</b> | <b>change</b> | <b>replace</b> } { 
+
+<i>АДРЕС</i> [ 
+
+<b>lladdr</b>
+
+<i>LLADDR</i> ] [ 
+
+<b>nud</b> { <b>permanent</b> | <b>noarp</b> | <b>stale</b> | <b>reachable</b> } ] | <b>proxy</b>
+
+<i>АДРЕС</i> } [ 
+
+<b>dev</b>
+
+<i>ИНТЕРФЕЙС</i> ]
+
+</p><p>
+<br>
+
+<b>ip neigh</b> { <b>show</b> | <b>flush</b> } [ <b>to</b>
+
+<i>ПРЕФИКС</i> ] [ 
+
+<b>dev</b>
+
+<i>ИНТЕРФЕЙС</i> ] [ 
+
+<b>nud</b>
+
+<i>СТАТУС</i> ]
+
+</p><p>
+<br>
+
+<b>ip tunnel</b> { <b>add</b> | <b>change</b> | <b>del</b> | <b>show</b> }
+
+[ <i>ИМЯ</i> ]
+
+<br>
+
+[ <b>mode</b> { <b>ipip</b> | <b>gre</b> | <b>sit</b> } ]
+
+<br>
+
+[ <b>remote</b>
+
+<i>АДРЕС</i> ] [ 
+
+<b>local</b>
+
+<i>АДРЕС</i> ]
+
+<br>
+
+[ [<b>i</b>|<b>o</b>]<b>seq</b> ] [ [<b>i</b>|<b>o</b>]<b>key</b>
+
+<i>КЛЮЧ</i> ] [ 
+
+[<b>i</b>|<b>o</b>]<b>csum</b> ] ]
+
+<br>
+
+[ <b>ttl</b>
+
+<i>TTL</i> ] [ 
+
+<b>tos</b>
+
+<i>TOS</i> ] [ 
+
+[<b>no</b>]<b>pmtudisc</b> ]
+
+<br>
+
+[ <b>dev</b>
+
+<i>PHYS_DEV</i> ]
+
+</p><p>
+<br>
+
+<i>АДРЕС</i> := { <i>АДРЕС_IP</i> |
+
+<b>any</b> }
+
+</p><p>
+<br>
+
+<i>TOS</i> := { <i>ЧИСЛО</i> |
+
+<b>inherit</b> }
+
+</p><p>
+<br>
+
+<i>TTL</i> := { <i>1</i>..<i>255</i> | 
+
+<b>inherit</b> }
+
+</p><p>
+<br>
+
+<i>КЛЮЧ</i> := { <i>DOTTED_QUAD</i> | <i>ЧИСЛО</i> }
+
+</p><p>
+<br>
+
+<b>ip maddr</b> [ <b>add</b> | <b>del</b> ]
+
+<i>MULTIADDR</i><b> dev </b><i>СТРОК</i>
+
+</p><p>
+<br>
+
+<b>ip maddr show</b> [ <b>dev</b>
+
+<i>СТРОКА</i> ]
+
+</p><p>
+<br>
+
+<b>ip mroute show</b> [
+
+<i>ПРЕФИКС</i> ] [ 
+
+<b>from</b>
+
+<i>ПРЕФИКС</i> ] [ 
+
+<b>iif</b>
+
+<i>ИНТЕРФЕЙС</i> ]
+
+</p><p>
+<br>
+
+<b>ip monitor</b> [ <b>all</b> |
+
+<i>СПИСОК_ОБЪЕКТОВ</i> ]
+
+
+
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПЦИИ</h2>
+
+<p>
+</p><dl compact="">
+<dt><b>-V</b>,<b> -Version</b>
+
+</dt><dd>
+вывести версию
+<b>ip</b>
+
+и выйти.
+<p>
+</p></dd><dt><b>-s</b>,<b> -stats,</b> -statistics
+
+</dt><dd>
+выводить больше информации. Если опция указывается два или больше раз,
+подробность выводимой информации увеличивается.
+<p>
+</p></dd><dt><b>-f</b>,<b> -family</b>
+
+</dt><dd>
+идентификатор протокола:
+<b>inet</b>,<b> inet6</b>
+
+или
+<b>link .</b>
+
+Если опция не указана, семейство протоколов будет определено из других опций.
+Если этих опций недостаточно, будет использовано семейство по умолчанию:
+<b>inet</b>
+
+или
+<b>any</b>(любой)<b>.</b>
+
+<b>link</b>
+
+- специальный идентификатор, означающий что сетевой протокол не задействован.
+<p>
+</p></dd><dt><b>-4</b>
+
+</dt><dd>
+сокращение для
+<b>-family inet</b>.
+
+<p>
+</p></dd><dt><b>-6</b>
+
+</dt><dd>
+сокращение для
+<b>-family inet6</b>.
+
+<p>
+</p></dd><dt><b>-0</b>
+
+</dt><dd>
+сокращение для
+<b>-family link</b>.
+
+<p>
+</p></dd><dt><b>-o</b>,<b> -oneline</b>
+
+</dt><dd>
+выводить каждую запись на отдельной строке, заменяя перевод строки на символ
+<b>'' .</b>
+
+Это удобно чтобы подсчитать количество записей командой
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=wc&amp;category=1">wc</a></b>(1)
+
+<br>&nbsp;или&nbsp;отфильтровать&nbsp;вывод&nbsp;командой
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=grep&amp;category=1">grep</a></b>(1)<b>.</b>
+
+<p>
+</p></dd><dt><b>-r</b>,<b> -resolve</b>
+
+</dt><dd>
+выводить имена хостов вместо IP-адресов.
+<p>
+</p></dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>СИНТАКСИС КОМАНД IP</h2>
+
+<p>
+<a name="lbAF">&nbsp;</a>
+</p><h3><i>ОБЪЕКТ</i>
+
+</h3>
+
+<p>
+</p><dl compact="">
+<dt><b>link</b>
+
+</dt><dd>
+- сетевой интерфейс.
+<p>
+</p></dd><dt><b>address</b>
+
+</dt><dd>
+- адрес на интерфейсе в соответствии с протоколом (IP или IPv6).
+</dd><dt><b>neighbour</b>
+
+</dt><dd>
+- запись кэша ARP или NDISC.
+<p>
+</p></dd><dt><b>route</b>
+
+</dt><dd>
+- запись таблицы маршрутизации.
+<p>
+</p></dd><dt><b>rule</b>
+
+</dt><dd>
+- правило маршрутизации.
+<p>
+</p></dd><dt><b>maddress</b>
+
+</dt><dd>
+- адрес multicast.
+<p>
+</p></dd><dt><b>mroute</b>
+
+</dt><dd>
+- запись кэша маршрутизации адреса multicast.
+<p>
+</p></dd><dt><b>tunnel</b>
+
+</dt><dd>
+- туннель IP.
+<p>
+</p></dd></dl>
+<p>
+
+Имена объектов могут быть указаны полностью или в сокращённой форме, например,
+<b>address</b>
+
+может быть сокращён до
+<b>addr</b>
+
+или до
+<b>a.</b>
+
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h3><i>КОМАНДА</i>
+
+</h3>
+
+<p>
+Указывает действие над объектом. Список доступных действий зависит от типа
+объекта.
+Как правило, доступны действия
+<b>add</b>,<b> delete</b>
+
+и
+<b>show</b>
+
+(или
+<b>list</b>
+
+), но некоторые объекты не поддерживают все эти действия или имеют другие
+действия и соглашения о синтаксисе параметров.
+</p><p>
+Если команда не указана, используется команда по умолчанию.
+Обычно это 
+<b>list</b>
+
+или, если невозможно получить список объектов этого класса,
+<b>help</b>.
+
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>ip link - настройка сетевого интерфейса</h2>
+
+<p>
+<b>link</b>
+
+- сетевой интерфейс и следующие команды показывают и изменяют его параметры.
+</p><p>
+<a name="lbAI">&nbsp;</a>
+</p><h3>ip link set - изменить параметры интерфейса</h3>
+
+<p>
+</p><dl compact="">
+<dt><b>dev</b><i> ИМЯ </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+<i>ИМЯ</i>
+
+определяет имя сетевого интерфейса.
+<p>
+</p></dd><dt><b>up</b> и <b>down</b>
+
+</dt><dd>
+изменяет состояние интерфейса на
+<b>ВКЛЮЧЕН</b>
+
+и
+<b>ВЫКЛЮЧЕН</b>.
+
+<p>
+</p></dd><dt><b>arp on </b>или<b> arp off</b>
+
+</dt><dd>
+изменяет флаг
+<b>NOARP</b>
+
+интерфейса.
+<p>
+</p></dd><dt><b>multicast on </b>или<b> multicast off</b>
+
+</dt><dd>
+изменяет флаг
+<b>MULTICAST</b>
+
+интерфейса.
+<p>
+</p></dd><dt><b>dynamic on </b>или<b> dynamic off</b>
+
+</dt><dd>
+изменяет флаг
+<b>DYNAMIC</b>
+
+интерфейса.
+<p>
+</p></dd><dt><b>name</b><i> ИМЯ</i>
+
+</dt><dd>
+изменить имя интерфейса. Эта операция не рекомендуется на работающем
+интерфейсе или интерфейсе с настроенными адресами.
+<p>
+</p></dd><dt><b>txqueuelen</b><i> ЧИСЛО</i>
+
+</dt><dd>
+</dd><dt><b>txqlen</b><i> ЧИСЛО</i>
+
+</dt><dd>
+изменить размер очереди передачи интерфейса.
+<p>
+</p></dd><dt><b>mtu</b><i> ЧИСЛО</i>
+
+</dt><dd>
+изменить  
+<i>MTU</i>
+
+интерфейса.
+<p>
+</p></dd><dt><b>address</b><i> LLАДРЕС</i>
+
+</dt><dd>
+изменить адрес станции интерфейса.
+<p>
+</p></dd><dt><b>broadcast</b><i> LLАДРЕС</i>
+
+</dt><dd>
+</dd><dt><b>brd</b><i> LLАДРЕС</i>
+
+</dt><dd>
+</dd><dt><b>peer</b><i> LLАДРЕС</i>
+
+</dt><dd>
+изменить широковещательный адрес или адрес канала для интерфейса
+<i>ТОЧКА-ТОЧКА</i>.
+
+<p>
+</p></dd></dl>
+<p>
+
+<b>Внимание:</b>
+
+Если изменяется сразу несколько параметров,
+<b>ip</b>
+
+прерывает работу, если любое из изменений завершилось с ошибкой.
+Это единственный случай, когда 
+<b>ip</b>
+
+может привести систему в нерабочее состояние. Чтобы этого не случилось, не
+изменяйте несколько параметров через
+<b>ip link set</b>
+
+за раз, если не уверены.
+</p><p>
+<a name="lbAJ">&nbsp;</a>
+</p><h3>ip link show - показать параметры интерфейса</h3>
+
+<p>
+</p><dl compact="">
+<dt><b>dev</b><i> ИМЯ </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+<i>ИМЯ</i>
+
+указывает интерфейс, параметры которого будут выведены.
+Если эта опция опущена, будут показаны параметры всех интерфейсов.
+<p>
+</p></dd><dt><b>up</b>
+
+</dt><dd>
+показать только запущенные интерфейсы.
+<p>
+</p></dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h2>ip address - управление адресом.</h2>
+
+<p>
+<b>address</b>
+
+обозначает адрес протокола (IP или IPv6), назначенный интерфейсу. Каждый
+интерфейс должен иметь как минимум один адрес для использования
+соответствующего протокола. Можно назначить несколько адресов, указав в опции
+<b>alias ,</b>
+
+но в данном документе это не рассматривается.
+</p><p>
+Команда 
+<b>ip addr</b>
+
+выводит адреса и их свойства, добавляет новые адреса и удаляет
+существующие.
+</p><p>
+<a name="lbAL">&nbsp;</a>
+</p><h3>ip address add - добавить новый адрес протокола.</h3>
+
+<p>
+</p><dl compact="">
+<dt><b>dev</b><i> ИМЯ</i>
+
+</dt><dd>
+имя интерфейса, которому назначается адрес.
+<p>
+</p></dd><dt><b>local</b><i> АДРЕС </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+адрес интерфейса. Формат адреса зависит от протокола: десятичные числа через
+точку для IP или шестнадцатеричные числа через двоеточие для IPv6. После
+<i>АДРЕСА</i>
+
+может быть указана маска подсети через '/'.
+<p>
+</p></dd><dt><b>peer</b><i> АДРЕС</i>
+
+</dt><dd>
+Адрес удалённой стороны для интерфейсов точка-точка.
+Точно также
+<i>АДРЕС</i>
+
+может быть указан с маской подсети. Если указан адрес peer, локальный адрес
+не может маску подсети, так как маска подсети назначается адресом 'peer'.
+<p>
+</p></dd><dt><b>broadcast</b><i> АДРЕС</i>
+
+</dt><dd>
+Широковещательный адрес интерфейса.
+<p>
+Можно указать специальные символы
+<b>'+'</b>
+
+и
+<b>'-'</b>
+
+вместо полного адреса. В этом случае, широковещательный адрес
+определяется из маски подсети установкой или снятием битов макси подсети.
+</p><p>
+</p></dd><dt><b>label</b><i> ИМЯ</i>
+
+</dt><dd>
+Каждый адрес может быть помечен строкой. Для сохранения совместимости с
+сетевыми алиасами Linux-2.0, эта строка должна совпадать с именем интерфейса
+или начинаться с имени интерфейса, после которого идёт двоеточие.
+<p>
+</p></dd><dt><b>scope</b><i> SCOPE_VALUE</i>
+
+</dt><dd>
+Диапазон области, которой соответствует адрес. Доступные диапазоны приведены в
+файле
+<b>/etc/iproute2/rt_scopes</b>.
+
+Предопределённые диапазоны:
+<p>
+
+<b>global</b>
+
+- глобальный адрес.
+</p><p>
+<b>site</b>
+
+- (только IPv6) локальный адрес сайта, т.е. действителен только в пределах
+этого сайта.
+</p><p>
+<b>link</b>
+
+- локальный адрес интерфейса, т.е. действителен только на этом интерфейсе.
+</p><p>
+<b>host</b>
+
+- адрес действителен только на этом хосте.
+
+</p><p>
+</p></dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h3>ip address delete - удалить адрес протокола</h3>
+
+<b>Параметры:</b>
+
+Совпадают с параметрами
+<b>ip addr add.</b>
+
+Обязательный параметр - имя интерфейса. Остальные параметры необязательны.
+Если параметры не указаны, удаляется первый адрес.
+<p>
+<a name="lbAN">&nbsp;</a>
+</p><h3>ip address show - вывод адресов протокола</h3>
+
+<p>
+</p><dl compact="">
+<dt><b>dev</b><i> ИМЯ </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+имя интерфейса.
+<p>
+</p></dd><dt><b>scope</b><i> SCOPE_VAL</i>
+
+</dt><dd>
+показывать адреса только в указанном диапазоне.
+<p>
+</p></dd><dt><b>to</b><i> ПРЕФИКС</i>
+
+</dt><dd>
+показывать адреса, соответствующие ПРЕФИКСУ.
+<p>
+</p></dd><dt><b>label</b><i> ШАБЛОН</i>
+
+</dt><dd>
+показывать только адреса с метками, совпадающими с
+<i>ШАБЛОНОМ</i>.
+
+<i>ШАБЛОН</i>
+
+соответствует обычному шаблону командной оболочки.
+<p>
+</p></dd><dt><b>dynamic</b> и <b>permanent</b>
+
+</dt><dd>
+(только IPv6) показать безстатусные и фиксированные (не динамические) адреса.
+<p>
+</p></dd><dt><b>tentative</b>
+
+</dt><dd>
+(только IPv6) показать дублированные адреса.
+<p>
+</p></dd><dt><b>deprecated</b>
+
+</dt><dd>
+(только IPv6) показать только устаревшие адреса.
+<p>
+</p></dd><dt><b>primary</b> и <b>secondary</b>
+
+</dt><dd>
+показать только первичные (или вторичные) адреса.
+<p>
+</p></dd></dl>
+<a name="lbAO">&nbsp;</a>
+<h3>ip address flush - очистить адреса протокола</h3>
+
+Команда удаляет определённый набор адресов.
+<p>
+</p><p>
+
+Команда принимает те же параметры, что и 
+<b>show.</b>
+
+Различие состоит в том, что она не запускается, если параметры не указаны.
+</p><p>
+</p><p>
+
+<b>Внимание:</b>
+
+Эта команда (и другие команды
+<b>flush</b>
+
+описываемые ниже) очень опасна.  Если вы сделаете ошибку, могут быть удалены
+все адреса.
+</p><p>
+</p><p>
+
+С опцией 
+<b>-statistics</b>
+
+вывод команды становится более подробный. Выводится количество удалённых
+адресов и количество раз очистки адресов. Если опция указана дважды, 
+<b>ip addr flush</b>
+
+также выводит все удалённые адреса в формате, описанной в предыдущем разделе.
+</p><p>
+<a name="lbAP">&nbsp;</a>
+</p><h2>ip neighbour - управление таблицей соседей/arp.</h2>
+
+<p>
+Объекты
+<b>neighbour (сосед)</b>
+
+связывают адреса протокола и адреса сетевых адаптеров для хостов одной и той
+же сети.
+Записи о соседях организованы в виде таблиц. Таблица соседей протокола
+IPv4 также известна под именем "таблица ARP".
+</p><p>
+
+Следующие команды показывают связи с соседями и параметры этих связей, а также
+добавляют новые записи или удаляют существующие.
+</p><p>
+<a name="lbAQ">&nbsp;</a>
+</p><h3>ip neighbour add - добавить новую запись о соседе</h3>
+
+<a name="lbAR">&nbsp;</a>
+<h3>ip neighbour change - изменить существующую запись</h3>
+
+<a name="lbAS">&nbsp;</a>
+<h3>ip neighbour replace - добавить новую запись или заменить существующую</h3>
+
+<p>
+Эти команды добавляют новые записи о соседях или обновляют существующие
+записи.
+</p><p>
+</p><dl compact="">
+<dt><b>to</b><i> АДРЕС </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+адрес протокола соседнего хоста, т.е. адрес IPv4 или IPv6.
+<p>
+</p></dd><dt><b>dev</b><i> ИМЯ</i>
+
+</dt><dd>
+имя интерфейса, через который доступен соседний хост.
+<p>
+</p></dd><dt><b>lladdr</b><i> LLАДРЕС</i>
+
+</dt><dd>
+Адрес сетевого адаптера соседнего хоста.
+<i>LLАДРЕС</i>
+
+также может быть указано как
+<b>null</b>(пустой)<b>.</b>
+
+<p>
+</p></dd><dt><b>nud</b><i> NUD_STATE</i>
+
+</dt><dd>
+статус записи о соседнем хосте.
+<b>nud</b>
+
+- сокращение от 'Neighbour Unreachability Detection' (определение доступности
+соседа). Статус может получать одно из следующих значений:
+<p>
+
+<b>permanent</b>
+
+- запись о соседнем хосте действительна всегда и может быть удалена только
+административно.
+</p><p>
+</p><p>
+<b>noarp</b>
+
+- запись о соседнем хосте действительна. Попыток определения его доступности 
+не производится, но запись может быть удалена по истечению её жизненного цикла.
+</p><p>
+</p><p>
+<b>reachable</b>
+
+- запись о соседнем хосте действительна пока не произошёл таймаут при
+определении доступности хоста.
+</p><p>
+</p><p>
+<b>stale</b>
+
+- запись о соседнем хосте действительна, но помечена как подозрительная.
+Это значение, переданное команде
+<b>ip neigh</b>
+
+не изменяет статус соседнего хоста, если он действителен и адрес не меняется
+в этой команде.
+
+</p><p>
+</p></dd></dl>
+<a name="lbAT">&nbsp;</a>
+<h3>ip neighbour delete - удалить запись о соседнем хосте</h3>
+
+Эта команда удаляет запись о соседнем хосте из таблицы.
+<p>
+</p><p>
+
+Параметры вызова такие же как и для
+<b>ip neigh add</b>
+
+за исключением игнорирования параметров
+<b>lladdr</b>
+
+и
+<b>nud .</b>
+
+</p><p>
+</p><p>
+
+<b>Внимание:</b>
+
+Попытка удалить или изменить вручную запись
+<b>noarp ,</b>
+
+созданную ядром может привести к непредсказуемым последствиям.
+Ядро может пытаться определить доступность адреса даже если у интерфейса указан
+флаг
+<b>NOARP </b>
+
+или адрес является адресом multicast или широковещательным.
+</p><p>
+<a name="lbAU">&nbsp;</a>
+</p><h3>ip neighbour show - список записей о соседних хостах</h3>
+
+<p>
+Эта команда показывает таблицы с адресами соседних хостов.
+</p><p>
+</p><dl compact="">
+<dt><b>to</b><i> АДРЕС </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+префикс выбора адресов.
+<p>
+</p></dd><dt><b>dev</b><i> ИМЯ</i>
+
+</dt><dd>
+показать соседние хосты, доступные только через указанный интерфейс.
+<p>
+</p></dd><dt><b>unused</b>
+
+</dt><dd>
+показать список соседних хостов, которые не используются.
+<p>
+</p></dd><dt><b>nud</b><i> NUD_STATE</i>
+
+</dt><dd>
+показать соседние хосты только с указанным статусом.
+<i>NUD_STATE</i>
+
+является значением, указанным выше, или специальным значением
+<b>all ,</b>
+
+которое означает все статусы. Эта опция может быть указана несколько раз.
+Если опция не указана,
+<b>ip</b>
+
+выводит все записи, кроме имеющих статус
+<b>none</b>
+
+и
+<b>noarp</b>.
+
+<p>
+</p></dd></dl>
+<a name="lbAV">&nbsp;</a>
+<h3>ip neighbour flush - очистить записи таблицы о соседних хостах</h3>
+
+Эта команда очищает таблицы с записями о соседних хостах по указанным условиям.
+<p>
+</p><p>
+
+Команда принимает те же параметры, что и 
+<b>show.</b>
+
+Различия в том, как обрабатываются команды без аргументов и что статус по
+умолчанию не учитывает статусы
+<b>permanent</b>
+
+и
+<b>noarp</b>.
+
+</p><p>
+</p><p>
+
+С опцией
+<b>-statistics</b>
+
+вывод команды становится более подробным. Начинают выводится количество
+удалённых записей и количество вызова команды flush. Если опция указана
+дважды, 
+<b>ip neigh flush</b>
+
+также выводит содержимое удалённых записей.
+</p><p>
+<a name="lbAW">&nbsp;</a>
+</p><h2>ip route - управление таблицей маршрутизации</h2>
+
+Управление записями маршрутов в таблице маршрутизации ядра.
+<p>
+<b>Типы маршрутов:</b>
+
+</p><p>
+
+<b>unicast</b>
+
+- маршрут описывает действующий путь к хостам сети.
+</p><p>
+</p><p>
+<b>unreachable</b>
+
+- хосты по маршруту недоступны. Пакеты отбрасываются и возвращаются
+сообщения ICMP
+<i>host unreachable .</i>
+
+Локальные отправители получают ошибку
+<i>EHOSTUNREACH .</i>
+
+</p><p>
+</p><p>
+<b>blackhole</b>
+
+- хосты по маршруту недоступны. Пакеты отбрасываются без уведомления об
+ошибке. Локальные отправители получают ошибку
+<i>EINVAL .</i>
+
+</p><p>
+</p><p>
+<b>prohibit</b>
+
+- хосты по маршруту недоступны. Пакеты отбрасываются и возвращаются
+сообщения ICMP
+<i>communication administratively prohibited .</i>
+
+Локальные отправители получают ошибку
+<i>EACCES .</i>
+
+</p><p>
+</p><p>
+<b>local</b>
+
+- целевые хосты соответствуют текущему хосту. Пакеты доставляются локально.
+</p><p>
+</p><p>
+<b>broadcast</b>
+
+- целевые хосты являются широковещательным адресом. Пакеты отправляются как
+широковещательные запросы.
+</p><p>
+</p><p>
+<b>throw</b>
+
+- специальный контролируемый маршрут, действующий оп определённым правилам.
+При отправке по этому маршруту система притворяется, что маршрут не найден. Без
+правил маршрутизации это эквивалентно отсутствию маршрута в таблице
+маршрутизации. Пакеты отбрасываются и возвращаются
+сообщения ICMP
+<i>net unreachable .</i>
+
+Локальные отправители получают ошибку
+<i>EHOSTUNREACH .</i>
+
+</p><p>
+</p><p>
+<b>nat</b>
+
+- специальная таблица NAT.  Целевые хосты по этому маршруту
+определяются как фиктивные (или внешние) адреса, для которых необходимо
+преобразование на реальные (или внутренние) адреса перед пересылкой.
+Транслируемые адреса указываются в дополнительном параметре.
+<b>Внимание:</b>
+
+Маршрут NAT не поддерживается в ядрах Linux 2.6.
+</p><p>
+</p><p>
+<b>via</b>.
+
+</p><p>
+<b>anycast</b>
+
+- <i>не реализовано</i>
+
+целевые хосты имеют адреса
+<i>anycast</i>
+
+привязанные к этому хосту. Это эквивалент маршруту
+<b>local</b>
+
+с одним отличием: такие адреса признаются недействительными, если
+используются как адрес источника пакета.
+</p><p>
+</p><p>
+<b>multicast</b>
+
+- специальный тип, используемый для маршрутизации multicast. В обычных таблицах
+маршрутизации не присутствует.
+
+</p><p>
+
+<b>Таблицы маршрутизации:</b>
+
+Ядра Linux-2.x могут хранить информацию о маршрутизации в нескольких
+таблицах маршрутизации, имеющих номер в диапазоне от 1 до 255 или имя из
+файла
+<b>/etc/iproute2/rt_tables</b>
+
+
+<b>главную (main)</b>
+
+таблицу (ID 254) и ядро использует только эту таблицу при определении
+маршрутов.
+</p><p>
+</p><p>
+В действительности, всегда существует ещё одна таблица, которая невидима, но
+даже более важна. Это
+<b>локальная (local)</b>
+
+таблица (ID 255).  Эта таблица состоит из маршрутов для локальных и
+широковещательных адресов. Ядро поддерживает эту таблицу автоматически и
+системному администратору обычно нет необходимости изменять её и даже просто
+смотреть..
+</p><p>
+Поддержка нескольких таблиц маршрутизации начинается при использовании
+<i>policy routing (маршрутизация по правилам).</i>
+
+</p><p>
+<a name="lbAX">&nbsp;</a>
+</p><h3>ip route add - добавить маршрут</h3>
+
+<a name="lbAY">&nbsp;</a>
+<h3>ip route change - изменить маршрут</h3>
+
+<a name="lbAZ">&nbsp;</a>
+<h3>ip route replace - добавить или изменить маршрут</h3>
+
+<p>
+</p><dl compact="">
+<dt><b>to</b><i> ТИП ПРЕФИКС </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+префикс назначения маршрута. Если параметр
+<i>ТИП</i>
+
+опущен,
+<b>ip</b>
+
+подразумевает тип
+<b>unicast</b>.
+
+Прочие значения 
+<i>ТИПА</i>
+
+были перечислены выше.
+<i>ПРЕФИКС</i>
+
+является адресом IP или IPv6 опционально дополненном слешем и маской
+подсети. Если маска подсети пропущена,
+<b>ip</b>
+
+использует маршрут для всех адресов. Есть предопределённое значение
+<i>ПРЕФИКС</i>
+
+<b>default</b>
+
+- который эквивалентен для IP
+<b>0/0</b>
+
+или для IPv6
+<b>::/0</b>.
+
+<p>
+</p></dd><dt><b>tos</b><i> TOS</i>
+
+</dt><dd>
+</dd><dt><b>dsfield</b><i> TOS</i>
+
+</dt><dd>
+значение типа услуги (Type Of Service, TOS). Это поле не имеет связанной маски.
+Сравниваются TOS маршрута и пакета. Если они не равны, пакет соответствует
+маршруту в нулевым TOS.
+<i>TOS</i>
+
+является 8-битным шестнадцатеричным числом или идентификатором из
+<b>/etc/iproute2/rt_dsfield</b>.
+
+<p>
+</p></dd><dt><b>metric</b><i> ЧИСЛО</i>
+
+</dt><dd>
+</dd><dt><b>preference</b><i> ЧИСЛО</i>
+
+</dt><dd>
+значение предпочтения маршрута.
+<i>ЧИСЛО</i>
+
+- обычное 32-битное число.
+<p>
+</p></dd><dt><b>table</b><i> TABLEID</i>
+
+</dt><dd>
+таблица, в которую будет добавлен маршрут.
+<i>TABLEID</i>
+
+может быть числом или идентификатором из файла
+<b>/etc/iproute2/rt_tables</b>.
+
+Если параметр опущен, 
+<b>ip</b>
+
+подразумевает
+<b>главную (main)</b>
+
+таблицу, за исключением маршрутов
+<b>local</b> , <b>broadcast</b> и <b>nat</b>,
+
+которые добавляются в  
+<b>локальную (local)</b>
+
+таблицу по умолчанию.
+<p>
+</p></dd><dt><b>dev</b><i> ИМЯ</i>
+
+</dt><dd>
+имя интерфейса.
+<p>
+</p></dd><dt><b>via</b><i> АДРЕС</i>
+
+</dt><dd>
+адрес следующего узла. Значение этого поля зависит от типа
+маршрутизации. Для обычных маршрутов 
+<b>unicast</b>
+
+означает адрес следующего узла или, в случае прямого маршрута в
+режиме совместимости BSD, локальный адрес интерфейса. Для маршрутов NAT -
+первый адрес блока транслируемых IP-адресов.
+<p>
+</p></dd><dt><b>src</b><i> АДРЕС</i>
+
+</dt><dd>
+адрес источника.
+<p>
+</p></dd><dt><b>realm</b><i> REALMID</i>
+
+</dt><dd>
+область (realm), которой назначен маршрут.
+<i>REALMID</i>
+
+может быть числом или идентификатором из файла
+<b>/etc/iproute2/rt_realms</b>.
+
+<p>
+</p></dd><dt><b>mtu</b><i> MTU</i>
+
+</dt><dd>
+</dd><dt><b>mtu lock</b><i> MTU</i>
+
+</dt><dd>
+MTU маршрута. Если не используется модификатор
+<b>lock ,</b>
+
+MTU определяется ядром. Если используется модификатор
+<b>lock</b>
+
+MTU не определяется автоматически, все пакеты отправляются без бита DF для IPv4
+или фрагментированного MTU для IPv6.
+<p>
+</p></dd><dt><b>window</b><i> ЧИСЛО</i>
+
+</dt><dd>
+максимальное окно TCP для уведомления целевых хостов, указанное в байтах.
+Ограничивает отправку данных нам за раз по TCP.
+<p>
+</p></dd><dt><b>rtt</b><i> ЧИСЛО</i>
+
+</dt><dd>
+начальная оценка RTT ('Round Trip Time').
+<p>
+</p></dd><dt><b>rttvar</b><i> ЧИСЛО </i><b>(2.3.15+ только)</b>
+
+</dt><dd>
+начальное расхождение оценки RTT.
+<p>
+</p></dd><dt><b>ssthresh</b><i> ЧИСЛО </i><b>(2.3.15+ только)</b>
+
+</dt><dd>
+оценка начального порога.
+<p>
+</p></dd><dt><b>cwnd</b><i> ЧИСЛО </i><b>(2.3.15+ только)</b>
+
+</dt><dd>
+смычка для перегруженного окна. Игнорируется, если не используется модификатор
+<b>lock .</b>
+
+<p>
+</p></dd><dt><b>advmss</b><i> ЧИСЛО </i><b>(2.3.15+ только)</b>
+
+</dt><dd>
+MSS ('Maximal Segment Size' - максимальный размер сегмента) для уведомления
+целевых хостов, с которыми установлены соединения. Если значение не указано,
+Linux использует значение по умолчанию, вычисляемое из MTU следующего
+узла (если путь к хостам асимметричен, значение может быть определено
+неверно).
+<p>
+</p></dd><dt><b>reordering</b><i> ЧИСЛО </i><b>(2.3.15+ только)</b>
+
+</dt><dd>
+максимальная смена порядка в пути.
+Если не указано, Linux использует значение
+<b>sysctl</b>
+
+из файла
+<b>net/ipv4/tcp_reordering</b>.
+
+<p>
+</p></dd><dt><b>nexthop</b><i> NEXTHOP</i>
+
+</dt><dd>
+следующий узел (nexthop) в маршруте со множеством путей (multipath route).
+<i>NEXTHOP</i>
+
+представляет собой составное выражение с собственным синтаксисом похожим на
+синтаксис команд верхнего уровня:
+<p>
+
+<b>via</b><i> АДРЕС</i>
+
+- следующий узел.
+</p><p>
+</p><p>
+<b>dev</b><i> ИМЯ</i>
+
+- интерфейс исходящего трафика.
+</p><p>
+</p><p>
+<b>weight</b><i> ЧИСЛО</i>
+
+- вес для элемента в маршруте со множеством путей, отражающий связанный канал 
+или качество.
+
+</p><p>
+</p></dd><dt><b>scope</b><i> SCOPE_VAL</i>
+
+</dt><dd>
+диапазон целевых хостов по префиксу маршрута.
+<i>SCOPE_VAL</i>
+
+может быть числом или строкой из файла
+<b>/etc/iproute2/rt_scopes</b>.
+
+Если параметр опущен,
+<b>ip</b>
+
+подразумевает диапазон
+<b>global</b>
+
+для всех маршрутов
+<b>unicast ,</b>
+
+диапазон
+<b>link</b>
+
+для прямых маршрутов 
+<b>unicast</b> и <b>broadcast</b>
+
+и диапазон
+<b>host</b> для <b>локальных</b>
+
+маршрутов.
+<p>
+</p></dd><dt><b>protocol</b><i> RTPROTO</i>
+
+</dt><dd>
+протокол маршрутизации.
+<i>RTPROTO</i>
+
+может быть числом или строкой из файла
+<b>/etc/iproute2/rt_protos</b>.
+
+Если идентификатор протокола маршрутизации не указан,
+<b>ip </b>
+
+подразумевает протокол
+<b>boot .</b>
+
+Некоторые значения протоколов имеют фиксированную интерпретацию:
+<p>
+
+<b>redirect</b>
+
+- маршрут устанавливается перенаправлением ICMP.
+</p><p>
+</p><p>
+<b>kernel</b>
+
+- маршрут устанавливается ядром при автоконфигурации.
+</p><p>
+</p><p>
+<b>boot</b>
+
+- маршрут устанавливается при загрузке.
+Когда стартует демон маршрутизации, всем маршрутам назначается этот протокол.
+</p><p>
+</p><p>
+<b>static</b>
+
+- маршрут устанавливается администратором для перезаписи динамической
+маршрутизации. Демон маршрутизации <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>предпочитает такие маршруты и рекомендует<br>
+использовать их.
+</p><p>
+</p><p>
+<b>ra</b>
+
+- маршрут устанавливается протоколом Router Discovery.
+
+</p><p>
+</p><p>
+Значения этого параметра не резервируются и администратор вправе назначить
+(или не назначать) метки протоколов.
+</p><p>
+</p></dd><dt><b>onlink</b>
+
+</dt><dd>
+симулировать прямое подключение следующего узла к этому
+интерфейсу, даже если он не находится в этой сети.
+<p>
+</p></dd><dt><b>equalize</b>
+
+</dt><dd>
+позволять пакетам распределяться случайным образом по маршруту с несколькими
+путями. Без этого модификатора маршрут будет зафиксирован на единственный
+следующий узел.
+<b>equalize</b>
+
+работает только если ядро пропатчено.
+<p>
+</p></dd></dl>
+<a name="lbBA">&nbsp;</a>
+<h3>ip route delete - удалить маршрут</h3>
+
+<p>
+<b>ip route del</b>
+
+имеет те же параметры, что и 
+<b>ip route add</b>,
+
+но их значение несколько отличается.
+</p><p>
+Ключевые значения
+(<b>to</b>, <b>tos</b>, <b>preference</b> и <b>table</b>)
+
+выбирают удаляемый маршрут. Если указаны дополнительные параметры,
+<b>ip</b>
+
+проверяет совпадение указанных атрибутов для выявления удаляемого маршрута.
+Если совпадений не найдено,
+<b>ip route del</b>
+
+не удаляет ни одного маршрута.
+</p><p>
+<a name="lbBB">&nbsp;</a>
+</p><h3>ip route show - вывод списка маршрутов</h3>
+
+команда показывает содержимое таблиц маршрутизации или маршруты,
+удовлетворяющие заданным критериям.
+<p>
+</p><dl compact="">
+<dt><b>to</b><i> СЕЛЕКТОР </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+показывать маршруты только для заданного диапазона целевых хостов.
+<i>СЕЛЕКТОР</i>
+
+состоит из опционального модификатора
+(<b>root</b>, <b>match</b> или <b>exact</b>)
+
+и префикса (маски подсети).
+<b>root</b><i> ПРЕФИКС </i>
+
+выбирает маршруты с префиксом не меньше указанного
+<i>ПРЕФИКСА</i>.
+
+Т.е.
+<b>root</b><i> 0/0</i>
+
+выведет всю таблицу маршрутизации.
+<b>match</b><i> ПРЕФИКС</i>
+
+выбирает маршруты с префиксом не больше указанного
+<i>ПРЕФИКСА</i>.
+
+Т.е.
+<b>match</b><i> 10.0/16</i>
+
+выведет маршруты
+<i>10.0/16</i>,
+
+<i>10/8</i> и <i>0/0</i>,
+
+но не включая
+<i>10.1/16</i> и <i>10.0.0/24</i>.
+
+И
+<b>exact</b><i> ПРЕФИКС</i>
+
+(или просто
+<i>ПРЕФИКС</i>)
+
+выведет маршруты точно с указанным префиксом. Если модификаторы и селектор не
+указаны,
+<b>ip</b>
+
+подразумевает
+<b>root</b><i> 0/0</i>
+
+и выводит всю таблицу маршрутизации.
+<p>
+</p></dd><dt><b>tos</b><i> TOS</i>
+
+</dt><dd>
+<b>dsfield</b><i> TOS</i>
+
+показать маршруты с заданным TOS.
+<p>
+</p></dd><dt><b>table</b><i> TABLEID</i>
+
+</dt><dd>
+показать содержимое только заданной таблицы. По умолчанию выводится таблица 
+main (главная) "."
+<i>TABLEID</i>
+
+может быть номером таблицы или одним из следующих ключевых слов:
+<p>
+
+<b>all</b>
+
+- вывести все таблицы.
+</p><p>
+<b>cache</b>
+
+- вывести кэш маршрутизации.
+
+</p><p>
+</p></dd><dt><b>cloned</b>
+
+</dt><dd>
+</dd><dt><b>cached</b>
+
+</dt><dd>
+вывод клонированных маршрутов, т.е. маршрутов, которые динамически порождены из
+других маршрутов с связи с изменением некоторых атрибутов (например, MTU).
+Практически это эквивалент 
+<b>table cache</b>.
+
+<p>
+</p></dd><dt><b>from</b><i> СЕЛЕКТОР</i>
+
+</dt><dd>
+имеет тот же синтаксис, что и 
+<b>to</b>,
+
+но привязывается к адресу источника, а не получателя.
+Опция
+<b>from</b>
+
+работает только с клонированными маршрутами.
+<p>
+</p></dd><dt><b>protocol</b><i> RTPROTO</i>
+
+</dt><dd>
+вывести маршруты только с указанным протоколом.
+<p>
+</p></dd><dt><b>scope</b><i> SCOPE_VAL</i>
+
+</dt><dd>
+вывести маршруты только с указанным диапазоном.
+<p>
+</p></dd><dt><b>type</b><i> ТИП</i>
+
+</dt><dd>
+вывести маршруты только с указанным ТИПОМ.
+<p>
+</p></dd><dt><b>dev</b><i> ИМЯ</i>
+
+</dt><dd>
+вывести маршруты, связанные только с указанным интерфейсом.
+<p>
+</p></dd><dt><b>via</b><i> ПРЕФИКС</i>
+
+</dt><dd>
+вывести маршруты, связанные только со следующим узлом, указанным
+<i>ПРЕФИКСОМ</i>.
+
+<p>
+</p></dd><dt><b>src</b><i> ПРЕФИКС</i>
+
+</dt><dd>
+вывести маршруты только для указанного адреса источника, указанного
+<i>ПРЕФИКСОМ</i>.
+
+<p>
+</p></dd><dt><b>realm</b><i> REALMID</i>
+
+</dt><dd>
+</dd><dt><b>realms</b><i> FROMREALM/TOREALM</i>
+
+</dt><dd>
+вывести маршруты только с указанной одной или несколькими областями (realm).
+<p>
+</p></dd></dl>
+<a name="lbBC">&nbsp;</a>
+<h3>ip route flush - очистка таблицы маршрутизации</h3>
+
+команда очищает маршруты по заданным критериям.
+<p>
+</p><p>
+Аргументы для этой команды и их значение такое же, как и для 
+<b>ip route show</b>,
+
+но маршруты не выводятся, а удаляются. Различие только в запуске без аргументов:
+<b>show</b>
+
+выводит всё содержимое таблицы маршрутизации, а
+<b>flush</b>
+
+выводит окно справки.
+</p><p>
+</p><p>
+С опцией
+<b>-statistics</b>
+
+вывод команды становится более подробным. Начинают выводится количество
+удалённых маршрутов и количество вызова команды flush. Если опция указана
+дважды, 
+<b>ip route flush</b>
+
+также выводит содержимое удалённых маршрутов в формате, описанном в предыдущем
+разделе.
+</p><p>
+<a name="lbBD">&nbsp;</a>
+</p><h3>ip route get - вывести один маршрут</h3>
+
+команда определяет единственный маршрут, удовлетворяющий заданным критериям
+и выводит его содержимое в том виде, в котором он представлен в ядре.
+<p>
+</p><dl compact="">
+<dt><b>to</b><i> АДРЕС </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+адрес получателя.
+<p>
+</p></dd><dt><b>from</b><i> АДРЕС</i>
+
+</dt><dd>
+адрес отправителя.
+<p>
+</p></dd><dt><b>tos</b><i> TOS</i>
+
+</dt><dd>
+</dd><dt><b>dsfield</b><i> TOS</i>
+
+</dt><dd>
+тип услуги (Type Of Service).
+<p>
+</p></dd><dt><b>iif</b><i> ИМЯ</i>
+
+</dt><dd>
+интерфейс, из которого ожидается получение пакета.
+<p>
+</p></dd><dt><b>oif</b><i> ИМЯ</i>
+
+</dt><dd>
+интерфейс, через который будет отправлен пакет.
+<p>
+</p></dd><dt><b>connected</b>
+
+</dt><dd>
+если адрес отправителя  
+(опция <b>from</b>)
+
+не указан, повторить поиск с адресом отправителя, установленным как
+предпочитаемый адрес, полученный при первом поиске.
+Если используются правила маршрутизации, это может быть другой маршрут.
+<p>
+
+Эта операция не эквивалентна команде
+<b>ip route show</b>.
+
+<b>show</b>
+
+выводит существующие маршруты.
+<b>get</b>
+
+проверяет их и создаёт новые клоны, если необходимо. Обращаем внимание на то,
+что
+<b>get</b>
+
+является эквивалентом отправки пакета по маршруту.
+Если опции
+<b>iif</b>
+
+не указана, ядро создаёт маршрут для исходящих пакетов указанным целевым
+хостам. Это эквивалент пингованию назначения с последующим
+<b>ip route ls cache</b>,
+
+однако, реально пакеты не отправляются. 
+С опцией
+<b>iif</b>
+
+ядро симулирует получение пакета с указанного интерфейса и ищет маршрут для
+дальнейшей пересылки пакета.
+</p><p>
+</p></dd></dl>
+<a name="lbBE">&nbsp;</a>
+<h2>ip rule - управление правилами маршрутизации</h2>
+
+<p>
+<b>Правила</b>
+
+маршрутизации используются алгоритмом выбора маршрута.
+</p><p>
+
+Классический алгоритм выбора маршрута определяет маршрут на основании на
+основании адреса получателя (и, в теории, на базе значения поля TOS пакета).
+</p><p>
+
+В некоторых случаях необходимо маршрутизировать пакет в зависимости не только
+от адреса получателя, но также от других полей пакета: адреса отправителя,
+протокола IP, портов и даже стоимости пакета. Такой подход называется
+
+</p><p>
+
+Для решения этой задачи база данных маршрутизации, основанная на адресе
+получателя, заменяется на базу данных маршрутизации, основанную на правилах
+('routing policy database', RPDB), которая выбирает маршрут на основании
+выполнения определённого набора правил.
+</p><p>
+
+Каждое правило маршрутизации состоит из 
+<b>селектора</b>
+
+и 
+<b>действия.</b>
+
+RPDB сканируется по порядку увеличения приоритета. Селектор каждого правила
+определяется значением параметра: адреса отправителя, адреса получателя,
+интерфейса входящего трафика, TOS, fwmark, и, если пакет соответствует
+условиям правила, производится указанное действие. В случае успешного
+выполнения действия (выбор маршрута или индикация сбоя), поиск по базе
+прекращается. В противном случае, программа RPDB продолжает проверку следующего
+правила.
+</p><p>
+
+Семантически действие заключается в выборе следующего узла и
+интерфейса исходящего трафика.
+</p><p>
+
+При запуске ядра в базу данных RPDB заносятся три правила:
+</p><p>
+</p><dl compact="">
+<dt>1.</dt><dd>
+Приоритет: 0, селектор: все пакеты, действие: поиск по таблице маршрутизации 
+<b>local (локальной)</b>
+
+(ID 255).
+Таблица
+<b>local</b>
+
+является специальной таблицей маршрутизации, содержащей высокоприоритетные
+маршруты для локальных и широковещательных адресов.
+<p>
+Правило 0 специальное. Оно не может быть удалено или заменено.
+</p><p>
+</p></dd><dt>2.</dt><dd>
+Приоритет: 32766, селектор: все пакеты, действие: поиск по таблице
+маршрутизации 
+<b>main (главной)</b>
+
+(ID 254).
+Таблица
+<b>main</b>
+
+является обычной таблицей маршрутизации, содержащей все маршруты, для которых
+правила не указаны. Это правило может быть удалено или заменено другим правилом.
+<p>
+</p></dd><dt>3.</dt><dd>
+Приоритет: 32767, селектор: все пакеты, действие: поиск по таблице
+<b>default (по умолчанию)</b>
+
+(ID 253).
+Таблица
+<b>default</b>
+
+пустая.  Она зарезервирована для некоторых действий в случае, если
+пакет не удовлетворяет предыдущим правилам. Это правило также может быть
+удалено.
+<p>
+
+Каждая запись RPDB имеет дополнительные атрибуты. Например, каждое правило
+имеет указатель на некоторую таблицу маршрутизации. NAT и правила маскировки
+(masquerading) имеют атрибут для выбора нового IP-адреса для трансляции или
+маскировки. Кроме того, правила имеют некоторые необязательные атрибуты, которые
+есть у маршрутов, называемые областями 
+<b>(realms)</b>.
+
+Эти атрибуты не заменяют атрибуты, указанные в таблицах маршрутизации. Они
+используется в случае, если эти атрибуты не указаны для маршрута.
+</p><p>
+</p><p>
+База данных RPDB может содержать правила следующих типов:
+</p><p>
+
+<b>unicast</b>
+
+- правило предписывает возвратить маршрут из таблицы маршрутизации.
+</p><p>
+<b>blackhole</b>
+
+- правило предписывает отбросить пакет без уведомления.
+</p><p>
+<b>unreachable</b>
+
+- правило предписывает генерировать ошибку 'Network is unreachable' (сеть
+<br>&nbsp;недоступна).
+</p><p>
+<b>prohibit</b>
+
+- правило предписывает генерировать ошибку 'Communication is administratively
+prohibited' (связь запрещена административно).
+</p><p>
+<b>nat</b>
+
+- правило предписывает транслировать адрес отправителя в другое значение.
+
+</p><p>
+</p></dd></dl>
+<a name="lbBF">&nbsp;</a>
+<h3>ip rule add - добавить правило</h3>
+
+<a name="lbBG">&nbsp;</a>
+<h3>ip rule delete - удалить правило</h3>
+
+<p>
+</p><dl compact="">
+<dt><b>type</b><i> ТИП </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+тип правила. Список доступных типов описан в предыдущем разделе.
+<p>
+</p></dd><dt><b>from</b><i> ПРЕФИКС</i>
+
+</dt><dd>
+выбор отправителя в соответствии с указанным ПРЕФИКСОМ.
+<p>
+</p></dd><dt><b>to</b><i> ПРЕФИКС</i>
+
+</dt><dd>
+выбор получателя в соответствии с указанным ПРЕФИКСОМ.
+<p>
+</p></dd><dt><b>iif</b><i> ИМЯ</i>
+
+</dt><dd>
+выбор интерфейса для исходящего трафика. Если интерфейс является кольцевым
+(loopback), правило обрабатывается только для пакетов, созданных на этом хосте.
+Это означает, что вы можете создать отдельную таблицу маршрутизации для
+пересылаемых и локальных пакетов и, следовательно, полностью разделить их.
+<p>
+</p></dd><dt><b>tos</b><i> TOS</i>
+
+</dt><dd>
+</dd><dt><b>dsfield</b><i> TOS</i>
+
+</dt><dd>
+выбор пакета с указанным TOS.
+<p>
+</p></dd><dt><b>fwmark</b><i> MARK</i>
+
+</dt><dd>
+выбор пакета с указанным значением 
+<b>fwmark .</b>
+
+<p>
+</p></dd><dt><b>priority</b><i> PREFERENCE</i>
+
+</dt><dd>
+приоритет правила. Каждое правило должно иметь 
+<i>уникальное </i>
+
+значение приоритета.
+<p>
+</p></dd><dt><b>table</b><i> TABLEID</i>
+
+</dt><dd>
+идентификатор таблицы маршрутизации для поиска маршрута при совпадении с
+условиями правила.
+<p>
+</p></dd><dt><b>realms</b><i> FROM/TO</i>
+
+</dt><dd>
+Выбираемые области при при совпадении с условиями правила и успешном поиске в
+таблице маршрутизации. Область
+<i>TO</i>
+
+используется только если маршрут не соответствует ни одной области.
+<p>
+</p></dd><dt><b>nat</b><i> АДРЕС</i>
+
+</dt><dd>
+Начало блога транслируемых адресов отправителя. Значение 
+<i>АДРЕСА</i>
+
+может быть первым адресом в блоке адресов NAT (в маршрутах NAT) или локальным
+адресом хоста (или даже нулём). В последнем случае маршрутизатор не транслирует
+пакеты, а маскирует их под этот адрес.
+<p>
+<b>Внимание:</b>
+
+Изменения в RPDB, сделанными этими командами, происходят не сразу. Они вступают
+в силу после того, как скрипт закончит вносить все изменения и очистить кэш
+маршрутизации командой
+<b>ip route flush cache</b>.
+
+</p><p>
+</p></dd></dl>
+<a name="lbBH">&nbsp;</a>
+<h3>ip rule flush - также вывести все удалённые правила. </h3>
+
+У этой команды нет аргументов.
+<p>
+<a name="lbBI">&nbsp;</a>
+</p><h3>ip rule show - вывести список правил</h3>
+
+У этой команды нет аргументов.
+<p>
+<a name="lbBJ">&nbsp;</a>
+</p><h2>ip maddress - управление адресами multicast</h2>
+
+<p>
+<b>maddress</b>
+
+адрес multicast.
+</p><p>
+<a name="lbBK">&nbsp;</a>
+</p><h3>ip maddress show - список адресов multicast</h3>
+
+<p>
+</p><dl compact="">
+<dt><b>dev</b><i> ИМЯ </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+имя интерфейса.
+<p>
+</p></dd></dl>
+<a name="lbBL">&nbsp;</a>
+<h3>ip maddress add - добавить адрес multicast</h3>
+
+<a name="lbBM">&nbsp;</a>
+<h3>ip maddress delete - удалить адрес multicast</h3>
+
+эти команды назначают и убирают статический адрес multicast на интерфейс.
+Помните, что невозможно объединить группы multicast протокола статически. Эти
+команды только управляют адресами на уровне канала.
+<dl compact="">
+<dt><b>address</b><i> LLАДРЕС </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+адрес multicast не уровне канала.
+<p>
+</p></dd><dt><b>dev</b><i> ИМЯ</i>
+
+</dt><dd>
+интерфейс, которому назначается/убирается адрес multicast.
+<p>
+</p></dd></dl>
+<a name="lbBN">&nbsp;</a>
+<h2>ip mroute - управление кэшем маршрутизации multicast</h2>
+
+<b>mroute</b>
+
+объекты записей кэша маршрутизации multicast, созданные демоном mrouting,
+работающим на пользовательском уровне (например, 
+<b>pimd</b>
+
+или
+<b>mrouted</b>
+
+).
+<p>
+В связи с ограничениями текущего интерфейса к движку маршрутизации multicast,
+невозможно изменить 
+<b>mroute</b>
+
+административно, можно только показать. Это ограничение будет преодолено в
+будущем.
+</p><p>
+<a name="lbBO">&nbsp;</a>
+</p><h3>ip mroute show - список записей кэша mroute</h3>
+
+<p>
+</p><dl compact="">
+<dt><b>to</b><i> ПРЕФИКС </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+выводить только адреса multicast получателя с заданным префиксом.
+<p>
+</p></dd><dt><b>iif</b><i> ИМЯ</i>
+
+</dt><dd>
+интерфейс, с которого приходят пакеты multicast.
+<p>
+</p></dd><dt><b>from</b><i> ПРЕФИКС</i>
+
+</dt><dd>
+выводить только адреса multicast отправителя с заданным префиксом.
+<p>
+</p></dd></dl>
+<a name="lbBP">&nbsp;</a>
+<h2>ip tunnel - настройка туннеля</h2>
+
+<b>tunnel</b>
+
+туннель, инкапсулирующий пакеты в пакеты IPv4 и отправляющих их по сети IP.
+<p>
+<a name="lbBQ">&nbsp;</a>
+</p><h3>ip tunnel add - добавить туннель</h3>
+
+<a name="lbBR">&nbsp;</a>
+<h3>ip tunnel change - изменить параметры туннеля</h3>
+
+<a name="lbBS">&nbsp;</a>
+<h3>ip tunnel delete - уничтожить туннель</h3>
+
+<p>
+</p><dl compact="">
+<dt><b>name</b><i> ИМЯ </i><b>(по</b><i>умолчанию)</i>
+
+</dt><dd>
+интерфейс для организации туннеля.
+<p>
+</p></dd><dt><b>mode</b><i> MODE</i>
+
+</dt><dd>
+режим туннеля. Доступны три режима:
+<b>ipip</b>, <b>sit</b> и <b>gre</b>.
+
+<p>
+</p></dd><dt><b>remote</b><i> АДРЕС</i>
+
+</dt><dd>
+адрес удалённого выхода туннеля.
+<p>
+</p></dd><dt><b>local</b><i> АДРЕС</i>
+
+</dt><dd>
+фиксированный локальный адрес для туннелируемых пакетов.
+Он должен быть адресом на другом интерфейсе этого хоста.
+<p>
+</p></dd><dt><b>ttl</b><i> N</i>
+
+</dt><dd>
+установить фиксированный TTL 
+<i>N</i>
+
+для туннелируемых пакетов.
+<i>N</i>
+
+- число в диапазоне 1-255. 0 - специальное значение, что пакеты наследуют
+значение TTL. Значение по умолчанию:
+<b>inherit</b>.
+
+<p>
+</p></dd><dt><b>tos</b><i> T</i>
+
+</dt><dd>
+</dd><dt><b>dsfield</b><i> T</i>
+
+</dt><dd>
+установить фиксированный TOS
+<i>T </i>
+
+для туннелируемых пакетов. Значение по умолчанию:
+<b>inherit</b>.
+
+<p>
+</p></dd><dt><b>dev</b><i> ИМЯ</i>
+
+</dt><dd>
+привязать туннель к интерфейсу
+<i>ИМЯ</i>
+
+так, что туннелируемые пакеты будут направляться только через этот интерфейс и
+не смогут отправится через другой интерфейс при смене маршрута к целевому хосту.
+<p>
+</p></dd><dt><b>nopmtudisc</b>
+
+</dt><dd>
+отключить Path MTU Discovery для туннеля.
+По умолчанию включено. Помните, что фиксированный ttl несовместим с этой
+опцией: туннелирование с фиксированным ttl всегда осуществляется с pmtu
+discovery.
+<p>
+</p></dd><dt><b>key</b><i> K</i>
+
+</dt><dd>
+</dd><dt><b>ikey</b><i> K</i>
+
+</dt><dd>
+</dd><dt><b>okey</b><i> K</i>
+
+</dt><dd>
+(<b> только туннели GRE </b>)
+
+использование ключевого GRE с ключом
+<i>K</i>. <i>K</i>
+
+может быть числом или четвёркой чисел как адрес IP.
+Параметр
+<b>key</b>
+
+устанавливает ключ для использования в обоих направлениях.
+Параметры
+<b>ikey</b> и <b>okey</b>
+
+устанавливают различные ключи для входящего и исходящего трафика.
+<br>&nbsp;&nbsp;&nbsp;
+</dd><dt><b>csum</b>, <b>icsum</b>, <b>ocsum</b>
+
+</dt><dd>
+(<b> только туннели GRE </b>)
+
+генерируют или проверяют контрольную сумму для туннелируемых пакетов.
+Флаг 
+<b>ocsum</b>
+
+вычисляет контрольную сумму для исходящих пакетов.
+Флаг
+<b>icsum</b>
+
+требуют, чтобы все входящие пакеты имели правильную контрольную сумму. 
+Флаг
+<b>csum</b>
+
+является комбинацией флагов
+<b>icsum ocsum</b>.
+
+<p>
+</p></dd><dt><b>seq</b>, <b>iseq</b>, <b>oseq</b>
+
+</dt><dd>
+(<b> только туннели GRE </b>)
+
+сериализуют пакеты.
+Флаг
+<b>oseq</b>
+
+включает последовательность исходящих пакетов.
+Флаг
+<b>iseq</b>
+
+требует чтобы все входящие пакеты были сериализованы.
+Флаг
+<b>seq</b>
+
+является комбинацией флагов
+<b>iseq oseq</b>.
+
+<b>Пока это не работает. Не используйте эти флаги.</b>
+
+<p>
+</p></dd></dl>
+<a name="lbBT">&nbsp;</a>
+<h3>ip tunnel show - список туннелей</h3>
+
+Команда не требует дополнительных параметров.
+<p>
+<a name="lbBU">&nbsp;</a>
+</p><h2>ip monitor и rtmon - мониторинг состояния</h2>
+
+<p>
+Программа
+<b>ip</b>
+
+может постоянно отслеживать состояние интерфейсов, адресов и маршрутов. Эта
+опция имеет слегка отличающийся формат, а именно должна идти первой в списке
+параметров с указанием отслеживаемого объекта:
+</p><p>
+<b>ip monitor</b> [ <b>all</b> |
+
+<i>СПИСОК_ОБЪЕКТОВ</i> ]
+
+</p><p>
+<i>СПИСОК_ОБЪЕКТОВ</i>
+
+содержит типы объектов, которые нужно отслеживать.
+Он может содержать типы
+<b>link</b>, <b>address</b> и <b>route</b>.
+
+Если не указан параметр
+<b>file ,</b>
+
+<b>ip</b>
+
+открывает сокет RTNETLINK, прослушивает его и выводит информацию в
+формате, описанному выше.
+</p><p>
+
+Если указано имя файла, прослушивание сокета RTNETLINK не осуществляется, а
+выводятся сообщения RTNETLINK, сохранённые в файле в бинарном формате. Такой
+файл журнала может быть создан командой 
+<b>rtmon .</b>
+
+Эта программа имеет такой же синтаксис, как и 
+<b>ip monitor</b>.
+
+В идеале программа
+<b>rtmon</b>
+
+должна быть запущена перед первой командой настройки сети. Например, если вы
+вставите:
+</p><p>
+
+rtmon file /var/log/rtmon.log
+
+</p><p>
+в скрипт загрузки, вы можете увидеть всю историю работы сетевой подсистемы.
+</p><p>
+
+Конечно, можно запустить
+<b>rtmon</b>
+
+в любое время. В таком случае журнал будет содержать только события,
+произошедшие с момента запуска программы.
+</p><p>
+<a name="lbBV">&nbsp;</a>
+</p><h2>ИСТОРИЯ</h2>
+
+<b>ip</b>
+
+была написана Алексеем Кузнецовым и добавлена в
+Linux 2.2.
+<a name="lbBW">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tc&amp;category=8">tc</a></b>(8)
+
+<br>
+
+IP Command reference <b>ip-cref.ps</b>
+
+<br>
+
+IP tunnels <b>ip-cref.ps</b>
+
+<p>
+<a name="lbBX">&nbsp;</a>
+</p><h2>АВТОР</h2>
+
+Оригинальное руководство man написано Михаилом Литваком (Michail Litvak)
+&lt;<a href="mailto:mci@owl.openwall.com">mci@owl.openwall.com</a>&gt;
+<p>
+<a name="lbBY">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+Андрей Черепанов &lt;<a href="mailto:cas@altlinux.ru">cas@altlinux.ru</a>&gt; 2007
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAE">СИНТАКСИС КОМАНД IP</a></dt><dd>
+<dl>
+<dt><a href="#lbAF"><i>ОБЪЕКТ</i>
+
+</a></dt><dd>
+</dd><dt><a href="#lbAG"><i>КОМАНДА</i>
+
+</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAH">ip link - настройка сетевого интерфейса</a></dt><dd>
+<dl>
+<dt><a href="#lbAI">ip link set - изменить параметры интерфейса</a></dt><dd>
+</dd><dt><a href="#lbAJ">ip link show - показать параметры интерфейса</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAK">ip address - управление адресом.</a></dt><dd>
+<dl>
+<dt><a href="#lbAL">ip address add - добавить новый адрес протокола.</a></dt><dd>
+</dd><dt><a href="#lbAM">ip address delete - удалить адрес протокола</a></dt><dd>
+</dd><dt><a href="#lbAN">ip address show - вывод адресов протокола</a></dt><dd>
+</dd><dt><a href="#lbAO">ip address flush - очистить адреса протокола</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAP">ip neighbour - управление таблицей соседей/arp.</a></dt><dd>
+<dl>
+<dt><a href="#lbAQ">ip neighbour add - добавить новую запись о соседе</a></dt><dd>
+</dd><dt><a href="#lbAR">ip neighbour change - изменить существующую запись</a></dt><dd>
+</dd><dt><a href="#lbAS">ip neighbour replace - добавить новую запись или заменить существующую</a></dt><dd>
+</dd><dt><a href="#lbAT">ip neighbour delete - удалить запись о соседнем хосте</a></dt><dd>
+</dd><dt><a href="#lbAU">ip neighbour show - список записей о соседних хостах</a></dt><dd>
+</dd><dt><a href="#lbAV">ip neighbour flush - очистить записи таблицы о соседних хостах</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAW">ip route - управление таблицей маршрутизации</a></dt><dd>
+<dl>
+<dt><a href="#lbAX">ip route add - добавить маршрут</a></dt><dd>
+</dd><dt><a href="#lbAY">ip route change - изменить маршрут</a></dt><dd>
+</dd><dt><a href="#lbAZ">ip route replace - добавить или изменить маршрут</a></dt><dd>
+</dd><dt><a href="#lbBA">ip route delete - удалить маршрут</a></dt><dd>
+</dd><dt><a href="#lbBB">ip route show - вывод списка маршрутов</a></dt><dd>
+</dd><dt><a href="#lbBC">ip route flush - очистка таблицы маршрутизации</a></dt><dd>
+</dd><dt><a href="#lbBD">ip route get - вывести один маршрут</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbBE">ip rule - управление правилами маршрутизации</a></dt><dd>
+<dl>
+<dt><a href="#lbBF">ip rule add - добавить правило</a></dt><dd>
+</dd><dt><a href="#lbBG">ip rule delete - удалить правило</a></dt><dd>
+</dd><dt><a href="#lbBH">ip rule flush - также вывести все удалённые правила. </a></dt><dd>
+</dd><dt><a href="#lbBI">ip rule show - вывести список правил</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbBJ">ip maddress - управление адресами multicast</a></dt><dd>
+<dl>
+<dt><a href="#lbBK">ip maddress show - список адресов multicast</a></dt><dd>
+</dd><dt><a href="#lbBL">ip maddress add - добавить адрес multicast</a></dt><dd>
+</dd><dt><a href="#lbBM">ip maddress delete - удалить адрес multicast</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbBN">ip mroute - управление кэшем маршрутизации multicast</a></dt><dd>
+<dl>
+<dt><a href="#lbBO">ip mroute show - список записей кэша mroute</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbBP">ip tunnel - настройка туннеля</a></dt><dd>
+<dl>
+<dt><a href="#lbBQ">ip tunnel add - добавить туннель</a></dt><dd>
+</dd><dt><a href="#lbBR">ip tunnel change - изменить параметры туннеля</a></dt><dd>
+</dd><dt><a href="#lbBS">ip tunnel delete - уничтожить туннель</a></dt><dd>
+</dd><dt><a href="#lbBT">ip tunnel show - список туннелей</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbBU">ip monitor и rtmon - мониторинг состояния</a></dt><dd>
+</dd><dt><a href="#lbBV">ИСТОРИЯ</a></dt><dd>
+</dd><dt><a href="#lbBW">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbBX">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbBY">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ip" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

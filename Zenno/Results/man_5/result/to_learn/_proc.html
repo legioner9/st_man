@@ -1,0 +1,1949 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN proc (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, proc"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="proc" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">proc (5)</font><hr><li> <a href="/man.shtml?topic=proc&amp;category=1&amp;russian=4"><u>proc</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=proc&amp;category=1&amp;russian=0"><u>proc</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=proc&amp;category=4&amp;russian=4"><u>proc</u></a> (4) <font color="#555555"> ( Solaris man: Специальные файлы /dev/* )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=proc&amp;category=5&amp;russian=0"><u>proc</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=proc&amp;category=5&amp;russian=2"><u>proc</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li><li><font color="#555555">Ключ <a href="/keywords/proc.html"><u>proc</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+proc - псевдо-файловая система с информацией о процессах и системе
+<p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+/proc - это псевдо-файловая система, которая используется в качестве
+интерфейса к структурам данных в ядре, чтобы избежать чтения и записи
+/dev/kmem.  Большинство расположенных в ней файлов доступны только
+для чтения, но некоторые файлы позволяют изменять переменные ядра.
+<p>
+
+Ниже дается краткая информация по /proc.
+</p><p>
+
+
+
+</p><dl compact="">
+<dt><i>[число]</i>
+
+</dt><dd>
+Каждому запущенному процессу соответствует подкаталог с именем,
+соответствующим идентификатору этого процесса (его pid).  Каждый из
+этих подкаталогов содержит следующие псевдо-файлы и каталоги.
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><i>cmdline</i>
+
+</dt><dd>
+Этот файл содержит полную командную строку запуска процесса, кроме тех 
+процессов, что полностью ушли в своппинг, а также тех, что превратились в
+зомби. В этих двух случаях в файле ничего нет, то есть чтение этого
+файла вернет 0 символов. 
+Аргументы командной строки в этом файле указаны как список строк,
+каждая из которых завешается нулевым символом, с добавочным нулевым
+байтом после последней строки.
+</dd><dt><i>cwd</i>
+
+</dt><dd>
+Это ссылка на текущий рабочий каталог процесса. Чтобы найти рабочий
+каталог процесса с идентификатором 20, можно сделать следующее:
+<p>
+<br>
+
+</p><pre>cd /proc/20/cwd; /bin/pwd
+</pre>
+
+
+<p>
+Заметим, что команда pwd часто является встроенной в командный
+интерпретатор и может работать некорректно. В bash, вы можете
+использовать команду pwd -P.
+</p></dd><dt><i>environ</i>
+
+</dt><dd>
+Этот файл содержит окружение процесса. Записи в файле разделяются
+нулевыми символами и в конце файла также может быть нулевой символ.
+Таким образом, чтобы вывести окружение процесса 1, вы должны сделать
+следующее:
+<p>
+<br>
+
+</p><pre>(cat /proc/1/environ; echo) | tr "\000" "\n"
+</pre>
+
+
+<p>
+(Чтобы понять, зачем такое могло бы понадобиться, см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lilo&amp;category=8">lilo</a></b>(8).)
+
+</p></dd><dt><i>exe</i>
+
+</dt><dd>
+Под Linux 2.2 и 2.4 
+<i>exe</i>
+
+является символьной ссылкой, содержащей фактическое полное имя
+выполняемого файла.
+Символьная ссылка 
+<i>exe</i>
+
+может использоваться обычным образом - при попытке открыть
+<i>exe</i>
+
+будет открыт исполняемый файл. Вы можете даже ввести
+<i>/proc/[number]/exe</i>
+
+чтобы запустить другую копию процесса такого же как и процесс
+с номером [число].
+<p>
+Под Linux 2.0 и в более ранних версиях
+<i>exe</i>
+
+является указателем на запущенный файл и является символьной
+ссылкой.
+Вызов
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=readlink&amp;category=2">readlink</a></i>(2)
+
+на этот специальный файл
+<i>exe</i>
+
+под Linux 2.0 и более ранних версий возвращает строку формата:
+</p><p>
+[устройство]:индексный_дескриптор
+</p><p>
+Например, строка [0301]:1502 означает индексный дескриптор 1502 на
+устройстве со старшим номером устройства 03 (IDE, MFM и т. д.)
+и младшим номером устройства 01 (первый раздел на первом диске).
+</p><p>
+Для того, чтобы найти этот файл, может быть использована команда
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=find&amp;category=1">find</a></b>(1)
+
+с опцией -inum.
+</p></dd><dt><i>fd</i>
+
+</dt><dd>
+Это подкаталог, содержащий одну запись на каждый файл, который в
+данный момент открыт процессом.  Имя каждой такой записи соответствует
+номеру файлового дескриптора и является символьной ссылкой на
+реальный файл (как и в случае с 
+<b>exe</b>).
+
+Так, 0 - это стандартный ввод, 1 - стандартный вывод, 2 - стандартный
+вывод ошибок и т. д.
+<p>
+Программы, которые работают с файлом, но не работают со стандартным
+вводом и которые пишут в файл, и не пишут в стандартный вывод,
+можно обманывать с помощью этого подкаталога. 
+Например, если флаг
+<i>-i</i>
+
+задает входной файл, а
+<i>-o</i>
+
+-- выходной файл, то можно
+сделать так:
+</p><p>
+<br>
+
+</p><pre><tt>foobar -i /proc/self/fd/0 -o /proc/self/fd/1 ...</tt>
+</pre>
+
+<br>
+
+и у вас будет работающая программа-фильтр.  Заметим, что это не будет
+работать с программами, которые используют seek при работе с файлами,
+так как вышеописанные файлы из каталога fd не позволяют использовать
+seek.
+<p>
+/proc/self/fd/N -- это приблизительно то же самое, что и /dev/fd/N
+в некоторых UNIX'ах и UNIX-подобных системах.  Большинство сценариев
+MAKEDEV в Linux фактически делают символьные ссылки /dev/fd на 
+/proc/self/fd.
+</p></dd><dt><i>maps</i>
+
+</dt><dd>
+Файл, содержащий адреса областей памяти, которые используются программой
+в данный момент и права доступа к ним.
+<p>
+Формат файла следующий:
+</p><p>
+</p><pre>address           perms offset  dev   inode      pathname
+08048000-08056000 r-xp 00000000 03:0c 64593      /usr/sbin/gpm
+08056000-08058000 rw-p 0000d000 03:0c 64593      /usr/sbin/gpm
+08058000-0805b000 rwxp 00000000 00:00 0
+40000000-40013000 r-xp 00000000 03:0c 4165       /lib/ld-2.2.4.so
+40013000-40015000 rw-p 00012000 03:0c 4165       /lib/ld-2.2.4.so
+4001f000-40135000 r-xp 00000000 03:0c 45494      /lib/libc-2.2.4.so
+40135000-4013e000 rw-p 00115000 03:0c 45494      /lib/libc-2.2.4.so
+4013e000-40142000 rw-p 00000000 00:00 0
+bffff000-c0000000 rwxp 00000000 00:00 0
+</pre>
+
+
+<p>
+где address -- это адресное пространство, занятое процессом, а 
+perms -- права доступа к нему:
+</p><p>
+</p><pre>r = можно читать
+w = можно писать
+x = можно выполнять
+s = можно использовать несколькими процессами совместно
+p = личная (копирование при записи)
+</pre>
+
+
+<p>
+offset -- это смещение в файле, dev -- это устройство 
+(старший номер:младший номер), а inode -- это индексный дескриптор
+на данном устройстве.  0 означает, что с данной областью памяти не
+ассоциированы индексные дескрипторы: примером тому является сегмент
+bss.
+</p><p>
+Под Linux 2.0 поле, указывающее на имя файла отсутствует.
+</p></dd><dt><i>mem</i>
+
+</dt><dd>
+Через файл
+<i>mem</i>
+
+можно получить доступ к страницам памяти процесса, через вызовы
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2),
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fseek&amp;category=3">fseek</a></b>(3).
+
+</dd><dt><i>root</i>
+
+</dt><dd>
+Unix и Linux поддерживают идею о корневом каталоге файловой системы
+для процесса, который может быть установлен системным вызовом
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chroot&amp;category=2">chroot</a></i>(2).
+
+Root указывает на этот корень файловой системы, и ведет себя так же,
+как и exe, fd/* и т.д.
+</dd><dt><i>stat</i>
+
+</dt><dd>
+Информация о статусе процесса.  Она используется командой
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ps&amp;category=1">ps</a></i>(1).
+
+Определяется в 
+<i>/usr/src/linux/fs/proc/array.c</i>.
+
+<p>
+Вот поля с соответствующими им спецификаторами форматов для
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=scanf&amp;category=3">scanf</a></i>(3)<i>по</i>порядку:
+
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><i>pid</i> %d</dt><dd>
+Идентификатор процесса.
+</dd><dt><i>comm</i> %s</dt><dd>
+Имя исполняемого файла в круглых скобках. Его можно увидеть
+независимо от того, находится ли исполняемый файл в своппинге
+или нет.
+</dd><dt><i>state</i> %c</dt><dd>
+Один из символов из строки "RSDZTW", где R -- запущен,
+S -- процесс "спит" в прерываемом ожидании, D -- процесс ожидает в
+непрерываемом состоянии окончания дисковой операции, Z -- процесс
+является зомби, или же T -- процесс трассируется или остановлен
+(по сигналу) и W -- процесс вызывается.
+</dd><dt><i>ppid</i> %d</dt><dd>
+Идентификатор (PID) родительского процесса.
+</dd><dt><i>pgrp</i> %d</dt><dd>
+Идентификатор группы процесса.
+</dd><dt><i>session</i> %d</dt><dd>
+Идентификатор сессии процесса.
+</dd><dt>
+</dt><dd>
+<i>tty_nr</i> %d
+Терминал tty, который использует процесс.
+</dd><dt><i>tpgid</i> %d</dt><dd>
+Идентификатор группы процесса, который в настоящий момент владеет
+терминалом tty, к которому подключен данный процесс.
+</dd><dt><i>flags</i> %lu</dt><dd>
+Флаги процесса. Матеметический бит -- десятичное 4, бит
+трассировки -- десятичное 10.
+</dd><dt><i>minflt</i> %lu</dt><dd>
+Количество незначительных сбоев, которые возникли при работе процесса,
+и которые не требуют загрузки страницы памяти с диска.
+</dd><dt><i>cminflt</i> %lu</dt><dd>
+Количество незначительных сбоев, которые возникли при ожидании
+окончания работы процессов-потомков.
+</dd><dt><i>majflt</i> %lu</dt><dd>
+Количество значительных сбоев, которые возникли при работе процесса,
+и которые потребовали загрузки страницы памяти с диска.
+</dd><dt><i>cmajflt</i> %lu</dt><dd>
+Количество значительных сбоев, которые возникли при ожидании
+окончания работы процессов-потомков.
+</dd><dt><i>utime</i> %lu</dt><dd>
+Количество мигов (jiffies), которые данный процесс провел в режиме
+пользователя.
+</dd><dt><i>stime</i> %lu</dt><dd>
+Количество мигов, которые данный процесс провел в режиме ядра.
+</dd><dt><i>cutime</i> %ld</dt><dd>
+Количество мигов, которые данный процесс и его потомки провели в режиме
+пользователя. (См. также
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=times&amp;category=2">times</a></b>(2).)
+
+</dd><dt><i>cstime</i> %ld</dt><dd>
+Количество мигов, которые процесс ожадающий завершения процессов-потомков
+провёл в режиме ядра.
+</dd><dt><i>priority</i> %ld</dt><dd>
+Стандартная величина приоритета (для nice) плюс 15. Данное значение
+в ядре никогда не бывает отрицательным.
+</dd><dt><i>nice</i> %ld</dt><dd>
+Значение для nice в диапазоне от 19 (наиболее низкий приоритет) до
+-19 (наивысший приоритет).
+</dd><dt>
+</dt><dd>
+
+
+
+<i>0</i> %ld
+Данное значение жёстко установлено в 0 как значение для удалённого поля.
+</dd><dt><i>itrealvalue</i> %ld</dt><dd>
+Время (в мигах) перед следующей посылкой процессу SIGALRM из-за
+внутреннего таймера.
+</dd><dt><i>starttime</i> %lu</dt><dd>
+Время (в мигах) запуска процесса после начальной загрузки системы.
+</dd><dt><i>vsize</i> %lu</dt><dd>
+Размер виртуальной памяти в байтах.
+</dd><dt><i>rss</i> %ld</dt><dd>
+Резидентный Размер: количество страниц, которые занимает процесс в
+реальной памяти, минус 3 для административных целей.  Это те
+страницы, которые заняты кодом, данными и пространством стека.
+Сюда не включаются страницы, которые не были загружены по требованию
+или которые находятся в своппинге.
+</dd><dt><i>rlim</i> %lu</dt><dd>
+Текущий лимит в байтах на резидентный размер процесса (обычно
+4294967295 на i386).
+</dd><dt><i>startcode</i> %lu</dt><dd>
+Адрес, выше которого может выполняться код программы.
+</dd><dt><i>endcode</i> %lu</dt><dd>
+Адрес, ниже которого может выполняться код программ.
+</dd><dt><i>startstack</i> %lu</dt><dd>
+Адрес начала стека.
+</dd><dt><i>kstkesp</i> %lu</dt><dd>
+Текущее значение esp (указателя стека) для данного процесса,
+которое следует из страницы стека в ядре .
+</dd><dt><i>kstkeip</i> %lu</dt><dd>
+Текущее значение EIP (указатель инструкций).
+</dd><dt><i>signal</i> %lu</dt><dd>
+Карта ожидающих сигналов (обычно 0).
+</dd><dt><i>blocked</i> %lu</dt><dd>
+Карта блокированных сигналов (обычно 0, или 2 для командных интерпретаторов).
+</dd><dt><i>sigignore</i> %lu</dt><dd>
+Карта игнорируемых сигналов.
+</dd><dt><i>sigcatch</i> %lu</dt><dd>
+Карта перехваченных сигналов.
+</dd><dt><i>wchan</i> %lu</dt><dd>
+Это "канал", в котором ожидает процесс.  Он является адресом системного
+вызова и может быть найден в списке имен, если вам нужно текстовое
+имя. (Если у вас свежий /etc/psdatabase, то попробуйте
+выполнить <i>ps l</i>, чтобы увидеть поле WCHAN в действии).
+</dd><dt><i>nswap</i> %lu</dt><dd>
+Количество страниц на своппинге - не обслуживается.
+</dd><dt><i>cnswap</i> %lu</dt><dd>
+Суммарное <i>nswap</i> для процессов-потомков.
+</dd><dt><i>exit_signal</i> %d</dt><dd>
+Сигнал, который будет послан родителю, когда процесс умрёт.
+</dd><dt><i>processor</i> %d</dt><dd>
+Номер процессора, на котором последний раз выполнялся процесс.
+</dd></dl>
+</dd></dl>
+
+</dd><dt><i>statm</i>
+
+</dt><dd>
+Предоставляет информацию о состоянии памяти в страницах, как
+единицах измерения. Вот комментарии по колонкам в файле:
+<br>&nbsp;size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;общий&nbsp;размер&nbsp;программы
+<br>&nbsp;resident&nbsp;&nbsp;&nbsp;размер&nbsp;резидентной&nbsp;части
+<br>&nbsp;share&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;разделяемые&nbsp;страницы
+<br>&nbsp;trs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;текст&nbsp;(код)
+<br>&nbsp;drs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;данные/стек
+<br>&nbsp;lrs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;библиотека
+<br>&nbsp;dt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"дикие"&nbsp;(dirty)&nbsp;страницы
+</dd><dt><i>status</i>
+
+</dt><dd>
+Предоставляет бОльщую часть информации из
+<i>stat</i>
+
+и
+<i>statm</i>
+
+в более лёгком для прочтения формате.
+</dd></dl>
+</dd></dl>
+
+</dd><dt><i>apm</i>
+
+</dt><dd>
+Версия системы расширенного управления питанием и информация
+о батареях, если ядро собрано с поддержкой CONFIG_APM.
+</dd><dt><i>bus</i>
+
+</dt><dd>
+Содержит подкаталоги для установленых шин.
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><i>pccard</i>
+
+</dt><dd>
+Подкаталог для pcmcia устройств, если ядро собрано с
+поддержкой CONFIG_PCMCIA.
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><i>drivers</i>
+
+</dt><dd>
+</dd></dl>
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><i>pci</i>
+
+</dt><dd>
+Содержит различные подкаталоги шины и псевдо-файлы, содержащие
+информацию о шинах pci, установленных устройствах и драйверах
+устройств. Некоторые из этих файлов не являются текстовыми.
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><i>devices</i>
+
+</dt><dd>
+Информация о pci устройствах.  К ним можно получить доступ
+через
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lspci&amp;category=8">lspci</a></b>(8)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setpci&amp;category=8">setpci</a></b>(8).
+
+</dd></dl>
+</dd></dl>
+
+</dd></dl>
+</dd></dl>
+
+</dd><dt><i>cmdline</i>
+
+</dt><dd>
+Аргументы, переданные ядру Linux во время начальной загрузки. Часто
+это делается через менеджер начальной загрузки, такой как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lilo&amp;category=1">lilo</a></b>(1).
+
+</dd><dt><i>cpuinfo</i>
+
+</dt><dd>
+Это коллекция элементов, зависящих от процессора и системной архитектуры;
+для каждой поддерживаемой архитектуры список различен. Имеются только
+две общих записи, которые предоставляют номер процессора и
+<i>BogoMIPS</i> -- это системная константа, которая высчитывается
+во время инициализации ядра. Для SMP (многопроцессорных) машин
+информация предоставляется по каждому процессору.
+</dd><dt><i>devices</i>
+
+</dt><dd>
+Текстовый список старших (major) номеров устройств и групп устройств.
+Он может быть использован скриптами MAKEDEV для того, чтобы создать
+устройства, соответствующие тем, которые поддерживает ядро.
+</dd><dt><i>dma</i>
+
+</dt><dd>
+Список зарегистрированных каналов <i>ISA</i> DMA (прямого доступа в память),
+которые используются в данный момент.
+</dd><dt><i>driver</i>
+
+</dt><dd>
+Пустой подкаталог.
+</dd><dt><i>execdomains</i>
+
+</dt><dd>
+Список выполнимых доменов (индивидуально для ABI).
+</dd><dt><i>fb</i>
+
+</dt><dd>
+Информация о frame buffer, если ядро собрано с поддержкой CONFIG_FB.
+</dd><dt><i>filesystems</i>
+
+</dt><dd>
+Текстовый список файловых систем, поддержка которых вкомпилирована в
+ядро. Обычно используется программой
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=1">mount</a></i>(1)
+
+для поиска нужной файловой системы, если она не указана при монтировании.
+</dd><dt><i>fs</i>
+
+</dt><dd>
+Пустой подкаталог.
+</dd><dt><i>ide</i>
+
+</dt><dd>
+Подкаталог
+<i>ide</i>
+
+существует в системах с шиной ide. Это каталоги для каждого для
+каждого канала ide и подключенных устройств. Файлы включают:
+<p>
+</p><pre>cache              размер буфера в KB
+capacity           количество секторов
+driver             версия драйвера
+geometry           физическая и логическая геометрия
+identify           в шестнадцатеричном виде
+media              тип носителя
+model              номер модели производителя
+settings           настройки драйвера
+smart_thresholds   в шестнадцатеричном виде
+smart_values       в шестнадцатеричном виде
+</pre>
+
+<p>
+Утилита
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hdparm&amp;category=8">hdparm</a></b>(8)
+
+предоставляет доступ к этой информации в дружественном формате.
+</p></dd><dt><i>interrupts</i>
+
+</dt><dd>
+Используется для записи количества прерываний, соответствующих
+каждому IRQ.  Используется (по крайней мере) на архитектуре i386.
+Очень легко прочитать, так как записи в ASCII.
+</dd><dt><i>iomem</i>
+
+</dt><dd>
+Карта памяти ввода/вывода в Linux 2.4.
+</dd><dt><i>ioports</i>
+
+</dt><dd>
+Список зарегистрированных диапазонов портов ввода-вывода, которые
+используются в данный момент.
+</dd><dt><i>kcore</i>
+
+</dt><dd>
+Этот файл отображает физическую память системы и записывается в
+ELF формате файла core.  С помощью этого псевдо-файла и ядра, из
+которого не убраны таблицы символов (/usr/src/linux/vmlinux), можно
+использовать GDB для проверки текущего состояния любых структур
+ядра.
+<p>
+Полная длина этого файла - это размер физической памяти (RAM) плюс
+4KB.
+</p></dd><dt><i>kmsg</i>
+
+</dt><dd>
+Этот файл может быть использован вместо системного вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=2">syslog</a></b>(2)
+
+для чтения сообщений ядра.  Процесс должен иметь привилегии
+суперпользователя, чтобы читать этот файл, причем делать это может
+только один процесс. Данный файл невозможно прочесть, если запущен
+процесс syslog, который использует системный вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=2">syslog</a></b>(2)
+
+для протоколирования сообщений ядра.
+<p>
+Информация из этого файла извлекается с помощью программы
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dmesg&amp;category=8">dmesg</a></b>(8).
+
+</p></dd><dt><i>ksyms</i>
+
+</dt><dd>
+Файл содержит определения символов, экспортируемых ядром, которые
+используются инструментами
+<b>modules</b>(X)
+
+для динамического связывания загрузочных модулей.
+</dd><dt><i>loadavg</i>
+
+</dt><dd>
+Параметры средней загрузки, которые предоставляют количество заданий
+в очереди выполнения в среднем за 1, 5 и 15 минут. Это то же самое,
+что и средняя загрузка, которую выдает программа
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=uptime&amp;category=1">uptime</a></i>(1)
+
+и другие.
+</dd><dt><i>locks</i>
+
+</dt><dd>
+Этот файл показывает файловые блокировки, установленные в текущий
+момент вызовами
+(<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=flock&amp;category=2">flock</a></b>(2) и <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2))
+
+и параметры
+(<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2)).
+
+</dd><dt><i>malloc</i>
+
+</dt><dd>
+Данный файл существует только если ядро собрано с поддержкой
+CONFIGDEBUGMALLOC.
+</dd><dt><i>meminfo</i>
+
+</dt><dd>
+Этот файл используется программой
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=free&amp;category=1">free</a></b>(1)
+
+для формирования отчета о свободной и используемой памяти (как физической,
+так и виртуальной, в своп-файле), а также разделяемой памяти и памяти
+под буферы, которую использует ядро.
+<p>
+Данные в том же формате, который выдает команда
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=free&amp;category=1">free</a></i>(1),
+
+за исключением того, что цифры даются в байтах, а не килобайтах.
+</p></dd><dt><i>mounts</i>
+
+</dt><dd>
+Это список всех файловых систем, которые примонтированы в настоящий момент.
+Формат этого файла описан в
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fstab&amp;category=5">fstab</a></i>(5).
+
+</dd><dt><i>modules</i>
+
+</dt><dd>
+Текстовый список модулей, которые были загружены системой.
+Смотри также
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lsmod&amp;category=8">lsmod</a></b>(8).
+
+</dd><dt><i>mtrr</i>
+
+</dt><dd>
+Memory Type Range Registers. 
+Подробности смотри в
+<i>/usr/src/linux/Documentation/mtrr.txt .</i>
+
+</dd><dt><i>net</i>
+
+</dt><dd>
+разные псевдо-файлы, содержащие информацию по какой-либо части
+сетевой подсистемы.  Они содержат структуры в ASCII и прекрасно
+читаются утилитой cat. Однако, стандартная утилита
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netstat&amp;category=8">netstat</a></b>(8)
+
+предоставляет более чистый доступ к этим файлам.
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><i>arp</i>
+
+</dt><dd>
+Файл содержит читабельный ASCII-дамп ARP таблицы ядра, которая 
+используется для определения адресов. Она покажет как полученные
+динамически, так и заданные явно записи ARP. Формат файла такой:
+<p>
+</p><pre>IP address     HW type   Flags     HW address          Mask   Device
+192.168.0.50   0x1       0x2       00:50:BF:25:68:F3   *      eth0
+192.168.0.250  0x1       0xc       00:00:00:00:00:00   *      eth0
+</pre>
+
+
+</dd></dl>
+<p>
+
+Здесь 'IP address' это адрес машины в нотации IPv4, 'HW type' - это тип
+аппаратного обеспечения для этого адреса согласно RFC 826. Flags - это
+внутренние флаги структуры ARP (определенные в 
+<b>/usr/include/linux/if_arp.h</b>),
+
+а 'HW address' -- это физическое отображение IP-адреса, если оно
+известно.
+</p><dl compact="">
+<dt><i>dev</i>
+
+</dt><dd>
+Псевдо-файл dev содержит информацию о состоянии сетевых устройств.
+Она представляет собой количество принятых и отправленных пакетов, количество
+ошибок и коллизий, и другую базовую статистику.  Эта информация используется
+программой
+<i><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ifconfig&amp;category=8">ifconfig</a></i>(8)
+
+для вывода отчета о состоянии устройства. Формат информации такой:
+<p>
+</p><pre>Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+    lo: 2776770   11307    0    0    0     0          0         0  2776770   11307    0    0    0     0       0          0
+  eth0: 1215645    2751    0    0    0     0          0         0  1782404    4324    0    0    0   427       0          0
+  ppp0: 1622270    5552    1    0    0     0          0         0   354130    5669    0    0    0     0       0          0
+  tap0:    7714      81    0    0    0     0          0         0     7714      81    0    0    0     0       0          0
+</pre>
+
+
+
+</dd><dt><i>dev_mcast</i>
+
+</dt><dd>
+Определено в
+<i>/usr/src/linux/net/core/dev_mcast.c</i>:
+
+<pre>indx ifterface_name  dmi_u dmi_g dmi_address
+2    eth0            1     0     01005e000001
+3    eth1            1     0     01005e000001
+4    eth2            1     0     01005e000001
+</pre>
+
+</dd><dt><i>igmp</i>
+
+</dt><dd>
+Internet Group Management Protocol (Протокол Управления Интернет-Группами).
+Определён в
+<i>/usr/src/linux/net/core/igmp.c</i>.
+
+</dd><dt><i>rarp</i>
+
+</dt><dd>
+Данный файл использует тот же формат, что и файл
+<i>arp</i>
+
+и содержит текущую реверсную базу данных адресов ARP, используемую
+при работе
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rarp&amp;category=8">rarp</a></b>(8)
+
+служб поиска обратных адресов. 
+Если поддержки RARP нет в ядре, то этот файл не существует.
+</dd><dt><i>raw</i>
+
+</dt><dd>
+Содержит дамп таблицы беспротокольных (RAW) сокетов.  Большая часть этой
+информации не используется ни для чего, кроме отладки.  Значение 'sl' это
+хешируемый слот ядра для сокета, 'local address' -- это пара (локальный адрес,
+номер протокола). 'St' -- это внутреннее состояние сокета.  'tx_queue' и
+
+памяти ядра. Поля 'tr', 'tm-&gt;when' и 'rexmits' не используются RAW. Поле uid
+содержит euid (эффективный идентификатор пользователя) создателя данного
+сокета.
+
+
+
+</dd><dt><i>snmp</i>
+
+</dt><dd>
+Этот файл содержит ASCII данные, необходимые для управления IP, ICMP, TCP и
+UDP для SNMP-агента.
+</dd><dt><i>tcp</i>
+
+</dt><dd>
+Содержит дамп таблицы TCP-сокетов.  Большая часть этой информации не
+используется ни для чего, кроме отладки. Значение 'sl' это хешируемый слот
+ядра для сокета, 'local address' - это пара (локальный адрес, номер порта).
+
+соединение). 'St' - это внутреннее состояние сокета.  'tx_queue' и 'rx_queue'
+это исходящая и входящая очереди данных в терминах использования памяти ядра.
+Поля 'tr', 'tm-&gt;when' и 'rexmits' содержат внутреннюю информацию ядра о
+состоянии сокета и полезны только для отладки. Поле uid содержит
+euid (эффективный идентификатор пользователя) создателя данного сокета.
+</dd><dt><i>udp</i>
+
+</dt><dd>
+Содержит дамп таблицы UDP-сокетов. Большая часть этой информации не
+используется ни для чего, кроме отладки. Значение 'sl' -- это хешируемый слот
+ядра для сокета, 'local address' - это пара (локальный адрес, номер порта).
+
+соединение). 'St' - это внутреннее состояние сокета.  'tx_queue' и
+
+памяти ядра. Поля 'tr', 'tm-&gt;when' и 'rexmits' не используются UDP.
+Поле uid содержит euid (эффективный идентификатор пользователя) создателя
+данного сокета. Формат такой:
+<p>
+</p><pre>sl  local_address rem_address   st tx_queue rx_queue tr rexmits  tm-&gt;when uid
+ 1: 01642C89:0201 0C642C89:03FF 01 00000000:00000001 01:000071BA 00000000 0
+ 1: 00000000:0801 00000000:0000 0A 00000000:00000000 00:00000000 6F000100 0
+ 1: 00000000:0201 00000000:0000 0A 00000000:00000000 00:00000000 00000000 0
+</pre>
+
+</dd><dt><i>unix</i>
+
+</dt><dd>
+Показывает список доменных сокетов UNIX, присутствующих в системе, а
+также их состояния.  Формат такой:
+<p>
+</p><pre>
+Num RefCount Protocol Flags    Type St Path
+ 0: 00000002 00000000 00000000 0001 03
+ 1: 00000001 00000000 00010000 0001 01 /dev/printer
+
+</pre>
+
+</dd></dl>
+<p>
+
+Где 'Num' - это номер слота в таблице, 'RefCount' -- количество
+пользователей данного сокета, 'Protocol' в настоящий момент всегда 0,
+-<b>ags' - представляет внутренние флаги ядра, содержащие состояние</b>
+
+сокета.  'Type' в настоящий момент всегда '1' (датаграммы доменных сокетов
+Unix  ядром пока не поддерживаются). 'St' - это внутреннее состояние
+сокета, а 'Path' - это путь привязки (если он есть) данного сокета.
+</p></dd></dl>
+
+</dd><dt><i>partitions</i>
+
+</dt><dd>
+Содержит старшие (major) и младшие (minor) номер каждого раздела,
+а также количество блоков (размер раздела) и имя раздела.
+</dd><dt><i>pci</i>
+
+</dt><dd>
+Это список всех PCI-устройств, найденных во время инициализации ядра,
+а также их конфигурация.
+</dd><dt><i>scsi</i>
+
+</dt><dd>
+Каталог с псевдо-файлами для получения информации о scsi-адаптерах, а также
+разные каталоги низкоуровневых драйверов SCSI, которые содержат по одному
+файлу на каждый SCSI-адаптер в системе, и которые представляют некоторую
+информацию о части подсистемы ввода/вывода SCSI. Данные файлы содержат
+ASCII структуры и прекрасно читаются утилитой cat.
+<p>
+Вы также можете писать в некоторые из этих файлов для перенастройки
+подсистемы или включения/выключения некоторых возможностей.
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><i>scsi</i>
+
+</dt><dd>
+Это список всех SCSI-устройств, которые известны ядру.  Список похож
+на тот, что выдается при начальной загрузке. scsi в настоящий момент
+поддерживает только команду <i>add-single-device</i>, которая позволяет
+суперпользователю добавлять устройства на ходу, без выключения машины.
+<p>
+Например, команда 
+<b>echo 'scsi add-single-device 1 0 5 0' &gt; /proc/scsi/scsi </b>
+
+заставит адаптер scsi1 просканировать SCSI канал 0, чтобы найти устройство
+с ID 5 и LUN 0.  Если по этому адресу уже есть известное устройство или
+если заданный адрес неправилен, то будет возвращена ошибка.
+</p></dd><dt><i>drivername</i>
+
+</dt><dd>
+<i>drivername</i> в настоящий момент может быть: NCR53c7xx, aha152x, aha1542,
+aha1740, aic7xxx, buslogic, eata_dma, eata_pio, fdomain, in2000, pas16, qlogic, 
+scsi_debug, seagate, t128, u15-24f, ultrastore или wd7000. 
+<p>
+Эти каталоги показывают все драйверы, который зарегистрированы
+хотя бы одним SCSI HBA.  Каждый каталог содержит по одному файлу на каждый
+зарегистрированный адаптер.  Имя каждого адаптера соответствует
+номеру, который был получен этим адаптером во время инициализации.
+</p><p>
+Чтение данных файлов обычно показывает информацию о конфигурации драйвера
+и адаптера, статистическую информацию и т. д.
+</p><p>
+Записывая в эти файлы, можно добиться различных результатов от разных
+адаптеров.  Например, командами <i>latency</i> и <i>nolatency</i>
+суперпользователь может включить и выключить код вычисления latency
+команд в драйвере eata_dma. Командами <i>lockup</i> и <i>unlock</i>
+суперпользователь может управлять блокировками шины, которые симулирует
+драйвер scsi_debug. 
+</p></dd></dl>
+</dd></dl>
+
+</dd><dt><i>self</i>
+
+</dt><dd>
+Этот каталог указывает на процесс, обращающийся к файловой
+системе /proc, и идентичен подкаталогу, соответствующему номеру
+этого процесса.
+</dd><dt><i>slabinfo</i>
+
+</dt><dd>
+Информация о кэшах ядра.  Колонки имеют вид:
+<pre>cache-name
+num-active-objs
+total-objs
+object-size
+num-active-slabs
+total-slabs
+num-pages-per-slab
+</pre>
+
+Подробности смотри в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slabinfo&amp;category=5">slabinfo</a></b>(5).
+
+</dd><dt><i>stat</i>
+
+</dt><dd>
+статистика ядра/системы. Различается для разных архитектур. Общие записи
+включают:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><i>cpu  3357 0 4313 1362393</i></dt><dd>
+Количество мигов (jiffies) (сотых секунды), которые система проводит,
+соответственно, в режиме пользователя, режиме пользователя с низким
+приоритетом (nice), режиме системы и в режиме простаивающих задач.
+Последнее значение должно быть в 100 раз больше второго значения из
+псевдо-файла uptime
+</dd><dt><i>page 5741 1808</i></dt><dd>
+Количество страниц, которые система загрузила с диска и выгрузила на
+диск.
+</dd><dt><i>swap 1 0</i></dt><dd>
+Количество страниц своппинга, которые загружены и выгружены.
+</dd><dt><i>intr 1462898</i></dt><dd>
+Количество прерываний, случившихся с момента загрузки системы.
+</dd><dt><i>disk_io: (2,0):(31,30,5764,1,2) (3,0):</i>...</dt><dd>
+(major,minor):(noinfo, read_io_ops, blks_read, write_io_ops, blks_written)
+</dd><dt><i>ctxt 115315</i></dt><dd>
+Количество переключений контекста, произошедших в системе.
+</dd><dt><i>btime 769041601</i></dt><dd>
+Время начальной загрузки, в секундах после 1 января 1970 г.
+</dd><dt><i>processes 86031</i></dt><dd>
+Количество разветвлений (вызовов fork) с момента начальной загрузки.
+</dd></dl>
+</dd></dl>
+
+</dd><dt><i>swaps</i>
+
+</dt><dd>
+Используемые области своппинга (виртуальной памяти на жёстком диске
+-- прим. пер.).  См. также
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=swapon&amp;category=8">swapon</a></b>(8).
+
+</dd><dt><i>sys</i>
+
+</dt><dd>
+Этот каталог (присутствующий, начиная с 1.3.57) содержит несколько файлов
+и подкаталогов, которые соответствуют переменным ядра. Эти переменные
+могут быть прочитаны и иногда изменены с использованием файловой
+системы
+<i>proc</i>,
+
+а также с помощью системного вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sysctl&amp;category=2">sysctl</a></b>(2).
+
+На сегодняшний момент имеются каталоги
+<i>abi</i>, <i>debug</i>, <i>dev</i>, <i>fs</i>, <i>kernel</i>, <i>net</i>, <i>proc</i>, 
+
+<i>rxrpc</i>, <i>sunrpc</i> и <i>vm</i>
+
+каждый из которых содержит много файлов и подкаталогов.
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><i>abi</i>
+
+</dt><dd>
+Этот каталог может содержать файлы с двоичной информацией приложений.
+В некоторых системах этого каталога нет.
+</dd><dt><i>debug</i>
+
+</dt><dd>
+Данный каталог может быть пуст.
+</dd><dt><i>dev</i>
+
+</dt><dd>
+Данный каталог содержит информацию, специфичную для устройств (например
+dev/cdrom/info).  В некоторых системах он может быть пуст.
+</dd><dt><i>fs</i>
+
+</dt><dd>
+Этот каталог содержит подкаталог
+<i>binfmt_misc</i>
+
+и файлы
+<i>dentry-state</i>, <i>dir-notify-enable</i>, <i>dquot-nr</i>, <i>file-max</i>, 
+
+<i>file-nr</i>, <i>inode-max</i>, <i>inode-nr</i>, <i>inode-state</i>, 
+
+<i>lease-break-time</i>, <i>leases-enable</i>, <i>overflowgid</i>, <i>overflowuid</i>
+
+<i>super-max</i> и <i>super-nr</i>
+
+которые выполняю функции, соответствующие их названиям.
+</dd></dl>
+<p>
+
+Документацию по файлам в
+<i>/proc/sys/binfmt_misc</i>
+
+можно найти в исходных текстах ядра в
+<i>Documentation/binfmt_misc.txt</i>.
+
+</p><p>
+
+Файл
+<i>dentry-state</i>
+
+содержит шесть чисел,
+<i>nr_dentry</i>, <i>nr_unused</i>, <i>age_limit</i> (возраст в секундах), <i>want_pages</i>
+
+(страниц, запрошенных системой) и два пустых значения.
+nr_dentry всегда показывает 0.
+nr_unused показывает количество неиспользованных dentries.
+age_limit -- это возраст в секундах по истечении которого
+dcache entries могут быть отозваны, когда памяти становится
+мало и значение want_pages не ноль, когда ядро делает вызов
+shrink_dcache_pages() и кэш dcache пока не подрезан.
+</p><p>
+
+Файл
+<i>dir-notify-enable</i>
+
+может быть использован, чтобы запретить или разрешить интерфейс
+<i>dnotify</i>
+
+описанный в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2)
+
+на общесистемной основе.
+Значение 0 в этом файле запрещает интерфейс, а значение 1 разрешает
+его.
+</p><p>
+
+Файл
+<i>dquot-max</i>
+
+показывает максимальное количество кэшируемых записей дисковых
+квот. В некоторых (2.4) системах, его нет.
+Если число свободных кэшируемых дисковых квот является
+очень маленьким, а у вас в системе одновременно работает большое
+количество пользователей, то вам, возможно, захочется увеличить
+этот лимит.
+</p><p>
+
+Файл
+<i>dquot-nr</i>
+
+показывает количество выделенных в использование записей дисковых квот и
+количество свободных записей дисковых квот.
+</p><p>
+
+Файл
+<i>file-max</i>
+
+показывает системный лимит на количество открытых файлов для всех
+процессов. (См. также вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setrlimit&amp;category=2">setrlimit</a></b>(2),
+
+который можно использовать, чтобы установить ограничение
+<b>RLIMIT_NOFILE</b>,
+
+на количество открытых файлов файлов на процесс).
+Если вы получяете большое количество сообщений о невозможности
+открыть файловые дескрипторы, попытайтесь увеличить это значение:
+<br>
+
+</p><p>
+<br>
+
+</p><pre>echo 100000 &gt; /proc/sys/fs/file-max
+</pre>
+
+
+<p>
+
+Константа ядра
+<i>NR_OPEN</i>
+
+устанавливает верхний лимит значения, которое может быть установлено в
+<i>file-max</i>.
+
+</p><p>
+
+Если вы увеличиваете
+<i>file-max</i>,
+
+то позаботьтесь увеличить
+<i>inode-max ,</i>
+
+установив его в 3-4 раза больше, чем новое значение
+<i>file-max</i>,
+
+в противном случае вам может не хватить индексных дескрипторов.
+</p><p>
+
+Доступный только для чтения файл
+<i>file-nr</i>
+
+показывает количество открытых файлов.
+Он содержит три числа: Количество выделенных индексных дескрипторов,
+количество свободных файловых дескрипторов и максимальное количество
+файловых дескрипторов. Ядро выделяет файловые дескрипторы динамически,
+но оно не освобождает их сразу же. Если количество выделенных файлов
+становится больше максимального, то вам необходимо увеличить максимальное.
+Когда количество свободных файловых дескрипторов велико и у вас
+не бывает неожиданных пиков использования файловых дескрипторов,
+вам наверняка не понадобится увеличивать максимальное значение.
+</p><p>
+
+Файл
+<i>inode-max </i>
+
+содержит максимальное количество индексных дескрипторов, находящихся в
+памяти. В некоторых (2.4) системах, его может не быть.
+Это количество должно быть в 3-4 раза больше, чем максимальное значение
+в файле file-max, так как стандартному вводу (stdin), стандартному выводу
+(stdout) и сетевым сокетам также необходимы индексные дескрипторы.
+Если вам регулярно не хватает индексных декскрипторов, то вам необходимо
+увеличить это значение.
+</p><p>
+
+Файл
+<i>inode-nr</i>
+
+содержит первые два значения из inode-state.
+</p><p>
+
+Файл
+<i>inode-state</i>
+
+содержит семь значений: nr_inodes, nr_free_inodes, preshrink и четыре
+пустых.
+nr_inodes -- это количество индексных дескрипторов, выделенных для
+использования системой.  Оно может быть несколько больше, чем inode-max,
+потому что Linux выделяет их по полной странице за раз.
+nr_free_inodes представляет количество свободных индексных дескрипторов.
+preshrink будет ненулевым, когда nr_inodes &gt; inode-max и
+системе понадобится подрезать список индексных дескрипторов,
+вместо выделения новых.
+</p><p>
+
+Файл
+<i>lease-break-time</i>
+
+задаёт период, в течении которого, ядро предоставляет процессу
+возможность удерживать файл, занятый через вызов
+(<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2))
+
+после вызова, оно посылает сигнал процессу, извещая его о том,
+что другой процесс ожидает открытия этого файла. Если удерживающий
+файл процесс не удалит или не отменит удержание файла в течении
+указанного периода, то ядро принудительно снимет удержание.
+</p><p>
+
+Файл
+<i>leases-enable</i>
+
+можно использовать, чтобы разрешить или запретить в системе возможность
+удержания файла через
+(<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fcntl&amp;category=2">fcntl</a></b>(2)).
+
+Если файл содержит 0, удержание запрещено. Если не ноль - разрешено.
+</p><p>
+
+Файлы
+<i>overflowgid</i> и 
+
+<i>overflowuid</i>
+
+позволяют вам изменить значение фиксированных UID и GID.
+По умолчанию оно равно 65534. Некоторые файловые системы
+поддерживают только 16-битные UID и GID, в то время как в Linux
+UID и GID являются 32-битными. Когда монтируется одна из таких файловых
+систем с правами, позволяющими запись, все UID или GID, которые
+превышают 65535 транслируются перед записью на диск в переполненные
+значения.
+</p><p>
+
+Файл
+<i>super-max </i>
+
+управляет максимальным значением суперблоков и таким образом
+максимальным значением файловых систем, которые может смонтировать
+ядро. Вам необходимо увеличить super-max только в том случае, если
+вам нужно смонтировать больше файловых систем, чем это позволяет
+значение в файле super-max.
+Файл
+<i>super-nr</i>
+
+содержит количество файловых систем, которые смонтированы в данный момент.
+</p><dl compact="">
+<dt><i>kernel</i>
+
+</dt><dd>
+Этот каталог содержит файлы
+<i>acct</i>, <i>cad_pid</i>, <i>cap-bound</i>, 
+
+<i>core_pattern</i>, <i>core_uses_pid</i>, 
+
+<i>ctrl-alt-del</i>, <i>dentry-state</i>, <i>domainname</i>, 
+
+<i>hotplug</i>, <i>hostname</i>, 
+
+<i>htab-reclaim</i> (только для PowerPC), 
+
+<i>java-appletviewer</i> (binfmt_java, устарел), 
+
+<i>java-interpreter</i> (binfmt_java, устарел), <i>l2cr</i> (только для PowerPC), 
+
+<i>modprobe</i>, <i>msgmax</i>, <i>msgmnb</i>, 
+
+<i>msgmni</i>, <i>osrelease</i>, <i>ostype</i>, <i>overflowgid</i>, <i>overflowuid</i>, 
+
+<i>panic</i>, <i>panic_on_oops</i>, <i>pid_max</i>, 
+
+<i>powersave-nap</i> (только для PowerPC), <i>printk</i>, <i>random</i>, 
+
+<i>real-root-dev</i>, <i>reboot-cmd</i> (только для SPARC), <i>rtsig-max</i>, 
+
+<i>rtsig-nr</i>, <i>sem</i>, <i>sg-big-buff</i>, 
+
+<i>shmall</i>, <i>shmmax</i>, <i>shmmni</i>, <i>sysrq</i>, <i>tainted</i>, <i>threads-max</i>, 
+
+<i>version</i> и <i>zero-paged</i> (только для PowerPC) 
+
+функции которых соответствует их именам.
+</dd></dl>
+<p>
+
+Файл
+<i>acct</i>
+
+содержит три числа: highwater, lowwater и frequency.
+Если разрешён учёт процессов в стиле BSD, то эти значения управляют его
+поведением. Если свободного места на файловой системе, куда осуществляется
+протоколирование учёта становится меньше, чем lowwater%, то учёт процессов
+приостанавливается. Если свободного места становится больше, чем highwater%,
+то учёт процессов возобновляется. Значение frequency определяет как
+часто ядро проверяет свободное место (в секундах). По умолчанию значения
+соответственно составляют 4, 2 и 30. Таким образом, приостановка учёта
+осуществляется если свободно менее 2% места на диске; возобновление
+если места &gt;=4%; информация о свободном месте обновляется каждые 30
+секунд.
+</p><p>
+
+Файл
+<i>cap-bound</i>
+
+содержит набор значений ядра
+<i>capability bounding set</i>
+
+(выражаемый как десятичные числа со знаком).
+Этот набор является битовой маской возможностей, предоставляемых процессу
+во время exec, которая накладывается посредством битового умножения (AND).
+</p><p>
+
+Файл
+<i>core_pattern</i>
+
+(новое в Linux 2.5) предоставляет улучшеный контроль над формой имени
+файла core, что заменяет устаревший файл
+<i>core_uses_pid</i>, 
+
+описываемый ниже.
+Имя файла core управляется определением шаблона в
+<i>core_pattern</i>.
+
+Шаблон может содержать символ %, который определяет какая из
+следующих подстановок будет применена при создании файла core:
+</p><pre>    
+  %%  Один символ %
+  %p  PID процесса, для которого создаётся файл дамп
+  %u  реальный UID процесса, для которого создаётся дамп
+  %g  реальный GID процесса, для которого создаётся дамп
+  %s  номер сигнала, вызывашего дамп
+  %t  время создания дампа (секунды прошедшие с 0:00h, 1 Jan 1970)
+  %h  имя машины (тоже, что и 'nodename' 
+      возвращаемое вызовом <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=uname&amp;category=2">uname</a></b>(2))
+  %e  имя программы
+    
+</pre>
+
+Одиночный символ % в конце шаблона отбрасывается из имени файла core,
+как и комбинация из следующих за ним символов, если она не соответствует
+одной из указанных выше комбинаций. Все другие символы в шаблоне
+становятся литеральной частью имени файла core. Максимальный размер
+получившегося имени файла core не может превышать 64 байт.
+По умолчанию - это имя "core". Для обратной совместимости, если
+<i>core_pattern</i>
+
+не включает "%p" и
+<i>core_uses_pid</i>
+
+отличен от нуля, то к имени файла core будет добавлена подстрока .PID.
+<p>
+
+Файл
+<i>core_uses_pid</i>
+
+может быть использован для управления именем файла core в Linux 2.4.
+Если данный файл содержит значение 0, то файл core называется просто
+<i>core</i>.
+
+Если данный файл содержит ненулевое значение, то имя файла core включает
+в себя идентификатор процесса в виде
+<i>core.PID</i>.
+
+</p><p>
+
+Файл
+<i>ctrl-alt-del</i>
+
+управляет обработкой нажатия клавиш Ctrl-Alt-Del.
+Когда значение в этом файле 0, Ctrl-Alt-Del обрабатывается и
+производит вызов программы
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=init&amp;category=1">init</a></b>(1)
+
+для выполнения перезапуска системы. 
+Когда значение в файле &gt; 0, реакция Linux соответствует
+Vulcan Nerve Pinch (tm), согласно которому произойдёт немедленная
+перезагрузка, даже без синхронизации буферов дисков.
+Замечание: когда какая-либо программа (типа dosemu) получает
+клавиатуру в 'raw' режиме, нажатие ctrl-alt-del интерпретируется
+этой программой, перед тем как оно достигнет уровня обработки
+tty ядром, и таким образом, именно эта программа будет решать,
+что с этим делать.
+</p><p>
+
+Файл
+<i>hotplug</i>
+
+содержит путь для агента политики устройств, подключаемых в
+"горячем" режиме. По умолчанию это файл "/sbin/hotplug".
+</p><p>
+
+Файлы
+<i>domainname</i> и 
+
+<i>hostname</i>
+
+могут быть использованы для установки имени домена службы
+NIS/YP и имени узла для вашей машины точно таким же
+образом как и командами domainname и hostname, т.е.
+команды:
+<br>
+
+</p><p>
+<br>
+
+# echo "darkstar" &gt; /proc/sys/kernel/hostname
+<br>
+
+# echo "mydomain" &gt; /proc/sys/kernel/domainname
+<br>
+
+</p><p>
+<br>
+
+имеют тот же эффект, что и команды
+<br>
+
+</p><p>
+<br>
+
+# hostname "darkstar"
+<br>
+
+# domainname "mydomain"
+<br>
+
+</p><p>
+<br>
+
+Заметим, однако, что классический darkstar.frop.org имеет имя
+узла "darkstar" и доменное имя DNS (Сервера Доменных Имен)
+"frop.org", не путайте с доменным именем NIS (Службы Сетевой
+Информации) или как она раньше называлась YP (Yellow Pages).
+Эти два доменных имени полностью различны по своей сути.
+Подробности об это можно найти на странице руководства
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hostname&amp;category=1">hostname</a></b>(1).
+
+</p><p>
+
+Если файл
+<i>htab-reclaim</i>
+
+(только для PowerPC) установлен в ненулевое значение, то
+PowerPC htab (см. файл Documentation/powerpc/ppc_htab.txt в
+исходных текстах ядра) подрезается каждый раз, когда система
+входит в цикл простоя.
+</p><p>
+
+Файл
+<i>l2cr</i>
+
+(только для PowerPC) содержит файл, который управляет L2
+кэшем на процессорных платах G3. Если 0, кэш запрещён.
+Если не ноль - разрешён.
+</p><p>
+
+Файл
+<i>modprobe</i>
+
+описывается в файле исходных текстов ядра Documentation/kmod.txt.
+</p><p>
+
+Файл
+<i>msgmax</i>
+
+это системный лимит, задающий максимальное число байт в одном
+сообщении, которое пишется в очередь сообщений System V.
+</p><p>
+
+Файл
+<i>msgmni</i>
+
+задаёт системный лимит на количество идентификаторов в очереди
+сообщений. (Файл есть только в Linux 2.4 и выше.)
+</p><p>
+
+Файл
+<i>msgmnb</i>
+
+это системный параметр, используемый для инициализации установки
+<i>msg_qbytes</i>
+
+для последовательно создаваемых очередей сообщений.
+Установка
+<i>msg_qbytes</i>
+
+задаёт максимальное число байт, которые могут быть записаны в
+очередь сообщений.
+</p><p>
+
+Файлы
+<i>ostype</i>
+
+и
+<i>osrelease</i>
+
+содержат подстроки из
+<i>/proc/version</i>.
+
+</p><p>
+
+Файлы
+<i>overflowgid</i>
+
+и
+<i>overflowuid</i>
+
+дублируют файлы
+<i>/proc/sys/fs/overflowgid</i>
+
+и
+<i>/proc/sys/fs/overflowuid</i>.
+
+</p><p>
+
+Файл
+<i>panic</i>
+
+предоставляет доступ на чтение и запись к переменной ядра
+<i>panic_timeout</i>.
+
+Если в файле ноль, ядро будет зацикливаться при крахе системы
+по panic; если не ноль, то это означает, что ядро должно
+выполнить автоматическую перезагрузку после этого количества
+секунд. Когда вы используете программный драйвер устройства
+watchdog (устройство, периодически делающее проверку, что
+система функционирует), то рекомендуется установить значение 60.
+</p><p>
+
+Файл
+<i>panic_on_oops</i>
+
+(новое в Linux 2.5) уравляет поведением ядра, когда случается
+oops или BUG. Если файл содержит 0, то система пытается продолжить
+работу. Если содержит 1, то система выполняет задержку на
+несколько секунд (чтобы дать время klogd записать вывод oops)
+и затем генерирует крах системы через panic.
+Если файл
+<i>panic</i>
+
+также содержит ненулевое знаечение, то машина будет перезагружена.
+</p><p>
+
+Файл
+<i>pid_max</i>
+
+(новое в Linux 2.5)
+задаёт значение, в пределах которого находятся все идентификаторы
+процессов (PID)) (т.е. значение в этом файле на единицу больше,
+чем максимальный PID). По умолчанию, значение в этом файле
+составляет 32768, т.е. означает тот же самый диапазон PID'ов,
+что и в ранних ядрах. Значение в этом файле может быть установлено
+до 2^22 (значения PID_MAX_LIMIT, которое приблизительно составляет
+4 миллиона).
+</p><p>
+
+Файл
+<i>powersave-nap</i> (только для PowerPC)
+
+содержит флаг. Если он установлен Linux-PPC будет использовать 'nap'
+режим сберегания питания, в противном случае, будет использоваться
+режим 'doze'.
+</p><p>
+
+Четыре значения в файле
+<i>printk</i>
+
+это console_loglevel, default_message_loglevel, minimum_console_level и
+default_console_loglevel.
+Данные значения влияют на поведение printk() при выдаче или протоколировании
+сообщений об ошибках. Подробности о различных уровнях протоколирования см. в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=2">syslog</a></b>(2).
+
+Сообщения с более высоким приоритетом, чем console_loglevel будут выданы
+на консоль. Сообщения без явно заданного приоритета будут выданы с
+приоритетом default_message_level.
+minimum_console_loglevel - это минимальное (наивысшее) значение, в
+которое может быть установлено значение console_loglevel.
+default_console_loglevel - это значение по умолчанию для console_loglevel.
+</p><p>
+
+Каталог
+
+<i>random</i>
+
+содержит различные параметры, управляющие работой файла
+<i>/dev/random</i>.
+
+</p><p>
+
+Файл
+<i>real-root-dev</i>
+
+описывается в файле исходных текстов ядра Documentation/initrd.txt.
+</p><p>
+
+Файл
+<i>reboot-cmd</i> (только для Sparc) 
+
+является способом задания аргументов для начального загрузчика SPARC
+ROM/Flash. Способ сказать ему, что делать после перезагрузки?
+</p><p>
+
+Файл
+<i>rtsig-max</i>
+
+может быть использован для настройки максимального количества
+сигналов реального времени POSIX (в очереди), которое может
+воспринять система.
+</p><p>
+
+Файл
+<i>rtsig-nr</i>
+
+показывает количество сигналов реального времени POSIX,
+которые в настоящий момент находятся в очереди.
+</p><p>
+
+Файл
+<i>sem</i>
+
+(доступен в Linux 2.4 и выше)
+содержит 4 значения, описывающих ограничения семафоров по
+стандарту System V. Вот эти значения по порядку:
+</p><dl compact="">
+<dt>SEMMSL</dt><dd>
+Максимальное количество семафоров в одном списке семафоров.
+</dd><dt>SEMMNS</dt><dd>
+Системный лимит на количество семафоров во всех списках семафоров.
+</dd><dt>SEMOPM</dt><dd>
+Максимальное количество операций, которое может быть указано в
+вызове
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=semop&amp;category=2">semop</a></b>(2).
+
+</dd><dt>SEMMNI</dt><dd>
+Системный лимит на максимальное количество идентификаторов семафоров.
+</dd></dl>
+<p>
+
+Файл
+<i>sg-big-buff</i>
+
+показывает размер буфера стандартного SCSI устройства (sg).
+Вы не можете пока настраивать его, но его можно изменить
+при компиляции ядра, исправив файл include/scsi/sg.h,
+изменив в нём значение SG_BIG_BUFF. Однако, в этом как правило
+нет необходимости.
+</p><p>
+
+Файл
+<i>shmall</i>
+
+содержит системный лимит на общее количество страниц разделяемой
+по стандарту System V сегментов памяти.
+</p><p>
+
+Файл
+<i>shmmax</i>
+
+может быть использован для опроса и установки ограничения на
+динамическое создание разделяемых по стандарту System V сегментов памяти.
+В настоящий момент, ядро поддерживает сегменты разделяемой памяти до 1Gb.
+Это значение по умолчанию для SHMMAX.
+</p><p>
+
+Файл
+<i>shmmni</i>
+
+(доступен в Linux 2.4 и выше)
+задаёт максимальный системный лимит на создание разделяемых по стандарту
+System V сегментов памяти.
+</p><p>
+
+Файл
+<i>version</i>
+
+содержит строку вида:
+<br>
+
+</p><p>
+<br>
+
+#5 Wed Feb 25 21:49:24 MET 1998.TP
+<br>
+
+</p><p>
+<br>
+
+Где '#5' означает, что 
+пятую сборку ядра из исходных текстов, а дата после этого
+показывает время сборки ядра.
+</p><p>
+
+Файл
+<i>zero-paged</i> (только для PowerPC) 
+
+содержит флаг. Когда он разрешён (не ноль), Linux-PPC будет размещать
+пре-нулевые страницы в цикле простоя, что возможно увеличит скорость
+выполнения get_free_pages.
+</p><dl compact="">
+<dt><i>net</i>
+
+</dt><dd>
+Данный каталог содержит некоторую информацию по функционированию сетевой
+подсистемы.
+</dd><dt><i>proc</i>
+
+</dt><dd>
+Данный каталог может быть пуст.
+</dd><dt><i>sunrpc</i>
+
+</dt><dd>
+Данный каталог поддерживает удалённый вызов процедур Sun для сетевой
+файловой системы (NFS). В некоторых системах его нет.
+</dd><dt><i>vm</i>
+
+</dt><dd>
+Этот каталог содержит файлы для тонкой настройки управления памятью,
+буферами и кэшем.
+</dd></dl>
+</dd></dl>
+
+</dd><dt><i>sysvipc</i>
+
+</dt><dd>
+Подкаталог содержит псевдо-файлы
+<i>msg</i>, <i>sem</i> и <i>shm</i>.
+
+Эти файлы показывают объекты межпроцессного взаимодействия (System V
+Interprocess Communication (IPC))
+(соответственно: очереди сообщений, семафоры и разделяемую память)
+который существуют в системе в настоящий момент. Похожая информация
+предоставляется через
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ipcs&amp;category=1">ipcs</a></b>(1).
+
+Эти файлы имеют заголовки и форматируются (по одному IPC объекту на
+строку) для более лёгкого понимания.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ipc&amp;category=5">ipc</a></b>(5)
+
+представляет подготовительный материал по информации, которую
+показывают эти файлы.
+</dd><dt><i>tty</i>
+
+</dt><dd>
+Подкаталог, содержащий псевдо-файлы и подкаталоги для драйверов
+терминальных устройств tty и порядок выделения устройств.
+</dd><dt><i>uptime</i>
+
+</dt><dd>
+Этот файл содержит два числа: время работы системы с момента загрузки
+(в секундах) и общее время, которое система провела в состоянии
+простоя (в секундах).
+</dd><dt><i>version</i>
+
+</dt><dd>
+Строка, идентифицирующая версию ядра, которое запущено в данный момент.
+Она включает содержимое /proc/sys/ostype, /proc/sys/osrelease и 
+/proc/sys/version.  Например:
+<pre>Linux version 1.0.9 (<a href="mailto:quinlan@phaze">quinlan@phaze</a>) #1 Sat May 14 01:51:54 EDT 1994
+</pre>
+
+<p>
+
+
+</p></dd></dl>
+<a name="lbAD">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cat&amp;category=1">cat</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=find&amp;category=1">find</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=free&amp;category=1">free</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=1">mount</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ps&amp;category=1">ps</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tr&amp;category=1">tr</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=uptime&amp;category=1">uptime</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chroot&amp;category=2">chroot</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mmap&amp;category=2">mmap</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=readlink&amp;category=2">readlink</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=2">syslog</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slabinfo&amp;category=5">slabinfo</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hier&amp;category=7">hier</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=arp&amp;category=8">arp</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dmesg&amp;category=8">dmesg</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hdparm&amp;category=8">hdparm</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ifconfig&amp;category=8">ifconfig</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lsmod&amp;category=8">lsmod</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lspci&amp;category=8">lspci</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netstat&amp;category=8">netstat</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=procinfo&amp;category=8">procinfo</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=route&amp;category=8">route</a></b>(8)
+
+<b>/usr/src/linux/Documentation/filesystems/proc.txt</b>
+
+<a name="lbAE">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+Приблизительно соответствует ядру Linux 2.4.17. Пожалуйста обновляйте
+по мере необходимости.
+<p>
+Последнее обновление было для Linux 2.4.17.
+<a name="lbAF">&nbsp;</a>
+</p><h2>ПРЕДОСТЕРЕЖЕНИЯ</h2>
+
+Заметим, что многие строки (такие как окружение и командная строка)
+даются во внутреннем формате, где подполя заканчиваются нулевыми
+байтами, так что возможно они будут более читабельны, если вы
+будете использовать для чтения команды <i>od -c</i> или
+<i>tr "\000" "\n"</i>.
+В качестве альтернативы, прекрасно работает <i>echo `cat &lt;file&gt;`</i>.
+<p>
+Данная страница руководства является неполной, возможно неточной и
+относится к тому виду документации, который обновляется очень часто.
+<a name="lbAG">&nbsp;</a>
+</p><h2>БЛАГОДАРНОСТИ</h2>
+
+Материал о /proc/sys/fs и /proc/sys/kernel полностью основан на документации
+в исходных текстах ядра, которую написал Rik van Riel.
+<a name="lbAH">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевёл с английского Виктор Вислобоков &lt;<a href="mailto:corochoone@perm.ru">corochoone@perm.ru</a>&gt; 2004
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРЕДОСТЕРЕЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">БЛАГОДАРНОСТИ</a></dt><dd>
+</dd><dt><a href="#lbAH">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="proc" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

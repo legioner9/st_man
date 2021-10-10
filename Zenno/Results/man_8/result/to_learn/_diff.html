@@ -1,0 +1,467 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN diff (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, diff"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="diff" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">diff (8)</font><hr><li> <a href="/man.shtml?topic=diff&amp;category=1&amp;russian=4"><u>diff</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=diff&amp;category=1&amp;russian=1"><u>diff</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=diff&amp;category=1&amp;russian=0"><u>diff</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=diff&amp;category=1&amp;russian=2"><u>diff</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=diff&amp;category=1&amp;russian=5"><u>diff</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=diff&amp;category=8&amp;russian=0"><u>diff</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Пользовательские команды</h1></td>
+<td><h1 align="right">diff(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+<p><b>diff</b> - выдача построчных различий между парами текстовых файлов</p>
+
+<h2><a name="synopsis">СИНТАКСИС</a></h2>
+<dl><dt></dt><dd><tt>
+diff [-bitw] [-c | -e | -f | -h | -n] <b>файл1</b> <b>файл2</b><br>
+diff [-bitw] [ -C <b>число</b> ] <b>файл1</b> <b>файл2</b><br>
+diff [-bitw] [ -D <b>строка</b> ] <b>файл1</b> <b>файл2</b><br>
+diff [-bitw] [ -c | -e | -f | -h | -n] [-l] [-r] [-s] [-S <b>имя</b>] <b>каталог1</b> <b>каталог2</b>
+</tt></dd></dl>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+<p>Утилита <b>diff</b> сравнивает содержимое <b>файла1</b> и <b>файла2</b>, и выдает
+в стандартный выходной поток список изменений, необходимых для преобразования <b>файла1</b>
+в <b>файл2</b>. Этот список должен быть минимальным. Если файлы идентичны, никакие
+результаты не выдаются.</p>
+
+<p>Обычный результат содержит строки следующего вида:</p>
+
+<dl><dt></dt><dd><pre><b>n1</b> a <b>n3</b>,<b>n4</b>
+<b>n1</b>,<b>n2</b> d <b>n3</b>
+<b>n1</b>,<b>n2</b> c <b>n3</b>,<b>n4</b>
+</pre></dd></dl>
+
+<p>где значения <b>n1</b> и <b>n2</b> представляют строки <b>файла1</b>, а <b>n3</b> и <b>n4</b>
+представляют строки в <b>файле2</b>. Эти строки напоминают команды 
+<a href="/man.shtml?topic=ed&amp;category=1"><b>ed(1)</b></a> для преобразования <b>файла1</b> в <b>файл2</b>. 
+Если поменять местами <b>a</b> и <b>d</b> и прочитать команды в обратном порядке, можно
+преобразовать <b>файл2</b> в <b>файл1</b>. Как и в редакторе <b>ed</b>, пары совпадающих
+номеров строк, когда <b>n1</b>=<b>n2</b> или <b>n3</b>=<b>n4</b>, сокращаются до одного
+номера строки.</p>
+
+<p>После каждой из таких строк идут все затронутые строки первого файла, предваренные 
+символом '&lt;', а затем - все затронутые строки второго файла, предвареные символом '&gt;'.</p>
+
+<h2><a name="options">ОПЦИИ</a></h2>
+
+<dl>
+<dt><a name="b"><b>-b</b></a></dt><dd>
+Игнорировать хвостовые пробелы (символы пробела и табуляции) и считать любые
+строки из пробелов совпадающими.
+<br><br></dd>
+<dt><a name="i"><b>-i</b></a></dt><dd>
+Игнорировать регистр символов;  например, '<b>A</b>' и '<b>a</b>' при
+сравнении будут считаться совпадающими.
+<br><br></dd>
+<dt><a name="t"><b>-t</b></a></dt><dd>
+Заменять символы табуляции пробелами в строках результата. Обычно или
+при задании опции <b><a href="#c">-c</a></b> в результаты добавляются символы
+в начале каждой строки, которые могут нарушить отступы в исходных строках, что
+затруднит их интерпретацию. Эта опция сохраняет отступы в исходных строках.
+<br><br></dd>
+<dt><a name="w"><b>-w</b></a></dt><dd>
+Игнорировать все пробелы (символы пробела и табуляции) и считать все строки
+пробелов одинаковыми; например, при установке этой опции строки 
+'<b>if ( a == b )</b>' и '<b>if(a==b)</b>' будут считаться совпадающими.
+</dd></dl>
+
+<p>Следующие опции - взаимоисключающие:</p>
+
+<dl>
+<dt><a name="c"><b>-c</b></a></dt><dd>
+Выдавать листинг различий с тремя строками контекста. При указании этой опции
+формат результата несколько изменяется: результат начинается с идентификации
+сравниваемых файлов и их дат создания, а затем каждое изменение отделяется строкой
+из двенадцати звездочек (<b>*</b>). Строки, удаленные из <b>файла1</b>,
+помечаются минусом (<b>-</b>); строки, добавленные в <b>файл2</b>, помечаются
+плюсом (<b>+</b>). Измененные строки в обоих файлах помечаются восклицательным
+знаком (<b>!</b>).
+<br><br></dd>
+<dt><a name="C"><b>-C число</b></a></dt><dd>
+Выдает листинг различий, идентичный выдаваемому опцией <b>-c</b>, но с указанным
+<b>числом</b> строк контекста.
+<br><br></dd>
+<dt><a name="e"><b>-e</b></a></dt><dd>
+Выдать сценарий, состоящий только из команд <b>a</b>, <b>c</b> и <b>d</b> редактора <b>ed</b>,
+который позволит пересоздать <b>файл2</b> по <b>файлу1</b>. В сочетании с опцией
+<b>-e</b>, следующая командная строка интерпретатора может помочь поддерживать
+несколько версий файла. Необходим только исходный файл (<b>$1</b>) и цепочка
+сценариев <b>ed</b> для перехода от версии к версии (<b>$2</b>, <b>$3</b>, ...),
+построенные с помощью утилиты <b>diff</b>. В стандартный выходной поток будет выдана
+"последняя версия".
+
+<dl><dt></dt><dd><pre>(shift; cat $*; echo '1,$p') | ed - $1
+</pre></dd></dl>
+
+За исключением редких случаев, <b>diff</b> строит минимально достаточный набор
+различий между файлами.
+<br><br></dd>
+<dt><a name="f"><b>-f</b></a></dt><dd>
+Выдать аналогичный сценарий с командами в обратном порядке - для редактора 
+<b>ed</b> он не подходит.
+<br><br></dd>
+<dt><a name="h"><b>-h</b></a></dt><dd>
+Выполнить быстрое, но приблизительное сравнение. Эта опция срабатывает только если
+различия невелики и легко выявляются, но зато сравнивать можно файлы неограниченной
+длины. Опции <b><a href="#c">-c</a></b>, <b><a href="#e">-e</a></b>, 
+<b><a href="#f">-f</a></b> и <b><a href="#n">-n</a></b> совместно с <b>-h</b>
+использовать нельзя. Утилита <b>diff</b> при задании этой опции в каталоги
+не переходит.
+<br><br></dd>
+<dt><a name="n"><b>-n</b></a></dt><dd>
+Выдать сценарий, аналогичный выдаваемому при указании опции <b><a href="#e">-e</a></b>,
+но в обратном порядке и количеством строк для каждой команды вставки или удаления.
+<br><br></dd>
+<dt><a name="D"><b>-D строка</b></a></dt><dd>
+Создает общую версию <b>файла1</b> и <b>файла2</b> с директивами препроцессора
+языка C, так что при компиляции результата без определенной <b>строки</b>
+будет получено то же самое, что и при компиляции <b>файла1</b>, а если <b>строка</b>
+определена, - то же самое, что и при компиляции <b>файла2</b>.
+</dd></dl>
+
+<p>Следующие опции используются при сравнении каталогов:</p>
+
+<dl>
+<dt><a name="l"><b>-l</b></a></dt><dd>
+Выдавать результат в "длинном" формате. Перед вызовом <b>diff</b>, каждый файл
+пропускается через фильтр <a name="pr.html"><b>pr(1)</b></a> для разбиения на
+страницы. Другие различия запоминаются и выдаются после всех различий текста
+в файлах.
+<br><br></dd>
+<dt><a name="r"><b>-r</b></a></dt><dd>
+Применять <b>diff</b> рекурсивно ко всем общим подкаталогам.
+<br><br></dd>
+<dt><a name="s"><b>-s</b></a></dt><dd>
+Выдавать информацию об идентичных файлах; обычно эти файлы в результатах не
+упоминаются.
+<br><br></dd>
+<dt><a name="S"><b>-S имя</b></a></dt><dd>
+Начинает сравнение каталогов с середины, с файла с указанным <b>именем</b>.
+</dd></dl>
+
+<h2><a name="operands">ОПЕРАНДЫ</a></h2>
+
+<p>Поддерживаются следующие операнды:</p>
+<dl>
+<dt><b>файл1</b>, <b>файл2</b></dt><dd>
+Полные имена срравниваемых файлов или каталогов. Если в качестве <b>файла1</b> или
+<b>файла2</b> указан <b>-</b>, вместо него будет использоваться стандартный 
+входной поток.
+<br><br></dd>
+<dt><b>каталог1</b>, <b>каталог2</b></dt><dd>
+Полные имена сравниваемых каталогов.
+</dd></dl>
+
+<p>Если только один из <b>файлов</b> является каталогом, утилита <b>diff</b> будет
+применяться к другому файлу и к одноименному (имя которого соответствует последнему
+компоненту имени файла) с ним файлу в каталоге.</p>
+
+<h2><a name="usage">ИСПОЛЬЗОВАНИЕ</a></h2>
+
+<p>Описание работы утилиты <b>diff</b> с файлами длиной более 2 Гбайт
+(2<sup>31</sup> байт) см. на странице справочного руководства 
+<a href="/man.shtml?topic=largefile&amp;category=5"><b>largefile(5)</b></a>.</p>
+
+<h2><a name="examples">ПРИМЕРЫ</a></h2>
+
+<h3>Пример 1: Пример использования команды diff.</h3>
+
+<p>Если <b>dir1</b>&nbsp;- каталог, содержащий подкаталог <b>x</b>, <b>dir2</b>&nbsp;-
+каталог, содержащий подкаталог <b>x</b>, оба каталога, <b>dir1/x</b> и
+<b>dir2/x</b> содержат файлы <b>date.out</b>, а каталог <b>dir2/x</b> содержит
+также файл <b>y</b>, команда:</p>
+
+<dl><dt></dt><dd><tt>
+example% diff -r dir1 dir2
+</tt></dd></dl>
+
+может выдать результат, аналогичный следующему:
+
+<dl><dt></dt><dd><tt>
+Common subdirectories: dir1/x and dir2/x
+
+Only in dir2/x: y
+
+diff -r dir1/x/date.out dir2/x/date.out
+
+1c1
+
+&lt; Mon Jul  2 13:12:16 PDT 1990
+
+---
+
+&gt; Tue Jun 19 21:41:39 PDT 1990
+</tt></dd></dl>
+
+<h2><a name="environment">ПЕРЕМЕННЫЕ СРЕДЫ</a></h2>
+
+<p>Описание следующих переменных среды, влияющих на работу <b>diff</b>,
+см. на странице справочного руководства 
+<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>:
+<b>LC_CTYPE</b>, <b>LC_MESSAGES</b>, <b>LC_TIME</b> <b>NLSPATH</b>.</p>
+
+<dl>
+<dt><b>TZ</b></dt><dd>
+Задает локаль, влияющую на часовой пояс, используемый при вычислении
+временных отметок, которые выдаются при указании опций <a href="#C"><b>-C</b></a>
+и <a href="#c"><b>-c</b></a>.</dd>
+</dl>
+
+<h2><a name="exit_status">СТАТУС ВЫХОДА</a></h2>
+
+<p>Команда возвращает следующие статусы выхода:</p>
+
+<table width="100%" border="0">
+<tbody><tr><td width="10%"><b>0</b></td>     <td>Различий не найдено.</td></tr><tr>
+</tr><tr><td width="10%"><b>1</b></td>     <td>Различия найдены.</td></tr><tr>
+</tr><tr><td width="10%"><b>&gt;1</b></td>     <td>Произошла ошибка.</td></tr><tr>
+</tr></tbody></table>
+
+<h2><a name="files">ФАЙЛЫ</a></h2>
+
+<dl>
+<dt><b>/tmp/d?????</b></dt><dd>
+временные файлы, используемые при сравнении
+<br><br></dd>
+<dt><b>/usr/lib/diffh</b></dt><dd>
+выполняемый файл для реализации опции <a href="#h"><b>-h</b></a>
+</dd>
+</dl>
+
+<h2><a name="attributes">АТРИБУТЫ</a></h2>
+
+<p>Описание следующих атрибутов см. на странице справочного руководства
+<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>:</p>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWesu</td></tr>
+<tr><td>CSI</td>
+<td>Включено</td></tr>
+</tbody></table>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+<dl><dt></dt><dd>
+<a href="/man.shtml?topic=bdiff&amp;category=1"><b>bdiff(1)</b></a>, 
+<a href="/man.shtml?topic=cmp&amp;category=1"><b>cmp(1)</b></a>, 
+<a href="/man.shtml?topic=comm&amp;category=1"><b>comm(1)</b></a>, 
+<a href="/man.shtml?topic=dircmp&amp;category=1"><b>dircmp(1)</b></a>, 
+<a href="/man.shtml?topic=ed&amp;category=1"><b>ed(1)</b></a>,  
+<a href="/man.shtml?topic=pr&amp;category=1"><b>pr(1)</b></a>,  
+<a href="/man.shtml?topic=sdiff&amp;category=1"><b>sdiff(1)</b></a>, 
+<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>, 
+<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>, 
+<a href="/man.shtml?topic=largefile&amp;category=5"><b>largefile(5)</b></a>
+</dd></dl>
+
+<h2><a name="notes">ПРИМЕЧАНИЯ</a></h2>
+
+<p>Сценарии редактирования, выдаваемые опциями <a href="#e"><b>-e</b></a> или
+<a href="#f"><b>-f</b></a>, не позволяют создавать строки, состоящие из
+одной точки (<b>.</b>).</p>
+
+<p>Сообщение <b>Missing NEWLINE</b> в конце файла свидетельствует о том, что в последней
+строке соответствующего файла нет символа новой строки. Если в результате последние строки 
+файлов получаются разными, они помечаются и выдаются, хотя на вид
+они кажутся одинаковыми.</p>
+
+<p align="center">Последнее изменение: 20 декабря 1996 года</p>
+
+<p align="center"><font size="-2">
+Copyleft (no c) - Fuck copyright!, 2003 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="diff" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

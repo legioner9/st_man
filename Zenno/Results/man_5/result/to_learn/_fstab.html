@@ -1,0 +1,462 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN fstab (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, fstab"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="fstab" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">fstab (5)</font><hr><li> <a href="/man.shtml?topic=fstab&amp;category=5&amp;russian=1"><u>fstab</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=fstab&amp;category=5&amp;russian=0"><u>fstab</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=fstab&amp;category=5&amp;russian=2"><u>fstab</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+fstab - статическая информация о файловых системах
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/fstab.h">fstab.h</a>&gt;</b>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Файл
+<b>fstab</b>
+
+содержит описательную информацию о различных файловых системах.
+<b>fstab</b>
+
+только читается программами, но не пишется; создание и изменение этого
+файла - задача системного администратора. Каждая файловая система
+описывается отдельной строкой; строки разделяются пробелами или символами
+табуляции. Начинающиеся на '#' строки считаются комментариями. Порядок
+записей в
+<b>fstab</b>
+
+важен, потому что
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fsck&amp;category=8">fsck</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=8">mount</a></b>(8),
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=umount&amp;category=8">umount</a></b>(8)
+
+при своей работе просматривают файл
+<b>fstab</b>
+
+последовательно.
+<p>
+Первое поле
+(<i>fs_spec</i>)
+
+описывает монтируемые блочное устройство или удаленную файловую систему.
+</p><p>
+
+Для монтирования обычных файловых систем в этом поле указывается файл 
+(или ссылка на файл) блочного устройства (создаваемый
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mknod&amp;category=8">mknod</a></b>(8)),
+
+содержащего монтируемую файловую систему, например, `/dev/cdrom' или
+`/dev/sdb7'.
+Для монтирования ресурса NFS указывается &lt;узел&gt;:&lt;путь&gt;, к
+примеру, `knuth.aeb.nl:/'.
+В случае procfs указывайте `proc'.
+</p><p>
+
+Вместо прямого указания устройства можно указывать файловую систему
+(в случае ext2/ext3, xfs и других, поддерживающих эти возможности)
+по ее идентификатору UUID или метке (см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=e2label&amp;category=8">e2label</a></b>(8)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=xfs_admin&amp;category=8">xfs_admin</a></b>(8)),
+
+таким образом: LABEL=&lt;метка&gt; или UUID=&lt;uuid&gt;, например,
+`LABEL=Boot' или `UUID=3e6be9de-8139-11d1-9106-a43f08d823a6'.
+Это сделает систему более устойчивой, поскольку при добавлении или
+удалении диска SCSI может смениться имя устройства, но не метка файловой
+системы.
+</p><p>
+Второе поле
+(<i>fs_file</i>)
+
+описывает точку монтирования файловой системы. Для разделов подкачки в
+этом поле должно быть указано `none'. Если имя точки монтирования
+содержит пробелы, они должны быть заменены на `\040'.
+</p><p>
+Третье поле
+(<i>fs_vfstype</i>)
+
+описывает тип файловой системы. Linux поддерживает множество файловых
+систем, в том числе
+<i>adfs</i>,
+
+<i>affs</i>,
+
+<i>autofs</i>,
+
+<i>coda</i>,
+
+<i>coherent</i>,
+
+<i>cramfs</i>,
+
+<i>devpts</i>,
+
+<i>efs</i>,
+
+<i>ext2</i>,
+
+<i>ext3</i>,
+
+<i>hfs</i>,
+
+<i>hpfs</i>,
+
+<i>iso9660</i>,
+
+<i>jfs</i>,
+
+<i>minix</i>,
+
+<i>msdos</i>,
+
+<i>ncpfs</i>,
+
+<i>nfs</i>,
+
+<i>nfs4</i>,
+
+<i>ntfs</i>,
+
+<i>proc</i>,
+
+<i>qnx4</i>,
+
+<i>reiserfs</i>,
+
+<i>romfs</i>,
+
+<i>smbfs</i>,
+
+<i>sysv</i>,
+
+<i>tmpfs</i>,
+
+<i>udf</i>,
+
+<i>ufs</i>,
+
+<i>umsdos</i>,
+
+<i>vfat</i>,
+
+<i>xenix</i>,
+
+<i>xfs</i>,
+
+и, возможно, другие. Для подробностей см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=8">mount</a></b>(8).
+
+Список файловых систем, поддерживаемых работающим в данный момент ядром,
+содержится в файле
+<i>/proc/filesystems</i>.
+
+Запись
+<i>swap</i>
+
+обозначает файл или раздел, используемый для подкачки, см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=swapon&amp;category=8">swapon</a></b>(8).
+
+Запись
+<i>ignore</i>
+
+предписывает игнорировать эту строку. Это полезно для обозначения в
+данный момент неиспользуемых разделов.
+</p><p>
+Четвертое поле
+(<i>fs_mntops</i>)
+
+описывает параметры монтирования для данной файловой системы.
+</p><p>
+Это поле представляет собой список параметров, разделенных запятыми. Оно
+содержит по крайней мере тип монтирования, плюс дополнительные параметры,
+соответствующие типу данной файловой системы. Описание допустимых
+параметров для обычных (не NFS) файловых систем см. в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=8">mount</a></b>(8).
+
+Описание параметров, специфичных для ресурсов NFS, см. в 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=nfs&amp;category=5">nfs</a></b>(5).
+
+Общими для всех типов файловых систем являются параметры ``noauto'' (не
+монтировать по команде "mount -a", выполняемой, в частности, при
+начальной загрузке), ``user'' (позволяет обычным пользователям выполнять
+монтирование), ``owner'' (позволяет владельцу устройства выполнять
+монтирование) и ``comment'' (например, для использования программами,
+обслуживающими fstab). Параметры ``owner'' и ``comment'' специфичны для
+Linux.
+Для подробностей см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=8">mount</a></b>(8).
+
+</p><p>
+Пятое поле
+(<i>fs_freq</i>)
+
+используется программой
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dump&amp;category=8">dump</a></b>(8)
+
+для определения необходимости выгрузки данной файловой системы.
+Если это поле отсутствует или содержит 0, 
+<b>dump</b>
+
+получает 0 и считает, что файловая система не требует выгрузки.
+</p><p>
+Шестое поле
+(<i>fs_passno</i>)
+
+используется программой
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fsck&amp;category=8">fsck</a></b>(8)
+
+для определения порядка, в котором файловые системы проверяются при
+перезагрузке. Для корневой файловой системы следует указывать 1, а для
+остальных систем 2. Файловые системы, находящиеся на одном диске,
+проверяются последовательно, на разных - параллельно, для ускорения проверки.
+Если это поле отсутствует или содержит 0,
+<b>fsck</b>
+
+получает 0 и не проверяет данную файловую систему вообще.
+</p><p>
+Надлежащим способом чтения записей из
+<b>fstab</b>
+
+является использование функции
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getmntent&amp;category=3">getmntent</a></b>(3).
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<i>/etc/fstab</i>
+
+<a name="lbAF">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getmntent&amp;category=3">getmntent</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=8">mount</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=swapon&amp;category=8">swapon</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fs&amp;category=5">fs</a></b>(5)
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=nfs&amp;category=5">nfs</a></b>(5)
+
+<a name="lbAG">&nbsp;</a>
+<h2>ИСТОРИЯ</h2>
+
+Предшественник формата
+<b>fstab</b>
+
+появился в 4.0BSD.
+
+
+<a name="lbAH">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Andrey Rahmatullin &lt;<a href="mailto:wrar@altlinux.ru">wrar@altlinux.ru</a>&gt; 10.11.2005
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAG">ИСТОРИЯ</a></dt><dd>
+</dd><dt><a href="#lbAH">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="fstab" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

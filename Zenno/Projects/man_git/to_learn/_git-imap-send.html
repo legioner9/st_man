@@ -1,0 +1,710 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-49925874-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-49925874-3');
+  </script>
+
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <title>Git - git-imap-send Documentation</title>
+
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+  <link rel="stylesheet" media="screen" href="/assets/application-3fb605347038cd5206e27d1f90829d3159e0de904e21be188a31e8f8c27c42a8.css">
+  <script src="/assets/modernize-b3ebe0c31c24f230dc62179d3e1030d2e57a53b1668d9382c0a27dbd44a94beb.js"></script>
+  <!--[if (gte IE 6)&(lte IE 8)]>
+  <script src="/javascripts/selectivizr-min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body id="documentation">
+
+  <div class="inner">
+    <header>
+
+  <a href="/"><img src="/images/logo@2x.png" alt="Git" height="46" width="110"></a>
+  <span id="tagline">--distributed-is-the-new-centralized</span>
+  <script type="text/javascript">
+    var taglines = ["fast-version-control","everything-is-local","distributed-even-if-your-workflow-isnt","local-branching-on-the-cheap","distributed-is-the-new-centralized"];
+    var tagline = taglines[Math.floor(Math.random() * taglines.length)];
+    document.getElementById('tagline').innerHTML = '--' + tagline;
+  </script>
+  <form id="search" action="/search/results">
+    <input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text">
+  </form>
+  <div id="search-results"></div>
+
+</header>
+
+  </div> <!-- .inner -->
+
+    <div class="inner">
+      <div id="content-wrapper">
+        <aside class="sidebar">
+  <nav>
+    <ul>
+      <li>
+        <a href="/about">About</a>
+        <ul class="">
+          <li>
+            <a href="/about">Branching and Merging</a>
+          </li>
+          <li>
+            <a href="/about/small-and-fast">Small and Fast</a>
+          </li>
+          <li>
+            <a href="/about/distributed">Distributed</a>
+          </li>
+          <li>
+            <a href="/about/info-assurance">Data Assurance</a>
+          </li>
+          <li>
+            <a href="/about/staging-area">Staging Area</a>
+          </li>
+          <li>
+            <a href="/about/free-and-open-source">Free and Open Source</a>
+          </li>
+          <li>
+            <a href="/about/trademark">Trademark</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="active" href="/doc">Documentation</a>
+        <ul class="expanded">
+          <li>
+            <a class="active" href="/docs">Reference</a>
+          </li>
+          <li>
+            <a href="/book">Book</a>
+          </li>
+          <li>
+            <a href="/videos">Videos</a>
+          </li>
+          <li>
+            <a href="/doc/ext">External Links</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/downloads">Downloads</a>
+        <ul class="">
+          <li>
+            <a href="/downloads/guis">GUI Clients</a>
+          </li>
+          <li>
+            <a href="/downloads/logos">Logos</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/community">Community</a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+        <div id="content">
+          
+  <div id="reference-version">
+    <a class="dropdown-trigger" id="reference-languages-trigger" data-panel-id="l10n-versions-dropdown" href="#">
+  English ▾</a>
+<div class="dropdown-panel right" id="l10n-versions-dropdown">
+  <header>Localized versions of <strong>git-imap-send</strong> manual</header>
+  <ol class="reference-previous-versions">
+      <li>
+        <a href="/docs/git-imap-send/en"><span class="version">English</span>
+        </a>
+        </li>
+      <li>
+        <a href="/docs/git-imap-send/pt_BR"><span class="version">Português (Brasil)</span>
+        </a>
+        </li>
+  </ol>
+  <footer>
+    Want to read in your language or fix typos?<br> <a href="https://github.com/jnavila/git-manpages-l10n">You can help translate this page</a>.
+  </footer>
+</div>
+
+    <a class="dropdown-trigger" id="reference-topics-trigger" data-panel-id="topics-dropdown" href="#">Topics ▾</a>
+<div class="dropdown-panel right" id="topics-dropdown">
+  <div class="three-column">
+    <div class="column-left">
+      <h3 class="setup">Setup and Config</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git">git</a></li>
+  <li><a href="/docs/git-config">config</a></li>
+  <li><a href="/docs/git-help">help</a></li>
+  <li><a href="/docs/git-bugreport">bugreport</a></li>
+</ul>
+
+      <h3 class="projects">Getting and Creating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-init">init</a></li>
+  <li><a href="/docs/git-clone">clone</a></li>
+</ul>
+
+      <h3 class="snapshotting">Basic Snapshotting</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-add">add</a></li>
+  <li><a href="/docs/git-status">status</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-commit">commit</a></li>
+  <li><a href="/docs/git-notes">notes</a></li>
+  <li><a href="/docs/git-restore">restore</a></li>
+  <li><a href="/docs/git-reset">reset</a></li>
+  <li><a href="/docs/git-rm">rm</a></li>
+  <li><a href="/docs/git-mv">mv</a></li>
+</ul>
+
+      <h3 class="branching">Branching and Merging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-branch">branch</a></li>
+  <li><a href="/docs/git-checkout">checkout</a></li>
+  <li><a href="/docs/git-switch">switch</a></li>
+  <li><a href="/docs/git-merge">merge</a></li>
+  <li><a href="/docs/git-mergetool">mergetool</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-stash">stash</a></li>
+  <li><a href="/docs/git-tag">tag</a></li>
+  <li><a href="/docs/git-worktree">worktree</a></li>
+</ul>
+
+      <h3 class="sharing">Sharing and Updating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-fetch">fetch</a></li>
+  <li><a href="/docs/git-pull">pull</a></li>
+  <li><a href="/docs/git-push">push</a></li>
+  <li><a href="/docs/git-remote">remote</a></li>
+  <li><a href="/docs/git-submodule">submodule</a></li>
+</ul>
+
+    </div>
+    <div class="column-middle">
+      <h3 class="inspection">Inspection and Comparison</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-show">show</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-difftool">difftool</a></li>
+  <li><a href="/docs/git-range-diff">range-diff</a></li>
+  <li><a href="/docs/git-shortlog">shortlog</a></li>
+  <li><a href="/docs/git-describe">describe</a></li>
+</ul>
+
+      <h3 class="patching">Patching</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-cherry-pick">cherry-pick</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-rebase">rebase</a></li>
+  <li><a href="/docs/git-revert">revert</a></li>
+</ul>
+
+      <h3 class="debugging">Debugging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-bisect">bisect</a></li>
+  <li><a href="/docs/git-blame">blame</a></li>
+  <li><a href="/docs/git-grep">grep</a></li>
+</ul>
+
+      <h3 class="email">Email</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-am">am</a></li>
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-format-patch">format-patch</a></li>
+  <li><a href="/docs/git-send-email">send-email</a></li>
+  <li><a href="/docs/git-request-pull">request-pull</a></li>
+</ul>
+
+      <h3 class="external">External Systems</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-svn">svn</a></li>
+  <li><a href="/docs/git-fast-import">fast-import</a></li>
+</ul>
+
+      <h3 class="server-admin">Server Admin</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-daemon">daemon</a></li>
+  <li><a href="/docs/git-update-server-info">update-server-info</a></li>
+</ul>
+
+    </div>
+    <div class="column-right">
+      <h3 class="guides">Guides</h3>
+<ul class="unstyled">
+  <li><a href="/docs/gitattributes">gitattributes</a></li>
+  <li><a href="/docs/gitcli">Command-line interface conventions</a></li>
+  <li><a href="/docs/giteveryday">Everyday Git</a></li>
+  <li><a href="/docs/gitfaq">Frequently Asked Questions (FAQ)</a></li>
+  <li><a href="/docs/gitglossary">Glossary</a></li>
+  <li><a href="/docs/githooks">Hooks</a></li>
+  <li><a href="/docs/gitignore">gitignore</a></li>
+  <li><a href="/docs/gitmodules">gitmodules</a></li>
+  <li><a href="/docs/gitrevisions">Revisions</a></li>
+  <li><a href="/docs/gitsubmodules">Submodules</a></li>
+  <li><a href="/docs/gittutorial">Tutorial</a></li>
+  <li><a href="/docs/gitworkflows">Workflows</a></li>
+  <li><a href="/docs/git#_guides">All guides...</a></li>
+</ul>
+
+      <h3 class="admin">Administration</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-clean">clean</a></li>
+  <li><a href="/docs/git-gc">gc</a></li>
+  <li><a href="/docs/git-fsck">fsck</a></li>
+  <li><a href="/docs/git-reflog">reflog</a></li>
+  <li><a href="/docs/git-filter-branch">filter-branch</a></li>
+  <li><a href="/docs/git-instaweb">instaweb</a></li>
+  <li><a href="/docs/git-archive">archive</a></li>
+  <li><a href="/docs/git-bundle">bundle</a></li>
+</ul>
+
+      <h3 class="plumbing">Plumbing Commands</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-cat-file">cat-file</a></li>
+  <li><a href="/docs/git-check-ignore">check-ignore</a></li>
+  <li><a href="/docs/git-checkout-index">checkout-index</a></li>
+  <li><a href="/docs/git-commit-tree">commit-tree</a></li>
+  <li><a href="/docs/git-count-objects">count-objects</a></li>
+  <li><a href="/docs/git-diff-index">diff-index</a></li>
+  <li><a href="/docs/git-for-each-ref">for-each-ref</a></li>
+  <li><a href="/docs/git-hash-object">hash-object</a></li>
+  <li><a href="/docs/git-ls-files">ls-files</a></li>
+  <li><a href="/docs/git-ls-tree">ls-tree</a></li>
+  <li><a href="/docs/git-merge-base">merge-base</a></li>
+  <li><a href="/docs/git-read-tree">read-tree</a></li>
+  <li><a href="/docs/git-rev-list">rev-list</a></li>
+  <li><a href="/docs/git-rev-parse">rev-parse</a></li>
+  <li><a href="/docs/git-show-ref">show-ref</a></li>
+  <li><a href="/docs/git-symbolic-ref">symbolic-ref</a></li>
+  <li><a href="/docs/git-update-index">update-index</a></li>
+  <li><a href="/docs/git-update-ref">update-ref</a></li>
+  <li><a href="/docs/git-verify-pack">verify-pack</a></li>
+  <li><a href="/docs/git-write-tree">write-tree</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+    <a class="dropdown-trigger" id="reference-versions-trigger" data-panel-id="previous-versions-dropdown" href="#">
+    Version 2.33.0
+ ▾ </a>
+<span class="light">git-imap-send last updated in 2.33.0</span>
+<div class="dropdown-panel left" id="previous-versions-dropdown">
+  <header>Changes in the <strong>git-imap-send</strong> manual</header>
+  <ol class="reference-previous-versions">
+        <li class="no-change"><span>2.29.1 → 2.33.0 no changes</span></li>
+        <li>
+        <a href="/docs/git-imap-send/2.29.0"><span class="version">2.29.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">10/19/20</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.20.1 → 2.28.1 no changes</span></li>
+        <li>
+        <a href="/docs/git-imap-send/2.20.0"><span class="version">2.20.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">12/09/18</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.19.1 → 2.19.6 no changes</span></li>
+        <li>
+        <a href="/docs/git-imap-send/2.19.0"><span class="version">2.19.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">09/10/18</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.18.1 → 2.18.5 no changes</span></li>
+        <li>
+        <a href="/docs/git-imap-send/2.18.0"><span class="version">2.18.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">06/21/18</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.4.12 → 2.17.6 no changes</span></li>
+        <li>
+        <a href="/docs/git-imap-send/2.3.10"><span class="version">2.3.10</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">09/28/15</em>
+        </a>
+        </li>
+        <li>
+        <a href="/docs/git-imap-send/2.2.3"><span class="version">2.2.3</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">09/04/15</em>
+        </a>
+        </li>
+    <li>&nbsp;</li>
+    <!-- <li><a class="more" href="#">See more previous releases →</a></li> -->
+  </ol>
+  <footer>
+    <p>Check your version of git by running</p>
+    <code class="command">git --version</code>
+  </footer>
+</div>
+
+  </div>
+
+  <div id="main">
+    <div class="sect1">
+<h2 id="_name"><a class="anchor" href="#_name"></a>NAME</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>git-imap-send - Send a collection of patches from stdin to an IMAP folder</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<pre class="content"><em>git imap-send</em> [-v] [-q] [--[no-]curl]</pre>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_description"><a class="anchor" href="#_description"></a>DESCRIPTION</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This command uploads a mailbox generated with <em>git format-patch</em>
+into an IMAP drafts folder.  This allows patches to be sent as
+other email is when using mail clients that cannot read mailbox
+files directly. The command also works with any general mailbox
+in which emails have the fields "From", "Date", and "Subject" in
+that order.</p>
+</div>
+<div class="paragraph">
+<p>Typical usage is something like:</p>
+</div>
+<div class="paragraph">
+<p>git format-patch --signoff --stdout --attach origin | git imap-send</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_options"><a class="anchor" href="#_options"></a>OPTIONS</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt--v"> <a class="anchor" href="#Documentation/git-imap-send.txt--v"></a>-v </dt>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt---verbose"> <a class="anchor" href="#Documentation/git-imap-send.txt---verbose"></a>--verbose </dt>
+<dd>
+<p>Be verbose.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt--q"> <a class="anchor" href="#Documentation/git-imap-send.txt--q"></a>-q </dt>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt---quiet"> <a class="anchor" href="#Documentation/git-imap-send.txt---quiet"></a>--quiet </dt>
+<dd>
+<p>Be quiet.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt---curl"> <a class="anchor" href="#Documentation/git-imap-send.txt---curl"></a>--curl </dt>
+<dd>
+<p>Use libcurl to communicate with the IMAP server, unless tunneling
+into it.  Ignored if Git was built without the USE_CURL_FOR_IMAP_SEND
+option set.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt---no-curl"> <a class="anchor" href="#Documentation/git-imap-send.txt---no-curl"></a>--no-curl </dt>
+<dd>
+<p>Talk to the IMAP server using git’s own IMAP routines instead of
+using libcurl.  Ignored if Git was built with the NO_OPENSSL option
+set.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>CONFIGURATION</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use the tool, <code>imap.folder</code> and either <code>imap.tunnel</code> or <code>imap.host</code> must be set
+to appropriate values.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt-imapfolder"> <a class="anchor" href="#Documentation/git-imap-send.txt-imapfolder"></a>imap.folder </dt>
+<dd>
+<p>The folder to drop the mails into, which is typically the Drafts
+folder. For example: "INBOX.Drafts", "INBOX/Drafts" or
+"[Gmail]/Drafts". Required.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt-imaptunnel"> <a class="anchor" href="#Documentation/git-imap-send.txt-imaptunnel"></a>imap.tunnel </dt>
+<dd>
+<p>Command used to setup a tunnel to the IMAP server through which
+commands will be piped instead of using a direct network connection
+to the server. Required when imap.host is not set.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt-imaphost"> <a class="anchor" href="#Documentation/git-imap-send.txt-imaphost"></a>imap.host </dt>
+<dd>
+<p>A URL identifying the server. Use an <code>imap://</code> prefix for non-secure
+connections and an <code>imaps://</code> prefix for secure connections.
+Ignored when imap.tunnel is set, but required otherwise.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt-imapuser"> <a class="anchor" href="#Documentation/git-imap-send.txt-imapuser"></a>imap.user </dt>
+<dd>
+<p>The username to use when logging in to the server.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt-imappass"> <a class="anchor" href="#Documentation/git-imap-send.txt-imappass"></a>imap.pass </dt>
+<dd>
+<p>The password to use when logging in to the server.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt-imapport"> <a class="anchor" href="#Documentation/git-imap-send.txt-imapport"></a>imap.port </dt>
+<dd>
+<p>An integer port number to connect to on the server.
+Defaults to 143 for imap:// hosts and 993 for imaps:// hosts.
+Ignored when imap.tunnel is set.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt-imapsslverify"> <a class="anchor" href="#Documentation/git-imap-send.txt-imapsslverify"></a>imap.sslverify </dt>
+<dd>
+<p>A boolean to enable/disable verification of the server certificate
+used by the SSL/TLS connection. Default is <code>true</code>. Ignored when
+imap.tunnel is set.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt-imappreformattedHTML"> <a class="anchor" href="#Documentation/git-imap-send.txt-imappreformattedHTML"></a>imap.preformattedHTML </dt>
+<dd>
+<p>A boolean to enable/disable the use of html encoding when sending
+a patch.  An html encoded patch will be bracketed with &lt;pre&gt;
+and have a content type of text/html.  Ironically, enabling this
+option causes Thunderbird to send the patch as a plain/text,
+format=fixed email.  Default is <code>false</code>.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-imap-send.txt-imapauthMethod"> <a class="anchor" href="#Documentation/git-imap-send.txt-imapauthMethod"></a>imap.authMethod </dt>
+<dd>
+<p>Specify authenticate method for authentication with IMAP server.
+If Git was built with the NO_CURL option, or if your curl version is older
+than 7.34.0, or if you’re running git-imap-send with the <code>--no-curl</code>
+option, the only supported method is <em>CRAM-MD5</em>. If this is not set
+then <em>git imap-send</em> uses the basic IMAP plaintext LOGIN command.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples"><a class="anchor" href="#_examples"></a>EXAMPLES</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using tunnel mode:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[imap]
+    folder = "INBOX.Drafts"
+    tunnel = "ssh -q -C user@example.com /usr/bin/imapd ./Maildir 2&gt; /dev/null"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using direct mode:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[imap]
+    folder = "INBOX.Drafts"
+    host = imap://imap.example.com
+    user = bob
+    pass = p4ssw0rd</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using direct mode with SSL:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[imap]
+    folder = "INBOX.Drafts"
+    host = imaps://imap.example.com
+    user = bob
+    pass = p4ssw0rd
+    port = 123
+    ; sslVerify = false</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+You may want to use <code>sslVerify=false</code>
+while troubleshooting, if you suspect that the reason you are
+having trouble connecting is because the certificate you use at
+the private server <code>example.com</code> you are trying to set up (or
+have set up) may not be verified correctly.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Using Gmail’s IMAP interface:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[imap]
+	folder = "[Gmail]/Drafts"
+	host = imaps://imap.gmail.com
+	user = user@gmail.com
+	port = 993</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+You might need to instead use: <code>folder = "[Google Mail]/Drafts"</code> if you get an error
+that the "Folder doesn’t exist".
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If your Gmail account is set to another language than English, the name of the "Drafts"
+folder will be localized.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Once the commits are ready to be sent, run the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ git format-patch --cover-letter -M --stdout origin/master | git imap-send</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Just make sure to disable line wrapping in the email client (Gmail’s web
+interface will wrap lines no matter what, so you need to use a real
+IMAP client).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_caution"><a class="anchor" href="#_caution"></a>CAUTION</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is still your responsibility to make sure that the email message
+sent by your email program meets the standards of your project.
+Many projects do not like patches to be attached.  Some mail
+agents will transform patches (e.g. wrap lines, send them as
+format=flowed) in ways that make them fail.  You will get angry
+flames ridiculing you if you don’t check this.</p>
+</div>
+<div class="paragraph">
+<p>Thunderbird in particular is known to be problematic.  Thunderbird
+users may wish to visit this web page for more information:
+  <a href="http://kb.mozillazine.org/Plain_text_e-mail_-_Thunderbird#Completely_plain_email" class="bare">http://kb.mozillazine.org/Plain_text_e-mail_-_Thunderbird#Completely_plain_email</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_see_also"><a class="anchor" href="#_see_also"></a>SEE ALSO</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="/docs/git-format-patch">git-format-patch[1]</a>, <a href="/docs/git-send-email">git-send-email[1]</a>, mbox(5)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git"><a class="anchor" href="#_git"></a>GIT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Part of the <a href="/docs/git">git[1]</a> suite</p>
+</div>
+</div>
+</div>
+  </div>
+
+        </div>
+      </div>
+      <footer>
+  <div class="site-source">
+    <a href="/site">About this site</a><br>
+    Patches, suggestions, and comments are welcome.
+  </div>
+  <div class="sfc-member">
+    Git is a member of <a href="/sfc">Software Freedom Conservancy</a>
+  </div>
+</footer>
+
+<script src="/assets/application-8f00caf205cd147207c24e44516f18312442fd845fad0725e748f19cad311d0d.js"></script>
+
+    </div>
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

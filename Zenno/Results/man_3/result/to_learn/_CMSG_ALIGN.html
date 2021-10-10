@@ -1,0 +1,506 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN CMSG_ALIGN (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, CMSG_ALIGN"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="CMSG_ALIGN" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">CMSG_ALIGN (3)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=CMSG_ALIGN&amp;category=3&amp;russian=0"><u>CMSG_ALIGN</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+CMSG_ALIGN, CMSG_SPACE, CMSG_NXTHDR, CMSG_FIRSTHDR - доступ к служебным данным
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;</b>
+
+<br>
+
+<p>
+<b>struct cmsghdr *CMSG_FIRSTHDR(struct msghdr *</b><i>msgh</i><b>);</b>
+
+<br>
+
+<b>struct cmsghdr *CMSG_NXTHDR(struct msghdr *</b><i>msgh</i><b>, struct cmsghdr *</b><i>cmsg</i><b>);</b>
+
+<br>
+
+<b>size_t CMSG_ALIGN(size_t </b><i>length</i><b>);</b>
+
+<br>
+
+<b>size_t CMSG_SPACE(size_t </b><i>length</i><b>);</b>
+
+<br>
+
+<b>size_t CMSG_LEN(size_t </b><i>length</i><b>);</b>
+
+<br>
+
+<b>unsigned char *CMSG_DATA(struct cmsghdr *</b><i>cmsg</i><b>);</b>
+
+</p><p>
+</p><pre>
+struct cmsghdr {
+        socklen_t   cmsg_len;   /* счетчик байтов данных с заголовком */
+        int         cmsg_level; /* создаваемый протокол передачи */
+        int         cmsg_type;  /* тип, зависящий от протокола */
+/* с последующей переменной без знакаcmsg_data[]; */
+};
+
+</pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Эти макросы используются для создания управляющих сообщений
+(также называемых служебными данными), которые не являются частью
+полезной "нагрузки" пакета; а также доступа к ним. Эта управляющая 
+информация может быть об интерфейсе, с которого переслан пакет, 
+о редко используемых полях
+заголовков; она может содержать описание ошибок, наборы описателей файлов или сертификатов
+Unix. В том числе, служебные сообщения могут быть использованы для
+пересылки дополнительных полей заголовков, таких, как параметры IP.
+Служебные данные посылаются с помощью вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmsg&amp;category=2">sendmsg</a></b>(2)
+
+и получаются посредством вызова
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvmsg&amp;category=2">recvmsg</a></b>(2).
+
+Более полная информация приведена на соответствующих страницах руководства.
+<p>
+
+Служебные данные являются последовательностью структур 
+<b>struct cmsghdr</b>
+
+с присоединенными к ней данными. Доступ к этой последовательности может быть
+осуществлен только с помощью макросов, описанных в данном руководстве.
+Смотрите также соответствующие страницы руководства, описывающие 
+протоколы для получения полной информации о доступных
+типах управляюший сообщений.
+Максимально возможный размер буфера в одном пакете можно установить, 
+используя системный вызов (sysctl)
+<b>net.core.optmem_max</b>;
+
+см. также
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7).
+
+</p><p>
+
+<b>CMSG_FIRSTHDR </b>
+
+возвращает указатель на первый
+<b>cmsghdr </b>
+
+в буфере служебных данных, связанных с переданным 
+<b>msghdr</b>.
+
+</p><p>
+
+<b>CMSG_NXTHDR </b>
+
+возвращает следующее значение
+<b>cmsghdr </b>
+
+после переданного 
+<b>cmsghdr. </b>
+
+Он возвращает 
+<b>NULL</b>,
+
+если в буфере недостаточно места.
+</p><p>
+
+<b>CMSG_ALIGN</b>
+
+возвращает длину и необходимые выравнивания. Это постоянное выражение.
+</p><p>
+
+<b>CMSG_SPACE</b>
+
+возвращает объем в байтах, который занимают управляющие элементы и
+полезная "нагрузка" переданных данных. Это постоянное выражение.
+</p><p>
+
+<b>CMSG_DATA</b>
+
+возвращает указатель на часть данных в
+<b>cmsghdr</b>.
+
+</p><p>
+
+<b>CMSG_LEN</b>
+
+возвращает величину, содержащуюся в элементе
+<i>cmsg_len</i>
+
+структуры
+<b>cmsghdr</b>
+
+с учетом необходимых выравниваний; он принимает значение
+длины данных в качестве аргумента. Это постоянное выражение.
+</p><p>
+
+Чтобы создать служебные данные, сначала инициализируйте элемент
+<i>msg_controllen</i>
+
+структуры
+<b>msghdr ,</b>
+
+указав длину буфера управляющего сообщения. Используйте
+<b>CMSG_FIRSTHDR </b>
+
+в структуре
+<b>msghdr </b>
+
+для получения первого контрольного сообщения и
+<b>CMSG_NEXTHDR</b>
+
+для получения последующих. Для каждого управляющего сообщения инициализируется
+<i>cmsg_len</i>
+
+(с помощью 
+<b>CMSG_LEN</b>)
+
+и другие поля заголовка
+<b>cmsghdr ,</b>
+
+а также часть данных (с помощью
+<b>CMSG_DATA</b>).
+
+По окончании операции значение поля
+<i>msg_controllen </i>
+
+структуры
+<b>msghdr </b>
+
+должно быть установлено равным сумме величин
+<b>CMSG_SPACE </b>
+
+(это должно быть справедливо для длин всех управляющих сообщений в буфере).
+Дополнительная информация о
+<b>msghdr</b>
+
+находится в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvmsg&amp;category=2">recvmsg</a></b>(2).
+
+</p><p>
+
+Если буфер управляющих сообщений слишком мал для сохранения всех сообщений,
+то флаг
+<b>MSG_CTRUNC </b>
+
+в поле
+<i>msg_flags </i>
+
+структуры
+<b>msghdr</b>
+
+присваивает значение, равное единице.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</h2>
+
+Эта часть программы просматривает входящие служебные данные в поисках опции
+<b>IP_TTL</b>:
+
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>
+struct msghdr msgh; 
+struct cmsghdr *cmsg;
+int *ttlptr;
+int received_ttl;
+/* Принять служебные данные в msgh */ 
+for (cmsg = CMSG_FIRSTHDR(&amp;msgh); 
+     cmsg != NULL; 
+     cmsg = CMSG_NXTHDR(&amp;msgh,cmsg) {
+        if (cmsg-&gt;cmsg_level == SOL_IP 
+          &amp;&amp; cmsg-&gt;cmsg_type == IP_TTL) { 
+                ttlptr = (int *) CMSG_DATA(cmsg);
+                received_ttl = *ttlptr; 
+                break;
+        }
+}
+if (cmsg == NULL) {
+        /* Ошибка: IP_TTL не разрешен, недостаточно размера буфера,
+         * или произошла ошибка ввода-вывода.
+         */ 
+} 
+
+</pre>
+
+</dd></dl>
+
+<p>
+
+Эта часть программы передает массив файловых описателей через
+сокет Unix, используя
+<b>SCM_RIGHTS</b>:
+
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre>
+struct msghdr msg = {0};
+struct cmsghdr *cmsg;
+int myfds[NUM_FD]; /* Содержит описатели файлов для передачи. */ 
+char buf[CMSG_SPACE(sizeof myfds)];  /* буфер служебных данных */
+int *fdptr;
+msg.msg_control = buf; 
+msg.msg_controllen = sizeof buf;
+cmsg = CMSG_FIRSTHDR(&amp;msg); 
+cmsg-&gt;cmsg_level = SOL_SOCKET;
+cmsg-&gt;cmsg_type = SCM_RIGHTS;
+cmsg-&gt;cmsg_len = CMSG_LEN(sizeof(int) * NUM_FD); 
+/* Инициализация полезных данных: */ 
+fdptr = (int *)CMSG_DATA(cmsg); 
+memcpy(fdptr, myfds, NUM_FD * sizeof(int)); 
+/* Сумма длин всех управляющих сообщений в буфере: */ 
+msg.msg_controllen = cmsg-&gt;cmsg_len;
+
+</pre>
+
+</dd></dl>
+
+<a name="lbAF">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+В целях переносимости служебные данные могут быть доступны
+только с помощью макросов, описанных в данном руководстве.
+<b>CMSG_ALIGN</b>
+
+Это расширение Linux, поэтому оно не должно быть использовано в 
+программах предназначенных для переноса на другую платформу.
+<p>
+
+В Linux
+<b>CMSG_LEN</b>,
+
+<b>CMSG_DATA</b>
+
+и
+<b>CMSG_ALIGN</b>
+
+- это постоянные выражения (вне зависимости от переданных аргументов).
+Вы можете воспользоваться этим свойством для объявления размеров глобальных
+переменных. Но это также сделает программу непереносимой на другие платформы.
+<a name="lbAG">&nbsp;</a>
+</p><h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+Эта модель служебных данных соответствует черновому варианту POSIX.1003.1g,
+4.4BSD-Lite (расширение IPv6 API описано в RFC2292 и
+Single Unix specification v2).
+<b>CMSG_ALIGN </b>
+
+- это расширение для Linux. 
+<a name="lbAH">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmsg&amp;category=2">sendmsg</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvmsg&amp;category=2">recvmsg</a></b>(2)
+
+<p>
+
+RFC 2292
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="CMSG_ALIGN" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

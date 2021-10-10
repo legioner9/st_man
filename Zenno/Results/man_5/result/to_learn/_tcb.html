@@ -1,0 +1,479 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN tcb (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, tcb"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="tcb" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">tcb (5)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=tcb&amp;category=5&amp;russian=0"><u>tcb</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=tcb&amp;category=5&amp;russian=2"><u>tcb</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>Название</h2>
+
+<b>tcb</b> - альтернативная схема управления теневыми паролями
+<p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>Задача</h2>
+
+Согласно традиционной схеме управления теневыми паролями, хеши паролей
+всех пользователей, а также информация о сроке их действия хранится в
+едином файле -
+<i>/etc/shadow</i>.
+
+Таким образом, процесс, которому предоставляется доступ к информации о
+пароле одного из пользователей системы, автоматически получает права,
+достаточные для получения аналогичного доступа к информации о паролях
+всех остальных пользователей.  Этот явный изъян в дизайне легко проследить
+на примере утилиты
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=passwd&amp;category=1">passwd</a></b>(1)<b>.</b>
+
+Предположим, что политика безопасности позволяет непривилегированным
+пользователям изменять собственные пароли.  Какими бы ни были права
+доступа к файлу
+<i>/etc/shadow</i>,
+
+программа
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=passwd&amp;category=1">passwd</a></b>(1)<b>,</b>
+
+запущенная непривилегированным пользователям U, должна иметь возможность
+вносить изменения в этот файл.  Если злоумышленник U найдёт способ взять
+под свой контроль процесс
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=passwd&amp;category=1">passwd</a></b>(1)
+
+(с помощью ошибки непосредственно в коде программы
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=passwd&amp;category=1">passwd</a></b>(1)<b>,</b>
+
+используемых ею библиотеках, или в ядре), то этот пользователь получит
+возможность менять пароли всех пользователей и таким образом возьмёт
+под свой контроль операционную систему.
+<p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>Решение</h2>
+
+Решение проблемы простое - каждому пользователю соответствует отдельный
+теневой shadow-файл.  Поскольку теневой файл пользователя U принадлежит
+этому пользователю U, то программа
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=passwd&amp;category=1">passwd</a></b>(1)<b>,</b>
+
+запущенная U, уже не требует рутовых прав.
+<p>
+
+
+
+Все теневые файлы пользователей располагаются в каталоге
+<i>/etc/tcb</i>:
+
+
+</p><p>
+
+</p><pre>drwx--x---    2 root     shadow       1024 Май  4 01:18 /etc/tcb
+Для каждого пользователя создаётся подкаталог в
+<i>/etc/tcb</i>
+с соответствующими правами доступа:
+
+
+# ls -l /etc/tcb
+всего 2
+drwx--s---    2 root     auth         1024 Май  4 01:18 root
+drwx--s---    2 user     auth         1024 Май  4 01:18 user
+и т.д.
+Каждый такой подкаталог содержит теневой файл, содержащий информацию о
+пароле соответствующего пользователя:
+
+
+# ls -l /etc/tcb/user
+всего 1
+-rw-r-----    1 user     auth           91 Май  4 01:18 shadow
+Эти персональные каталоги используются для хранения временных файлов и
+блокировочных файлов, создаваемых во время смены пароля либо изменения
+другой информации, хранящейся в теневом файле.
+
+</pre><a name="lbAE">&nbsp;</a>
+<h2>Преимущества</h2>
+
+Описанный выше дизайн обладает следующими преимуществами:
+<dl compact="">
+<dt>1.</dt><dd>
+Утилита
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=passwd&amp;category=1">passwd</a></b>(1)
+
+должна быть установлена с правами SGID-shadow, а не SUID-root.
+Утилита
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chage&amp;category=1">chage</a></b>(1)
+
+и вспомогательная программа
+<i>/usr/lib/chkpwd/tcb_chkpwd</i>
+
+также должны быть установлены с правами SGID-shadow; это значит, что в
+соответствии со схемой
+<b>tcb</b>
+
+запущенные процессы будут обладать правами, достаточными для изменения
+только пользовательской теневой записи.  Таким образом, весь вред,
+который может причинить злоумышленник в случае обнаружения ошибки
+в реализации этих программ, ограничен возможностью изменения своего
+собственного теневого файла.
+</dd><dt>2.</dt><dd>
+Если процессу необходим доступ по чтению ко всем теневым файлам сразу,
+достаточно дополнительно включить его в группы "shadow" и "auth".
+</dd><dt>3.</dt><dd>
+Схема
+<b>tcb</b>
+
+полностью прозрачна для приложений, которым требуется читать информацию о
+паролях.  Разделяемая библиотека libnss_tcb реализует интерфейс к функции
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getspnam&amp;category=3">getspnam</a></b>(3)
+
+и другим функциям работы с теневыми записями.  Смена паролей
+обеспечивается PAM-модулем
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pam_tcb&amp;category=8">pam_tcb</a></b>(8)<b>.</b>
+
+</dd></dl>
+<p>
+
+Информацию о введении в действие схемы
+<b>tcb</b>
+
+можно прочесть в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcb_convert&amp;category=8">tcb_convert</a></b>(8)<b>,</b>
+
+где рассказано, как это сделать наиболее безболезненно.
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>Недостатки</h2>
+
+Честно говоря, их всего несколько, и они крайне незначительные:
+<dl compact="">
+<dt>1.</dt><dd>
+Невозможно установить блокировку всей теневой базы данных (см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcb_unconvert&amp;category=8">tcb_unconvert</a></b>(8)).
+
+</dd><dt>2.</dt><dd>
+Процесс, обладающий доступом по чтению ко всем теневым файлам, как
+это описано выше, автоматически обладает доступом по изменению своего
+собственного теневого файла.
+</dd><dt>3.</dt><dd>
+Невозможно предоставить процессу права доступа только по чтению к одному
+конкретному теневому файлу иначе как исполняя этот процесс с правами
+соответствующего пользователя.
+</dd><dt>4.</dt><dd>
+Средства управления доступом пользователей требуют значительной доработки
+для обеспечения поддержки схемы tcb.
+<p>
+</p></dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>Обход ограничений, накладываемых файловыми системами</h2>
+
+Некоторые файловые системы ограничивают возможное число жёстких ссылок
+для файлов.  Например, в файловой системе ext2 никакой файл не может
+содержать более 32000 жёстких ссылок.  Это значит, что каталог
+<i>/etc/tcb</i>,
+
+размещённый на такой файловой системе, может содержать не более 31998
+подкаталогов.  При использовании схемы размещения файлов, описанной выше,
+это ограничение файловой системы автоматически приводит к ограничению
+максимального числа пользователей тем же числом 31988.
+<p>
+
+Решение: каталог с теневым файлом для пользователя U может быть помещён
+не только в каталог
+<i>/etc/tcb</i>,
+
+но и в каталог
+<i>/etc/tcb/:some/path</i>.
+
+В случае использования второго варианта должна быть создана символическая
+ссылка
+<i>/etc/tcb/U</i> -&gt; <i>/etc/tcb/:some/path/U</i>.
+
+</p><p>
+
+В реализации tcb, начиная с версии 0.9.8, каталоги с именами,
+удовлетворяющими шаблону
+<i>/etc/tcb/:*</i>,
+
+не рассматриваются как каталоги с теневыми файлами.  Эти имена
+зарезервированы для символических ссылок на каталоги с теневыми файлами.
+</p><p>
+
+По умолчанию, средства управления доступом пользователей, работающие
+непосредственно с каталогами, содержащими теневые файлы, создают эти
+каталоги непосредственно в
+<i>/etc/tcb</i>;
+
+в ситуации, когда число пользователей в
+<b>tcb</b>
+
+может превысить ограничение файловой системы, администратор системы
+может перейти на второй вариант размещения каталогов с теневыми файлами,
+изменив параметр
+<i>TCB_SYMLINKS</i>
+
+в конфигурационном файле
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=login.defs&amp;category=5">login.defs</a></b>(5).
+
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>Историческая справка</h2>
+
+Первая публичная версия реализации альтернативной схемы управления
+теневыми паролями
+<b>tcb</b>
+
+появилась 12 ноября 2001 года в ОС Openwall GNU/*/Linux.
+<br>
+
+Дата появления
+<b>tcb</b>
+
+в ALT Linux Sisyphus - 20 декабря 2001 года.
+<p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>Авторы</h2>
+
+<dl compact="">
+<dt>Rafal Wojtczuk &lt;<a href="mailto:nergal@owl.openwall.com">nergal@owl.openwall.com</a>&gt;, Solar Designer &lt;<a href="mailto:solar@owl.openwall.com">solar@owl.openwall.com</a>&gt; -</dt><dd>
+реализация схемы
+<b>tcb</b>
+
+для ОС Openwall GNU/*/Linux.
+</dd><dt>Dmitry V. Levin &lt;<a href="mailto:ldv@altlinux.org">ldv@altlinux.org</a>&gt; -</dt><dd>
+аудит кода, адаптация схемы
+<b>tcb</b>
+
+для ОС ALT Linux, перевод документации по
+<b>tcb</b>
+
+на русский язык.
+</dd><dt>Реализация PAM-модуля</dt><dd>
+<b>pam_tcb</b>
+
+призвана обеспечивать обратную совместимость с
+<b>pam_unix</b>,
+
+ввиду чего некоторые решения были заимствованы из
+<b>pam_unix</b>.
+
+Некоторые менее критичные фрагменты кода, а также в некоторой мере
+композиция кода взяты из реализации модуля
+<b>pam_unix</b>
+
+в Linux-PAM.
+Имена соавторов
+<b>pam_unix</b>
+
+приведены в каталоге orig_copyright/ исходного кода схемы
+<b>tcb</b>.
+
+<p>
+</p></dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>Ссылки</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=login.defs&amp;category=5">login.defs</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pam_tcb&amp;category=8">pam_tcb</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcb_convert&amp;category=8">tcb_convert</a></b>(8)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">Название</a></dt><dd>
+</dd><dt><a href="#lbAC">Задача</a></dt><dd>
+</dd><dt><a href="#lbAD">Решение</a></dt><dd>
+</dd><dt><a href="#lbAE">Преимущества</a></dt><dd>
+</dd><dt><a href="#lbAF">Недостатки</a></dt><dd>
+</dd><dt><a href="#lbAG">Обход ограничений, накладываемых файловыми системами</a></dt><dd>
+</dd><dt><a href="#lbAH">Историческая справка</a></dt><dd>
+</dd><dt><a href="#lbAI">Авторы</a></dt><dd>
+</dd><dt><a href="#lbAJ">Ссылки</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="tcb" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

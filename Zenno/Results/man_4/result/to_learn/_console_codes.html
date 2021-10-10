@@ -1,0 +1,776 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN console_codes (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, console_codes"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="console_codes" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">console_codes (4)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=console_codes&amp;category=4&amp;russian=0"><u>console_codes</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=console_codes&amp;category=4&amp;russian=2"><u>console_codes</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+console_codes - управляющие и ESC-последовательности консоли Linux
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Консоль Linux имеет большой набор средств управления
+терминалами VT102 и ECMA-48/ISO 6429/ANSI X3.64, а также некоторым
+количеством частных последовательностей для изменения цветовой
+палитры, распределений символьного набора и т.п.
+В таблицах, приведенных ниже (во второй колонке), указывается
+мнемонический код ECMA-48 или DEC (если последнее приписано к DEC) данной функции.
+Последовательности без мнемонического кода не принадлежат ни к ECMA-48, ни к VT102.
+<p>
+
+Первым процессом, который выполняется после работы обычного
+процесса по выводу информации и отправки к драйверу потока символов 
+консоли (для их реального вывода), является перевод кодов, используемых при
+обычной работе, в коды, применяемые для печати.
+</p><p>
+
+Если консоль работает в режиме UTF-8, то входящие байты сначала
+организуются в 16-битовом уникоде. В ином случае каждый байт
+преобразуется согласно текущей таблице распределения, которая переводит
+данные в уникод.
+(Смотри раздел НАБОРЫ СИМВОЛОВ ниже).
+</p><p>
+
+Обычно значения уникода преобразуются в индекс шрифта, который
+сохраняется в видеопамяти таким образом, что соответствующий глиф
+(обнаруженный в видео-ПЗУ) появляется на экране.
+Заметим, что работа с уникодом (и текущими аппаратными средствами компьютеров)
+позволяет одновременно использовать только 512 глифов.
+</p><p>
+
+Если текущим значением уникода является управляющий символ или если в
+данный момент обрабатывается ESC-последовательность, значение будет
+обрабатываться особым образом.
+Вместо того, чтобы значение преобразовало себя в шрифт и отобразилось как глиф,
+оно будет выполнять определенные действия (например, передвигать курсор) или
+выполнять какие-нибудь другие функции управления.
+Смотрите ниже раздел УПРАВЛЕНИЕ КОНСОЛЬЮ LINUX.
+</p><p>
+
+Некорректно строго задавать программам управление терминалом.
+Linux поддерживает работу с базой возможностей терминала.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=terminfo&amp;category=5">terminfo</a></b>(5)<b>.</b>
+
+Предпочитая не вводить управляющие ESC-последовательности вручную,
+Вы, наверняка, захотите использовать для этой работы
+библиотеку информации об экране terminfo-aware или другие утилиты, такие, как:
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ncurses&amp;category=3">ncurses</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tput&amp;category=1">tput</a></b>(1)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=reset&amp;category=1">reset</a></b>(1).
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>УПРАВЛЕНИЕ КОНСОЛЬЮ В LINUX</h2>
+
+Этот раздел описывает все управляющие символы и ESC-последовательности,
+которые выполняют специальные команды (т.е., все, что отличается от
+простого вывода символа в текущую позицию курсора) консоли Linux.
+<a name="lbAE">&nbsp;</a>
+<h3>Управляющие символы</h3>
+
+Символ считается управляющим, если (до преобразования 
+согласно таблице перекодировки) он содержит один из 14-и кодов:
+00 (NUL), 07 (BEL), 08 (BS), 09 (HT), 0a (LF), 0b (VT),
+0c (FF), 0d (CR), 0e (SO), 0f (SI), 18 (CAN), 1a (SUB),
+1b (ESC), 7f (DEL).
+Можно установить режим `показывать управляющие символы' (см. ниже),
+при этом символы 07, 09, 0b, 18, 1a, 7f будут выводиться на экран как глифы.
+С другой стороны, в режиме UTF-8 все коды с 00 по 1f воспринимаются как
+управляющие символы (независимо от режима `показывать управляющие символы').
+Если встречается управляющий символ, то он немедленно указывается, 
+а в дальнейшем никак не учитывается (даже если он стоял в середине
+ESC-последовательности), и управляющая последовательность продолжается со
+следующего символа.
+Однако, символ ESC, начинающий новую управляющую последовательность,
+возможно, отменит незаконченную предыдущую последовательность,
+а команды CAN и SUB точно закончат управляющую последовательность.
+Распознаваемыми управляющими символами являются: BEL, BS, HT, LF, VT, FF,
+CR, SO, SI, CAN, SUB, ESC, DEL, CSI. Они выполняют стандартные для них действия:
+<dl compact="">
+<dt>
+</dt><dd>BEL (0x07, ^G) издает звуковой сигнал;
+</dd><dt>
+</dt><dd>BS (0x08, ^H) удаляет предыдущий символ (смещается влево на одну колонку,
+но не далее, чем за начало строки);
+</dd><dt>
+</dt><dd>HT (0x09, ^I) перемещается на следующую позицию табуляции или в конец строки,
+если до этого не было установлено позиций табуляции;
+</dd><dt>
+</dt><dd>LF (0x0A, ^J), VT (0x0B, ^K) и FF (0x0C, ^L) задают перевод строки;
+</dd><dt>
+</dt><dd>CR (0x0D, ^M) задает перевод каретки;
+</dd><dt>
+</dt><dd>SO (0x0E, ^N) приводит в действие набор символов G1,
+и если LF/NL (режим новой строки) включен, то задает перевод каретки;
+</dd><dt>
+</dt><dd>SI (0x0F, ^O) приводит в действие набор символов G0;
+</dd><dt>
+</dt><dd>CAN (0x18, ^X) и SUB (0x1A, ^Z) прерывают ESC-последовательность;
+</dd><dt>
+</dt><dd>ESC (0x1B, ^[) начинает ESC-последовательность;
+</dd><dt>
+</dt><dd>DEL (0x7F) игнорируется;
+</dd><dt>
+</dt><dd>CSI (0x9B) эквивалентно ESC [.
+
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h3>ESC- , но не CSI-последовательности</h3>
+
+<table>
+<tbody><tr valign="top"><td>ESC c</td><td>RIS</td><td>Сброс.<br></td></tr>
+<tr valign="top"><td>ESC D</td><td>IND</td><td>Пропуск строки.<br></td></tr>
+<tr valign="top"><td>ESC E</td><td>NEL</td><td>Новая строка.<br></td></tr>
+<tr valign="top"><td>ESC H</td><td>HTS</td><td>Установить позицию табуляции в текущей колонке.<br></td></tr>
+<tr valign="top"><td>ESC M</td><td>RI</td><td>Возврат строки (обратный пропуск).<br></td></tr>
+<tr valign="top"><td>ESC Z</td><td>DECID</td><td>Частное определение DEC. Система<br></td></tr>
+<tr valign="top"><td></td><td></td><td>возвращает строки ESC [ ? 6 c, претендуя на VT102.<br></td></tr>
+<tr valign="top"><td>ESC 7</td><td>DECSC</td><td>Сохранить текущую состояние (координаты курсора,<br></td></tr>
+<tr valign="top"><td></td><td></td><td>атрибуты, наборы символов, указанные G0, G1).<br></td></tr>
+<tr valign="top"><td>ESC 8</td><td>DECRC</td><td>Восстановить последнее сохраненное ESC 7 состояние.<br></td></tr>
+<tr valign="top"><td>ESC [</td><td>CSI</td><td>Ввод управляющей последовательности<br></td></tr>
+<tr valign="top"><td>ESC %</td><td></td><td>Начать последовательность с выбором набора символов<br></td></tr>
+<tr valign="top"><td>ESC % @</td><td></td><td>&nbsp;&nbsp;&nbsp;выбрать по умолчанию (ISO 646 / ISO 8859-1)<br></td></tr>
+<tr valign="top"><td>ESC % G</td><td></td><td>&nbsp;&nbsp;&nbsp;выбрать UTF-8<br></td></tr>
+<tr valign="top"><td>ESC % 8</td><td></td><td>&nbsp;&nbsp;&nbsp;выбрать UTF-8 (устаревшее)<br></td></tr>
+<tr valign="top"><td>ESC # 8</td><td>DECALN</td><td>экранный тест на выравнивание DEC: заполняет экран символами E.<br></td></tr>
+<tr valign="top"><td>ESC (</td><td></td><td>Начать последовательность с выбором набора символов G0<br></td></tr>
+<tr valign="top"><td>ESC ( B</td><td></td><td>&nbsp;&nbsp;&nbsp;выбрать по умолчанию (распределение ISO 8859-1)<br></td></tr>
+<tr valign="top"><td>ESC ( 0</td><td></td><td>&nbsp;&nbsp;&nbsp;выбрать графическое распределение vt100<br></td></tr>
+<tr valign="top"><td>ESC ( U</td><td></td><td>&nbsp;&nbsp;&nbsp;выбрать null-распределение: сразу в символьное ПЗУ<br></td></tr>
+<tr valign="top"><td>ESC ( K</td><td></td><td>&nbsp;&nbsp;&nbsp;выбрать распределение пользователя: загружаемое<br></td></tr>
+<tr valign="top"><td></td><td></td><td>&nbsp;&nbsp;&nbsp;утилитой <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mapscrn&amp;category=8">mapscrn</a></b>(8).<br></td></tr>
+<tr valign="top"><td>ESC )</td><td></td><td>Начать последовательность с выбором набора смволов G1<br></td></tr>
+<tr valign="top"><td></td><td></td><td>(включая символы: B, 0, U, K,- как в примере выше).<br></td></tr>
+<tr valign="top"><td>ESC &gt;</td><td>DECPNM</td><td>Использовать дополнительную клавиатуру как цифровую<br></td></tr>
+<tr valign="top"><td>ESC =</td><td>DECPAM</td><td>Использовать дополнительную клавиатуру как управляющую<br></td></tr>
+<tr valign="top"><td>ESC ]</td><td>OSC</td><td>(Сокращение "команд операционной системы")<br></td></tr>
+<tr valign="top"><td></td><td></td><td>ESC ] P <i>nrrggbb</i>: установить палитру с параметрами,<br></td></tr>
+<tr valign="top"><td></td><td></td><td>заданными в 7-и шестнадцатеричных разрядах после последнейP :-(.<br></td></tr>
+<tr valign="top"><td></td><td></td><td>Здесь <i>n</i> является цветом 0-16, а <i>rrggbb</i> указывает<br></td></tr>
+<tr valign="top"><td></td><td></td><td>на использование красного/зеленого/голубого цвета (0-255).<br></td></tr>
+<tr valign="top"><td></td><td></td><td>ESC ] R: сбросить палитру<br></td></tr>
+</tbody></table>
+
+<a name="lbAG">&nbsp;</a>
+<h3>ECMA-48 CSI-последовательности</h3>
+
+CSI (или ESC [) сопровождаются последовательностью параметров, являющихся
+десятичными номерами, разделенными точкой с запятой (самый больший из них - NPAR (16)).
+"Пустой" параметр (или отсутствие его) приравнивается нулю.
+Последовательность параметров может начинаться одним знаком вопроса.
+Тем не менее, после CSI [ (или ESC [ [) считывается единственный символ
+и оставшаяся часть последовательности игнорируется.
+(Смысл этого в том, чтобы игнорировать отображаемую функциональную клавишу).
+Результат задания CSI-последовательности определяется ее конечным символом.
+<table>
+<tbody><tr valign="top"><td>@</td><td>ICH</td><td>Вставить N  пустых символов.<br></td></tr>
+<tr valign="top"><td>A</td><td>CUU</td><td>Переместить курсор вверх на N рядов.<br></td></tr>
+<tr valign="top"><td>B</td><td>CUD</td><td>Переместить курсор вниз на N рядов.<br></td></tr>
+<tr valign="top"><td>C</td><td>CUF</td><td>Переместить курсор вправо на N столбцов.<br></td></tr>
+<tr valign="top"><td>D</td><td>CUB</td><td>Переместить курсор влево на N столбцов.<br></td></tr>
+<tr valign="top"><td>E</td><td>CNL</td><td>Переместить курсор вниз на N рядов, в столбец #1.<br></td></tr>
+<tr valign="top"><td>F</td><td>CPL</td><td>Переместить курсор вверх на N рядов, в столбец #1.<br></td></tr>
+<tr valign="top"><td>G</td><td>CHA</td><td>Переместить курсор в указанный столбец текущего ряда.<br></td></tr>
+<tr valign="top"><td>H</td><td>CUP</td><td>Переместить курсор в указанный ряд и столбец (начало в 1,1).<br></td></tr>
+<tr valign="top"><td>J</td><td>ED</td><td>"Очистить" экран (по умолчанию от курсора до конца экрана).<br></td></tr>
+<tr valign="top"><td></td><td></td><td>ESC [ 1 J: "очистить" от начала столбца до курсора.<br></td></tr>
+<tr valign="top"><td></td><td></td><td>ESC [ 2 J: "очистить" весь экран.<br></td></tr>
+<tr valign="top"><td>K</td><td>EL</td><td>"Очистить" строку (по умолчанию от курсора до ее конца).<br></td></tr>
+<tr valign="top"><td></td><td></td><td>ESC [ 1 K: "очистить" от начала строки до курсора.<br></td></tr>
+<tr valign="top"><td></td><td></td><td>ESC [ 2 K: "очистить" всю строку.<br></td></tr>
+<tr valign="top"><td>L</td><td>IL</td><td>Вставить N пустых строк.<br></td></tr>
+<tr valign="top"><td>M</td><td>DL</td><td>Удалить N строк.<br></td></tr>
+<tr valign="top"><td>P</td><td>DCH</td><td>Удалить (со смещением в строке) N символов в текущей строке.<br></td></tr>
+<tr valign="top"><td>X</td><td>ECH</td><td>"Очистить" (без смещения в строке) N символов в текущей строке.<br></td></tr>
+<tr valign="top"><td>a</td><td>HPR</td><td>Переместить курсор вправо на N столбцов.<br></td></tr>
+<tr valign="top"><td>c</td><td>DA</td><td>Ответить ESC [ ? 6 c: `Я являюсь VT102'.<br></td></tr>
+<tr valign="top"><td>d</td><td>VPA</td><td>Переместить курсор в указанный ряд текущего столбца.<br></td></tr>
+<tr valign="top"><td>e</td><td>VPR</td><td>Переместить курсор вниз на N рядов.<br></td></tr>
+<tr valign="top"><td>f</td><td>HVP</td><td>Переместить курсор в указанный ряд и столбец.<br></td></tr>
+<tr valign="top"><td>g</td><td>TBC</td><td>Без параметров: "очистить" текущую позицию табуляции.<br></td></tr>
+<tr valign="top"><td></td><td></td><td>ESC [ 3 g: удалить все позиции табуляции.<br></td></tr>
+<tr valign="top"><td>h</td><td>SM</td><td>Режим установки (см. ниже).<br></td></tr>
+<tr valign="top"><td>l</td><td>RM</td><td>Режим сброса (см. ниже).<br></td></tr>
+<tr valign="top"><td>m</td><td>SGR</td><td>Установка атрибутов (см. ниже).<br></td></tr>
+<tr valign="top"><td>n</td><td>DSR</td><td>Отчет о статусе (см. ниже).<br></td></tr>
+<tr valign="top"><td>q</td><td>DECLL</td><td>Установить режимы работы индикаторов на клавиатуре.<br></td></tr>
+<tr valign="top"><td></td><td></td><td>ESC [ 0 q: выключить все индикаторы<br></td></tr>
+<tr valign="top"><td></td><td></td><td>ESC [ 1 q: включить индикатор "Scroll Lock"<br></td></tr>
+<tr valign="top"><td></td><td></td><td>ESC [ 2 q: включить индикатор "Num Lock"<br></td></tr>
+<tr valign="top"><td></td><td></td><td>ESC [ 3 q: включить индикатор "Caps Lock" <br></td></tr>
+<tr valign="top"><td>r</td><td>DECSTBM</td><td>Установить область прокрутки; параметрами будут верхний и нижний ряды.<br></td></tr>
+<tr valign="top"><td>s</td><td>?</td><td>Сохранить местоположение курсора.<br></td></tr>
+<tr valign="top"><td>u</td><td>?</td><td>Восстановить местоположение курсора.<br></td></tr>
+<tr valign="top"><td>`</td><td>HPA</td><td>Переместить курсор в указанный столбец текущего ряда.<br></td></tr>
+</tbody></table>
+
+<a name="lbAH">&nbsp;</a>
+<h3>ECMA-48 Установка параметров графики</h3>
+
+Последовательность ECMA-48 SGR управляющих символов ESC [ &lt;parameters&gt; m
+устанавливает атрибуты экрана.
+Несколько атрибутов могут быть заданы в одной последовательности.
+<p>
+
+<table>
+<tbody><tr valign="top"><td>парам.</td><td>результат<br></td></tr>
+<tr valign="top"><td>0</td><td>сбросить все атрибуты в их значения по умолчанию<br></td></tr>
+<tr valign="top"><td>1</td><td>установить жирный шрифт<br></td></tr>
+<tr valign="top"><td>2</td><td>установить более яркий (имитированное цветом на цветном дисплее)<br></td></tr>
+<tr valign="top"><td>4</td><td>установить подчеркивание (имитированное цветом на цветном дисплее);<br></td></tr>
+<tr valign="top"><td></td><td>цвета, используемые для имитации затемнения или подчеркивания, устанавливаются<br></td></tr>
+<tr valign="top"><td></td><td>при помощи ESC ] ...<br></td></tr>
+<tr valign="top"><td>5</td><td>включить мерцание<br></td></tr>
+<tr valign="top"><td>7</td><td>включить режим инвертированного видео<br></td></tr>
+<tr valign="top"><td>10</td><td>сбросить выбранное распределение, флаги управления экраном<br></td></tr>
+<tr valign="top"><td></td><td>и переключить метафлаг<br></td></tr>
+<tr valign="top"><td>11</td><td>выбрать null-распределение, установить флаг управления экраном,<br></td></tr>
+<tr valign="top"><td></td><td>сбросить переключатель метафлага.<br></td></tr>
+<tr valign="top"><td>12</td><td>выбрать null-распределение, установить флаг управления экраном,<br></td></tr>
+<tr valign="top"><td></td><td>включить переключатель метафлага. Переключение метафлага<br></td></tr>
+<tr valign="top"><td></td><td>задает переключение старшего бита в байте <br></td></tr>
+<tr valign="top"><td></td><td>до его трансформации согласно таблице распределения.<br></td></tr>
+<tr valign="top"><td>21</td><td>включить режим нормальной интенсивности (несовместимо с ECMA-48)<br></td></tr>
+<tr valign="top"><td>22</td><td>выключить режим нормальной интенсивности<br></td></tr>
+<tr valign="top"><td>24</td><td>выключить подчеркивание<br></td></tr>
+<tr valign="top"><td>25</td><td>выключить мерцание<br></td></tr>
+<tr valign="top"><td>27</td><td>выключить инвертированное видео<br></td></tr>
+<tr valign="top"><td>30</td><td>установить черный цвет символов<br></td></tr>
+<tr valign="top"><td>31</td><td>установить красный цвет символов <br></td></tr>
+<tr valign="top"><td>32</td><td>установить зеленый цвет символов <br></td></tr>
+<tr valign="top"><td>33</td><td>установить коричневый цвет символов <br></td></tr>
+<tr valign="top"><td>34</td><td>установить синий цвет символов <br></td></tr>
+<tr valign="top"><td>35</td><td>установить сиреневый цвет символов <br></td></tr>
+<tr valign="top"><td>36</td><td>установить голубой цвет символов <br></td></tr>
+<tr valign="top"><td>37</td><td>установить белый цвет символов <br></td></tr>
+<tr valign="top"><td>38</td><td>включить подчеркивание, установить цвет символов по умолчанию<br></td></tr>
+<tr valign="top"><td>39</td><td>выключить подчеркивание, установить цвет символов по умолчанию<br></td></tr>
+<tr valign="top"><td>40</td><td>установить черный цвет фона<br></td></tr>
+<tr valign="top"><td>41</td><td>установить красный цвет фона <br></td></tr>
+<tr valign="top"><td>42</td><td>установить зеленый цвет фона <br></td></tr>
+<tr valign="top"><td>43</td><td>установить коричневый цвет фона <br></td></tr>
+<tr valign="top"><td>44</td><td>установить синий цвет фона<br></td></tr>
+<tr valign="top"><td>45</td><td>установить сиреневый цвет фона <br></td></tr>
+<tr valign="top"><td>46</td><td>установить голубой цвет фона <br></td></tr>
+<tr valign="top"><td>47</td><td>установить белый цвет фона <br></td></tr>
+<tr valign="top"><td>49</td><td>установить цвет фона по умолчанию<br></td></tr>
+</tbody></table>
+
+<a name="lbAI">&nbsp;</a>
+</p><h3>ECMA-48 Переключение режимов</h3>
+
+<dl compact="">
+<dt>ESC [ 3 h</dt><dd>
+DECCRM (по умолчанию выключено): Показывать управляющие символы.
+</dd><dt>ESC [ 4 h</dt><dd>
+DECIM (по умолчанию выключено): Установить режим вставки/замены.
+</dd><dt>ESC [ 20 h</dt><dd>
+LF/NL (по умолчанию выключено): Автоматически выводить код CR после кодов: LF, VT или FF.
+
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h3>ECMA-48 Команды сообщения статуса</h3>
+
+
+<dl compact="">
+<dt>ESC [ 5 n</dt><dd>
+Сообщение о статусе устройства (DSR): Ответом является ESC [ 0 n (Терминал в порядке).
+</dd><dt>ESC [ 6 n</dt><dd>
+Сообщение о позиции курсора (CPR): Ответом является ESC [ <i>y</i> ; <i>x</i> R,
+где <i>x,y</i> являются координатами курсора.
+
+</dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h3>DEC-последовательности частного режима (DECSET/DECRST)</h3>
+
+
+Не описаны в ECMA-48. Далее будут перечислены последовательности установки режимов;
+в последовательности для сброса режимов последний знак `h' заменяется на `l'.
+<dl compact="">
+<dt>ESC [ ? 1 h</dt><dd>
+DECCKM (по умолчанию выключено): Если включено, то клавиши курсора выдают
+сигнал, начинающийся с ESC O, а не с ESC [.
+</dd><dt>ESC [ ? 3 h</dt><dd>
+DECCOLM (по умолчанию выключено = 80 столбцов): режим переключения количества
+столбцов на 80 или 132. В исходных версиях драйвера задано, что одной этой команды
+недостаточно; некоторые пользовательские утилиты, использующие
+нестандартные режимы, такие, как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=resizecons&amp;category=8">resizecons</a></b>(8),
+
+должны менять регистры настройки консольной видеокарты.
+</dd><dt>ESC [ ? 5 h</dt><dd>
+DECSCNM (по умолчанию выключено): Включить инвертированный видеорежим.
+</dd><dt>ESC [ ? 6 h</dt><dd>
+DECOM (по умолчанию выключено): Если включено, то координаты курсора рассматриваются
+относительно верхнего левого угла в области прокрутки.
+</dd><dt>ESC [ ? 7 h</dt><dd>
+DECAWM (по умолчанию включено): Включить режим автопереноса. В этом режиме
+графический символ, вводящийся после столбца #80 (или #132, если DECCOLM включено),
+переносится в начало следующей строки.
+</dd><dt>ESC [ ? 8 h</dt><dd>
+DECARM (по умолчанию включено): Включить режим автоповтора символов при нажатии клавиши клавиатуры.
+</dd><dt>ESC [ ? 9 h</dt><dd>
+X10 Отчет о состоянии мыши (по умолчанию выключено): Установить режим отчета о состоянии
+мыши, равным единице или нулю (сброс), см. ниже.
+</dd><dt>ESC [ ? 25 h</dt><dd>
+DECCM (по умолчанию включено): Сделать курсор видимым.
+</dd><dt>ESC [ ? 1000 h</dt><dd>
+X11 Отчет о состоянии мыши (по умолчанию выключено): Установить режим отчета о состоянии
+мыши, равным 2-м или нулю (сброс), см. ниже.
+
+</dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h3>Частные последовательности CSI консоли Linux</h3>
+
+
+Следующие последовательности не являются ни ECMA-48-, ни VT102-последовательностями.
+Они являются "родными" для драйвера консоли Linux. Цвета в параметрах SGR:
+0 = черный, 1 = красный, 2 = зеленый, 3 = коричневый, 4 = синий,
+5 = сиреневый, 6 = голубой, 7 = белый.
+<table>
+<tbody><tr valign="top"><td>ESC [ 1 ; <i>n</i> ]</td><td>Установить цвет <i>n</i> как цвет подчеркивания<br></td></tr>
+<tr valign="top"><td>ESC [ 2 ; <i>n</i> ]</td><td>Установить цвет <i>n</i> как цвет затемнения<br></td></tr>
+<tr valign="top"><td>ESC [ 8 ]       </td><td>Установить текущую пару цветов атрибутами по умолчанию.<br></td></tr>
+<tr valign="top"><td>ESC [ 9 ; <i>n</i> ]</td><td>Установить начало "очистки" экрана через <i>n</i> минут.<br></td></tr>
+<tr valign="top"><td>ESC [ 10 ; <i>n</i> ]</td><td>Установить частоту звукового сигнала (в герцах).<br></td></tr>
+<tr valign="top"><td>ESC [ 11 ; <i>n</i> ]</td><td>Установить длительность звукового сигнала в( миллисекундах).<br></td></tr>
+<tr valign="top"><td>ESC [ 12 ; <i>n</i> ]</td><td>Переместить указанную консоль впереди остальных.<br></td></tr>
+<tr valign="top"><td>ESC [ 13 ]      </td><td>Восстановить экран после "очистки".<br></td></tr>
+<tr valign="top"><td>ESC [ 14 ; <i>n</i> ]   </td><td>Установить VESA-интервал отключения (в минутах).<br></td></tr>
+</tbody></table>
+
+<a name="lbAM">&nbsp;</a>
+<h2>НАБОРЫ СИМВОЛОВ</h2>
+
+Ядро располагает информацией о 4-х типах перевода байтов в символы консоли экрана.
+Эти четыре таблицы являются трансформирующими:
+a) Latin1 -&gt; PC,  b) графика VT100 -&gt; PC, c) PC -&gt; PC,
+d) определяется пользователем.
+В системе вообще существует два набора символов, называемых G0 и G1,
+и один из них является текущим набором системы (изначально это G0).
+Ввод ^N заставляет набор G1 стать текущим, ^O делает текущим набор G0.
+Переменные G0 и G1 указывают на таблицы символов и могут меняться пользователем.
+Изначально они указывают на таблицы a) и b) соответственно.
+Последовательности ESC ( B и ESC ( 0 и ESC ( U и ESC ( K заставляют G0 ссылаться
+на таблицы перевода a), b), c) и d) соответственно.
+Последовательности ESC ) B и ESC ) 0 и ESC ) U и ESC ) K заставляют G1 ссылаться
+на таблицы перевода a), b), c) и d) соответственно.
+Последовательность ESC c приводит к сбросу терминала, то есть к тому, что
+Вам необходимо при наличии "мусора" на экране.
+Рекомендация, указанная после "echo ^V^O", только сделает G0 текущим набором,
+но нет никакой гарантии, что G0 будет указывать на таблицу a).
+В некоторых версиях есть программа
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=reset&amp;category=1">reset</a></b>(1)<b>,</b>
+
+которая всего лишь выполняет команду "echo ^[c".
+Если элемент terminfo является правильным для консоли (и содержит элемент rs1=\Ec),
+то "tput reset" также будет выполнять операции.
+Определенная пользователем таблица распределения может быть установлена с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mapscrn&amp;category=8">mapscrn</a></b>(8).
+
+Результатом распределения будет то, что при указании символа c
+в видеопамять будет отправлен символ s = map[c] .
+Побитное изображение, соответствующее s, ищется в ПЗУ символов
+и может меняться при помощи
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setfont&amp;category=8">setfont</a></b>(8).
+
+<a name="lbAN">&nbsp;</a>
+<h2>ОТСЛЕЖИВАНИЕ МЫШИ</h2>
+
+Система для отслеживания работы мыши предполагает выдачу xterm-совместимых
+сигналов о статусе мыши. Так как драйвер консоли не распознает такого устройства,
+как мышь (или ее типа), то эти сигналы отправляются во входной поток консоли,
+только когда драйвер виртуального терминала получает сигнал 
+ioctl об обновлении статуса мыши. Эти сигналы ioctls должны генерироваться 
+пользовательскими приложениями, поддерживающими работу с мышью (такими, как
+демон <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gpm&amp;category=8">gpm</a>(8)</b>).
+Параметром для всех созданных <i>xterm</i> ESC-последовательностей 
+(сигналов о перемещении мыши) будет один символ, код которого равен
+<i>value</i>+040. Например, `!' соответствует единице. Система координат экрана
+при отслеживании работы мыши базирована на знаке единицы.
+В режиме совместимости с X10 при нажатии на кнопки посылаются 
+ESC-последовательности, в которых кодируется и состояние мыши, и информация
+о нажатой кнопке. Режим запускается при выдаче ESC [ ? 9 h и выключается
+при выдаче ESC [ ? 9 l. При нажатии на кнопку <i>xterm</i> посылает
+ESC [ M <i>bxy</i> (6 символов), где <i>b</i> - это кнопка-1,
+а <i>x</i> и <i>y</i> равны координатам x и y при нажатии на эту кнопку.
+Это такие же коды, какие генерируют и выдают ядро системы.
+В обычном режиме отслеживания мыши (который не был реализован в Linux 2.0.24) 
+ESC-последовательности посылаются при нажатии и при отпускании кнопки мыши.
+Также посылается информация о модификаторе. Запускается режим при выдаче
+ESC [ ? 1000 h и выключается при выдаче ESC [ 1000 l.
+При нажатии и отпускании кнопки <i>xterm</i> выдает ESC [ M <i>bxy</i>.  
+Два нижних бита <i>b</i> содержат информацию о кнопках:
+0=MB1 нажата, 1=MB2 нажата, 2=MB3 нажата, 3=отпущена.
+Старшие биты содержат информацию о том, какие модификаторы были выключены
+когда кнопка была нажата. Эта информация складывается при нажатии: 
+4=Shift, 8=Meta, 16=Control.  Еще раз: <i>x</i> и <i>y</i> являются координатами x и y 
+мыши при обработке события. Координаты верхнего левого угла рассматриваются как (1,1).
+<a name="lbAO">&nbsp;</a>
+<h2>СРАВНЕНИЕ С ДРУГИМИ ТЕРМИНАЛАМИ</h2>
+
+Множество других типов терминалов описаны наподобие консоли Linux 
+(как `VT100-совместимые'). Далее мы обсудим различия между Linux- 
+консолью и двумя другими важнейшими типами, DEC VT102 и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=xterm&amp;category=1">xterm</a></b>(1).
+
+
+<a name="lbAP">&nbsp;</a>
+<h3>Обработка управляющих символов</h3>
+
+Тип vt102 также распознает следующие управляющие символы:
+<dl compact="">
+<dt>
+</dt><dd>NUL (0x00) был проигнорирован;
+</dd><dt>
+</dt><dd>ENQ (0x05) запущено обратное ответное сообщение;
+</dd><dt>
+</dt><dd>DC1 (0x11, ^Q, XON) продолженная передача;
+</dd><dt>
+</dt><dd>DC3 (0x13, ^S, XOFF) указывает, что vt100 необходимо игнорировать и останавливать передачу
+всех кодов за исключением XOFF и XON
+</dd></dl>
+<p>
+
+VT100-подобная DC1/DC3 обработка может быть запущена драйвером tty.
+</p><p>
+
+Программа
+<i>xterm</i>
+
+(в режиме vt100) распознает управляющие следующие символы:
+BEL, BS, HT, LF, VT, FF, CR, SO, SI, ESC.
+
+<a name="lbAQ">&nbsp;</a>
+</p><h3>ESC-последовательности</h3>
+
+VT100-последовательности консоли, не реализованные в консоли Linux:
+<p>
+
+<table>
+<tbody><tr valign="top"><td>ESC N</td><td>SS2</td><td>Сдвиг на 2. (Выбрать набор символов G2 только для следующего<br></td></tr>
+<tr valign="top"><td></td><td></td><td>символа.)<br></td></tr>
+<tr valign="top"><td>ESC O</td><td>SS3</td><td>Сдвиг на 3. (Выбрать набор символов G3 только для следующего<br></td></tr>
+<tr valign="top"><td></td><td></td><td>символа.)<br></td></tr>
+<tr valign="top"><td>ESC P</td><td>DCS</td><td>Строка управления устройством (заканчивается на ESC \)<br></td></tr>
+<tr valign="top"><td>ESC X</td><td>SOS</td><td>Начало строки.<br></td></tr>
+<tr valign="top"><td>ESC ^</td><td>PM</td><td>Частное сообщение (заканчивается на ESC \)<br></td></tr>
+<tr valign="top"><td>ESC \</td><td>ST</td><td>Завершающий 0 строки<br></td></tr>
+<tr valign="top"><td>ESC * ...</td><td></td><td>Определить набор символов G2<br></td></tr>
+<tr valign="top"><td>ESC + ...</td><td></td><td>Определить набор символов G3<br></td></tr>
+</tbody></table>
+
+Программа
+<i>xterm</i>
+
+(в режиме vt100) распознает: ESC c, ESC # 8, ESC &gt;, ESC =,
+ESC D, ESC E, ESC H, ESC M, ESC N, ESC O, ESC P ... ESC ,
+ESC Z (оно выдает последовательности ESC [ ? 1 ; 2 c ответ: `Я являюсь vt100 
+с улучшенными видеопараметрами')
+и ESC ^ ... ESC &nbsp;с теми же значениями, какие указаны выше.
+Принимаются: ESC (, ESC ), ESC *,  ESC +,- сопровождаемые 0, A, B для
+специальных символов DEC и режима рисования линий, UK и USASCII
+соответственно.
+Принимаются ESC ] для установки работы таких ресурсов, как:
+</p><p>
+
+<table>
+<tbody><tr valign="top"><td>ESC ] 0 ; txt BEL</td><td>Установить имя иконки и заголовок окна в режиме txt.<br></td></tr>
+<tr valign="top"><td>ESC ] 1 ; txt BEL</td><td>Установить имя иконки в режиме txt.<br></td></tr>
+<tr valign="top"><td>ESC ] 2 ; txt BEL</td><td>Установить заголовок окна в режиме txt.<br></td></tr>
+<tr valign="top"><td>ESC ] 4 6 ; name BEL</td><td>Сменить файл логов на name (обычно отключено<br></td></tr>
+<tr valign="top"><td><br>&nbsp;параметрами&nbsp;компиляции)</td><td><br></td></tr>
+<tr valign="top"><td>ESC ] 5 0 ; fn BEL</td><td>Установить шрифт fn.<br></td></tr>
+</tbody></table>
+
+Распознаются следующие параметры с несколько измененным значением:
+</p><p>
+
+<table>
+<tbody><tr valign="top"><td>ESC 7  DECSC</td><td>Сохранить курсор</td><td><br></td></tr>
+<tr valign="top"><td>ESC 8  DECRC</td><td>Восстановить курсор</td><td><br></td></tr>
+</tbody></table>
+
+Также распознается
+</p><p>
+
+<table>
+<tbody><tr valign="top"><td>ESC F</td><td></td><td>Курсор в нижний левый угол экрана (если разрешено<br></td></tr>
+<tr valign="top"><td><br>&nbsp;ресурсом&nbsp;hpLowerleftBugCompat)</td><td></td><td><br></td></tr>
+<tr valign="top"><td>ESC l</td><td></td><td>Блокирование памяти (для HP-терминалов).<br></td></tr>
+<tr valign="top"><td></td><td></td><td>Блокирует память выше курсора.<br></td></tr>
+<tr valign="top"><td>ESC m</td><td></td><td>Разблокирование памяти (для HP-терминалов).<br></td></tr>
+<tr valign="top"><td>ESC n</td><td>LS2</td><td>Ввод набора символов G2.<br></td></tr>
+<tr valign="top"><td>ESC o</td><td>LS3</td><td>Ввод набора символов G3.<br></td></tr>
+<tr valign="top"><td>ESC |</td><td>LS3R</td><td>Ввод набора символов G3 в качестве GR.<br></td></tr>
+<tr valign="top"><td></td><td></td><td>Не имеет видимого эффекта в xterm.<br></td></tr>
+<tr valign="top"><td>ESC }</td><td>LS2R</td><td>Ввод набора символов G2 в качестве GR.<br></td></tr>
+<tr valign="top"><td></td><td></td><td>Не имеет видимого эффекта в xterm.<br></td></tr>
+<tr valign="top"><td>ESC ~</td><td>LS1R</td><td>Ввод набора символов G1 в качестве GR.<br></td></tr>
+<tr valign="top"><td></td><td></td><td>Не имеет видимого эффекта в xterm.<br></td></tr>
+</tbody></table>
+
+Не распознается ESC % ...
+
+<a name="lbAR">&nbsp;</a>
+</p><h3>CSI-последовательности</h3>
+
+Программа
+<i>xterm</i>
+
+(по данным XFree86 3.1.2G) не распознает мерцание или режим невидимости
+SGRs. Версии X11R6 не распознают цветоустановки SGR.
+Все другие ECMA-48 CSI-последовательности, распознаваемые Linux,
+также распознаются 
+<i>xterm</i>
+
+и наоборот.
+Программа
+<i>xterm</i>
+
+будет распознавать все последовательности частного режима DEC,
+перечисленные выше, но не будут распознавать ни одну из
+последовательностей частного режима в Linux.  Для обсуждения
+последовательностей частного режима для
+<i>xterm</i>
+
+обратитесь к документу
+<i>Xterm</i>Control<i>Sequences</i>,
+
+созданного Edward Moy и Stephen Gildea и сопровождаемого дистрибутивом X Window System.
+<a name="lbAS">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ </h2>
+
+В версии 2.0.23 набор CSI является неправильным и недейственным, NUL не игнорируется
+внутри ESC-последовательностей.
+<a name="lbAT">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=console&amp;category=4">console</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=console_ioctl&amp;category=4">console_ioctl</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=charsets&amp;category=7">charsets</a></b>(7)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">УПРАВЛЕНИЕ КОНСОЛЬЮ В LINUX</a></dt><dd>
+<dl>
+<dt><a href="#lbAE">Управляющие символы</a></dt><dd>
+</dd><dt><a href="#lbAF">ESC- , но не CSI-последовательности</a></dt><dd>
+</dd><dt><a href="#lbAG">ECMA-48 CSI-последовательности</a></dt><dd>
+</dd><dt><a href="#lbAH">ECMA-48 Установка параметров графики</a></dt><dd>
+</dd><dt><a href="#lbAI">ECMA-48 Переключение режимов</a></dt><dd>
+</dd><dt><a href="#lbAJ">ECMA-48 Команды сообщения статуса</a></dt><dd>
+</dd><dt><a href="#lbAK">DEC-последовательности частного режима (DECSET/DECRST)</a></dt><dd>
+</dd><dt><a href="#lbAL">Частные последовательности CSI консоли Linux</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAM">НАБОРЫ СИМВОЛОВ</a></dt><dd>
+</dd><dt><a href="#lbAN">ОТСЛЕЖИВАНИЕ МЫШИ</a></dt><dd>
+</dd><dt><a href="#lbAO">СРАВНЕНИЕ С ДРУГИМИ ТЕРМИНАЛАМИ</a></dt><dd>
+<dl>
+<dt><a href="#lbAP">Обработка управляющих символов</a></dt><dd>
+</dd><dt><a href="#lbAQ">ESC-последовательности</a></dt><dd>
+</dd><dt><a href="#lbAR">CSI-последовательности</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAS">НАЙДЕННЫЕ ОШИБКИ </a></dt><dd>
+</dd><dt><a href="#lbAT">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="console_codes" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

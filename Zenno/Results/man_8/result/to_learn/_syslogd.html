@@ -1,0 +1,902 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN syslogd (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, syslogd"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="syslogd" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">syslogd (8)</font><hr><li> <a href="/man.shtml?topic=syslogd&amp;category=1&amp;russian=4"><u>syslogd</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=syslogd&amp;category=1&amp;russian=0"><u>syslogd</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=syslogd&amp;category=8&amp;russian=1"><u>syslogd</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=syslogd&amp;category=8&amp;russian=0"><u>syslogd</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=syslogd&amp;category=8&amp;russian=2"><u>syslogd</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+sysklogd - системные службы журналирования Linux
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>syslogd</b>
+
+[<b> -a </b>
+
+<i>сокет</i>
+
+]
+[<b> -d </b>]
+
+[<b> -f </b>
+
+<i>файл_конфигурации</i>
+
+]
+[<b> -h </b>]
+
+[<b> -i </b>
+
+<i>адрес_IP</i>
+
+]
+[<b> -l </b>
+
+<i>список_сетевых_узлов</i>
+
+]
+[<b> -m </b>
+
+<i>интервал</i>
+
+] 
+[<b> -n </b>]
+
+[<b> -p</b>
+
+<i>сокет</i>
+
+]
+[<b> -r </b>]
+
+[<b> -s </b>
+
+<i>список_доменов</i>
+
+]
+[<b> -u</b>
+
+<i>имя_пользователя</i>
+
+]
+[<b> -j </b>
+
+<i>каталог_chroot</i>
+
+]
+[<b> -v </b>]
+
+<p>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<b>Sysklogd</b>
+
+предоставляет две системные утилиты, обеспечивающих журналирование событий происходящих в системе и сообщений ядра. Поддерживая и домены интернет и unix-домены, этот пакет утилит обеспечивает как локальное, так и удалённое журналирование.
+<p>
+Системный журнал ведёт версия
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8),
+
+восходящая в своём происхождении к исходникам BSD. Поддержка журналирования для ядра обеспечивается утилитой
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=klogd&amp;category=8">klogd</a></b>(8),
+
+которая может работать либо отдельно, либо в виде клиента syslogd.
+</p><p>
+Многие современные программы, используют обеспечиваемый
+<b>syslogd</b>
+
+вид журналирования. Каждое занесённое в журнал сообщение содержит, по меньшей мере поля с указанием времени и имени машины, обычно также и поле с названием программы, но это зависит от доверия журналирующей программы.
+</p><p>
+Не смотря на то, что исходные тексты
+<b>syslogd</b>
+
+были серьёзно переработаны, есть пара моментов, которые необходимо отметить. Первое, разработчики строго придерживались положения о том, что syslogd должен сохранить стандартное для BSD поведение.
+Вторая важная концепция, это прозрачное взаимодействие этой версии syslogd с находящейся в системных библиотеках версии syslog. Если выполняемый код связанный со стандартной разделяемой библиотекой не будет правильно выполняться, мы бы хотели получить пример этого ненормального поведения.
+</p><p>
+При запуске читается основной конфигурационный файл
+<i>/etc/syslog.conf</i>
+
+или альтернативный файл, заданный опцией
+<b>-f</b>.
+
+В нем игнорируются любые пустые строки и начинающиеся с символа решетки ("#"). Если при разборе какой-либо строки возникает ошибка, то она полностью игнорируется.
+</p><p>
+</p><p>
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОПЦИИ</h2>
+
+<dl compact="">
+<dt><b>-a </b><i>сокет</i>
+
+</dt><dd>
+Используя этот аргумент, вы можете определить дополнительные сокеты, которые
+<b>syslogd</b>
+
+будет слушать. Это необходимо, если некоторые службы планируется выполнять в окружении chroot(). Вы можете использовать до 19 дополнительных сокетов. Если же потребуется больше, то можно увеличить идентификатор
+<b>MAXFUNIX</b>
+
+в файле syslogd.c. Ребята из OpenBSD рассматривают пример с работающим в chroot() сервисе на странице
+&lt;<a href="http://www.guides.sk/psionic/dns/">http://www.guides.sk/psionic/dns/</a>&gt;.
+</dd><dt><b>-d</b>
+
+</dt><dd>
+Включает режим отладки. Применение этой опции укажет службе syslogd не использовать порождение дочернего процесса
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=fork&amp;category=2">fork</a></b>(2)
+
+для перехода в фоновой режим работы, напротив, демон останется в интерактивном режиме выполнения и будет выводить довольно много  отладочной информации на текущий tty. За дополнительной информацией обратитесь к разделу ОТЛАДКА.
+</dd><dt><b>-f </b><i>файл_конфигурации</i>
+
+</dt><dd>
+Определить альтернативный файл конфигурации взамен используемого по умолчанию
+<i>/etc/syslog.conf</i>.
+
+</dd><dt><b>-h </b>
+
+</dt><dd>
+По умолчанию syslogd не пересылает сообщения получаемые от удалённых станций. Использование этой опции в командной строке укажет службе журналирования, что любые получаемые сообщения от удалённых машин необходимо пересылаться на определённый сетевой узел.
+</dd><dt><b>-i </b><i>адрес_IP</i>
+
+</dt><dd>
+Если
+<b>syslogd</b>
+
+сконфигурирован для приёма сообщений через порт UDP, то предпочтительнее указать адрес IP, к которому его привязать, нежели использовать настройку по умолчанию INADDR_ANY. Адрес должен состоять из четырех чисел разделённых точками, DNS-имя не требуется.
+</dd><dt><b>-l </b><i>список_сетевых_узлов</i>
+
+</dt><dd>
+Определить сетевой узел, журналирование которого необходимо производить, используя только простое имя машины (например, aurora), а не полностью определённое доменное имя (FQDN) (например, aurora.tux.ru). Имена нескольких машин можно перечислить используя в качестве разделителя двоеточие (":").
+</dd><dt><b>-m </b><i>интервал</i>
+
+</dt><dd>
+<b>Syslogd</b>
+
+регулярно отмечает текущее время делая запись в журнале. Стандартно, между двумя строками с отметками <i>-- MARK --</i> определён
+<i>интервал</i>
+
+в 20 минут. Это можно изменить с помощью данной опции. Установив в
+<i>интервал</i>
+
+нулевое значение вы полностью отключите запись этих отметок.
+</dd><dt><b>-n</b>
+
+</dt><dd>
+Отменить автоматический переход в фоновый режим. Это главным образом необходимо если
+<b>syslogd</b>
+
+запущен и контролируется
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=init&amp;category=8">init</a></b>(8).
+
+</dd><dt><b>-p </b><i>сокет</i>
+
+</dt><dd>
+Взамен
+<i>/dev/log</i>,
+
+вы можете определить альтернативу сокету домена unix.
+</dd><dt><b>-r</b>
+
+</dt><dd>
+Эта опция активирует возможность получения сообщений из сети используя сокет домена интернет через службу syslog (см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=services&amp;category=5">services</a></b>(5)).
+
+По умолчанию сообщения из сети не принимаются.
+<p>
+Эта опция впервые появилась в версии 1.3 пакета sysklogd. Вы можете это использовать, только пожалуйста, примите во внимание, что стандартное поведение зависит от используемой версии.
+</p></dd><dt><b>-s </b><i>список_доменов</i>
+
+</dt><dd>
+Определить имя домена, которое будет отсекаться при журналировании. Несколько доменов можно перечислить используя в качестве разделителя двоеточие (":").
+Пожалуйста учтите, что нельзя указывать субдомены, а только домены целиком. Например, если указать
+<b>-s north.de</b>
+
+и журналируемым узлом является satu.infodrom.north.de, то домен не будет отсечён, вам необходимо будет указать два домена:
+<b>-s north.de:infodrom.north.de</b>.
+
+</dd><dt><b>-u </b><i>имя_пользователя</i>
+
+</dt><dd>
+Прежде чем начать журналирование, служба
+<b>syslogd</b>
+
+получит имя (псевдо)пользователя.
+<p>
+Обратите внимание, что когда эта опция используется, то при первом запуске
+<b>syslogd</b>
+
+откроет файлы журналов как суперпользователь (root);
+однако, после вызова
+<b>SIGHUP</b>,
+
+файлы будут открыты вновь от имени непривилегированного пользователя. Это стоит принять в расчёт, когда будете назначать права владения файлами журналов.
+</p></dd><dt><b>-j </b><i>каталог_chroot</i>
+
+</dt><dd>
+Указывает службе
+<b>syslogd</b>,
+
+после инициализации, сменить корневой каталог (<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chroot&amp;category=2">chroot</a></b>(2)) на данный.
+Эта опция допустима, только при одновременном использовании опции -u, для запуска
+<b>syslogd</b>
+
+без привилегий суперпользователя (root).
+Учтите, что эта опция делает вызов
+<b>SIGHUP</b>
+
+бесполезным, что делает перезагрузку сервиса практически невозможным.
+</dd><dt><b>-v</b>
+
+</dt><dd>
+Показать версию программы и выйти.
+</dd></dl>
+<p>
+
+<a name="lbAF">&nbsp;</a>
+</p><h2>СИГНАЛЫ</h2>
+
+<b>Syslogd</b>
+
+реагирует на набор сигналов. Вы можете просто послать сигнал
+<b>syslogd</b>
+
+используя команду вида:
+<dl compact="">
+<dt></dt><dd>
+<pre>kill -СИГНАЛ `cat /var/run/syslogd.pid`
+</pre>
+
+</dd></dl>
+<p>
+
+</p><dl compact="">
+<dt><b>SIGHUP</b>
+
+</dt><dd>
+Этот сигнал, переданный
+<b>syslogd</b>
+
+вызовет пере-инициализацию. Все открытые файлы будут закрыты, файл настроек (по умолчанию это
+<i>/etc/syslog.conf</i>)
+
+будет прочитан заново, и сервис
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></b>(3)
+
+запуститься вновь.
+</dd><dt><b>SIGTERM</b>
+
+</dt><dd>
+Прервёт работу
+<b>syslogd</b>.
+
+</dd><dt><b>SIGINT</b>, <b>SIGQUIT</b>
+
+</dt><dd>
+Если режим отладки включен, то эти сигналы будут проигнорированы, иначе
+<b>syslogd</b>
+
+прервёт работу.
+</dd><dt><b>SIGUSR1</b>
+
+</dt><dd>
+Включение/выключение режима отладки. Этот сигнал может быть использован только если при запуске
+<b>syslogd</b>
+
+применялась опция включающая режим отладки
+<b>-d</b>.
+
+</dd><dt><b>SIGCHLD</b>
+
+</dt><dd>
+Во время отправки сообщений с помощью команды wall, ожидать реакции дочерних процессов, если они были порождены.
+</dd></dl>
+<p>
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>РАЗЛИЧИЯ В СИНТАКСИСЕ ФАЙЛОВ КОНФИГУРАЦИИ</h2>
+
+<b>Syslogd</b>
+
+использует слегка отличающийся от принятого в BSD синтаксис конфигурационного файла. Изначально, все сообщения с соответствующим приоритетом и выше направлялись в файл журнала.
+<dl compact="">
+<dt></dt><dd>
+Например, следующая строка повлечёт направление ВСЕЙ выводной информации от системных служб выполняющихся в режиме демонов в файл
+<i>/usr/adm/daemons</i>
+
+(режим отладки (debug) имеет наименьший приоритет, поэтому все сообщения имеющие более высокий приоритет также подходят под условие):
+</dd><dt></dt><dd>
+<pre>        # Пример syslog.conf
+        daemon.debug                    /usr/adm/daemons
+</pre>
+
+</dd></dl>
+<p>
+
+По новой схеме это поведение остаётся тем же. Различие состоит в четырех добавившихся спецификаторах: шаблон - символ звёздочки (<b>*</b>), знак равенства (<b>=</b>), восклицательный знак
+(<b>!</b>), и знак минуса (<b>-</b>).
+</p><p>
+Символ "<b>*</b>" определяет, что все сообщения указанного сервиса направляются в назначенный файл. Заметьте, что это поведение не поменяется при изменении приоритета отладочных сообщений. Пользователи отметили, что нотация с использованием символа звёздочки более интуитивно понятная.
+</p><p>
+Шаблон "<b>=</b>" используется для чтобы ограничить журналирование видом имеющим только определенный приоритет. Это позволит, например, направить только отладочные сообщения в соответствующий журнал.
+</p><dl compact="">
+<dt></dt><dd>
+Например, следующая строка в
+<i>syslog.conf</i>
+
+направит все отладочные сообщения из всех источников в файл
+<i>/usr/adm/debug</i>.
+
+</dd><dt></dt><dd>
+<pre>        # Пример syslog.conf
+        *.=debug                        /usr/adm/debug
+</pre>
+
+</dd></dl>
+<p>
+
+Восклицательный знак "<b>!</b>" используется для того чтобы исключить некоторое журналирование. 
+И это затронет все возможные виды данного исключения.
+</p><dl compact="">
+<dt></dt><dd>
+Например, следующая строка указывает журналировать все сообщения категории mail в файл
+<i>/usr/adm/mail</i>,
+
+кроме имеющих метку приоритета info. И все сообщения от news.info (включительно) до news.crit
+(исключая последние), будут журналироваться в файл
+<i>/usr/adm/news</i>.
+
+</dd><dt></dt><dd>
+<pre>        # Пример syslog.conf
+        mail.*;mail.!=info              /usr/adm/mail
+        news.info;news.!crit    /usr/adm/news
+</pre>
+
+</dd></dl>
+<p>
+
+Вы можете использовать это для указания исключений. Здесь просто инвертирована интерпретация символа "<b>=</b>". Таким образом, вы можете указать
+</p><p>
+</p><pre>        mail.none
+</pre>
+
+или
+<pre>        mail.!*
+</pre>
+
+или
+<pre>        mail.!debug
+</pre>
+
+<p>
+и все сообщения от почтового сервиса будут игнорироваться. Что ж, здесь есть с чем поиграться. :-)
+</p><p>
+Если вы хотите опустить выполнение sync для файла после каждого его изменения, то используйте символ "<b>-</b>" как префикс имени файла.
+</p><p>
+Тем кто использовал чистый синтаксис BSD может потребоваться небольшая акклиматизация, однако тестеры отмечают, что новый синтаксис в обращении более гибок. Отметим, что эти изменения не затрагивают стандартные файлы
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog.conf&amp;category=5">syslog.conf</a></b>(5).
+
+Вам необходимо специально изменить конфигурационные файлы чтобы получить расширенное поведение.
+</p><p>
+
+<a name="lbAH">&nbsp;</a>
+</p><h2>ПОДДЕРЖКА УДАЛЁННОГО ЖУРНАЛИРОВАНИЯ</h2>
+
+Эта версия предоставляет поддержку сети для сервиса syslogd.
+Поддержка сети означает, что сообщения могут быть пере-направлены с одного узла сети на котором запущен syslogd, на другой сетевой узел с выполняющимся на нём syslogd, где они и будут в действительности помещены в файл журнала на жестком диске.
+<p>
+Для включения этой возможности, в командной строке следует указать опцию
+<b>-r</b>.
+
+По умолчанию
+<b>syslogd</b>
+
+не прослушивает сеть.
+</p><p>
+Идея заключается в том, чтобы иметь syslogd который прослушивает сокет домена unix на предмет локально сгенерированных сообщений, помещаемых в журнал. Это поведение позволяет syslogd взаимодействовать с syslog находящемся в стандартной библиотеке C. В тоже время syslogd прослушивает стандартный порт syslog, ожидая сообщений пересылаемых с других сетевых узлов. Для того чтобы это работало корректно, необходимо в файл
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=services&amp;category=5">services</a></b>(5),
+
+находящийся в 
+<i>/etc</i>
+
+внести следующую запись:
+</p><dl compact="">
+<dt></dt><dd>
+<pre>        syslog          514/udp
+</pre>
+
+</dd></dl>
+<p>
+
+Если эта запись отсутствует, то
+<b>syslogd</b>
+
+не сможет ни получать, ни отправлять сообщений, так как UDP-порт нельзя будет открыть. Вместо этого, 
+<b>syslogd</b>
+
+немедленно аварийно завершит работу, выдав сообщение об ошибке.
+</p><p>
+Включить пере-направление сообщений на другой сетевой узел можно изменив строку в
+<i>syslog.conf</i>,
+
+содержащую имя файла журнала, его следует заменить на имя узла сети с префиксом "@", на которую будут пересылаться сообщения.
+</p><dl compact="">
+<dt></dt><dd>
+Например, для пере-направления
+<b>ВСЕХ</b>
+
+сообщений на удалённую машину используйте следующую запись в
+<i>syslog.conf</i>:
+
+</dd><dt></dt><dd>
+<pre>        # Пример конфигурационного файла syslogd,
+        # который предписывает пересылать все сообщения
+        # на удалённую машину.
+        *.*                     @имя_хоста
+</pre>
+
+<p>
+Для пере-направления всех сообщений <b>ядра</b> (kernel) на удалённую машину, конфигурационный файл должен быть следующего вида:
+</p></dd><dt></dt><dd>
+<pre>        # Пример конфигурационного файла syslogd.
+        # Все сообщения ядра пере-направляются на
+        # удалённую сетевую машину.
+        kern.*          @имя_хоста
+</pre>
+
+</dd></dl>
+<p>
+
+</p><p>
+Если во время загрузки системы имя удалённой машины не может быть разрешено (т.е. определён адрес сетевого узла в числовом виде), потому что сервер имён не доступен (он может запускаться после запуска syslogd), то не стоит беспокоиться.
+<b>Syslogd</b>
+
+предпримет ещё 10 попыток для разрешения имени удалённой машины и в случае неудачи выразит недовольство. Другое возможное решение это поместить имя удалённого сетевого узла в
+<i>/etc/hosts</i>.
+
+</p><p>
+С обычными настроенными
+<b>syslogd</b>
+
+легко угодить в syslog-петлю, когда сообщения полученные от удалённого узла пересылаются на ту же самую машину (или в более сложном варианте, на третью машину, которая отсылает сообщения на первую, и т.д.).  В моём домене (Infodrom Oldenburg) мы это неожиданно обнаружили заполненными все наши диски одним и тем же сообщением. :-(
+</p><p>
+Во избежание этого не следует далее пересылать сообщения полученные с удалённой машины на другую (или ту же) машину. Если установленная у вас программа так не поступает, пожалуйста обратитесь к опции командной строки
+<b>-h</b>.
+
+</p><p>
+Если удалённая машина находится в том же домене что и станция на которой выполняется
+<b>syslogd</b>,
+
+то в журнал вместо FQDN, будет записываться только простое имя узла.
+</p><p>
+В локальной сети вы можете организовать централизованный сервер журналирования для хранения всей важной информации на одной машине. Если локальная сеть состоит из нескольких доменов, то не стоит сетовать на то, что в журнал вместо простых имён, будут заноситься полные имена узлов. Воспользуйтесь возможностью отсечения доменов для этого сервера, опция
+<b>-s</b>.
+
+Вы можете сказать
+<b>syslogd</b>
+
+отсекать несколько доменов, а не только один в котором он находится, и журналировать только простые имена машин.
+</p><p>
+Использование опции
+<b>-l</b>,
+
+также позволяет определить указанные машины как локальные. Что также приведёт к журналированию только их простых имён, а не FQDN.
+</p><p>
+UDP-сокет используемый для пересылки сообщений на удалённые машины или получения сообщений от них, открыт только когда это требуется. В версиях до 1.3-23 он был открыт постоянно, но соответственно закрыт для для пересылки и чтения.
+</p><p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>ВЫВОД В ИМЕНОВАННЫЕ КАНАЛЫ (FIFOs)</h2>
+
+Эта версия syslogd поддерживает вывод журналирования в именованные каналы (FIFOs).   FIFO или именованные каналы могут быть использованы как место назначения для сообщений журнала, указанием символа канала ("|") перед именем файла. Это удобно применять для отладки. Учтите, что прежде чем syslogd будет запущен, FIFO должен быть создан командой mkfifo.
+<dl compact="">
+<dt></dt><dd>
+Нижеследующий конфигурационный файл задаёт пере-направление отладочных сообщений ядра в FIFO:
+</dd><dt></dt><dd>
+<pre>        # Пример настройки для пере-направления ТОЛЬКО отладочных 
+        # сообщений ядра в /usr/adm/debug, который является
+        # именованным каналом.
+        kern.=debug                     |/usr/adm/debug
+</pre>
+
+</dd></dl>
+<p>
+
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ВОПРОСЫ УСТАНОВКИ</h2>
+
+Возможно, есть только один важный момент на который стоит обратить внимание при установке этой версии syslogd. Эта версия syslogd зависит от надлежащего форматирования сообщений функцией syslog. Где-то в районе версий libc.so.4.[2-4].n, изменилась работа функции syslog находящейся в разделяемой библиотеке. Конкретно поменялось следующее: теперь перед отправлением в сокет
+<i>/dev/log</i>,
+
+сообщения получают завершающий ноль. Правильное функционирование этой версии syslogd зависит от наличия в сообщении завершающего нуля.
+<p>
+Если в системе используются старые исполняемые файлы со статическим связыванием, то обычно эта проблема проявит сама себя. Исполняемые файлы использующие старые версии функций syslog будут писать пустые строки после первого символа журналируемого сообщения. Данную проблему исправит перекомпоновка этих двоичных файлов с новыми версиями разделяемых библиотек.
+</p><p>
+И
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslogd&amp;category=8">syslogd</a></b>(8) и the <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=klogd&amp;category=8">klogd</a></b>(8)
+
+могут быть запущены из
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=init&amp;category=8">init</a></b>(8)
+
+или стартовать как часть rc.* последовательности.
+Если запуск производится из init, то необходимо применить опцию <i>-n</i>, иначе вы получите тонны запущенных служб syslog. Это происходит потому что
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=init&amp;category=8">init</a></b>(8)
+
+зависит от идентификатора (ID) процесса.
+</p><p>
+
+<a name="lbAK">&nbsp;</a>
+</p><h2>УГРОЗЫ БЕЗОПАСНОСТИ</h2>
+
+Потенциально, сервис syslogd может быть использован в качестве лазейки для атак приводящих к отказу в обслуживании (DoS, denial of service). Спасибо Джону Моррисону (John Morrison, <a href="mailto:jmorriso@rflab.ee.ubc.ca">jmorriso@rflab.ee.ubc.ca</a>) за предупреждение об этой потенциально существующей опасности.
+Злоумышленник или программа довольно просто может утопить службу syslogd в сообщениях syslog, в результате чего файлы журналов займут всё доступное место в файловой системе. Конечно же, активирование журналирования через сокеты домена интернет   подвергает систему риску атак со стороны внешних, либо локальных, злоумышленных программ или лиц.
+<p>
+Некоторые методы защиты машины:
+</p><dl compact="">
+<dt>1.</dt><dd>
+Для ограничения доступа к сокету 514/UDP только конкретным хостам или сетям, обеспечьте работу межсетевого экрана ядра.
+</dd><dt>2.</dt><dd>
+Журналирование может быть направлено на изолированную или не корневую файловую систему, которая в случае заполнения не повредит работе машины.
+</dd><dt>3.</dt><dd>
+Можно использовать файловую систему ext2, в которой есть возможность настроить процент использования файловой системы суперпользователем (root). <b>ВНИМАНИЕ</b>,
+это потребует работы syslogd в виде непривилегированного процесса.
+<b>ТАКЖЕ УЧТИТЕ</b>, что это воспрепятствует использованию удалённого журналирования, так как syslogd не сможет связаться с сокетом 514/UDP.
+</dd><dt>4.</dt><dd>
+Запрет использования сокетов домена интернет уменьшит риск для локальной машины.
+</dd><dt>5.</dt><dd>
+Если вы применили п.4 и это не помогло устранить проблему с злоумышленной программой/демоном, то возьмите стальной метровый прут и проведите с пользователем разъяснительную беседу.
+<p>
+</p></dd></dl>
+<p>
+
+<a name="lbAL">&nbsp;</a>
+</p><h2>ОТЛАДКА</h2>
+
+Если использованием в командной строке опции
+<b>-d</b>,
+
+отладка включена, то рапортуя о выполняемых действиях на stdout,
+<b>syslogd</b>
+
+будет достаточно многословен. Всякий раз когда конфигурационный файл заново перечитан и проанализирован, вы увидите таблицу соответствующую внутренней структуре данных. Эта таблица состоит из четырёх полей:
+<dl compact="">
+<dt><i>number</i>(номер)
+
+</dt><dd>
+Это поле содержит порядковый номер начиная с нуля. Этот номер представляет позицию во внутренней структуре данных (массиве). Если один из номеров отсутствует, то возможно имеется ошибка в соответственной строке в файле
+<i>/etc/syslog.conf</i>.
+
+</dd><dt><i>pattern</i>(шаблон)
+
+</dt><dd>
+Это поле очень информативно и в точности представляет внутреннюю структуру. В каждом столбце отдельно представлено одно из средств обслуживания (см. 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></b>(3)).
+
+Как видите, некоторые средства обслуживания ещё не сформированы и свободны для использования, в основном используются только те что слева. В каждом поле в столбце представлены приоритеты (см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></b>(3)).
+
+</dd><dt><i>action</i>(действие)
+
+</dt><dd>
+Данное поле описывает конкретное действие, которое выполняется каждый раз при получении сообщения соответствующего шаблону. Для получения информации о всех возможных действиях, смотрите страницу руководства
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog.conf&amp;category=5">syslog.conf</a></b>(5)<b>.</b>
+
+</dd><dt><i>arguments</i>(аргументы)
+
+</dt><dd>
+В этом поле показаны дополнительные аргументы, которые можно использовать при осуществлении действия (action). Для записи журнала в файл это имя файла журнала; для журналирование работы пользователей это список пользователей; для удалённого журналирования это имя машины, журнал которой будет вестись; для журналирования консоли, используемая консоль; для tty-журнала установленная tty; wall не имеет дополнительных аргументов.
+</dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+
+<dl compact="">
+<dt><i>/etc/syslog.conf</i>
+
+</dt><dd>
+Файл настроек для
+<b>syslogd</b>.
+
+Для полной информации смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog.conf&amp;category=5">syslog.conf</a></b>(5).
+
+</dd><dt><i>/dev/log</i>
+
+</dt><dd>
+Сокет домена Unix из которого читаются локальные сообщения syslog.
+</dd><dt><i>/var/run/syslogd.pid</i>
+
+</dt><dd>
+Файл содержит идентификатор (ID) процесса
+<b>syslogd</b>.
+
+
+</dd></dl>
+<a name="lbAN">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+Всё правило игнорируется в случае наличия ошибки в одной строке.
+<p>
+На любых стадиях работы,
+<b>syslogd</b>
+
+не изменит режима доступа к открытым файлам журналов. Если файл создан с разрешённым доступом на чтения для всех. Для избежания этого, создайте файл и назначьте права доступа по своему усмотрению. Это может быть сделано в комбинации с оборотом файлов журналов при использовании программы
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=savelog&amp;category=8">savelog</a></b>(8),
+
+которая поставляется с версиями 3.x программы
+<b>smail</b>.
+
+Помните, что открытый для всех доступ на чтение сообщений авторизации auth.*, которые могут содержать пароли, может быть дырой в безопасности.
+</p><p>
+
+<a name="lbAO">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog.conf&amp;category=5">syslog.conf</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=klogd&amp;category=8">klogd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=logger&amp;category=1">logger</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=2">syslog</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=services&amp;category=5">services</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=savelog&amp;category=8">savelog</a></b>(8)
+
+<p>
+
+<a name="lbAP">&nbsp;</a>
+</p><h2>СОТРУДНИКИ</h2>
+
+<b>Syslogd</b>
+
+взят из исходных кодов BSD, Грег Ветстейн (Greg Wettstein, <a href="mailto:greg@wind.enjellic.com">greg@wind.enjellic.com</a>)
+выполнил его перенос на Linux, Мартин Шульце (Martin Schulze, <a href="mailto:joey@linux.de">joey@linux.de</a>) исправил некоторые ошибки и добавил несколько новых возможностей.
+<b>Klogd </b>
+
+изначально был написан Стивом Лордом (Steve Lord, <a href="mailto:lord@cray.com">lord@cray.com</a>), затем Грег Ветстейн 
+сделал значительные улучшения.
+<p>
+
+</p><dl compact="">
+<dt>Dr. Greg Wettstein</dt><dd>
+</dd><dt>Enjellic Systems Development</dt><dd>
+</dd><dt>Oncology Research Division Computing Facility</dt><dd>
+</dd><dt>Roger Maris Cancer Center</dt><dd>
+</dd><dt>Fargo, ND</dt><dd>
+</dd><dt><a href="mailto:greg@wind.enjellic.com">greg@wind.enjellic.com</a></dt><dd>
+<p>
+</p></dd><dt>Stephen Tweedie</dt><dd>
+</dd><dt>Department of Computer Science</dt><dd>
+</dd><dt>Edinburgh University, Scotland</dt><dd>
+</dd><dt><a href="mailto:sct@dcs.ed.ac.uk">sct@dcs.ed.ac.uk</a></dt><dd>
+<p>
+</p></dd><dt>Juha Virtanen</dt><dd>
+</dd><dt><a href="mailto:jiivee@hut.fi">jiivee@hut.fi</a></dt><dd>
+<p>
+</p></dd><dt>Shane Alderton</dt><dd>
+</dd><dt><a href="mailto:shane@ion.apana.org.au">shane@ion.apana.org.au</a></dt><dd>
+<p>
+</p></dd><dt>Martin Schulze</dt><dd>
+</dd><dt>Infodrom Oldenburg</dt><dd>
+</dd><dt><a href="mailto:joey@linux.de">joey@linux.de</a></dt><dd>
+
+
+</dd></dl>
+<a name="lbAQ">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Василий Коломеец (Vasily Kolomeets) &lt;<a href="mailto:boojuman@gmail.com">boojuman@gmail.com</a>&gt;
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">СИГНАЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">РАЗЛИЧИЯ В СИНТАКСИСЕ ФАЙЛОВ КОНФИГУРАЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAH">ПОДДЕРЖКА УДАЛЁННОГО ЖУРНАЛИРОВАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAI">ВЫВОД В ИМЕНОВАННЫЕ КАНАЛЫ (FIFOs)</a></dt><dd>
+</dd><dt><a href="#lbAJ">ВОПРОСЫ УСТАНОВКИ</a></dt><dd>
+</dd><dt><a href="#lbAK">УГРОЗЫ БЕЗОПАСНОСТИ</a></dt><dd>
+</dd><dt><a href="#lbAL">ОТЛАДКА</a></dt><dd>
+</dd><dt><a href="#lbAM">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAN">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAO">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAP">СОТРУДНИКИ</a></dt><dd>
+</dd><dt><a href="#lbAQ">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="syslogd" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

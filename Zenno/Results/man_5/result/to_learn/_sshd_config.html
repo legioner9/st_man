@@ -1,0 +1,1709 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN sshd_config (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, sshd_config"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="sshd_config" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">sshd_config (5)</font><hr><li> <a href="/man.shtml?topic=sshd_config&amp;category=4&amp;russian=4"><u>sshd_config</u></a> (4) <font color="#555555"> ( Solaris man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=sshd_config&amp;category=5&amp;russian=1"><u>sshd_config</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=sshd_config&amp;category=5&amp;russian=0"><u>sshd_config</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=sshd_config&amp;category=5&amp;russian=2"><u>sshd_config</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li><br>BSD mandoc<br>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+
+
+<b>sshd_config</b>
+
+ - файл конфигурации службы openSSH SSH
+
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>/etc/ssh/sshd_config</b>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8)
+
+
+sshd считывает данные о конфигурации из
+/etc/ssh/sshd_config
+
+(или из файла указанного в командной строке при помощи параметра
+-<b>f).</b>
+
+Файл содержит пары параметр-значение, по одной на строку.
+Пустые и строки начинающиеся с 
+`#'
+
+интерпретируются как комментарии.
+Если аргументы содержат пробелы, они должны быть заключены в двойные кавычки
+(.)
+
+<p>
+
+Далее приведены описания возможных параметров (регистр имён аргументов учитывается,
+регистр имён параметров - нет):
+</p><dl compact="">
+<p>
+
+</p><dt><b>AcceptEnv</b>
+
+
+</dt><dd>
+Список переменных среды, которые, будучи заданы клиентом,
+будут копироваться в 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=environ&amp;category=7">environ</a>(7)
+
+
+сеанса. Соответствующая настройка на стороне клиента выполняется параметром 
+<b>SendEnv</b>
+
+и описана в 
+ssh_config5
+
+
+
+Переменные указываются по имени, допускаются символы подстановки 
+`*'
+
+и 
+`?'
+
+Несколько переменных среды можно указывать через пробелы или в нескольких 
+параметрах 
+<b>AcceptEnv.</b>
+
+Данный параметр введен для предотвращения обхода ограничений среды пользователя посредством изменения значений переменных среды.
+По умолчанию не принимаются никакие переменные среды.
+</dd><dt><b>AddressFamily</b>
+
+
+</dt><dd>
+Семейство адресов которое должна использовать служба 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8).
+
+
+Допустимые значения: 
+``any''
+
+ 
+``inet''
+
+(только IPv4) и 
+``inet6''
+
+(только IPv6).
+Значение по умолчанию - 
+``any''
+
+ 
+</dd><dt><b>AllowGroups</b>
+
+
+</dt><dd>
+Список шаблонов имён групп через пробел.
+Если параметр определён, регистрация в системе разрешается только пользователям,
+чья главная или вспомогательная группы соответствуют какому-либо из шаблонов.
+Допустимы только имена групп; числовой идентификатор группы не распознаётся.
+По умолчанию разрешена регистрация в системе для членов всех групп.
+Разрешающие/запрещающие (allow/deny) директивы обрабатываются в следующем порядке:
+<b>DenyUsers</b>
+
+ 
+<b>AllowUsers</b>
+
+ 
+<b>DenyGroups</b>
+
+ 
+<b>AllowGroups</b>
+
+ 
+<p>
+
+См.
+Sx ШАБЛОНЫ
+
+в 
+ssh_config5
+
+
+</p></dd><dt><b>AllowTcpForwarding</b>
+
+
+</dt><dd>
+Определяет, будет ли разрешено перенаправление TCP.
+Значение по умолчанию -
+``yes''
+
+ 
+Имейте ввиду, что отключение пересылки TCP не увеличит уровень защищённости системы
+пока пользователям не запрещён доступ к командной оболочке,
+так как они всегда могут установить свои собственные перенаправления. 
+</dd><dt><b>AllowUsers</b>
+
+
+</dt><dd>
+Список имён пользователей через пробел.
+Если параметр определён, регистрация в системе будет разрешена только пользователям,
+чьи имена соответствуют одному из шаблонов.
+Допустимы только имена пользователей; числовой идентификатор пользователя не распознаётся.
+По умолчанию разрешена регистрация в системе для всех пользователей.
+Если шаблон указывается в форме ПОЛЬЗОВАТЕЛЬ@ХОСТ, его две части
+проверяются отдельно, таким образом разрешая доступ только пользователям с указанными именами,
+подключающимся с указанных хостов.
+Разрешающие/запрещающие (allow/deny) директивы обрабатываются в следующем порядке:
+<b>DenyUsers</b>
+
+ 
+<b>AllowUsers</b>
+
+ 
+<b>DenyGroups</b>
+
+ 
+<b>AllowGroups</b>
+
+ 
+<p>
+
+См. 
+Sx ШАБЛОНЫ
+
+в 
+ssh_config5
+
+
+</p></dd><dt><b>AuthorizedKeysFile</b>
+
+
+</dt><dd>
+Файл с открытыми ключами которые могут быть использованы для аутентификации пользователей.
+Допустимо указание шаблонов, они преобразуются при настройке соединения: 
+%% заменяется на символ '%',
+%h заменяется на домашний каталог идентифицируемого пользователя,
+%u - на имя пользователя.
+После преобразования 
+<b>AuthorizedKeysFile</b>
+
+интерпретируется либо как абсолютный путь, либо как путь относительно домашнего каталога пользователя.
+Значение по умолчанию - 
+``.ssh/authorized_keys''
+
+ 
+</dd><dt><b>Banner</b>
+
+
+</dt><dd>
+На некоторых территориях для получения защиты со стороны закона
+может быть необходимо послание предупредительного сообщения перед аутентификацией.
+Содержимое указанного файла будет отправлено удалённому пользователю прежде,
+чем будет разрешена аутентификация.
+Этот параметр доступен только с протоколом версии 2.
+По умолчанию не выводится никакой информации.
+</dd><dt><b>ChallengeResponseAuthentication</b>
+
+
+</dt><dd>
+Определяет, разрешается ли безпарольная аутентификация "вызов-ответ".
+Поддерживаются все схемы аутентификации 
+login.conf5
+
+
+Значение по умолчанию -
+``yes''
+
+ 
+</dd><dt><b>Ciphers</b>
+
+
+</dt><dd>
+Допустимые для протокола версии 2 шифры.
+Несколько шифров указываются через запятую.
+Поддерживаются следующие шифры:
+``3des-cbc''
+
+ 
+``aes128-cbc''
+
+ 
+``aes192-cbc''
+
+ 
+``aes256-cbc''
+
+ 
+``aes128-ctr''
+
+ 
+``aes192-ctr''
+
+ 
+``aes256-ctr''
+
+ 
+``arcfour128''
+
+ 
+``arcfour256''
+
+ 
+``arcfour''
+
+ 
+``blowfish-cbc''
+
+ 
+и 
+``cast128-cbc''
+
+ 
+Значение по умолчанию:
+
+<pre>aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,arcfour128,
+arcfour256,arcfour,aes192-cbc,aes256-cbc,aes128-ctr,
+aes192-ctr,aes256-ctr
+</pre>
+
+</dd><dt><b>ClientAliveCountMax</b>
+
+
+</dt><dd>
+Количество запросов проверяющих доступность клиента (см. ниже),
+которые могут оставаться без ответа. Если предел достигнут,
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8)
+
+
+отключит клиента и завершит сеанс.
+Имейте в виду, запросы client alive отличаются от
+<b>TCPKeepAlive</b>
+
+(см. ниже).
+Данные запросы отправляются через защищённый канал
+и поэтому не могут быть подменены.
+Параметр
+<b>TCPKeepAlive</b>
+
+допускает возможность подменены данных.
+Механизм client alive полезен если поведение клиента или сервера
+зависит от активности соединения.
+<p>
+
+Значение по умолчанию -3.
+Если 
+<b>ClientAliveInterval</b>
+
+(см. ниже) равно 15, а для 
+<b>ClientAliveCountMax</b>
+
+оставлено значение по умолчанию, не отвечающие клиенты SSH будут отключаться 
+приблизительно через 45.
+Данный параметр относится только к протоколу версии 2.
+</p></dd><dt><b>ClientAliveInterval</b>
+
+
+</dt><dd>
+Время бездействия со стороны клиента в секундах, после которого 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8)
+
+
+отправляет через защищённый канал запрос отклика клиенту.
+Значение по умолчанию - 0, что означает, что клиенту не будут направляться такие запросы.
+Этот параметр применим только с протоколом версии 2. 
+</dd><dt><b>Compression</b>
+
+
+</dt><dd>
+Разрешить сжатие сразу, после аутентификации или вообще запретить его.
+Допустимые значения -
+``yes''
+
+ 
+``delayed''
+
+ 
+и 
+``no''
+
+ 
+Значение по умолчанию -
+``delayed''
+
+ 
+</dd><dt><b>DenyGroups</b>
+
+
+</dt><dd>
+Список шаблонов имён групп через пробел.
+Если параметр определён, регистрация в системе пользователям,
+чья главная или вспомогательная группа соответствуют содержащимся
+в списке шаблонам, не разрешается.
+Допустимы только имена групп; числовой идентификатор группы не распознаётся.
+По умолчанию регистрация в системе разрешена для всех групп. 
+Разрешающие/запрещающие (allow/deny) директивы обрабатываются в следующем порядке:
+<b>DenyUsers</b>
+
+ 
+<b>AllowUsers</b>
+
+ 
+<b>DenyGroups</b>
+
+ 
+<b>AllowGroups</b>
+
+ 
+<p>
+
+См.
+Sx ШАБЛОНЫ
+
+в
+ssh_config5
+
+
+</p></dd><dt><b>DenyUsers</b>
+
+
+</dt><dd>
+Список имён пользователей через пробел.
+Если параметр определён, регистрация в системе пользователей, чьи имена соответствуют одному из шаблонов, будет запрещена.
+Допустимы только имена пользователей; числовой идентификатор пользователя не распознаётся.
+По умолчанию разрешена регистрация в системе для всех пользователей.
+Если шаблон указывается в форме ПОЛЬЗОВАТЕЛЬ@ХОСТ, его две части проверяются отдельно,
+таким образом запрещается доступ только пользователям с указанными именами, подключающимся с указанных хостов.
+Разрешающие/запрещающие (allow/deny) директивы обрабатываются в следующем порядке:
+<b>DenyUsers</b>
+
+ 
+<b>AllowUsers</b>
+
+ 
+<b>DenyGroups</b>
+
+ 
+<b>AllowGroups</b>
+
+ 
+<p>
+
+См.
+Sx ШАБЛОНЫ
+
+в
+ssh_config5
+
+
+</p></dd><dt><b>ForceCommand</b>
+
+
+</dt><dd>
+Выполнять указанную команду после регистрации пользователя в системе,
+игнорируя команду запрашиваемую им.
+Команда запускается оболочкой пользователя с ключом -c.
+Это относится к выполнению оболочки, команды или подсистемы.
+обычно применяется внутри блока 
+<b>Match.</b>
+
+Команда запрошенная пользователем посещается в переменную среды
+<b>SSH_ORIGINAL_COMMAND.</b>
+
+</dd><dt><b>GatewayPorts</b>
+
+
+</dt><dd>
+Определяет, разрешено ли удалённым машинам подключение к портам,
+выделенным для туннелирования трафика клиентов.
+По умолчанию
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8)
+
+
+делает доступными порты, используемые для туннелирования инициируемого сервером,
+только для кольцевого (loopback) адреса,
+т.е. удалённые машины подключаться к перенаправляемым портам не могут.
+С помощью данного параметра можно исправить такое положение дел.
+Значение
+``no''
+
+разрешает туннелирование только в рамках данной системы,
+``yes''
+
+разрешает туннелирование для хостов соответствующих шаблону, а
+``clientspecified''
+
+позволяет клиенту самостоятельно выбирать адрес для туннелирования.
+Значение по умолчанию -
+``no''
+
+ 
+</dd><dt><b>GSSAPIAuthentication</b>
+
+
+</dt><dd>
+Допускать аутентификацию по GSSAPI.
+Значение по умолчанию -
+``no''
+
+ 
+Данный параметр относится только к протоколу версии 2.
+</dd><dt><b>GSSAPICleanupCredentials</b>
+
+
+</dt><dd>
+Очищать ли кэш аутентификационных данных клиента при завершении сеанса.
+Значение по умолчанию -
+``yes''
+
+ 
+Данный параметр относится только к протоколу версии 2.
+</dd><dt><b>HostbasedAuthentication</b>
+
+
+</dt><dd>
+Допускать аутентификацию по хостам, т.е.
+аутентификацию по rhosts или /etc/hosts.equiv в сочетании с открытым ключом клиента.
+Этот параметр схож с 
+<b>RhostsRSAAuthentication</b>
+
+и применим только к протоколу версии 2.
+Значение по умолчанию -
+``no''
+
+ 
+</dd><dt><b>HostbasedUsesNameFromPacketOnly</b>
+
+
+</dt><dd>
+Отключить выполнение запросов имени хоста при обработке файлов 
+~/.shosts
+
+ 
+~/.rhosts 
+
+и
+/etc/hosts.equiv
+
+в рамках аутентификации по хосту
+<b>(HostbasedAuthentication).</b>
+
+При значении 
+``yes''
+
+для сравнения будет использоваться имя указанное клиентом, 
+а не имя которое может быть получено стандартными средствами соединения TCP.
+Значение по умолчанию -
+``no''
+
+ 
+</dd><dt><b>HostKey</b>
+
+
+</dt><dd>
+Файл с частными ключами хоста.
+Значение по умолчанию -
+/etc/ssh/ssh_host_key
+
+для протокола 1, и 
+/etc/ssh/ssh_host_rsa_key
+
+и 
+/etc/ssh/ssh_host_dsa_key
+
+для протокола 2.
+Имейте ввиду, что
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8)
+
+
+не будет принимать файлы частных ключей доступные для чтения всей группе или вообще всем пользователям.
+Можно указывать несколько файлов с ключами хоста.
+Ключи
+``rsa1''
+
+используются для протокола версии 1,
+ключи 
+``dsa''
+
+и 
+``rsa''
+
+- для версии 2 протокола SSH.
+</dd><dt><b>IgnoreRhosts</b>
+
+
+</dt><dd>
+Не учитывать содержимое файлов 
+.rhosts
+
+и 
+.shosts
+
+при аутентификации 
+<b>RhostsRSAAuthentication</b>
+
+и
+<b>HostbasedAuthentication</b>
+
+ 
+<p>
+
+При этом будут учитываться только
+/etc/hosts.equiv
+
+и
+/etc/shosts.equiv.
+
+Значение по умолчанию -
+``yes''
+
+ 
+</p></dd><dt><b>IgnoreUserKnownHosts</b>
+
+
+</dt><dd>
+Не учитывать содержимое файла
+~/.ssh/known_hosts
+
+при 
+<b>RhostsRSAAuthentication</b>
+
+или 
+<b>HostbasedAuthentication</b>
+
+ 
+Значение по умолчанию -
+``no''
+
+ 
+</dd><dt><b>KerberosAuthentication</b>
+
+
+</dt><dd>
+Определяет, дозволена ли аутентификация Kerberos:
+Проверять ли пароль указанный пользователем для аутентификации 
+<b>PasswordAuthentication</b>
+
+в Kerberos KDC.
+Это может быть либо в форме тикетов Kerberos или, если PasswordAuthentication установлена в ``yes'', пароль, предоставленный пользователем, будет утвержден через Kerberos KDC.
+Для использования этого параметра серверу необходима Kerberos servtab,
+которая разрешит проверку субъекта KDC.
+Значение по умолчанию -
+``no''
+
+ 
+</dd><dt><b>KerberosGetAFSToken</b>
+
+
+</dt><dd>
+Если AFS активна и у пользователя имеется Kerberos 5 TGT, 
+получать талон AFS перед обращением к домашнему каталогу пользователя.
+Значение по умолчанию -
+``no''
+
+ 
+</dd><dt><b>KerberosOrLocalPasswd</b>
+
+
+</dt><dd>
+В случае непринятия аутентификации посредством Kerberos,
+проверять пароль другими механизмами, такими как
+/etc/passwd
+
+ 
+Значение по умолчанию -
+``yes''
+
+ 
+</dd><dt><b>KerberosTicketCleanup</b>
+
+
+</dt><dd>
+Очищать ли кэш талонов пользователя при завершении сеанса.
+Значение по умолчанию -
+``yes''
+
+ 
+</dd><dt><b>KeyRegenerationInterval</b>
+
+
+</dt><dd>
+В протоколе версии 1 эфемерный ключ сервера будет автоматически регенерироваться 
+по истечении этого количества секунд (если он использовался).
+Цель регенерации состоит в том, чтобы предохранить шифрованные
+установленные сеансы от более поздних вторжений на машину и захвата ключей.
+Ключ нигде не сохраняется.
+Если установлено значение 0, то ключ не будет регенерироваться.
+Значение по умолчанию - 3600 (секунд).
+</dd><dt><b>ListenAddress</b>
+
+
+</dt><dd>
+Локальные адреса, по которым
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8)
+
+
+должен ожидать соединения. Может быт использован следующие форматы записей:
+<p>
+
+</p><dl compact="">
+<p>
+
+</p><dt><b>ListenAddress</b>
+
+
+</dt><dd>
+
+<i>хост </i><b>| </b><i>адрес-IPv4 </i><b>| </b><i>адрес-IPv6</i>
+
+
+
+</dd><dt><b>ListenAddress</b>
+
+
+</dt><dd>
+
+<i>хост </i><b>| </b><i>адрес-IPv4 </i><b>: </b><i>порт</i>
+
+
+
+</dd><dt><b>ListenAddress</b>
+
+
+</dt><dd>
+
+[<i>хост </i><b>| </b><i>адрес-IPv6 : порт</i>
+
+]
+
+
+
+</dd></dl>
+<p>
+
+</p><p>
+
+Если
+<i>порт</i>
+
+не указан, sshd будет ожидать соединения на указанном адресе
+и на всех указанных ранее (но не после) в параметре 
+<b>Port</b>
+
+портах.
+По умолчанию ожидается соединение на всех локальных адресах.
+Допустимо указание нескольких параметров.
+</p></dd><dt><b>LoginGraceTime</b>
+
+
+</dt><dd>
+Сервер отключается по истечении этого времени,
+если пользователю не удалась регистрация в системе.
+Если стоит значение 0, то время ожидания не ограничено.
+Значение по умолчанию - 120 секунд.
+</dd><dt><b>LogLevel</b>
+
+
+</dt><dd>
+Задает степень подробности сообщений для протоколов sshd.
+Допустимыми являются значения: 
+QUIET, FATAL, ERROR, INFO, VERBOSE, DEBUG, DEBUG1, DEBUG2, and DEBUG3.
+Значение по умолчанию - INFO.
+Значения DEBUG и DEBUG1 эквивалентны.
+Использование значения DEBUG* нарушает конфиденциальность пользователей и потому не рекомендуется.
+</dd><dt><b>MACs </b>Допустимые алгоритмы MAC (Message Authentication Code - код установления подлинности сообщения).
+
+
+
+</dt><dd>
+Они используются в протоколе версии 2 для гарантирования целостности данных.
+Несколько алгоритмов следует указывать через запятую.
+Значение по умолчанию:
+``hmac-md5,hmac-sha1,hmac-ripemd160,hmac-sha1-96,hmac-md5-96''
+
+ 
+</dd><dt><b>Match</b>
+
+
+</dt><dd>
+Начинает условный блок.
+Если все критерии на строке
+<b>Match</b>
+
+удовлетворены, указанные в блоке директивы будут иметь больший приоритет чем
+указанные в глобальном разделе файла конфигурации.
+Концом блока считается либо следующая директива 
+<b>Match,</b>
+
+либо конец файла.
+В качестве аргументов 
+<b>Match</b>
+
+принимаются пары критерий-шаблон.
+Допустимые критерии: 
+<b>User</b>
+
+ 
+<b>Group</b>
+
+ 
+<b>Host </b>
+
+и
+<b>Address</b>
+
+ 
+В самом блоке
+<b>Match</b>
+
+допустимо указание следующих параметров: 
+<b>AllowTcpForwarding</b>
+
+ 
+<b>Banner</b>
+
+ 
+<b>ForceCommand</b>
+
+ 
+<b>GatewayPorts</b>
+
+ 
+<b>GSSApiAuthentication</b>
+
+ 
+<b>KbdInteractiveAuthentication</b>
+
+ 
+<b>KerberosAuthentication</b>
+
+ 
+<b>PasswordAuthentication</b>
+
+ 
+<b>PermitOpen</b>
+
+ 
+<b>RhostsRSAAuthentication</b>
+
+ 
+<b>RSAAuthentication</b>
+
+ 
+<b>X11DisplayOffset</b>
+
+ 
+<b>X11Forwarding</b>
+
+ 
+<b>X11UseLocalHost</b>
+
+ 
+</dd><dt><b>MaxAuthTries</b>
+
+
+</dt><dd>
+Ограничение на число попыток идентифицировать себя в течение одного соединения.
+При достижении количества неудачных попыток аутентификации 
+записи о последующих неудачах будут вносится в протокол.
+Значение по умолчанию - 6.
+</dd><dt><b>MaxStartups</b>
+
+
+</dt><dd>
+Ограничение на число одновременных соединений, в которых не был пройден этап аутентификации.
+Все последующие соединения не будут приниматься
+пока на уже существующем соединении не будет произведена аутентификация 
+или не истечет время указанное в параметре
+<b>LoginGraceTime.</b>
+
+Значение по умолчанию - 10.
+<p>
+
+Как альтернатива может быть задействован ранний случайный отказ в подключении 
+путем указания трёх разделённых через двоеточие значений
+``старт:норма:предел''
+
+(например, "10:30:60"). Соединение будет сбрасываться с вероятностью
+``норма/100''
+
+(30%)
+если имеется 
+``старт''
+
+(10)
+(10) соединений с не пройденным этапом аутентификации.
+Вероятность возрастает линейно и постоянно попытки будут отвергаться
+при достижении числа
+``предел''
+
+(60).
+</p></dd><dt><b>PasswordAuthentication</b>
+
+
+</dt><dd>
+Допускать аутентификацию по паролю.
+Значение по умолчанию -
+``yes''
+
+ 
+</dd><dt><b>PermitEmptyPasswords</b>
+
+
+</dt><dd>
+Допускать использование пустых паролей при аутентификации по паролю.
+Значение по умолчанию -
+``no''
+
+ 
+</dd><dt><b>PermitOpen</b>
+
+
+</dt><dd>
+Ограничить возможные конечные точки для туннелирования TCP.
+Допустимые формы указания точек:
+<p>
+
+</p><dl compact="">
+<p>
+
+</p><dt><b>PermitOpen</b>
+
+
+</dt><dd>
+
+<i>хост : порт</i>
+
+
+</dd><dt><b>PermitOpen</b>
+
+
+</dt><dd>
+
+<i>адрес-IPv4 : порт</i>
+
+
+</dd><dt><b>PermitOpen</b>
+
+
+</dt><dd>
+
+<i>[ адрес-IPv6 ] : порт</i>
+
+
+</dd></dl>
+<p>
+
+</p><p>
+
+Возможно указание нескольких конечных точек через пробел.
+Значение 
+``any''
+
+снимает ограничение и является значением по умолчанию.
+</p></dd><dt><b>PermitRootLogin</b>
+
+
+</dt><dd>
+Допускать вход в систему через
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ssh&amp;category=1">ssh</a>(1).
+
+
+в качестве суперпользователя.
+Допустимые значения:
+``yes''
+
+ 
+``without-password''
+
+ 
+``forced-commands-only''
+
+ 
+``no''
+
+ 
+Значение по умолчанию -
+``yes''
+
+ 
+<p>
+
+Если этот параметр установлен в значение 
+``without-password''
+
+ 
+войти в систему в качестве суперпользователя указав для аутентификации пароль
+будет невозможно.
+</p><p>
+
+Если этот параметр установлен в значение 
+``forced-commands-only''
+
+ 
+будет разрешена регистрация суперпользователя в системе по открытому ключу,
+но только если определён параметр
+<i>command</i>
+
+команда (что может быть полезно для удалённого создания резервных копий,
+даже если регистрация суперпользователя в системе в обычным режиме не разрешена).
+Все другие методы аутентификации для суперпользователя будут отключены.
+</p><p>
+
+При значении 
+``no''
+
+ 
+вход в систему в качестве root будет полностью запрещён.
+</p></dd><dt><b>PermitTunnel</b>
+
+
+</dt><dd>
+Допускать использование перенаправления для устройств
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tun&amp;category=4">tun</a>(4).
+
+
+Допустимые значения:
+``yes''
+
+ 
+``point-to-point''
+
+(уровень 3),
+``ethernet''
+
+(уровень 2), 
+``no''
+
+ 
+Значение
+``yes''
+
+эквивалентно 
+``point-to-point''
+
+и 
+``ethernet ''
+
+одновременно.
+Значение по умолчанию -
+``no''
+
+ 
+</dd><dt><b>PermitUserEnvironment</b>
+
+
+</dt><dd>
+Учитывать ли файл
+~/.ssh/environment
+
+и параметры 
+<b>environment=</b>
+
+в файле
+~/.ssh/authorized_keys.
+
+Значение по умолчанию -
+``no''
+
+ 
+Посредством изменения переменных среды пользователи могут обойти 
+ограничения своих полномочий. Например, с помощью механизма 
+<b>LD_PRELOAD</b>
+
+ 
+</dd><dt><b>PidFile</b>
+
+
+</dt><dd>
+Файл в который следует записывать идентификатор процесса службы SSH.
+Значение по умолчанию -
+/var/run/sshd.pid
+
+ 
+</dd><dt><b>Port</b>
+
+
+</dt><dd>
+Порт, на котором следует ожидать запросы на соединение.
+Значение по умолчанию - 22.
+Допустимо указание параметра несколько раз.
+См. также 
+<b>ListenAddress</b>
+
+ 
+</dd><dt><b>PrintLastLog</b>
+
+
+</dt><dd>
+Выводить ли время и дату предыдущего входа в систему
+при интерактивной регистрации пользователя в ней.
+Значение по умолчанию -
+``yes''
+
+ 
+</dd><dt><b>PrintMotd</b>
+
+
+</dt><dd>
+Выводить ли содержимое файла 
+/etc/motd
+
+при интерактивной регистрации пользователя в системе
+(в некоторых системах это выполняется оболочкой, сценарием
+/etc/profile
+
+или аналогичным).
+Значение по умолчанию -
+``yes''
+
+ 
+</dd><dt><b>Protocol</b>
+
+
+</dt><dd>
+Версии протокола которые следует принимать..
+Допустимые значения - 
+`1'
+
+и 
+`2'
+
+ 
+Несколько значений указываются через запятую.
+Значение по умолчанию -
+``2,1''
+
+ 
+Порядок указания протоколов не имеет значения,
+т.к. протокол выбирается клиентом из списка доступных.
+</dd><dt><b>PubkeyAuthentication</b>
+
+
+</dt><dd>
+Допускать аутентификацию по открытому ключу.
+Значение по умолчанию -
+``yes''
+
+ 
+Данный параметр относится только к протоколу версии 2.
+</dd><dt><b>RhostsRSAAuthentication</b>
+
+
+</dt><dd>
+Допускать аутентификацию по rhosts или /etc/hosts.equiv 
+совместно с аутентификацией по хосту RSA.
+Значение по умолчанию -
+``no''
+
+ 
+Данный параметр относится только к протоколу версии 1.
+</dd><dt><b>RSAAuthentication</b>
+
+
+</dt><dd>
+Допускать аутентификацию только по ключу RSA.
+Значение по умолчанию -
+``yes''
+
+ 
+Данный параметр относится только к протоколу версии 1.
+</dd><dt><b>ServerKeyBits</b>
+
+
+</dt><dd>
+Длина ключа сервера для эфемерного протокола версии 1.
+Минимальное значение - 512, значение по умолчанию - 768.
+</dd><dt><b>StrictModes</b>
+
+
+</dt><dd>
+Проверять наборы прав доступа и принадлежность конфигурационных файлов и 
+домашнего каталога пользователя перед разрешением регистрации в системе.
+Это рекомендуется выполнять потому, что новички иногда оставляют свои
+каталоги или файлы доступными для записи всем.
+Значение по умолчанию -
+``yes''
+
+ 
+</dd><dt><b>Subsystem</b>
+
+
+</dt><dd>
+Позволяет настроить внешнюю подсистему (напр., службу FTP).
+В качестве параметров должны выступать имя подсистемы и команда,
+которая будет выполняться при запросе подсистемы. Команда 
+sftp-server8
+
+
+реализует подсистему передачи файлов
+``sftp.''
+
+По умолчанию подсистемы не определены.
+Данный параметр относится только к протоколу версии 2.
+</dd><dt><b>SyslogFacility</b>
+
+
+</dt><dd>
+Код источника сообщений для протокола syslog.
+Допустимые значения: DAEMON, USER, AUTH, LOCAL0, LOCAL1, LOCAL2,
+LOCAL3, LOCAL4, LOCAL5, LOCAL6, LOCAL7.
+Значение по умолчанию - AUTH.
+</dd><dt><b>TCPKeepAlive</b>
+
+
+</dt><dd>
+Указывает, будет ли система посылать другой стороне контрольные сообщения
+для удержания соединения активным.
+Если они посылаются, то разрыв соединения или аварийный отказ одной
+из машин будут должным образом замечены.
+Однако, при этом временная потеря маршрута также повлечёт за собой разрыв
+соединения и некоторые люди сочтут это раздражающим.
+С другой стороны, если контрольные сообщения не посылаются,
+сеанс на сервере может зависнуть, оставив после себя
+``пользователей-привидений''
+
+и отнимая ресурсы сервера.
+<p>
+
+Значение по умолчанию -
+``yes''
+
+(отправлять сообщения TCP keepalive).
+Это позволяет избежать бесконечно долгих сеансов.
+</p><p>
+
+Для отключения отправки сообщений TCP keepalive установите значение 
+``no''
+
+ 
+</p></dd><dt><b>UseDNS</b>
+
+
+</dt><dd>
+Выполнять ли запросы DNS для получения имени удалённого хоста для
+того чтобы убеждаться в том, что обратное преобразование выдаёт
+тот же самый IP-адрес.
+Значение по умолчанию -
+``yes''
+
+ 
+</dd><dt><b>UseLogin</b>
+
+
+</dt><dd>
+Использовать
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=login&amp;category=1">login</a>(1)
+
+
+для интерактивных сеансов регистрации в системе.
+Значение по умолчанию -
+``no''
+
+ 
+Имейте ввиду, что
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=login&amp;category=1">login</a>(1)
+
+
+никогда не используется для удалённого выполнения команд.
+Если этот параметр включен, функция 
+<b>X11Forwarding</b>
+
+будет отключена потому что 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=login&amp;category=1">login</a>(1)
+
+
+не может обрабатывать cookie
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=xauth&amp;category=1">xauth</a>(1)
+
+
+В случае использования разделения полномочий 
+<b>(UsePrivilegeSeparation)</b>
+
+данный параметр будет отключен после прохождения аутентификации.
+</dd><dt><b>UsePAM</b>
+
+
+</dt><dd>
+Включить интерфейс модулей аутентификации Pluggable Authentication Module.
+При значении 
+``yes''
+
+аутентификация PAM будет доступна через 
+<b>ChallengeResponseAuthentication</b>
+
+и
+<b>PasswordAuthentication</b>
+
+в дополнение к учётной записи PAM и обработке модулей сеансов для всех типов аутентификации.
+<p>
+
+Поскольку безпарольная аутентификация PAM "вызов-ответ"
+служит заменой аутентификации по паролю, необходимо отключить либо
+<b>PasswordAuthentication,</b>
+
+либо 
+<b>ChallengeResponseAuthentication.</b>
+
+</p><p>
+
+При включенном 
+<b>UsePAM</b>
+
+службу 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8)
+
+
+можно будет выполнять только с правами root.
+Значение по умолчанию -
+``no''
+
+ 
+</p></dd><dt><b>UsePrivilegeSeparation</b>
+
+
+</dt><dd>
+Разделять полномочия посредством создания дочернего процесса с меньшими правами
+для обработки входящего сетевого трафика.
+После прохождения аутентификации для работы с клиентом будет создаваться
+специальный процесс соответствующий его правам.
+Целью данного параметра служит предотвращение повышения полномочий злоумышленником.
+Значение по умолчанию -
+``yes''
+
+ 
+</dd><dt><b>X11DisplayOffset</b>
+
+
+</dt><dd>
+Номер первого дисплея доступного для туннелирования трафика X11
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8)Ns.
+
+
+Позволяет избежать вмешательства sshd в работу настоящих серверов X11.
+Значение по умолчанию - 10.
+</dd><dt><b>X11Forwarding</b>
+
+
+</dt><dd>
+Допускать туннелирование X11.
+Допустимые значения - 
+``yes''
+
+и
+``no''
+
+ 
+Значение по умолчанию -
+``no''
+
+ 
+<p>
+
+Если дисплей-посредник ожидает соединений от любых адресов (или по шаблону)
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8)
+
+
+включение туннелирования X11 подвергает сервер и логические дисплеи 
+клиентов дополнительной опасности.
+Поэтому такое поведение не является поведением по умолчанию.
+Проверка и подмена аутентификационных данных при атаке выполняются на стороне
+клиента. При туннелировании X11 графический сервер клиента может подвергаться атаке
+при запросе клиентом SSH туннелирования (см. замечания в описании параметра 
+<b>ForwardX11</b>
+
+в 
+ssh_config5).
+
+
+Для большей защиты пользователей администратор может запретить туннелирование
+установив значение
+``no.''
+
+</p><p>
+
+Обратите внимание, что даже если туннелирование X11 запрещено данным параметром,
+пользователи по-прежнему смогут туннелировать трафик X11 посредством
+настройки туннелей общего назначения.
+Туннелирование X11 отключается автоматически при включении 
+<b>UseLogin.</b>
+
+</p></dd><dt><b>X11UseLocalhost</b>
+
+
+</dt><dd>
+К какому адресу следует привязывать сервер туннелирования X11:
+<br>&nbsp;к&nbsp;кольцевому&nbsp;(loopback)&nbsp;или&nbsp;адресу&nbsp;указанному&nbsp;по&nbsp;шаблону.
+По умолчанию сервер туннелирования привязывается к кольцевому адресу,
+а в качестве хоста в переменную среды
+<b>DISPLAY</b>
+
+заносится 
+``localhost''
+
+ 
+Это не позволяет удалённым хостам подключаться к дисплею-посреднику.
+Однако, в случае старый клиентов X11, такая конфигурация может не сработать.
+Установите тогда 
+<b>X11UseLocalhost</b>
+
+в 
+``no.''
+
+Допустимые значения - 
+``yes''
+
+и
+``no''
+
+ 
+Значение по умолчанию -
+``yes''
+
+ 
+</dd><dt><b>XAuthLocation</b>
+
+
+</dt><dd>
+Путь к команде 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=xauth&amp;category=1">xauth</a>(1)
+
+
+Значение по умолчанию -
+/usr/X11R6/bin/xauth
+
+ 
+</dd></dl>
+<p>
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>УКАЗАНИЕ ВРЕМЕНИ</h2>
+
+Ключи командной строки 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8)
+
+
+и параметры файлы конфигурации могут требовать указания времени.
+Оно должно указываться в виде последовательности таких выражений:
+
+<i>время </i>[<i>единицы</i>
+
+]
+
+
+
+где 
+<i>время</i>
+
+- положительное целое,
+<i>единицы</i>
+
+могут принимать следующие значения:
+<p>
+
+</p><dl compact="">
+<p>
+
+</p><dt><b>Aq </b><b>ничего</b>
+
+
+
+</dt><dd>
+секунды
+</dd><dt><b>s | S</b>
+
+
+
+</dt><dd>
+секунды
+</dd><dt><b>m | M</b>
+
+
+
+</dt><dd>
+минуты
+</dd><dt><b>h | H</b>
+
+
+
+</dt><dd>
+часы
+</dd><dt><b>d | D</b>
+
+
+
+</dt><dd>
+дни
+</dd><dt><b>w | W</b>
+
+
+
+</dt><dd>
+недели
+</dd></dl>
+<p>
+
+</p><p>
+
+Итоговое время получается в результате сложения всех выражений.
+</p><p>
+
+Примеры:
+</p><p>
+
+</p><dl compact="">
+<p>
+
+</p><dt><b>600</b>
+</dt><dd>
+600 секунд (10 минут)
+</dd><dt><b>10m</b>
+</dt><dd>
+10 минут
+</dd><dt><b>1h30m</b>
+</dt><dd>
+1 час 30 минут (90 минут)
+</dd></dl>
+<p>
+
+<a name="lbAF">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<p>
+
+</p><dt><b>/etc/ssh/sshd_config
+
+</b>
+</dt><dd>
+Файл конфигурации 
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8).
+
+
+Этот файл должен быть доступен для записи только пользователю root, 
+и рекомендуется делать его доступным для чтения всем.
+</dd></dl>
+<p>
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a>(8)
+
+
+<a name="lbAH">&nbsp;</a>
+<h2>АВТОРЫ</h2>
+
+Продукт OpenSSH является производным от оригинальной и свободной версии
+ssh 1.2.12 выпущенной Tatu Ylonen.
+Aaron Campbell, Bob Beck, Markus Friedl, Niels Provos,
+Theo de Raadt и Dug Song
+удалили много ошибок, самостоятельно реализовали функции доступные в несвободных версиях оригинальной программы
+и создали OpenSSH.
+Markus Friedl реализовал поддержку протоколов SSH версии 1.5 и 2.0.
+Niels Provos и Markus Friedl реализовали разделение полномочий.
+<p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+Николай Шафоростов &lt;<a href="mailto:shafff@ukr.net">shafff@ukr.net</a>&gt; 2007, с использованием перевода Александра Блохина &lt;<a href="mailto:sass@altlinux.ru">sass@altlinux.ru</a>&gt;
+<p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">УКАЗАНИЕ ВРЕМЕНИ</a></dt><dd>
+</dd><dt><a href="#lbAF">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAH">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAI">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="sshd_config" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

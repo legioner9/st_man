@@ -1,0 +1,810 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN hier (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, hier"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="hier" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">hier (7)</font><hr><li> <a href="/man.shtml?topic=hier&amp;category=7&amp;russian=1"><u>hier</u></a> (7) <font color="#555555"> ( FreeBSD man: Макропакеты и соглашения )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=hier&amp;category=7&amp;russian=0"><u>hier</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=hier&amp;category=7&amp;russian=2"><u>hier</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+hier - описание иерархии файловой системы
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Типичная система Linux имеет, кроме прочих, следующие каталоги:
+<dl compact="">
+<dt><i>/</i>
+
+</dt><dd>
+Корневой каталог. С него начинается все дерево каталогов.
+</dd><dt><i>/bin</i>
+
+</dt><dd>
+Каталог, содержащий исполняемые программы, необходимые для работы в
+однопользовательском режиме и для запуска или ремонта системы.
+</dd><dt><i>/boot</i>
+
+</dt><dd>
+Содержит статические файлы для загрузчика системы. Файлы этого каталога
+необходимы при загрузке системы. Инсталлятор карты и конфигурационные файлы
+должны находится не здесь, а в
+<i>/sbin</i>
+
+и
+<i>/etc</i>.
+
+</dd><dt><i>/dev</i>
+
+</dt><dd>
+Специальные файлы и файлы устройств, ссылающиеся на физические устройства. См.
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mknod&amp;category=1">mknod</a>(1).
+</dd><dt><i>/dos</i>
+
+</dt><dd>
+Если на компьютере запускаются и Linux, и MS-DOS, то обычно файловая система
+DOS подключается к этому каталогу.
+</dd><dt><i>/etc</i>
+
+</dt><dd>
+Содержит конфигурационные файлы машины. Hекоторые большие программные пакеты,
+такие, как X11, могут иметь свои собственные подкаталоги в
+<i>/etc</i>.
+
+Конфигурационные общедоступные файлы могут помещаться
+либо в этот каталог, либо в
+<i>/usr/etc</i>.
+
+Тем не менее, программы всегда должны искать эти файлы в
+<i>/etc</i>.
+
+Вы можете иметь ссылки на эти файлы в
+<i>/usr/etc</i>.
+
+</dd><dt><i>/etc/opt</i>
+
+</dt><dd>
+Файлы настроек для дополнительных приложений в
+<i>/opt</i>.
+
+</dd><dt><i>/etc/sgml</i>
+
+</dt><dd>
+Этот каталог содержит файлы настроек для SGML и XML (дополн.).
+</dd><dt><i>/etc/skel</i>
+
+</dt><dd>
+При создании новой учетной записи пользователя файлы из этого каталога, как
+правило, копируются в домашний каталого пользователя.
+</dd><dt><i>/etc/X11</i>
+
+</dt><dd>
+Конфигурационные файлы оконной системы X11.
+</dd><dt><i>/home</i>
+
+</dt><dd>
+В машинах с домашними каталогами пользователей эти каталоги обычно
+прямо или косвенно содержатся в этом каталоге. Его структура зависит
+от администратора системы.
+</dd><dt><i>/lib</i>
+
+</dt><dd>
+Этот каталог должен содержать разделяемые библиотеки, необходимые для загрузки
+системы и запуска команд, содержащихся в корневой файловой системе.
+</dd><dt><i>/mnt</i>
+
+</dt><dd>
+Этот каталог является точкой подключения временно запускаемых файловых систем.
+</dd><dt><i>/opt</i>
+
+</dt><dd>
+Этот каталог седержит дополнительные пакеты с файлами собранными статически.
+</dd><dt><i>/proc</i>
+
+</dt><dd>
+Точка подключения файловой системы
+<i>proc</i>,
+
+предоставляющей пользователю доступ к информации о запущенных процессах и ядре. 
+Это псевдофайловая система, более подробно описанная в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=proc&amp;category=5">proc</a></b>(5).
+
+</dd><dt><i>/root</i>
+
+</dt><dd>
+Этот каталог является домашним для пользователя root.
+</dd><dt><i>/sbin</i>
+
+</dt><dd>
+Как и
+<i>/bin</i>,
+
+содержит команды, необходимые для запуска системы, но, как правило, не
+запускаемые обычными пользователями.
+</dd><dt><i>/tmp</i>
+
+</dt><dd>
+Этот каталог содержит временные файлы, которые можно удалить без всяких
+проблем в любое время, например, при загрузке системы.
+</dd><dt><i>/usr</i>
+
+</dt><dd>
+К этому каталогу обычно подключается отдельный раздел. В нем должны содержаться
+разделяемые, предназначенные только для чтения данные, так что он может быть
+запущен различными машинами, работающими в Linux.
+</dd><dt><i>/usr/X11R6</i>
+
+</dt><dd>
+Система X-Window, версия #11, выпуск #6 (дополн.).
+</dd><dt><i>/usr/X11R6/bin</i>
+
+</dt><dd>
+Исполняемые файлы, принадлежащие системе X-Windows. Часто на него имеется символьная
+ссылка в более традиционном каталоге
+<i>/usr/bin/X11</i>.
+
+</dd><dt><i>/usr/X11R6/lib</i>
+
+</dt><dd>
+Файлы данных, связанные с системой X-Windows.
+</dd><dt><i>/usr/X11R6/lib/X11</i>
+
+</dt><dd>
+Содержит различные файлы, необходимые для запуска X Window System. 
+В каталоге
+<i>/usr/lib/X11</i>
+
+часто имеется символьная ссылка на вышеуказанный каталог.
+</dd><dt><i>/usr/X11R6/include/X11</i>
+
+</dt><dd>
+Содержит файлы заголовков для компиляции программ, использующих систему X11.
+Часто имеется символьная ссылка на этот каталог в каталоге
+<i>/usr/inlcude/X11</i>.
+
+</dd><dt><i>/usr/bin</i>
+
+</dt><dd>
+Это основной каталог для исполняемых программ. Большая часть программ,
+не требующихся для загрузки или для ремонта системы, не устанавливаемых 
+локально и запускаемых обычными пользователями, должна быть
+помещена в этот каталог.
+</dd><dt><i>/usr/bin/X11</i>
+
+</dt><dd>
+Традиционное место поиска исполняемых файлов X11; в Linux это обычно символьная
+ссылка на
+<i>/usr/X11R6/bin</i>.
+
+</dd><dt><i>/usr/dict</i>
+
+</dt><dd>
+Заменен на
+<i>/usr/share/dict</i>.
+
+</dd><dt><i>/usr/doc</i>
+
+</dt><dd>
+Заменен на
+<i>/usr/share/doc</i>.
+
+</dd><dt><i>/usr/etc</i>
+
+</dt><dd>
+В этом каталоге возможно хранить общедоступные конфигурационные файлы,
+которые могут использоваться несколькими машинами одновременно. Hесмотря на
+это, команды, ссылающиеся на них, должны находиться в каталоге
+<i>/etc</i>.
+
+Ссылки из каталога
+<i>/etc</i>
+
+должны указывать на соответствующие файлы в
+<i>/usr/etc</i>.
+
+</dd><dt><i>/usr/games</i>
+
+</dt><dd>
+Программы для обучения и игры (дополн.).
+</dd><dt><i>/usr/include</i>
+
+</dt><dd>
+Файлы заголовков для компилятора C.
+</dd><dt><i>/usr/include/X11</i>
+
+</dt><dd>
+Файлы заголовков для компилятора C и системы X-Windows. Как правило, это
+символьная ссылка на
+<i>/usr/X11R6/include/X11.</i>
+
+</dd><dt><i>/usr/include/asm</i>
+
+</dt><dd>
+Файлы заголовков, определяющие некоторые ассемблерные функции.
+Это символьная ссылка на
+<i>/usr/src/linux/include/asm</i>.
+
+</dd><dt><i>/usr/include/linux</i>
+
+</dt><dd>
+Содержит информацию, которая может меняться от выпуска к выпуску.
+Это символьная ссылка на
+<i>/usr/src/linux/include/linux</i>
+
+для получения информации, предназначенной только для данной системы.
+</dd></dl>
+<p>
+
+(Обратите внимание, что необходимо иметь файлы заголовоков, корректно
+работающие с текущей glibc и в пространстве пользователя. Hесмотря на это,
+исходные версии ядра не рассчитаны на работу в пользовательской программе и не
+знакомы с libc, которую Вы запустили. Весьма вероятно, что появятся ошибки,
+если
+<i>/usr/include/asm</i>
+
+и
+<i>/usr/include/linux</i>
+
+будут указывать на произвольное дерево ядра. Системы Debian не делают этого,
+а используют файлы заголовков тех версий ядра, которые себя хорошо зарекомендовали.
+Они поставляются в пакете libc*-dev package.
+</p><dl compact="">
+<dt><i>/usr/include/g++</i>
+
+</dt><dd>
+Файлы заголовков, используемые с компилятором GNU C++.
+</dd><dt><i>/usr/lib</i>
+
+</dt><dd>
+Объектные библиотеки, в том числе и динамические, а также некоторые программы,
+обычно не запускаемые непосредственно. Более сложные программы могут иметь в
+этом каталоге свои подкаталоги.
+</dd><dt><i>/usr/lib/X11</i>
+
+</dt><dd>
+Стандартная область для файлов данных, связанных с программами X Window System, а также для
+конфигурационных файлов самой системы X Window System. В Linux это обычно 
+символьная ссылка на
+<i>/usr/X11R6/lib/X11</i>.
+
+</dd><dt><i>/usr/lib/gcc-lib</i>
+
+</dt><dd>
+содержит исполняемые файлы и файлы заголовков для компилятора GNU C, имя которого
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gcc&amp;category=1">gcc</a></b>(1).
+
+</dd><dt><i>/usr/lib/groff</i>
+
+</dt><dd>
+Файлы для системы форматирования документов GNU groff.
+</dd><dt><i>/usr/lib/uucp</i>
+
+</dt><dd>
+Файлы для
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=uucp&amp;category=1">uucp</a></b>(1).
+
+</dd><dt><i>/usr/local</i>
+
+</dt><dd>
+В этот каталог обычно помещаются локальные программы.
+</dd><dt><i>/usr/local/bin</i>
+
+</dt><dd>
+Локальные исполняемые файлы.
+</dd><dt><i>/usr/local/doc</i>
+
+</dt><dd>
+Локальная документация.
+</dd><dt><i>/usr/local/etc</i>
+
+</dt><dd>
+Файлы настройки локальных программ.
+</dd><dt><i>/usr/local/games</i>
+
+</dt><dd>
+Программы установленных игр.
+</dd><dt><i>/usr/local/lib</i>
+
+</dt><dd>
+Файлы, связанные с локальными программами.
+</dd><dt><i>/usr/local/include</i>
+
+</dt><dd>
+Файлы заголовков для компилятора C.
+</dd><dt><i>/usr/local/info</i>
+
+</dt><dd>
+Страницы info, связанные с локальными программами.
+</dd><dt><i>/usr/local/man</i>
+
+</dt><dd>
+Страницы man, связанные с локальными программами.
+</dd><dt><i>/usr/local/sbin</i>
+
+</dt><dd>
+Локальные программы для системного администрирования.
+</dd><dt><i>/usr/local/share</i>
+
+</dt><dd>
+Локальные данные приложений, которые могут быть разделены различными
+архитектурами одной ОС.
+</dd><dt><i>/usr/local/src</i>
+
+</dt><dd>
+Исходный код локального программного обеспечения.
+</dd><dt><i>/usr/man</i>
+
+</dt><dd>
+Заменен на 
+<i>/usr/share/man</i>.
+
+</dd><dt><i>/usr/sbin</i>
+
+</dt><dd>
+Каталог, содержащий исполняемые программы для системного администрирования, не
+относящиеся к процессу загрузки, запуску
+<i>/usr</i>
+
+или ремонту системы.
+</dd><dt><i>/usr/share</i>
+
+</dt><dd>
+Каталог, где подкаталоги содержат данные, которые могут быть
+использованы в различных архитектурах одной и той же ОС. В нем содержатся данные
+из
+<i>/usr/doc</i>,
+
+<i>/usr/lib</i>
+
+или из
+<i>/usr/man</i>.
+
+</dd><dt><i>/usr/share/dict</i>
+
+</dt><dd>
+Содержит словарь для проверки орфографии.
+</dd><dt><i>/usr/share/doc</i>
+
+</dt><dd>
+Документация на установленные программы.
+</dd><dt><i>/usr/share/games</i>
+
+</dt><dd>
+Статические данные для игр из
+<i>/usr/games</i>.
+
+</dd><dt><i>/usr/share/info</i>
+
+</dt><dd>
+Информационные странички (вид документации).
+</dd><dt><i>/usr/share/locale</i>
+
+</dt><dd>
+Информация о локали.
+</dd><dt><i>/usr/share/man</i>
+
+</dt><dd>
+Странички руководства.
+</dd><dt><i>/usr/share/man/&lt;locale&gt;/man[1-9]</i>
+
+</dt><dd>
+Эти каталоги содержат разделы со страницами руководств в исходниках.
+</dd><dt><i>/usr/share/misc</i>
+
+</dt><dd>
+Различные данные которые могут быть разделяемыми.
+</dd><dt><i>/usr/share/nls</i>
+
+</dt><dd>
+Каталог с сообщениями на родном языке.
+</dd><dt><i>/usr/share/sgml</i>
+
+</dt><dd>
+Файлы для SGML и XML.
+</dd><dt><i>/usr/share/terminfo</i>
+
+</dt><dd>
+База данных для terminfo.
+</dd><dt><i>/usr/share/tmac</i>
+
+</dt><dd>
+Макросы Тroff не распространяемые вместе с groff.
+</dd><dt><i>/usr/share/zoneinfo</i>
+
+</dt><dd>
+Файлы информации о временном поясе.
+</dd><dt><i>/usr/src</i>
+
+</dt><dd>
+Исходные файлы тех частей системы, которые входят в состав различных пакетов.
+Hе используйте этот каталог для работы над своими проектами, так как файлы в
+подкаталогах /usr предназначены только для чтения (кроме случаев установки
+программного обеспечения).
+</dd><dt><i>/usr/src/linux</i>
+
+</dt><dd>
+Этот каталог всегда был традиционным местоположением исходных файлов ядра.
+Многие дистрибутивы размещают тут исходники для ядра.
+Для сборки собственного ядра, рекомендуется использовать другой каталог.
+</dd><dt><i>/usr/tmp</i>
+
+</dt><dd>
+Устарел. Должен быть ссылкой на
+<i>/var/tmp</i>.
+
+Эта ссылка оставлена только для совместимости систем, но ее не следует использовать.
+</dd><dt><i>/var</i>
+
+</dt><dd>
+Каталог, содержащий файлы, размер которых может меняться. 
+Это файлы очередей и журнала.
+</dd><dt><i>/var/adm</i>
+
+</dt><dd>
+Этот каталог заменен 
+<i>/var/log</i>
+
+и должен быть символьной ссылкой на
+<i>/var/log</i>.
+
+</dd><dt><i>/var/backups</i>
+
+</dt><dd>
+Этот каталог зарезервирован.
+</dd><dt><i>/var/cache</i>
+
+</dt><dd>
+Кэшированные данные для программ.
+</dd><dt><i>/var/catman/cat[1-9]</i> или <i>/var/cache/man/cat[1-9]</i>
+
+</dt><dd>
+Эти каталоги содержат предварительно отформатированные странички руководства
+в соответствии с их разделами. (Категорически запрещается
+использовать их в работе).
+</dd><dt><i>/var/cron</i>
+
+</dt><dd>
+Зарезервированные каталог.
+</dd><dt><i>/var/lib</i>
+
+</dt><dd>
+Каталог с состоянием переменных для программ.
+</dd><dt><i>/var/local</i>
+
+</dt><dd>
+Данные по переменным для
+<i>/usr/local</i>.
+
+</dd><dt><i>/var/lock</i>
+
+</dt><dd>
+В этом каталоге содержатся файлы блокировки. Соглашения об именах файлов,
+блокирующих устройства, следующее:
+<i>LCK..&lt;устройство&gt;</i>,
+
+где
+<i>&lt;device&gt;</i>
+
+- это имя устройства файловой системы.
+Используется формат файлов блокировки HDU UUCP, то есть файлы блокировки
+содержат PID в виде 10-байтного числа ASCII в десятичной системе исчисления;
+после этого числа стоит символ новой строки.
+</dd><dt><i>/var/log</i>
+
+</dt><dd>
+Различные файлы журналов (log).
+</dd><dt><i>/var/opt</i>
+
+</dt><dd>
+Данные по переменным для 
+<i>/opt</i>.
+
+</dd><dt><i>/var/mail</i>
+
+</dt><dd>
+Почтовые ящики пользователей. Заменяет 
+<i>/var/spool/mail</i>.
+
+</dd><dt><i>/var/msgs</i>
+
+</dt><dd>
+Каталог зарезервирован.
+</dd><dt><i>/var/preserve</i>
+
+</dt><dd>
+Каталог зарезервирован.
+</dd><dt><i>/var/run</i>
+
+</dt><dd>
+Временные файлы, создаваемые во время работы. В них содержатся идентификаторы
+процессов (PIDs) и журнал пользователей
+<i>(utmp)</i>.
+
+Файлы из этого каталога обычно удаляются в процессе загрузки системы.
+</dd><dt><i>/var/spool</i>
+
+</dt><dd>
+Файлы, поставленные в очередь различными программами.
+</dd><dt><i>/var/spool/at</i>
+
+</dt><dd>
+Очередь задания
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=at&amp;category=1">at</a></b>(1).
+
+</dd><dt><i>/var/spool/cron</i>
+
+</dt><dd>
+Очередь заданий
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cron&amp;category=1">cron</a></b>(1).
+
+</dd><dt><i>/var/spool/lpd</i>
+
+</dt><dd>
+Файлы, отправленные в очередь для печати.
+</dd><dt><i>/var/spool/mail</i>
+
+</dt><dd>
+Заменен на 
+<i>/var/mail</i>.
+
+</dd><dt><i>/var/spool/mqueue</i>
+
+</dt><dd>
+Очередь исходящей почты.
+</dd><dt><i>/var/spool/news</i>
+
+</dt><dd>
+Спул-каталог для новостей.
+</dd><dt><i>/var/spool/rwho</i>
+
+</dt><dd>
+Файле в спуле для 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rwhod&amp;category=8">rwhod</a></b>(8).
+
+</dd><dt><i>/var/spool/smail</i>
+
+</dt><dd>
+Файлы, отправленные в очередь программой доставки почты
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smail&amp;category=1">smail</a></b>(1).
+
+</dd><dt><i>/var/spool/news</i>
+
+</dt><dd>
+Каталог для подсистемы новостей.
+</dd><dt><i>/var/spool/uucp</i>
+
+</dt><dd>
+Файлы программы
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=uucp&amp;category=1">uucp</a></b>(1).
+
+</dd><dt><i>/var/tmp</i>
+
+</dt><dd>
+Как и
+<i>/tmp</i>,
+
+этот каталог содержит временные файлы, помещенные в него на неопределенное время.
+</dd><dt><i>/var/yp</i>
+
+</dt><dd>
+Файлы с базами данных для NIS.
+</dd></dl>
+<a name="lbAD">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+Соответствует стандарту Filesystem Hierarchy Standard, версия 2.2 &lt;<a href="http://www.pathname.com/fhs/">http://www.pathname.com/fhs/</a>&gt;.
+<a name="lbAE">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Этот список далеко не полон; разные системы могут быть
+настроены различным образом.
+<a name="lbAF">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=find&amp;category=1">find</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ln&amp;category=1">ln</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mount&amp;category=1">mount</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=proc&amp;category=5">proc</a></b>(5),
+
+Стандарт файловой системы Linux (The Filesystem Hierarchy Standard)
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAE">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAF">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="hier" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

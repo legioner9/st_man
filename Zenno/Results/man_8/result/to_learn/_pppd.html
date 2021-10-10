@@ -1,0 +1,2800 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN pppd (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, pppd"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="pppd" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">pppd (8)</font><hr><li> <a href="/man.shtml?topic=pppd&amp;category=1&amp;russian=4"><u>pppd</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=pppd&amp;category=8&amp;russian=1"><u>pppd</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=pppd&amp;category=8&amp;russian=0"><u>pppd</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=pppd&amp;category=8&amp;russian=2"><u>pppd</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+
+
+<h1><a name="имя" id="имя">ИМЯ</a></h1>
+<div class="level1">
+
+<p>
+
+pppd - демон протокола точка-точка (Point-to-Point Protocol Daemon)
+</p>
+
+</div>
+
+<h1><a name="обзор" id="обзор">ОБЗОР</a></h1>
+<div class="level1">
+
+<p>
+
+pppd [опции]
+</p>
+
+</div>
+
+<h1><a name="описание" id="описание">ОПИСАНИЕ</a></h1>
+<div class="level1">
+
+<p>
+
+PPP - это протокол, используемый для установки межсетевых соединений через модемы, DSL-соединения и многие другие типы каналов точка-точка. Демон pppd работает совместно с PPP-драйвером ядра для установки и поддержания канала PPP с другой системой (называемой партнёром) и согласования IP-адресов для каждого конца канала. pppd также может аутентифицировать партнёра и/или предоставлять аутентификационную информацию для партнёра. PPP может быть использован с другими сетевыми протоколами, отличными от IP, но такое применение становится всё более редким.
+</p>
+
+</div>
+
+<h1><a name="часто_используемые_опции" id="часто_используемые_опции">ЧАСТО ИСПОЛЬЗУЕМЫЕ ОПЦИИ</a></h1>
+<div class="level1">
+
+</div>
+
+<h2><a name="ttyname" id="ttyname">ttyname</a></h2>
+<div class="level2">
+
+<p>
+
+Использовать последовательный порт с именем ttyname для соединения с партнёром. Если ttyname не начинается с косой черты (/), для формирования имени открываемого устройства перед ttyname будет добавлена строка /dev/. Если имя устройства не задано, или если задано имя терминала, присоединённого к стандартному вводу, pppd будет использовать этот терминал, и не будет выполнять функцию fork для перехода в фоновый режим. Значение этой опции из привилегированного источника не может быть заменено непривилегированным пользователем.
+</p>
+
+</div>
+
+<h2><a name="speed" id="speed">speed</a></h2>
+<div class="level2">
+
+<p>
+
+Опция является десятичным числом, которое задаёт желаемую скорость последовательного устройства в бодах. На таких системах как 4.4BSD и NetBSD, может быть указана любая скорость. На других системах (например Linux, SunOS) поддерживаются только широко используемые скорости.
+</p>
+
+</div>
+
+<h2><a name="asyncmap_map" id="asyncmap_map">asyncmap map</a></h2>
+<div class="level2">
+
+<p>
+
+Опция задаёт асинхронную карту управляющих символов (ACCM - Async Control Character Map) для этого конца канала. ACCM - это набор из 32 битов, по одному для каждого управляющего символа <acronym title="American Standard Code for Information Interchange">ASCII</acronym> со значениями от 0 до 31, где 1 бит указывает, что соответствующий управляющий символ не должен быть использован в PPP-пакетах, отправляемых в систему. Последовательность кодируется как шестнадцатеричное число (без первых 0x), где младший значащий бит (00000001) представляет символ 0 и наибольший значащий бит (80000000) представляет символ 31. Pppd будет просить партнёра отправлять эти символы как двухбайтовую экранированную последовательность. Если задано несколько опций asyncmap, их значения будут объединены логической побитовой операцией ИЛИ. Если опция asyncmap не задана, по умолчанию применяется ноль, поэтому pppd будет просить партнёра не экранировать любые управляющие символы. Для экранирования передаваемых символов используйте опцию escape.
+</p>
+
+</div>
+
+<h2><a name="auth" id="auth">auth</a></h2>
+<div class="level2">
+
+<p>
+
+Требовать у партнёра подтвердить свою подлинность перед разрешением отправки и приёма сетевых пакетов. Если система имеет маршрут по умолчанию, то эта опция используется по умолчанию. Если не указана ни эта опция, ни опция noauth, pppd разрешит партнёру использовать только такой IP-адреса, к которому система на данный момент не имеет маршрута.
+</p>
+
+</div>
+
+<h2><a name="call_name" id="call_name">call name</a></h2>
+<div class="level2">
+
+<p>
+
+Прочитать дополнительные опции из файла /etc/ppp/peers/name. Этот файл может содержать привилегированные опции, такие как noauth, даже если pppd не был запущен пользователем root. Строка name не может начинаться с / или включать .. как компонент путевого имени. Формат файла опций описан ниже.
+</p>
+
+</div>
+
+<h2><a name="connect_script" id="connect_script">connect script</a></h2>
+<div class="level2">
+
+<p>
+
+Обычно здесь выполняется подготовка канала перед запуском протокола PPP; например, при использовании модема dial-up, это команды, которые требуется отправить на модем для звонка на соответствующий номер телефона. Эта опция указывает pppd команду, выполняемую в оболочке перед попыткой начать согласование PPP. Для этого часто используется программа <a href="?topic=chat&amp;category=8" class="wikilink2" title="man:chat_8" rel="nofollow">chat(8)</a>, которая позволяет отправить произвольные строки на модем и ответить на принятые символы. Значение этой опции из привилегированного источника не может быть заменено непривилегированным пользователем.
+</p>
+
+</div>
+
+<h2><a name="crtscts" id="crtscts">crtscts</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает, что pppd должен настроить последовательный порт для использования аппаратного управления потоком, с использованием сигналов RTS и CTS на интерфейсе RS-232. Если не задана ни одна из опций <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">crtscts</a></span>, <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">nocrtscts</a></span>, <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">cdtrcts</a></span>, <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">nocdtrcts</a></span>, настройка аппаратного управления потоком для последовательного порта останется неизменной. Некоторые последовательные порты (такие как последовательные порты Macintosh) не поддерживают настоящий вывод RTS. Такие последовательные порты используют этот режим для реализации однонаправленного управления потоком. Последовательный порт приостанавливает передачу, если это запрошено модемом (через CTS), но не может запросить у модема остановить отправку на компьютер. Этот режим оставляет возможность использовать DTS, в качестве линии управления модемом.
+</p>
+
+</div>
+
+<h2><a name="defaultroute" id="defaultroute">defaultroute</a></h2>
+<div class="level2">
+
+<p>
+
+При удачном завершении согласования IPCP добавить в системные таблицы маршрутизации маршрут по умолчанию, использующий партнёра как шлюз. Эта запись удаляется при разрыве PPP-соединения. Эта опция привилегированая, если была указана опция nodefaultroute.
+</p>
+
+</div>
+
+<h2><a name="disconnect_script" id="disconnect_script">disconnect script</a></h2>
+<div class="level2">
+
+<p>
+
+После закрытия канала, pppd выполнит в оболочке команду, указанную в script. Эта команда может, например, передать модему команды, которые заставят его повесить трубку, если аппаратные сигналы управления модемом не доступны. Скрипт разъединения не будет запущен, если модем уже повесил трубку. Значение этой опции из привилегированного источника не может быть заменено непривилегированным пользователем.
+</p>
+
+</div>
+
+<h2><a name="escape_xx_yy" id="escape_xx_yy">escape xx,yy,...</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает символы, которые должны быть заэкранированы при передаче (независимо от запросов партнёра об экранирования его асинхронной картой управляющих символов (ACCM)). Экранируемые символы указываются в списке как шестнадцатеричные числа, разделённые запятыми. Имейте в виду, что в опции escape может быть указан почти любой символ, в отличие от опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">asyncmap</a></span>, которая позволяет указывать только управляющие символы. Символы, которые не могут быть экранированы, имеют шестнадцатеричные значения 0×20 - 0x3f и 0x5e.
+</p>
+
+</div>
+
+<h2><a name="file_name" id="file_name">file name</a></h2>
+<div class="level2">
+
+<p>
+
+Прочитать опции из файла name (формат описан ниже). Файл должен быть доступен для чтения пользователем, который запустил pppd.
+</p>
+
+</div>
+
+<h2><a name="init_script" id="init_script">init script</a></h2>
+<div class="level2">
+
+<p>
+
+Для инициализации последовательной линии выполнить в оболочке команду, указанную в script. Этот сценарий обычно использует программу <a href="?topic=chat&amp;category=8" class="wikilink2" title="man:chat_8" rel="nofollow">chat(8)</a> для настройки модема на включение автоответа. Значение этой опции из привилегированного источника не может быть заменено непривилегированным пользователем.
+</p>
+
+</div>
+
+<h2><a name="lock" id="lock">lock</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает, что pppd должен создать для последовательного устройства файл блокировки в стиле UUCP, чтобы быть уверенным в эксклюзивном доступе. По умолчанию pppd не создаёт файл блокировки.
+</p>
+
+</div>
+
+<h2><a name="mru_n" id="mru_n">mru n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает занчение MRU (Maximim Receive Unit - максимальной принимаемой единицы) в n. pppd попросит партнёра отправлять пакеты не более, чем n байт. Значение n должно быть между 128 и 16384; по умолчанию 1500. Значение 296 хорошо подходит для очень медленных каналов (40 байт для TCP/IP заголовка + 256 байт данных). Отметим, что для протокола IPv6 значение MRU должно быть по меньшей мере 1280.
+</p>
+
+</div>
+
+<h2><a name="mtu_n" id="mtu_n">mtu n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает занчение MTU (Maximim Transfer Unit - максимальной передаваемой единицы) в n. Однако если партнёр запрашивает меньшее значение при согласовании MRU, pppd запросит сетевой код ядра отправлять через сетевой интерфейс PPP пакеты данных не более чем n байт. Отметим, что для протокола IPv6 значение MTU должно быть по меньшей мере 1280.
+</p>
+
+</div>
+
+<h2><a name="passive" id="passive">passive</a></h2>
+<div class="level2">
+
+<p>
+
+Включает опцию passive в LCP. С этой опцией pppd будет пытаться начать соединение; если не был принят ответ от партнёра, pppd будет просто пассивно ждать от него правильный пакет LCP, вместо выхода, как это должно быть без этой опции.
+</p>
+
+</div>
+
+<h1><a name="опции" id="опции">ОПЦИИ</a></h1>
+<div class="level1">
+
+</div>
+
+<h2><a name="локальный_ip_адресудалённый_ip_адрес" id="локальный_ip_адресудалённый_ip_адрес">локальный_IP_адрес:удалённый_IP_адрес</a></h2>
+<div class="level2">
+
+<p>
+
+Задаёт локальный и/или удалённый IP-адреса интерфейса. Любой из них может быть опущен. IP-адрес может быть указан именем узла или в десятично-точечной нотации (например 150.234.56.78). По умолчанию локальный IP-адрес - это первый IP адрес системы (если не задана опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">noipdefault</a></span>). Удалённый адрес может быть получен от партнёра если не указан в какой-либо опции. Таким образом, в простейших случаях, эта опция не требуется. Если с помощью этой опции указан локальный и/или удалённый IP-адрес, pppd не примет другое значение от партнёра при согласовании IPCP, если соответственно не заданы опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ipcp-accept-local</a></span> и/или <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ipcp-accept-remote</a></span>.
+</p>
+
+</div>
+
+<h2><a name="ipv6_идентификатор_локального_интерфейса_идентификатор_удалённого_интерфейса" id="ipv6_идентификатор_локального_интерфейса_идентификатор_удалённого_интерфейса">ipv6 идентификатор_локального_интерфейса,идентификатор_удалённого_интерфейса</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает локальный и/или удалённый 64-битный идентификаторы интерфейса. Любой из них может быть опущен. Идентификатор может быть указан в стандартной <acronym title="American Standard Code for Information Interchange">ASCII</acronym>-нотации адресов IPv6 (например ::dead:beef). Если указана опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ipv6cp-use-ipaddr</a></span>, локальный идентификатор - это локальный адрес IPv4 (см. выше). На системах, поддерживающих уникальные постоянные идентификаторы, для замены опции ipv6 локальный,удалённый может быть использована опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ipv6cp-use-persistent</a></span>. В других случаях выбирается случайный идентификатор.
+</p>
+
+</div>
+
+<h2><a name="active-filter_filter-expression" id="active-filter_filter-expression">active-filter filter-expression</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает фильтр пакетов, который будет применён к пакетам данных для определения того, какие пакеты будут считаться активностью канала, и следовательно сбросят таймер простоя, или вызовут переход канала в режим дозвона по требованию. Эта опция используется в сочетании с опцией <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">idle</a></span>, если на канале постоянно появляются пакеты для передачи или приёма (например, информационные пакеты о маршрутах), которые будут предотвращать простой канала. Синтаксис filter-expression описан в <a href="?topic=tcpdump&amp;category=1" class="wikilink2" title="man:tcpdump_1" rel="nofollow">tcpdump(1)</a>. Не разрешаются классификаторы, не применимые к каналу PPP, такие как ether и arp. Чтобы пробелы в выражении-фильтре не были интерпретированы оболочкой, его нужно заключить в одинарные кавычки. В настоящее время эта опция доступна только в Linux, и требует чтобы ядро было собрано с поддержкой фильтрации PPP (CONFIG_PPP_FILTER). Отметим, что используя классификаторы inbound и outbound, можно применять различные ограничения на входящие и исходящие пакеты.
+</p>
+
+</div>
+
+<h2><a name="allow-ip_address_es" id="allow-ip_address_es">allow-ip address(es)</a></h2>
+<div class="level2">
+
+<p>
+
+Разрешает партнёрам использовать заданные IP-адрес или подсеть без взаимной аутентификации. Параметр обрабатывается таким же образом, как элементы списка разрешённых IP-адресов в файлах секретов (см. ниже раздел <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">АУТЕНТИФИКАЦИЯ</a></span>).
+</p>
+
+</div>
+
+<h2><a name="allow-number_number" id="allow-number_number">allow-number number</a></h2>
+<div class="level2">
+
+<p>
+
+Разрешает партнёрам соединяться с заданного телефонного номера. Конечный символ * будет совпадать со всеми номерами, начинающими с заданного числа.
+</p>
+
+</div>
+
+<h2><a name="bsdcomp_nr_nt" id="bsdcomp_nr_nt">bsdcomp nr,nt</a></h2>
+<div class="level2">
+
+<p>
+
+Просит, чтобы партнёр сжимал отправляемые пакеты, используя схему BSD-Compress, с максимальным размером кода в nr бит, и соглашается сжимать отправляемые партнёру пакеты с максимальным размером кода в nt бит. Если nt не указано, значение по умолчанию задаётся равным nr. Для nr и nt может использоваться значение в диапазоне от 9 до 15; бОльшие значения задают лучшее сжатие, но используют больше памяти ядра для размещения словарей сжатия. Значение 0 для nr или nt выключает сжатие в соответствующем направлении. Используйте nobsdcomp или bsdcomp 0 для полного отключения сжатия BSD-Compress.
+</p>
+
+</div>
+
+<h2><a name="cdtrcts" id="cdtrcts">cdtrcts</a></h2>
+<div class="level2">
+
+<p>
+
+Использовать нестандартное аппаратное управление потоком (то есть DTR/CTS) для управления потоком данных на последовательном порту. Если не задана ни одна из опций <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">crtscts</a></span>, <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">nocrtscts</a></span>, <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">cdtrcts</a></span> или <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">nocdtrcts</a></span>, то настройка аппаратного управления потоком последовательного порта остаётся неизменной. Некоторые последовательные порты (такие как последовательные порты Macintosh) не поддерживают настоящий вывод RTS. Такие последовательные порты используют этот режим для реализации настоящего двунаправленного управления потоком. Жертвой этого режима управления потоком является запрет использования DTS в качестве линии управления модемом.
+</p>
+
+</div>
+
+<h2><a name="chap-interval_n" id="chap-interval_n">chap-interval n</a></h2>
+<div class="level2">
+
+<p>
+
+Если задана эта опция, pppd будет перепроверять партнёра каждые n секунд.
+</p>
+
+</div>
+
+<h2><a name="chap-max-challenge_n" id="chap-max-challenge_n">chap-max-challenge n</a></h2>
+<div class="level2">
+
+<p>
+
+Задаёт максимальное количество передач CHAP-пакетов challenge. По умолчанию 10.
+</p>
+
+</div>
+
+<h2><a name="chap-restart_n" id="chap-restart_n">chap-restart n</a></h2>
+<div class="level2">
+
+<p>
+
+Задаёт интервал перезапуска CHAP (тайм-аут повторных передач challenge) в секундах. По умолчанию 3.
+</p>
+
+</div>
+
+<h2><a name="child-timeout_n" id="child-timeout_n">child-timeout n</a></h2>
+<div class="level2">
+
+<p>
+
+Перед выходом ожидать до n секунд завершения любых дочерних процессов (таких как команды, указанные в опции pty). По достижению тайм-аута, pppd отправит всем дочерним процессам сигнал <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">SIGTERM</a></span> и завершится. 0 означает отсутствие тайм-аута, поэтому pppd будет ожидать завершения все дочерних процессов.
+</p>
+
+</div>
+
+<h2><a name="connect-delay_n" id="connect-delay_n">connect-delay n</a></h2>
+<div class="level2">
+
+<p>
+
+После завершения сценария соединения в течение n миллисекунд ждать от партнёра правильных PPP-пакетов. По завершению этого времени, или при получении правильного PPP-пакета от партнёра, pppd начнёт согласование, отправив ему первый LCP-пакет. Значение по умолчанию - 1000 (1 секунда). Этот период ожидания применяется только при использовании опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">connect</a></span> или <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">pty</a></span>.
+</p>
+
+</div>
+
+<h2><a name="debug" id="debug">debug</a></h2>
+<div class="level2">
+
+<p>
+
+Включает средства отладки соединения. Если задана эта опция, pppd будет записывать в журнал содержимое всех принятых и отправленных управляющих пакетов в читаемой форме. Пакеты журналируются посредством syslog с использованием средства daemon и уровня debug. При соответствующей настройке /etc/syslog.conf (см. <a href="/dokuwiki/man/syslog.conf_5?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:syslog.conf_5" rel="nofollow">syslog.conf(5)</a>) эта информация может быть направлена в определённый файл.
+</p>
+
+</div>
+
+<h2><a name="default-asyncmap" id="default-asyncmap">default-asyncmap</a></h2>
+<div class="level2">
+
+<p>
+
+Отключить согласование опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">asyncmap</a></span>, запустить принудительное экранирование всех управляющих символов в обоих направлениях: передачи и приёма.
+</p>
+
+</div>
+
+<h2><a name="default-mru" id="default-mru">default-mru</a></h2>
+<div class="level2">
+
+<p>
+
+Отключить согласование MRU (Maximum Receive Unit - максимальной принимаемой единицы). При использовании этой опции pppd будет использовать для MRU значение по умолчанию 1500 байт в обоих направлениях: передачи и приёма.
+</p>
+
+</div>
+
+<h2><a name="deflate_nr_nt" id="deflate_nr_nt">deflate nr,nt</a></h2>
+<div class="level2">
+
+<p>
+
+Запросить партнёра о сжатии отправляемых им пакетов по схеме Deflate, с максимальным размером окна 2**nr байт, и соглашение сжимать отправляемые партнёру пакеты с максимальным размером окна 2**nt байт. Если nt не указан, по умолчанию его значение задаёт nr. Для nr и nt могут быть использованы значения в диапазоне от 9 до 15; бОльшие значения задают лучшее сжатие, но используют больше памяти ядра для хранения словарей. Значение 0 для nr или nt выключит сжатие в соответствующих направлениях. Используйте <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">nodeflate</a></span> или <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">deflate</a></span> 0 для полного отключения сжатия Deflate. (Отметим: Если партнёр поддерживает сжатие Deflate и BSD-Compress, то по умолчанию pppd запросит у партнёра сжатие Deflate.)
+</p>
+
+</div>
+
+<h2><a name="demand" id="demand">demand</a></h2>
+<div class="level2">
+
+<p>
+
+Инициировать канал только по требованию, то есть при появлении трафика. При использовании этой опции, пользователь должен указать в командной строке или в файле опций удалённый IP-адрес. pppd произведёт начальную настройку интерфейса и включит его для IP-трафика без соединения с партнёром. Когда появится трафик, pppd подключится к партнёру, произведёт согласование, аутентификацию и т.п. Когда это будет выполнено, pppd начнёт пропускать через канал пакеты данных (то есть IP-пакеты).
+</p>
+
+<p>
+Опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">demand</a></span> подразумевает опцию <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">persist</a></span>. Если это поведение не желательно, используйте опцию <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">nopersist</a></span> после опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">demand</a></span>. Опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">idle</a></span> и <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">holdoff</a></span> также используются совместно с опцией <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">demand</a></span>.
+</p>
+
+</div>
+
+<h2><a name="domain_d" id="domain_d">domain d</a></h2>
+<div class="level2">
+
+<p>
+
+При аутентификации добавляет доменное имя d к локальному имени узла. Например, если функция gethostname() вернёт имя porsche.Quotron.COM, Вы можете указать домен Quotron.COM. pppd будет использовать имя porsche.Quotron.COM для поиска секрета в файле секретов, и для собственной аутентификации в качестве имени, которое по умолчанию будет отправлено партнёру. Эта опция привилегированная.
+</p>
+
+</div>
+
+<h2><a name="dryrun" id="dryrun">dryrun</a></h2>
+<div class="level2">
+
+<p>
+
+С опцией dryrun, pppd обработает командную строку и файлы опций, проверит и выведет все значения опций, которые были установлены, но завершит работу перед инициированием канала. Значения опций журналируются с уровнем info, а также будут выведены на стандартный вывод, если pppd не использует его для взаимодействия с партнёром.
+</p>
+
+</div>
+
+<h2><a name="dump" id="dump">dump</a></h2>
+<div class="level2">
+
+<p>
+
+С опцией dump, pppd выведет все значения всех установленных опций. Эта опция подобна опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">dryrun</a></span>, за исключением того, что pppd не завершится, а будет продолжать обычную работу.
+</p>
+
+</div>
+
+<h2><a name="endpoint_epdisc" id="endpoint_epdisc">endpoint epdisc</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает epdisc как дискриминатор конечной точки, который отправляется местной машиной партнёру во время согласования многоканального режима. По умолчанию используется MAC-адрес первого Ethernet-интерфейса системы, иначе - адрес IPv4, соответствующий имени узла, не представляющий собой групповой или локальный IP-адрес. Дискриминатор конечной точки может быть строкой null или иметь вид тип:значение, где тип - десятичное число или одна из строк local, IP, MAC, magic или phone. Для типа IP значение - это IP-адрес в десятично-точечной нотации, или строка байтов, разделённых точками или двоеточиями в шестнадцатиричной форме для других типов. Для типа MAC, значением также может быть имя Ethernet или аналогичного интерфейса. В настоящее время эта опция доступна только в Linux.
+</p>
+
+</div>
+
+<h2><a name="eap-interval_n" id="eap-interval_n">eap-interval n</a></h2>
+<div class="level2">
+
+<p>
+
+Если задана эта опция и pppd аутентифицирует партнёра с помощью EAP (то есть он сервер), pppd будет перезапускать аутентификацию EAP каждые n секунд. Для EAP SRP-SHA1 см. также опцию <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">srp-interval</a></span>, которая включает легковесную перепроверку.
+</p>
+
+</div>
+
+<h2><a name="eap-max-rreq_n" id="eap-max-rreq_n">eap-max-rreq n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает максимальное количество EAP-запросов, на которые ответит pppd (как клиент) без ожидания EAP-успеха или EAP-отказа. По умолчанию 20.
+</p>
+
+</div>
+
+<h2><a name="eap-max-sreq_n" id="eap-max-sreq_n">eap-max-sreq n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает максимальное количество EAP-запросов, которое выдаст pppd (как сервер) при попытках аутентификации. По умолчанию 10.
+</p>
+
+</div>
+
+<h2><a name="eap-restart_n" id="eap-restart_n">eap-restart n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает таймаут повторной передачи EAP-запросов, когда pppd работает как удостоверяющий сервер. По умолчанию 3 секунды.
+</p>
+
+</div>
+
+<h2><a name="eap-timeout_n" id="eap-timeout_n">eap-timeout n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает максимальное время ожидания отправки партнёром EAP-запроса, когда pppd работает как удостоверяемый клиент. По умолчанию 20 секунд.
+</p>
+
+</div>
+
+<h2><a name="hide-password" id="hide-password">hide-password</a></h2>
+<div class="level2">
+
+<p>
+
+Эта опция заставляет pppd исключить строку пароля из журнала при журналировании содержимого PAP-пакетов. Это включено по умолчанию.
+</p>
+
+</div>
+
+<h2><a name="holdoff_n" id="holdoff_n">holdoff n</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает сколько секунд ждать перед реинициализацией канала после его закрытия. Эта опция имеет эффект только если используются опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">persist</a></span> или <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">demand</a></span>. Период holdoff не применяется, если канал был закрыт по причине простоя.
+</p>
+
+</div>
+
+<h2><a name="idle_n" id="idle_n">idle n</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает, что pppd должен прервать связь, если канал простаивает n секунд. Канал простаивает когда нет пакетов данных (то есть IP-пакетов) для отправки или приёма. Замечание: Нежелательно использовать эту опцию с опцией <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">persist</a></span> без опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">demand</a></span>. Если задана опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">active-filter</a></span>, то отброшенные указанным фильтром активности пакеты данных, также засчитываются как простой канала.
+</p>
+
+</div>
+
+<h2><a name="ipcp-accept-local" id="ipcp-accept-local">ipcp-accept-local</a></h2>
+<div class="level2">
+
+<p>
+
+С этой опцией pppd будет принимать наш локальный IP-адрес предложенный партнёром, даже если IP-адрес был явно указан опцией.
+</p>
+
+</div>
+
+<h2><a name="ipcp-accept-remote" id="ipcp-accept-remote">ipcp-accept-remote</a></h2>
+<div class="level2">
+
+<p>
+
+С этой опцией pppd будет принимать предложенный партнёром его удалённый IP-адрес, даже если этот IP-адрес был явно указан опцией.
+</p>
+
+</div>
+
+<h2><a name="ipcp-max-configure_n" id="ipcp-max-configure_n">ipcp-max-configure n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает максимальное количество передач IPCP-пакетов configure-request. По умолчанию 10.
+</p>
+
+</div>
+
+<h2><a name="ipcp-max-failure_n" id="ipcp-max-failure_n">ipcp-max-failure n</a></h2>
+<div class="level2">
+
+<p>
+
+Задаёт максимальное количество возвращаемых IPCP-пакетов configure-NAK, перед тем как начать отправку пакетов configure-Reject. По умолчанию 10.
+</p>
+
+</div>
+
+<h2><a name="ipcp-max-terminate_n" id="ipcp-max-terminate_n">ipcp-max-terminate n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает максимальное количество IPCP-пакетов terminate-request. По умолчанию 3.
+</p>
+
+</div>
+
+<h2><a name="ipcp-restart_n" id="ipcp-restart_n">ipcp-restart n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает интервал перезапуска IPCP (таймаут повторной передачи) в секундах. По умолчанию 3.
+</p>
+
+</div>
+
+<h2><a name="ipparam_string" id="ipparam_string">ipparam string</a></h2>
+<div class="level2">
+
+<p>
+
+Задает дополнительный параметр для сценариев <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ip-up</a></span>, <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ip-pre-up</a></span> и <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ip-down</a></span>. Если задана эта опция, string будет передаваться в эти сценарии шестым параметром.
+</p>
+
+</div>
+
+<h2><a name="ipv6cp-max-configure_n" id="ipv6cp-max-configure_n">ipv6cp-max-configure n</a></h2>
+<div class="level2">
+
+<p>
+
+Задаёт максимальное количество IPv6CP-пакетов configure-request. По умолчанию 10.
+</p>
+
+</div>
+
+<h2><a name="ipv6cp-max-failure_n" id="ipv6cp-max-failure_n">ipv6cp-max-failure n</a></h2>
+<div class="level2">
+
+<p>
+
+Задаёт максимальное количество возвращаемых IPv6CP-пакетов configure-NAK, перед тем как начать отправку configure-Reject. По умолчанию 10.
+</p>
+
+</div>
+
+<h2><a name="ipv6cp-max-terminate_n" id="ipv6cp-max-terminate_n">ipv6cp-max-terminate n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает максимальное количество передач IPv6CP-пакетов terminate-request. По умолчанию 3.
+</p>
+
+</div>
+
+<h2><a name="ipv6cp-restart_n" id="ipv6cp-restart_n">ipv6cp-restart n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает интервал перезапуска IPv6CP (таймаут повторной передачи) в секундах. По умолчанию 3.
+</p>
+
+</div>
+
+<h2><a name="ipx" id="ipx">ipx</a></h2>
+<div class="level2">
+
+<p>
+
+Включает поддержку протоколов IPXCP и IPX. В настоящее время эта опция поддерживается только в Linux и только если ядро было собрано с поддержкой IPX.
+</p>
+
+</div>
+
+<h2><a name="ipx-network_n" id="ipx-network_n">ipx-network n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает в IPXCP-пакете configure-request номер сети IPX. Это шестнадцатеричное число (без начальных 0x). Нет подходящего значения по умолчанию. Если эта опция не указана, будет выбран номер сети предложенный партнёром. Если партнёр не имеет номера сети, протокол IPX не будет запущен.
+</p>
+
+</div>
+
+<h2><a name="ipx-node_nm" id="ipx-node_nm">ipx-node n:m</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает номера узлов IPX. Эти два числа отделяются друг от друга двоеточием. Первое число n - это локальный номер узла. Второе число m - это номер узла партнёра. Каждый номер узла - это шестнадцатеричное число, длиной до 10 цифр. Номера узлов в IPX-сети должны быть уникальными. Нет правильных занчений по умолчанию. Если эта опция не указана, будут выбраны номера узлов предложенные партнёром.
+</p>
+
+</div>
+
+<h2><a name="ipx-router-name_string" id="ipx-router-name_string">ipx-router-name string</a></h2>
+<div class="level2">
+
+<p>
+
+Задаёт имя маршрутизатора. string будет оправлен партнёру как информационные данные.
+</p>
+
+</div>
+
+<h2><a name="ipx-routing_n" id="ipx-routing_n">ipx-routing n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает протокол маршрутизации, который будет принят этой опцией. Можно указать несколько опций ipx-routing с разными значениями, но если указано значение none (0), то опция может быть только одна. Значениями могут быть: 0 для NONE, 2 для RIP/SAP, и 4 для NLSP.
+</p>
+
+</div>
+
+<h2><a name="ipxcp-accept-local" id="ipxcp-accept-local">ipxcp-accept-local</a></h2>
+<div class="level2">
+
+<p>
+
+Принимает NAK партнёра для номера узла, указанного в опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ipx-node</a></span>. Если номер узла был указан, и это не 0, по умолчанию pppd будет настаивать на использовании этого значения. Если Вы включили эту опцию, Вы разрешаете партнёру заменить запись номера узла.
+</p>
+
+</div>
+
+<h2><a name="ipxcp-accept-network" id="ipxcp-accept-network">ipxcp-accept-network</a></h2>
+<div class="level2">
+
+<p>
+
+Принимает NAK партнёра для номера сети указанного в опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ipx-network</a></span>. Если номер сети был указан, и это не 0, по умолчанию pppd будет настаивать на использовании этого значения. Если Вы включили эту опцию, Вы разрешаете партнёру заменить запись номера сети.
+</p>
+
+</div>
+
+<h2><a name="ipxcp-accept-remote" id="ipxcp-accept-remote">ipxcp-accept-remote</a></h2>
+<div class="level2">
+
+<p>
+
+Использовать номер сети партнёра, указанный в кадре запроса конфигурации. Если номер узла был указан партнёром и эта опция не была указана, партнёр будет принудительно использовать то значение, которое было указано Вами.
+</p>
+
+</div>
+
+<h2><a name="ipxcp-max-configure_n" id="ipxcp-max-configure_n">ipxcp-max-configure n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает максимальное количество IPXCP-кадров configure-request, которое отправит система. По умолчанию 10.
+</p>
+
+</div>
+
+<h2><a name="ipxcp-max-failure_n" id="ipxcp-max-failure_n">ipxcp-max-failure n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает максимальное количество IPXCP-кадров NAK, которое локальная система отправит перед тем как отклонить опции. Значение по умолчанию 3.
+</p>
+
+</div>
+
+<h2><a name="ipxcp-max-terminate_n" id="ipxcp-max-terminate_n">ipxcp-max-terminate n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает максимальное количество IPXCP-кадров terminate-request, перед тем как локальная система решит, что партнёр её не слушает. Значение по умолчанию 3.
+</p>
+
+</div>
+
+<h2><a name="kdebug_n" id="kdebug_n">kdebug n</a></h2>
+<div class="level2">
+
+<p>
+
+Включает отладочный код в драйвере ядра PPP. Значение аргумента зависит от специфики драйвера ядра, но в общем случае значение 1 включает общие отладочные сообщения ядра. (Отметим, что эти сообщения обычно используются только для отладки самого драйвера ядра). Для драйвера ядра Linux 2.2.x, значение - это сумма битов: 1 для включения общих отладочных сообщений, 2 для запроса вывода содержимого принятых пакетов, и 4 для запроса вывода содержимого переданных пакетов. На большинстве систем сообщения, выводимые ядром, журналируются демоном <a href="?topic=syslog&amp;category=1" class="wikilink2" title="man:syslog_1" rel="nofollow">syslog(1)</a> в файл, который указанн в конфигурационном файле /etc/syslog.conf
+</p>
+
+</div>
+
+<h2><a name="ktune" id="ktune">ktune</a></h2>
+<div class="level2">
+
+<p>
+
+Разрешает pppd изменение необходимых настроек ядра. В Linux, если используется опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">proxyarp</a></span>, pppd включит продвижение IP-пакетов (то есть установит /proc/sys/net/ipv4/ip_forward в 1), и в режиме по требованию включит опцию динамического IP-адреса (то есть установит /proc/sys/net/ipv4/ip_dynaddr в 1), если локальный адрес динамический.
+</p>
+
+</div>
+
+<h2><a name="lcp-echo-failure_n" id="lcp-echo-failure_n">lcp-echo-failure n</a></h2>
+<div class="level2">
+
+<p>
+
+Если задана эта опция и на n отправленных LCP эхо-запросов не было принято правильных LCP эхо-ответов, то pppd предположит, что партнёр завис и закроет соединение. При использовании этой опции, в опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">lcp-echo-interval</a></span> должно быть указано ненулевое значение. Опция может использоваться для завершения pppd после физического разрыва соединения (например, если завис модем) в ситуациях, когда нет аппаратных линий управления модемом.
+</p>
+
+</div>
+
+<h2><a name="lcp-echo-interval_n" id="lcp-echo-interval_n">lcp-echo-interval n</a></h2>
+<div class="level2">
+
+<p>
+
+Если задана эта опция, pppd будет отправлять кадры LCP эхо-запроса партнёру каждые n секунд. Обычно партнёр должен ответить на эхо-запрос отправкой эхо-ответа. Эта опция может быть использована вместе с опцией <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">lcp-echo-failure</a></span> для обнаружения потери связи с партнёром.
+</p>
+
+</div>
+
+<h2><a name="lcp-max-configure_n" id="lcp-max-configure_n">lcp-max-configure n</a></h2>
+<div class="level2">
+
+<p>
+
+Задаёт максимальное количество передач LCP-пакетов configure-request. По умолчанию 10.
+</p>
+
+</div>
+
+<h2><a name="lcp-max-failure_n" id="lcp-max-failure_n">lcp-max-failure n</a></h2>
+<div class="level2">
+
+<p>
+
+Задаёт максимальное количество возвращаемых LCP-пакетов NAK, перед тем как начать отправлять configure-reject. По умолчанию 10.
+</p>
+
+</div>
+
+<h2><a name="lcp-max-terminate_n" id="lcp-max-terminate_n">lcp-max-terminate n</a></h2>
+<div class="level2">
+
+<p>
+
+Задаёт максимальное количество передач LCP-пакетов terminate-request. По умолчанию 10.
+</p>
+
+</div>
+
+<h2><a name="lcp-restart_n" id="lcp-restart_n">lcp-restart n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает интервал перезапуска LCP (таймаут повторной передачи). По умолчанию 3.
+</p>
+
+</div>
+
+<h2><a name="linkname_name" id="linkname_name">linkname name</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает логическое имя канала. pppd создаст файл с именем ppp-name.pid в /var/run (или /etc/ppp на некоторых системах), содержащий идентификатор его процесса. Это может быть полезно для определения экземпляра pppd, отвечающего за канал к заданной системе-партнёру. Это привилегированная опция.
+</p>
+
+</div>
+
+<h2><a name="local" id="local">local</a></h2>
+<div class="level2">
+
+<p>
+
+Не использовать линии управления модемом. Если задана эта опция, pppd будет игнорировать состояние сигнала CD (Carrier Detect) модема и не будет изменять состояние сигнала DTR (Data Terminal Ready). Эта опция противоположна опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">modem</a></span>.
+</p>
+
+</div>
+
+<h2><a name="logfd_n" id="logfd_n">logfd n</a></h2>
+<div class="level2">
+
+<p>
+
+Отправляет журнальные сообщения в файловый дескриптор n. pppd отправляет журнальные сообщения либо в файл, либо в файловый дескриптор (так же как отправляет сообщения на syslog), поэтому эта опция и опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">logfile</a></span> взаимно исключающие. По умолчанию pppd будет отправлять журнальные сообщения на стандартный вывод (файловый дескриптор 1), если стандартным выводом не является последовательный порт.
+</p>
+
+</div>
+
+<h2><a name="logfile_filename" id="logfile_filename">logfile filename</a></h2>
+<div class="level2">
+
+<p>
+
+Добавляет журнальные сообщения в файл filename (так же как отправляет журнальные сообщения на syslog). Файл будет открыт в режиме дополнения с привилегиями пользователя, который запустил pppd.
+</p>
+
+</div>
+
+<h2><a name="login" id="login">login</a></h2>
+<div class="level2">
+
+<p>
+
+Использовать базу данных системных паролей для аутентификации партнёров, использующих PAP, и записывать имена пользователей в системном файле wtmp. Заметим, что для получения доступа партнёр должен иметь такую же запись в файле /etc/ppp/pap-secrets, как и пароль в системной базе данных.
+</p>
+
+</div>
+
+<h2><a name="maxconnect_n" id="maxconnect_n">maxconnect n</a></h2>
+<div class="level2">
+
+<p>
+
+Завершить соединение, если оно было доступно для сетевого трафика n секунд (то есть n секунд после прохождения первого протокола управления сетью).
+</p>
+
+</div>
+
+<h2><a name="maxfail_n" id="maxfail_n">maxfail n</a></h2>
+<div class="level2">
+
+<p>
+
+Прекратить попытки соединения после n последовательных ошибок. Значение 0 означает - безгранично. Значение по умолчанию - 10.
+</p>
+
+</div>
+
+<h2><a name="modem" id="modem">modem</a></h2>
+<div class="level2">
+
+<p>
+
+Использовать управляющие линии модема. Это опция по умолчанию. С этой опцией pppd будет ожидать сигнала CD (Carrier Detect) от модема, чтобы убедиться в том, что последовательное устройство открыто (если не указан сценарий соединения), и будет отбрасывать сигнал DTR (Data Terminal Ready) вскоре после завершения соединения и перед выполнением сценария соединения. На Ultrix эта опция подразумевает аппаратное управление потоком, как для опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">crtscts</a></span>. Эта опция противоположена опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">local</a></span>.
+</p>
+
+</div>
+
+<h2><a name="mp" id="mp">mp</a></h2>
+<div class="level2">
+
+<p>
+
+Включить использование многоканального режима PPP; это псевдоним опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">multilink</a></span>. Эта опция в настоящее время доступна только в Linux.
+</p>
+
+</div>
+
+<h2><a name="mppe-stateful" id="mppe-stateful">mppe-stateful</a></h2>
+<div class="level2">
+
+<p>
+
+Разрешить MPPE использовать режим с поддержкой состояний. Но сначала pppd всё-же попытается использовать режим без поддержки состояний. По умолчанию режим поддержки состояний отвергается.
+</p>
+
+</div>
+
+<h2><a name="mpshortseq" id="mpshortseq">mpshortseq</a></h2>
+<div class="level2">
+
+<p>
+
+Включить использование коротких (12-бит) числовых последовательностей в заголовках многоканального режима, вместо 24-разрядных числовых последовательностей. Эта опция доступна только в Linux, и имеет эффект только если включен многоканальный режим (см. опцию <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">multilink</a></span>).
+</p>
+
+</div>
+
+<h2><a name="mrru_n" id="mrru_n">mrru n</a></h2>
+<div class="level2">
+
+<p>
+
+Установить MRRU (Maximum Reconstructed Receive Unit - Максимальную Реконструируемую Принимаемую Единицу) в n. MRRU - это максимальный размер принимаемых пакетов на многоканальной связке, он аналогичен MRU для отдельных каналов. Эта опция в настоящее время доступна только в Linux, и имеет какой-либо эффект только при включении многоканального режима (см. опцию <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">multilink</a></span>).
+</p>
+
+</div>
+
+<h2><a name="ms-dns_addr" id="ms-dns_addr">ms-dns addr</a></h2>
+<div class="level2">
+
+<p>
+
+Если pppd работает в качестве сервера для клиентов Microsoft Windows, эта опция позволяет pppd предоставлять клиентам один или два адреса <acronym title="Domain Name Server">DNS</acronym> (серверов доменных имён). Первый экземпляр этой опции указывает адрес первичного <acronym title="Domain Name Server">DNS</acronym>; второй экземпляр (если задан) указывает адрес вторичного <acronym title="Domain Name Server">DNS</acronym>. (Эта опция в некоторых старых версиях pppd имела имя dns-addr.)
+</p>
+
+</div>
+
+<h2><a name="ms-wins_addr" id="ms-wins_addr">ms-wins addr</a></h2>
+<div class="level2">
+
+<p>
+
+Если pppd работает в качестве сервера для клиентов Microsoft Windows или Samba, эта опция позволяет предоставлять клиентам адреса одного или двух серверов WINS (Winows Internet Name Services). Первый экземпляр этой опции указывает адрес первичного WINS; второй экземпляр (если задан) указывает адрес вторичного WINS.
+</p>
+
+</div>
+
+<h2><a name="multilink" id="multilink">multilink</a></h2>
+<div class="level2">
+
+<p>
+
+Включает использование многоканального протокола PPP. Если партнёр также поддерживает многоканальный протокол, то этот канал может стать частью связки между локальной системой и партнёром. Если существует связка с партнёром, pppd объединит этот канал с этой связкой, иначе pppd создаст новую связку. См. ниже раздел <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">МНОГОКАНАЛЬНЫЙ РЕЖИМ</a></span>. Эта опция в настоящее время доступна только в Linux.
+</p>
+
+</div>
+
+<h2><a name="name_name" id="name_name">name name</a></h2>
+<div class="level2">
+
+<p>
+
+Использовать при аутентификации name в качестве имени локальной системы. Это привилегированная опция. При аутентификации pppd будет использовать секрет из той строки в файле секретов, у которой во втором поле указано имя name. Если имя, заданное этой опцией не было заменено с помощью опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">user</a></span>, то оно будет отправлено партнёру для аутентификации локальной системы. (Отметим, что pppd не дополняет name доменным именем).
+</p>
+
+</div>
+
+<h2><a name="noaccomp" id="noaccomp">noaccomp</a></h2>
+<div class="level2">
+
+<p>
+
+Отключить сжатие адреса/управления в обоих направлениях (отправки и приёма).
+</p>
+
+</div>
+
+<h2><a name="noauth" id="noauth">noauth</a></h2>
+<div class="level2">
+
+<p>
+
+Не требовать партнёра аутентифицировать его. Эта опция привилегированная.
+</p>
+
+</div>
+
+<h2><a name="nobsdcomp" id="nobsdcomp">nobsdcomp</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает сжатие BSD-Compress; pppd не будет запрашивать или соглашаться сжимать пакеты используя схему BSD-Compress.
+</p>
+
+</div>
+
+<h2><a name="noccp" id="noccp">noccp</a></h2>
+<div class="level2">
+
+<p>
+
+Отключить согласование CCP (Compression Control Protocol - Протокола Управления Сжатием). Опция может понадобится только в случае неправильной реализации удалённого партнёра, поскольку партнёра может поставить в тупик запрос pppd на согласование CCP.
+</p>
+
+</div>
+
+<h2><a name="nocrtscts" id="nocrtscts">nocrtscts</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает аппаратное управление потоком (то есть RTS/CTS) на последовательном порту. Если ни одна из опций <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">crtscts</a></span>, <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">nocrtscts</a></span>, <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">cdtrcts</a></span>, <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">nocdtrcts</a></span> не задана, настройка аппаратного управления потоком на последовательном порту остаётся неизменной.
+</p>
+
+</div>
+
+<h2><a name="nocdtrcts" id="nocdtrcts">nocdtrcts</a></h2>
+<div class="level2">
+
+<p>
+
+Эта опция - синоним для <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">nocrtscts</a></span>. Любая из этих опций отключает обе формы аппаратного управления потоком.
+</p>
+
+</div>
+
+<h2><a name="nodefaultroute" id="nodefaultroute">nodefaultroute</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает опцию <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">defaultroute</a></span>. Системный администратор, желающий предотвратить смену пользователями маршрута по умолчанию с помощью pppd, может поместить эту опцию в файл <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/options</a></span>.
+</p>
+
+</div>
+
+<h2><a name="nodeflate" id="nodeflate">nodeflate</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает сжатие Deflate; pppd не будет запрашивать или соглашаться сжимать пакеты используя схему Deflate.
+</p>
+
+</div>
+
+<h2><a name="nodetach" id="nodetach">nodetach</a></h2>
+<div class="level2">
+
+<p>
+
+Не отделяться от правляющего терминала. Без этой опции, если указано последовательное устройство отличное от терминала на стандартном вводе, pppd выполнит операцию fork для перехода в фоновый режим.
+</p>
+
+</div>
+
+<h2><a name="noendpoint" id="noendpoint">noendpoint</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает отправку дискриминатора конечной точки партнёру или принятие её от партнёра (см. ниже раздел <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">МНОГОКАНАЛЬНЫЙ РЕЖИМ</a></span>). Эта опция может потребоваться если партнёр имеет ошибки в реализации.
+</p>
+
+</div>
+
+<h2><a name="noip" id="noip">noip</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает согласование IPCP и поддержку IP. Эта опция может потребоваться только если партнёр имеет ошибки в реализации и будет поставлен в тупик запросами на согласование IPCP.
+</p>
+
+</div>
+
+<h2><a name="noipv6" id="noipv6">noipv6</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает согласование IPv6CP и поддержку IPv6. Эта опция может потребоваться только если партнёр имеет ошибки в реализации и будет поставлен в тупик запросами на согласование IPv6CP.
+</p>
+
+</div>
+
+<h2><a name="noipdefault" id="noipdefault">noipdefault</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает поведение по умолчанию, при котором локальный IP-адрес (по возможности) определяется из имени узла, если он не указан явно. При указании этой опции партнёр предоставит локальный IP-адрес во время согласования IPCP (если адрес не указан явно в командной строке или в файле опций).
+</p>
+
+</div>
+
+<h2><a name="noipx" id="noipx">noipx</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает протоколы IPXCP и IPX. Эта опция может потребоваться если партнёр имеет ошибки в реализации и будет поставлен в тупик запросами pppd на согласование IPXCP.
+</p>
+
+</div>
+
+<h2><a name="noktune" id="noktune">noktune</a></h2>
+<div class="level2">
+
+<p>
+
+В противоположность опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ktune</a></span>; отключает изменение системных настроек демоном pppd.
+</p>
+
+</div>
+
+<h2><a name="nolock" id="nolock">nolock</a></h2>
+<div class="level2">
+
+<p>
+
+В противоположность опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">lock</a></span>; указывает, что pppd не должен создавать для последовательного устройства блокировочные файлы в стиле UUCP. Эта опция привилегированная.
+</p>
+
+</div>
+
+<h2><a name="nolog" id="nolog">nolog</a></h2>
+<div class="level2">
+
+<p>
+
+Не отправлять журнальные сообщения в файл или файловый дескриптор. Эта опция отменяет опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">logfd</a></span> и <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">logfile</a></span>.
+</p>
+
+</div>
+
+<h2><a name="nomagic" id="nomagic">nomagic</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает согласование волшебного числа. С этой опцией pppd не может определить петлевые выводы. Эта опция может потребоваться если партнёр имеет ошибки в реализации.
+</p>
+
+</div>
+
+<h2><a name="nomp" id="nomp">nomp</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает использование многоканального режима PPP. Эта опция в настоящее время доступна только в Linux.
+</p>
+
+</div>
+
+<h2><a name="nomppe" id="nomppe">nomppe</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает MPPE (Microsoft Point to Point Encryption - шифрование точка-точка Microsoft). Используется по умолчанию.
+</p>
+
+</div>
+
+<h2><a name="nomppe-40" id="nomppe-40">nomppe-40</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает 40-битное шифрование MPPE.
+</p>
+
+</div>
+
+<h2><a name="nomppe-128" id="nomppe-128">nomppe-128</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает 128-битное шифрование MPPE.
+</p>
+
+</div>
+
+<h2><a name="nomppe-stateful" id="nomppe-stateful">nomppe-stateful</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает режим MPPE с поддержкой состояния. Используется по умолчанию.
+</p>
+
+</div>
+
+<h2><a name="nompshortseq" id="nompshortseq">nompshortseq</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает использование коротких (12-битных) номеров последовательности в многоканальном протоколе PPP, заставляя использовать 24-битные номера последовательности. Эта опция в настоящее время доступна только в Linux, и имеет эффект только если включен многоканальный режим.
+</p>
+
+</div>
+
+<h2><a name="nomultilink" id="nomultilink">nomultilink</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает использование многоканального режима PPP. Эта опция в настоящее время доступна только в Linux.
+</p>
+
+</div>
+
+<h2><a name="nopcomp" id="nopcomp">nopcomp</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает согласование поля протокола сжатия в обоих направлениях: приёма и передачи.
+</p>
+
+</div>
+
+<h2><a name="nopersist" id="nopersist">nopersist</a></h2>
+<div class="level2">
+
+<p>
+
+Выходить, если соединение однажды было установлено и закрыто. Если не были указаны опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">persist</a></span> или <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">demand</a></span>, то эта опция используется по умолчанию.
+</p>
+
+</div>
+
+<h2><a name="nopredictor1" id="nopredictor1">nopredictor1</a></h2>
+<div class="level2">
+
+<p>
+
+Не принимать или соглашаться на сжатие Predictor-1.
+</p>
+
+</div>
+
+<h2><a name="noproxyarp" id="noproxyarp">noproxyarp</a></h2>
+<div class="level2">
+
+<p>
+
+Отключает опцию <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">proxyarp</a></span>. Системный администратор, желающий предотвратить создание записей в таблице ARP пользователями с помощью демона pppd, может поместить эту опцию в файл <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/options</a></span>.
+</p>
+
+</div>
+
+<h2><a name="notty" id="notty">notty</a></h2>
+<div class="level2">
+
+<p>
+
+Обычно pppd требует устройство-терминал. С этой опцией процесс pppd разделится на пару ведущий/ведомый и использует ведомый процесс в качестве устройства-терминала. pppd создаст дочерний процесс, который будет работать как символьный шунт для передачи символов между ведущим псевдо-терминалом и его стандартным вводом и выводом. Таким образом pppd будет передавать символы на стандартный вывод и принимать символы на стандартном вводе, даже если они не являются терминальными устройствами. Эта опция увеличивает задержку и затраты CPU на передачу данных через интерфейс ppp, поскольку все передаваемые и принимаемые символы должны проходить через процесс символьный шунт. Если используется эта опция, явное имя устройства может не быть задано.
+</p>
+
+</div>
+
+<h2><a name="novj" id="novj">novj</a></h2>
+<div class="level2">
+
+<p>
+
+Отключить сжатие загловков TCP/IP методом Вана Якобсона (Van Jacobson) в обоих направлениях: передачи и приёма.
+</p>
+
+</div>
+
+<h2><a name="novjccomp" id="novjccomp">novjccomp</a></h2>
+<div class="level2">
+
+<p>
+
+Отключить опцию сжатия идентификатора соединения методом сжатия заголовков TCP/IP Вана Якобсона (Van Jacobson). С этой опцией pppd не опускает байт идентификатора соединения из заголовков TCP/IP, сжатых методом Вана Якобсона (Van Jacobson), и не требует у партнёра делать то же самое.
+</p>
+
+</div>
+
+<h2><a name="papcrypt" id="papcrypt">papcrypt</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает, что все секреты в файле /etc/ppp/pap-secrets, которые используются для проверки идентичности партнёра, зашифрованы, и таким образом pppd не будет принимать пароли, которые перед шифрованием были идентичны паролям из файла /etc/ppp/pap-secrets.
+</p>
+
+</div>
+
+<h2><a name="pap-max-authreq_n" id="pap-max-authreq_n">pap-max-authreq n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает максимальное количество передач PAP authenticate-request. По умолчанию 10.
+</p>
+
+</div>
+
+<h2><a name="pap-restart_n" id="pap-restart_n">pap-restart n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает интервал перезапуска (таймаут для повторной передачи) PAP в секундах. По умолчанию 3.
+</p>
+
+</div>
+
+<h2><a name="pap-timeout_n" id="pap-timeout_n">pap-timeout n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает максимальное время, которое pppd будет ждать партнёра для собственной аутентификации с помощью PAP в секундах. 0 означает - неограниченно.
+</p>
+
+</div>
+
+<h2><a name="pass-filter_filter-expression" id="pass-filter_filter-expression">pass-filter filter-expression</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает пакетный фильтр, определяющий каким отправляемым или принимаемым пакетам данных разрешено прохождение. Пакеты, отклоняемые этим фильтром будут отброшены без предупреждений. Эта опция может использоваться для предотвращения забивания ширины канала определёнными сетевыми демонами (такими как routed), или для самой базовой фильтрации пакетнов. Синтаксис filter-expression описывается в <a href="?topic=tcpdump&amp;category=1" class="wikilink2" title="man:tcpdump_1" rel="nofollow">tcpdump(1)</a>. Не разрешается использование таких классификаторов, которые не подходят для канала PPP, например ether и arp. Обычно filter-expression нужно заключить в кавычки, чтобы предотвратить интерпретацию пробелов в выражении оболочкой. Применяя классификаторы inbound и outbound, можно задать различные ограничения для входящих и исходящих пакетов. Эта опция в настоящее время доступна только в Linux, и требует чтобы ядро было собрано с поддержкой фильтрации PPP (CONFIG_PPP_FILTER).
+</p>
+
+</div>
+
+<h2><a name="password_password-string" id="password_password-string">password password-string</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает пароль, который будет использован для аутентификации у партнёра. Использование этой опции не поощряется, поскольку пароль будет виден другими пользователями системы (например, с помощью команды <a href="?topic=ps&amp;category=1" class="wikilink2" title="man:ps_1" rel="nofollow">ps(1)</a>).
+</p>
+
+</div>
+
+<h2><a name="persist" id="persist">persist</a></h2>
+<div class="level2">
+
+<p>
+
+Не завершаться сразу после разрыва соединения, а попытаться установить его заново. При этом учитывается опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">maxfail</a></span>.
+</p>
+
+</div>
+
+<h2><a name="plugin_filename" id="plugin_filename">plugin filename</a></h2>
+<div class="level2">
+
+<p>
+
+Загрузить объектный файл разделяемой библиотеки как плагин. Это привилегированная опция. Если filename не содержит косую черту /, pppd будет искать плагин в каталоге /usr/lib/pppd/version, где version - номер версии pppd (например, 2.4.2).
+</p>
+
+</div>
+
+<h2><a name="predictor1" id="predictor1">predictor1</a></h2>
+<div class="level2">
+
+<p>
+
+Запросить у партнёра, чтобы он сжимал отправляемые кадры используя сжатие Predictor-1. Соглашаться сжимать передаваемые кадры с использованием Predictor-1, если это запрошено. Эта опция не имеет эффекта, если драйвер ядра не поддерживает сжатие Predictor-1.
+</p>
+
+</div>
+
+<h2><a name="privgroup_group-name" id="privgroup_group-name">privgroup group-name</a></h2>
+<div class="level2">
+
+<p>
+
+Разрешает членам группы group-name использовать привилегированные опции. Это привилегированная опция. При использовании этой опции нужно соблюдать осторожность, потому что нет гарантии, что члены группы group-name не смогут использовать pppd для получения привилегий пользователя root. Эквивалентным этому считается помещение членов группы group-name в группу kmem или disk.
+</p>
+
+</div>
+
+<h2><a name="proxyarp" id="proxyarp">proxyarp</a></h2>
+<div class="level2">
+
+<p>
+
+Добавляет в системную таблицу ARP [Address Resolution Protocol - Протокол Определения Адреса] запись содержащую IP-адрес партнера и Ethernet-адрес этой системы. Другие системы в локальной Ethernet-сети будут полагать, что партнер находится в одной с ними Ethernet-сети.
+</p>
+
+</div>
+
+<h2><a name="pty_script" id="pty_script">pty script</a></h2>
+<div class="level2">
+
+<p>
+
+Для связи использовать указанный командный сценарий, а не специализированное терминальное устройство. Pppd запросит для себя пседотерминальную пару ведущий/ведомый. В качестве терминально устройства будет использован ведомый псевдотерминал. В дочернем процессе запустится скрипт и откроет ведущий псевдотерминал как свой стандартный ввод и вывод. Нет возможности явно указать имя этого устройства. (Отметим: если совместно с данной опцией используется опция record, дочерний процесс откроет для стандартного ввода и вывода программные каналы.)
+</p>
+
+</div>
+
+<h2><a name="receive-all" id="receive-all">receive-all</a></h2>
+<div class="level2">
+
+<p>
+
+С этой опцией pppd будет принимать все управляющие символы от партнёра, включая отмеченные в принимаемой <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">asyncmap</a></span>. Без этой опции pppd будет отбрасывать эти символы как указано в RFC1662. Эта опция может понадобиться только если партнёр имеет ошибки в реализации.
+</p>
+
+</div>
+
+<h2><a name="record_filename" id="record_filename">record filename</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает, что pppd должен записывать все принятые и отправленные символы в файл с именем filename. Этот файл открывается в режиме дозаписи, используя идентификатор пользователя и его разрешения. Эта опция использует псевдотерминал и обрабатывает символы передаваемые между псевдотерминалом и реальным последовательным устройством. Это увеличивает задержку и затраты CPU при передаче данных через интерфейс ppp. Символы сохраняются в теговом формате с отметками времени, который может быть отображён программой <a href="?topic=pppdump&amp;category=8" class="wikilink2" title="man:pppdump_8" rel="nofollow">pppdump(8)</a> в читаемой форме.
+</p>
+
+</div>
+
+<h2><a name="remotename_name" id="remotename_name">remotename name</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает name как предполагаемое имя удалённой системы для целей аутентификации.
+</p>
+
+</div>
+
+<h2><a name="remotenumber_number" id="remotenumber_number">remotenumber number</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает number как предполагаемый номер телефона удалённой системы для целей аутентификации.
+</p>
+
+</div>
+
+<h2><a name="refuse-chap" id="refuse-chap">refuse-chap</a></h2>
+<div class="level2">
+
+<p>
+
+При использовании этой опции pppd не согласится аутентифицировать себя по протоколу CHAP.
+</p>
+
+</div>
+
+<h2><a name="refuse-mschap" id="refuse-mschap">refuse-mschap</a></h2>
+<div class="level2">
+
+<p>
+
+При использовании этой опции pppd не согласится аутентифицировать себя по протоколу <acronym title="Microsoft">MS</acronym>-CHAP.
+</p>
+
+</div>
+
+<h2><a name="refuse-mschap-v2" id="refuse-mschap-v2">refuse-mschap-v2</a></h2>
+<div class="level2">
+
+<p>
+
+При использовании этой опции pppd не согласится аутентифицировать себя по протоколу <acronym title="Microsoft">MS</acronym>-CHAPv2.
+</p>
+
+</div>
+
+<h2><a name="refuse-eap" id="refuse-eap">refuse-eap</a></h2>
+<div class="level2">
+
+<p>
+
+При использовании этой опции pppd не согласится аутентифицировать себя по протоколу EAP.
+</p>
+
+</div>
+
+<h2><a name="refuse-pap" id="refuse-pap">refuse-pap</a></h2>
+<div class="level2">
+
+<p>
+
+При использовании этой опции pppd не согласится аутентифицировать себя по протоколу PAP.
+</p>
+
+</div>
+
+<h2><a name="require-chap" id="require-chap">require-chap</a></h2>
+<div class="level2">
+
+<p>
+
+Требовать партнёра аутентифицировать себя используя аутентификацию CHAP (Challenge Handshake Autentication Protocol).
+</p>
+
+</div>
+
+<h2><a name="require-mppe" id="require-mppe">require-mppe</a></h2>
+<div class="level2">
+
+<p>
+
+Требовать использования MPPE (Microsoft Point to Point Encryption - шифрование точка-точка Microsoft). Эта опция отключает все другие типы сжатия. Эта опция одновременно включает 40-битное и 128-битное шифрование. Чтобы использовать шифрование MPPE, Вы должны быть аутентифицированы с помощью <acronym title="Microsoft">MS</acronym>-CHAP или <acronym title="Microsoft">MS</acronym>-CHAPv2. В настоящее время эта опция поддерживается только в Linux, и только если ядро было собрано с поддержкой MPPE.
+</p>
+
+</div>
+
+<h2><a name="require-mppe-40" id="require-mppe-40">require-mppe-40</a></h2>
+<div class="level2">
+
+<p>
+
+Требовать использования MPPE с 40-битным шифрованием.
+</p>
+
+</div>
+
+<h2><a name="require-mppe-128" id="require-mppe-128">require-mppe-128</a></h2>
+<div class="level2">
+
+<p>
+
+Требовать использования MPPE с 128-битным шифрованием.
+</p>
+
+</div>
+
+<h2><a name="require-mschap" id="require-mschap">require-mschap</a></h2>
+<div class="level2">
+
+<p>
+
+Требовать у партнёра аутентифицировать себя используя аутентификацию <acronym title="Microsoft">MS</acronym>-CHAP (Microsoft Challenge Handshake Authentication Protocol).
+</p>
+
+</div>
+
+<h2><a name="require-mschap-v2" id="require-mschap-v2">require-mschap-v2</a></h2>
+<div class="level2">
+
+<p>
+
+Требовать от партнёра аутентифицировать себя используя аутентификацию <acronym title="Microsoft">MS</acronym>-CHAPv2 (Microsoft Challenge Handshake Authentication Protocol, Version 2).
+</p>
+
+</div>
+
+<h2><a name="require-eap" id="require-eap">require-eap</a></h2>
+<div class="level2">
+
+<p>
+
+Требовать партнёра аутентифицировать себя используя аутентификацию EAP (Extensible Authentication Protocol).
+</p>
+
+</div>
+
+<h2><a name="require-pap" id="require-pap">require-pap</a></h2>
+<div class="level2">
+
+<p>
+
+Требовать партнёра аутентифицировать себя используя аутентификацию PAP (Password Authentication Protocol).
+</p>
+
+</div>
+
+<h2><a name="show-password" id="show-password">show-password</a></h2>
+<div class="level2">
+
+<p>
+
+При журналировании содержимого пакетов PAP, эта опция заставляет pppd показывать строку пароля в журнальных сообщениях.
+</p>
+
+</div>
+
+<h2><a name="silent" id="silent">silent</a></h2>
+<div class="level2">
+
+<p>
+
+При использовании этой опции pppd не будет передавать LCP-пакеты инициирующие соединение до тех пор, пока от партнёра не будут приняты правильные LCP-пакеты (подобно опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">passive</a></span> для старых версий pppd).
+</p>
+
+</div>
+
+<h2><a name="srp-interval_n" id="srp-interval_n">srp-interval n</a></h2>
+<div class="level2">
+
+<p>
+
+Если задан этот параметр и pppd использует EAP SRP-SHA1 для аутентификации партнёра (то есть это сервер), то pppd будет использовать опциональный облегчённый механизм rechallenge SRP с интервалом n секунд. Эта опция быстрее повторной аутентификации <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">eap-interval</a></span>, поскольку она использует механизм основанный на хэше и не создаёт новый сессионный ключ.
+</p>
+
+</div>
+
+<h2><a name="srp-pn-secret_string" id="srp-pn-secret_string">srp-pn-secret string</a></h2>
+<div class="level2">
+
+<p>
+
+Установка долгосрочного секрета для генерации псевдонима сервера. Значение опционально. Если значение задано, оно должно быть известно только серверной стороне (аутентификатору), и должно различаться для каждого сервера (или пула идентичных серверов). Этот секрет вместе с текущей датой и временем используется для генерации ключа шифрования/расшифровки псевдонима клиента.
+</p>
+
+</div>
+
+<h2><a name="srp-use-pseudonym" id="srp-use-pseudonym">srp-use-pseudonym</a></h2>
+<div class="level2">
+
+<p>
+
+При работе в качестве клиента EAP SRP-SHA1, попытаемся использовать для аутентификации сначала псевдоним хранящийся в ~/.ppp_pseudonym, и сохраним в этом файле псевдоним запрошенный партнёром во время аутентификации.
+</p>
+
+</div>
+
+<h2><a name="sync" id="sync">sync</a></h2>
+<div class="level2">
+
+<p>
+
+Использовать синхронное последовательное HDLC кодирование вместо асинхронного. При использовании этой опции задействованное устройство должно иметь поддержку синхронизации. В настоящее время поддерживаются адаптеры Microgate SyncLink в Linux и FreeBSD 2.2.8 и более поздних.
+</p>
+
+</div>
+
+<h2><a name="unit_num" id="unit_num">unit num</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает номер интерфейса ppp для исходящих соединений. Например, опция unit 0 будет соответствовать интерфейсу ppp0.
+</p>
+
+</div>
+
+<h2><a name="updetach" id="updetach">updetach</a></h2>
+<div class="level2">
+
+<p>
+
+При использовании этой опции pppd будет отсоединяться от управляющего терминала, если однажды ему удалось установить PPP-соединение (в тот момент, когда заработал первый сетевой протокол, обычно протокол управления IP).
+</p>
+
+</div>
+
+<h2><a name="usehostname" id="usehostname">usehostname</a></h2>
+<div class="level2">
+
+<p>
+
+Настоять на использовании имени узла (включая доменное имя, если оно задано) в качестве имени локальной системы в целях аутентификации (заменяет опцию name). Эта опция обычно не требуется, поскольку опция name привилегированная.
+</p>
+
+</div>
+
+<h2><a name="usepeerdns" id="usepeerdns">usepeerdns</a></h2>
+<div class="level2">
+
+<p>
+
+Запрашивать до 2 адресов <acronym title="Domain Name Server">DNS</acronym>-серверов. Адреса предоставленные партнёром (если есть) передаются сценарию <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/ip-up</a></span> в переменных окружения <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">DNS1</a></span> и <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">DNS2</a></span>, а переменная окружения USEPEERDNS будет установлена в 1. pppd также создаст файл /var/run/ppp/resolv.conf, содержащий одну или две строки nameserver с адресами, предоставленными партнёром.
+</p>
+
+</div>
+
+<h2><a name="user_name" id="user_name">user name</a></h2>
+<div class="level2">
+
+<p>
+
+Задаёт имя name используемое локальной системой для аутентификации у партнёра.
+</p>
+
+</div>
+
+<h2><a name="vj-max-slots_n" id="vj-max-slots_n">vj-max-slots n</a></h2>
+<div class="level2">
+
+<p>
+
+Устанавливает максимальное количество слотов соединений используемых алгоритмом Вана Якобсона (Van Jacobson) для сжатия и разжатия кода заголовков TCP/IP. Значение параметра должно быть между 2 и 16 (включительно).
+</p>
+
+</div>
+
+<h2><a name="welcome_script" id="welcome_script">welcome script</a></h2>
+<div class="level2">
+
+<p>
+
+После завершения сценария соединения (если есть), но до начала согласования PPP, запустить исполняемый двоичный файл или команду оболочки указанную в script. Значение этой опции из привилегированного источника не может быть заменено непривилегированным пользователем.
+</p>
+
+</div>
+
+<h2><a name="xonxoff" id="xonxoff">xonxoff</a></h2>
+<div class="level2">
+
+<p>
+
+Использовать программное (то есть XON/XOFF) управление потоком данных на последовательном порту.
+</p>
+
+</div>
+
+<h1><a name="файлы_опций" id="файлы_опций">ФАЙЛЫ ОПЦИЙ</a></h1>
+<div class="level1">
+
+<p>
+
+Наряду с командной строкой опции можно указывать и в файлах. Перед обработкой опций командной строки pppd последовательно читает опции из файлов /etc/ppp/options, ~/.ppprc и /etc/ppp/options.ttyname. (Фактически, опции командной строки сканируются перед чтением файла options.ttyname для того, чтобы найти имя терминала. Из имени терминала удаляются начальные символы /dev/, а любой из оставшихся символов / будет заменён точкой).
+</p>
+
+<p>
+Файл опций обрабатывается как группы слов, разделённых пробелами. Пробелы могут быть включены в слово, если слово заключено в двойные кавычки (). Обратная косая черта \ заключает в кавычки следующий символ. Решётка # начинает комментарий, который продолжается до конца строки. Нет ограничений на использование файла или вызов опций из файла опций.
+</p>
+
+</div>
+
+<h1><a name="безопасность" id="безопасность">БЕЗОПАСНОСТЬ</a></h1>
+<div class="level1">
+
+<p>
+
+pppd предоставляет системным администраторам достаточно средств управлением доступом, так что PPP доступ к машине-серверу может быть предоставлен законным пользователям без страха компрометации безопасности сервера или сети, в которой он находится. Это управление предоставляется посредством ограничения IP-адресов, которые может использовать партнёр, основываясь на аутентификации и идентификации (если есть), и посредством ограничений на опции, которые может использовать непривилегированный пользователь. Некоторые опции pppd привилегированные, в частности те из них, которые разрешают потенциально небезопасные конфигурации; эти опции принимаются только из файлов, находящихся под управлением системного администратора, или если pppd был запущен пользователем root.
+</p>
+
+<p>
+По умолчанию pppd разрешает неаутенифицированным партнёрам использовать заданный IP-адрес, только если система уже не имеет маршрут к этому IP-адресу. Например, система с постоянным соединением ко всему интернету обычно имеет маршрут по умолчанию, и следовательно все партнёры должны быть аутентифицированы, чтобы установить соединение. На таких системах опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">auth</a></span> задана по умолчанию. В других случаях, когда система с PPP-каналом в интернет в штатном режиме не имеет маршрута по умолчанию, партнёру разрешается использовать практически любой IP-адрес без аутентификации.
+</p>
+
+<p>
+Как указано выше, некоторые опции влияющие на безопасность привилегированные. Это означает что они не могут быть использованы ни из командной строки, ни из пользовательского файла <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">~/.ppprc</a></span>, ни из файла опций заданного опцией <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">file</a></span>, если pppd запущен обычным непривилегированным пользователем, даже несмотря на принадлежность исполняемого файла пользователю root и установленный бит setuid. Привилегированные опции могут быть указаны в файле <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/options</a></span> или прочитаны из файла опций, заданного в опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">call</a></span>. Если pppd был запущен пользователем root, привилегированные опции могут использоваться без ограничений.
+</p>
+
+<p>
+При открытии устройства pppd использует идентификатор обычного пользователя, запустившего pppd, или идентификатор root (который равен 0), в зависимости от того, было ли указано имя устройства пользователем или системным администратором. Если имя устройства взято из привилегированного источника, такого как <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/options</a></span> или файла опций заданного опцией <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">call</a></span>, pppd использует при открытии устройства полные привилегии пользователя root. Таким образом, при создании соответствующего файла в подкаталоге <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/peers</a></span>, системный администратор может разрешить пользователям устанавливать PPP-соединение через устройство, на доступ к которому у них обычно нет прав. В других случаях для открытия устройства используется реальный идентификатор пользователя запустившего pppd.
+</p>
+
+</div>
+
+<h1><a name="аутентификация" id="аутентификация">АУТЕНТИФИКАЦИЯ</a></h1>
+<div class="level1">
+
+<p>
+
+Аутентификация - это процесс, посредством которого один партнёр подтверждает другому свою личность. При этом один партнёр отправляет своё имя другому вместе с некоторой секретной информацией, которая может прийти только от настоящего авторизованного пользователя этого имени. В таком обмене первого партнёра можно назвать клиентом, а другого сервером. Клиент имеет имя, с помощью которого он идентифицирует себя на сервере, и сервер также имеет имя, которым он идентифицирует себя у клиента. Обычно клиент и сервер имеют некоторый общий секрет (или пароль), и клиент доказывает свою подлинность знанием этого секрета. Очень часто имена, используемые партнёрами при аутентификации, являются именами узлов в интернете, но это не существенно.
+</p>
+
+<p>
+В настоящее время pppd поддерживает три протокола аутентификации: PAP (Password Authentication Protocol - протокол аутентификации по паролю), CHAP (Challenge Handshake Authentication Protocol - протокол аутентификации с рукопожатием), и EAP (Extensible Authentication Protocol - расширяемый протокол аутентификации). PAP подразумевает, что клиент для собственной аутентификации отправляет на сервер своё имя и пароль открытым текстом. В противоположность ему, при использовании протокола CHAP сервер сам инициирует обмен аутентификацией CHAP отправкой пакета challenge клиенту (пакет challenge содержит имя сервера). Чтобы подтвердить знание секрета, клиент должен ответить пакетом responce, который включает его имя и значение хэша, полученное из разделяемого секрета и содержимого пакета challenge. EAP поддерживает аутентификацию в стиле CHAP, а также содержит механизм SRP-SHA1, который противостоит атакам по словарю и не требует хранения пароля открытым текстом на стороне сервера.
+</p>
+
+<p>
+Протокол PPP изначально симметричен и позволяет обоим партнёрам требовать друг у друга аутентификацию. В этом случае происходят два различных и независимых обмена аутентификацией. Два обмена могут использовать различные протоколы аутентификации, и в принципе, при двух обменах могут использоваться разные имена.
+</p>
+
+<p>
+По умолчанию pppd согласен подтвердить свою подлинность, если это запрошено, но не требует аутентификации от партнёра. Однако, pppd откажется подтверждать свою подлинность с помощью определённого протокола, если не располагает секретом для этого протокола.
+</p>
+
+<p>
+pppd хранит секреты используемые для аутентификации в файлах секретов (/etc/ppp/pap-secrets для PAP, <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/chap-secrets</a></span> для CHAP, <acronym title="Microsoft">MS</acronym>-CHAP, <acronym title="Microsoft">MS</acronym>-CHAPv2, EAP MD5-Challenge, и <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/srp-secrets</a></span> для EAP SRP-SHA1). Все файлы секретов имеют одинаковый формат. Файлы секретов могут содержать секреты, которые pppd использует для подтверждения собственной подлинности на других системах, а также секреты pppd используемые для аутентификации других систем.
+</p>
+
+<p>
+Каждая строка в файле секретов содержит один секрет. Определённый секрет специфичен для определённой пары клиент/сервер и используется только для аутентификации данного клиента на данном сервере. Поэтому каждая строка в файле секретов имеет по крайней мере 3 поля: имя клиента, имя сервера и секрет. Эти поля могут быть дополнены списком IP-адресов, которые данный клиент может использовать при подключении к данному серверу.
+</p>
+
+<p>
+Файлы секретов, как и файлы опций, состоят из слов. Каждое из полей, имя клиента, имя сервера и секрет, должно быть одним словом, в котором пробелы и другие специальные символы должны быть заэкранированы или заключены в кавычки. Отметим, что требование распространяется на имя клиента, имя сервера и секрет.
+</p>
+
+<p>
+Если секрет начинается с @, за ним следует предполагаемое имя файла, из которого будет прочитан секрет. * совпадёт с любым именем клиента или сервера. При выборе секрета pppd выбирает лучшее совпадение, то есть совпадение с наименьшим количеством шаблонов.
+</p>
+
+<p>
+Любые последующие слова в той же строке задают список принимаемых IP-адресов этого клиента. Если в строке только 3 слова, или первое слово - это -, тогда запрещаются все IP-адреса. Для разрешения любого адреса используйте *. Слово начинающееся с ! указывает, что данный адрес не принимается. Для указания подсети за адресом может следовать / и число n. В таком случае принимаются все адреса, имеющие те же значения n старших значащих бит. В этой форме за адресом может следовать знак плюса (+), указывающий что один адрес из подсети разрешён для сетевого интерфейса ppp с определённым номером. В этом случае узловая часть адреса будет расчитана как номер интерфейса плюс один.
+</p>
+
+<p>
+Файлы секретов содержат секреты обоих типов - для аутентификации других узлов и для подтверждения собственной подлинности. Когда pppd проверяет подлинность партнёра, он выбирает секрет указанный в строке с именем партнёра в первом поле и именем локальной системы во втором поле. Имя локальной системы по умолчанию - это имя узла. Если используется опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">domain</a></span>, имя узла будет дополнено доменным именем. Данное поведение по умолчанию можно изменить с помощью опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">name</a></span>, исключая случаи когда используется опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">usehostname</a></span>. (Для EAP SRP-SHA1, см. утилиту <a href="?topic=srp-entry&amp;category=8" class="wikilink2" title="man:srp-entry_8" rel="nofollow">srp-entry(8)</a> генерирующую соответствующие подтверждения записей, используемых в поле secret.)
+</p>
+
+<p>
+Когда pppd выбирает секрет используемый для аутентификации у партнёра, сначала определяется собственное имя, используемое для идентификации. Это имя может быть указано пользователем при помощи опции user. Если эта опция не используется, по умолчанию будет выбрано имя локальной системы, определённое как описано в предыдущем параграфе. Затем pppd будет искать секрет с этим именем в первом поле и именем партнёра во втором поле. Если используется аутентификация CHAP или EAP, то pppd знает имя партнёра, потому что партнёр посылает своё имя в пакете challenge. Однако при использовании PAP, pppd определяет имя партнёра из опций, указанных пользователем. Пользователь может явно указать имя партнёра с помощью опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">remotename</a></span>. В других случаях, если удалённый IP-адрес был указан именем (что предпочтительнее, чем числовая форма), это имя будет использоваться как имя партнёра. В случае неудачи, pppd будет использовать null-строку как имя партнёра.
+</p>
+
+<p>
+Если партнёр аутентифицируется с помощью PAP, предоставленный пароль сначала сравнивается с секретом из файла секретов. Если пароль не совпал с секретом, пароль шифруется с использованием функции crypt() и сравнивается с секретом снова. Таким образом при необходимости можно хранить секреты для аутентификации партнёра в зашифрованной форме. Если задана опция papcrypt, для большей безопасности первоначальное сравнение (незашифрованное) будет пропущено.
+</p>
+
+<p>
+Кроме того, если была указана опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">login</a></span>, имя пользователя и пароль также будут проверены по системной базе данных паролей. Таким образом, системный администратор может установить файл pap-secrets для разрешения доступа по PPP только определённым пользователям, и ограничить набор IP-адресов, которые может использовать каждый пользователь. Обычно при использовании опции login секрет /etc/ppp/pap-secrets должен быть , что будет совпадать с любым паролем, предоставленным партнёром. Это позволяет избежать требования иметь одинаковый секрет в двух местах.
+</p>
+
+<p>
+Перед тем как будет включен IPCP (или любой другой протокол управления сетью (NCP - Network Control Protocol)), должна удачно завершиться аутентификация. Если партнёр требует подтверждения нашей подлинности, но аутентификация завершилась неудачно, pppd закроет канал (закрытием LCP). IPCP будет закрыт, если IP-адрес удалённого узла согласованный IPCP не принимается. IP-пакеты могут отправляться или приниматься только когда открыт IPCP.
+</p>
+
+<p>
+В некоторых случаях желательно разрешить некоторым узлам, которые не могут аутентифицировать себя, подключаться и использовать один из ограниченных наборов IP-адресов, даже если местный узел обычно требует аутентификацию. Если партнёр отклоняет запросы на подтверждение собственной подлинности, pppd считает это эквивалентным аутентификации по протоколу PAP с использованием пустой строки для имени пользователя и пароля. Таким образом, добавлением к файлу pap-secrets строки с пустым именем клиента и паролем, можно разрешить ограниченный доступ узлам, которые отклоняют подтверждение собственной подлинности.
+</p>
+
+</div>
+
+<h1><a name="маршрутизация" id="маршрутизация">МАРШРУТИЗАЦИЯ</a></h1>
+<div class="level1">
+
+<p>
+
+При успешном завершении согласования IPCP, pppd сообщит ядру местный и удалённый IP-адреса для ppp-интерфейса. Этого достаточно для создания маршрута к узлу на удалённом конце канала, чтобы заработал обмен IP-пакетами между партнёрами. Связь с другими машинами обычно требует дальнейшей модификации таблиц маршрутизации и/или таблиц ARP (Address Resolution Protocol). В большинстве случаев для этого достаточно указать опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">defaultroute</a></span> и/или <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">proxyarp</a></span>, но в некоторых случаях требуется дальнейшее вмешательство с помощью сценария <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/ip-up</a></span>.
+</p>
+
+<p>
+Иногда желательно добавить маршрут по умолчанию через удалённый узел, в таких случаях машина будет иметь только соединение с сетью Интернет через интерфейс ppp. Опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">defaultroute</a></span> заставит pppd создать такой маршрут по умолчанию после завершения согласования IPCP, и удалить его при закрытии канала.
+</p>
+
+<p>
+В некоторых случаях желательно использовать ARP-прокси, например на серверной машине подсоединённой к локальной сети, чтобы разрешить другим узлам связываться с удалённым узлом. Опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">proxyarp</a></span> заставит pppd просматривать сетевой интерфейс в той же подсети, что и удалённый узел. Интерфейс должен поддерживать широковещание и ARP, он должен быть активен и не являться петлевым (loopback) интерфейсом или интерфейсом точка-точка. Если найден такой интерфейс, pppd создаст постоянную опубликованную ARP-запись с IP-адресом удалённого узла и аппаратным адресом найденного сетевого интерфейса.
+</p>
+
+<p>
+При использовании опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">demand</a></span>, IP-адреса интерфейса уже установлены до согласования IPCP. Если pppd не сможет согласовать тот же адрес, который использовался для настройки интерфейса (например когда партнёр - это Интернет-провайдер, который использует динамическое назначение IP-адресов), pppd изменит IP-адреса интерфейса на согласованные адреса. Не рекомендуется использовать дозвон по требованию до партнёра, который назначает IP-адреса динамически, потому что это может нарушить существующие соединения.
+</p>
+
+</div>
+
+<h1><a name="многоканальный_режим" id="многоканальный_режим">МНОГОКАНАЛЬНЫЙ РЕЖИМ</a></h1>
+<div class="level1">
+
+<p>
+
+Многоканальный режим PPP позволяет объединять два или более PPP каналов между парой машин в единую связку, которая выглядит как единый виртуальный канал PPP. Этот канал объединяет пропускную способность отдельных каналов. В настоящее время многоканальный режим PPP поддерживается только в Linux.
+</p>
+
+<p>
+Используя дискриминатор конечной точки и аутентифицированную личность партнёра (если он аутентифицировал себя), pppd обнаруживает, что канал которым он управляет, подключен к тому же партнёру, что и другой канал. pppd считает, что дискриминатор конечной точки, являющийся блоком данных, уникален для каждого партнёра. В качестве дискриминатора конечной точки могут использоваться данные различного типа, включая локально назначенные или случайные строки байтов, IP-адреса, MAC-адреса, или телефонные номера E-164. Дискриминатор конечной точки отправляемый партнёру может быть задан с помощью опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">endpoint</a></span>.
+</p>
+
+<p>
+При некоторых обстоятельствах партнёр может отправить дискриминатор нет конечной точки или не уникальное значение дискриминатора. Опция связывания задаёт дополнительную строку, которая будет добавлена к дискриминатору конечной точки партнёра. Вместе они будут использоваться для определения принадлежности каналов одной связке. Опцию связывания можно использовать для создания нескольких связок между локальной системой и партнёром. pppd использует базу данных TDB в <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/var/run/pppd2.tdb</a></span> для определения совпадающих каналов.
+</p>
+
+<p>
+Предположим, что многоканальный режим включен и согласован с партнёром. Тогда если pppd запущен для установки первого канала к партнёру, он обнаружит что нет других соединённых с партнёром каналов и создаст новую связку на сетевом интерфейсе ppp с новым номером. Когда другой pppd запустит установку другого канала к партнёру, он обнаружит существующую связку и присоединит канал к ней.
+</p>
+
+<p>
+Если первый канал закроется (например, по причине зависания модема или из-за принятия LCP-пакета terminate-request), и в связке есть другие каналы, связка не уничтожается. Вместо выхода первый pppd продолжит работать после закрытия канала, до тех пор пока не закроются все каналы в связке. Если первый pppd примет сигнал <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">SIGTERM</a></span> или <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">SIGINT</a></span>, он разрушит связку и отправит <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">SIGHUP</a></span> процессам pppd для каждого канала в связке. Если первый pppd принимает сигнал <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">SIGHUP</a></span>, он закроет канал, но не связку.
+</p>
+
+<p>
+Замечание: в настоящее время дозвон по требованию в многоканальном режиме не поддерживается.
+</p>
+
+</div>
+
+<h1><a name="примеры" id="примеры">ПРИМЕРЫ</a></h1>
+<div class="level1">
+
+<p>
+
+Следующие примеры подразумевают, что файл <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/options</a></span> содержит опцию <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">auth</a></span> (как в файле <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/options</a></span>, распространяемом в комплекте с pppd).
+</p>
+
+<p>
+Вероятно в большинстве распространённых случаев использования pppd дозванивается до интернет-провайдера. Это может быть выполнено такой командой:
+</p>
+<pre class="code">pppd call isp</pre>
+
+<p>
+где файл /etc/ppp/peers/isp настроен системным администратором и содержит что-то вроде этого:
+</p>
+<pre class="code">ttyS0 19200 crtscts
+connect '/usr/sbin/chat -v -f /etc/ppp/chat-isp'
+noauth</pre>
+
+<p>
+В этом примере мы используем команду chat для дозвона до модема интернет-провайдера и проходим через всю необходимую последовательность подключения. Файл /etc/ppp/chat-isp содержит сценарий, используемый командой chat; например, он может содержать что-то вроде этого:
+</p>
+<pre class="code">ABORT "NO CARRIER"
+ABORT "NO DIALTONE"
+ABORT "ERROR"
+ABORT "NO ANSWER"
+ABORT "BUSY"
+ABORT "Username/Password Incorrect"
+"" "at"
+OK "at&amp;d0&amp;c1"
+OK "atdt2468135"
+"name:" "^Umyuserid"
+"word:" "\qmypassword"
+"ispts" "\q^Uppp"
+"~-^Uppp-~"</pre>
+
+<p>
+Подробнее о chat-сценариях см. страницу руководства <a href="?topic=chat&amp;category=8" class="wikilink2" title="man:chat_8" rel="nofollow">chat(8)</a>.
+</p>
+
+<p>
+pppd также может использоваться для предоставления пользователям сервиса dial-in ppp. Если пользователь уже имеет входную учётную запись, простейший способ установить сервис ppp это позволить пользователям войти под их учётной записью и запустить pppd (с установленным битом setuid и владельцем root) из командной строки, например так
+</p>
+<pre class="code">pppd proxyarp</pre>
+
+<p>
+Чтобы разрешить пользователям использовать средства PPP, Вы должны выделить пользовательской машине IP-адрес и создать запись в /etc/ppp/pap-secrets, <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/chap-secrets</a></span>, или <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/srp-secrets</a></span> (в зависимости от реализаций методов аутентификации PPP, поддерживаемых на машине пользователя), так чтобы пользовательская машина смогла подтвердить свою подлинность. Например, если Джо имеет машину с именем joepc, то чтобы разрешить дозвон до машины с именем server и использовать IP-адрес joepc.my.net, Вы должны добавить в /etc/ppp/pap-secrets или <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/chap-secrets</a></span> запись подобную этой:
+</p>
+<pre class="code">joespc server "пароль Джо" joespc.my.net</pre>
+
+<p>
+(См. <a href="?topic=srp-entry&amp;category=8" class="wikilink2" title="man:srp-entry_8" rel="nofollow">srp-entry(8)</a> для понимания как сгенерировать серверную запись при использовании SRP-SHA1). Кроме того, Вы можете создать имя пользователя (например) ppp, входная оболочка которого - pppd, и чей домашний каталог - /etc/ppp. Опции, используемые при запуске pppd этим способом, можно поместить в <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/.ppprc</a></span>.
+</p>
+
+<p>
+Если Ваше последовательное соединение хоть немного сложнее куска провода, Вам может потребоваться экранировать некоторые управляющие символы. В частности, часто используемые для экранирования символы XON (^Q) и XOFF (^S), используя опцию <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">asyncmap</a></span> a0000. Если путь включает telnet, вероятно нужно экранировать ^] таким же способом (<span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">asyncmap</a></span> 200a0000). Если путь включает rlogin, Вам может потребоваться использовать опцию <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">escape</a></span> ff на той стороне, где используется rlogin-клиент, поскольку реализация rlogin не прозрачна; он будет удалять последовательность [0xff, 0xff, 0×73, 0×73, вместе со следующими 8 байтами] из потока.
+</p>
+
+</div>
+
+<h1><a name="диагностика" id="диагностика">ДИАГНОСТИКА</a></h1>
+<div class="level1">
+
+<p>
+
+Сообщения отправляются демону syslog используя средство LOG_DAEMON. (Желаемое средство может быть задано перед компиляцией pppd с помощью макроса LOG_PPP). Чтобы узнать куда демон syslog записывает сообщения, см. документацию <a href="?topic=syslog&amp;category=8" class="wikilink2" title="man:syslog_8" rel="nofollow">syslog(8)</a>. На большинстве систем демон syslog читает настройки из файла /etc/syslog.conf, в котором указано место для хранения сообщений. Вы можете отредактировать этот файл по своему усмотрению.
+</p>
+
+<p>
+Опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">debug</a></span> вызовет журналирование содержимого всех отправленных или принятых управляющих пакетов, то есть всех пакетов LCP, PAP, CHAP, EAP или IPCP. Опция может быть полезна, если не удаётся согласование PPP или произошла ошибка аутентификации. Если отладка включена при компиляции, опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">debug</a></span> также вызовет журналирование других отладочных сообщений.
+</p>
+
+<p>
+Отладка также может быть включена или отключена оправкой процессу pppd сигнала <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">SIGUSR1</a></span>. Сигнал действует как переключатель.
+</p>
+
+</div>
+
+<h1><a name="статус_завершения" id="статус_завершения">СТАТУС ЗАВЕРШЕНИЯ</a></h1>
+<div class="level1">
+
+<p>
+
+Статус завершения pppd сообщает о том, были ли обнаружены ошибки, или сообщает причины, по которым канал был прерван. Используемые значения:
+</p>
+<ol>
+<li class="level1"><div class="li"> pppd был отключен, или же соединение было успешно установлено и завершено по запросу партнёра.</div>
+</li>
+<li class="level1"><div class="li"> Случилась неожиданная неисправимая ошибка, такая как ошибка вызова системы, или нехватка виртуальной памяти во время работы.</div>
+</li>
+<li class="level1"><div class="li"> Была обнаружена ошибка во время обработки заданных опций, например - обнаружено использование двух взаимно исключающих опций.</div>
+</li>
+<li class="level1"><div class="li"> pppd не имеет бита setuid root и запустивший пользователь - не root.</div>
+</li>
+<li class="level1"><div class="li"> Ядро не поддерживает PPP, например, PPP-драйвер ядра не вкомпилирован в ядро или не может быть загружен.</div>
+</li>
+<li class="level1"><div class="li"> pppd завершился потому что ему был отправлен сигнал <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">SIGINT</a></span>, <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">SIGTERM</a></span> или <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">SIGHUP</a></span>.</div>
+</li>
+<li class="level1"><div class="li"> Последовательный порт не может быть заблокирован.</div>
+</li>
+<li class="level1"><div class="li"> Последовательный порт не может быть открыт.</div>
+</li>
+<li class="level1"><div class="li"> Сценарий <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">connect</a></span> был завершён с ошибкой (вернул ненулевой статус завершения).</div>
+</li>
+<li class="level1"><div class="li"> Команда, указанная в качестве аргумента опции pty не может быть запущена.</div>
+</li>
+<li class="level1"><div class="li"> Ошибка согласования PPP, такая что для достижения партнёра не может быть запущен хотя бы один сетевой протокол (например IP).</div>
+</li>
+<li class="level1"><div class="li"> Ошибка аутентификации системы партнёра (или аутентификация была отклонена).</div>
+</li>
+<li class="level1"><div class="li"> Канал был установлен успешно и завершился по причине простоя.</div>
+</li>
+<li class="level1"><div class="li"> Соединение было установлено успешно и было завершено по причине достижения лимита времени.</div>
+</li>
+<li class="level1"><div class="li"> Был согласован обратный вызов и вскоре должен последовать входящий вызов.</div>
+</li>
+<li class="level1"><div class="li"> Канал был закрыт по причине отсутствия ответов от партнёра на эхо-запрос.</div>
+</li>
+<li class="level1"><div class="li"> Связь была завершена по причине зависания модема.</div>
+</li>
+<li class="level1"><div class="li"> Согласование PPP было неудачным из-за обнаружения режима замыкания последовательного устройства.</div>
+</li>
+<li class="level1"><div class="li"> Сценарий инициализации завершился не удачно (вернул ненулевой статус завершения).</div>
+</li>
+<li class="level1"><div class="li"> Не удалось подтвердить свою подлинность партнёру.</div>
+</li>
+</ol>
+
+</div>
+
+<h1><a name="сценарии" id="сценарии">СЦЕНАРИИ</a></h1>
+<div class="level1">
+
+<p>
+
+pppd вызывает сценарии на различных этапах своей работы, что можно использовать для запуска вспомогательных процессов, учитывающих специфику узла. Эти сценарии обычно являются сценариями оболочки, но могут быть двоичными исполняемыми файлами. pppd не ожидает завершения сценариев (исключая сценарий ip-pre-up). Сценарии исполняются от пользователя root (с нулевыми реальным и эффективным идентификаторами), так что они могут обновлять таблицы маршрутизации или запускать привилегированные демоны. Соблюдайте осторожность, чтобы содержимое этих сценариев не скомпрометировало безопасность Вашей системы. pppd запускает сценарии с перенаправлением стандартного ввода, вывода и диагностического потока в /dev/null, и с пустым окружением, за исключением некоторых переменных окружения, которые предоставляют информацию о канале. pppd устанавливает следующие переменные окружения:
+</p>
+
+</div>
+
+<h2><a name="device" id="device">DEVICE</a></h2>
+<div class="level2">
+
+<p>
+
+Имя используемого последовательного устройства tty.
+</p>
+
+</div>
+
+<h2><a name="ifname" id="ifname">IFNAME</a></h2>
+<div class="level2">
+
+<p>
+
+Имя используемого сетевого интерфейса.
+</p>
+
+</div>
+
+<h2><a name="iplocal" id="iplocal">IPLOCAL</a></h2>
+<div class="level2">
+
+<p>
+
+IP адрес локального конца канала. Он устанавливается только если по завершению согласования IPCP.
+</p>
+
+</div>
+
+<h2><a name="ipremote" id="ipremote">IPREMOTE</a></h2>
+<div class="level2">
+
+<p>
+
+IP-адрес удалённого конца канала. Он устанавливается только по завершению согласования IPCP.
+</p>
+
+</div>
+
+<h2><a name="peername" id="peername">PEERNAME</a></h2>
+<div class="level2">
+
+<p>
+
+Подтверждённое имя партнёра. Оно устанавливается, только если партнёр подтвердил свою подлинность.
+</p>
+
+</div>
+
+<h2><a name="speed1" id="speed1">SPEED</a></h2>
+<div class="level2">
+
+<p>
+
+Скорость в бодах устройства tty.
+</p>
+
+</div>
+
+<h2><a name="orig_uid" id="orig_uid">ORIG_UID</a></h2>
+<div class="level2">
+
+<p>
+
+Реальный идентификатор имени пользователя, запустившего pppd.
+</p>
+
+</div>
+
+<h2><a name="ppplogname" id="ppplogname">PPPLOGNAME</a></h2>
+<div class="level2">
+
+<p>
+
+Реальное имя пользователя, запустившего pppd. Переменная всегда установлена.
+</p>
+
+<p>
+Для сценариев <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ip-down</a></span> и <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">auth-down</a></span>, pppd также установит следующие переменные, отражающие статистику соединения:
+</p>
+
+</div>
+
+<h2><a name="connect_time" id="connect_time">CONNECT_TIME</a></h2>
+<div class="level2">
+
+<p>
+
+Количество секунда от начала согласования PPP до завершения соединения.
+</p>
+
+</div>
+
+<h2><a name="bytes_sent" id="bytes_sent">BYTES_SENT</a></h2>
+<div class="level2">
+
+<p>
+
+Количество отправленных байт (на уровне последовательного порта) в течение соединения.
+</p>
+
+</div>
+
+<h2><a name="bytes_rcvd" id="bytes_rcvd">BYTES_RCVD</a></h2>
+<div class="level2">
+
+<p>
+
+Количество принятых байт (на уровне последовательного порта) в течение соединения.
+</p>
+
+</div>
+
+<h2><a name="linkname" id="linkname">LINKNAME</a></h2>
+<div class="level2">
+
+<p>
+
+Логическое имя канала, устанавливается опцией <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">linkname</a></span>.
+</p>
+
+</div>
+
+<h2><a name="dns1" id="dns1">DNS1</a></h2>
+<div class="level2">
+
+<p>
+
+Если партнёр предоставляет адреса <acronym title="Domain Name Server">DNS</acronym>-серверов, эта переменная задаёт адрес первого предоставляемого <acronym title="Domain Name Server">DNS</acronym>-сервера.
+</p>
+
+</div>
+
+<h2><a name="dns2" id="dns2">DNS2</a></h2>
+<div class="level2">
+
+<p>
+
+Если партнёр предоставляет адреса <acronym title="Domain Name Server">DNS</acronym>-серверов, эта переменная задаёт адрес второго предоставляемого <acronym title="Domain Name Server">DNS</acronym>-сервера.
+</p>
+
+<p>
+pppd вызывает следующие сценарии, если они существуют. Их отсутствие не является ошибкой.
+</p>
+
+</div>
+
+<h2><a name="etcpppauth-up" id="etcpppauth-up">/etc/ppp/auth-up</a></h2>
+<div class="level2">
+
+<p>
+
+Программа или сценарий, который выполняется после того, как удалённая система подтвердила свою подлинность. Он выполняется со следующими параметрами:
+</p>
+<pre class="code">имя_интерфейса имя_партнёра имя_пользователя tty_устройство скорость</pre>
+
+<p>
+Отметим, что этот сценарий не будет выполнен, если партнёр не подтвердил свою подлинность, например при использовании опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">noauth</a></span>.
+</p>
+
+</div>
+
+<h2><a name="etcpppauth-down" id="etcpppauth-down">/etc/ppp/auth-down</a></h2>
+<div class="level2">
+
+<p>
+
+Программа или сценарий, который исполняется при пропадании канала, если до этого был вызван <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/auth-up</a></span>. Он выполняется тем же способом и с теми же параметрами, что и <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/auth-up</a></span>.
+</p>
+
+</div>
+
+<h2><a name="etcpppip-pre-up" id="etcpppip-pre-up">/etc/ppp/ip-pre-up</a></h2>
+<div class="level2">
+
+<p>
+
+Программа или сценарий, который выполняется перед запуском сетевого интерфейса ppp. Он выполняется с теми же параметрами, что и сценарий <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ip-up</a></span> (см. ниже). В этой точке интерфейс существует и имеет назначенный ему IP-адрес, но остаётся неактивным. Это может быть использовано для добавления правил пакетного фильтра, перед тем как какой-либо IP-трафик пройдёт через интерфейс. pppd будет ожидать завершения этого сценария перед тем как переключить интерфейс в активное состояние, так что сценарий должен работать быстро.
+</p>
+
+</div>
+
+<h2><a name="etcpppip-up" id="etcpppip-up">/etc/ppp/ip-up</a></h2>
+<div class="level2">
+
+<p>
+
+Программа или сценарий, который будет запущен когда канал станет доступным для отправки и приёма IP-пакетов (по завершении IPCP). Он исполняется с параметрами
+</p>
+<pre class="code">имя_интерфейса tty_устройство скорость местный_IP_адрес удалённый_IP_адрес ipparam</pre>
+
+</div>
+
+<h2><a name="etcpppip-down" id="etcpppip-down">/etc/ppp/ip-down</a></h2>
+<div class="level2">
+
+<p>
+
+Программа или сценарий, который будет запущен когда канал более не доступен для отправки и приёма IP-пакетов. Этот сценарий может быть использован для отмены действия сценариев <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/ip-up</a></span> и <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/ip-pre-up</a></span>. Он вызывается таким же образом и с теми же параметрами, что и сценарий <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ip-up</a></span>.
+</p>
+
+</div>
+
+<h2><a name="etcpppipv6-up" id="etcpppipv6-up">/etc/ppp/ipv6-up</a></h2>
+<div class="level2">
+
+<p>
+
+Подобен <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/ip-up</a></span>, за исключением того, что исполняется когда канал доступен для отправки или приёма IPv6-пакетов. Он исполняется со следующими параметрами:
+</p>
+<pre class="code">имя_интерфейса tty_устройство скорость местный_адрес_канала удалённый_адрес_канала ipparam</pre>
+
+</div>
+
+<h2><a name="etcpppipv6-down" id="etcpppipv6-down">/etc/ppp/ipv6-down</a></h2>
+<div class="level2">
+
+<p>
+
+Подобен <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/ip-down</a></span>, но выполнится когда пакеты IPv6 больше не могут передаваться по каналу. Он исполняется с теми же параметрами, что и сценарий <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ipv6-up</a></span>.
+</p>
+
+</div>
+
+<h2><a name="etcpppipx-up" id="etcpppipx-up">/etc/ppp/ipx-up</a></h2>
+<div class="level2">
+
+<p>
+
+Программа или сценарий, который будет выполнен когда канал станет доступен для отправки или приёма IPX-пакетов (после согласования IPXCP). Он исполняется с параметрами:
+</p>
+<pre class="code">имя_интерфейса tty_устройство скорость номер_сети адрес_локального_IPX_узла адрес_удалённого_IPX_узла
+локальный_протокол_маршрутизации_IPX удалённый_протокол_маршрутизации_IPX имя_локального_маршрутизатора_IPX
+имя_удалённого_маршрутизатора_IPX ipparam pppd-pid</pre>
+
+<p>
+Поля местный_протокол_маршрутизации_IPX и удалённый_протокол_маршрутизации_IPX могут быть одним из следующих:
+</p>
+<ul>
+<li class="level1"><div class="li"> NONE для указания, что протокол маршрутизации не используется</div>
+</li>
+<li class="level1"><div class="li"> RIP для указания, что должен быть использован RIP/SAP</div>
+</li>
+<li class="level1"><div class="li"> NLSP для указания, что должен быть использован Novell NLSP</div>
+</li>
+<li class="level1"><div class="li"> RIP NLSP для казания, что должны быть использован оба протокола RIP/SAP и NLSP</div>
+</li>
+</ul>
+
+</div>
+
+<h2><a name="etcpppipx-down" id="etcpppipx-down">/etc/ppp/ipx-down</a></h2>
+<div class="level2">
+
+<p>
+
+Программа или сценарий, который выполняется когда канал более не достуепн для отправки или приёма IPX-пакетов. Сценарий может быть использован для отмены действий сценария <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/ipx-up</a></span>. Он вызывается таким же образом и с теми же параметрами, что сценарий <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">ipx-up</a></span>.
+</p>
+
+</div>
+
+<h1><a name="файлы" id="файлы">ФАЙЛЫ</a></h1>
+<div class="level1">
+
+</div>
+
+<h2><a name="varrunpppn.pid_bsd_или_linux_etcppppppn.pid_другие" id="varrunpppn.pid_bsd_или_linux_etcppppppn.pid_другие">/var/run/pppn.pid (BSD или Linux), /etc/ppp/pppn.pid (другие)</a></h2>
+<div class="level2">
+
+<p>
+
+Идентификатор процесса pppd на интерфейсе ppp с номером n.
+</p>
+
+</div>
+
+<h2><a name="varrunppp-name.pid_bsd_или_linux_etcpppppp-name.pid_другие" id="varrunppp-name.pid_bsd_или_linux_etcpppppp-name.pid_другие">/var/run/ppp-name.pid (BSD или Linux), /etc/ppp/ppp-name.pid (другие)</a></h2>
+<div class="level2">
+
+<p>
+
+Идентификатор процесса pppd для логического канала соединения (см. опцию linkname).
+</p>
+
+</div>
+
+<h2><a name="varrunpppd2.tdb" id="varrunpppd2.tdb">/var/run/pppd2.tdb</a></h2>
+<div class="level2">
+
+<p>
+
+База данных, содержащая информацию о процессах pppd, интерфейсах и каналах, используется для объединения каналов в связки в многоканальном режиме. Может быть изучена внешней программой для получения информации о запущеных экземплярах pppd, интерфейсах и используемых ими устройствах, назначенных IP-адресах и т.п. /etc/ppp/pap-secrets Имена пользователей, пароли и IP-адреса для PAP-аутентификации. Этот файл должен принадлежать пользователю root и не должен быть доступен для чтения или записи ни одному другому пользователю. pppd поместит предупреждающее сообщение в журнал, если это не так.
+</p>
+
+</div>
+
+<h2><a name="etcpppchap-secrets" id="etcpppchap-secrets">/etc/ppp/chap-secrets</a></h2>
+<div class="level2">
+
+<p>
+
+Имена, секреты и IP-адреса используемые для аутентификации CHAP/<acronym title="Microsoft">MS</acronym>-CHAP/<acronym title="Microsoft">MS</acronym>-CHAPv2. Как и файл /etc/ppp/pap-secrets, этот файл должен принадлежать пользователю root и не должен быть доступен для чтения или записи любому другому пользователю. pppd поместит предупреждающее сообщение в журнал, если это не так.
+</p>
+
+</div>
+
+<h2><a name="etcpppsrp-secrets" id="etcpppsrp-secrets">/etc/ppp/srp-secrets</a></h2>
+<div class="level2">
+
+<p>
+
+Имена, секреты и IP-адреса для EAP-аутентификации. Как и файл /etc/ppp/pap-secrets, этот файл должен принадлежать пользователю root и не должен быть доступным для чтения или записи остальным пользователям. Если это не так, pppd поместит в журнал предупреждающее сообщение.
+</p>
+
+</div>
+
+<h2><a name="ppp_pseudonym" id="ppp_pseudonym">~/.ppp_pseudonym</a></h2>
+<div class="level2">
+
+<p>
+
+Сохранённый псевдоним SRP-SHA1 клиентской стороны. Подробнее см. опцию <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">srp-use-pseudonym</a></span>.
+</p>
+
+</div>
+
+<h2><a name="etcpppoptions" id="etcpppoptions">/etc/ppp/options</a></h2>
+<div class="level2">
+
+<p>
+
+Системные опции по умолчанию для pppd, читается перед пользовательскими опциями по умолчанию или опциями командной строки.
+</p>
+
+</div>
+
+<h2><a name="ppprc" id="ppprc">~/.ppprc</a></h2>
+<div class="level2">
+
+<p>
+
+Пользовательские опции по умолчанию, читаются перед <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">/etc/ppp/options.ttyname</a></span>.
+</p>
+
+</div>
+
+<h2><a name="etcpppoptions.ttyname" id="etcpppoptions.ttyname">/etc/ppp/options.ttyname</a></h2>
+<div class="level2">
+
+<p>
+
+Системные опции по умолчанию, используемые для последовательного порта, читаются после <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">~/.ppprc</a></span>. Для формировании части имени ttyname этого файла берётся имя порта, из которого удаляется /dev/ (если есть), а оставшиеся символы косой черты заменяются точками.
+</p>
+
+</div>
+
+<h2><a name="etcppppeers" id="etcppppeers">/etc/ppp/peers</a></h2>
+<div class="level2">
+
+<p>
+
+Каталог содержащий файлы опций, в которых могут быть указаны привилегированные опции, даже если pppd был запущен пользователем, не являющимся root. Системный администратор может создать в этом каталоге файл опций, разрешающий непривилегированным пользователям дозваниваться до определённых доверенных партнёров без требования аутентификации.
+</p>
+
+</div>
+
+<h1><a name="см._также" id="см._также">СМ. ТАКЖЕ</a></h1>
+<div class="level1">
+
+<p>
+
+<a href="?topic=chat&amp;category=8" class="wikilink2" title="man:chat_8" rel="nofollow">chat(8)</a>
+</p>
+
+<p>
+<a href="?topic=pppstats&amp;category=8" class="wikilink2" title="man:pppstats_8" rel="nofollow">pppstats(8)</a>
+</p>
+
+<p>
+<a href="/dokuwiki/man/rfc1144?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:rfc1144" rel="nofollow">RFC1144</a> В. Якобсон (V. Jacobson). Сжатие заголовков TCP/IP для низкоскоростных последовательных каналах. Февраль 1990.
+</p>
+
+<p>
+<a href="/dokuwiki/man/rfc1321?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:rfc1321" rel="nofollow">RFC1321</a> Р. Райвест (R. Rivest). Алгоритм свёртки сообщений MD5. Апрель 1992.
+</p>
+
+<p>
+<a href="/dokuwiki/man/rfc1332?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:rfc1332" rel="nofollow">RFC1332</a> Дж. МакГрегор (G. McGregor). Протокол управления интернет-протоколом (IPCP - Internet Protocol Control Protocol). Май 1992.
+</p>
+
+<p>
+<a href="/dokuwiki/man/rfc1334?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:rfc1334" rel="nofollow">RFC1334</a> Б. Ллойд (B. Lloyd), У. А. Симпсон (W. A. Simpson). Протоколы аутентификации PPP. Октябрь 1992.
+</p>
+
+<p>
+<a href="/dokuwiki/man/rfc1661?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:rfc1661" rel="nofollow">RFC1661</a> У. А. Симпсон (W. A. Simpson). Протокол точка-точка (PPP). Июль 1994.
+</p>
+
+<p>
+<a href="/dokuwiki/man/rfc1662?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:rfc1662" rel="nofollow">RFC1662</a> У. А. Симпсон (W. A. Simpson). HDLC-подобное кадрирование в PPP. Июль 1994.
+</p>
+
+<p>
+<a href="/dokuwiki/man/rfc2284?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:rfc2284" rel="nofollow">RFC2284</a> Л. Бланк (L. Blunk), Дж. Вольбрехт (J. Vollbrecht). Протокол расширяемой аутентификации (EAP). Март 1998.
+</p>
+
+<p>
+<a href="/dokuwiki/man/rfc2472?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:rfc2472" rel="nofollow">RFC2472</a> Д. Хэскин (D. Haskin). IP версии 6 поверх PPP. Декабрь 1998.
+</p>
+
+<p>
+<a href="/dokuwiki/man/rfc2945?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:rfc2945" rel="nofollow">RFC2945</a> Т. Вю (T. Wu). Аутентификация SRP и система обмена ключами (Key Exchange System). Сентябрь 2000.
+</p>
+
+<p>
+<a href="/dokuwiki/man/draft-ietf-pppext-eap-srp-03.txt?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:draft-ietf-pppext-eap-srp-03.txt" rel="nofollow">draft-ietf-pppext-eap-srp-03.txt</a> Дж. Карлсон (J. Carlson) и др. Протокол аутентификации EAP SRP-SHA1. Июль 2001.
+</p>
+
+</div>
+
+<h1><a name="замечания" id="замечания">ЗАМЕЧАНИЯ</a></h1>
+<div class="level1">
+
+<p>
+
+Отправкой сигналов из нижеследующего списка может быть достигнуто ограниченное управление работающим процессом pppd.
+</p>
+
+</div>
+
+<h2><a name="sigint_sigterm" id="sigint_sigterm">SIGINT, SIGTERM</a></h2>
+<div class="level2">
+
+<p>
+
+Эти сигналы заставят pppd закрыть канал (закрытием LCP), восстановить настройки последовательного устройства, и выйти. Если в настоящее время работает процесс connector или disconnector, pppd отправит такой же сигнал его группе процессов, так чтобы завершить этот процесс.
+</p>
+
+</div>
+
+<h2><a name="sighup" id="sighup">SIGHUP</a></h2>
+<div class="level2">
+
+<p>
+
+Этот сигнал заставит pppd закрыть канал, восстановить настройки последовательного устройства и закрыть последовательное устройство. Если была указана опция <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">persist</a></span> или <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">demand</a></span>, pppd попытается переоткрыть последовательное устройство и начать другое соединение (через период <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">holdoff</a></span>). Иначе, pppd завершится. Если этот сигнал принят во время периода <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">holdoff</a></span>, это заставит pppd немедленно завершить период <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">holdoff</a></span>. Если запущены процессы connector или disconnector, pppd отправит такой же сигнал его группе процессов.
+</p>
+
+</div>
+
+<h2><a name="sigusr1" id="sigusr1">SIGUSR1</a></h2>
+<div class="level2">
+
+<p>
+
+Этот сигнал переключит состояние опции <span class="curid"><a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">debug</a></span>.
+</p>
+
+</div>
+
+<h2><a name="sigusr2" id="sigusr2">SIGUSR2</a></h2>
+<div class="level2">
+
+<p>
+
+Этот сигнал заставит pppd пересогласовать сжатие. Это может быть полезно для повторного включения сжатия после того, как оно было отключено в результате неисправимой ошибки разжатия. (Неисправимые ошибки разжатия обычно означают ошибку в одной из реализаций).
+</p>
+
+</div>
+
+<h1><a name="авторы" id="авторы">АВТОРЫ</a></h1>
+<div class="level1">
+
+<p>
+
+Пол Маккеррас (Paul Mackerras) (paulus@samba.org), основываясь на более ранних работах Дрю Перкинса (Drew Perkins), Брэда Клементса (Brad Clements), Карла Фокса (Karl Fox), Грега Кристи (Greg Christy), и Брэда Паркера (Brad Parker).
+</p>
+
+</div>
+
+<h1><a name="авторы_перевода" id="авторы_перевода">АВТОРЫ ПЕРЕВОДА</a></h1>
+<div class="level1">
+
+<p>
+
+Перевод на русский язык выполнен на сайте коллективных переводов <a href="http://translated.by/" class="urlextern" title="http://translated.by/" rel="nofollow">http://translated.by/</a>. Авторы перевода: Владимир Ступин, Илья Архипенко (unlk) и другие.
+</p>
+
+</div>
+
+<h1><a name="авторское_право" id="авторское_право">АВТОРСКОЕ ПРАВО</a></h1>
+<div class="level1">
+
+<p>
+
+pppd защищён авторскими правами и доступен в соответствии с условиями, которые предоставляют право копирования и использования в форме исходных текстов или двоичной форме, в соответствии с условиями перечисленными ниже. Части pppd защищены следующими отметками об авторских правах:
+</p>
+<ul>
+<li class="level1"><div class="li"> Copyright © 1984-2000 Унивеситет Карнеги-Меллона. Все права защищены.</div>
+</li>
+<li class="level1"><div class="li"> Copyright © 1993-2004 Пол Маккерас (Paul Mackerras). Все права защищены.</div>
+</li>
+<li class="level1"><div class="li"> Copyright © 1995 Педро Роке Маркус (Pedro Roque Marques). Все права защищены.</div>
+</li>
+<li class="level1"><div class="li"> Copyright © 1995 Эрик Роузенкуист (Eric Rosenquist). Все права защищены.</div>
+</li>
+<li class="level1"><div class="li"> Copyright © 1999 Томми Комулайнен (Tommi Komulainen). Все права защищены.</div>
+</li>
+<li class="level1"><div class="li"> Copyright © 1999 Эндрю Триджелл (Andrew Tridgell)</div>
+</li>
+<li class="level1"><div class="li"> Copyright © 2000 Sun Microsystems, Inc. Все права защищены.</div>
+</li>
+<li class="level1"><div class="li"> Copyright © 2001 Sun Microsystems, Inc. Все права защищены.</div>
+</li>
+<li class="level1"><div class="li"> Copyright © 2002 Google, Inc. Все права защищены.</div>
+</li>
+</ul>
+
+<p>
+
+Авторские права содержат следующие утверждения.
+</p>
+
+<p>
+Распространение и использование в виде исходного и исполнимого кода, с модификациями или без них, разрешается с соблюдением следующих условий:
+</p>
+
+<p>
+1. Повторно распространяемый исходный код должен содержать приведённые выше отметки об авторских правах, этот список условий и следующий отказ от ответственности.
+</p>
+
+<p>
+2. Повторное распространение в двоичной форме должно воспроизводить приведённые выше отметки об авторских правах, этот список условий и следующий отказ от ответственности в разделе документации и/или других материалах предоставляемых с дистрибутивом.
+</p>
+
+<p>
+3. Имя Университет Карнеги Меллона не должно использоваться для подписывания или продвижения продуктов производных от этого программного обеспечения без предшествующего письменного разрешения. За разрешениями или любыми юридическими деталями, пожалуйста обращайтесь на
+</p>
+
+<p>
+Office of Technology Transfer
+Carnegie Mellon University
+5000 Forbes Avenue
+Pittsburgh, PA 15213-3890
+(412) 268-4387, fax: (412) 268-7395
+tech-transfer@andrew.cmu.edu
+</p>
+
+<p>
+3b. Имена авторов этого программного обеспечения не должны использоваться для подписывания или продвижения продуктов производных от этого программного обеспечения без предшествующего письменного разрешения.
+</p>
+
+<p>
+4. Повторное распространение в любой форме должно абсолютно сохранять следующие подтверждения.
+</p>
+
+<p>
+Этот продукт включает программное обеспечение, разработанное компанией Computing Services в Университете Карнеги Меллона (<a href="http://www.cmu.edu/computing/" class="urlextern" title="http://www.cmu.edu/computing/" rel="nofollow">http://www.cmu.edu/computing/</a>).
+</p>
+
+<p>
+Этот продукт включает программное обеспечение, разработанное Полом Маккеррасом (Paul Mackerras) &lt;paulus@samba.org&gt;.
+</p>
+
+<p>
+Этот продукт включает программное обеспечение, разработанное Педро Роке Маркусом (Pedro Roque Marques) &lt;pedro_m@yahoo.com&gt;.
+</p>
+
+<p>
+Этот продукт включает программное обеспечение, разработанное Томми Комулайнен (Tommi Komulainen) &lt;Tommi.Komulainen@iki.fi&gt;.
+</p>
+
+<p>
+УНИВЕРСИТЕТ КАРНЕГИ МЕЛЛОНА ОТКАЗЫВАЕТСЯ ОТ ВСЕХ ГАРАНТИЙ ПО ОТНОШЕНИЮ К ЭТОМУ ПРОГРАММНОМУ ОБЕСПЕЧЕНИЮ, ВКЛЮЧАЯ ВСЕ НЕЯВНЫЕ ГАРАНТИИ КОММЕРЧЕСКОЙ ЦЕННОСТИ И ПРИГОДНОСТИ, В СЛУЧАЕ ЕСЛИ УНИВЕРСИТЕТ КАРНЕГИ МЕЛЛОНА БУДЕТ ПОВИНЕН В ЛЮБЫХ ОСОБЫХ, НЕПРЯМЫХ ИЛИ ПОСЛЕДУЮЩИХ УБЫТКАХ ИЛИ ДРУГИХ ПРОИЗОШЕДШИХ УБЫТКАХ АБСОЛЮТНОЙ УТРАТЫ ПРИГОДНОСТИ К ИСПОЛЬЗОВАНИЮ, ДАННЫХ ИЛИ ДОХОДА, НЕЗАВИСИМО ОТ ДЕЙСТВИЯ ДОГОВОРА, ХАЛАТНОСТИ ИЛИ ДРУГИХ НЕЗАКОННЫХ ДЕЙСТВИЙ, ВОЗНИКШИХ ВНЕ ИЛИ В СВЯЗИ С ИСПОЛЬЗОВАНИЕМ ИЛИ ИСПОЛНЕНИЯ ЭТОГО ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ.
+</p>
+
+<p>
+АВТОРЫ ЭТОГО ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ ОТКАЗЫВАЮТСЯ ОТ ВСЕХ ГАРАНТИЙ ПО ОТНОШЕНИЮ К ЭТОМУ ПРОГРАММНОМУ ОБЕСПЕЧЕНИЮ, ВКЛЮЧАЯ ВСЕ НЕЯВНЫЕ ГАРАНТИИ КОММЕРЧЕСКОЙ ЦЕННОСТИ И ПРИГОДНОСТИ, В СЛУЧАЕ ЕСЛИ АВТОРЫ БУДУТ ПОВИННЫ В ЛЮБЫХ ОСОБЫХ, НЕПРЯМЫХ ИЛИ ПОСЛЕДУЮЩИХ УБЫТКАХ ИЛИ ДРУГИХ ПРОИЗОШЕДШИХ УБЫТКАХ АБСОЛЮТНОЙ УТРАТЫ ПРИГОДНОСТИ К ИСПОЛЬЗОВАНИЮ, ДАННЫХ ИЛИ ДОХОДА, НЕЗАВИСИМО ОТ ДЕЙСТВИЯ ДОГОВОРА, ХАЛАТНОСТИ ИЛИ ДРУГИХ НЕЗАКОННЫХ ДЕЙСТВИЙ, ВОЗНИКШИХ ВНЕ ИЛИ В СВЯЗИ С ИСПОЛЬЗОВАНИЕМ ИЛИ ИСПОЛНЕНИЯ ЭТОГО ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ.
+</p>
+
+</div>
+
+<h1><a name="ссылки_на_этот_документ" id="ссылки_на_этот_документ">ССЫЛКИ НА ЭТОТ ДОКУМЕНТ</a></h1>
+<div class="level1">
+
+<p>
+
+<a href="?topic=pppoe-connect&amp;category=8" class="wikilink1" title="man:pppoe-connect_8">adsl-connect(8)</a>, <a href="?topic=pppoe-setup&amp;category=8" class="wikilink1" title="man:pppoe-setup_8">adsl-setup(8)</a>, <a href="?topic=pppoe-start&amp;category=8" class="wikilink1" title="man:pppoe-start_8">adsl-start(8)</a>, <a href="?topic=pppoe-status&amp;category=8" class="wikilink1" title="man:pppoe-status_8">adsl-status(8)</a>, <a href="?topic=pppoe-stop&amp;category=8" class="wikilink1" title="man:pppoe-stop_8">adsl-stop(8)</a>, <a href="?topic=capiplugin&amp;category=8" class="wikilink2" title="man:capiplugin_8" rel="nofollow">capiplugin(8)</a>, <a href="?topic=gkrellm&amp;category=1" class="wikilink2" title="man:gkrellm_1" rel="nofollow">gkrellm(1)</a>, <a href="?topic=gnokiid&amp;category=8" class="wikilink2" title="man:gnokiid_8" rel="nofollow">gnokiid(8)</a>, <a href="?topic=irnet&amp;category=4" class="wikilink2" title="man:irnet_4" rel="nofollow">irnet(4)</a>, <a href="?topic=irnetd&amp;category=8" class="wikilink2" title="man:irnetd_8" rel="nofollow">irnetd(8)</a>, <a href="?topic=isdn_audio&amp;category=4" class="wikilink2" title="man:isdn_audio_4" rel="nofollow">isdn_audio(4)</a>, <a href="?topic=pppd-radattr&amp;category=8" class="wikilink1" title="man:pppd-radattr_8">pppd-radattr(8)</a>, <a href="?topic=pppd-radius&amp;category=8" class="wikilink1" title="man:pppd-radius_8">pppd-radius(8)</a>, <a href="?topic=pppoe&amp;category=8" class="wikilink1" title="man:pppoe_8">pppoe(8)</a>, <a href="?topic=pppoe-connect&amp;category=8" class="wikilink1" title="man:pppoe-connect_8">pppoe-connect(8)</a>, <a href="?topic=pppoe-relay&amp;category=8" class="wikilink1" title="man:pppoe-relay_8">pppoe-relay(8)</a>, <a href="?topic=pppoe-server&amp;category=8" class="wikilink1" title="man:pppoe-server_8">pppoe-server(8)</a>, <a href="?topic=pppoe-setup&amp;category=8" class="wikilink1" title="man:pppoe-setup_8">pppoe-setup(8)</a>, <a href="?topic=pppoe-sniff&amp;category=8" class="wikilink1" title="man:pppoe-sniff_8">pppoe-sniff(8)</a>, <a href="?topic=pppoe-start&amp;category=8" class="wikilink1" title="man:pppoe-start_8">pppoe-start(8)</a>, <a href="?topic=pppoe-status&amp;category=8" class="wikilink1" title="man:pppoe-status_8">pppoe-status(8)</a>, <a href="?topic=pppoe-stop&amp;category=8" class="wikilink1" title="man:pppoe-stop_8">pppoe-stop(8)</a>, <a href="/dokuwiki/man/pppoe.conf_5?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink1" title="man:pppoe.conf_5">pppoe.conf(5)</a>, <a href="?topic=pptp&amp;category=8" class="wikilink1" title="man:pptp_8">pptp(8)</a>, <a href="?topic=slattach&amp;category=8" class="wikilink1" title="man:slattach_8">slattach(8)</a>, <a href="?topic=synce-serial-abort&amp;category=8" class="wikilink2" title="man:synce-serial-abort_8" rel="nofollow">synce-serial-abort(8)</a>, <a href="?topic=synce-serial-config&amp;category=8" class="wikilink2" title="man:synce-serial-config_8" rel="nofollow">synce-serial-config(8)</a>, <a href="?topic=synce-serial-start&amp;category=8" class="wikilink2" title="man:synce-serial-start_8" rel="nofollow">synce-serial-start(8)</a>, <a href="?topic=ttyi&amp;category=4" class="wikilink2" title="man:ttyi_4" rel="nofollow">ttyi(4)</a>, <a href="/dokuwiki/man/vtund.conf_5?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:vtund.conf_5" rel="nofollow">vtund.conf(5)</a>, <a href="?topic=wvdial&amp;category=1" class="wikilink2" title="man:wvdial_1" rel="nofollow">wvdial(1)</a>, <a href="/dokuwiki/man/wvdial.conf_5?DokuWiki=1bb9345e6d2e165210a647abe990d503" class="wikilink2" title="man:wvdial.conf_5" rel="nofollow">wvdial.conf(5)</a>
+
+</p>
+
+</div>
+
+        
+      
+    
+      <div class="stylefoot">
+        <div class="meta">
+          <div class="user">
+                    </div>
+          <div class="doc">
+          man/pppd_8.txt · Последние изменения: 2009-02-05 20:24 (внешнее изменение)          </div>
+        </div>
+      </div>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="pppd" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

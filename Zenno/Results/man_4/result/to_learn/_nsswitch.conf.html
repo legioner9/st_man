@@ -1,0 +1,684 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN nsswitch.conf (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, nsswitch.conf"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="nsswitch.conf" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">nsswitch.conf (4)</font><hr><li> <a href="/man.shtml?topic=nsswitch.conf&amp;category=4&amp;russian=4"><u>nsswitch.conf</u></a> (4) <font color="#555555"> ( Solaris man: Специальные файлы /dev/* )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=nsswitch.conf&amp;category=4&amp;russian=0"><u>nsswitch.conf</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=nsswitch.conf&amp;category=5&amp;russian=1"><u>nsswitch.conf</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=nsswitch.conf&amp;category=5&amp;russian=0"><u>nsswitch.conf</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=nsswitch.conf&amp;category=5&amp;russian=2"><u>nsswitch.conf</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Форматы файлов</h1></td>
+<td><h1 align="right">nsswitch.conf(4)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+
+<p><b>nsswitch.conf</b> - конфигурационный файл для выбора соответствующей службы имен</p>
+
+<h2><a name="synopsis">СИНТАКСИС</a></h2>
+<dl><dt></dt><dd><tt>
+/etc/nsswitch.conf
+</tt></dd></dl>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<p>Операционная система использует ряд баз данных с информацией о хостах,
+сетях, пользователях/паролях и группах. Данные в эти базы могут поступать из различных
+источников: имена и адреса хостов, например, можно найти в файле <b>/etc/hosts</b>,
+с помощью службы NIS, NIS+, LDAP или DNS. Для каждой базы данных можно 
+использовать любое количество источников; источники информации и порядок их просмотра 
+задаются в файле <b>/etc/nsswitch.conf</b>.</p>
+
+<p>Файл используется для управления следующими базами данных:</p>
+
+<table cellspacing="4" width="80%" border="1">
+<tbody><tr><td width="20%"><b>База данных</b></td>	<td><b>Используется программами</b></td></tr>
+<tr><td width="20%"><b>aliases</b></td>	<td><b>sendmail(1M)</b></td></tr>
+<tr><td width="20%"><b>automount</b></td>	<td><b>automount(1M)</b></td></tr>
+<tr><td width="20%"><b>bootparams</b></td>	<td><b>rpc.bootparamd(1M)</b></td></tr>
+<tr><td width="20%"><b>ethers</b></td>	<td><b>ethers(3SOCKET)</b></td></tr>
+<tr><td width="20%"><b>group</b></td>	<td><b>getgrnam(3C)</b></td></tr>
+<tr><td width="20%"><b>hosts</b></td>	<td><b>gethostbyname(3NSL)</b>. См. 
+"<a href="#netconfig">Взаимодействие с netconfig</a>".</td></tr>
+<tr><td width="20%"><b>ipnodes</b></td>	<td><b>getipnodebyname(3SOCKET)</b></td></tr>
+<tr><td width="20%"><b>netgroup</b></td>	<td><b>innetgr(3C)</b></td></tr>
+<tr><td width="20%"><b>netmasks</b></td>	<td><b><a href="/man.shtml?topic=ifconfig&amp;category=1">ifconfig(1M)</a></b></td></tr>
+<tr><td width="20%"><b>networks</b></td>	<td><b>getnetbyname(3SOCKET)</b></td></tr>
+<tr><td width="20%"><b>passwd</b></td>	<td><b>getpwnam(3C)</b>, <b>getspnam(3C)</b></td></tr>
+<tr><td valign="top" width="20%"><b>printers</b></td>	<td><b>lp(1)</b>, <b>lpstat(1)</b>, <b>cancel(1)</b>,
+<b>lpr(1B)</b>, <b>lpq(1B)</b>, <b>lprm(1B)</b>, <b>in.lpd(1M)</b>, <b>lpadmin(1M)</b>,  
+<b>lpget(1M)</b>, <b>lpset(1M)</b></td></tr>
+<tr><td width="20%"><b>protocols</b></td>	<td><b>getprotobyname(3SOCKET)</b></td></tr>
+<tr><td valign="top" width="20%"><b>publickey</b></td>	<td><b>getpublickey(3NSL)</b>,
+<b>secure_rpc(3NSL)</b></td></tr>
+<tr><td width="20%"><b>rpc</b></td>	<td><b>getrpcbyname(3NSL)
+</b></td></tr><tr><td width="20%"><b>sendmailvars</b></td>	<td><b>sendmail(1M)</b></td></tr>
+<tr><td valign="top" width="20%"><b>services</b></td>	<td><b>getservbyname(3SOCKET)</b>.
+См. "<a href="#netconfig">Взаимодействие с netconfig</a>".</td></tr>
+</tbody></table>
+
+<p>При этом можно использовать следующие источники:</p>
+
+<table cellspacing="4" width="80%" border="1">
+<tbody><tr><td><b>Источник</b></td>	<td><b>Использует</b></td></tr>
+<tr><td valign="top" width="20%"><b>files</b></td>	<td>Файлы <b>/etc/hosts</b>, 
+<b>/etc/passwd</b>, <b>/etc/inet/inodes</b>, <b>/etc/shadow</b></td></tr>
+<tr><td valign="top" width="20%"><b>nis</b></td>	<td><b>Службу NIS(YP)</b></td></tr>
+<tr><td valign="top" width="20%"><b>nisplus</b></td>	<td><b>Службу NIS+</b></td></tr>
+<tr><td valign="top" width="20%"><b>ldap</b></td>	<td><b>Службу LDAP</b></td></tr>
+<tr><td valign="top" width="20%"><b>dns</b></td>	<td>Только для имен хостов;  
+использует службу доменных имен Internet.</td></tr>
+<tr><td valign="top" width="20%"><b>compat</b></td>	<td>Только для учетных записей пользователей
+и групп; поддерживает кострукции "<b>+</b>" и "<b>-</b>". См. <a href="#plusminus">"<b>Взаимодействие с 
+конструкциями +/-</b>"</a>.</td></tr>
+<tr><td valign="top" width="20%"><b>user</b></td>	<td>Только для принтеров;  
+реализует поддержку файла <b>${HOME}/.printers</b>.</td></tr>
+<tr><td valign="top" width="20%"><b>xfn</b></td>	<td>Только для принтеров;
+реализует поддержку контекстов принтеров FNS. Позволяет отказаться от использования контекстов
+принтеров FNS.</td></tr>
+</tbody></table>
+
+<p>Для каждой базы данных имеется запись в файле <b>/etc/nsswitch.conf</b>.
+Обычно эти записи будут простыми, например "<b>protocols: files</b>" или 
+"<b>networks: files nisplus</b>". Однако при указании нескольких источников иногда 
+необходимо точно указать условия, при которых будет использоваться каждый источник.
+Источник может возвратить один из следующих кодов:</p>
+
+<table cellspacing="4" width="80%" border="1">
+<tbody><tr><td valign="top" width="20%"><b>Состояние</b></td>    <td><b>Значение</b></td></tr>
+<tr><td valign="top" width="20%"><b>SUCCESS</b></td>    <td>Запрошенная запись была найдена в базе данных.</td></tr>
+<tr><td valign="top" width="20%"><b>UNAVAIL</b></td>    <td>Источник не сконфигурирован в данной системе или 
+произошел внутренний сбой.</td></tr>
+<tr><td valign="top" width="20%"><b>NOTFOUND</b></td>    <td>Источник сообщил, что соответствующей записи нет</td></tr>
+<tr><td valign="top" width="20%"><b>TRYAGAIN</b></td>    <td>Источник занят или не отвечает; возможно, ответ 
+будет получен при следующих попытках.</td></tr>
+</tbody></table>
+
+<p>Для каждого кода статуса возможны два действия:</p>
+
+<table cellspacing="4" width="80%" border="1">
+<tbody><tr><td valign="top" width="20%"><b>Действие</b></td>    <td><b>Значение</b></td></tr>
+<tr><td valign="top" width="20%"><b>continue</b></td>    <td>Обратиться к следующему источнику в списке.</td></tr>
+<tr><td valign="top" width="20%"><b>return</b></td>    <td>Завершить поиск.</td></tr>
+</tbody></table>
+
+<p>Кроме того, для статуса <b>TRYAGAIN</b> возможны также следующие действия:</p>
+
+<table cellspacing="4" width="80%" border="1">
+<tbody><tr><td valign="top" width="20%"><b>Действие</b></td>	<td><b>Значение</b></td></tr>
+<tr><td valign="top" width="20%"><b>forever</b></td>   
+<td>Повторять обращения к текущему источнику, пока не будет получен ответ.</td></tr>
+<tr><td valign="top" width="20%"><b>n</b></td>    
+<td>Повторить обращения к текущему источнику еще <b>n</b> раз, где <b>n</b> - целое число от 0 
+до <b>MAX_INT</b> (т.е., 2,14 миллиарда). После <b>n</b> попыток перейти к следующему источнику.</td></tr>
+</tbody></table>
+
+<p>Полный синтаксис записи имеет вид:</p>
+
+<dl>
+<dt>&lt;запись&gt; ::= </dt>
+<dd>  &lt;база данных&gt; "<b>:</b>" [&lt;источник&gt; [&lt;критерии&gt;]]*</dd>
+<dt>&lt;критерии&gt;  ::= </dt>
+<dd>  "<b>[</b>" &lt;критерий&gt;+ "<b>]</b>"</dd>
+<dt>&lt;критерий&gt; ::= </dt>
+<dd>  &lt;статус&gt; "<b>=</b>" &lt;действие&gt;</dd>
+<dt>&lt;статус&gt; ::= </dt>
+<dd>  "<b>success</b>" | "<b>notfound</b>" | "<b>unavail</b>" | "<b>tryagain</b>"</dd>
+</dl>
+
+<p>Для всех действий, кроме <b>TRYAGAIN</b>, используется следующий синтаксис:</p>
+
+<dl>
+<dt>&lt;действие&gt; ::=</dt>
+<dd>  "<b>return</b>"  | "<b>continue</b>"</dd>
+</dl>
+
+<p>Для статуса <b>TRYAGAIN</b> синтаксис действия следующий:</p>
+
+<dl>
+<dt>&lt;действие&gt; ::=</dt>
+<dd>"<b>return</b>" | "<b>continue</b>" | "<b>forever</b>" | &lt;n&gt;</dd>
+<dt>&lt;n&gt; ::=</dt>
+<dd>0...<b>MAX_INT</b></dd>
+</dl>
+
+<p>Каждая запись занимает одну строку файла. Пустые строки и строки, начинающиеся с пробела,
+игнорируются. Все символы строки, начиная с символа <b>#</b>, тоже игнорируются; 
+символ <b>#</b> можно указывать в любой позиции строки, - он обозначает начало комментария.
+Имена <b>баз данных</b> и <b>источников</b> зависят от регистра символов, но в именах
+<b>действий</b> и <b>состояний</b> регистр символов значения не имеет.</p>
+
+<p>Библиотечные функции содержат встроенные стандартные записи, которые используются при отсутствиии
+или синтаксической некорректности соответствующих записей в файле <b>nsswitch.conf</b>.</p>
+
+<p>Стандартные критерии для серверов DNS и NIS в режиме перенаправления DNS ("DNS-forwarding") 
+(если DNS-сервер не отвечает или занят):<br>
+&nbsp;&nbsp;<b>[SUCCESS=return NOTFOUND=continue UNAVAIL=continue TRYAGAIN=continue]</b>.</p>
+
+<p>Стандартные критерии для всех остальных источников:<br>
+&nbsp;&nbsp;<b>[SUCCESS=return NOTFOUND=continue UNAVAIL=continue TRYAGAIN=forever]</b>.</p>
+
+<p>Стандартные или явно заданные критерии не имеют смысла, если задаются
+после последнего источника в записи; они игнорируются, поскольку стандартное действие 
+в этом случае - возвращать результат вызывающему, независимо от кода статуса, который
+вернул источник.</p>
+
+<h3>&nbsp;&nbsp;<a name="netconfig">Взаимодействие с netconfig</a></h3>
+
+<p>Чтобы гарантировать возврат согласованных результатов, функции
+<b>gethostbyname(3NSL)</b>, <b>getipnodebyname(3SOCKET)</b>,
+<b>getservbyname(3SOCKET)</b> и <b>netdir_getbyname(3NSL)</b> реализованы на базе
+одной и той же внутренней библиотечной функции. Эта функция реализует общесистемные
+правила поиска хостов, сетей и служб на базе записей семейства <b>inet</b> в файле <b>netconfig(4)</b>,
+и использует записи в файле <b>nsswitch.conf</b> только если записи в файле <b>netconfig</b> 
+содержат "<b>-</b>" в последнем столбце (там задаеются библиотеки преобразования имен в адреса, <b>nametoaddr</b>).
+Подробнее об этом см. в разделах "<b>ПРИМЕЧАНИЯ</b>" на страницах справочного руководства
+<b>gethostbyname(3NSL)</b> и <b>getservbyname(3SOCKET)</b>.</p>
+
+<h3>&nbsp;&nbsp;<a name="nis">Взаимодействие с сервером NIS+ в режиме совместимости с NIS/YP</a></h3>
+
+<p>Сервер NIS+ может работать в режиме совместимости с NIS ("YP-compatibility mode"), 
+когда он обрабьатывает запросы службы NIS (YP) наряду с запросами NIS+. В этом случае 
+клиенты получают из источника "<b>nis</b>" практически те же результаты (за исключением 
+функции <b>getspnam(3C)</b>), что и из "<b>nisplus</b>";  рекомендуется, однако, использовать
+"<b>nisplus</b>" вместо "<b>nis</b>".</p>
+
+<h3>&nbsp;&nbsp;<a name="dnsforwarding">Взаимодействие с сервером в режиме перенаправления DNS</a></h3>
+
+<p>Сервер NIS (YP) может работать в режиме "перенаправления DNS", когда он перенаправляет запросы
+поиска имен и адресов хостов, отсутствующих в его базе данных, серверу DNS. В этом случае указания
+"<b>nis</b>" в качестве источника для "<b>hosts</b>" достаточно для обеспечения поиска в DNS; 
+источник "<b>dns</b>" явно указывать не обязательно.</p>
+
+<p>В SunOS 5.3 (Solaris 2.3) и последующих версиях, сервер NIS+
+в режиме совместимости с NIS/YP может также обеспечивать редим перенаправления DNS 
+(см. <b>rpc.nisd(1M)</b>). Перенаправление выполняется только для запросов от клиентов YP;
+правила поиска хостов (<b>hosts</b>) на этих клиентах надо сконфигурировать соответствующим образом.</p>
+
+<h3>&nbsp;&nbsp;<a name="passwdaging">Устаревание паролей</a></h3>
+
+<p>При включении устаревания паролей допустимо использование лишь ограниченного набора
+источников для базы данных <b>passwd</b> в файле <b>/etc/nsswitch.conf</b>:</p>
+
+<pre>passwd:
+ files
+
+passwd:
+ files nis
+
+passwd:
+ files nisplus
+
+passwd:
+ files ldap
+
+passwd:
+ compat
+
+passwd_compat:
+ nisplus
+
+passwd_compat:
+ ldap
+</pre>
+
+<p>При любых других значениях команда <a href="/man.shtml?topic=passwd&amp;category=1"><b>passwd(1)</b></a> 
+не сработает при попытке изменить пароль после устаревания, что не позволит пользователю
+зарегистрироваться. Только перечисленные выше источники можно использовать при включенном
+устаревании паролей. Некорректные установки источников для <b>passwd</b> можно обойти
+с помощью опции <b>-r</b> команды <b>passwd(1)</b> (она задает репозитории, в которых
+меняются учетные записи пользователей). Эта опция имеет более высокий приоритет, чем установки в
+файле <b>nsswitch.conf</b>, и позволяет явно задать службу имен, с помощью которой вы хотите изменить 
+пароль.</p>
+
+<h3>&nbsp;&nbsp;<a name="plusminus">Взаимодействие с конструкциями +/-</a></h3>
+
+<p>Версии до SunOS 5.0 не поддерживали файл <b>nsswitch.conf</b>, но позволяли в некоторой
+степени управлять поиском. В файле <b>/etc/passwd</b> можно было задавать записи вида <b>+пользователь</b>
+(включить пользователя из базы NIS <b>passwd.byname</b>), <b>-пользователь</b>
+(исключить указанного пользователя) и <b>+</b> (включить всех пользователей из 
+базы NIS <b>passwd.byname</b>, кроме явно исключенных). Обычно задавалось правило 
+"все пользователи из файла и все пользователи из NIS", для задания которого в конце файла <b>/etc/passwd</b>
+добавлялась строка со знаком <b>+</b>. Файл <b>nsswitch.conf</b> обеспечивает другой сопособ реализации
+этого правила ("<b>passwd:  files nis</b>"), н требующий добавления записей <b>+</b> в файлы 
+<b>/etc/passwd</b> и <b>/etc/shadow</b> (этот файл впервые появился в SunOS 5.0, см. 
+<a href="/man.shtml?topic=shadow&amp;category=4"><b>shadow(4)</b></a>).</p>
+
+<p>Если этого недостаточно, источник, обеспечивающий полную совместимость с NIS/YP, поддерживает
+семантику <b>+</b>/<b>-</b> в полном объеме. Он читает файл <b>/etc/passwd</b> для функций 
+<b>getpwnam(3C)</b> и <b>/etc/shadow</b> для функций <b>getspnam(3C)</b> и, если находит 
+записи <b>+</b>/<b>-</b>, вызывает соответствующий источник. По умолчанию это "<b>nis</b>", 
+но стандартное значение можно переопределить, задав "<b>nisplus</b>" или "<b>ldap</b>" в качестве
+источника для псевдо-базы данных <b>passwd_compat</b>.</p>
+
+<p>Учтите, что для каждой записи в файле <b>/etc/passwd</b> должна быть соответствующая запись в файле 
+<b>/etc/shadow</b>.</p>
+
+<p>Источник полной совместимости с NIS/YP также поддерживает в полном объеме семантику записей <b>+</b>/<b>-</b>
+для групп; соответствующая псевдо-база данных называется <b>group_compat</b>.</p>
+
+<h3>&nbsp;&nbsp;Полезные конфигурации</h3>
+
+<p>Встроенные стандартные записи для всех баз данных используют службу NIS
+(YP) в качестве службы имен масштаба предприятия и идентичны тем, что представлены в
+стандартной конфигурации данного файла:</p>
+<pre>passwd:
+ files nis
+
+group:
+ files nis
+
+hosts:
+ nis [NOTFOUND=return] files
+
+ipnodes:
+ nis [NOTFOUND=return] files
+
+networks:
+ nis [NOTFOUND=return] files
+
+protocols:
+ nis [NOTFOUND=return] files
+
+rpc:  nis [NOTFOUND=return] files
+
+ethers:
+ nis [NOTFOUND=return] files
+
+netmasks:
+ nis [NOTFOUND=return] files
+
+bootparams:
+ nis [NOTFOUND=return] files
+
+publickey:
+ nis [NOTFOUND=return] files
+
+netgroup:
+ nis
+
+automount:
+ files nis
+
+aliases:
+ files nis
+
+services:
+ files nis
+
+sendmailvars:
+ files
+
+printers:
+ user files nis nisplus xfn
+</pre>
+<p>Правило "<b>nis [NOTFOUND=return] files</b>" означает: "если служба nis недоступна (<b>UNAVAIL</b>),
+перейти к файлам (<b>files</b>), а если данные в ней не найдены (<b>NOTFOUND</b>),
+прекратить поиск как недавшийся; другими словами, рассматривать <b>nis</b> как авторитетный источник
+информации и обращаться к файлам только если служба <b>nis</b> не работает". Это и другие правила,
+представленные в стандартной конфигурации, идентичны жестко установленным правилам в версиях SunOS
+до 5.0.</p>
+
+<p>Если требуется совместимость с записями <b>+</b>/<b>-</b> в файлах <b>passwd</b> и <b>group</b>,
+просто измените записи для баз данных <b>passwd</b> и <b>group</b> следующим образом:</p>
+<pre>passwd:
+ compat
+
+group:
+ compat
+</pre>
+
+<p>Если в качестве службы имен масштаба предприятия используется NIS+,
+стандартную конфигурацию следует изменить так, чтобы <b>nisplus</b> использовалась
+вместо <b>nis</b> для каждой базы данных на клиентских машинах.
+Файл <b>/etc/nsswitch.nisplus</b> содержит пример конфигурации, которую можно просто скопировать в
+<b>/etc/nsswitch.conf</b> для установки соответствующих правил.</p>
+
+<p>Если в качестве службы имен масштаба предприятия используется LDAP,
+стандартную конфигурацию следует изменить так, чтобы <b>ldap</b> использовалась
+вместо <b>nis</b> для каждой базы данных на клиентских машинах.
+Файл <b>/etc/nsswitch.ldap</b> содержит пример конфигурации, которую можно просто скопировать в
+<b>/etc/nsswitch.conf</b> для установки соответствующих правил.</p>
+
+<p>Если требуется поддержка записей <b>+</b>/<b>-</b> совместно со службой
+<b>nisplus</b>, используйте следующие четыре записи:</p>
+<pre>passwd:
+ compat
+
+passwd_compat:
+ nisplus ИЛИ ldap
+
+group:
+ compat
+
+group_compat:
+ nisplus ИЛИ ldap
+</pre>
+<p>Для получения информации о хостах, не представленных в службе имен масштаба предприятия, 
+NIS+ и LDAP, от службы доменных имен (Internet  Domain  Name Service), используйте следующую 
+конфигурацию и настройте файл <b>/etc/resolv.conf</b> (подробнее см. на странице
+справочного руководства <a href="/man.shtml?topic=resolv.conf&amp;category=4"><b>resolv.conf(4)</b></a>):</p>
+<pre>hosts:
+ nisplus dns [NOTFOUND=return] files
+</pre>
+or
+<pre>hosts:
+ ldap dns [NOTFOUND=return] files
+</pre>
+
+<h3>&nbsp;&nbsp;<a name="enumeration">Перечисление - getXXXent()</a></h3>
+
+<p>Многие базы данных имеют функции перечисления (enumeration): <b>passwd</b> 
+имеет функцию <b>getpwent()</b>, <b>hosts</b> - <b>gethostent()</b>, и т.д. 
+Это было оправдано, когда единственным источником были файлы, но обычно лишено смысла для
+иерархически организованных источников, содержащих большое количество записей, тем более,
+если таких источников указано несколько. Соответствующие интерфейсы по-прежнему поддерживаются и
+их реализации, по возможности, дают осмысленные результаты, но возвращаемые данные могут быть неполны 
+(перечисление хостов источником <b>dns</b> просто не поддерживается), несогласованы 
+(если используется несколько источников), форматированы неожиданным образом 
+(для хоста с каноническим именем и тремя псевдонимами источник <b>nisplus</b>
+вернет четыре записи, причем, не обязательно подряд), или потребуют больших ресурсов
+для получения (перечисление записей в базе данных <b>passwd</b> для 5000 пользователей,
+вероятно, не лучшая идея). Более того, несколько потоков в одном процессе, использующие
+одну и ту же <i>реентерабельную функцию перечисления</i> (reentrant
+enumeration  function) (функции <b>getXXXent_r()</b> поддерживаются, начиная с SunOS 5.3),
+совместно используют текущую позицию в перечисляемых данных; если вызовы идут вперемешку,
+перечисляться будут несвязанные подмножества одной и той же базы данных.</p>
+
+<p>В общем случае, использовать функции перечисления не рекомендуется. Для
+баз данных <b>passwd</b>, <b>shadow</b> и <b>group</b> иногда может иметь смысл
+использовать функции <b>fgetgrent()</b>, <b>fgetpwent()</b> и <b>fgetspent()</b> (см.
+страницы справочного руководства <b>getgrnam(3C)</b>, <b>getpwnam(3C)</b> и
+<b>getspnam(3C)</b>, соответственно), обращающиеся только к файлам.</p>
+
+<h2><a name="files">ФАЙЛЫ</a></h2>
+
+<p>Источник по имени <b>SSS</b> реализован разделяемой библиотекой 
+<b>nss_SSS.so.1</b>, которая находится в каталоге <b>/usr/lib</b>.</p>
+<dl>
+<dt><b>/etc/nsswitch.conf</b></dt>
+<dd>Файл конфигурации.</dd>
+<dt><b>/usr/lib/nss_compat.so.1</b></dt>
+<dd>Реализует источник "<b>compat</b>".</dd>
+<dt><b>/usr/lib/nss_dns.so.1</b></dt>
+<dd>Реализует источник "<b>dns</b>".</dd>
+<dt><b>/usr/lib/nss_files.so.1</b></dt>
+<dd>Реализует источник "<b>files</b>".</dd>
+<dt><b>/usr/lib/nss_nis.so.1</b></dt>
+<dd>Реализует источник "<b>nis</b>".</dd>
+<dt><b>/usr/lib/nss_nisplus.so.1</b></dt>
+<dd>Реализует источник "<b>nisplus</b>".</dd>
+<dt><b>/usr/lib/nss_ldap.so.1</b></dt>
+<dd>Реализует источник "<b>ldap</b>".</dd>
+<dt><b>/usr/lib/nss_user.so.1</b></dt>
+<dd>Реализует источник "<b>user</b>".</dd>
+<dt><b>/usr/lib/nss_xfn.so.1</b></dt>
+<dd>Реализует источник "<b>xfn</b>".</dd>
+<dt><b>/etc/netconfig</b></dt>
+<dd>Файл конфигурации для функций <b>netdir(3NSL)</b>, которые перенаправляют
+поиск хостов/устройств на источники, указанные в <b>nsswitch.conf</b>.</dd>
+<dt><b>/etc/nsswitch.files</b></dt>
+<dd>Пример файла конфигурации, в котором используется только источник "<b>files</b>".</dd>
+<dt><b>/etc/nsswitch.nis</b></dt>
+<dd>Пример файла конфигурации, в котором используются источники "<b>files</b>" и "<b>nis</b>".</dd>
+<dt><b>/etc/nsswitch.nisplus</b></dt>
+<dd>Пример файла конфигурации, в котором используются источники "<b>files</b>" и "<b>nisplus</b>".</dd>
+<dt><b>/etc/nsswitch.ldap</b></dt>
+<dd>Пример файла конфигурации, в котором используются источники "<b>files</b>" и "<b>ldap</b>".</dd>
+<dt><b>/etc/nsswitch.dns</b></dt>
+<dd>Пример файла конфигурации, в котором используются источники "<b>files</b>" и
+"<b>dns</b>" (но только для <b>hosts:</b>).</dd>
+</dl>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+<dl>
+<dt></dt><dd>
+<a href="/man.shtml?topic=ldap&amp;category=1"><b>ldap(1)</b></a>, 
+<a href="/man.shtml?topic=nisplus&amp;category=1"><b>nis+(1)</b></a>,  
+<a href="/man.shtml?topic=passwd&amp;category=1"><b>passwd(1)</b></a>,  
+<a href="/man.shtml?topic=automount&amp;category=1"><b>automount(1M)</b></a>,  
+<a href="/man.shtml?topic=ifconfig&amp;category=1"><b>ifconfig(1M)</b></a>,
+<a href="/man.shtml?topic=rpc.bootparamd&amp;category=1"><b>rpc.bootparamd(1M)</b></a>,   
+<a href="/man.shtml?topic=rpc.nisd&amp;category=1"><b>rpc.nisd(1M)</b></a>,  
+<a href="/man.shtml?topic=sendmail&amp;category=1"><b>sendmail(1M)</b></a>,
+<a href="/man.shtml?topic=ethers&amp;category=3"><b>ethers(3SOCKET)</b></a>,
+<a href="/man.shtml?topic=getgrnam&amp;category=1"><b>getgrnam(3C)</b></a>, 
+<a href="/man.shtml?topic=gethostbyname&amp;category=3"><b>gethostbyname(3NSL)</b></a>,
+<a href="/man.shtml?topic=getipnodebyname&amp;category=3"><b>getipnodebyname(3SOCKET)</b></a>, 
+<a href="/man.shtml?topic=getnetbyname&amp;category=3"><b>getnetbyname(3SOCKET)</b></a>,
+<a href="/man.shtml?topic=getnetgrent&amp;category=3"><b>getnetgrent(3C)</b></a>,
+<a href="/man.shtml?topic=getprotobyname&amp;category=3"><b>getprotobyname(3SOCKET)</b></a>,
+<a href="/man.shtml?topic=getpublickey&amp;category=3"><b>getpublickey(3NSL)</b></a>,
+<a href="/man.shtml?topic=getpwnam&amp;category=3"><b>getpwnam(3C)</b></a>,    
+<a href="/man.shtml?topic=getrpcbyname&amp;category=3"><b>getrpcbyname(3NSL)</b></a>,
+<a href="/man.shtml?topic=getservbyname&amp;category=3"><b>getservbyname(3SOCKET)</b></a>,
+<a href="/man.shtml?topic=getspnam&amp;category=3"><b>getspnam(3C)</b></a>, 
+<a href="/man.shtml?topic=netdir&amp;category=3"><b>netdir(3NSL)</b></a>,
+<a href="/man.shtml?topic=secure_rpc&amp;category=3"><b>secure_rpc(3NSL)</b></a>, 
+<a href="/man.shtml?topic=netconfig&amp;category=4"><b>netconfig(4)</b></a>, 
+<a href="/man.shtml?topic=resolv.conf&amp;category=4"><b>resolv.conf(4)</b></a>, 
+<a href="/man.shtml?topic=ypfiles&amp;category=4"><b>ypfiles(4)</b></a>
+</dd></dl>
+
+<h2><a name="notes">ПРИМЕЧАНИЯ</a></h2>
+
+<p>В каждом процессе, использующем файл <b>nsswitch.conf</b>, этот файл читается целиком 
+и только идин раз; если файл в дальнейшем изменяется, процесс будет
+продолжать использовать старую конфигурацию.</p>
+
+<p>Программы, использующие функции <b>getXXbyYY()</b>, не могут быть скомпонованы статически,
+поскольку реализация этих функций требует динамической компоновки для доступа к разделяемым 
+библиотекам <b>/usr/lib/nss_SSS.so.1</b> при выполнении.</p>
+
+<p>Использование совместно в качестве источников одной и той же базы данных служб
+<b>nis</b> и <b>nisplus</b> крайне не рекомендуется, поскольку обе эти службы имен
+создавались для хранения одной и той же информации, и поиск по базе данных
+может давать разные результаты в зависимости от того, какая служба имен работает на момент запроса.
+То же самое относится и к использованию службы <b>ldap</b> совместно с <b>nis</b> или
+<b>nisplus</b>.</p>
+
+<p>Опечатки в именах источников и баз данных допускаются и приводят к тому, что 
+используются, скорее всего, не существующие источники и базы данных.</p>
+
+<p>Следующие функции не используют файл <b>nsswitch.conf</b>:
+<a href="/man.shtml?topic=fgetgrent&amp;category=3"><b>fgetgrent(3C)</b></a>,   
+<a href="/man.shtml?topic=fgetpwent&amp;category=3"><b>fgetpwent(3C)</b></a>,   
+<a href="/man.shtml?topic=fgetspent&amp;category=3"><b>fgetspent(3C)</b></a>,  
+<a href="/man.shtml?topic=getpw&amp;category=3"><b>getpw(3C)</b></a>,
+<a href="/man.shtml?topic=putpwent&amp;category=3"><b>putpwent(3C)</b></a>, 
+<a href="/man.shtml?topic=shadow&amp;category=4"><b>shadow(4)</b></a>.</p>
+
+<p align="center">Последнее изменение: 12 ноября 1999 года</p>
+
+<p align="center"><font size="-2">
+Copyleft (no c) - Fuck copyright!, 2003 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="nsswitch.conf" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

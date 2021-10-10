@@ -1,0 +1,1119 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN dhcpd (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, dhcpd"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="dhcpd" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">dhcpd (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=dhcpd&amp;category=8&amp;russian=0"><u>dhcpd</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=dhcpd&amp;category=8&amp;russian=2"><u>dhcpd</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+dhcpd - сервер DHCP (Dynamic Host Configuration Protocol)
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>dhcpd</b>
+
+[
+<b>-p</b>
+
+<i>порт</i>
+
+]
+[
+<b>-f</b>
+
+]
+[
+<b>-d</b>
+
+]
+[
+<b>-q</b>
+
+]
+[
+<b>-t</b>
+
+|
+<b>-T</b>
+
+]
+[
+<b>-cf</b>
+
+<i>конфигурационный-файл</i>
+
+]
+[
+<b>-lf</b>
+
+<i>lease-файл</i>
+
+]
+[
+<b>-pf</b>
+
+<i>pid-файл</i>
+
+]
+[
+<b>-tf</b>
+
+<i>trace-output-файл</i>
+
+]
+[
+<b>-play</b>
+
+<i>trace-playback-файл</i>
+
+]
+[
+<i>if0</i>
+
+[
+<i>...ifN</i>
+
+]
+]
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Сервер DHCP от Internet Systems Consortium, dhcpd, реализует протоколы 
+<br>&nbsp;Dynamic&nbsp;Host&nbsp;Configuration&nbsp;Protocol&nbsp;(DHCP)&nbsp;и&nbsp;Internet&nbsp;Bootstrap
+Protocol (BOOTP). DHCP позволяет хостам сети TCP/IP запрашивать и назначать
+IP адреса и также иную информацию о сети, в которой они находятся. BOOTP
+предоставляет те же функции, но с определенными ограничениями.
+<p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ВКЛАД</h2>
+
+<p>
+
+Это программное обеспечение является свободным. В различное время разработка
+происходила в разных организациях, включая ISC и Vixie Enterprises.
+Разработка третьей версии почти полностью финансируется Nominum, Inc.
+</p><p>
+
+На данном этапе разработка контролируется Тедом Лемоном (Ted Lemon) и размещается
+ISC, но будущее этого проекта зависит от вас. Если у вас есть предложения по 
+улучшению, обратитесь за их реализацией к ним.
+</p><p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>ПРОЦЕСС</h2>
+
+<p>
+
+Протокол DHCP позволяет назначить хосту, неизвестному сетевому администратору,
+новый IP адрес из списка свободных адресов этой сети. Для того, чтобы это 
+работало, сетевой администратор определяет список свободных адресов для каждой
+подсети в файле
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd.conf&amp;category=5">dhcpd.conf</a>(5).
+</p><p>
+
+При запуске dhcpd читает файл
+<i>dhcpd.conf</i>
+
+и хранит список свободных адресов каждой подсети в памяти. При запросе клиентом 
+адреса по протоколу DHCP, dhcpd находит адрес для него. Каждому клиенту
+назначается аренда (lease), которая истекает по истечении указанного
+администратором срока (по умолчанию - один день. Перед тем, как срок аренды
+истечет, клиент должен снова запросить адрес. После истечения срока аренды
+клиенту запрещается использовать арендованный IP адрес.
+</p><p>
+
+Для того, чтобы отслеживать аренду адресов при перезагрузке и рестарте сервера,
+dhcpd хранит список арендованных адресов в файле <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd.leases&amp;category=5">dhcpd.leases</a>(5). Перед тем,
+как dhcpd позволяет аренду хосту, он записывает данные об аренде в файл и
+убеждается, что файл реально сохранён (буфер сброшен на диск). Это гарантирует
+даже при сбое системы сохранение информации о выданных адресах. При запуске
+после чтения файла dhcpd.conf читается файл dhcpd.leases для построения в
+памяти списка выданных адресов.
+</p><p>
+
+Последние выданные адреса записываются в конец файла dhcpd.leases. Для
+предотвращения распухания файла, время от времени dhcpd создает новый файл
+dhcpd.leases из свежего списка. Когда новый файл записывается на диск, старый
+файл переименовывается в
+<i>dhcpd.leases~</i>,
+
+а новый файл переименовывается в dhcpd.leases. При сбое системы во время этого
+процесса это позволяет сохранить всю информацию в файле dhcpd.leases без
+дополнительных усилий по восстановлению после сбоев.
+</p><p>
+
+Этот сервер также поддерживает BOOTP.
+В отличие от DHCP, протокол BOOTP не позволяет восстановить динамически
+назначенные адреса, когда они больше не нужны. Можно динамически назначать
+адреса клиентам BOOTP, но для утилизации неиспользуемых адресов потребуется
+некоторый административный процесс. По умолчанию срок аренды адресов клиентами
+BOOTP бесконечен, хотя сетевые администраторы могут назначить более раннюю дату
+отсечения и меньший срок аренды, если необходимо.
+</p><p>
+
+Клиенты BOOTP могут обслуживаться и в стандартном режиме. В этом случае для
+каждого клиента BOOTP в файле dhcpd.conf назначается постоянный адрес.
+</p><p>
+
+Чтобы изменения, сделанные в файле dhcpd.conf, вступили в силу, dhcpd должен
+быть перезагружен. Для перезапуска dhcpd, отправьте SIGTERM (сигнал 15)
+процессу, идентификатор которого находится в файле
+<i>RUNDIR/dhcpd.pid</i>.
+
+Поскольку база данных сервера DHCP не такая маленькая, как база данных BOOTP,
+dhcpd автоматически не перезапускается при обнаружении изменений в файле
+dhcpd.conf.
+</p><p>
+
+Примечание: мы получили массу недовольных отзывов об этом поведении. Мы
+понимаем, что будет удобно, когда посылается сигнал SIGHUP серверу и база
+данных перечитывается. Технически это не невозможно, но потребует большого
+объема работы, а наши ресурсы сильно ограничены и будет лучше, если они будут
+потрачены на что-то другое. Поэтому, пожалуйста, не жалуйтесь на это в списке
+рассылки, если у вас нет для реализации этой возможности финансов или умения.
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>КОМАНДНАЯ СТРОКА</h2>
+
+<p>
+
+Имена сетевых интерфейсов, на которых dhcpd должен слушать широковещательные
+запросы, могут быть указаны в командной строке. Это должно быть сделано на
+системах, где dhcpd не может определить нешироковещательные интерфейсы, но не
+требуется на других системах. Если в командной строке не указаны имена
+интерфейсов, dhcpd будет слушать на всех интерфейсах, поддерживающих
+широковещательные запросы.
+</p><p>
+
+Для изменения стандартного порта для прослушивания (порт 67), используйте опцию 
+<b>-p .</b>
+
+После нее должен быть указан номер порта UDP. Это очень полезно для отладки.
+</p><p>
+
+Для запуска dhcpd как обычного процесса вместо запуска его как демона в фоновом
+процессе, укажите опцию 
+<b>-f .</b>
+
+Это полезно при запуске dhcpd в отладчике или запуске на системах System V.
+</p><p>
+
+Для вывода сообщений dhcpd на стандартный поток ошибок укажите опцию 
+<b>-d .</b>
+
+Это полезно для отладки и в случае, когда работа syslogd ненадёжна или
+невозможна. Обычно, dhcpd выводит все сообщения через функцию <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a>(3) с
+установленной службой LOG_DAEMON. При указании -d автоматически применяется -f
+(демон на запускается в фоновом режиме).
+</p><p>
+
+Dhcpd может читать другой файл конфигурации, указанный после опции 
+<b>-cf ,</b>
+
+альтернативный файл назначенных адресов, указанный после
+<b>-lf ,</b>
+
+или альтернативный файл с идентификатором процесса, указанный после
+<b>-pf .</b>
+
+Поскольку важно использовать одну базу назначенных адресов все время для
+работающего dhcpd, эти опции должны быть использованы <b>только</b> для
+тестирования файлов назначенных адресов или файлов баз данных не в реально
+работающей среде.
+</p><p>
+
+При запуске dhcpd из скриптов запуска системы (например, /etc/rc), нежелательно
+выводить полный текст об авторских правах при запуске. Для того, чтобы подавить
+вывод этой информации, укажите опцию
+<b>-q .</b>
+
+</p><p>
+
+Сервер DHCP читает два файла при запуске: файл конфигурации и базу назначенных
+адресов. Если указана опция
+<b>-t ,</b>
+
+сервер только проверит правильность синтаксиса файла конфигурации, но не будет
+осуществлять никаких операций с сетью. Это может быть использовано для
+проверки новых файлов конфигурации перед их реальным использованием.
+</p><p>
+
+Опция
+<b>-T</b>
+
+используется для проверки синтаксиса файла назначенных адресов таким же
+способом.
+</p><p>
+
+Опции <b>-tf</b> и <b>-play</b> позволяют указать файл, в который заносятся или
+считываются полное состояние сервера и всех транзакций. Это может быть полезно
+для сообщений об ошибках: если вы часто получаете сбой программы, запустите
+сервер с опцией <b>-tf</b> и файл трассировки  будет содержать все
+транзакции, которые привели к сбою, и проблема может быть легко локализована
+при отладке с опцией <b>-play</b>.
+</p><p>
+
+Опция <b>-play</b> должна быть указана с альтернативным файлом назначенных
+адресов после опции <b>-lf</b> для того, чтобы тестовые данные не переписали
+реальные. Сервер DHCP не сможет функционировать в этом режиме воспроизведения,
+если вы не укажите альтернативный файл выданных адресов.
+<a name="lbAH">&nbsp;</a>
+</p><h2>КОНФИГУРАЦИЯ</h2>
+
+Синтаксис файла <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd.conf&amp;category=5">dhcpd.conf</a>(5) обсуждается отдельно.
+В этом разделе лается краткий обзор процесса конфигурации, а полную справочную
+информацию вы можете найти в документации по <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd.conf&amp;category=5">dhcpd.conf</a>(5).
+<p>
+
+<a name="lbAI">&nbsp;</a>
+</p><h2>Подсети</h2>
+
+dhcpd необходимо знать номера и маски подсетей для предоставления
+сервиса. Кроме того, для динамического назначения адресов вы должны указать
+один или более диапазонов адресов для каждой подсети, которые будут назначаться
+клиентам во время их загрузки. Очень простая конфигурация предоставления DHCP
+может выглядеть следующим образом:
+<pre>
+        subnet 239.252.197.0 netmask 255.255.255.0 {
+          range 239.252.197.10 239.252.197.250;
+        }
+</pre>
+
+<p>
+
+Несколько диапазонов свободных адресов указываются так:
+</p><pre>
+        subnet 239.252.197.0 netmask 255.255.255.0 {
+          range 239.252.197.10 239.252.197.107;
+          range 239.252.197.113 239.252.197.250;
+        }
+</pre>
+
+<p>
+
+Если работа подсети обеспечивается только службой BOOTP и не используется
+динамическое назначение адресов, указывается раздел subnet, но без диапазонов
+(range).
+</p><p>
+
+<a name="lbAJ">&nbsp;</a>
+</p><h2>Срок аренды</h2>
+
+Срок аренды DHCP может быть назначен от нуля секунд до бесконечности.
+Срок аренды зависит от подсети или типа хостов.
+<p>
+
+Например, в офисе, где время от времени (но не так часто) появляются и исчезают
+компьютеры, можно установить срок от месяца и больше. В производственном
+отделе, где проходит окончательное тестирование компьютерной техники, не смысла
+назначать срок более 30 минут - достаточного времени для прохождения теста
+работы с сетью.
+</p><p>
+
+Возможно указать два срока аренды: срок по умолчанию для клиентов, которые не
+запрашивают определенный срок аренды и максимальный срок аренды. Это
+</p><pre>
+        subnet 239.252.197.0 netmask 255.255.255.0 {
+          range 239.252.197.10 239.252.197.107;
+          default-lease-time 600;
+          max-lease-time 7200;
+        }
+</pre>
+
+<p>
+
+Для этой подсети устанавливается срок аренды по умолчанию 600 секунд (10
+минут) и максимальный срок аренды 7200 секунд (два часа). Другие употребимые
+значения: 86400 (один день), 604800 (одна неделя) и 2592000 (30 дней).
+</p><p>
+
+Для разных подсетей, обслуживаемых одним сервером DHCP, могут быть указаны
+совершенно различные сроки аренды (как в случае с офисом и производственным
+отделом).
+<a name="lbAK">&nbsp;</a>
+</p><h2>Поддержка BOOTP</h2>
+
+Каждый клиент BOOTP может быть настроен отдельно в файле dhcpd.conf. Самая
+простая конфигурация состоит из адреса сетевой карты и IP адреса, назначаемого
+этому клиенту. Если клиент должен быть загружен с сервера, указывается
+загрузочный образ. Простая конфигурация для клиента BOOTP может выглядеть так:
+<pre>
+        host haagen {
+          hardware ethernet 08:00:2b:4c:59:23;
+          fixed-address 239.252.197.9;
+          filename "/tftpboot/haagen.boot";
+        }
+</pre>
+
+<a name="lbAL">&nbsp;</a>
+<h2>Опции</h2>
+
+DHCP (а также BOOTP с расширениями от производителя ) поддерживает механизм
+предоставления информации о том, как настроить сетевой интерфейс (например,
+маску подсети), и как получить доступ к различным сетевым службам (например,
+DNS, шлюзу и т.п.).
+<p>
+
+Эти опции указываются для подсети или для клиентов BOOTP - для каждого клиента.
+В случае, если опции указаны и для отдельного клиента и для подсети, в которую
+он входит, предпочтение отдается опциям, указанным для клиента. Более полная
+конфигурация DHCP может иметь вид:
+</p><pre>
+        subnet 239.252.197.0 netmask 255.255.255.0 {
+          range 239.252.197.10 239.252.197.250;
+          default-lease-time 600 max-lease-time 7200;
+          option subnet-mask 255.255.255.0;
+          option broadcast-address 239.252.197.255;
+          option routers 239.252.197.1;
+          option domain-name-servers 239.252.197.2, 239.252.197.3;
+          option domain-name "isc.org";
+        }
+</pre>
+
+<p>
+
+Хост bootp в этой подсети должен быть в другом домене и использовать другой
+сервер DNS:
+</p><pre>
+        host haagen {
+          hardware ethernet 08:00:2b:4c:59:23;
+          fixed-address 239.252.197.9;
+          filename "/tftpboot/haagen.boot";
+          option domain-name-servers 192.5.5.1;
+          option domain-name "vix.com";
+        }
+</pre>
+
+<p>
+
+Полное описание синтаксиса файла dhcpd.conf дано в <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd.conf&amp;category=5">dhcpd.conf</a>(5).
+<a name="lbAM">&nbsp;</a>
+</p><h2>OMAPI</h2>
+
+Сервер DHCP поддерживает возможность изменять некоторые параметры во время
+работы без остановки, изменения файлов конфигурации и перезапуска сервера. Эта
+возможность реализуется через OMAPI - API для управления удаленными объектами.
+Клиенты OMAPI подключаются к серверу по TCP/IP, проходят аутентификацию и могут
+просматривать текущее состояние сервера и делать изменения в его параметрах.
+<p>
+
+Пользовательские программы вместо использования протокола OMAPI напрямую
+предпочитают использовать API dhcpctl или OMAPI. Dhcpctl - программа-обертка,
+которая поддерживает некоторые действия, автоматизирующие работу с OMAPI.
+Dhcpctl и OMAPI описаны в <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpctl&amp;category=3">dhcpctl</a>(3)</b> и <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=omapi&amp;category=3">omapi</a>(3)</b>.
+</p><p>
+
+OMAPI экспортирует объекты, которые могут быть просмотрены или изменены. Сервер
+DHCP экспортирует следующие объекты: lease, host, failover-state и group.
+Каждый объект методы работы с ним: lookup, create и destroy. Кроме того,
+можно просматривать атрибуты этого объекта и в некоторых случаях изменить их.
+<a name="lbAN">&nbsp;</a>
+</p><h2>ОБЪЕКТ LEASE</h2>
+
+Объекты аренды не могут быть созданы и уничтожены, но можно осуществить
+поиск по ним и изменение их состояния.
+<p>
+
+Объекты аренды имеют следующие атрибуты:
+</p><p>
+
+<b>state </b><i>integer</i> поиск, просмотр
+
+</p><dl compact=""><dt></dt><dd>
+<pre>1 = свободен
+2 = активен
+3 = устарел
+4 = возвращен
+5 = заброшен
+6 = сброшен
+7 = резервная копия
+8 = зарезервирован
+9 = bootp
+</pre>
+
+</dd></dl>
+
+<p>
+
+<b>ip-address </b><i>data</i> поиск, просмотр
+
+</p><dl compact=""><dt></dt><dd>
+выдаваемый IP адрес.
+</dd></dl>
+
+<p>
+
+<b>dhcp-client-identifier </b><i>data</i> поиск, просмотр, изменение
+
+</p><dl compact=""><dt></dt><dd>
+идентификатор клиента, который используется при запросе IP адреса.
+Не все клиенты отправляют эту информацию, поэтому атрибут может быть пуст.
+</dd></dl>
+
+<p>
+
+<b>client-hostname </b><i>data</i> просмотр, изменение
+
+</p><dl compact=""><dt></dt><dd>
+значение, которое клиент указал в опции host-name.
+</dd></dl>
+
+<p>
+
+<b>host </b><i>handle</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+хост, связанный с этим адресом, если есть.
+</dd></dl>
+
+<p>
+
+<b>subnet </b><i>handle</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+объект подсети (subnet), связанный с этим адресом (в настоящее время объект
+подсети не поддерживается).
+</dd></dl>
+
+<p>
+
+<b>pool </b><i>handle</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+объект очереди (pool), связанный с этим адресом (в настоящее время объект
+очереди не поддерживается).
+</dd></dl>
+
+<p>
+
+<b>billing-class </b><i>handle</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+указатель на класс, который учитывает трафик по этому адресу (в настоящее время
+объект класса  не поддерживается).
+</dd></dl>
+
+<p>
+
+<b>hardware-address </b><i>data</i> просмотр, изменение
+
+</p><dl compact=""><dt></dt><dd>
+аппаратный адрес (chaddr), отправляемый клиентом при получении адреса.
+</dd></dl>
+
+<p>
+
+<b>hardware-type </b><i>integer</i> просмотр, изменение
+
+</p><dl compact=""><dt></dt><dd>
+тип сетевого интерфейса, по которому клиент получает IP адрес.
+</dd></dl>
+
+<p>
+
+<b>ends </b><i>time</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+время окончания аренды адреса для клиента.
+</dd></dl>
+
+<p>
+
+<b>tstp </b><i>time</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+время окончания аренды адреса для сервера.
+</dd></dl>
+
+<b>tsfp </b><i>time</i> просмотр
+
+<dl compact=""><dt></dt><dd>
+скорректированное время окончания аренды для связки резервирования.
+</dd></dl>
+
+<b>atsfp </b><i>time</i> просмотр
+
+<dl compact=""><dt></dt><dd>
+действительное значение tsfp отправляемое в второму серверу.
+</dd></dl>
+
+<p>
+
+<b>cltt </b><i>time</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+время последней связи с клиентом по аренде этого адреса.
+</dd></dl>
+
+<a name="lbAO">&nbsp;</a>
+<h2>ОБЪЕКТ HOST</h2>
+
+Объекты хостов могут быть созданы, уничтожены, найдены, просмотрены и изменены.
+Если объект хоста создан или уничтожен через OMAPI, эти изменения будут
+записаны в файл dhcpd.leases. Допустимо также удалять определения хостов,
+заданных в файле dhcpd.conf.
+<p>
+
+Объекты хостов имеют следующие атрибуты:
+</p><p>
+
+<b>name </b><i>data</i> поиск, просмотр, изменение
+
+</p><dl compact=""><dt></dt><dd>
+имя определения хоста. Оно должно быть уникальным среди всех определений
+хостов.
+</dd></dl>
+
+<p>
+
+<b>group </b><i>handle</i> просмотр, изменение
+
+</p><dl compact=""><dt></dt><dd>
+именованная группа, связанная с этим определением хоста, если есть.
+</dd></dl>
+
+<p>
+
+<b>hardware-address </b><i>data</i> поиск, просмотр, изменение
+
+</p><dl compact=""><dt></dt><dd>
+аппаратный адрес, который используется для проверки соответствия клиента
+хосту. Используется, если также указан атрибут hardware-type.
+</dd></dl>
+
+<p>
+
+<b>hardware-type </b><i>integer</i> поиск, просмотр, изменение
+
+</p><dl compact=""><dt></dt><dd>
+тип сетевого интерфейса, который используется для проверки соответствия клиента
+хосту. Используется, если также указан атрибут hardware-address.
+</dd></dl>
+
+<p>
+
+<b>dhcp-client-identifier </b><i>data</i> поиск, просмотр, изменение
+
+</p><dl compact=""><dt></dt><dd>
+Опция dhcp-client-identifier соответствия клиента хосту, если есть.
+</dd></dl>
+
+<p>
+
+<b>ip-address </b><i>data</i> просмотр, изменение
+
+</p><dl compact=""><dt></dt><dd>
+фиксированный IP адрес, зарезервированный за клиентом DHCP, который
+соответствует хосту. IP адрес назначается клиенту только если этот адресам
+принадлежит сегменту сети, к которой подключен клиент.
+</dd></dl>
+
+<p>
+
+<b>statements </b><i>data</i> изменение
+
+</p><dl compact=""><dt></dt><dd>
+список условий в формате dhcpd.conf, которые должны выполнены, когда получено
+сообщение от клиента.
+</dd></dl>
+
+<p>
+
+<b>known </b><i>integer</i> просмотр, изменение
+
+</p><dl compact=""><dt></dt><dd>
+если значение не равно нулю, показывает, что клиент соответствует хосту и
+помечен как <i>известный</i> в списке очереди разрешений. Если значение равно
+нулю, клиент признается неизвестным.
+</dd></dl>
+
+<a name="lbAP">&nbsp;</a>
+<h2>ОБЪЕКТ GROUP</h2>
+
+Объекты именованных групп могут быть созданы, уничтожены, найдены, просмотрены и
+изменены.
+Если объект группы создан или уничтожен через OMAPI, эти изменения будут
+записаны в файл dhcpd.leases. Допустимо также удалять определения групп,
+заданных в файле dhcpd.conf.
+<p>
+
+Именованные группы пока могут быть только привязаны к хостам - это позволяет
+задавать одинаковые условия сразу для нескольких хостов.   
+</p><p>
+
+Объекты групп имеют следующие атрибуты:
+</p><p>
+
+<b>name </b><i>data</i>
+
+</p><dl compact=""><dt></dt><dd>
+имя группы. Все группы, создаваемые через OMAPI должны иметь уникальные
+среди других групп имена.
+</dd></dl>
+
+<p>
+
+<b>statements </b><i>data</i>
+
+</p><dl compact=""><dt></dt><dd>
+список условий в формате dhcpd.conf, которые назначаются хостам, привязанным к
+этой группе.
+</dd></dl>
+
+<a name="lbAQ">&nbsp;</a>
+<h2>ОБЪЕКТ CONTROL</h2>
+
+Объект контроля позволяет управлять завершением работы сервера.
+Если сервер настроен на синхронизацию со вторым сервером DHCP, это действие
+обеспечивает правильное выключение сервера, уведомление резервного сервера о
+том, что сервер недоступен и занесение данных для восстановления в файл
+назначенных адресов (для того, чтобы после перезапуска сервера он автоматически
+синхронизировался со вторым сервером.
+<p>
+
+При выключении сервера также корректно завершаются все соединения OMAPI. Если
+соединение не может быть корректно завершено в течение 5 секунд, они
+закрываются принудительно, поэтому с момента начала выключения сервера до
+реального выхода из программы проходит более 25 секунд.
+</p><p>
+
+Для выключения сервера, откройте объект контроля и установите атрибута state в
+2.
+<a name="lbAR">&nbsp;</a>
+</p><h2>ОБЪЕКТ СОСТОЯНИЯ РЕЗЕРВИРОВАНИЯ</h2>
+
+Объект failover-state отслеживает состояние протокола резервирования (failover).
+Объект failover имеет следующие атрибуты (в 
+<b>dhcpd.conf (5)</b>
+
+находятся разъяснения о том, что эти атрибуты означают:
+<p>
+
+<b>name </b><i>data</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+имя связи резервирования, задается в файле <b>dhcpd.conf</b>.
+</dd></dl>
+
+<p>
+
+<b>partner-address </b><i>data</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+IP адрес резервного сервера.
+</dd></dl>
+
+<p>
+
+<b>local-address </b><i>data</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+IP адрес текущего сервера.
+</dd></dl>
+
+<p>
+
+<b>partner-port </b><i>data</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+порт TCP, на котором резервный сервер ожидает подключения по протоколу failover.
+</dd></dl>
+
+<p>
+
+<b>local-port </b><i>data</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+порт TCP, на котором текущий сервер ожидает подключения по протоколу failover.
+</dd></dl>
+
+<p>
+
+<b>max-outstanding-updates </b><i>integer</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+количество обновлений, которые могли быть важными, но остались без ответа в
+этой связке резервирования.
+</dd></dl>
+
+<p>
+
+<b>mclt </b><i>integer</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+максимальное время перенаправления клиента в этой связке
+резервирования.
+</dd></dl>
+
+<p>
+
+<b>load-balance-max-secs </b><i>integer</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+максимальное значение в поле secs запроса клиента после которого будет
+произведена балансировка нагрузки.
+</dd></dl>
+
+<p>
+
+<b>load-balance-hba </b><i>data</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+массив хэшей буферов для балансировки нагрузки в этой связке резервирования.
+</dd></dl>
+
+<p>
+
+<b>local-state </b><i>integer</i> просмотр, изменение
+
+</p><dl compact=""><dt></dt><dd>
+текущий статус сервера DHCP в этой связке резервирования. Возможные значения:
+</dd></dl>
+
+<dl compact=""><dt></dt><dd>
+<p>
+
+</p><pre>1  - партнер выключен
+2  - обычная работа
+3  - обмен данными прерван
+4  - разрешение прервано
+5  - потенциальный конфликт
+6  - восстановление
+7  - восстановление закончено
+8  - выключение
+9  - пауза
+10 - запуск
+11 - идет восстановление
+</pre>
+
+</dd></dl>
+
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+В общем случае делать изменения в этом атрибуте - плохая идея.
+Однако в случае, когда известно, что резервный сервер выключен, бывает
+необходимо явно указать что резервный сервер недоступен и необходимо взять на
+себя выданные адреса резервного сервера как можно быстрее. Если же вы указали,
+что резервный сервер выключен, а он работает (но временно недоступен),
+возможны конфликты назначения IP адресов. 
+</dd></dl>
+
+<p>
+
+<b>partner-state </b><i>integer</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+текущий статус резервного сервера
+</dd></dl>
+
+<p>
+
+<b>local-stos </b><i>integer</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+время, в течение которого сервер работает в текущем статусе.
+</dd></dl>
+
+<p>
+
+<b>partner-stos </b><i>integer</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+время, в течение которого резервный сервер работает в текущем статусе.
+</dd></dl>
+
+<p>
+
+<b>hierarchy </b><i>integer</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+роль сервера: первичный (0) или вторичный (1) в текущей связке резервирования.
+</dd></dl>
+
+<p>
+
+<b>last-packet-sent </b><i>integer</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+время последнего пакета синхронизации, отправленного резервному серверу
+в связке.
+</dd></dl>
+
+<p>
+
+<b>last-timestamp-received </b><i>integer</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+время последнего пакета синхронизации, полученного от резервного сервера
+в связке.
+</dd></dl>
+
+<p>
+
+<b>skew </b><i>integer</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+разница между часами резервного и текущего сервера
+</dd></dl>
+
+<p>
+
+<b>max-response-delay </b><i>integer</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+время в секундах, по истечении которого если не получен ни один пакет
+синхронизации, определяется разрыв в соединении.
+</dd></dl>
+
+<p>
+
+<b>cur-unacked-updates </b><i>integer</i> просмотр
+
+</p><dl compact=""><dt></dt><dd>
+количество сообщений об обновлении, полученных от резервного сервера,
+но пока не обработанных.
+</dd></dl>
+
+<a name="lbAS">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<b>ETCDIR/dhcpd.conf, DBDIR/dhcpd.leases, RUNDIR/dhcpd.pid,</b>
+
+<b>DBDIR/dhcpd.leases~.</b>
+
+<a name="lbAT">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhclient&amp;category=8">dhclient</a>(8), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcrelay&amp;category=8">dhcrelay</a>(8), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd.conf&amp;category=5">dhcpd.conf</a>(5), <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd.leases&amp;category=5">dhcpd.leases</a>(5)
+<a name="lbAU">&nbsp;</a>
+<h2>АВТОР</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dhcpd&amp;category=8">dhcpd</a>(8)</b>
+
+изначально написан Тедом Лемоном (Ted Lemon) по контракту с Vixie Labs.
+Финансирование этого проекта предоставлено Internet Systems
+Consortium. Версия 3 сервера DHCP финансируется Nominum, Inc.
+Информация об Internet Systems Consortium доступна по адресу
+<b><a href="http://www.isc.org/">http://www.isc.org/</a></b>.
+
+Информация о Nominum может быть найдена на 
+<b><a href="http://www.nominum.com/">http://www.nominum.com/</a></b>.
+<a name="lbAV">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Андрей Черепанов &lt;<a href="mailto:cas@altlinux.ru">cas@altlinux.ru</a>&gt; 2007.
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВКЛАД</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРОЦЕСС</a></dt><dd>
+</dd><dt><a href="#lbAG">КОМАНДНАЯ СТРОКА</a></dt><dd>
+</dd><dt><a href="#lbAH">КОНФИГУРАЦИЯ</a></dt><dd>
+</dd><dt><a href="#lbAI">Подсети</a></dt><dd>
+</dd><dt><a href="#lbAJ">Срок аренды</a></dt><dd>
+</dd><dt><a href="#lbAK">Поддержка BOOTP</a></dt><dd>
+</dd><dt><a href="#lbAL">Опции</a></dt><dd>
+</dd><dt><a href="#lbAM">OMAPI</a></dt><dd>
+</dd><dt><a href="#lbAN">ОБЪЕКТ LEASE</a></dt><dd>
+</dd><dt><a href="#lbAO">ОБЪЕКТ HOST</a></dt><dd>
+</dd><dt><a href="#lbAP">ОБЪЕКТ GROUP</a></dt><dd>
+</dd><dt><a href="#lbAQ">ОБЪЕКТ CONTROL</a></dt><dd>
+</dd><dt><a href="#lbAR">ОБЪЕКТ СОСТОЯНИЯ РЕЗЕРВИРОВАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAS">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAT">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAU">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAV">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="dhcpd" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

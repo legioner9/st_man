@@ -1,0 +1,510 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN init (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, init"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="init" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">init (1)</font><hr><li> <a href="/man.shtml?topic=init&amp;category=1&amp;russian=4"><u>init</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=init&amp;category=1&amp;russian=0"><u>init</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=init&amp;category=8&amp;russian=1"><u>init</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=init&amp;category=8&amp;russian=2"><u>init</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/init.html"><u>init</u></a> обнаружен в базе ключевых слов.</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Команды сопровождения</h1></td>
+<td><h1 align="right">init(1M)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+
+<p><b>init</b>, <b>telinit</b> - инициализация управления процессами</p>
+
+<h2><a name="synopsis">СИНТАКСИС</a></h2>
+<dl><dt></dt><dd><tt>
+/sbin/init [ 0123456abcQqSs ]<br>
+/etc/telinit [ 0123456abcQqSs ]
+</tt></dd></dl>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<p><b>init</b> - универсальное средство запуска процессов. Его основная задача&nbsp;-
+создавать процессы на основе информации, находящейся в файле <b>/etc/inittab</b>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Определение уровня выполнения</h3>
+
+<p>В каждый момент времени система находится на одном из восьми возможных <i>уровней
+выполнения</i> (run level). Уровень выполнения - это конфигурация программного обеспечения, 
+при которой существует только определенная группа процессов. Процессы, запускаемые 
+процессом <b>init</b> для каждого из этих уровней выполнения, определяются в файле
+<b>/etc/inittab</b>. Процесс <b>init</b> может работать на одном из восьми уровней
+выполнения, <b>0</b>-<b>6</b>, <b>S</b> или <b>s</b> (уровни <b>S</b> и <b>s</b> -
+идентичны). Уровень выполнения изменяется, когда привилегированный пользователь
+выполняет процесс <b>/sbin/init</b>. Он посылает соответствующие сигналы исходному
+процессу <b>init</b>, запущенному операционной системой при загрузке, уведомляющие
+его о том, на какой уровень выполнения перейти.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Процесс init и загрузка системы</h3>
+
+<p>При загрузке системы вызывается процесс <b>init</b> и происходит следующее. 
+Сначала он читает файл <b>/etc/default/init</b> для установки переменных среды.
+Именно на основе информации из этого файла устанавливается переменная <b>TZ</b>
+(часовой пояс) и переменные, задающие локаль, например, <b>LANG</b> или
+<b>LC_CTYPE</b>.</p>
+
+<p>Затем процесс <b>init</b> ищет запись <b>initdefault</b> в файле <b>/etc/inittab</b>
+(см. <a href="/man.shtml?topic=inittab&amp;category=4"><b>inittab(4)</b></a>). Если запись <b>initdefault</b>:</p>
+<dl>
+<dt>существует</dt>
+<dd>Процесс <b>init</b> обычно использует уровень выполнения, указанный в этой
+записи, как начальный уровень, на который надо перейти.<br><br></dd>
+<dt>не существует (или не существует файла /etc/inittab)</dt>
+<dd>Процесс <b>init</b> просит пользователя ввести уровень выполнения
+с системной консоли.</dd>
+</dl>
+
+<p>Если начальный уровень выполнения:</p>
+<dl>
+<dt><b>S</b> или <b>s</b></dt>
+<dd>Процесс <b>init</b> переходит в однопользовательское состояние. В этом состоянии
+системная консоль (устройство <b>/dev/console</b>) открывается на чтение и запись, и
+вызывается команда <b>/sbin/su</b>, (см. <a href="/man.shtml?topic=su&amp;category=1"><b>su(1M)</b></a>). Для
+изменения уровня выполнения в дальнейшем используйте команду <b>init</b> или <b>telinit</b>.
+Учтите, что если работа командного интерпретатора будет прекращена (путем 
+ввода символа конца файла), процесс <b>init</b>, при отсутствии файла <b>/etc/inittab</b>
+переинициализируется только в однопользовательское состояние.
+<br><br></dd>
+<dt><b>0</b>-<b>6</b></dt>
+<dd>Процесс <b>init</b> переходит на соответствующий уровень выполнения. Уровни
+выполнения 0, 5 и 6 зарезервированы для остановки системы. Уровни 2, 3 и 4 
+доступны как варианты многопользовательской работы.</dd>
+</dl>
+
+<p>Если это первый, после включения питания, переход процесса <b>init</b> на уровень
+выполнения, отличный от однопользовательского, процесс <b>init</b> сначала ищет в
+файле <b>/etc/inittab</b> записи <b>boot</b> и <b>bootwait</b> (см. 
+<a href="/man.shtml?topic=inittab&amp;category=4"><b>inittab(4)</b></a>).  Эти записи выполняются до
+любой другой обработки файла <b>/etc/inittab</b>, если уровень выполнения, на который 
+выполняется переход, соответствует уровню, указанному в такой записи. Таким образом,
+любая специфическая инициализация операционной системы, например, монтирование
+файловых систем, может быть выполнена до того, как в системе зарегистрируются
+пользователи. Затем процесс <b>init</b> просматривает файл <b>/etc/inittab</b> и
+выполняет все остальные записи, соответствующие данному уровню выполнения.</p>
+
+<p>Чтобы запустить все процессы в <b>/etc/inittab</b>, процесс <b>init</b> 
+читает записи, и для каждой записи, которую необходимо перезапустить, он порождает
+дочерний процесс. После порождения всех процессов, указанных в файле <b>/etc/inittab</b>,
+процесс <b>init</b> ждет, пока не завершит работу один из порожденных им процессов,
+пока не поступит сигнал <b>powerfail</b> или сигнал от другого процесса <b>init</b>
+или <b>telinit</b>, требующий изменить уровень выполнения системы. 
+В любом из этих случаев, процесс <b>init</b> перечитывает файл <b>/etc/inittab</b>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;Добавление записей в inittab</h3>
+
+<p>Новые записи можно добавлять в файл <b>/etc/inittab</b> в любой момент; однако,
+процесс <b>init</b> будет ждать наступления одного из перечисленных выше условий,
+прежде чем перечитывать файл <b>/etc/inittab</b>. Чтобы обойти это, выполните команду
+<b>init  Q</b> или <b>init q</b>, требующую от процесса <b>init</b> немедленно перечитать
+файл <b>/etc/inittab</b>.</p>
+
+<p>При запуске <b>init</b> в момент начальной загрузки и при любом переходе системы
+из однопользовательского состояния на другой уровень выполнения, <b>init</b> устанавливает
+параметры состояния <a href="/man.shtml?topic=ioctl&amp;category=2"><b>ioctl(2)</b></a> в режимы, сохраненные в
+файле <b>/etc/ioctl.syscon</b>. Процесс <b>init</b> записывает данные в этот файл
+при каждом переходе в однопользовательский режим.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;Изменения уровня выполнения</h3>
+
+<p>Когда делается запрос на изменение уровня выполнения системы, процесс <b>init</b>
+посылает предупреждающий сигнал (<b>SIGTERM</b>) всем процессам, не определенным на 
+заданном уровне выполнения. Процесс <b>init</b> ждет пять секунд, прежде чем
+принудительно завершать работу этих процессов посылкой им сигнала <b>SIGKILL</b>.</p>
+
+<p>Когда процесс <b>init</b> получает сигнал о том, что порожденный им процесс
+прекратил существование, он записывает информацию об этом событии и его причине 
+в файлы <b>/var/adm/utmpx</b> и /var/adm/wtmpx, если они существуют (см. 
+<a href="/man.shtml?topic=who&amp;category=1"><b>who(1)</b></a>). Хронология порождения процессов
+записывается в файл <b>/var/adm/wtmpx</b>.</p>
+
+<p>Если процесс <b>init</b> получает сигнал о сбое питания (<b>SIGPWR</b>),
+он ищет в файле <b>/etc/inittab</b> специальные записи типа <b>powerfail</b> и
+<b>powerwait</b>. Соответствующие этим записям процессы запускаются (если позволяет
+уровень выполнения) перед выполненгием любой дальнейшей обработки. За счет этого
+процесс <b>init</b> может выполнить необходимые действия по завершению работы операционной системы
+и записи информации при отключении питания.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;Файл /etc/defaults/init</h3>
+
+<p>Для перечисленных ниже переменных в файле <b>/etc/default/init</b> можно задать 
+стандартные значения. Например: <b>TZ=US/Pacific</b></p>
+<dl>
+<dt><b>TZ</b></dt><dd>
+Задает либо информацию о часовом поясе (см. <a href="/man.shtml?topic=ctime&amp;category=3"><b>ctime(3C)</b></a>),
+либо имя файла с информацией о часовом поясе <b>/usr/share/lib/zoneinfo</b>.
+<br><br></dd>
+<dt><b>LC_CTYPE</b></dt><dd>
+Описательная информация о наборе символов.
+<br><br></dd>
+<dt><b>LC_MESSAGES</b></dt><dd>
+Язык сообщений.
+<br><br></dd>
+<dt><b>LC_MONETARY</b></dt><dd>
+Информация о форматировании денежных величин.
+<br><br></dd>
+<dt><b>LC_NUMERIC</b></dt><dd>
+Информация о форматировании чисел.
+<br><br></dd>
+<dt><b>LC_TIME</b></dt><dd>
+Информация о формате времени.
+<br><br></dd>
+<dt><b>LC_ALL</b></dt><dd>
+Если значение задано, все остальные переменные среды <b>LC_*</b> его наследуют.
+<br><br></dd>
+<dt><b>LANG</b></dt><dd>
+Если значение <b>LC_ALL</b> не задано, и не задано значение некоторой переменной 
+<b>LC_*</b>, вместо него используется значение <b>LANG</b>.
+</dd>
+</dl>
+
+<h3>&nbsp;&nbsp;&nbsp;<a name="telinit">telinit</a></h3>
+
+<p>Команда <b>telinit</b>, связанная с <b>/sbin/init</b>, используется для управления
+действиями <b>init</b>. Она принимает односимвольный аргумент и требует от <b>init</b>
+выполнить соответствующее действие.</p>
+
+<h2><a name="security">ЗАЩИТА</a></h2>
+
+<p>Для управления сеансом <b>init</b> использует модули <a href="/man.shtml?topic=pam&amp;category=3"><b>pam(3PAM)</b></a>.
+Правила конфигурирования PAM, перечисленные в файле <b>/etc/pam.conf</b>, задают, какой
+модуль управления сеансом должен использоваться для <b>init</b>. Вот строка из файла <b>pam.conf</b>,
+задающая для <b>init</b> использование модуля управления сеансом UNIX.</p>
+
+<dl><dt></dt><dd><pre>init   session   required    /usr/lib/security/pam_unix.so.1
+</pre></dd></dl>
+
+<p>Если для службы <b>init</b> отдельной записи нет, будет использована запись
+для службы "<b>other</b>".</p>
+
+<h2><a name="options">ОПЦИИ</a></h2>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="10%"><b><a name="0">0</a></b></td><td>
+Перейти в режим микропрограммного обеспечения.
+</td></tr>
+<tr><td valign="top"><b><a name="1">1</a></b></td><td>
+Перевести систему в редим системного администрирования. При этом все локальные файловые
+системы смонтированы. Работает только небольшой набор сущесвтенных процессов ядра. 
+Этот режим предназначен для решения административных задач, например, установки 
+дополнительных пакетов. Все файлы доступны, и никакие пользователи в системе не 
+зарегистрированы.
+</td></tr>
+<tr><td valign="top"><b><a name="2">2</a></b></td><td>
+Перевести систему в многопользовательский режим. Запускаются все необходимые для
+работы многопользовательской среды процессы и демоны. Это сотояние обычно называют
+<i>многопользовательским</i>.
+</td></tr>
+<tr><td valign="top"><b><a name="3">3</a></b></td><td>
+Расширить многопользовательский режим, предоставляя доступ по сети к локальным ресурсам.
+</td></tr>
+<tr><td valign="top"><b><a name="4">4</a></b></td><td>
+Можно определять как альтернативную конфигурацию многопользовательской среды. 
+Этот уровень выполнения не обязателен для работы системы и обычно не используется.
+</td></tr>
+<tr><td valign="top"><b><a name="5">5</a></b></td><td>
+Остановить машину так, что можно безопасно отключать питание. Если возможно,
+требует от машины автоматически выключить питание.
+</td></tr>
+<tr><td valign="top"><b><a name="6">6</a></b></td><td>
+Остановить операционную систему и перезагрузить ее в состояние, задаваемое
+записью <b>initdefault</b> в файле <b>/etc/inittab</b>.
+</td></tr>
+<tr><td valign="top"><a name="abc"><b>a</b>, <b>b</b>, <b>c</b></a></td><td>
+Обработать только записи файла <b>/etc/inittab</b>, соответствующие уровню выполнения
+<b>a</b>, <b>b</b> или <b>c</b>. Это псевдосостояния, которые можно задавать для
+запуска определенных команд без изменения текущего уровня выполнения.
+</td></tr>
+<tr><td valign="top"><a name="q"><b>Q</b>, <b>q</b></a></td><td> 
+Перечитать файл <b>/etc/inittab</b>.
+</td></tr>
+<tr><td valign="top"><b><a name="s"><b>S</b>, <b>s</b></a></b></td><td>
+Перейти в однопользовательский режим. Это единственный уровень выполнения, не требующий
+наличия файла <b>/etc/inittab</b> соответствующего формата. Если этот файл не существует,
+по умолчанию, единственным допустимым уровнем выполнения, на который может перейти процесс
+<b>init</b> является однопользовательский. При работе в однопользовательском режиме будут
+смонтированы файловые системы, необходимые для выполнения базовых действий в системе.
+При переходе в однопользовательский режим с более высоого уровня эти файловые системы
+остаются смонтированными (даже если предоставляются удаленным файловым сервером), и
+все прочие локальные файловые системы тоже останутся смонтированными. При переходе в
+однопользовательский режим с более высокого уровня, все процессы, запущенные процессом
+<b>init</b> или сценариями в каталоге <b>init.d</b>, которые должны работать только в
+многопользовательском режиме, завершаются ("<i>убиваются</i>"). Кроме того, завершаются
+все процессы, для которых есть запись <b>utmpx</b>. Это последнее условие гарантирует,
+что все мониторы портов, запущенные системой SAC, завершаются, как и все службы,
+запущенные этими мониторами портов, в том числе, службы регистрации <b>ttymon</b>.
+</td></tr>
+</tbody></table>
+
+<h2><a name="files">ФАЙЛЫ</a></h2>
+<dl>
+<dt><b>/etc/inittab</b></dt><dd>
+контролирует управление процессами, которое осуществляет <b>init</b><br><br></dd>
+<dt><b>/var/adm/utmpx</b></dt><dd>
+информация о доступе пользователей и администрировании<br><br></dd>
+<dt><b>/var/adm/wtmpx</b></dt><dd>
+хронология доступа пользователей и администрирования<br><br></dd>
+<dt><b>/etc/ioctl.syscon</b></dt>
+<dd><br><br></dd>
+<dt><b>/dev/console</b></dt><dd>
+устройство системной консоли<br><br></dd>
+<dt><b>/etc/default/init</b></dt><dd>
+переменные среды.</dd>
+</dl>
+
+<h2>АТРИБУТЫ</h2>
+
+<p>Описание следующих атрибутов см. на странице справочного руководства
+<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>:</p>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWcsu</td></tr>
+</tbody></table>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=login&amp;category=1"><b>login(1)</b></a>,
+	<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>,
+	<a href="/man.shtml?topic=stty&amp;category=1"><b>stty(1)</b></a>,
+	<a href="/man.shtml?topic=who&amp;category=1"><b>who(1)</b></a>,
+	<a href="/man.shtml?topic=shutdown&amp;category=1"><b>shutdown(1M)</b></a>,
+	<a href="/man.shtml?topic=su&amp;category=1"><b>su(1M)</b></a>,
+	<a href="/man.shtml?topic=ttymon&amp;category=1"><b>ttymon(1M)</b></a>,
+	<a href="/man.shtml?topic=ioctl&amp;category=2"><b>ioctl(2)</b></a>,
+	<a href="/man.shtml?topic=kill&amp;category=2"><b>kill(2)</b></a>,
+	<a href="/man.shtml?topic=ctime&amp;category=3"><b>ctime(3C)</b></a>,
+	<a href="/man.shtml?topic=pam&amp;category=3"><b>pam(3PAM)</b></a>,
+	<a href="/man.shtml?topic=inittab&amp;category=4"><b>inittab(4)</b></a>, 
+	<a href="/man.shtml?topic=pam.conf&amp;category=4"><b>pam.conf(4)</b></a>, 
+	<a href="/man.shtml?topic=utmpx&amp;category=4"><b>utmpx(4)</b></a>,
+	<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>,
+	<a href="/man.shtml?topic=pam_unix&amp;category=5"><b>pam_unix(5)</b></a>,
+	<a href="/man.shtml?topic=termio&amp;category=7"><b>termio(7I)</b></a>
+</dd></dl>
+
+<h2><a name="diagnostics">ДИАГНОСТИКА</a></h2>
+
+<p>Если процесс <b>init</b> обнаруживает, что перезапускает запись из файла <b>/etc/inittab</b>
+более десяти раз за две минуты, предполагается, что в командной строке этой записи есть
+ошибка, и об этом выдается сообщение на системную консоль. Затем эта запись больше не будет
+запускаться повторно,пока не пройдет пять минут или не будет получен сигнал от запущенного
+пользователем процесса <b>init</b> или <b>telinit</b>. Это предотвращает напрасное использование
+ресурсов системы процессом <b>init</b> в случае опечатки в файле <b>inittab</b> или
+удаления программы, на которую ссылается запись в файле <b>/etc/inittab</b>.</p>
+
+<h2><a name="notes">ПРИМЕЧАНИЯ</a></h2>
+
+<p>Процессы <b>init</b> и <b>telinit</b> может запускать только привилегированный пользователь.</p>
+
+<p>Следует избегать бессистемного использования уровней выполнения <b>S</b> и <b>s</b> в
+файле <b>/etc/inittab</b>. При изменении этого файла, лучше избегать добавления этого состояния
+в любые строки, кроме <b>initdefault</b>.</p>
+
+<p>Если стандарное состояние не указано с помощью записи <b>initdefault</b> в файле 
+<b>/etc/inittab</b>, система переходит на уровень 6. Как следствие, система зациклится и
+будет постоянно перезагружаться.</p>
+
+<p>Если при загрузке системы не удается создать файл <b>utmpx</b>, система загрузиться в
+состояние "<b>s</b>", независимо от состояния, указанного в записи <b>initdefault</b>
+файла <b>/etc/inittab</b>. Это может произойти при недоступности файловой системы <b>/var</b>.</p>
+
+<p align="center">Последнее изменение: 22 февраля 1999 года</p>
+
+<p align="center"><font size="-2">
+Copyleft (no c) 2003 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="init" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

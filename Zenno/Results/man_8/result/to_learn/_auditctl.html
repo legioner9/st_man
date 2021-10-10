@@ -1,0 +1,520 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN auditctl (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, auditctl"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="auditctl" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">auditctl (8)</font><hr><li> <a href="/man.shtml?topic=auditctl&amp;category=2&amp;russian=1"><u>auditctl</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=auditctl&amp;category=8&amp;russian=0"><u>auditctl</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=auditctl&amp;category=8&amp;russian=2"><u>auditctl</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+auditctl - инструмент для управления аудитом, предоставляемого Linux ядром.
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>auditctl</b> [<i>опции</i>]
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИE</h2>
+
+<b>auditctl</b> используется для контроля поведения, получения состояния и добавления/удаления правил аудита, предоставляемого Linux ядром версии 2.6.
+<a name="lbAE">&nbsp;</a>
+<h2>ОПЦИИ</h2>
+
+<dl compact="">
+<dt><b>-b&nbsp;</b><i>backlog</i>
+
+</dt><dd>
+Установить максимальное количество доступных для аудита буферов, ожидающих обработки (значение в ядре по умолчанию - 64). Если все буфера заняты, то флаг сбоя будет выставлен ядром для его дальнейшей обработки. 
+</dd><dt><b>-e</b> [<b>0</b>..<b>2</b>]</dt><dd>
+Установить флаг блокировки. <b>0</b> позволит на время отключить аудит, включить его обратно можно, передав <b>1</b> как параметр. Если установлено значение опции <b>2</b>, то защитить конфигурацию аудита от изменений. Каждый, кто захочет воспользоваться этой возможностью, может поставить эту команду последней в audit.rules. После этой команды все попытки изменить конфигурацию будут отвергнуты с уведомлением в журналах аудита. В этом случае, чтобы задействовать новую конфигурацию аудита, необходимо перезагрузить систему аудита.
+</dd><dt><b>-f</b> [<b>0</b>..<b>2</b>]</dt><dd>
+Установить способ обработки для флага сбоя.
+<b>0</b>=silent <b>1</b>=printk <b>2</b>=panic. Эта опция позволяет определить каким образом ядро будет обрабатывать критические ошибки. Например, флаг сбоя выставляется при следующих условиях: ошибки передачи в пространство демона аудита, превышение лимита буферов, ожидающих обработки, выход за пределы памяти ядра, превышение лимита скорости выдачи сообщений. Значение по умолчанию: <b>1</b>. Для систем с повышенными требованиями к безопасности, значение <b>2</b> может быть более предпочтительно.
+</dd><dt><b>-h</b>
+
+</dt><dd>
+Краткая помощь по аргументам командной строки.
+</dd><dt><b>-i</b>
+
+</dt><dd>
+Игнорировать ошибки при чтении правил из файла.
+</dd><dt><b>-l</b>
+
+</dt><dd>
+Вывести список всех правил по одному правилу в строке.
+</dd><dt><b>-k&nbsp;</b><i>ключ</i>
+
+</dt><dd>
+Установить на правило ключ фильтрации. Ключ фильтрации - это произвольная текстовая строка длиной не больше 31 символа. Ключ помогает уникально идентифицировать записи, генерируемые в хода аудита за точкой наблюдения.
+</dd><dt><b>-m&nbsp;</b><i>текст</i>
+
+</dt><dd>
+Послать в систему аудита пользовательское сообщение. Это может быть сделано только из-под учетной записи root.
+</dd><dt><b>-p</b> [<b>r</b>|<b>w</b>|<b>x</b>|<b>a</b>]</dt><dd>
+Установить фильтр прав доступа для точки наблюдения. <b>r</b>=чтение, <b>w</b>=запись, <b>x</b>=исполнение, <b>a</b>=изменение атрибута. Не путайте эти права доступа с обычными правами доступа к файлу - они определяют типы системных вызовов, которые выполняют данные действия. Заметьте, системные вызовы read и write не включены в этот набор, поскольку логи аудита были бы перегружены информацией о работе этих вызовов.
+</dd><dt><b>-r&nbsp;</b><i>частота</i>
+
+</dt><dd>
+Установить ограничение скорости выдачи сообщений в секунду (<b>0</b> - нет ограничения). Если эта <i>частота</i> не нулевая и она превышается в ходе аудита, флаг сбоя выставляется ядром для выполнения соответствующего действия. Значение по умолчанию: 0.
+</dd><dt><b>-R&nbsp;</b><i>файл</i>
+
+</dt><dd>
+Читать правила из <i>файла</i>. Правила должны быть расположены по одному в строке и в том порядке, в каком они должны исполняться. Следующие ограничения накладываются на файл: владельцем должен быть root и доступ на чтение должен быть только у него. Файл может содержать комментарии, начинающиеся с символа '#'. Правила, расположенные в файле, идентичны тем, что набираются в командной строке, без указания 'auditctl'.
+</dd><dt><b>-s</b>
+
+</dt><dd>
+Получить статус аудита.
+</dd><dt><b>-a&nbsp;</b><i>список</i><b>,</b><i>действие</i>
+
+</dt><dd>
+Добавить правило с указанным <i>действием</i> к концу <i>списка</i>. Заметьте, что запятая разделяет эти два значения. Отсутствие запятой вызовет ошибку. Ниже описаны имена доступных списков:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>task</b>
+
+</dt><dd>
+Добавить правило к списку, отвечающему за процессы. Этот список правил используется только во время создания процесса - когда родительский процесс вызывает fork() или clone(). При использовании этого списка вы можете использовать только те поля, которые известны во время создания процесса: uid, gid и т.д.
+</dd><dt><b>entry</b>
+
+</dt><dd>
+Добавить правило к списку, отвечающему за точки входа системных вызовов. Этот список применяется когда необходимо создать событие для аудита, привязанное к точкам входа системных вызовов.
+</dd><dt><b>exit</b>
+
+</dt><dd>
+Добавить правило к списку, отвечающему за точки выхода из системных вызовов. Этот список применяется когда необходимо создать событие для аудита, привязанное к точкам выхода из системных вызовов.
+</dd><dt><b>user</b>
+
+</dt><dd>
+Добавить правило, отвечающего за список фильтрации пользовательских сообщений. Этот список используется ядром, чтобы отфильтровать события приходящие из пользовательского пространства, перед тем как они будут переданы демону аудита. Необходимо отметить, что только следующие поля могут быть использованы: uid, auid, gid и pid. Все остальные поля будут обработаны, как если бы они не совпали.
+</dd><dt><b>exclude</b>
+
+</dt><dd>
+Добавить правило к списку, отвечающего за фильтрацию событий определенного типа. Этот список используется, чтобы отфильтровывать ненужные события. Например, если вы не хотите видеть avc сообщения, вы должны использовать этот список. Тип сообщения задается в поле msgtype. 
+</dd></dl>
+</dd></dl>
+
+<p>
+Ниже описаны доступные <i>действия</i> для правил:
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>never</b>
+
+</dt><dd>
+Аудит не будет генерировать никаких записей. Это может быть использовано для подавления генерации событий. Обычно необходимо подавлять генерацию в верху списка, а не внизу, т.к. событие инициируется на первом совпавшем правиле.
+</dd><dt><b>always</b>
+
+</dt><dd>
+Установить контекст аудита. Всегда заполнять его во время входа в системный вызов, и всегда генерировать запись во время выхода из системного вызова.
+</dd></dl>
+</dd></dl>
+
+</dd><dt><b>-A&nbsp;</b><i>список</i><b>,</b><i>действие</i>
+
+</dt><dd>
+Добавить правило с указанным <i>действием</i> в начало <i>списка</i>.
+</dd><dt><b>-d&nbsp;</b><i>список</i><b>,</b><i>действие</i>
+
+</dt><dd>
+Удалить правило  с указанным <i>действием</i> из <i>списка</i>. Правило удаляется только в том случае, если полностью совпали и имя системного вызова и поля сравнения.
+</dd><dt><b>-D</b>
+
+</dt><dd>
+Удалить все правила и точки наблюдения.
+</dd><dt><b>-S</b> [<i>Имя или номер системного вызова</i>|<b>all</b>]</dt><dd>
+Любой <i>номер</i> или <i>имя</i> системного вызова может быть использован. Также возможно использование ключевого слова <i>all</i>. Если какой-либо процесс выполняет указанный системный вызов, то аудит генерирует соответствующую запись. Если значения полей сравнения заданы, а системный вызов не указан, правило будет применяться ко всем системным вызовам. В одном правиле может быть задано несколько системных вызовов - это положительно сказывается на производительности, поскольку заменяет обработку нескольких правил.
+</dd><dt><b>-F</b> [<i>n</i><b>=</b><i>v</i> | <i>n</i><b>!=</b><i>v</i> | <i>n</i><b>&lt;</b><i>v</i> | <i>n</i><b>&gt;</b><i>v</i> | <i>n</i><b>&lt;=</b><i>v</i> | <i>n</i><b>&gt;=</b><i>v</i> | <i>n</i><b>&amp;</b><i>v</i> | <i>n</i><b>&amp;=</b><i>v</i>]</dt><dd>
+Задать поле сравнения для правила. Атрибуты поля следующие: объект, операция, значение. Вы можете задать до 64 полей сравнения в одной команде. Каждое новое поле должно начинаться с <b>-F</b>. Аудит будет генерировать запись, если произошло совпадение по всем полями сравнения. Допустимо использование одного из следующих 8 операторов: равно, не равно, меньше, больше, меньше либо равно, больше либо равно, битовая маска (<i>n</i><b>&amp;</b><i>v</i>) и битовая проверка (<i>n</i><b>&amp;=</b><i>v</i>). Битовая проверка выполняет операцию 'and' над значениями и проверяет, равны ли они. Битовая маска просто выполняет операцию 'and'. Поля, оперирующие с идентификатором пользователя, могут также работать с именем пользователя - программа автоматически получит идентификатор пользователя из его имени. То же самое можно сказать и про имя группы.
+Поля сравнения могут быть заданы для следующих объектов:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>a0, a1, a2, a3</b>
+
+</dt><dd>
+Четыре первых аргумента, переданных системному вызову. Строковые аргументы не поддерживаются. Это связано с тем, что ядро должно получать указатель на строку, а проверка поля по значению адреса указателя не желательна. Таким образом, вы должны использовать только цифровые значения.
+</dd><dt><b>arch</b>
+
+</dt><dd>
+Архитектура процессора, на котором выполняется системный вызов. Используйте 'uname -m', чтобы определить архитектуру. Если вы не знаете архитектуру вашей машины, но хотите использовать таблицу 32-х битных системных вызовов, и ваша машина поддерживает 32 бита, вы можете использовать <b>b32</b>. Подобно этому <b>b64</b> может быть использовано для использования таблицы 64-х битных системных вызовов.
+</dd><dt><b>auid</b>
+
+</dt><dd>
+Это аббревиатура: audit uid - идентификатор пользователя, использованный для входа в систему.
+</dd><dt><b>devmajor</b>
+
+</dt><dd>
+Главный номер устройства (Device Major Number)
+</dd><dt><b>devminor</b>
+
+</dt><dd>
+Вспомогательный номер устройства (Device Minor Number)
+</dd><dt><b>egid</b>
+
+</dt><dd>
+Действительный идентификатор группы
+</dd><dt><b>euid</b>
+
+</dt><dd>
+Действительный идентификатор пользователя
+</dd><dt><b>exit</b>
+
+</dt><dd>
+Значение, возвращаемое системным вызовом при выходе.
+</dd><dt><b>fsgid</b>
+
+</dt><dd>
+Идентификатор группы, применяемый к файловой системе.
+</dd><dt><b>fsuid</b>
+
+</dt><dd>
+Идентификатор пользователя, применяемый к файловой системе.
+</dd><dt><b>gid</b>
+
+</dt><dd>
+Идентификатор группы
+</dd><dt><b>inode</b>
+
+</dt><dd>
+Номер inode
+</dd><dt><b>key</b>
+
+</dt><dd>
+Альтернативный способ установить ключ фильтрации. Смотри выше описание опции <b>-k</b>.
+</dd><dt><b>msgtype</b>
+
+</dt><dd>
+Используется для проверки совпадения с числом, описывающим тип сообщения. Может быть использован только в списке <b>exclude</b>.
+</dd><dt><b>obj_user</b>
+
+</dt><dd>
+Имя пользователя-владельца ресурса (в контексте SELinux)
+</dd><dt><b>obj_role</b>
+
+</dt><dd>
+Роль ресурса (в контексте SELinux)
+</dd><dt><b>obj_type</b>
+
+</dt><dd>
+Тип ресурса (в контексте SELinux)
+</dd><dt><b>obj_lev_low</b>
+
+</dt><dd>
+Нижний уровень ресурса (в контексте SELinux)
+</dd><dt><b>obj_lev_high</b>
+
+</dt><dd>
+Верхний уровень ресурса (в контексте SELinux)
+</dd><dt><b>path</b>
+
+</dt><dd>
+Полный путь к файлу для точки наблюдения. Смотри ниже описание опции "<b>-w</b>". Может быть использован только в списке <b>exit</b>.
+</dd><dt><b>perm</b>
+
+</dt><dd>
+Фильтр прав доступа для файловых операций. Смотри выше описание опции "<b>-p</b>". Может быть использован только в списке <b>exit</b>.
+</dd><dt><b>pers</b>
+
+</dt><dd>
+Персональный номер операционной системы.
+</dd><dt><b>pid</b>
+
+</dt><dd>
+Идентификатор процесса
+</dd><dt><b>ppid</b>
+
+</dt><dd>
+Идентификатор родительского процесса.
+</dd><dt><b>subj_user</b>
+
+</dt><dd>
+Имя пользователя-владельца процесса (в контексте SELinux)
+</dd><dt><b>subj_role</b>
+
+</dt><dd>
+Роль процесса (в контексте SELinux)
+</dd><dt><b>subj_type</b>
+
+</dt><dd>
+Тип процесса (в контексте SELinux)
+</dd><dt><b>subj_sen</b>
+
+</dt><dd>
+Чувствительность процесса (в контексте SELinux)
+</dd><dt><b>subj_clr</b>
+
+</dt><dd>
+Допуск процесса (в контексте SELinux)
+</dd><dt><b>sgid</b>
+
+</dt><dd>
+Установленный идентификатор группы
+</dd><dt><b>success</b>
+
+</dt><dd>
+Если значение, возвращаемое системным вызовом, больше либо равно 0, данный объект будет равен "true/yes", иначе "false/no". При создании правила используйте 1 вместо "true/yes" и 0 вместо "false/no".
+</dd><dt><b>suid</b>
+
+</dt><dd>
+Установленный идентификатор пользователя
+</dd><dt><b>uid</b>
+
+</dt><dd>
+Идентификатор пользователя
+</dd></dl>
+</dd></dl>
+
+</dd><dt><b>-w&nbsp;</b><i>путь</i>
+
+</dt><dd>
+Добавить точку наблюдения за файловым объектом, находящемуся по указанному <i>пути</i>. Вы не можете добавлять точку наблюдения к каталогу верхнего уровня - это запрещено ядром. Групповые символы (wildcards) также не могут быть использованы, попытки их использования будут генерировать предупреждающее сообщение. Внутренне точки наблюдения реализованы как слежение за inode. Таким образом, если вы установите точку наблюдения за каталогом, вы увидите файловые события, которые в действительности будут означать обновления метаданных этой inode, и вы можете не увидеть событий, непосредственно связанных с файлами. Если вам необходимо следить за всеми файлами в каталоге, рекомендуется создавать индивидуальную точку наблюдения для каждого файла. В противоположность к правилам аудита системных вызовов, точки наблюдения не оказывают влияния на производительность, связанную с количеством правил посылаемых в ядро.
+</dd><dt><b>-W&nbsp;</b><i>путь</i>
+
+</dt><dd>
+Удалить точку наблюдения за файловым объектом, находящемуся по указанному <i>пути</i>.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ПРИМЕРЫ</h2>
+
+Чтобы увидеть все системные вызовы, используемые определенным процессом:
+<p>
+</p><pre><b>auditctl -a entry,always -S all -F pid=1005</b>
+</pre>
+
+<p>
+Чтобы увидеть все файлы, открытые определенным пользователем:
+</p><p>
+</p><pre><b>auditctl -a exit,always -S open -F auid=510</b>
+</pre>
+
+<p>
+Чтобы увидеть неудачные попытки вызова системной функции 'open':
+</p><p>
+</p><pre><b>auditctl -a exit,always -S open -F success!=0</b>
+</pre>
+
+<p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+<dl compact="">
+<dt><i>/etc/audit/audit.rules</i>
+
+</dt><dd>
+<p>
+</p></dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=auditd&amp;category=8">auditd</a></b>(8).
+
+<p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>АВТОР</h2>
+
+Стив Граб (Steve Grubb)
+<p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ПЕРЕВОД</h2>
+
+Перевод с английского Alexander Kolotov (<a href="mailto:alexandr.kolotov@gmail.com">alexandr.kolotov@gmail.com</a>) 2007
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИE</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAI">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAJ">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="auditctl" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

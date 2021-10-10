@@ -1,0 +1,374 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN sed (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, sed"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="sed" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">sed (1)</font><hr><li> <a href="/man.shtml?topic=sed&amp;category=1&amp;russian=4"><u>sed</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=sed&amp;category=1&amp;russian=1"><u>sed</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=sed&amp;category=1&amp;russian=0"><u>sed</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=sed&amp;category=1&amp;russian=2"><u>sed</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=sed&amp;category=1&amp;russian=5"><u>sed</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=sed&amp;category=8&amp;russian=0"><u>sed</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/sed.html"><u>sed</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+sed - потоковый редактор (Stream EDitor)
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<pre>sed [-n] [-V] [--quiet] [--silent] [--version] [--help]
+    [-e script] [--expression=script]
+    [-f script-file] [--file=script-file]
+    [script-if-no-other-script]
+    [file...]
+</pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<i>Sed</i> это редактор потока. Потоковый редактор используется для выполнения основных преобразований с текстом на входном потоке (файл или ввод из конвейера). Тогда как некоторые схожие редакторы (такие как <i>ed</i>) допускают комплексное редактирование, <i>sed</i> работает совершая лишь одно действие над вводом за проход и следовательно более эффективен. Благодаря этому <i>sed</i> в состоянии фильтровать текст в конвейере, что особо выгодно отличает его от редакторов других типов.
+<a name="lbAE">&nbsp;</a>
+<h2>ОПЦИИ</h2>
+
+<i>Sed</i> может быть вызван со следующими параметрами командной строки:
+<dl compact="">
+<dt><b>-V</b></dt><dd>
+</dd><dt><b>--version</b> </dt><dd>
+Сообщает версию запущенного sed, версию лицензионного соглашения, под которым он распространяется и завершает работу.
+</dd><dt><b>-h</b></dt><dd>
+</dd><dt><b>--help</b> </dt><dd>
+Выводит подсказку о способе использования, вкратце сообщает о параметрах командной строки, с которыми он может быть запущен, адрес, куда можно сообщить об обнаруженных в работе программы ошибках, и затем завершает работу.
+</dd><dt><b>-n</b></dt><dd>
+</dd><dt><b>--quiet</b></dt><dd>
+</dd><dt><b>--silent</b></dt><dd>
+По умолчанию, <i>sed</i> после прохождения каждого цикла сценария распечатывает обрабатываемую область шаблона. Эти опции отключают автоматический вывод, который может быть включен лишь явным указанием ключа <b>p</b> для <b>sed</b>.
+</dd><dt><b>-e</b> <i>сценарий</i></dt><dd>
+</dd><dt><b>--expression=</b><i>сценарий</i></dt><dd>
+Добавляет команды в сценарий к набору выполняемых команд при обработке ввода.
+</dd><dt><b>-f</b> <i>сценарий</i></dt><dd>
+</dd><dt><b>--file=</b><i>сценарий</i></dt><dd>
+Добавляет команды содержащиеся в сценарии к набору выполняемых команд при обработке ввода.
+</dd></dl>
+<p>
+
+Если в командной строке не указан параметр <b>-e</b>, <b>-f</b>, <b>--expressiln</b> или <b>--file</b>, то первый же заданный в командной строке аргумент не-опция будет считаться <i>сценарием</i> для выполнения.
+</p><p>
+
+Если какие-либо параметры командной строки остаются после вышеупомянутой обработки, то они интерпретируются как имена входных файлов подлежащих обработке. Имя файла <b>-</b> соотносится со стандартным входным потоком. Стандартный ввод обрабатывается в том случае, если никаких имён файлов не определено.
+<a name="lbAF">&nbsp;</a>
+</p><h2>СИНТАКСИС КОМАНД</h2>
+
+Это лишь краткое резюме команд <i>sed</i>, призванное служить подсказкой для тех, кто уже знаком с <i>sed</i>; для более полного пояснения необходимо ознакомиться с другой документацией (наподобие документации texinfo).
+<a name="lbAG">&nbsp;</a>
+<h3><b>Безадресные команды</b></h3>
+
+<dl compact="">
+<dt>: <i>метка</i></dt><dd>
+Метка для <b>b</b> и <b>t</b> команд.
+</dd><dt>#<i>комментарий</i></dt><dd>
+Комментарий простирается до следующего вхождения новой строки (или до конца фрагмента сценария <b>-e</b>)
+</dd><dt>}</dt><dd>
+Закрывающая скобка блока { }.
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h3><b>Команды без адреса или с одним адресом</b></h3>
+
+<dl compact="">
+<dt>=</dt><dd>
+Распечатать номер текущей строки.
+</dd><dt>a \</dt><dd>
+</dd><dt><i>текст</i></dt><dd>
+Добавить <i>текст</i>, где каждое вхождение новой строки начинается со знака обратного слэша.
+</dd><dt>i \</dt><dd>
+</dd><dt>Вставить <i>текст</i>, где каждое вхождение новой строки начинается со знака обратного слэша.</dt><dd>
+</dd><dt>q</dt><dd>
+Немедленное выход из сценария <i>sed</i> без дальнейшей обработки любого ввода, за исключением автовывода, если он не отключен. В этом случае будет распечатан текущий набор шаблонов.
+</dd><dt>r <i>файл</i></dt><dd>
+Добавить текст прочитанный из <i>файла</i>.
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h3><b>Команды, которые принимают интервалы адресов</b></h3>
+
+<dl compact="">
+<dt>{</dt><dd>
+Начало блока команд (оканчивается знаком }).
+</dd><dt>b <i>метка</i></dt><dd>
+Переход к <i>метке</i>; если <i>метка</i> опущена, переход) к концу сценария.
+</dd><dt>t <i>метка</i></dt><dd>
+Если s/// сделал успешную замену, так как была прочитана последняя строка ввода и последняя команда t, то выполнить переход к <i>метке</i>; если <b>метка</b> опущена, то перейти к концу сценария.
+</dd><dt>c \</dt><dd>
+</dd><dt><i>текст</i></dt><dd>
+Заместить выбранные строки <i>текстом</i>, где каждое вхождение новой строки начинается со знака обратного слэша.
+</dd><dt>d</dt><dd>
+Удалить заданную область шаблона. Начать следующий цикл.
+</dd><dt>D</dt><dd>
+Удалить до первого вхождения новой строки в области шаблона. Начать следующий цикл, но пропустить считывание ввода, если там всё ещё данные из области шаблона.
+</dd><dt>h H</dt><dd>
+Скопировать/добавить область шаблон к удерживаемой области.
+</dd><dt>g G</dt><dd>
+Скопировать удерживаемую область к области шаблона.
+</dd><dt>x</dt><dd>
+Поменять местами удерживаемую область и область шаблона.
+</dd><dt>l</dt><dd>
+Огласить текущую строку в "визуально однозначной" форме.
+</dd><dt>n N</dt><dd>
+Прочитать/добавить следующую строку ввода в область шаблона.
+</dd><dt>p</dt><dd>
+Распечатать текущую область шаблона.
+</dd><dt>P</dt><dd>
+Распечатать до первого вхождения новой строки текущей области шаблона.
+</dd><dt>s/<i>регулярное_выражение</i>/<i>замена</i>/</dt><dd>
+Попытаться разыскать <i>регулярное_выражение</i> (regexp) в области шаблона. Если это удалось, то заместить эту часть с <i>заменой</i>. <i>Замена</i> может содержать специальный символ <b>&amp;</b> для обращения к той части области шаблона, которая является соответствием, и специальные управляющие последовательности, от \1 до \9, для обращения к соответствующим разыскиваемым под-выражениям в <i>регулярном_выражении</i>.
+</dd><dt>w <i>файл</i></dt><dd>
+Записать текущую область шаблона в <i>файл</i>.
+</dd><dt>y/<i>источник</i>/<i>цель</i>/</dt><dd>
+Транслитерация символов в области шаблона, которые присутствуют в <i>источнике</i> с соответствующими символами в <i>цели</i>.
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>АДРЕСАЦИЯ</h2>
+
+Команды <i>sed</i> могут быть заданы без указания адреса, в этом случае команда выполняется для всех строк ввода; с одним адресом, в этом случае команда будет выполнена применительно строкам ввода совпадающим с адресом; или с двумя адресами, в этом случае команда будет выполнена для всех строк ввода, соответствующих заданному диапазону строк начиная с первого и заканчивая последним адресами. Три правила, касающиеся этих диапазонов адресов: используемый синтаксис <i>адрес1</i>,<i>адрес2</i> (т.е. адреса разделены через запятую); строка, соответствующая <i>адрес1</i>, обрабатывается даже в том случае, если <i>адрес2</i> указывает на предшествующую ей строку; и если <i>адрес2</i> является <i>регулярным выражением</i> (regexp), то оно не будет использовано относительно строки, соответствующей <i>адрес1</i>.
+<p>
+
+После адресов (или диапазона адресов) и перед командой может быть вставлен <b>!</b>, означающий, что команда должна быть выполнена только в том случае, если адрес (или диапазон адресов) <b>не</b> соответствует.
+</p><p>
+
+Поддерживаются следующие типы адресов:
+</p><dl compact="">
+<dt><i>номер</i></dt><dd>
+Соответствует только заданному <b>номеру</b> линии.
+</dd><dt><i>первая</i>~<i>шаг</i></dt><dd>
+Соответствует каждой строке <i>шаг</i> начиная от строки <i>первая</i>. Например, "sed -n 1~2p" напечатает все нечётные строки во входном потоке и адреса 2~5 будут соответствовать каждой пятой строке начиная со второй. (Это расширение GNU.)
+</dd><dt>$</dt><dd>
+Соответствует последней строке.
+</dd><dt>/<i>regexp</i>/</dt><dd>
+Соответствует строкам подпадающим под определение регулярного выражения <i>regexp</i>.
+</dd><dt>\<b>c</b><i></i>regexp<b>c</b></dt><dd>
+Соотвествует строкам подпадающим под определение регулярного выражения <i>regexp</i>. <b>c</b> может быть любым символом.
+</dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h2>РЕГУЛЯРНЫЕ ВЫРАЖЕНИЯ</h2>
+
+POSIX.2 BRE должны поддерживаться, но всё же не полностью. <b>\n</b> последовательность в регулярном выражении соответствует символу новой строки. Есть также некоторые GNU расширения. [XXX FIXME: необходимо многое сказать. По крайней мере необходимо дать ссылки на другие документы, которые описывают то, что поддерживается.]
+<a name="lbAL">&nbsp;</a>
+<h2>ПРОЧИЕ ПРИМЕЧАНИЯ</h2>
+
+Данная версия sed поддерживает последовательность \<b>&lt;новая_строка&gt;</b> во всех регулярных выражениях, в <i>замещающих</i> частях команд подмены (s) и в частях <i>источник</i> и <i>цель</i> команд транслитерации (y). \ будет удалено, а новая строка сохранена.
+<a name="lbAM">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=awk&amp;category=1">awk</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ed&amp;category=1">ed</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=expr&amp;category=1">expr</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=emacs&amp;category=1">emacs</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=perl&amp;category=1">perl</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tr&amp;category=1">tr</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=vi&amp;category=1">vi</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=regex&amp;category=5">regex</a></b>(5), [то, что <i>должно</i> быть написано ... XXX], sed.info, любая из множества книг по <i>sed</i>, <i>sed</i> FAQ (<a href="http://www.dbnet.ece.ntua.gr/~george/sed/sed-faq.html,">http://www.dbnet.ece.ntua.gr/~george/sed/sed-faq.html,</a> <a href="http://www.ptug.org/sed/sedfaq.htm).">http://www.ptug.org/sed/sedfaq.htm).</a>
+<a name="lbAN">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+Сообщения об ошибках направляйте на <b><a href="mailto:bug-gnu-utils@gnu.org">bug-gnu-utils@gnu.org</a></b>. Не забудьте указать где-нибудь в поле "Тема" письма слово "sed".
+<a name="lbAO">&nbsp;</a>
+<h2>ОБ АВТОРЕ</h2>
+
+Copyright (C) 1998 Free Software Foundation, Inc.
+Перевод с английского выполнил Александр Блохин &lt;<a href="mailto:sass@altlinux.ru">sass@altlinux.ru</a>&gt;
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">СИНТАКСИС КОМАНД</a></dt><dd>
+<dl>
+<dt><a href="#lbAG"><b>Безадресные команды</b></a></dt><dd>
+</dd><dt><a href="#lbAH"><b>Команды без адреса или с одним адресом</b></a></dt><dd>
+</dd><dt><a href="#lbAI"><b>Команды, которые принимают интервалы адресов</b></a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAJ">АДРЕСАЦИЯ</a></dt><dd>
+</dd><dt><a href="#lbAK">РЕГУЛЯРНЫЕ ВЫРАЖЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAL">ПРОЧИЕ ПРИМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAM">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAN">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAO">ОБ АВТОРЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="sed" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

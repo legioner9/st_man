@@ -1,0 +1,756 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN klogd (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, klogd"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="klogd" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">klogd (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=klogd&amp;category=8&amp;russian=0"><u>klogd</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=klogd&amp;category=8&amp;russian=2"><u>klogd</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+klogd - Демон журналирования ядра
+<p>
+
+<a name="lbAC">&nbsp;</a>
+</p><h2>СИНТАКСИС</h2>
+
+<b>klogd</b>
+
+[<b> -c </b>
+
+<i>n</i>
+
+]
+[<b> -d </b>]
+
+[<b> -f </b>
+
+<i>fname</i>
+
+]
+[<b> -iI </b>]
+
+[<b> -n </b>]
+
+[<b> -o </b>]
+
+[<b> -p </b>]
+
+[<b> -s </b>]
+
+[<b> -k </b>
+
+<i>fname</i>
+
+]
+[<b> -v </b>]
+
+[<b> -x </b>]
+
+[<b> -2 </b>]
+
+<p>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<b>klogd</b>
+
+- это системный демон, который перехватывает и журналирует сообщения
+ядра Linux.
+<p>
+
+<a name="lbAE">&nbsp;</a>
+</p><h2>ОПЦИИ</h2>
+
+<dl compact="">
+<dt><b>-c </b><i>n</i>
+
+</dt><dd>
+Устанавливает уровень журналирования по умолчанию для консольных
+сообщений в <i>n</i>.
+</dd><dt><b>-d</b>
+
+</dt><dd>
+Включить отладочный режим. Будет выводить <b>МНОЖЕСТВО</b> данных в
+стандартный поток ошибок (stderr).
+</dd><dt><b>-f </b><i>файл</i>
+
+</dt><dd>
+Журналировать сообщения в указанный файл, т.е. не использовать syslog.
+</dd><dt><b>-i -I</b>
+
+</dt><dd>
+Послать сигнал уже запущенному демону klogd. Благодаря этим опциям,
+информация о символах будет загружена/перечитана заново. Опция -i
+посылает сигнал загрузить информацию о символах модулей ядра. Опция -I
+посылает сигнал перечитать заново как информацию о статических символах
+ядра, так и о символах модулей ядра.
+</dd><dt><b>-n</b>
+
+</dt><dd>
+Запретить автопереход в фоновый режим. Это особенно необходимо, когда 
+<b>klogd</b>
+
+запускается и контролируется через 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=init&amp;category=8">init</a></b>(8).
+
+</dd><dt><b>-o</b>
+
+</dt><dd>
+Выполниться в режиме 'взгляд'. В этом режиме <b>klogd</b> единожды
+читает и журналирует все сообщения, найденные в буферах сообщений ядра.
+Затем демон завершает свою работу.
+</dd><dt><b>-p</b>
+
+</dt><dd>
+Включить режим паранойи. Эта опция задает поведение klogd при загрузке
+информации о символах модулей ядра. klogd загружает информацию о символах 
+модулей ядра каждый раз, когда строка "Oops" обнаруживается в потоке сообщений ядра.
+</dd><dt><b>-s</b>
+
+</dt><dd>
+Заставляет <b>klogd</b> использовать системный вызов для обращения к
+буферам сообщений ядра.
+</dd><dt><b>-k </b><i>file</i>
+
+</dt><dd>
+Использовать заданный файл как источник информации о символах ядра.
+</dd><dt><b>-v</b>
+
+</dt><dd>
+Напечатать версию и выйти.
+</dd><dt><b>-x</b>
+
+</dt><dd>
+Не допускать преобразования EIP и поэтому не читать файл System.map.
+</dd><dt><b>-2</b>
+
+</dt><dd>
+Когда символы раскрываются, печатать две строки. Одна с адресами,
+преобразованными в символы, другая с необработанными данными. Это
+позволяет внешним программам (таким как ksymoops) производить
+собственную обработку данных.
+</dd></dl>
+<p>
+
+<a name="lbAF">&nbsp;</a>
+</p><h2>ОБЗОР</h2>
+
+Функционал демона klogd обычно находился в syslog но это не лучшее место
+для него. В современном ядре Linux следует обратить внимание на такие вопросы, 
+возникающие при передачи сообщений ядра, как определение источника, приоритеты,
+получение адресов и т.д. Вынесение журналирования сообщений ядра
+в отдельный процесс предлагает явное разделение функциональности.
+<p>
+В Linux есть два потенциальных источника для журналирования
+информации ядра: файловая система
+<i>/proc</i>
+
+и системный вызов (sys_syslog), хотя, в конечном счете, это одно и тоже.
+Klogd разработан таким образом, что сам выбирает какой источник
+информации больше всего подходит. Для этого он сначала проверяет,
+смонтирована ли файловая система 
+<i>/proc .</i>
+
+Если да, то файл 
+<i>/proc/kmsg</i>
+
+используется в качестве источника информации для журналирования. Если
+файловая система не смонтирована, демон 
+<b>klogd</b>
+
+использует системный вызов, чтобы получить доступ к сообщениям ядра. Для
+того, чтобы заставить klogd принудительно использовать системный вызов в
+качестве источника сообщений, можно использовать в командной строке
+опцию
+"-s".
+</p><p>
+Если сообщения ядра направлены через демон
+<b>syslogd</b>, демон <b>klogd,</b>
+
+начиная с версии 1.1, имеет возможность корректно сортировать сообщения
+ядра согласно их приоритетам (приоритезация). Приоритезация сообщения
+была добавлена в ядро в версии 0.99pl13. Необработанные
+сообщения ядра имеют форму:
+</p><dl compact="">
+<dt></dt><dd>
+&lt;[0-7]&gt;Какое-то сообщение из ядра.
+</dd></dl>
+<p>
+
+Приоритет сообщения представлен как односимвольное значение заключенное в
+&lt;&gt;. Эти значения определены в заголовочном файле ядра kernel.h. Когда
+сообщение получено из ядра, демон klogd распознает уровень приоритета и
+назначает соответствующий уровень syslog приоритета для сообщения. Если
+задан выходной файл посредством (<b>-f</b>), то приоритет добавляется к началу
+сообщения ядра.
+</p><p>
+Демон
+<b>klogd</b>
+
+также предоставляет возможность выводить сообщения ядра на системную
+консоль. Совместно с приоритезацией сообщений ядра было включение
+изначального уровня сообщений для ядра. В стандартном ядре изначальный
+уровень сообщений консоли установлен в 7. Любое сообщение с уровнем
+приоритета ниже чем 7 (наивысший приоритет) появляется на консоли.
+</p><p>
+Сообщения с уровнем приоритета 7 считаются отладочными сообщениями, и
+поэтому не будут появляться на консоли. Множество администраторов,
+особенно в многопользовательских системах, предпочитают, чтобы все
+сообщения ядра обрабатывались демоном klogd и направлялись в файл
+либо в демон syslogd. Это предотвращает появление таких неприятных
+ситуаций как выход за пределы бумаги на принтере или изменение в
+использовании диска, обнаруженное в беспорядочных сообщениях консоли.
+</p><p>
+Когда в командной строке передается 
+<b>-c ,</b>
+
+демон
+<b>klogd</b>
+
+выполнит системный вызов, чтобы подавить вывод на консоль всех сообщений
+ядра. Предыдущие версии всегда вызывали этот системный вызов и исключали
+появление всех сообщений ядра за исключением сообщений 'panic'. В
+настоящие время это обрабатывается по другому, поэтому демону
+<b>klogd</b>
+
+больше не нужно выставлять это значение. Аргумент, представляемый опцией
+<b>-c</b>, задает уровень приоритета сообщений, которые будут направлены
+на консоль. Заметьте, что только сообщения с приоритетом МЕНЬШЕ
+заданного будут направлены на консоль.
+</p><dl compact="">
+<dt></dt><dd>
+К примеру, чтобы ядро отображало все сообщения с уровнем приоритета 3 
+<b></b>(<b>KERN_ERR</b>)
+
+и более серьезные сообщения, должна быть выполнена следующая команда:
+</dd><dt></dt><dd>
+<pre>        klogd -c 4
+</pre>
+
+</dd></dl>
+<p>
+
+</p><p>
+Если установлены исходные тексты ядра, числовые значения для сообщений ядра
+можно найти в заголовочном файле ядра
+<i>kernel.h</i> из каталога <i>/usr/include/linux</i>.
+
+Эти значения аналогичны значениям приоритета syslog, которые определены в файле 
+<i>syslog.h</i> из каталога <i>/usr/include/sys</i>.
+
+</p><p>
+Демон klogd может быть также использован в режиме 'взгляд' для
+чтения буферов сообщений ядра. Этот режим задается опцией <b>-o</b> в
+командной строке. Результат работы будет направлен или в демон syslogd
+или в альтернативный файл, заданный опцией <b>-f</b> .
+</p><dl compact="">
+<dt></dt><dd>
+К примеру, чтобы прочитать все сообщения ядра после загрузки системы и
+записать их в файл krnl.msg, необходимо выполнить следующую команду:
+</dd><dt></dt><dd>
+<pre>        klogd -o -f ./krnl.msg
+</pre>
+
+</dd></dl>
+<p>
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>ОПРЕДЕЛЕНИЕ АДРЕСОВ В ЯДРЕ</h2>
+
+Если ядро распознает условия внутренней ошибки, вызывается обработчик
+общей ошибки защиты. Как часть процедуры обработки общей ошибки защиты
+ядро выводит отчет, где показывает состояние процессора во время ошибки.
+Этот отчет включает в себя содержимое регистров процессора, содержимое
+стека ядра и данные от том, какая функция выполнялась в момент ошибки.
+<p>
+Эта информация 
+<b>ЧРЕЗВЫЧАЙНО ВАЖНА</b>
+
+для определения какие условия вызвали внутреннюю ошибку. Но разработчики
+ядра сталкиваются с трудностями при попытке проанализировать эту
+информацию. Необработанные числовые данные, представленные в отчете об
+ошибке защиты, не очень полезны для разработчиков. Это происходит потому, что ядра
+не идентичны друг другу и адреса расположения переменных или функций не
+одни и те же в разных ядрах. Для того, чтобы диагностировать причину
+проблемы, разработчикам необходимо знать, какая конкретная функция ядра
+или переменная были вовлечены в процесс появления ошибки.
+</p><p>
+Список, содержащий адреса расположения важных переменных и функций,
+создается в ходе процесса компиляции ядра. Этот список хранится в файле
+System.map в корне дерева исходных текстов ядра. Используя этот
+список, разработчики ядра могут однозначно определить, что ядро делало
+когда произошла ошибка.
+</p><p>
+Процесс преобразования числовых значений адресов из отчета об ошибке
+защиты может быть сделан вручную или с использованием программы 
+<b>ksymoops ,</b>
+
+поставляемой вместе с исходными текстами ядра.
+</p><p>
+Для удобства 
+<b>klogd</b>
+
+будет пытаться преобразовать числовые значения адресов в их
+символическую форму, если во время выполнения доступна таблица символов
+ядра. Если вам необходимы оригинальные адреса символов, используйте опцию
+<b>-2 ,</b>
+
+чтобы вывести необработанные адреса. Таблица символов может быть задана
+опцией <b>-k</b> в командной строке. Если таблица символов не задана
+явно, то демон будет пытаться использовать следующие файлы:
+</p><p>
+</p><pre><i>/boot/System.map</i>
+<i>/System.map</i>
+<i>/usr/src/linux/System.map</i>
+</pre>
+
+<p>
+Системные карты поставляются с информацией о версии с ядра 1.3.43. Эта
+информация используется для обеспечения интеллектуального поиска в
+списках системных таблиц. Полезность этой возможности в том, что она
+предоставляет поддержку как для готовых, так и для экспериментальных
+ядер.
+</p><p>
+К примеру, готовое ядро может иметь собственные системные карты в
+/boot/System.map. Если экспериментальное или тестовое ядро компилируется
+из исходных текстов, расположенных в /usr/src/linux, системная
+карта может быть найдена в /usr/src/linux/System.map. Когда klogd
+запустится под экспериментальным ядром, системная карта в
+/boot/System.map будет пропущена в пользу карты из
+/usr/src/linux/System.map.
+</p><p>
+Современные ядра (с 1.3.43) генерируют важные адреса ядра правильно,
+поэтому они будут распознаны и использованы демоном klogd. Для более
+ранних ядер требуется накладывать патч. Этот патч поставляется совместно
+с исходными текстами sysklogd.
+</p><p>
+Процесс анализа ошибок защиты ядра отлично работает с ядрами
+собранными статически. Некоторые трудности возникают при попытках
+диагностировать проблемы, случившихся в загружаемых модулях ядра.
+Загружаемые модули ядра используются, чтобы реализовать некоторую
+функциональность ядра в такой форме, когда она может по желанию быть
+загружена/выгружена. Использование загружаемых модулей ядра полезно с
+позиции отладки, а также для уменьшения памяти, используемой ядром.
+</p><p>
+Проблемы с диагностикой ошибок в загружаемых модулях вызваны самой
+природой динамического связывания этих модулей. Когда модуль
+загружается, ядро выделят память под этот модуль, когда модуль
+выгружается - эта память освобождается. Такое динамическое выделение
+памяти делает невозможным изготовление файла-карты, который описывает
+адреса переменных и функций в загружаемом модуле ядра. Без этой карты
+расположений невозможно определить, что пошло не так, когда ошибка
+защиты затрагивает модуль ядра.
+</p><p>
+<b>klogd</b>
+
+имеет поддержку работы с проблемами диагностики ошибок защиты в
+загружаемых модулях ядра. На начало работы программы или в ответ на
+полученный сигнал, демон опрашивает ядро на предмет списка всех
+загруженных модулей и их адресов в памяти. Отдельные модули при загрузке
+могут также регистрировать расположение важных функций. Адреса этих
+экспортированных символов также определяются в ходе процесса опроса
+ядра.
+</p><p>
+Когда ошибка защиты происходит, делается попытка распознать адреса ядра
+из таблицы статических символов. Если это не удается, попытка
+повторяется с символами модулей, загруженных в данный момент. Это
+позволяет, как минимум, определить какой загружаемый модуль
+ответственен за генерацию ошибки защиты. Дополнительную информацию
+можно получить в том случае, если разработчик модуля предусмотрел
+экспорт информации о символах.
+</p><p>
+Корректное и правильное получение адресов в модулях ядра требует того,
+чтобы 
+<b>klogd</b>
+
+был информирован при изменении состояния модуля ядра. Опции 
+<b>-i</b>
+
+и
+<b>-I</b>
+
+могут быть использованы для передачи сигнала демону (исполняющемуся в
+данный момент), чтобы он перезагрузил информацию о символах. Наиболее
+важная опция для корректного получения символов модуля - это 
+<b>-i .</b>
+
+Каждый раз, когда модуль загружается или удаляется из ядра, должна
+выполняться следующая команда:
+</p><p>
+</p><pre><i>klogd -i</i>
+</pre>
+
+<p>
+Также может быть использована опция 
+<b>-p ,</b>
+
+чтобы гарантировать, что информация о символах актуальна. Эта опция
+говорит
+<b>klogd</b>
+
+перезагрузить таблицу символов, как только ошибка защиты обнаруживается.
+В этом режиме "паранойи", программу необходимо запускать с
+осторожностью. В момент появления ошибки защиты стабильность ядра и
+операционного окружения всегда под вопросом. Поскольку для чтения
+информации о символах демон klogd должен выполнять системные вызовы,
+существует вероятность того, что система будет слишком нестабильна для
+получения полезной информации. Намного лучшим решением было бы
+гарантирование того, что klogd обновляется каждый раз, когда модуль
+загружается или выгружается. При наличии обновленной информации о
+символах, вероятность правильного разбора ошибки защиты увеличивается.
+</p><p>
+Включенный в распространяемые исходные тексты sysklogd, патч к пакету
+modules-2.0.0, позволяет командам 
+<b>insmod,</b>
+
+<b>rmmod</b>
+
+и
+<b>modprobe</b>
+
+автоматически генерировать сигнал для 
+<b>klogd</b>
+
+каждый раз, когда модуль подключается или отключается из ядра.
+Использование этого патча гарантирует, что информация о символах в klogd
+всегда соответствует текущему состоянию ядра.
+</p><p>
+
+<a name="lbAH">&nbsp;</a>
+</p><h2>ОБРАБОТКА СИГНАЛОВ</h2>
+
+Демон 
+<b>klogd</b>
+
+реагирует на восемь сигналов:
+<b>SIGHUP</b>, <b>SIGINT</b>, <b>SIGKILL</b>, <b>SIGTERM</b>, <b>SIGTSTP</b>, 
+
+<b>SIGUSR1</b>, SIGUSR2<b> и </b>SIGCONT<b>.  После сигналов </b>
+
+<b>SIGINT</b>, <b>SIGKILL</b>, <b>SIGTERM</b> и <b>SIGHUP</b>
+
+демон закроет источники журналирования и аккуратно завершит свою работу.
+<p>
+Сигналы
+<b>SIGTSTP</b> и <b>SIGCONT</b>
+
+используются, чтобы запустить и остановить журналирование сообщений
+ядра. После получения сигнала
+<b>SIGTSTP</b>
+
+демон закроет источники журналирования и переключиться в режим ожидания,
+ничего не выполняя. Соответственно, сигнал
+<b>SIGCONT</b>
+
+приказывает демону переинициализироваться и выбрать заново источник
+журналирования. Используя комбинацию из 
+<b>SIGSTOP</b> и <b>SIGCONT</b>,
+
+источник журналирования можно перевыбрать без остановки и перезапуска
+демона. К примеру, если файловая система <i>/proc</i> отмонтировалась по
+какой-либо причине, то  может быть использована следующая
+последовательность команд:
+</p><p>
+
+
+</p><dl compact="">
+<dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt># kill -TSTP pid</dt><dd>
+</dd><dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt># umount /proc</dt><dd>
+</dd><dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt># kill -CONT pid</dt><dd>
+
+</dd></dl>
+<p>
+
+Это будет отмечено в системных журналах с приоритетом <br>
+<b>LOG_INFO ,</b>
+
+таким образом, документируя запуск/остановку процесса журналирования.
+</p><p>
+Сигналы
+<b>SIGUSR1</b> и <b>SIGUSR2</b>
+
+используются, чтобы инициировать загрузку/перезагрузку информации о
+символах ядра. Получение сигнала
+<b>SIGUSR1</b>
+
+загружает заново информацию о символах ядра. Сигнал
+<b>SIGUSR2</b>
+
+загружает заново информацию о статических символах ядра и информацию о
+символах модулей ядра.
+</p><p>
+При условии, что файл System.map находится в соответствующем месте,
+самый полезный сигнал - 
+<b>SIGUSR1 .</b>
+
+Этот сигнал используется, чтобы сообщить демону о том, что модули ядра
+загружены/выгружены. Посылка этого сигнала демону после изменения
+состояния модуля ядра, гарантирует, что в случае появления ошибки защиты в
+адресном пространстве, занимаемом модулем ядра, будет происходить
+корректное преобразование символов.
+</p><p>
+
+<a name="lbAI">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+
+<dl compact="">
+<dt><i>/proc/kmsg</i>
+
+</dt><dd>
+Источник сообщений ядра
+<b>klogd</b>
+
+</dd><dt><i>/var/run/klogd.pid</i>
+
+</dt><dd>
+Файл, содержащий идентификатор процесса 
+<b>klogd</b>
+
+</dd><dt><i>/boot/System.map, /System.map, /usr/src/linux/System.map</i>
+
+</dt><dd>
+Расположение системных карт ядра по умолчанию.
+
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+Вполне возможны и в больших количествах. Хорошо отформатированные файлы патчей
+будут высоко оценены.
+<p>
+
+<a name="lbAK">&nbsp;</a>
+</p><h2>АВТОР</h2>
+
+Steve Lord (<a href="mailto:lord@cray.com">lord@cray.com</a>) изначально написал
+<b>klogd ,</b>
+
+Greg Wettstein сделал основные улучшения.
+<p>
+
+</p><dl compact="">
+<dt>Dr. Greg Wettstein (<a href="mailto:greg@wind.enjellic.com">greg@wind.enjellic.com</a>)</dt><dd>
+</dd><dt>Enjellic Systems Development</dt><dd>
+
+</dd></dl>
+<p>
+
+
+</p><dl compact="">
+<dt>Вычислительный отдел при подразделении онкологических исследований</dt><dd>
+</dd><dt>Центр исследований раковых заболеваний имени Роджера Мориса</dt><dd>
+</dd><dt>Fargo, ND 58122</dt><dd>
+
+</dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевод с английского Alexander Kolotov (<a href="mailto:alexandr.kolotov@gmail.com">alexandr.kolotov@gmail.com</a>) 2007
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAG">ОПРЕДЕЛЕНИЕ АДРЕСОВ В ЯДРЕ</a></dt><dd>
+</dd><dt><a href="#lbAH">ОБРАБОТКА СИГНАЛОВ</a></dt><dd>
+</dd><dt><a href="#lbAI">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAK">АВТОР</a></dt><dd>
+</dd><dt><a href="#lbAL">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="klogd" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

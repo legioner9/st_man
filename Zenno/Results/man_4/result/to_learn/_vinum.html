@@ -1,0 +1,945 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN vinum (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, vinum"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="vinum" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">vinum (4)</font><hr><li> <a href="/man.shtml?topic=vinum&amp;category=4&amp;russian=1"><u>vinum</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=vinum&amp;category=4&amp;russian=0"><u>vinum</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=vinum&amp;category=8&amp;russian=0"><u>vinum</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>vinum(4)</h1></td>
+<td><h2 align="center">Руководство по интерфейсам ядра FreeBSD</h2></td>
+<td><h1 align="right">vinum(4)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+<p><b>vinum</b> -- диспетчер логических томов (Logical Volume Manager)</p>
+
+<h2><a name="synopsis">СИНТАКСИС</a></h2>
+<dl><dt></dt><dd>
+<tt>
+kldload vinum
+</tt>
+</dd></dl>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<p><b>vinum</b> - диспетчер логических томов, созданный по мотивам, но не на основе
+диспетчера томов <b>Veritas Volume Manager</b>. Он обеспечивает следующие возможности:</p>
+
+<ul>
+<li>Независимые от устройств логические диски, которые называют <i>томами</i>. Тома не ограничены
+размерами дисков системы.</li>
+<li>Тома состоят из одного или более <i>сплетений</i>, каждое из которых содержит все
+адресное пространство тома. Это дает реализацию массива RAID-1 (зеркалирование). Несколько
+сплетений могут также использоваться для:</li>
+<ul>
+<li>Повышения пропускной способности при чтении. Драйвер <b>vinum</b> будет читать данные с наименее
+активного диска, так что, если в томе есть сплетения на нескольких физических дисках, 
+больше данных можно будет читать параллельно. <b>vinum</b> читает данные только с одного сплетения,
+но записывает - на все сплетения.</li>
+<li>Повышения надежности. Если сплетения хранятся на разных физических дисках, данные остаются
+доступными даже когда одно из сплетений становится недоступным. По сравнению со сплетением типа 
+RAID-5 (см. ниже), использование нескольких сплетений требует больше места на дисках, но
+дает более высокую производительность, особенно в случае сбоя диска.</li>
+<li>Дополнительные сплетения можно использовать для оперативной реорганизации данных.
+Путем подключения дополнительного сплетения и последующего отключения одного из старых сплетений
+можно оперативно переносить данные с одного диска на другой без потери доступа к ним.</li>
+<li>Дополнительное сплетение можно использовать для получения согласованного дампа файловой
+системы. Если подключить дополнительное сплетение и отключить его в определенный момент времени,
+отключенное сплетение будет точным моментальным снимком файловой системы на момент отключения.</li>
+</ul>
+
+<li>Каждое сплетение состоит из одной или нескольких логических секций
+диска, которые называют <i>поддисками</i>. Поддиски определяются как непрерывный фрагмент 
+физического диска. Сплетение может состоять из любого разумного количества поддисков (другими
+словами, реальное ограничение определяется не формальным числом, а другими факторами, 
+такими как память и производительность, связанными с поддержкой большого количества
+поддисков).</li>
+<li>Поддерживается несколько структур поддисков для сплетений:
+<ul>
+<li>Конкатенированные сплетения состоят из одного или нескольких поддисков, каждому из
+которых соответствует непрерывный фрагмент адресного пространства сплетения.</li>
+<li>Сплетения с чередованием (striped plexes) состоят из одного или нескольких поддисков
+одинакового размера. Адресное пространство файла сопоставляется полосам, на размер которых
+нацело делится размер поддиска. Последовательное адресное пространство сплетения сопоставляется
+полосам каждого поддиска по очереди. Все поддиски сплетения с чередованием должны быть одного
+размера.</li>
+<li>Сплетения типа RAID-5 должны состоять, как минимум, из трех поддисков равного размера.
+Они похожи на сплетения с чередованием, но в каждой полосе на одном из поддисков хранится информация
+о четности (parity information). Этот поддиск для каждой полосы меняется: для первой полосы это будет
+первый поддиск, для второй полосы - второй и т.д. В случае сбоя одного диска драйвер
+<b>vinum</b> восстановит данные на основе информации, хранящейся на оставшихся поддисках. Такая структура
+хорошо подходит для интенсивного чтения данных. Все поддиски сплетения типа RAID-5 должны быть одинакового
+размера.</li>
+</ul>
+</li>
+<li>Диски - самый нижний уровень в иерархии хранения. Они представлены специальными файлами
+устройств для физических дисков.</li>
+<li>Драйвер <b>vinum</b> обеспечивает автоматический запуск. В отличие от файловых систем UNIX,
+тома <b>vinum</b> содержат всю необходимую информацию о конфигурации, чтобы они корректно
+запускались при включении соответствующей подсистемы. Это также существенное преимущество по
+сравнению с файловой системой Veritas™ File System. Эта особенность связана с наличием
+томов. Она не означает, что тома будут монтироваться автоматически, поскольку эта функция
+выполняется стандартными процедурами запуска с помощью файла <b>/etc/fstab</b>.</li>
+</ul>
+
+<h2><a name="kernel_config">КОНФИГУРИРОВАНИЕ ЯДРА</a></h2>
+
+<p>Драйвер <b>vinum</b> в настоящее время поставляется как модуль KLD (загружаемый модуль
+ядра), и не требует конфигурирования. Как и с другими модулями KLD, абсолютно необходимо, чтобы
+версия KLD совпадала с версией операционной системы. В противном случае, драйвер <b>vinum</b> 
+выдаст сообщение об ошибке и прекратит работу.</p>
+
+<p>Можно сконфигурировать <b>vinum</b> в ядре, но это не рекомендуется. Для этого добавьте следующую
+строку в файл конфигурации ядра:</p>
+<pre>   device vinum
+</pre>
+
+<h3>&nbsp;&nbsp;Опции отладки</h3>
+
+<p>Текущая версия <b>vinum</b>, как модуль ядра, так и пользовательская программа <b>vinum(8)</b>,
+включает интенсивную поддержку отладки. Ее пока удалять не рекомендуется, но если и удалять, то и
+из ядра, и из пользовательских компонентов. Для этого отредактируйте файлы 
+<b>/usr/src/sbin/vinum/Makefile</b> и <b>/usr/src/sys/modules/vinum/Makefile</b>, убрав из
+переменной <b>CFLAGS</b> опцию <b>-DVINUMDEBUG</b>. Если вы сконфигурировали <b>vinum</b> в
+ядро, либо добавьте строку</p>
+<pre>   options VINUMDEBUG
+</pre>
+<p>в файл конфигурации ядра, либо удалите опцию <b>-DVINUMDEBUG</b> из файла
+<b>/usr/src/sbin/vinum/Makefile</b>, как описано выше.</p>
+
+<p>Если переменные <b>VINUMDEBUG</b> не совпадают, утилита <a href="/man.shtml?topic=vinum&amp;category=8"><b>vinum(8)</b></a>
+не сработает, выдавая сообщение, объясняющее причину проблемы и что делать, чтобы ее устранить.</p>
+
+<h3>&nbsp;&nbsp;Другие опции</h3>
+<pre>     options VINUM_AUTOSTART
+</pre>
+<p>Требует от драйвера <b>vinum</b> автоматически просматривать все доступные диски при
+подключении (at attach time). Этот способ не рекомендуется использовать&nbsp;- он предназначен,
+в основном, для сред, где нежелательна зависимость от переменных среды ядра,
+устанавливаемых с помощью <a href="/man.shtml?topic=loader&amp;category=8"><b>loader(8)</b></a>.</p>
+
+<p>Драйвер <b>vinum</b> ранее был досупен в двух версиях: свободно доступная версия, не
+включающая поддержку массивов RAID-5, и полная версия, поддерживающая RAID-5, которая
+распространялась только компанией <b>Cybernet Systems Inc</b>. Текущая версия <b>vinum</b>
+включает поддержку RAID-5.</p>
+
+<h2><a name="running">ИСПОЛЬЗОВАНИЕ VINUM</a></h2>
+
+<p>Драйвер <b>vinum</b> является частью базовой системы FreeBSD. Он не требует установки. Для его запуска
+выполните программу <a href="/man.shtml?topic=vinum&amp;category=8"><b>vinum(8)</b></a>, которая загрузит соответствующий модуль 
+KLD, если его еще нет. Перед использованием <b>vinum</b>, его необходимо сконфигурировать.
+Подробнее о создании конфигурации <b>vinum</b> см. на странице справочного руководства 
+<a href="/man.shtml?topic=vinum&amp;category=8"><b>vinum(8)</b></a>. </p>
+
+<p>Обычно сконфигурированная версия <b>vinum</b> запускается при загрузке. Установите
+переменной <b>start_vinum</b> в каталоге <b>/etc/rc.conf</b> значение "<b>YES</b>",
+чтобы <b>vinum</b> запускался при загрузке. (Подробнее см. на странице справочного
+руководства <a href="/man.shtml?topic=rc.conf&amp;category=5"><b>rc.conf(5)</b></a>.)</p>
+
+<p>Если драйвер <b>vinum</b> загружен как модуль KLD (рекомендованный способ), команда 
+<b>vinum stop</b> выгрузит его (см. <a href="/man.shtml?topic=vinum&amp;category=8"><b>vinum(8)</b></a>).  
+Это также можно сделать с помощью команды <a href="/man.shtml?topic=kldunload&amp;category=8"><b>kldunload(8)</b></a>.</p>
+
+<p>Модуль KLD можеть быть выгружен только если он не работает, другими словами,
+когда ни один том не смонтирован и не работают другие экземпляры программы <b>vinum(8)</b>.
+Выгрузка модуля KLD не повреждает данные, хранящиеся в томах.</p>
+
+<h3>&nbsp;&nbsp;Конфигурирование и запуск объектов</h3>
+
+<p>Для конфигурирования и запуска объектов <b>vinum</b> используйте утилиту 
+<a href="/man.shtml?topic=vinum&amp;category=8"><b>vinum(8)</b></a>.</p>
+
+<h2><a name="automatic_startup">АВТОМАТИЧЕСКИЙ ЗАПУСК</a></h2>
+
+<p>Подсистему <b>vinum</b> можно автоматически запускать при подключении. Для этого
+можно устанавливать две переменные среды ядра в файле 
+<a href="/man.shtml?topic=loader.conf&amp;category=5"><b>loader.conf(5)</b></a>.</p>
+
+<dl>
+<dt><b>vinum.autostart</b></dt><dd>
+Если эта переменная установлена (независимо от значения), функция <b>attach</b>
+будет пытаться просканировать все доступные диски в поисках допустимых записей конфигурации
+<b>vinum</b>. Это&nbsp;- предпочтительный способ обеспечения автоматического запуска,
+если он необходим.
+
+<p>Пример:</p>
+<pre>    vinum.autostart="YES"
+</pre>
+</dd>
+<dt><b>vinum.drives</b></dt><dd>
+В качестве альтернативы, можно задать в этой переменной список дисковых устройств, которые
+необходимо просматривать в поисках записей о конфигурации.
+Учтите, что указывать надо только имена "базовых" устройств (дисков в целом),
+поскольку <b>vinum</b> будет автоматически просматривать все возможные секции и разделы.
+
+<p>Пример:</p>
+<pre>    vinum.drives="da0 da1"
+</pre>
+</dd></dl>
+
+<p>Если используется автоматический запуск, устанавливать переменную <b>start_vinum</b>
+в файле <a href="/man.shtml?topic=rc.conf&amp;category=5"><b>rc.conf(5)</b></a> не обязательно. Учтите, что если <b>vinum</b>
+должен предоставить том для корневой файловой системы, необходимо запускать эту подсистему на ранней
+стадии. Этого можно добиться, указав</p>
+<pre>    vinum_load="YES"
+</pre>
+<p>в файле <a href="/man.shtml?topic=loader.conf&amp;category=5"><b>loader.conf(5)</b></a>.</p>
+
+<h2><a name="ioctl_calls">ВЫЗОВЫ IOCTL</a></h2>
+
+<p>Вызовы <a href="/man.shtml?topic=ioctl&amp;category=2"><b>ioctl(2)</b></a> предназначены для использования только программой
+конфигурирования <a href="/man.shtml?topic=vinum&amp;category=8"><b>vinum(8)</b></a>. Они описаны в заголовочном файле
+<b>/sys/dev/vinum/vinumio.h</b>.</p>
+
+<h3>&nbsp;&nbsp;Метки диска</h3>
+<p>Обычные дисковые устройства имеют метку диска во втором секторе устройства. Подробнее об
+этом см. на странице справочного руководства <a href="/man.shtml?topic=disklabel&amp;category=5"><b>disklabel(5)</b></a>.
+Эта метка диска описывает структуру разделов на устройстве. <b>vinum</b> не делит тома на
+части, поэтому у томов физической метки диска нет. Для удобства, <b>vinum</b> реализует 
+вызовы <b>ioctl</b> <b>DIOCGDINFO</b> (получить метку диска), <b>DIOCGPART</b> (получить
+информацию о разделе), <b>DIOCWDINFO</b> (записать информацию о разделе) и <b>DIOCSDINFO</b> 
+(установить информацию о разделе).  Вызовы <b>DIOCGDINFO</b> и <b>DIOCGPART</b> ссылаются на
+внутреннее представление метки диска, которой фактически нет на томе. В результате, 
+опция <b>-r</b> команды <a href="/man.shtml?topic=bsdlabel&amp;category=8"><b>disklabel(8)</b></a>, которая
+читает диск "непосредственно", не сработает.</p>
+
+<p>В общем случае, выполнять команду <a href="/man.shtml?topic=bsdlabel&amp;category=8"><b>disklabel(8)</b></a> для тома
+<b>vinum</b> бесполезно. Если выполнить ее, она покажет три раздела, '<b>a</b>', '<b>b</b>' и
+'<b>c</b>', отличающиеся значением <b>fstype</b>, например:</p>
+<pre>3 partitions:
+#        size   offset    fstype  [fsize bsize bps/cpg]
+  a:     2048        0    4.2BSD    1024  8192     0   # (Cyl.0 - 0)
+  b:     2048        0      swap                       # (Cyl.0 - 0)
+  c:     2048        0    unused       0     0         # (Cyl.0 - 0)
+</pre>
+<p><b>vinum</b> игнорирует вызовы <b>DIOCWDINFO</b> и <b>DIOCSDINFO</b>, поскольку менять нечего.
+В результате, любая попытка изменить метку диска будет молча проигнорирована.</p>
+
+<h2><a name="newfs">СОЗДАНИЕ ФАЙЛОВЫХ СИСТЕМ</a></h2>
+
+<p>Поскольку тома <b>vinum</b> не содержат разделов, их имена не должны следовать
+стандартным правилам именования разделов диска. Для физического раздела диска 
+последняя буква в имени устройства задает идентификатор раздела (от <b>a</b> до <b>h</b>).
+Тома <b>vinum</b> не обязаны следовать этому соглашению, но в этом случае программа 
+<a href="/man.shtml?topic=newfs&amp;category=8"><b>newfs(8)</b></a> будет сообщать о том, что не может определить раздел.
+Для решения этой проблемы указывайте флаг <b>-v</b> при вызове <b>newfs(8)</b>. Например,
+при наличии тома <b>concat</b> используйте следующую команду для создания на нем файловой
+системы UFS:</p>
+<pre>    newfs -v /dev/vinum/concat
+</pre>
+
+<h2><a name="object_naming">ИМЕНОВАНИЕ ОБЪЕКТОВ</a></h2>
+
+<p>Утилита <b>vinum</b> присваивает стандартные имена сплетениям и поддискам, хотя их можно изменить,
+задав явно. Мы не рекомендуем изменять стандартные имена. Опыт использования
+диспетчера томов Veritas™, позволяющего именовать объекты произвольным образом, показал,
+что такая гибкость не дает существенных преимуществ и может сбивать с толку.</p>
+
+<p>Имена могут содержать любые непробельные символы, но рекомендуется ограничится буквами,
+цифрами и символами подчеркивания. Имена томов, сплетений и поддисков могут быть длиной до
+64 символов, а имена дисков - до 32 символов. При выборе имен томов и сплетений помните,
+что автоматически генерируемые имена сплетений и поддисков длинее имен, на основании
+которых они построены.</p>
+
+<ul>
+<li>Когда <b>vinum</b> создает или удаляет объекты, он создает каталог <b>/dev/vinum</b>,
+в котором он создает специальные файлы устройств для каждого найденного тома. Он также
+создает подкаталоги <b>/dev/vinum/plex</b> и <b>/dev/vinum/sd</b>, в которых создает
+специальные файлы устройств для сплетений и поддисков. Кроме того, он создает еще
+два подкаталога, <b>/dev/vinum/vol</b> и <b>/dev/vinum/drive</b>, в которых сохраняется
+информация об иерархических отношениях между томами и дисками.</li>
+<li>Кроме того, <b>vinum</b> создает три суперустройства: <b>/dev/vinum/control</b>,
+<b>/dev/vinum/Control</b> и <b>/dev/vinum/controld</b>.  Устройство <b>/dev/vinum/control</b> 
+используется утилитой <a href="/man.shtml?topic=vinum&amp;category=8"><b>vinum(8)</b></a>, когда она скомпилирована
+без опции <b>VINUMDEBUG</b>, устройство <b>/dev/vinum/Control</b> используется утилитой 
+<a href="/man.shtml?topic=vinum&amp;category=8"><b>vinum(8)</b></a>, когда она скомпилирована
+с опцией <b>VINUMDEBUG</b>, а <b>/dev/vinum/controld</b> используется демоном <b>vinum</b>.
+Два управляющих устройства для <b>vinum(8)</b> используются для синхронизации состояния
+отладки ядра и пользовательских модулей.</li>
+<li>В оличие от дисков UNIX, тома <b>vinum</b> не делятся на разделы и поэтому не содержат
+метки диска. К сожалению, это сбивает с толку ряд утилит, в частности, 
+<a href="/man.shtml?topic=newfs&amp;category=8"><b>newfs(8)</b></a>, которая обычно пытается интерпретировать последнюю
+букву в имени тома <b>vinum</b> как идентификатор раздела. Если вы используете имя тома,
+не заканчивающееся буквами от '<b>a</b>' до '<b>c</b>', необходимо использовать флаг <b>-v</b>
+команды <a href="/man.shtml?topic=newfs&amp;category=8"><b>newfs(8)</b></a>, чтобы она игнорировала это соглашение.</li>
+<li>Сплетениям явно задавать имена не нужно. По умолчанию, имя сплетения строится как имя
+тома, после которого идут символы <b>.p</b> и номер сплетения. Например, сплетения тома 
+<b>vol3</b> называются <b>vol3.p0</b>, <b>vol3.p1</b> и т.п. Эти имена можно изменить,
+но это не рекомендуется.</li>
+<li>Как и сплетения, поддиски получают имена автоматически, и явное их именование не рекомендуется.
+Имя поддиска строится как имя сплетения, за которым идут символы <b>.s</b> и число, идентифицирующее поддиск.
+Например, поддиски сплетения <b>vol3.p0</b> называются <b>vol3.p0.s0</b>, <b>vol3.p0.s1</b> и т.д.</li>
+<li>В отличие от этого, диски надо именовать явно. Это позволяет переносить диск в другое место
+и, тем не менее, автоматически распознавать его. Имена дисков должны быть длиной до 32 символов.</li>
+</ul>
+
+<h3>&nbsp;&nbsp;Пример</h3>
+
+<p>Пусть созданы объекты, описанные в разделе <a href="vinum8.html#configuration_file">ФАЙЛ 
+КОНФИГУРАЦИИ</a> страницы справочного руководства <b>vinum(8)</b>. Каталог <b>/dev/vinum</b> 
+будет иметь вид:</p>
+
+<pre>   # ls -lR /dev/vinum
+   total 5
+   brwxr-xr--  1 root  wheel   25,   2 Mar 30 16:08 concat
+   brwx------  1 root  wheel   25, 0x40000000 Mar 30 16:08 control
+   brwx------  1 root  wheel   25, 0x40000001 Mar 30 16:08 controld
+   drwxrwxrwx  2 root  wheel   512 Mar 30 16:08 drive
+   drwxrwxrwx  2 root  wheel   512 Mar 30 16:08 plex
+   drwxrwxrwx  2 root  wheel   512 Mar 30 16:08 rvol
+   drwxrwxrwx  2 root  wheel   512 Mar 30 16:08 sd
+   brwxr-xr--  1 root  wheel   25,   3 Mar 30 16:08 strcon
+   brwxr-xr--  1 root  wheel   25,   1 Mar 30 16:08 stripe
+   brwxr-xr--  1 root  wheel   25,   0 Mar 30 16:08 tinyvol
+   drwxrwxrwx  7 root  wheel   512 Mar 30 16:08 vol
+   brwxr-xr--  1 root  wheel   25,   4 Mar 30 16:08 vol5
+
+   /dev/vinum/drive:
+   total 0
+   brw-r-----  1 root  operator    4,  15 Oct 21 16:51 drive2
+   brw-r-----  1 root  operator    4,  31 Oct 21 16:51 drive4
+
+   /dev/vinum/plex:
+   total 0
+   brwxr-xr--  1 root  wheel   25, 0x10000002 Mar 30 16:08 concat.p0
+   brwxr-xr--  1 root  wheel   25, 0x10010002 Mar 30 16:08 concat.p1
+   brwxr-xr--  1 root  wheel   25, 0x10000003 Mar 30 16:08 strcon.p0
+   brwxr-xr--  1 root  wheel   25, 0x10010003 Mar 30 16:08 strcon.p1
+   brwxr-xr--  1 root  wheel   25, 0x10000001 Mar 30 16:08 stripe.p0
+   brwxr-xr--  1 root  wheel   25, 0x10000000 Mar 30 16:08 tinyvol.p0
+   brwxr-xr--  1 root  wheel   25, 0x10000004 Mar 30 16:08 vol5.p0
+   brwxr-xr--  1 root  wheel   25, 0x10010004 Mar 30 16:08 vol5.p1
+
+   /dev/vinum/sd:
+   total 0
+   brwxr-xr--  1 root  wheel   25, 0x20000002 Mar 30 16:08 concat.p0.s0
+   brwxr-xr--  1 root  wheel   25, 0x20100002 Mar 30 16:08 concat.p0.s1
+   brwxr-xr--  1 root  wheel   25, 0x20010002 Mar 30 16:08 concat.p1.s0
+   brwxr-xr--  1 root  wheel   25, 0x20000003 Mar 30 16:08 strcon.p0.s0
+   brwxr-xr--  1 root  wheel   25, 0x20100003 Mar 30 16:08 strcon.p0.s1
+   brwxr-xr--  1 root  wheel   25, 0x20010003 Mar 30 16:08 strcon.p1.s0
+   brwxr-xr--  1 root  wheel   25, 0x20110003 Mar 30 16:08 strcon.p1.s1
+   brwxr-xr--  1 root  wheel   25, 0x20000001 Mar 30 16:08 stripe.p0.s0
+   brwxr-xr--  1 root  wheel   25, 0x20100001 Mar 30 16:08 stripe.p0.s1
+   brwxr-xr--  1 root  wheel   25, 0x20000000 Mar 30 16:08 tinyvol.p0.s0
+   brwxr-xr--  1 root  wheel   25, 0x20100000 Mar 30 16:08 tinyvol.p0.s1
+   brwxr-xr--  1 root  wheel   25, 0x20000004 Mar 30 16:08 vol5.p0.s0
+   brwxr-xr--  1 root  wheel   25, 0x20100004 Mar 30 16:08 vol5.p0.s1
+   brwxr-xr--  1 root  wheel   25, 0x20010004 Mar 30 16:08 vol5.p1.s0
+   brwxr-xr--  1 root  wheel   25, 0x20110004 Mar 30 16:08 vol5.p1.s1
+
+   /dev/vinum/vol:
+   total 5
+   brwxr-xr--  1 root  wheel   25,   2 Mar 30 16:08 concat
+   drwxr-xr-x  4 root  wheel   512 Mar 30 16:08 concat.plex
+   brwxr-xr--  1 root  wheel   25,   3 Mar 30 16:08 strcon
+   drwxr-xr-x  4 root  wheel   512 Mar 30 16:08 strcon.plex
+   brwxr-xr--  1 root  wheel   25,   1 Mar 30 16:08 stripe
+   drwxr-xr-x  3 root  wheel   512 Mar 30 16:08 stripe.plex
+   brwxr-xr--  1 root  wheel   25,   0 Mar 30 16:08 tinyvol
+   drwxr-xr-x  3 root  wheel   512 Mar 30 16:08 tinyvol.plex
+   brwxr-xr--  1 root  wheel   25,   4 Mar 30 16:08 vol5
+   drwxr-xr-x  4 root  wheel   512 Mar 30 16:08 vol5.plex
+
+   /dev/vinum/vol/concat.plex:
+   total 2
+   brwxr-xr--  1 root  wheel   25, 0x10000002 Mar 30 16:08 concat.p0
+   drwxr-xr-x  2 root  wheel   512 Mar 30 16:08 concat.p0.sd
+   brwxr-xr--  1 root  wheel   25, 0x10010002 Mar 30 16:08 concat.p1
+   drwxr-xr-x  2 root  wheel   512 Mar 30 16:08 concat.p1.sd
+
+   /dev/vinum/vol/concat.plex/concat.p0.sd:
+   total 0
+   brwxr-xr--  1 root  wheel   25, 0x20000002 Mar 30 16:08 concat.p0.s0
+   brwxr-xr--  1 root  wheel   25, 0x20100002 Mar 30 16:08 concat.p0.s1
+
+   /dev/vinum/vol/concat.plex/concat.p1.sd:
+   total 0
+   brwxr-xr--  1 root  wheel   25, 0x20010002 Mar 30 16:08 concat.p1.s0
+
+   /dev/vinum/vol/strcon.plex:
+   total 2
+   brwxr-xr--  1 root  wheel   25, 0x10000003 Mar 30 16:08 strcon.p0
+   drwxr-xr-x  2 root  wheel   512 Mar 30 16:08 strcon.p0.sd
+   brwxr-xr--  1 root  wheel   25, 0x10010003 Mar 30 16:08 strcon.p1
+   drwxr-xr-x  2 root  wheel   512 Mar 30 16:08 strcon.p1.sd
+
+   /dev/vinum/vol/strcon.plex/strcon.p0.sd:
+   total 0
+   brwxr-xr--  1 root  wheel   25, 0x20000003 Mar 30 16:08 strcon.p0.s0
+   brwxr-xr--  1 root  wheel   25, 0x20100003 Mar 30 16:08 strcon.p0.s1
+
+   /dev/vinum/vol/strcon.plex/strcon.p1.sd:
+   total 0
+   brwxr-xr--  1 root  wheel   25, 0x20010003 Mar 30 16:08 strcon.p1.s0
+   brwxr-xr--  1 root  wheel   25, 0x20110003 Mar 30 16:08 strcon.p1.s1
+
+   /dev/vinum/vol/stripe.plex:
+   total 1
+   brwxr-xr--  1 root  wheel   25, 0x10000001 Mar 30 16:08 stripe.p0
+   drwxr-xr-x  2 root  wheel   512 Mar 30 16:08 stripe.p0.sd
+
+   /dev/vinum/vol/stripe.plex/stripe.p0.sd:
+   total 0
+   brwxr-xr--  1 root  wheel   25, 0x20000001 Mar 30 16:08 stripe.p0.s0
+   brwxr-xr--  1 root  wheel   25, 0x20100001 Mar 30 16:08 stripe.p0.s1
+
+   /dev/vinum/vol/tinyvol.plex:
+   total 1
+   brwxr-xr--  1 root  wheel   25, 0x10000000 Mar 30 16:08 tinyvol.p0
+   drwxr-xr-x  2 root  wheel   512 Mar 30 16:08 tinyvol.p0.sd
+
+   /dev/vinum/vol/tinyvol.plex/tinyvol.p0.sd:
+   total 0
+   brwxr-xr--  1 root  wheel   25, 0x20000000 Mar 30 16:08 tinyvol.p0.s0
+   brwxr-xr--  1 root  wheel   25, 0x20100000 Mar 30 16:08 tinyvol.p0.s1
+
+   /dev/vinum/vol/vol5.plex:
+   total 2
+   brwxr-xr--  1 root  wheel   25, 0x10000004 Mar 30 16:08 vol5.p0
+   drwxr-xr-x  2 root  wheel   512 Mar 30 16:08 vol5.p0.sd
+   brwxr-xr--  1 root  wheel   25, 0x10010004 Mar 30 16:08 vol5.p1
+   drwxr-xr-x  2 root  wheel   512 Mar 30 16:08 vol5.p1.sd
+
+   /dev/vinum/vol/vol5.plex/vol5.p0.sd:
+   total 0
+   brwxr-xr--  1 root  wheel   25, 0x20000004 Mar 30 16:08 vol5.p0.s0
+   brwxr-xr--  1 root  wheel   25, 0x20100004 Mar 30 16:08 vol5.p0.s1
+
+   /dev/vinum/vol/vol5.plex/vol5.p1.sd:
+   total 0
+   brwxr-xr--  1 root  wheel   25, 0x20010004 Mar 30 16:08 vol5.p1.s0
+   brwxr-xr--  1 root  wheel   25, 0x20110004 Mar 30 16:08 vol5.p1.s1
+</pre>
+
+<p>В случае неподключенных сплетений и поддисков, именование выполняется наоборт.
+Имена поддисков строятся на основе имен дисков, на которых они находятся, а сплетения
+именуются на базе соответствующего поддиска. <b>Это соответствие еще надо</b> определеить.</p>
+
+<h3>&nbsp;&nbsp;Состояния объекта</h3>
+
+<p>Каждый объект <b>vinum</b> находится в определенном состоянии. <b>vinum</b> использует это
+состояние для определения того, что можно делать с объектом.</p>
+
+<h3>&nbsp;&nbsp;Состояния тома</h3>
+
+<p>Тома могут находиться в следующих состояниях:</p>
+<dl>
+<dt><b>down</b></dt><dd>
+Том полностью недоступен.<br><br></dd>
+<dt><b>up</b></dt><dd>
+Том запущен и хотя бы частично работоспособен. Могут быть доступны не все сплетения.</dd>
+</dl>
+
+<h3>&nbsp;&nbsp;Состояния сплетения</h3>
+
+<p>Сплетения могут быть в следующих состояниях:</p>
+<dl>
+<dt><b>referenced</b></dt><dd>
+Сплетение, на которое ссылаются как на часть тома, но которое сейчас не известно.</dd>
+<br><br>
+<dt><b>faulty</b></dt><dd>
+Сплетение, полностью отключенное из-за ошибок ввода/вывода.
+<br><br></dd>
+<dt><b>down</b></dt><dd>
+Сплетение, отключенное администратором.
+<br><br></dd>
+<dt><b>initializing</b></dt><dd>
+Сплетение в процессен инициализации.</dd>
+</dl>
+
+<p>Остальные состояния представляют сплетения, которые хотя бы частично работают.</p>
+
+<dl>
+<dt><b>corrupt</b></dt><dd>
+Сплетение, как минимум, частично работает. Не все поддиски доступны и произошло рассогласование.
+Если не осталось ни одного неповрежденного сплетения, том больше не является согласованным.
+<br><br></dd>
+<dt><b>degraded</b></dt><dd>
+Достпуное сплетение типа RAID-5, но один из его поддисков не работает, что требует восстановления
+многих запросов ввода/вывода.
+<br><br></dd>
+<dt><b>flaky</b></dt><dd>
+Работающее фактически сплетение, один из поддисков которого находится в состоянии <b>reborn</b> и не
+заслуживает полного доверия, и с которого, по возможности. не хотелось бы читать данные.
+<br><br></dd>
+<dt><b>up</b></dt><dd>
+Полностью работающее сплетение. Все поддиски находятся в состоянии <b>up</b>.</dd>
+</dl>
+
+<h3>&nbsp;&nbsp;Состояния поддиска</h3>
+
+<p>Поддиски могут находиться в следующих состояниях:</p>
+<dl>
+<dt><b>empty</b></dt><dd>
+Полностью созданный поддиск. Все поля корректны и диск был обновлен, но ... 
+(<i>but the on the disk is not valid</i> - что бы это значило? <i>Прим. В.К.</i>).
+<br><br></dd>
+<dt><b>referenced</b></dt><dd>
+Поддиск, на который ссылаются как на часть сплетения, но который сейчас не известен.
+<br><br></dd>
+<dt><b>initializing</b></dt><dd>
+Поддиск, который был полностью создан и находится в процессе инициализации.</dd>
+</dl>
+
+<p>Следующие состояния представляют некорректные данные.</p>
+<dl>
+<dt><b>obsolete</b></dt><dd>
+Поддиск был полностью создан. Все поля корректны, конфигурация на диске была
+обновлена и данные были корректными, но после этого диск был отключен, и, в результате,
+обновления были утеряны.
+<br><br></dd>
+<dt><b>stale</b></dt><dd>
+Поддиск был полностью создан. Все поля корректны, диск был обновлен и данные были
+корректными, но после этого произошел сбой диска и обновления были утеряны.</dd>
+</dl>
+
+<p>Следуюшие состояния представляют корректные, но недоступные данные.</p>
+<dl>
+<dt><b>crashed</b></dt><dd>
+Поддиск был полностью создан. Все поля корректны, диск был обновлен и данные были
+корректными, но после этого диск перестал работать. Никаких попыток записи на поддиск после
+сбоя не было, поэтому данные на нем корректны.
+<br><br></dd>
+<dt><b>down</b></dt><dd>
+Поддиск работал, содержал корректные данные и был отключен администратором. Данные на нем корректны.
+<br><br></dd>
+<dt><b>reviving</b></dt><dd>
+Поддиск находится в процессе восстановления ("оживления"). На него можно записывать, но
+нельзя читать.</dd>
+</dl>
+
+<p>Следующие состояния представляют доступные поддиски с корректными данными.</p>
+<dl>
+<dt><b>reborn</b></dt><dd>
+Поддиск был полностью создан. Все поля корректны, диск был обновлен и данные корректны, но,
+после этого диск останавливался и снова запускался. Обновления не были потеряны, но возможно,
+что поддиск был поврежден. Мы не будем, по возможности, читать с этого поддиска. Если это
+единственный поддиск, покрывающий соответствующих фрагмент адресного пространства сплетения,
+при таких обстоятельствах ему устанавливается состояние <b>up</b>, поэтому данное состояние
+предполагает, что для выполнения запроса доступен другой поддиск.
+<br><br></dd>
+<dt><b>up</b></dt><dd>
+Поддиск был полностью создан. Все поля корректны, диск был обновлен и данные корректны.</dd>
+</dl>
+
+<h3>&nbsp;&nbsp;Состояния диска</h3>
+
+<p>Диски могут находиться в следующих состояниях:</p>
+<dl>
+<dt><b>referenced</b></dt><dd>
+Как минимум, один поддиск ссылается на диск, но он сейчас недоступен для системы.
+Имя устройства неизвестно.
+<br><br></dd>
+<dt><b>down</b></dt><dd>
+Диск недоступен.
+<br><br></dd>
+<dt><b>up</b></dt><dd>
+Диск доступен и работает.</dd>
+</dl>
+
+<h2><a name="bugs">ОШИБКИ</a></h2>
+
+<p><b>vinum</b> - новый продукт. Ошибки в нем вполне ожидаемы. Механизм конфигурирования
+еще работает не полнстью. Если вы столкнетесь с трудностями, обратитесь к разделу 
+<a href="#debugging"><b>РЕШЕНИЕ ПРОБЛЕМ С VINUM</b></a> прежде чем сообщать об ошибках.</p>
+
+<p>Ядра с устройством <b>vinum</b>, похоже, работают, но не поддерживаются. Если в такой
+конфигурации возникают проблемы, сначала, пожалуйста, замените ядро не не содержащее
+<b>vinum</b> и протестируйте работу с модулем KLD.</p>
+
+<p>Выявление отличий между версией ядра и версией модуля KLD пока не реализовано.</p>
+
+<p>Поддержка RAID-5 появилась в версии FreeBSD 3.3. Сообщали о некоторых проблемах при
+использовании <b>vinum</b> в сочетании с soft updates, но они воспроизводятся не на
+всех системах. Если вы предполагаете использовать <b>vinum</b> в производственной среде,
+пожалуйста, тщательно протестируйте систему.</p>
+
+<h2><a name="debugging">РЕШЕНИЕ ПРОБЛЕМ С VINUM</a></h2>
+
+<p>Решение проблем с драйвером <b>vinum</b> может оказаться делом сложным. В этом разделе
+предлагаются некоторые подходы.</p>
+
+<h3>&nbsp;&nbsp;Проблемы конфигурации</h3>
+
+<p>Проблемы конфигурации <b>vinum</b> возникают достаточно легко (слишком легко). Если вы столкнетесь
+с такой проблемой, прежде всего, прекратите изменения конфигурации:</p>
+<pre>vinum setdaemon 4
+</pre>
+<p>Эта команда остановит изменения и дальнейшие повреждения конфигурации на диске.</p>
+
+<p>Далее, получите конфигурацию с диска, с помощью следующих команд в командном 
+интерпретаторе Bourne-style:</p>
+
+<pre>rm -f log
+for i in /dev/da0s1h /dev/da1s1h /dev/da2s1h /dev/da3s1h; do
+  (dd if=$i skip=8 count=6|tr -d '\000-\011\200-\377'; echo) &gt;&gt; log
+done
+</pre>
+
+<p>Имена устройств - это имена всех секций <b>vinum</b>. Файл <b>log</b> должен, в результате,
+содержать что-то вроде следующего:</p>
+
+<pre>IN VINOpanic.lemis.comdrive1}6E7~^K6T^Yfoovolume obj state up
+volume src state up
+volume raid state down
+volume r state down
+volume foo state up
+plex name obj.p0 state corrupt org concat vol obj
+plex name obj.p1 state corrupt org striped 128b vol obj
+plex name src.p0 state corrupt org striped 128b vol src
+plex name src.p1 state up org concat vol src
+plex name raid.p0 state faulty org disorg vol raid
+plex name r.p0 state faulty org disorg vol r
+plex name foo.p0 state up org concat vol foo
+plex name foo.p1 state faulty org concat vol foo
+sd name obj.p0.s0 drive drive2 plex obj.p0 state reborn len 409600b driveoffset 265b plexoffset 0b
+sd name obj.p0.s1 drive drive4 plex obj.p0 state up len 409600b driveoffset 265b plexoffset 409600b
+sd name obj.p1.s0 drive drive1 plex obj.p1 state up len 204800b driveoffset 265b plexoffset 0b
+sd name obj.p1.s1 drive drive2 plex obj.p1 state reborn len 204800b driveoffset 409865b plexoffset 128b
+sd name obj.p1.s2 drive drive3 plex obj.p1 state up len 204800b driveoffset 265b plexoffset 256b
+sd name obj.p1.s3 drive drive4 plex obj.p1 state up len 204800b driveoffset 409865b plexoffset 384b
+</pre>
+
+<p>Первая строка содержит метку <b>vinum</b> и должна начинаться с текста "<b>IN VINO</b>". Она
+также содержит имя системы. Точное определение содержится в заголовчном файле 
+<b>/usr/src/sys/dev/vinum/vinumvar.h</b>. Сохраненная конфигурация начинается в середине строки,
+с текста "<b>volume obj state up</b>", а на диске - с 9 сектора. Отсаток результатов
+показывает то, что осталось от конфигурации на диске. Чтобы увидеть всю конфигурацию, может 
+понадобиться увеличить аргумент <b>count</b> команды <a href="/man.shtml?topic=dd&amp;category=1"><b>dd(1)</b></a>.</p>
+
+<p>Конфгурация на всех дисках должна быть одинаковой. Если это не так, пожалуйста,
+сообщите о проблеме, представив точное содержимое файла <b>log</b>. Мало что реально можно
+сделать для восстановления конфигурации на диске, но если есть копия файлов, которые
+использовались для создания объектов, вы всегда сможете их пересоздать. Команда <b>create</b>
+не изменяет данные на поддиске, так что она не может привести к повреждению данных.
+Если вы столкнетесь с такого рода проблемой, может потребоваться использование команды 
+<b>resetconfig</b>.</p>
+
+<h3>&nbsp;&nbsp;Остановка системы</h3>
+
+<p>Чтобы проанализировать причины остановки, которые, как вы думаете, связаны с <b>vinum</b>, надо построить
+отладочное ядро (debug kernel). Подробнее о том, как это сделать, написано в руководстве разработчика
+<b>/usr/share/doc/en/books/developers-handbook/kerneldebug.html</b> (если оно установлено) или
+<b>http://www.FreeBSD.org/doc/en_US.ISO8859-1/books/developers-handbook/kerneldebug.html</b>.</p>
+
+<p>Для анализа проблем <b>vinum</b> выполните следующие шаги:</p>
+<ol>
+<li>Скопируйте файлы
+<b>/usr/src/sys/modules/vinum/.gdbinit.crash</b>,
+<b>/usr/src/sys/modules/vinum/.gdbinit.kernel</b>,
+<b>/usr/src/sys/modules/vinum/.gdbinit.serial</b>,
+<b>/usr/src/sys/modules/vinum/.gdbinit.vinum</b> и
+<b>/usr/src/sys/modules/vinum/.gdbinit.vinum.paths</b> 
+в каталог, в котором вы будете выполнять анализ, обычно&nbsp;- <b>/var/crash</b>.</li>
+
+<li>Убедитесь, что модуль <b>vinum</b> собран с отладочной информацией. 
+Стандартный <b>Makefile</b> по умолчанию создает модуль с отладочной информацией.
+Если версия <b>vinum</b> в каталоге <b>/boot/kernel</b> не содержит символьной информации,
+вы не получите сообщения об ошибке, но при трассировке стека символьной информации не увидите.
+Проверьте модуль, прежде чем запускать <a href="/man.shtml?topic=gdb&amp;category=1"><b>gdb(1)</b></a>:
+<pre>$ file /boot/kernel/vinum.ko
+/boot/kernel/vinum.ko: ELF 32-bit LSB shared object, Intel 80386,
+  version 1 (FreeBSD), not stripped
+</pre>
+<p>Если результат показывает, что из <b>/boot/kernel/vinum.ko</b> символьная информация удалена,
+надо будет найти версию, в которой она есть. Обычно это будет либо 
+<b>/usr/obj/sys/modules/vinum/vinum.ko</b> (если <b>vinum</b> был создан с помощью команды 
+"<b>make world</b>"), либо <b>/usr/src/sys/modules/vinum/vinum.ko</b> (если вы собирали <b>vinum</b>
+в этом каталоге). Измените файл <b>.gdbinit.vinum.paths</b> соответствующим образом.</p>
+</li>
+<li>Возьмите дамп или используйте удаленный отладчик (remote serial debugger) <b>gdb(1)</b> для
+анализа проблемы. Чтобы проанализировать дамп, скажем, <b>/var/crash/vmcore.5</b>, создайте
+связь <b>/var/crash/.gdbinit.crash</b> с <b>/var/crash/.gdbinit</b> и выполните команды:
+<pre>cd /var/crash
+gdb -k kernel.debug vmcore.5
+</pre>
+<p>В этом примере предполагается, что вы установили подходящее отладочное ядро в файл 
+<b>/var/crash/kernel.debug</b>. Если нет, укажите соответствующее имя отладочного ядра.</p>
+
+<p>Для выполнения удаленной отладки через последовательный интерфейс (remote serial debugging),
+создайте связь <b>/var/crash/.gdbinit.serial</b> с <b>/var/crash/.gdbinit</b> и выполните
+команды:</p>
+<pre>cd /var/crash
+gdb -k kernel.debug
+</pre>
+<p>В этом случае, файл <b>.gdbinit</b> выполняет функции, необходимые для
+установки соединения. Удаленная машина уже должна быть в режиме откладки:
+войдите в отладчик ядра и выберите <b>gdb</b> (подробнее см. на странице
+справочного руководства <a href="/man.shtml?topic=ddb&amp;category=4"><b>ddb(4)</b></a>). Файл 
+<b>.gdbinit.serial</b> предполагает, что последовательное соединение работает
+со скоростью 38400 бит в секунду; если вы работаете на другой скорости, отредактируйте
+файл соответствующим образом (ищите спецификацию <b>remotebaud</b>).
+Следующий пример показывает сеанс удаленной отладки с помощью команды <b>debug</b>
+утилиты <a href="/man.shtml?topic=vinum&amp;category=8"><b>vinum(8)</b></a>:</p>
+<pre>GDB 4.16 (i386-unknown-freebsd), Copyright 1996 Free Software Foundation, Inc.
+Debugger (msg=0xf1093174 "vinum debug") at ../../i386/i386/db_interface.c:318
+318      in_Debugger = 0;
+#1  0xf108d9bc in vinumioctl (dev=0x40001900, cmd=0xc008464b, data=0xf6dedee0 "",
+    flag=0x3, p=0xf68b7940) at
+    /usr/src/sys/modules/Vinum/../../dev/Vinum/vinumioctl.c:102
+102  Debugger ("vinum debug");
+(kgdb) bt
+#0  Debugger (msg=0xf0f661ac "vinum debug") at ../../i386/i386/db_interface.c:318
+#1  0xf0f60a7c in vinumioctl (dev=0x40001900, cmd=0xc008464b, data=0xf6923ed0 "",
+    flag=0x3, p=0xf688e6c0) at
+    /usr/src/sys/modules/vinum/../../dev/vinum/vinumioctl.c:109
+#2  0xf01833b7 in spec_ioctl (ap=0xf6923e0c) at ../../miscfs/specfs/spec_vnops.c:424
+#3  0xf0182cc9 in spec_vnoperate (ap=0xf6923e0c) at ../../miscfs/specfs/spec_vnops.c:129
+#4  0xf01eb3c1 in ufs_vnoperatespec (ap=0xf6923e0c) at ../../ufs/ufs/ufs_vnops.c:2312
+#5  0xf017dbb1 in vn_ioctl (fp=0xf1007ec0, com=0xc008464b, data=0xf6923ed0 "",
+      p=0xf688e6c0) at vnode_if.h:395
+#6  0xf015dce0 in ioctl (p=0xf688e6c0, uap=0xf6923f84) at ../../kern/sys_generic.c:473
+#7  0xf0214c0b in syscall (frame={tf_es = 0x27, tf_ds = 0x27, tf_edi = 0xefbfcff8,
+      tf_esi = 0x1, tf_ebp = 0xefbfcf90, tf_isp = 0xf6923fd4, tf_ebx = 0x2,
+      tf_edx = 0x804b614, tf_ecx = 0x8085d10, tf_eax = 0x36, tf_trapno = 0x7,
+      tf_err = 0x2, tf_eip = 0x8060a34, tf_cs = 0x1f, tf_eflags = 0x286,
+      tf_esp = 0xefbfcf78, tf_ss = 0x27}) at ../../i386/i386/trap.c:1100
+#8  0xf020a1fc in Xint0x80_syscall ()
+#9  0x804832d in ?? ()
+#10 0x80482ad in ?? ()
+#11 0x80480e9 in ?? ()
+</pre>
+<p>При входе из отладчика важно, чтобы исходный текст фрейма 1 
+(выдаваемый файлом <b>.gdbinit</b> вверху представленного примера)
+содержит текст <b>Debugger ("vinum debug");</b>.</p>
+
+<p>Это признак того, что спецификации адресо правильны. Если вы получаете
+какой-то другой результат, ваша символьная информация и модуль ядра 
+рассинхронизированы, и трассировка будет бессмысленной.</p>
+</li>
+</ol>
+<p>Для начального ислледования наиболее важная информация - результат представленной
+выше команды <b>bt</b> (<b>backtrace</b>).</p>
+
+<h3>&nbsp;&nbsp;Информирование о проблемах с Vinum</h3>
+
+<p>Если вы обнаружите любые ошибки в <b>vinum</b>, пожалуйста, 
+сообщайте о них Грегу Лихи (Greg Lehey) &lt;grog@lemis.com&gt;. 
+Предоставьте следующую информацию:</p>
+<ul>
+<li>Результат, выдаваемый командой <b>vinum list</b> (см. 
+<a href="vinum8.html#list"><b>vinum(8)</b></a>).</li>
+<li>Любые сообщения, выданные в файл <b>/var/log/messages</b>. Все соответствующие
+сообщения будут начинаться с текста "<b>vinum</b>".</li>
+<li>Если возникла паника ядра, - трассировку стека, которая получается
+как описано выше.</li>
+</ul>
+
+<h2><a name="authors">АВТОРЫ</a></h2>
+<dl><dt></dt><dd>
+Грег Лихи (Greg Lehey) &lt;grog@lemis.com&gt;
+</dd></dl>
+
+<h2><a name="history">ИСТОРИЯ</a></h2>
+
+<p>Утилита <b>vinum</b> впервые появилась в ОС FreeBSD 3.0. Компонент RAID-5 системы 
+<b>vinum</b> был разработан для корпорации <b>Cybernet Inc.</b> (<b>http://www.cybernet.com</b>),
+для ее продукта NetMAX.</p>
+
+<h2><a name="see_also">SEE ALSO</a></h2>
+<dl><dt></dt><dd>
+    <a href="/man.shtml?topic=disklabel&amp;category=5"><b>disklabel(5)</b></a>,
+    <a href="/man.shtml?topic=loader.conf&amp;category=5"><b>loader.conf(5)</b></a>,
+    <a href="/man.shtml?topic=bsdlabel&amp;category=8"><b>disklabel(8)</b></a>,
+    <a href="/man.shtml?topic=loader&amp;category=8"><b>loader(8)</b></a>,
+    <a href="/man.shtml?topic=newfs&amp;category=8"><b>newfs(8)</b></a>,
+    <a href="/man.shtml?topic=vinum&amp;category=8"><b>vinum(8)</b></a>
+</dd></dl>
+
+<p align="center">FreeBSD 4.9, 16 мая 2003 года</p>
+
+<p align="center"><font size="-2">Copyleft (no c) - Fuck copyright! 
+2004 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="vinum" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

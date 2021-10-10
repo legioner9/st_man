@@ -1,0 +1,699 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN slapd (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, slapd"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="slapd" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">slapd (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=slapd&amp;category=8&amp;russian=0"><u>slapd</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=slapd&amp;category=8&amp;russian=2"><u>slapd</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+slapd - автономный демон LDAP
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+[<b>-4</b>|<b>-6</b>]
+
+[<b>-T</b>&nbsp;{<b>acl</b>|<b>a</b>[<b>dd</b>]|<b>auth</b>|<b>c</b>[<b>at</b>]|
+
+<b>d</b>[<b>n</b>]|<b>i</b>[<b>ndex</b>]|<b>p</b>[<b>asswd</b>]|<b>s</b>[<b>chema</b>]|<b>t</b>[<b>est</b>]}]
+
+[<b>-d</b><i>&nbsp;debug-level</i>]
+
+[<b>-f</b><i>&nbsp;slapd-config-file</i>]
+
+[<b>-F</b><i>&nbsp;slapd-config-directory</i>]
+
+[<b>-h</b><i>&nbsp;URLs</i>]
+
+[<b>-n</b><i>&nbsp;service-name</i>]
+
+[<b>-s</b><i>&nbsp;syslog-level</i>]
+
+[<b>-l</b><i>&nbsp;syslog-local-user</i>]
+
+[<b>-o</b><i>&nbsp;option</i>[<b>=</b><i>value</i>]]
+
+[<b>-r</b><i>&nbsp;directory</i>]
+
+[<b>-u</b><i>&nbsp;user</i>]
+
+[<b>-g</b><i>&nbsp;group</i>]
+
+[<b>-c</b><i>&nbsp;cookie</i>]
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<p>
+
+<b>slapd</b>&nbsp;-
+
+автономный демон LDAP. Он ожидает подсоединений LDAP на портах
+с любым номером (по умолчанию <b>389</b>), выдавая ответ на операции
+LDAP, получаемые им по этим соединениям. Обычно
+<b>slapd</b>
+
+вызывается во время загрузки, как правило из
+<b>/etc/rc.local</b>.
+
+После запуска
+<b>slapd</b>
+
+обычно производит ответвление и отсоединяется от терминала, из которого был запущен.
+Если это настроено в конфигурационном файле (или конфигурационной директории),
+процесс
+<b>slapd</b>
+
+выведет свой идентификатор (смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getpid&amp;category=2">getpid</a></b>(2))
+
+в файл
+<b>.pid</b>,
+
+а также указываемые при вызове параметры командной строки в файл
+<b>.args</b>
+
+(смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5)).
+
+Если при вызове был указан флаг
+<b>-d</b>,
+
+даже со значением 0 (ноль),
+<b>slapd</b>
+
+не будет производить ответвления и отсоединяться от терминала, из которого запущен.
+</p><p>
+
+Дополнительные детали по
+<b>slapd</b>
+
+смотрите в "Руководстве администратора OpenLDAP".
+<a name="lbAE">&nbsp;</a>
+</p><h2>ПАРАМЕТРЫ</h2>
+
+<dl compact="">
+<dt><b>-4</b>
+
+</dt><dd>
+Ожидать соединений только на адресах IPv4.
+</dd><dt><b>-6</b>
+
+</dt><dd>
+Ожидать соединений только на адресах IPv6.
+</dd><dt><b>-T</b><i>&nbsp;tool</i>
+
+</dt><dd>
+Запуск в режиме инструмента (утилиты). Значение <i>tool</i> определяет, в качестве какой утилиты будет произведён запуск:
+<i>slapadd</i>,
+
+<i>slapcat</i>,
+
+<i>slapdn</i>,
+
+<i>slapindex</i>,
+
+<i>slappasswd</i>,
+
+<i>slapschema</i>
+
+или
+<i>slaptest</i>
+
+(<i>slapacl</i> и <i>slapauth</i> требуют указания значения параметра в виде <b>acl</b> и <b>auth</b>,
+поскольку значение <b>a</b> зарезервировано для
+<i>slapadd</i>).
+
+Если этот параметр используется, он должен быть указан первым;
+все остальные параметры будут интерпретироваться соответствующей
+slap-утилитой, как описано в её man-странице.
+Отметим, что эти программы-утилиты, как правило, представляют собой символические ссылки на
+<b>slapd</b>.
+
+Данный параметр предназначен для ситуаций, когда символические ссылки
+не поддерживаются или их невозможно использовать.
+</dd><dt><b>-d</b><i>&nbsp;debug-level</i>
+
+</dt><dd>
+Устанавливает уровень отладки в указанный
+<i>debug-level</i>.
+
+Если указан этот параметр, даже cо значением 0 (ноль),
+<b>slapd</b>
+
+не будет производить ответвления или отсоединяться от терминала, из которого запущен.
+Некоторые общие операции и сообщения о состоянии выводятся при любом значении <i>debug-level</i>.
+<i>debug-level</i> воспринимается как строка битов, где каждый бит соответствует
+отладочной информации различного рода. Подробнее смотрите в &lt;<a href="file:/usr/include/ldap_log.h">ldap_log.h</a>&gt;.
+В качестве значения этого параметра может быть указан разделённый запятыми массив читабельных имён уровней отладки,
+позволяющий определить вывод соответствующей отладочной информации.
+Поддерживаются все имена, распознаваемые директивой <i>loglevel</i>,
+описанной в <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5).
+Если в качестве <i>debug-level</i> указан <b>?</b>, выводится список установленных уровней отладки
+и slapd завершает работу.
+<p>
+Помните, что при включении уровня журналирования packets будут выводиться пакеты,
+содержащие пароли подсоединения, так что если журнал перенаправляется в файл,
+то этот файл должен быть защищён от прочтения.
+</p></dd><dt><b>-s</b><i>&nbsp;syslog-level</i>
+
+</dt><dd>
+Данный параметр сообщает
+<b>slapd</b>,
+
+какого уровня отладочные сообщения следует журналировать средствами
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=8">syslog</a></b>(8).
+
+В качестве <i>syslog-level</i> может быть установлено любое значение или комбинация значений,
+допустимая в параметре <b>-d</b>.
+slapd отправляет на регистрацию все сообщения выбранного уровня <i>syslog-level</i>
+с уровнем важности
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=3">syslog</a></b>(3)
+
+<b>DEBUG</b> в канал, определённый параметром <b>-l</b>.
+</dd><dt><b>-n</b><i>&nbsp;service-name</i>
+
+</dt><dd>
+Определяет имя службы для журналирования и других целей. По умолчанию
+соответствует базовому имени в argv[0], то есть "slapd".
+</dd><dt><b>-l</b><i>&nbsp;syslog-local-user</i>
+
+</dt><dd>
+Определяет пользовательский канал для
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=8">syslog</a></b>(8).
+
+Значение может быть от 
+<b>LOCAL0</b>,
+
+до
+<b>LOCAL7</b>,
+
+а также
+<b>USER</b>
+
+и
+<b>DAEMON</b>.
+
+По умолчанию -
+<b>LOCAL4</b>.
+
+Однако, этот параметр разрешено применять только в системах, поддерживающих
+пользовательские каналы в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=8">syslog</a></b>(8).
+
+Журналирование в <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=8">syslog</a>(8) происходит с уровнем важности "DEBUG".
+</dd><dt><b>-f</b><i>&nbsp;slapd-config-file</i>
+
+</dt><dd>
+Определяет конфигурационный файл slapd. По умолчанию
+<b>/usr/local/etc/openldap/slapd.conf</b>.
+
+</dd><dt><b>-F</b><i>&nbsp;slapd-config-directory</i>
+
+</dt><dd>
+Определяет конфигурационную директорию slapd. По умолчанию
+<b>/usr/local/etc/openldap/slapd.d</b>.
+
+Если указаны сразу и
+<b>-f</b>
+
+и
+<b>-F</b>,
+
+конфигурационный файл будет прочтён, переконвертирован в формат
+конфигурационной директории и записан в указанную директорию.
+Если не указан ни один из этих параметров, slapd
+попытается прочитать конфигурационную директорию по умолчанию,
+а затем использовать конфигурационный файл по умолчанию.
+Если существует конфигурационная директория в правильном формате,
+то конфигурационный файл игнорируется. Такое поведение соблюдается всеми
+slap-утилитами, использующими эти параметры командной строки.
+</dd><dt><b>-h</b><i>&nbsp;URLlist</i>
+
+</dt><dd>
+<b>slapd</b>
+
+по умолчанию будет обслуживать
+<b><a href="ldap:///">ldap:///</a></b>
+
+(LDAP по TCP на всех интерфейсах на порту LDAP по умолчанию). То есть,
+будет обслуживать подсоединения на INADDR_ANY и порту <b>389</b>.
+Параметр
+<b>-h</b>
+
+может использоваться, чтобы указать список LDAP URL (и URL с другими схемами), который требуется обслуживать.
+Например, если slapd передано
+<b>-h <a href="dqldap://127.0.0.1:9009/">dqldap://127.0.0.1:9009/</a> <a href="ldaps:///">ldaps:///</a> <a href="ldapi:///dq">ldapi:///dq</a></b>,
+
+он будет ожидать соединения LDAP на 127.0.0.1:9009, LDAP поверх TLS на 0.0.0.0:636,
+а также LDAP поверх IPC (доменные сокеты Unix). Адрес хоста 0.0.0.0 представляет собой
+INADDR_ANY (любой интерфейс). В качестве значения параметра
+ожидается разделённый пробельными символами список URL. Схемы URL должны быть
+LDAP, LDAPS или LDAPI, поддержка последних двух схем зависит от параметров конфигурации.
+В общем случае URL не должны содержать DN или других
+дополнительных параметров (за исключением обсуждаемых ниже).
+Хосты могут быть указаны по имени или адресами в форматах IPv4 и IPv6.
+Если указывается порт, он должен быть приведён в виде числового номера.
+Порт по умолчанию для ldap:// - <b>389</b>, для ldaps:// - <b>636</b>.
+<p>
+Для LDAP поверх IPC в качестве 
+<b>имени хоста </b>
+
+в URL указывается имя сокета, а указания
+<b>порта</b>
+
+не требуется, более того, не разрешается; обратите внимание,
+что символ разделителя директорий в имени сокета должен быть
+закодирован в формате URL, как и все остальные символы,
+являющиеся специальными для URL; таким образом, сокет
+</p><p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/usr/local/var/ldapi
+</p><p>
+должен быть указан как
+</p><p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ldapi://%2Fusr%2Flocal%2Fvar%2Fldapi">ldapi://%2Fusr%2Flocal%2Fvar%2Fldapi</a>
+</p><p>
+Расположение IPC-сокета по умолчанию - /usr/local/var/run/ldapi.
+</p><p>
+Разрешения на соединения обозначаются конструкциями
+"x-mod=-rwxrwxrwx", "x-mod=0777" или "x-mod=777", где любой символ в сочетании
+"rwx" может быть заменён на "-" для запрета соответствующего разрешения, а символы
+на месте "7" могут быть любой допустимой восьмеричной цифрой в соответствии с <a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chmod&amp;category=1">chmod</a>(1).
+Открываемые соединения могут воспользоваться расширением "x-mod"
+для реализации грубых ограничений на операции, например, разрешить операции чтения
+("r", применяющееся для операций search и compare), операции записи
+("w", применяющееся для операций add, delete, modify и modrdn), и операции исполнения
+("x", означающее, что требуется операция bind).
+Разрешения, определяемые для "пользователя", применяются к пользователям, прошедшим аутентификацию,
+а определяемые для "остальных" - к анонимным пользователям; разрешения для "группы" игнорируются.
+Например, "<a href="ldap:///????x-mod=-rw-------">ldap:///????x-mod=-rw-------</a>" означает, что операции чтения и записи разрешены
+только соединениям, в которых пользователи прошли аутентификацию,
+и для всех операций требуется подсоединение.
+Данное свойство является экспериментальным и его необходимо явно указывать во время конфигурации.
+</p></dd><dt><b>-r</b><i>&nbsp;directory</i>
+
+</dt><dd>
+Определяет директорию, которая станет корневой. slapd изменит текущую рабочую директорию
+на указанную директорию, а затем выполнит в неё
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=chroot&amp;category=2">chroot</a></b>(2).
+
+Это осуществляется после открытия портов на прослушивание, но до чтения
+каких-либо конфигурационных файлов и инициализации каких-либо механизмов манипуляции данными.
+Если этот параметр применяется в качестве механизма безопасности, его следует использовать
+совместно с параметрами
+<b>-u</b>
+
+и
+<b>-g</b>.
+
+</dd><dt><b>-u</b><i>&nbsp;user</i>
+
+</dt><dd>
+<b>slapd</b>
+
+будет запущен с правами пользователя, указанного именем или идентификатором, и
+к нему будет применён список доступа дополнительных групп этого пользователя согласно
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=initgroups&amp;category=3">initgroups</a>(3). Идентификатор группы также будет изменён на gid этого пользователя,
+если это не переопределено параметром <b>-g</b>. Обратите внимание, что при использовании с
+<b>-r</b>
+
+slapd будет искать базу данных пользователей в окружении изменённой корневой директории.
+<p>
+Имейте ввиду, что на некоторых системах при запуске с правами непривилегированного
+пользователя для механизмов манипуляции данными passwd будет предотвращён доступ
+к зашифрованным паролям. Также имейте ввиду, что любые механизмы манипуляции данными
+shell будут запускаться с правами указанного непривилегированного пользователя.
+</p></dd><dt><b>-g</b><i>&nbsp;group</i>
+
+</dt><dd>
+<b>slapd</b>
+
+будет запущен с правами группы, указанной именем или идентификатором.
+Обратите внимание, что при использовании с
+<b>-r</b>
+
+slapd будет искать базу данных групп пользователей в окружении изменённой
+корневой директории.
+</dd><dt><b>-c</b><i>&nbsp;cookie</i>
+
+</dt><dd>
+Данный параметр предоставляет куки для потребителя репликации syncrepl.
+Куки представляет собой разделённый запятыми список пар <i>имя=значение</i>.
+Поддерживаемые в настоящий момент поля syncrepl-куки -
+<b>rid</b>,
+
+<b>sid</b>,
+
+и
+<b>csn</b>.
+
+<b>rid</b>
+
+идентифицирует процесс репликации на сервере-потребителе и используется для
+нахождения в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5)
+
+или
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-config&amp;category=5">slapd-config</a></b>(5)
+
+спецификации syncrepl, имеющей в своём определении соответствующий идентификатор репликации.
+Если в этом параметре используются какие-либо другие значения,
+<b>rid</b>
+
+также должен быть указан.
+<b>sid&nbsp;</b>-
+
+это идентификатор сервера в конфигурации репликации с несколькими главными серверами (multi-master)
+или репликации в режиме зеркала (mirror-mode).
+<b>csn&nbsp;</b>-
+
+это порядковый номер изменения, полученный во время предыдущей синхронизации
+и представляющий собой состояние содержимого потребительской реплики, которое
+механизм syncrepl будет синхронизировать с текущим содержимым каталога поставщика.
+В случае конфигурации репликации <i>с несколькими главными серверами</i>
+или репликации <i>в режиме зеркала</i>
+могут присутствовать несколько разделённых запятыми значений
+<b>csn</b>.
+
+Для принудительной полной перезагрузки используйте только часть
+<b>rid</b>
+
+данного параметра.
+</dd><dt><b>-o</b><i>&nbsp;option</i>[<b>=</b><i>value</i>]
+
+</dt><dd>
+Данный параметр предоставляет универсальную возможность указывать опции без
+необходимости выделения для них отдельной буквы.
+<p>
+Поддерживаются следующие опции:
+</p><dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>slp=</b>{<b>on</b>|<b>off</b>|<b></b><i>slp-attrs</i>}
+
+</dt><dd>
+Когда в slapd вкомпилирована поддержка SLP, эта опция отвечает за её отключение (<b>off</b>),
+её включение путём регистрации на SLP DA без специфических атрибутов SLP (<b>on</b>),
+или со специфическими атрибутами SLP
+<i>slp-attrs</i>,
+
+которые должны представлять из себя определение списка атрибутов SLP
+в соответствии со стандартом SLP.
+<p>
+Например, с параметром <b>"slp=(tree=production),(server-type=OpenLDAP),(server-version=2.4.15)"</b>
+slapd регистрируется на SLP DA с тремя атрибутами SLP: tree, server-type и server-version
+с приведёнными выше значениями.
+Это позволяет сделать конкретный запрос к SLP DA на предмет серверов LDAP, содержащих дерево
+<i>production</i>
+
+в случае, если доступно несколько деревьев.
+</p></dd></dl>
+</dd></dl>
+
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ПРИМЕРЫ</h2>
+
+Чтобы запустить
+<i>slapd</i>
+
+так, чтобы он произвёл ответвление, отсоединился от терминала и начал обслуживание
+баз данных LDAP, определённых в конфигурационном файле по умолчанию, просто выполните:
+<p>
+
+</p><pre>        /usr/local/libexec/slapd
+</pre>
+
+<p>
+
+Чтобы запустить
+<b>slapd</b>
+
+с альтернативным конфигурационным файлом и включить вывод большого объёма
+отладочной информации в стандартный поток ошибок, выполните:
+</p><p>
+
+</p><pre>        /usr/local/libexec/slapd -f /var/tmp/slapd.conf -d 255
+</pre>
+
+<p>
+
+Чтобы протестировать корректность конфигурационного файла, выполните:
+</p><p>
+
+</p><pre>        /usr/local/libexec/slapd -Tt
+</pre>
+
+<p>
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>СМОТРИТЕ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ldap&amp;category=3">ldap</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.conf&amp;category=5">slapd.conf</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd-config&amp;category=5">slapd-config</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapd.access&amp;category=5">slapd.access</a></b>(5),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapacl&amp;category=8">slapacl</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapadd&amp;category=8">slapadd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapauth&amp;category=8">slapauth</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapcat&amp;category=8">slapcat</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapdn&amp;category=8">slapdn</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapindex&amp;category=8">slapindex</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slappasswd&amp;category=8">slappasswd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slapschema&amp;category=8">slapschema</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=slaptest&amp;category=8">slaptest</a></b>(8).
+
+<p>
+
+"Руководство администратора OpenLDAP" (<a href="http://www.OpenLDAP.org/doc/admin/,">http://www.OpenLDAP.org/doc/admin/,</a> <a href="http://pro-ldap.ru/tr/admin24/).">http://pro-ldap.ru/tr/admin24/).</a>
+<a name="lbAH">&nbsp;</a>
+</p><h2>ИЗВЕСТНЫЕ ОШИБКИ</h2>
+
+Смотрите <a href="http://www.openldap.org/its/">http://www.openldap.org/its/</a> .
+<a name="lbAI">&nbsp;</a>
+<h2>ПРИЗНАНИЕ ЗАСЛУГ</h2>
+
+
+
+<b>Программное обеспечение OpenLDAP</b>
+
+разработано и поддерживается проектом OpenLDAP &lt;<a href="http://www.openldap.org/">http://www.openldap.org/</a>&gt;.
+<b>Программное обеспечение OpenLDAP</b>
+
+является производным от релиза 3.3 LDAP Мичиганского Университета.
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">СМОТРИТЕ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAH">ИЗВЕСТНЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAI">ПРИЗНАНИЕ ЗАСЛУГ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="slapd" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,333 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ascii (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ascii"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ascii" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ascii (7)</font><hr><li> <a href="/man.shtml?topic=ascii&amp;category=5&amp;russian=4"><u>ascii</u></a> (5) <font color="#555555"> ( Solaris man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=ascii&amp;category=7&amp;russian=1"><u>ascii</u></a> (7) <font color="#555555"> ( FreeBSD man: Макропакеты и соглашения )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ascii&amp;category=7&amp;russian=0"><u>ascii</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=ascii&amp;category=7&amp;russian=2"><u>ascii</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+ascii - набор символов ASCII в восьмеричной, десятичной и шестнадцатеричной системах исчисления
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+ASCII - American Standard Code for Information Interchange
+(американский стандартный код для обмена информацией).
+Это 7-битный код. Многие 8-битные коды (такие, как ISO 8859-1,
+набор символов Linux по умолчанию) содержат ASCII в своей нижней
+половине. Международное описание ASCII известно как ISO 646.
+<p>
+
+Hижеследующая таблица содержит 128 символов ASCII.
+</p><p>
+
+Указаны также управляющие последовательности для программ C
+(<tt>'\X'</tt>).
+</p><p>
+
+
+<table>
+<tbody><tr valign="top"><td>8-</td><td>10-</td><td>16-</td><td>Символ</td><td></td><td>8-</td><td>10-</td><td>16-</td><td>Символ<br></td></tr>
+<tr valign="top"><td colspan="9"><hr></td></tr>
+<tr valign="top"><td>000</td><td>0</td><td>00</td><td>NUL '\0'</td><td></td><td>100</td><td>64</td><td>40</td><td>@<br></td></tr>
+<tr valign="top"><td>001</td><td>1</td><td>01</td><td>SOH</td><td></td><td>101</td><td>65</td><td>41</td><td>A<br></td></tr>
+<tr valign="top"><td>002</td><td>2</td><td>02</td><td>STX</td><td></td><td>102</td><td>66</td><td>42</td><td>B<br></td></tr>
+<tr valign="top"><td>003</td><td>3</td><td>03</td><td>ETX</td><td></td><td>103</td><td>67</td><td>43</td><td>C<br></td></tr>
+<tr valign="top"><td>004</td><td>4</td><td>04</td><td>EOT</td><td></td><td>104</td><td>68</td><td>44</td><td>D<br></td></tr>
+<tr valign="top"><td>005</td><td>5</td><td>05</td><td>ENQ</td><td></td><td>105</td><td>69</td><td>45</td><td>E<br></td></tr>
+<tr valign="top"><td>006</td><td>6</td><td>06</td><td>ACK</td><td></td><td>106</td><td>70</td><td>46</td><td>F<br></td></tr>
+<tr valign="top"><td>007</td><td>7</td><td>07</td><td>BEL '\a'</td><td></td><td>107</td><td>71</td><td>47</td><td>G<br></td></tr>
+<tr valign="top"><td>010</td><td>8</td><td>08</td><td>BS  '\b'</td><td></td><td>110</td><td>72</td><td>48</td><td>H<br></td></tr>
+<tr valign="top"><td>011</td><td>9</td><td>09</td><td>HT  '\t'</td><td></td><td>111</td><td>73</td><td>49</td><td>I<br></td></tr>
+<tr valign="top"><td>012</td><td>10</td><td>0A</td><td>LF  '\n'</td><td></td><td>112</td><td>74</td><td>4A</td><td>J<br></td></tr>
+<tr valign="top"><td>013</td><td>11</td><td>0B</td><td>VT  '\v'</td><td></td><td>113</td><td>75</td><td>4B</td><td>K<br></td></tr>
+<tr valign="top"><td>014</td><td>12</td><td>0C</td><td>FF  '\f'</td><td></td><td>114</td><td>76</td><td>4C</td><td>L<br></td></tr>
+<tr valign="top"><td>015</td><td>13</td><td>0D</td><td>CR  '\r'</td><td></td><td>115</td><td>77</td><td>4D</td><td>M<br></td></tr>
+<tr valign="top"><td>016</td><td>14</td><td>0E</td><td>SO</td><td></td><td>116</td><td>78</td><td>4E</td><td>N<br></td></tr>
+<tr valign="top"><td>017</td><td>15</td><td>0F</td><td>SI</td><td></td><td>117</td><td>79</td><td>4F</td><td>O<br></td></tr>
+<tr valign="top"><td>020</td><td>16</td><td>10</td><td>DLE</td><td></td><td>120</td><td>80</td><td>50</td><td>P<br></td></tr>
+<tr valign="top"><td>021</td><td>17</td><td>11</td><td>DC1</td><td></td><td>121</td><td>81</td><td>51</td><td>Q<br></td></tr>
+<tr valign="top"><td>022</td><td>18</td><td>12</td><td>DC2</td><td></td><td>122</td><td>82</td><td>52</td><td>R<br></td></tr>
+<tr valign="top"><td>023</td><td>19</td><td>13</td><td>DC3</td><td></td><td>123</td><td>83</td><td>53</td><td>S<br></td></tr>
+<tr valign="top"><td>024</td><td>20</td><td>14</td><td>DC4</td><td></td><td>124</td><td>84</td><td>54</td><td>T<br></td></tr>
+<tr valign="top"><td>025</td><td>21</td><td>15</td><td>NAK</td><td></td><td>125</td><td>85</td><td>55</td><td>U<br></td></tr>
+<tr valign="top"><td>026</td><td>22</td><td>16</td><td>SYN</td><td></td><td>126</td><td>86</td><td>56</td><td>V<br></td></tr>
+<tr valign="top"><td>027</td><td>23</td><td>17</td><td>ETB</td><td></td><td>127</td><td>87</td><td>57</td><td>W<br></td></tr>
+<tr valign="top"><td>030</td><td>24</td><td>18</td><td>CAN</td><td></td><td>130</td><td>88</td><td>58</td><td>X<br></td></tr>
+<tr valign="top"><td>031</td><td>25</td><td>19</td><td>EM</td><td></td><td>131</td><td>89</td><td>59</td><td>Y<br></td></tr>
+<tr valign="top"><td>032</td><td>26</td><td>1A</td><td>SUB</td><td></td><td>132</td><td>90</td><td>5A</td><td>Z<br></td></tr>
+<tr valign="top"><td>033</td><td>27</td><td>1B</td><td>ESC</td><td></td><td>133</td><td>91</td><td>5B</td><td>[<br></td></tr>
+<tr valign="top"><td>034</td><td>28</td><td>1C</td><td>FS</td><td></td><td>134</td><td>92</td><td>5C</td><td>\   '\\'<br></td></tr>
+<tr valign="top"><td>035</td><td>29</td><td>1D</td><td>GS</td><td></td><td>135</td><td>93</td><td>5D</td><td>]<br></td></tr>
+<tr valign="top"><td>036</td><td>30</td><td>1E</td><td>RS</td><td></td><td>136</td><td>94</td><td>5E</td><td>^<br></td></tr>
+<tr valign="top"><td>037</td><td>31</td><td>1F</td><td>US</td><td></td><td>137</td><td>95</td><td>5F</td><td>_<br></td></tr>
+<tr valign="top"><td>040</td><td>32</td><td>20</td><td>SPACE</td><td></td><td>140</td><td>96</td><td>60</td><td>`<br></td></tr>
+<tr valign="top"><td>041</td><td>33</td><td>21</td><td>!</td><td></td><td>141</td><td>97</td><td>61</td><td>a<br></td></tr>
+<tr valign="top"><td>042</td><td>34</td><td>22</td><td>"</td><td></td><td>142</td><td>98</td><td>62</td><td>b<br></td></tr>
+<tr valign="top"><td>043</td><td>35</td><td>23</td><td>#</td><td></td><td>143</td><td>99</td><td>63</td><td>c<br></td></tr>
+<tr valign="top"><td>044</td><td>36</td><td>24</td><td>$</td><td></td><td>144</td><td>100</td><td>64</td><td>d<br></td></tr>
+<tr valign="top"><td>045</td><td>37</td><td>25</td><td>%</td><td></td><td>145</td><td>101</td><td>65</td><td>e<br></td></tr>
+<tr valign="top"><td>046</td><td>38</td><td>26</td><td>&amp;</td><td></td><td>146</td><td>102</td><td>66</td><td>f<br></td></tr>
+<tr valign="top"><td>047</td><td>39</td><td>27</td><td>'</td><td></td><td>147</td><td>103</td><td>67</td><td>g<br></td></tr>
+<tr valign="top"><td>050</td><td>40</td><td>28</td><td>(</td><td></td><td>150</td><td>104</td><td>68</td><td>h<br></td></tr>
+<tr valign="top"><td>051</td><td>41</td><td>29</td><td>)</td><td></td><td>151</td><td>105</td><td>69</td><td>i<br></td></tr>
+<tr valign="top"><td>052</td><td>42</td><td>2A</td><td>*</td><td></td><td>152</td><td>106</td><td>6A</td><td>j<br></td></tr>
+<tr valign="top"><td>053</td><td>43</td><td>2B</td><td>+</td><td></td><td>153</td><td>107</td><td>6B</td><td>k<br></td></tr>
+<tr valign="top"><td>054</td><td>44</td><td>2C</td><td>,</td><td></td><td>154</td><td>108</td><td>6C</td><td>l<br></td></tr>
+<tr valign="top"><td>055</td><td>45</td><td>2D</td><td>-</td><td></td><td>155</td><td>109</td><td>6D</td><td>m<br></td></tr>
+<tr valign="top"><td>056</td><td>46</td><td>2E</td><td>.</td><td></td><td>156</td><td>110</td><td>6E</td><td>n<br></td></tr>
+<tr valign="top"><td>057</td><td>47</td><td>2F</td><td>/</td><td></td><td>157</td><td>111</td><td>6F</td><td>o<br></td></tr>
+<tr valign="top"><td>060</td><td>48</td><td>30</td><td>0</td><td></td><td>160</td><td>112</td><td>70</td><td>p<br></td></tr>
+<tr valign="top"><td>061</td><td>49</td><td>31</td><td>1</td><td></td><td>161</td><td>113</td><td>71</td><td>q<br></td></tr>
+<tr valign="top"><td>062</td><td>50</td><td>32</td><td>2</td><td></td><td>162</td><td>114</td><td>72</td><td>r<br></td></tr>
+<tr valign="top"><td>063</td><td>51</td><td>33</td><td>3</td><td></td><td>163</td><td>115</td><td>73</td><td>s<br></td></tr>
+<tr valign="top"><td>064</td><td>52</td><td>34</td><td>4</td><td></td><td>164</td><td>116</td><td>74</td><td>t<br></td></tr>
+<tr valign="top"><td>065</td><td>53</td><td>35</td><td>5</td><td></td><td>165</td><td>117</td><td>75</td><td>u<br></td></tr>
+<tr valign="top"><td>066</td><td>54</td><td>36</td><td>6</td><td></td><td>166</td><td>118</td><td>76</td><td>v<br></td></tr>
+<tr valign="top"><td>067</td><td>55</td><td>37</td><td>7</td><td></td><td>167</td><td>119</td><td>77</td><td>w<br></td></tr>
+<tr valign="top"><td>070</td><td>56</td><td>38</td><td>8</td><td></td><td>170</td><td>120</td><td>78</td><td>x<br></td></tr>
+<tr valign="top"><td>071</td><td>57</td><td>39</td><td>9</td><td></td><td>171</td><td>121</td><td>79</td><td>y<br></td></tr>
+<tr valign="top"><td>072</td><td>58</td><td>3A</td><td>:</td><td></td><td>172</td><td>122</td><td>7A</td><td>z<br></td></tr>
+<tr valign="top"><td>073</td><td>59</td><td>3B</td><td>;</td><td></td><td>173</td><td>123</td><td>7B</td><td>{<br></td></tr>
+<tr valign="top"><td>074</td><td>60</td><td>3C</td><td>&lt;</td><td></td><td>174</td><td>124</td><td>7C</td><td>|<br></td></tr>
+<tr valign="top"><td>075</td><td>61</td><td>3D</td><td>= </td><td></td><td>175</td><td>125</td><td>7D</td><td>}<br></td></tr>
+<tr valign="top"><td>076</td><td>62</td><td>3E</td><td>&gt;</td><td></td><td>176</td><td>126</td><td>7E</td><td>~<br></td></tr>
+<tr valign="top"><td>077</td><td>63</td><td>3F</td><td>?</td><td></td><td>177</td><td>127</td><td>7F</td><td>DEL<br></td></tr>
+</tbody></table>
+
+
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ПРИМЕЧАНИЯ ПО ИСТОРИИ</h2>
+
+Страница руководства по
+<b>ascii</b>
+
+впервые появилась в Version 7 AT&amp;T UNIX.
+<p>
+
+Hа старых терминалах символ подчеркивания показывается как стрелка влево
+и называется "обратная назад", каретка показывается как стрелка вверх, а
+вертикальная полоса имеет разрыв посередине.
+</p><p>
+
+Символы верхнего и нижнего регистров различаются на один бит, так же,
+как и символ ASCII 2 отличается от двойной кавычки. Это было сделано для
+упрощения кодирования символов механическим способом или с помощью
+электронных клавиатур, реализованных не на микроконтроллерах. Это
+соответствие можно также обнаружить на старых телетайпах.
+</p><p>
+
+Станадарт ASCII был опубликован в 1968 году Институтом стандартов
+Соединенных Штатов Америки (United States of America Standards Institute
+(USASI)).
+<a name="lbAE">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=iso_8859_1&amp;category=7">iso_8859_1</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=iso_8859_15&amp;category=7">iso_8859_15</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=iso_8859_7&amp;category=7">iso_8859_7</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=iso_8859_9&amp;category=7">iso_8859_9</a></b>(7)
+
+<p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">ПРИМЕЧАНИЯ ПО ИСТОРИИ</a></dt><dd>
+</dd><dt><a href="#lbAE">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ascii" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

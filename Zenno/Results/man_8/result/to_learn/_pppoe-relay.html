@@ -1,0 +1,407 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN pppoe-relay (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, pppoe-relay"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="pppoe-relay" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">pppoe-relay (8)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=pppoe-relay&amp;category=8&amp;russian=0"><u>pppoe-relay</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=pppoe-relay&amp;category=8&amp;russian=2"><u>pppoe-relay</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li>
+
+
+<h1><a name="имя" id="имя">ИМЯ</a></h1>
+<div class="level1">
+
+<p>
+
+pppoe-relay - PPPoE-агент ретрансляции, работающий в пространстве пользователя
+</p>
+
+</div>
+
+<h1><a name="обзор" id="обзор">ОБЗОР</a></h1>
+<div class="level1">
+
+<p>
+
+pppoe-relay [опции]
+</p>
+
+</div>
+
+<h1><a name="описание" id="описание">ОПИСАНИЕ</a></h1>
+<div class="level1">
+
+<p>
+
+pppoe-relay - это агент ретрансляции PPPoE (Point-toPoint Protocol over Ethernet) для Linux, работающий в пространстве пользователя. pppoe-relay работает в связке с pppoe клиентом и <a href="?topic=pppoe-server&amp;category=8" class="wikilink1" title="man:pppoe-server_8">pppoe-server</a> сервером. Обратитесь к разделу ОБРАБОТКА далее в этом руководстве, чтобы узнать подробности о том как работает pppoe-relay.
+</p>
+
+</div>
+
+<h1><a name="опции" id="опции">ОПЦИИ</a></h1>
+<div class="level1">
+
+</div>
+
+<h2><a name="s_интерфейс" id="s_интерфейс">-S интерфейс</a></h2>
+<div class="level2">
+
+<p>
+
+Добавить указанный Ethernet-интерфейс к списку интерфейсов, управляемых pppoe-relay. К этому интерфейсу могут быть подключены только PPPoE-серверы.
+</p>
+
+</div>
+
+<h2><a name="с_интерфейс" id="с_интерфейс">-С интерфейс</a></h2>
+<div class="level2">
+
+<p>
+
+Добавить указанный Ethernet-интерфейс к списку интерфейсов, управляемых pppoe-relay. К этому интерфейсу могут быть подключены только PPPoE-клиенты.
+</p>
+
+</div>
+
+<h2><a name="b_интерфейс" id="b_интерфейс">-B интерфейс</a></h2>
+<div class="level2">
+
+<p>
+
+Добавить указанный Ethernet-интерфейс к списку интерфейсов, управляемых pppoe-relay. К этому интерфейсу могут быть подключены одновременно и PPPoE-клиенты и серверы.
+</p>
+
+</div>
+
+<h2><a name="n_num" id="n_num">-n num</a></h2>
+<div class="level2">
+
+<p>
+
+Задаёт максимальное количество одновременных PPPoE-сеансов. Если не указано, по умолчанию 5000. num может принимать значения от 1 до 65534.
+</p>
+
+</div>
+
+<h2><a name="i_тайм-аут" id="i_тайм-аут">-i тайм-аут</a></h2>
+<div class="level2">
+
+<p>
+
+Указывает тайм-аут простоя сеанса. Если оба партнёра в сеансе простаивают более тайм-аут секунд, сеанс завершается. Если указан нулевой тайм-аут, простаивающий сеанс никогда не завершится.
+</p>
+
+<p>
+Отметим, что процедура устаревания простаивающих сеансов никогда не выполняется чаще 30 секунд, поэтому тайм-аут приблизительный. Для тайм-аута по умолчанию используется значение в 600 секунд (10 минут).
+</p>
+
+</div>
+
+<h2><a name="f" id="f">-F</a></h2>
+<div class="level2">
+
+<p>
+
+Опция -F заставляет pppoe-relay не выполнять вызов fork с последующим переходом в фоновый режим; вместо этого pppoe-relay остаётся в интерактивном режиме.
+</p>
+
+</div>
+
+<h2><a name="h" id="h">-h</a></h2>
+<div class="level2">
+
+<p>
+
+Опция -h заставляет вывести краткую справку по использованию и завершить работу.
+</p>
+
+</div>
+
+<h1><a name="обработка" id="обработка">ОБРАБОТКА</a></h1>
+<div class="level1">
+
+<p>
+
+pppoe-relay ожидает входящих PPPoE-кадров PADI на всех интерфейсах, указанных в опциях <span class="curid"><a href="?topic=pppoe-relay&amp;category=8" class="wikilink1" title="man:pppoe-relay_8">-B</a></span> и <span class="curid"><a href="?topic=pppoe-relay&amp;category=8" class="wikilink1" title="man:pppoe-relay_8">-C</a></span>. Когда обнаружен кадр PADI, pppoe-relay добавляет метку Relay-Session-ID и отправляет широковещательно PADI на все интерфейсы указанные в опциях <a href="http://ufadeb.homelinux.org/dokuwiki/doku.php?id=man:pppoe-relay_8#b_%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81" class="urlextern" title="http://ufadeb.homelinux.org/dokuwiki/doku.php?id=man:pppoe-relay_8#b_%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81" rel="nofollow">-B</a> и <span class="curid"><a href="?topic=pppoe-relay&amp;category=8" class="wikilink1" title="man:pppoe-relay_8">-S</a></span> (исключая интерфейс, на котором кадр был принят).
+</p>
+
+<p>
+Любой принятый кадр PADO ретранслируется обратно клиенту, который отправил PADI (предполагая что он содержит правильную метку Relay-Session-ID). Таким же образом кадры PADR от клиентов ретранслируются обратно к подходящему концентратору доступа.
+</p>
+
+<p>
+Когда принят кадр PADS, pppoe-relay помещает два MAC-адреса партнёров и идентификатор сеанса в хэш-таблицу. (Идентификатор сеанса видимый концентратором доступа может отличаться от видимого клиентом; pppoe-relay должен перенумеровывать сеансы для избежания возможного дублирования идентификаторов сеансов). Каждый раз, когда один из партнёров отправляет кадр сеанса, pppoe-relay просматривает записи сеансов в хэш-таблице и ретранслирует кадр правильному партнёру.
+</p>
+
+<p>
+Когда принимается кадр PADT, pppoe-relay ретранслирует его партнёру и удаляет запись сеанса из хэш-таблицы.
+</p>
+
+<p>
+Если клиент и сервер аварийно завершатся (или кадры потеряны), кадры PADT могут никогда не отправиться, и хэш-таблица pppoe-relay может заполниться недействительными сеансами. Поэтому периодически выполняется процедура очистки сеансов, и удаляет устаревшие сеансы из хэш-таблицы. Сеансы рассматриваются как устаревшие если в течение тайм-аут секунд не было передач информации. Когда сеанс удаляется по причине устаревания, кадр PADT отправляется каждому из партнёров, чтобы быть уверенным, что они знают, что сеанс был завершён.
+</p>
+
+</div>
+
+<h1><a name="примеры_вызова" id="примеры_вызова">ПРИМЕРЫ ВЫЗОВА</a></h1>
+<div class="level1">
+
+<p>
+
+pppoe-relay -C eth0 -S eth1
+</p>
+
+<p>
+Вышеуказанный пример передаёт кадры между PPPoE-клиентами в сети на интерфейсе eth0 и PPPoE-серверами в сети на интерфейсе eth1.
+</p>
+
+<p>
+pppoe-relay -B eth0 -B eth1
+</p>
+
+<p>
+Пример прозрачного ретранслятора  кадры будут ретранслироваться между любым сочетанием клиентов и серверов в сетях на интерфейсах eth0 и eth1.
+</p>
+
+<p>
+pppoe-relay -S eth0 -C eth1 -C eth2 -C eth3
+</p>
+
+<p>
+Этот пример ретранслирует кадры между серверами в сети на интерфейсе eth0 и клиентами в сетях на интерфейсах eth1, eth2 и eth3.
+</p>
+
+</div>
+
+<h1><a name="авторы" id="авторы">АВТОРЫ</a></h1>
+<div class="level1">
+
+<p>
+
+pppoe-relay был написан Дэвидом Ф. Сколлом (David F. Skoll) <a href="mailto:dfs@roaringpenguin.com" class="mail JSnocheck" title="dfs@roaringpenguin.com">dfs@roaringpenguin.com</a>.
+</p>
+
+<p>
+Домашняя страница pppoe - <a href="http://www.roaringpenguin.com/pppoe/" class="urlextern" title="http://www.roaringpenguin.com/pppoe/" rel="nofollow">http://www.roaringpenguin.com/pppoe/</a>.
+</p>
+
+</div>
+
+<h1><a name="автор_перевода" id="автор_перевода">АВТОР ПЕРЕВОДА</a></h1>
+<div class="level1">
+
+<p>
+
+Перевод на русский язык выполнил Владимир Ступин <a href="mailto:wheelof@gmail.com" class="mail JSnocheck" title="wheelof@gmail.com">wheelof@gmail.com</a>
+</p>
+
+</div>
+
+<h1><a name="смотри_также" id="смотри_также">СМОТРИ ТАКЖЕ</a></h1>
+<div class="level1">
+
+<p>
+
+<a href="?topic=pppd&amp;category=8" class="wikilink1" title="man:pppd_8">pppd(8)</a>, <a href="?topic=pppoe&amp;category=8" class="wikilink1" title="man:pppoe_8">pppoe(8)</a>, <a href="?topic=pppoe-sniff&amp;category=8" class="wikilink1" title="man:pppoe-sniff_8">pppoe-sniff(8)</a>, <span class="curid"><a href="?topic=pppoe-relay&amp;category=8" class="wikilink1" title="man:pppoe-relay_8">pppoe-relay(8)</a></span>, /usr/share/doc/pppoe/README.Debian.gz
+
+</p>
+
+</div>
+
+        
+      
+    
+      <div class="stylefoot">
+        <div class="meta">
+          <div class="user">
+                    </div>
+          <div class="doc">
+          man/pppoe-relay_8.txt · Последние изменения: 2009-02-05 20:24 (внешнее изменение)          </div>
+        </div>
+      </div>
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="pppoe-relay" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

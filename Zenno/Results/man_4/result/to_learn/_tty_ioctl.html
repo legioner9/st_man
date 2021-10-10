@@ -1,0 +1,831 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN tty_ioctl (4) Специальные файлы /dev/* (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, tty_ioctl"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="tty_ioctl" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">tty_ioctl (4)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=tty_ioctl&amp;category=4&amp;russian=0"><u>tty_ioctl</u></a> (4) <font color="#555555"> ( Русские man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=tty_ioctl&amp;category=4&amp;russian=2"><u>tty_ioctl</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+tty ioctl - вызовы ioctl для терминалов и последовательных портов
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<p>
+<b>#include &lt;<a href="file:/usr/include/termios.h">termios.h</a>&gt;</b>
+
+</p><p>
+<b>int ioctl(int </b><i>fd</i><b>, int </b><i>cmd</i><b>, ...);</b>
+
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Вызов
+<i>ioctl()</i>
+
+для терминалов и последовательных портов воспринимает много разных
+параметров команд. Большинство из них требуют при этом третий аргумент,
+разных типаов, далее по тексту называемый <i>argp</i> или <i>arg</i>.
+<p>
+
+Вызовы
+<i>ioctl</i>
+
+используются только в непортируемых программах. По возможности старайтесь
+везде использовать интерфейс POSIX, описанный в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=termios&amp;category=3">termios</a></b>(3).
+
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h3>Определение и установка атрибутов терминала</h3>
+
+<dl compact="">
+<dt><b>TCGETS<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>struct termios *</b><i>argp</i>
+
+</dt><dd>
+Эквивалентно<br>
+<i>tcgetattr(fd, argp)</i>.
+
+<br>
+
+Определяет текущие настройки последовательного порта.
+</dd><dt><b>TCSETS<tt>&nbsp;</tt>const struct termios *</b><i>argp</i>
+
+</dt><dd>
+Эквивалентно<br>
+<i>tcsetattr(fd, TCSANOW, argp)</i>.
+
+<br>
+
+Устанавливает новые текущие настройки последовательного порта.
+</dd><dt><b>TCSETSW<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const struct termios *</b><i>argp</i>
+
+</dt><dd>
+Эквивалентно<br>
+<i>tcsetattr(fd, TCSADRAIN, argp)</i>.
+
+<br>
+
+Позволяет очистить буфер вывода и установить новые
+текущие настройки последовательного порта.
+</dd><dt><b>TCSETSF<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const struct termios *</b><i>argp</i>
+
+</dt><dd>
+Эквивалентно<br>
+<i>tcsetattr(fd, TCSAFLUSH, argp)</i>.
+
+<br>
+
+Позволяет очистить буфер вывода, отменить ожидаемые данные на входе
+и установить новые текущие настройки последовательного порта.
+</dd></dl>
+<p>
+
+Следующие четыре вызова ioctl аналогичны TCGETS, TCSETS, TCSETSW, TCSETSF,
+за исключением того, что они работают с
+<b>struct termio *</b>
+
+вместо 
+<b>struct termios *</b>.
+
+</p><dl compact="">
+<dt><b>TCGETA<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>struct termio *</b><i>argp</i>
+
+</dt><dd>
+</dd><dt><b>TCSETA<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const struct termio *</b><i>argp</i>
+
+</dt><dd>
+</dd><dt><b>TCSETAW<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const struct termio *</b><i>argp</i>
+
+</dt><dd>
+</dd><dt><b>TCSETAF<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const struct termio *</b><i>argp</i>
+
+</dt><dd>
+<p><br>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h3>Блокировка и структура termios</h3>
+
+Структура termios для tty может быть заблокирована. Блокировка сама по себе
+является структурой termios, но с ненулевыми битами или полями, обозначающими
+заблокированные значения.
+<dl compact="">
+<dt><b>TIOCGLCKTRMIOS<tt>&nbsp;</tt>struct termios *</b><i>argp</i>
+
+</dt><dd>
+Определяет статус блокировки структуры termios терминала.<br>
+</dd><dt><b>TIOCSLCKTRMIOS<tt>&nbsp;</tt>const struct termios *</b><i>argp</i>
+
+</dt><dd>
+Устанавливает статус блокировки структуры termios терминала.<br>
+Это может делать только суперпользователь root.
+<p>
+</p></dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h3>Определение и установка размера окна</h3>
+
+Размеры окон хранятся в ядре, но не используются им
+(за исключением случаев виртуальных консолей, где ядро
+обновляет размер окна при его изменении, например
+из-за загрузки новых шрифтов).
+<dl compact="">
+<dt><b>TIOCGWINSZ<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>struct winsize *</b><i>argp</i>
+
+</dt><dd>
+Определить размер окна.<br>
+</dd><dt><b>TIOCSWINSZ<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const struct winsize *</b><i>argp</i>
+
+</dt><dd>
+Установить размер окна.<br>
+</dd></dl>
+<p>
+
+Структура используемая этими системными вызовами ioctl, определяется так:
+</p><p>
+</p><pre>struct winsize {
+        unsigned short ws_row;
+        unsigned short ws_col;
+        unsigned short ws_xpixel;   /* unused */
+        unsigned short ws_ypixel;   /* unused */
+};
+</pre>
+
+<p>
+При изменении размера окна отправляется сигнал SIGWINCH
+в группу фоновых процессов.
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h3>Отправление разрыва</h3>
+
+<dl compact="">
+<dt><b>TCSBRK<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>int </b><i>arg</i>
+
+</dt><dd>
+Эквивалентно<br>
+<i>tcsendbreak(fd, arg)</i>.
+
+<br>
+
+Если терминал использует асинхронную передачу данных, и
+<i>arg</i>
+
+равно нулю, то отправляется сигнал разрыва (поток нулевых битов)
+в течении 0.25 - 0.5 секунд. Если терминал не использует
+асинхронную передачу данных, то либо сигнал разрыва не отправляется,
+либо фукнция просто завершает работу, ничего не исполняя.
+Если
+<i>arg</i>
+
+не равно нулю, то неизвестно, что произойдет.
+<p>
+(SVR4, UnixWare, Solaris, Linux воспринимает
+<i>tcsendbreak(fd,arg)</i>
+
+с ненулевым значением
+<i>arg</i>
+
+аналогично вызову
+<i>tcdrain(fd)</i>.
+
+SunOS воспринимает
+<i>arg</i>
+
+как множитель и отправляет потом битов в
+<i>arg</i>
+
+раз дольше, чем для нулевого значения
+<i>arg</i>.
+
+DG-UX и AIX воспринимают
+<i>arg</i>
+
+(если оно не равно нулю) как временной интервал в миллисекундах.
+HP-UX игнорирует
+<i>arg</i>.)
+
+</p></dd><dt><b>TCSBRKP<tt>&nbsp;</tt>int </b><i>arg</i>
+
+</dt><dd>
+Так называемая "версия POSIX" TCSBRK. Она воспринимает ненулевые значения<br>
+<i>arg</i>
+
+как временной интервал в децисекундах, и ничего не делает, если
+драйвер не поддерживает сигналы разрыва.
+</dd><dt><b>TIOCSBRK<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>void</b>
+
+</dt><dd>
+Включает сигнал разрыва, а именно - начинает отправлять нулевые биты.<br>
+</dd><dt><b>TIOCCBRK<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>void</b>
+
+</dt><dd>
+Выключает сигнал разрыва, а именно - прекращает отправлять нулевые биты.<br>
+<p>
+</p></dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h3>Программное управление потоками</h3>
+
+<dl compact="">
+<dt><b>TCXONC<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>int </b><i>arg</i>
+
+</dt><dd>
+Эквивалентно<br>
+<i>tcflow(fd, arg)</i>.
+
+<br>
+
+Смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcflow&amp;category=3">tcflow</a></b>(3)
+
+для значений аргументов TCOOFF, TCOON, TCIOFF, TCION.
+<p>
+</p></dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h3>Счетчик буфера и очистка</h3>
+
+<dl compact="">
+<dt><b>FIONREAD<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>int *</b><i>argp</i>
+
+</dt><dd>
+Получает число байтов в буфере ввода.<br>
+</dd><dt><b>TIOCINQ<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>int *</b><i>argp</i>
+
+</dt><dd>
+Эквивалентно FIONREAD.<br>
+</dd><dt><b>TIOCOUTQ<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>int *</b><i>argp</i>
+
+</dt><dd>
+Получает число байтов в буфере вывода.<br>
+</dd><dt><b>TCFLSH<tt>&nbsp;</tt>int </b><i>arg</i>
+
+</dt><dd>
+Эквивалентно<br>
+<i>tcflush(fd, arg)</i>.
+
+<br>
+
+Смотрите 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tcflush&amp;category=3">tcflush</a></b>(3)
+
+для значений аргументов TCIFLUSH, TCOFLUSH, TCIOFLUSH.
+<p>
+</p></dd></dl>
+<a name="lbAK">&nbsp;</a>
+<h3>Мнимый ввод</h3>
+
+<dl compact="">
+<dt><b>TIOCSTI<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const char *</b><i>argp</i>
+
+</dt><dd>
+Вставляет заданный байт в очередь ввода.<br>
+<p>
+</p></dd></dl>
+<a name="lbAL">&nbsp;</a>
+<h3>Перенаправление вывода консоли</h3>
+
+<dl compact="">
+<dt><b>TIOCCONS<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>void</b>
+
+</dt><dd>
+Перенаправляет вывод, который должен идти на<br>
+<i>/dev/console</i>
+
+или на
+<i>/dev/tty0</i>
+
+для указанного терминала tty. Если это был основной pty, то отправлять
+его к подчиненному. Кто угодно может делать это, пока вывод не был
+еще ни разу перенаправлен. Если он уже был перенаправлен, то
+возвратится EBUSY, но root может остановить перенаправление,
+используя этот вызов ioctl, с
+<i>fd</i>,
+
+указывающем на
+<i>/dev/console</i>
+
+или на
+<i>/dev/tty0</i>.
+
+<p>
+</p></dd></dl>
+<a name="lbAM">&nbsp;</a>
+<h3>Управление tty</h3>
+
+<dl compact="">
+<dt><b>TIOCSCTTY<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>int </b><i>arg</i>
+
+</dt><dd>
+Определяет заданный tty как управляющий tty текущего процесса.<br>
+Текущий процесс должен быть основной сессией и не иметь ни одного
+управляющего терминала. Если этот tty уже является управляющим tty
+другой группы сессий, то ioctl завершается с ошибкой EPERM,
+если только его не вызывает root и
+<i>arg</i>
+
+не равно 1 - в этом случае tty отбирается и сбрасывается во всех
+процессах, где он был указан как управляющий tty.
+</dd><dt><b>TIOCNOTTY</b><i>void</i>
+
+</dt><dd>
+Если заданный tty был управляющим tty текущего процесса,
+то отказаться от этого управляющего tty. Если процесс был
+основной сессией, то фоновой группе процессоа отправляются
+SIGHUP и SIGCONT и все процессы в этой сесии теряют
+управляющий tty.
+<p>
+</p></dd></dl>
+<a name="lbAN">&nbsp;</a>
+<h3>Группа процессов и идентификатор сессии</h3>
+
+<dl compact="">
+<dt><b>TIOCGPGRP<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>pid_t *</b><i>argp</i>
+
+</dt><dd>
+Если успешно, то эквивалентно<br>
+<i>*argp = tcgetpgrp(fd)</i>.
+
+<br>
+
+Определяет идентификатор группы фоновой группы процессов данного tty.
+</dd><dt><b>TIOCSPGRP<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const pid_t *</b><i>argp</i>
+
+</dt><dd>
+Эквивалентно<br>
+<i>tcsetpgrp(fd, *argp)</i>.
+
+<br>
+
+Устанавливает идентификатор фоновой группы процессов данного tty.
+</dd><dt><b>TIOCGSID<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>pid_t *</b><i>argp</i>
+
+</dt><dd>
+Определяет идентификатор сесии данного tty. Завершается с ошибкой ENOTTY<br>
+в случае, если tty не является основным pty и не наш управляющий tty.
+Странно, однако.
+<p>
+</p></dd></dl>
+<a name="lbAO">&nbsp;</a>
+<h3>Закрытый режим</h3>
+
+<dl compact="">
+<dt><b>TIOCEXCL<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>void</b>
+
+</dt><dd>
+помещает tty в закрытый режим.<br>
+Дальнейшие операции
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a></b>(2)
+
+на терминале разрешены.
+(Они будут выдавать ошибку EBUSY, за исключением root.)
+</dd><dt><b>TIOCNXCL<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>void</b>
+
+</dt><dd>
+Отменяет закрытый режим.<br>
+<p>
+</p></dd></dl>
+<a name="lbAP">&nbsp;</a>
+<h3>Параметры линии</h3>
+
+<dl compact="">
+<dt><b>TIOCGETD<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>int *</b><i>argp</i>
+
+</dt><dd>
+Определяет параметры линии для tty.<br>
+</dd><dt><b>TIOCSETD<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const int *</b><i>argp</i>
+
+</dt><dd>
+Устанавливае параметры линии для tty.<br>
+<p>
+</p></dd></dl>
+<a name="lbAQ">&nbsp;</a>
+<h3>Вызовы ioctl для псевдо-tty</h3>
+
+<dl compact="">
+<dt><b>TIOCPKT<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const int *</b><i>argp</i>
+
+</dt><dd>
+Включает (если<br>
+*<i>argp</i>
+
+не равно нулю) или отключает пакетный режим.
+Может применяться только к оснвной части псевдо-tty (и будет возвращать
+ENOTTY в другом случае). В пакетном режиме каждое последующее
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=read&amp;category=2">read</a></b>(2)
+
+возвратит пакет, содержащий либо один ненулевой управляющий байт,
+либо один нулевой байт с последующими данными, записанными на
+подчиненной части pty. Если первые байты не равны TIOCPKT_DATA (0),
+то они логически складываются (OR) с одним или несколькими
+следующими битами:
+<p>
+</p><pre>TIOCPKT_FLUSHREAD   The read queue for the terminal is flushed.
+TIOCPKT_FLUSHWRITE  The write queue for the terminal is flushed.
+TIOCPKT_STOP        Output to the terminal is stopped.
+TIOCPKT_START       Output to the terminal is restarted.
+TIOCPKT_DOSTOP      t_stopc is `^S' and t_startc is `^Q'.
+TIOCPKT_NOSTOP      the start and stop characters are not `^S/^Q'.
+</pre>
+
+<p>
+При использовании этого режима наличие управляющей информации,
+считываемой с основной части может быть определено через
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=select&amp;category=2">select</a></b>(2)
+
+для исключительных условий.
+</p><p>
+Этот режим используется
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rlogin&amp;category=1">rlogin</a></b>(1)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rlogind&amp;category=8">rlogind</a></b>(8)
+
+для реализации удаленного входа, откликающего дистанционно, локально управляемого `^S/^Q'.
+</p><p>
+Вызовы ioctl для BSD - TIOCSTOP, TIOCSTART, TIOCUCNTL, TIOCREMOTE -
+не были реализованы в Linux.
+</p><p>
+</p></dd></dl>
+<a name="lbAR">&nbsp;</a>
+<h3>Управление модемом</h3>
+
+<dl compact="">
+<dt><b>TIOCMGET<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>int *</b><i>argp</i>
+
+</dt><dd>
+Получает статус битов модема.<br>
+</dd><dt><b>TIOCMSET<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const int *</b><i>argp</i>
+
+</dt><dd>
+Устанавливает статус битов модема.<br>
+</dd><dt><b>TIOCMBIC<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const int *</b><i>argp</i>
+
+</dt><dd>
+Очищает указанные биты модема.<br>
+</dd><dt><b>TIOCMBIS<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>const int *</b><i>argp</i>
+
+</dt><dd>
+Устанавливает указанные биты модема.<br>
+</dd></dl>
+<p>
+
+Биты, используемые в этих четырех вызовах ioctl:
+</p><p>
+</p><pre>TIOCM_LE        DSR (линия включена/данные готовы, Data Set Ready)
+TIOCM_DTR       DTR (терминал данных готов, Data Terminal Ready)
+TIOCM_RTS       RTS (запрос на отправку, Request To Send)
+TIOCM_ST        Вторичное TXD (передача, Secondary Transmit)
+TIOCM_SR        Вторичное RXD (получение, Secondary Receive)
+TIOCM_CTS       Готов к отправке CTS (Clear To Send)
+TIOCM_CAR       Обнаружены данные DCD (Data Carrier Detect)
+TIOCM_CD         см. TIOCM_CAR
+TIOCM_RNG       RNG (ring, звонок)
+TIOCM_RI         см. TIOCM_RNG
+TIOCM_DSR       Данные готовы DSR (Data Set Ready)
+</pre>
+
+<p>
+<a name="lbAS">&nbsp;</a>
+</p><h3>Пометка локальной линии</h3>
+
+<dl compact="">
+<dt><b>TIOCGSOFTCAR<tt>&nbsp;&nbsp;</tt>int *</b><i>argp</i>
+
+</dt><dd>
+("Get software carrier flag")<br>
+Определяет статус флага CLOCAL в поле c_cflag структуры termios.
+</dd><dt><b>TIOCSSOFTCAR<tt>&nbsp;&nbsp;&nbsp;</tt>const int *</b><i>argp</i>
+
+</dt><dd>
+("Set software carrier flag")<br>
+Устанавливает флаг CLOCAL в поле c_cflag структуры termios при
+*<i>argp</i>
+
+не равном нулю или очищая его в противном случае.
+</dd></dl>
+<p>
+
+Если флаг CLOCAL для линии не установлен, то важен сигнал DCD, а
+signal is significant, а
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=open&amp;category=2">open</a></b>(2)
+
+соответствующего tty будет блокировано, пока не будет утвержден DCD,
+за исключением установленного флага O_NONBLOCK.
+Если CLOCAL определено, то линия ведет себя, как если DCD утверждено
+всегда. Поограммное определение сигнала обычно включено для
+локальных устройств, и выключено для модемных линий.
+</p><p>
+<a name="lbAT">&nbsp;</a>
+</p><h3>Специфичность Linux</h3>
+
+Для вызова ioctl TIOCLINUX смотрите
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=console_ioctl&amp;category=4">console_ioctl</a></b>(4).
+
+<p>
+<a name="lbAU">&nbsp;</a>
+</p><h3>Отладка ядра</h3>
+
+<p>
+<b>#include &lt;<a href="file:/usr/include/linux/tty.h">linux/tty.h</a>&gt;</b>
+
+</p><p>
+</p><dl compact="">
+<dt><b>TIOCTTYGSTRUCT<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>struct tty_struct *</b><i>argp</i>
+
+</dt><dd>
+Получает tty_struct, соответствующую<br>
+<i>fd</i>.
+
+
+
+<p>
+</p></dd></dl>
+<a name="lbAV">&nbsp;</a>
+<h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+Системный вызов
+<i>ioctl()</i>
+
+возвращает 0 при нормальном завершении работы. При ошибках возвращается -1
+и соответствующим образом устанавливается переменная
+<i>errno</i>.
+
+<p>
+<a name="lbAW">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>ENOIOCTLCMD</b>
+
+</dt><dd>
+Неизвестная команда.
+</dd><dt><b>EINVAL</b>
+
+</dt><dd>
+Некорректный параметр команды.
+</dd><dt><b>EPERM</b>
+
+</dt><dd>
+Недостаточно прав.
+</dd><dt><b>ENOTTY</b>
+
+</dt><dd>
+Несоответствующее
+<i>fd</i>.
+
+</dd></dl>
+<a name="lbAX">&nbsp;</a>
+<h2>ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</h2>
+
+Проверка условия DTR на последовательном порту.
+<p>
+</p><pre>#include &lt;<a href="file:/usr/include/termios.h">termios.h</a>&gt;
+#include &lt;<a href="file:/usr/include/fcntl.h">fcntl.h</a>&gt;
+#include &lt;<a href="file:/usr/include/sys/ioctl.h">sys/ioctl.h</a>&gt;
+
+main() {
+    int fd, serial;
+
+    fd = open("/dev/ttyS0", O_RDONLY);
+    ioctl(fd, TIOCMGET, &amp;serial);
+    if (serial &amp; TIOCM_DTR)
+        puts("TIOCM_DTR is not set");
+    else
+        puts("TIOCM_DTR is set");
+    close(fd);
+}
+</pre>
+
+<p>
+<a name="lbAY">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ioctl&amp;category=2">ioctl</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=termios&amp;category=3">termios</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=console_ioctl&amp;category=4">console_ioctl</a></b>(4)
+
+<p>
+
+
+
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAE">Определение и установка атрибутов терминала</a></dt><dd>
+</dd><dt><a href="#lbAF">Блокировка и структура termios</a></dt><dd>
+</dd><dt><a href="#lbAG">Определение и установка размера окна</a></dt><dd>
+</dd><dt><a href="#lbAH">Отправление разрыва</a></dt><dd>
+</dd><dt><a href="#lbAI">Программное управление потоками</a></dt><dd>
+</dd><dt><a href="#lbAJ">Счетчик буфера и очистка</a></dt><dd>
+</dd><dt><a href="#lbAK">Мнимый ввод</a></dt><dd>
+</dd><dt><a href="#lbAL">Перенаправление вывода консоли</a></dt><dd>
+</dd><dt><a href="#lbAM">Управление tty</a></dt><dd>
+</dd><dt><a href="#lbAN">Группа процессов и идентификатор сессии</a></dt><dd>
+</dd><dt><a href="#lbAO">Закрытый режим</a></dt><dd>
+</dd><dt><a href="#lbAP">Параметры линии</a></dt><dd>
+</dd><dt><a href="#lbAQ">Вызовы ioctl для псевдо-tty</a></dt><dd>
+</dd><dt><a href="#lbAR">Управление модемом</a></dt><dd>
+</dd><dt><a href="#lbAS">Пометка локальной линии</a></dt><dd>
+</dd><dt><a href="#lbAT">Специфичность Linux</a></dt><dd>
+</dd><dt><a href="#lbAU">Отладка ядра</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAV">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAW">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAX">ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAY">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="tty_ioctl" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,550 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN grep (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, grep"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="grep" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">grep (1)</font><hr><li> <a href="/man.shtml?topic=grep&amp;category=1&amp;russian=4"><u>grep</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=grep&amp;category=1&amp;russian=1"><u>grep</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=grep&amp;category=1&amp;russian=0"><u>grep</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=grep&amp;category=1&amp;russian=2"><u>grep</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=grep&amp;category=1&amp;russian=5"><u>grep</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li><font color="#555555">Ключ <a href="/keywords/grep.html"><u>grep</u></a> обнаружен в базе ключевых слов.</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Пользовательские команды</h1></td>
+<td><h1 align="right">grep(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>grep</b> - поиск образца в файле</p>
+
+<h2>СИНТАКСИС</h2>
+<dl>
+<dt></dt><dd><tt>
+     /usr/bin/grep [ -bchilnsvw ]  <b>ограниченное_регулярное_выражение</b><br>
+	&nbsp;&nbsp;&nbsp;    [ <b>имя_файла</b> ... ]
+</tt></dd>
+<dt></dt><dd><tt>
+     /usr/xpg4/bin/grep [ -E | -F ]   [  -c  |  -l   |  -q  ]   [ -bhinsvwx ]<br>
+	&nbsp;&nbsp;&nbsp; -e <b>список_образцов</b> ...   [ -f <b>файл_образцов</b> ] ...<br>
+	&nbsp;&nbsp;&nbsp;  [ <b>имя_файла</b> ... ]
+</tt></dd>
+<dt></dt><dd><tt>
+     /usr/xpg4/bin/grep [ -E | -F ]   [  -c  |  -l   |  -q  ]   [ -bhinsvwx ]<br>
+	&nbsp;&nbsp;&nbsp; [ -e <b>список_образцов</b> ... ]  -f <b>файл_образцов</b> ...<br>
+	&nbsp;&nbsp;&nbsp; [ <b>имя_файла</b> ... ]
+</tt></dd>
+<dt></dt><dd><tt>
+     /usr/xpg4/bin/grep [ -E | -F ]   [  -c  |  -l   |  -q  ]   [ -bhinsvwx ]<br>
+	&nbsp;&nbsp;&nbsp; <b>образец</b> [ <b>имя_файла</b> ... ]
+</tt></dd>
+</dl>
+
+<h2>ОПИСАНИЕ</h2>
+<p>
+Утлита <b>grep</b> выполняет поиск <i>образца</i> в текстовых файлах и выдает
+все строки, содержащие этот образец. Она использует компактный недетерминированный
+алгоритм сопоставления.</p>
+<p>
+Будьте внимательны при использовании в <b>списке_образцов</b> символов 
+<b>$</b>, <b>*</b>, <b>[</b>, <b>^</b>, <b>|</b>, <b>(</b>, <b>)</b> и <b>\</b>,
+поскольку они являются метасимволами командного интерпретатора. Лучше брать весь
+<b>список_образцов</b> в одиночные кавычки <b>'... '</b>.</p>
+<p>
+Если <b>имя_файла</b> не указано, <b>grep</b> предполагает поиск в стандартном 
+входном потоке. Обычно каждая найденная строка копируется в 
+стандартный выходной поток. Если поиск осуществлялся в нескольких файлах,
+перед каждой найденной строкой выдается имя файла.</p>
+
+<h3>/usr/bin/grep</h3>
+
+<p>
+Утилита <b>/usr/bin/grep</b> использует для задания образцов <i>ограниченные регулярные выражения</i>, 
+описанные на странице справочного руководства <a href="/man.shtml?topic=regexp&amp;category=5"><b>regexp(5)</b></a>.</p>
+
+<h3>/usr/xpg4/bin/grep</h3>
+
+<p>
+Опции <b>-E</b> и <b>-F</b> влияют на способ интерпретации
+списка_образцов программой <b>/usr/xpg4/bin/grep</b>. 
+Если указана опция <b>-E</b>, программа
+<b>/usr/xpg4/bin/grep</b> интерпретирует образцы в списке как полные
+регулярные выражения (см. <a href="#E">описание опции <b>-E</b></a>). Если же указана опция <b>-F</b>,
+<b>grep</b> интерпретирует <b>список_образцов</b> как фиксированные строки.  Если ни одна
+из этих опций не указана, <b>grep</b> интерпретирует элементы <b>списка_образцов</b> как простые
+регулярные выражения, описанные на странице справочного руководства
+<a href="/man.shtml?topic=regex&amp;category=5"><b>regex(5)</b></a>.</p>
+
+<h2>ОПЦИИ</h2>
+
+<p>Следующие опции поддерживаются обеими программами, <b>/usr/bin/grep</b>
+и <b>/usr/xpg4/bin/grep</b>:</p>
+
+<dl><dt></dt><dd>
+<table border="0">
+<tbody><tr><td width="10%"><b>-b</b></td><td>
+Предваряет каждую строку номером блока, в котором она была найдена.
+Это может пригодиться при поиске блоков по контексту (блоки нумеруются с 0).</td></tr>
+
+<tr><td><b>-c</b></td><td>
+Выдает только количество строк, содержащих образец.</td></tr>
+
+<tr><td><b>-h</b></td><td>
+Предотвращает выдачу имени файла, содержащего сопоставившуюся строку,
+перед собственно строкой. Используется при поиске по нескольким файлам.</td></tr>
+
+<tr><td><b>-i</b></td><td>    
+Игнорирует регистр символов при сравнениях.</td></tr>
+
+<tr><td><b>-l</b></td><td>
+Выдает только имена файлов, содержащих сопоставившиеся строки, 
+по одному в строке. Если образец найден в нескольких строках файла, 
+имя файла не повторяется.</td></tr>
+
+<tr><td><b>-n</b></td><td>    
+Выдает перед каждой строкой ее номер в файле (строки нумеруются с 1).</td></tr>
+
+<tr><td><b>-s</b></td><td>
+Подавляет выдачу сообщений о не существующих или недоступных для чтения файлах.</td></tr>
+
+<tr><td><b>-v</b></td><td>
+Выдает все строки, за исключением содержащих образец.</td></tr>
+
+<tr><td><b>-w</b></td><td>
+Ищет выражение как слово, как если бы оно было окружено метасимволами
+\&lt; и \&gt;.</td></tr>
+</tbody></table>
+</dd></dl>
+
+<h3>/usr/xpg4/bin/grep</h3>
+
+<p>Следующие опции поддерживаются только утилитой <b>/usr/xpg4/bin/grep</b>:</p>
+
+<dl><dt></dt><dd>
+<table border="0">
+<tbody><tr><td valign="top" width="30%"><b>-e список_образцов</b></td><td>
+
+Задает один или несколько образцов для поиска. Образцы в 
+<b>списке_образцов</b> должны разделяться символами новой строки.
+Пустой образец можно задать, введя два символа новой строки подряд.
+Если одновременно с этой опцией не указана опция <b>-E</b> или <b>-F</b>,
+каждый образец будет рассматриваться как простое регулярное выражение.
+Утилита <b>grep</b> воспринимает несколько опций <b>-e</b> и <b>-f</b>. При поиске строк, 
+соответствующих образцу, используются все заданные образцы, но порядок
+сопоставления не определен.</td></tr>
+
+<tr><td valign="top"><b><a name="E">-E</a></b></td><td>
+
+Сопоставлять с польными регулярными выражениями. Рассматривать каждый
+заданный образец как <i>полное регулярное выражение</i>. Если любое из 
+полных регулярных выражений-образцов сопоставляется с входной строкой, строка
+считается соответствующей. Пустое полное регулярное выражение соответствует
+любой строке. Каждый образец будет интерпретироваться как полное регулярное
+выражение в соответствии с описанием на странице справочного 
+руководства <a href="/man.shtml?topic=regex&amp;category=5"><b>regex(5)</b></a>, за исключением 
+метасимволов <b>\(</b> и <b>\)</b>, причем:
+
+<ol>
+<li>
+Полное регулярное выражение, за которым идет <b>+</b>, соответствует
+одному или более вхождениям полного регулярного выражения.
+</li>
+<li>
+Полное регулярное выражение, за которым идет <b>?</b>, соответствует
+0 или одному вхождению полного регулярного выражения.
+</li>
+<li>
+Полным регулярным выражениям, разделенным символами <b>|</b> или 
+символами новой строки, соответствуют строки, сопоставляющиеся 
+с любым из указанных выражений.
+</li>
+<li>
+Полные регулярные выражения можно брать в круглые скобки 
+<b>()</b> для группировки.
+</li>
+</ol>
+
+Максимальный приоритет имеют операторы <b>[]</b>, затем <b>*?+</b>,
+конкатенация, и, наконец, оператор <b>|</b> и символ новой строки.</td></tr>
+
+<tr><td valign="top"><b>-f файл_образцов</b></td><td>
+Читает один или несколько образцов из файла с указанным полным
+именем <b>файл_образцов</b>. Образцы в <b>файле_образцов</b> завершаются символом
+новой строки. Пустой образец можно задать с помощью пустой строки в 
+<b>файле_образцов</b>. Если только вместе с этой опцией не указана
+опция <b>-E</b> или <b>-F</b>, каждый образец счиается простым регулярным выражением.</td></tr>
+
+<tr><td valign="top"><b>-F</b></td><td>
+Задает сопоставление с фиксированными строками. Каждый образец ищется
+как строка, а не как регулярное выражение. Если входная строка
+содержит любой из образцов в качестве подряд идущих байтов, такая строка
+считается соответствующей образцу. Пустая строка-образец соответствует любой
+строке. Подробнее см. на странице <a href="/man.shtml?topic=fgrep&amp;category=1"><b>fgrep(1)</b></a>.</td></tr>
+
+<tr><td valign="top"><b>-q</b></td><td>
+Немногословный режим. В стандартный выходной поток не выдается ничего, 
+кроме сопоставившихся строк. Если одна из входных строк соответствует
+образцу, возвращается статус выхода 0.</td></tr>
+
+<tr><td valign="top"><b>-x</b></td><td>
+Считает сопоставившимися только строки, все символы которых использованы
+при сопоставлении с фиксированной строкой или регулярным выражением.</td></tr>
+</tbody></table>
+</dd></dl>
+
+<h2>ОПЕРАНДЫ</h2>
+
+<p>Поддерживаются следующие операнды:</p>
+
+<dl><dt></dt><dd>
+<table border="0"> 
+<tbody><tr><td width="15%"><b>имя_файла</b></td><td>
+Имя файла, в котором должен выполняться поиск по образцу.
+Если файлы не указаны, поиск ведется в стандартном входном потоке.</td></tr>
+</tbody></table>
+</dd></dl>
+
+<h3>&nbsp;&nbsp;&nbsp;/usr/bin/grep</h3>
+
+<dl><dt></dt><dd>
+<table border="0">
+<tbody><tr><td width="15%"><b>образец</b></td><td>
+Задает образец для поиска во входных строках.</td></tr>
+</tbody></table>
+</dd></dl>
+
+<h3>&nbsp;&nbsp;&nbsp;/usr/xpg4/bin/grep</h3>
+
+<dl><dt></dt><dd>
+<table border="0">
+<tbody><tr><td width="15%"><b>образец</b></td><td>
+Задает один или несколько образцов для поиска во входных строках.
+Этот операнд используется так же, как если бы он был задан в виде
+<b>-eсписок_образцов</b>.</td></tr>
+</tbody></table>
+</dd></dl>
+
+<h2>ИСПОЛЬЗОВАНИЕ</h2>
+
+<p>Опция <b>-epattern_list</b> имеет тот же эффект, что и операнд <b>список_образцов</b>, но
+позволяет начинать <b>список_образцов</b> с дефиса. Она также пригодится в случаях, 
+когда удобнее задавать несколько образцов в виде отдельных аргументов.</p>
+
+<p>Можно задавать несколько опций <b>-e</b> и <b>-f</b>. При этом утилита <b>grep</b>
+использует все заданные образцы при сопоставлении с входными строками.
+(Учтите, что порядок проверки не задается. Если реализация находит среди
+образцов пустую строку, она может искать сначала именно ее, тем самым,
+сопоставление будет найдено для каждой строки, а остальные образцы, по сути, - 
+проигнорированы.)</p>
+
+<p>Опция <b>-q</b> дает средства простого определения, находится ли образец 
+(или строка) в группе файлов. При поиске в нескольких файлах она обеспечивает
+более высокую производительность (поскольку позволяет завершить работу, как 
+только будет найдено первое соответствие) и не требует дополнительных усилий
+пользователя при формировании набора файлов-аргументов (поскольку <b>grep</b> вернет
+нулевой статус выхода при обнаружении соответствия даже если при работе
+с предыдущими операндами-файлами произошла ошибка доступа или чтения.)</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  Работа с большими файлами</h3>
+
+<p>Описание поведения утлиты при работе с файлами размером от 
+2 Гбайтов (2**31 байтов) см. на странице справочного руководства 
+<a href="/man.shtml?topic=largefile&amp;category=5"><b>largefile(5)</b></a>.</p>
+
+<h2>ПРИМЕРЫ</h2>
+
+<h3>Пример 1: Поиск всех вхождений слова</h3>
+
+<p>Чтобы найти все вхождения слова "Posix" (независимо от регистра) в файле
+text.mm и выдать номера соответствующих строк:</p>
+
+<tt>example% /usr/bin/grep -i -n posix text.mm</tt>
+
+<h3>Пример 2: Поиск пустых строк</h3>
+
+<p>Чтобы найти все пустые строки в стандартном входном потоке:</p>
+
+<tt>example% /usr/bin/grep ^$</tt>
+
+<p>или</p>
+
+<tt>example% /usr/bin/grep -v .</tt>
+
+<h3>Пример 3: Поиск строк, содержащих фиксированные подстроки</h3>
+
+<p>Обе следующих команды выдают все строки, содержащие подстроки
+abc, def или и ту, и другую:</p>
+
+<tt>example% /usr/xpg4/bin/grep -E 'abc def'<br>
+example% /usr/xpg4/bin/grep -F 'abc def'</tt>
+
+<h3>Пример 4: Поиск строк, соответствующих образцу</h3>
+
+<p>Обе следующих команды выдают все строки abc или def:</p>
+
+<tt>example% /usr/xpg4/bin/grep -E '^abc$ ^def$'<br>
+example% /usr/xpg4/bin/grep -F -x 'abc def'</tt>
+
+<h2>ПЕРЕМЕННЫЕ СРЕДЫ</h2>
+
+<p>Описание следующих переменных среды  <b>LC_COLLATE</b>,
+<b>LC_CTYPE</b>, <b>LC_MESSAGES</b> и <b>NLSPATH</b>, 
+влияющих на работу команды <b>grep</b>, 
+см. на странице справочного руководства <b>environ(5)</b>.</p>
+
+<h2>СТАТУС ВЫХОДА</h2>
+
+<p>Команда заврешается со следующими статусами выхода:</p>
+
+<table width="100%" border="0">
+<tbody><tr><td width="10%"><b>0</b></td><td>
+Найдена одна или несколько соответствующих строк.</td></tr>
+<tr><td><b>1</b></td><td>
+Соответствующие строки не найдены.</td></tr>
+<tr><td><b>2</b></td><td>
+Выявлены синтаксические ошибки или недоступные файлы 
+(даже если были найдены соответствующие строки).</td></tr>
+</tbody></table>
+
+<h2>АТРИБУТЫ</h2>
+
+<p>Описание следующих атрибутов см. на странице справочного руководства
+attributes(5):</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  /usr/bin/grep</h3>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWcsu</td></tr>
+<tr><td>CSI</td>
+<td>включено</td></tr>
+</tbody></table>
+
+<h3>&nbsp;&nbsp;&nbsp;  /usr/xpg4/bin/grep</h3>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWxcu4</td></tr>    
+<tr><td>CSI</td>
+<td>включено</td></tr>
+</tbody></table>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=egrep&amp;category=1"><b>egrep(1)</b></a>,
+	<a href="/man.shtml?topic=fgrep&amp;category=1"><b>fgrep(1)</b></a>,
+	<a href="/man.shtml?topic=sed&amp;category=1"><b>sed(1)</b></a>,
+	<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>,
+	<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>,
+	<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>,
+	<a href="/man.shtml?topic=largefile&amp;category=5"><b>largefile(5)</b></a>,
+	<a href="/man.shtml?topic=regex&amp;category=5"><b>regex(5)</b></a>,
+	<a href="/man.shtml?topic=regexp&amp;category=5"><b>regexp(5)</b></a>,
+	<a href="/man.shtml?topic=XPG&amp;category=45"><b>XPG4(5)</b></a>
+</dd></dl>
+
+<h2>ПРИМЕЧАНИЯ</h2>
+
+<h3>&nbsp;&nbsp;&nbsp;  /usr/bin/grep</h3>
+<p>Строки ограничены только размером доступной виртуальной памяти. Если
+обрабатывается строка со встроенными нулевыми символами, <b>grep</b> будет вести
+поиск только до первого такого символа; если эта часть строки соответствует
+образцу, будет выдана вся строка.</p>
+
+<h3>&nbsp;&nbsp;&nbsp;  /usr/xpg4/bin/grep</h3>
+<p>Если файл содержит строки длиннее <b>LINE_MAX</b> байтов или двоичные данные, 
+результаты работы непресказуемы. Значение <b>LINE_MAX</b> определено в файле                     
+<b>/usr/include/limits.h</b>.</p>
+
+<p align="center"><font size="-2">
+Copyright 2002 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="grep" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,576 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN utf8 (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, utf8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="utf8" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">utf8 (7)</font><hr><li> <a href="/man.shtml?topic=utf8&amp;category=3&amp;russian=4"><u>utf8</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=utf8&amp;category=3&amp;russian=2"><u>utf8</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=utf8&amp;category=5&amp;russian=1"><u>utf8</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=utf8&amp;category=7&amp;russian=0"><u>utf8</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=utf8&amp;category=7&amp;russian=2"><u>utf8</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li><font color="#555555">Ключ <a href="/keywords/utf8.html"><u>utf8</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+UTF-8 - ASCII-совместимая многобайтная кодировка Unicode
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Набор символов 
+<b>Unicode 3.0</b>
+
+является 16-битным кодом. Наиболее распространенная кодировка
+Unicode, известная как 
+<b>UCS-2</b>,
+
+содержит последовательности 16-битных слов. Такие строки могут содержать 
+комбинации символов (например, '\0' или '/'), которые имеют 
+специальное значение в именах файлов и других параметрах функций из
+библиотеки языка C.  Кроме того, большинство утилит UNIX предназначены
+для обработки ASCII-файлов и не могут читать 16-битные символы без
+специальной модификации. По этим причинам
+<b>UCS-2</b>
+
+является неподходящей кодировкой 
+имен файлов, текстовых файлов, переменных окружения  
+<b>Unicode</b>
+
+и т.д.
+Стандарт 
+<b>ISO 10646 Universal Character Set (UCS)</b>
+
+является 31-битным кодом,
+а используемая для него кодировка 
+<b>UCS-4</b>
+
+(последовательность 32-битных слов) имеет те же недостатки, что и описанные выше.
+Кодировка 
+<b>Unicode</b>
+
+и
+<b>UCS </b>
+
+под названием 
+<b>UTF-8</b>
+
+лишена этих недостатков и является общим методом использования
+<b>Unicode</b>
+
+в Unix-подобных операционных системах.
+<a name="lbAD">&nbsp;</a>
+<h2>СВОЙСТВА</h2>
+
+Кодировка
+<b>UTF-8 </b>
+
+обладает следующими полезными свойствами:
+<dl compact="">
+<dt>*</dt><dd>
+<b>UCS</b>-символы
+
+с кодами от 0x00000000 до 0x0000007f (стандартный набор
+<b>US-ASCII</b>
+
+) кодируются как байты с кодами от 0x00 до 0x7f (совместимость с кодовой таблицей ASCII).
+Это означает, что файлы и строки, содержащие только 7-битные ASCII-символы, будут иметь
+одинаковое представление как в
+<b>ASCII</b>,
+
+так и в
+<b>UTF-8</b>.
+
+</dd><dt>*</dt><dd>
+Все
+<b>UCS</b>-символы
+
+с кодами &gt; 0x7f кодируются как многобайтовые последовательности,
+содержащие только байты в диапазоне от 0x80 до 0xfd, так что 
+ASCII-байты не окажутся частью другого символа и, как следствие, 
+не будет проблем с использованием '\0' или '/'.
+</dd><dt>*</dt><dd>
+Сохраняется лексикографический порядок сортировки строк кодировки
+<b>UCS-4</b>.
+
+</dd><dt>*</dt><dd>
+При помощи 
+<b>UTF-8</b>
+
+могут быть закодированы все возможные 2^31 
+<b>UCS</b>.
+
+</dd><dt>*</dt><dd>
+В кодировке
+<b>UTF-8</b>
+
+никогда не используются байты с кодами 0xfe и 0xff.
+</dd><dt>* </dt><dd>
+Первый байт многобайтовой последовательности, представляющей один не-ASCII
+<b>UCS</b>-символ,
+
+всегда находится в диапазоне от 0xc0 до 0xfd и указывает на длину
+этой последовательности. Все последующие байты в многобайтовой 
+последовательности находятся в диапазоне от 0x80 до 0xbf. Это обеспечивает 
+легкую ресинхронизацию, устраняет необходимость учитывать состояние
+входного потока (statelessness) и делает кодировку независимой от
+пропущенных байтов.
+</dd><dt>*</dt><dd>
+Символы 
+<b>UCS</b>,
+
+закодированные в
+<b>UTF-8</b>,
+
+могут быть длиной до шести байтов, однако стандарт
+<b>Unicode</b>
+
+не определяет символов выше 0x10ffff, поэтому символы Unicode
+могут иметь максимальный размер в 4 байта в
+<b>UTF-8</b>.
+
+</dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>КОДИРОВКА</h2>
+
+Приведенные ниже последовательности байтов используются для отображения
+символов.  Конкретная последовательность зависит от
+номера символа в кодировке UCS:
+<dl compact="">
+<dt>0x00000000 - 0x0000007F:</dt><dd>
+0<i>xxxxxxx</i>
+
+</dd><dt>0x00000080 - 0x000007FF:</dt><dd>
+110<i>xxxxx</i>
+
+10<i>xxxxxx</i>
+
+</dd><dt>0x00000800 - 0x0000FFFF:</dt><dd>
+1110<i>xxxx</i>
+
+10<i>xxxxxx</i>
+
+10<i>xxxxxx</i>
+
+</dd><dt>0x00010000 - 0x001FFFFF:</dt><dd>
+11110<i>xxx</i>
+
+10<i>xxxxxx</i>
+
+10<i>xxxxxx</i>
+
+10<i>xxxxxx</i>
+
+</dd><dt>0x00200000 - 0x03FFFFFF:</dt><dd>
+111110<i>xx</i>
+
+10<i>xxxxxx</i>
+
+10<i>xxxxxx</i>
+
+10<i>xxxxxx</i>
+
+10<i>xxxxxx</i>
+
+</dd><dt>0x04000000 - 0x7FFFFFFF:</dt><dd>
+1111110<i>x</i>
+
+10<i>xxxxxx</i>
+
+10<i>xxxxxx</i>
+
+10<i>xxxxxx</i>
+
+10<i>xxxxxx</i>
+
+10<i>xxxxxx</i>
+
+</dd></dl>
+<p>
+
+Позиции битов, обозначенные как
+<i>xxx</i>,
+
+заполняются соответствующими битами из кода символа в
+двоичном виде. Используется самая короткая из возможных многобайтовых
+последовательностей, которые могут представить код символа.
+</p><p>
+
+Значения кодов
+<b>UCS</b>
+
+0xd800-0xdfff (суррогаты UTF-16) также,как и 0xfffe и
+0xffff (несимвольные значения UCS) не должны появляться в потоках
+<b>UTF-8</b>.
+
+<a name="lbAF">&nbsp;</a>
+</p><h2>ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</h2>
+
+Символ
+<b>Unicode</b>
+
+с кодом 0xa9 = 1010 1001 (знак copyright) кодируется в UTF-8 как
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+11000010 10101001 = 0xc2 0xa9 ,
+</dd></dl>
+
+<p>
+
+а символ с кодом 0x2260 = 0010 0010 0110 0000 (знак неравенства) кодируется так:
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+11100010 10001001 10100000 = 0xe2 0x89 0xa0
+</dd></dl>
+
+<p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>ЗАМЕЧАНИЯ К ПРИЛОЖЕНИЮ</h2>
+
+Пользователи должны выбирать локаль
+<b>UTF-8</b>,
+
+например в случае
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+export LANG=en_GB.UTF-8
+</dd></dl>
+
+<p>
+
+для включения поддержки
+<b>UTF-8</b>
+
+в приложениях.
+</p><p>
+
+Программные приложения, которые должны знать о кодировках пользователя
+должны менять локаль только так, как показано в примере:
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+setlocale(LC_CTYPE, "")
+</dd></dl>
+
+<p>
+
+и тогда программист далее может проверить выражение
+</p><p>
+
+</p><dl compact=""><dt></dt><dd>
+strcmp(nl_langinfo(CODESET), "UTF-8") == 0
+</dd></dl>
+
+<p>
+
+для определения, выбрана-ли локаль
+<b>UTF-8</b>
+
+и будут-ли все стандартные текстовые потоки ввода и вывода, 
+терминалы, содержание простых текстовых файлов, имена файлов и 
+переменные окружения в кодировке
+<b>UTF-8</b>.
+
+</p><p>
+
+Программисты, использующие однобайтовые кодировки, такие как, например,
+<b>US-ASCII</b>
+
+или
+<b>ISO</b>8859<b>,</b>
+
+должны помнить, что двойная посылка в локали
+<b>UTF-8</b>
+
+теперь считается некорректной. Во-первых, один байт теперь не обязательно соотвествует 
+одному символу. Во-вторых, современные эмуляторы терминала в
+<b>UTF-8</b>
+
+также поддерживают Китайские, Японские и Корейские
+<b>символы двойной ширины (double-width characters)</b>
+
+также, как и
+<b>комбинированные символы </b>
+
+без пробелов, и вывод одного символа необязательно смещает курсор на одну позицию, как это было в
+<b>ASCII</b>.
+
+Библиотечные функции, такие как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mbsrtowcs&amp;category=3">mbsrtowcs</a></b>(3)
+
+и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=wcswidth&amp;category=3">wcswidth</a></b>(3),
+
+сейчас используются для подсчета количества символов и позиций курсора.
+</p><p>
+
+Теперь стандартной ESC-последовательностью для переключения из схемы кодировки
+<b>ISO 2022</b>
+
+(которая ранее использовалась в терминалах VT100) в
+<b>UTF-8</b>
+
+будет ESC % G
+("\x1b%G"). Соотвественно обратной последовательностью для переключения из
+<b>UTF-8</b>
+
+в ISO 2022 будет ESC % @ ("\x1b%@"). Остальные последовательности ISO 2022 (такие, как
+для переключения в наборы G0 и G1) более не работают в режимах UTF-8.
+</p><p>
+
+Надеемся, что в ближайшем будущем
+<b>UTF-8</b>
+
+заменит
+<b>ASCII</b>
+
+и
+<b>ISO 8859</b>
+
+на всех уровнях кодировки общих символов в POSIX-системах,
+что должно привести к более насыщенному выводу простого текста.
+<a name="lbAH">&nbsp;</a>
+</p><h2>БЕЗОПАСНОСТЬ</h2>
+
+Стандарты
+<b>Unicode</b> и <b>UCS</b>
+
+требуют, чтобы производители
+<b>UTF-8</b>
+
+использовали наименьшую возможную форму представления символов, то есть создание двухбайтной
+последовательности с первым байтом, равным 0xc0 запрещено.
+Стандарт
+<b>Unicode 3.1</b>
+
+расширил это правило, запрещая программам воспринимать не самую короткую форму
+при вводе. Это сделано из соображений безопасности: если вводимые пользователем символы
+проверяются системой безопасности на возвожные нарушения, то программам остается проверить 
+только 
+<b>ASCII</b>
+
+версии символов "/../" и ";" ,или NUL, так-ка для этих символов может быть очень много
+не-<b>ASCII</b>
+
+способов представления в не самой короткой кодировке
+<b>UTF-8</b>.
+
+<a name="lbAI">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+ISO/IEC 10646-1:2000, Unicode 3.1, RFC 2279, Plan 9.
+<a name="lbAJ">&nbsp;</a>
+<h2>АВТОРЫ</h2>
+
+Markus Kuhn &lt;<a href="mailto:mgk25@cl.cam.ac.uk">mgk25@cl.cam.ac.uk</a>&gt;
+<a name="lbAK">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=nl_langinfo&amp;category=3">nl_langinfo</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setlocale&amp;category=3">setlocale</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=charsets&amp;category=7">charsets</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=unicode&amp;category=7">unicode</a></b>(7)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">СВОЙСТВА</a></dt><dd>
+</dd><dt><a href="#lbAE">КОДИРОВКА</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">ЗАМЕЧАНИЯ К ПРИЛОЖЕНИЮ</a></dt><dd>
+</dd><dt><a href="#lbAH">БЕЗОПАСНОСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAI">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAJ">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAK">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="utf8" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

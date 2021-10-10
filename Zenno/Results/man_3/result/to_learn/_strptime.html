@@ -1,0 +1,656 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN strptime (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, strptime"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="strptime" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">strptime (3)</font><hr><li> <a href="/man.shtml?topic=strptime&amp;category=3&amp;russian=4"><u>strptime</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=strptime&amp;category=3&amp;russian=1"><u>strptime</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=strptime&amp;category=3&amp;russian=0"><u>strptime</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=strptime&amp;category=3&amp;russian=2"><u>strptime</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=strptime&amp;category=3&amp;russian=5"><u>strptime</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+strptime - конвертирует строчное представление времени в представление
+времени структуры tm
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#define _XOPEN_SOURCE</b> /* необходим glibc2 */
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/time.h">time.h</a>&gt;</b>
+
+<p>
+<b>char *strptime(const char *</b><i>s</i><b>, const char *</b><i>format</i><b>,</b>
+
+<b>struct tm *</b><i>tm</i><b>);</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+Функция
+<b>strptime()</b>
+
+является конвертирующей функцией, дополняющей 
+<b>strftime()</b>:
+
+она конвертирует символьную строку
+<i>s</i>,
+
+в значение, хранящееся в структуре
+<b>tm</b>.
+
+На данную структуру указывает
+<i>tm</i>
+
+с помощью формата, определенного в
+<i>format</i>.
+
+В данном случае
+<i>format</i>
+
+является символьной строкой, состоящей из описателей поля
+и текстовых символов, напоминающей
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=scanf&amp;category=3">scanf</a></b>(3).
+
+Каждый описатель поля состоит из символа
+<b>%</b>
+
+с последующим символом, который указывает на замену описателя поля.
+Все другие символы в строке  
+<i>format</i>
+
+должны иметь символы, совпадающие со строкой ввода. Исключениями являются
+пробелы в строке форматирования, которые совпадают с любым
+количеством пробелов в строке ввода.
+Между любыми двумя описателями полей должно быть пустое место (пробелы)
+или другие алфавитно-цифровые символы.
+<p>
+
+Функция <b>strptime()</b> обрабатывает строку ввода слева направо. Каждый
+из трех возможных элементов ввода (пробел, буква или форматирующие
+символы) обрабатываются один за другим. Если ввод не может
+соответствовать строке форматирования, то функция прекращает работу.
+Оставшиеся части строк не обрабатываются.
+</p><p>
+
+Ниже приведен список поддерживаемых описателей полей.
+В случае поиска текстовой строки (например. день недели или месяц),
+сравнение происходит вне зависимости регистров (верхний или нижний).
+В случае с цифрами предшествующие нули можно ставить, но
+они не обязательны.
+</p><dl compact="">
+<dt><b>%%</b>
+
+</dt><dd>
+Символ
+<b>%</b>.
+
+</dd><dt><b>%a</b> или <b>%A</b>
+
+</dt><dd>
+День недели с использованием названий, указанных в локали.
+Могут быть указаны полные названия или аббревиатуры.
+</dd><dt><b>%b</b> или <b>%B</b> или <b>%h</b>
+
+</dt><dd>
+Месяц с названием, указанным в локали;
+могут быть указаны полные названия или аббревиатуры.
+</dd><dt><b>%c</b>
+
+</dt><dd>
+Дата и время в формате %x %X (в соответствии с локалью).
+</dd><dt><b>%C</b>
+
+</dt><dd>
+Номер века (0-99)
+</dd><dt><b>%d</b> или <b>%e</b>
+
+</dt><dd>
+День месяца (1-31; предшествующие нули можно ставить, но это необязательно).
+</dd><dt><b>%D</b>
+
+</dt><dd>
+Эквивалент даты в формате %m/%d/%y (в Европе используется формат %d/%m/%y,
+а в ISO 8601 принято использовать  %Y-%m-%d).
+</dd><dt><b>%H</b>
+
+</dt><dd>
+Час (0-23).
+</dd><dt><b>%I</b>
+
+</dt><dd>
+Час (1-12).
+</dd><dt><b>%j</b>
+
+</dt><dd>
+Номер дня в году (1-366).
+</dd><dt><b>%m</b>
+
+</dt><dd>
+Номер месяца (1-12; предшествующие нули можно ставить, но это необязательно).
+</dd><dt><b>%M</b>
+
+</dt><dd>
+Минуты (0-59; предшествующие нули можно ставить, но это необязательно).
+</dd><dt><b>%n</b>
+
+</dt><dd>
+Произвольные пустые места.
+</dd><dt><b>%p</b>
+
+</dt><dd>
+Эквивалент
+<font size="-1">AM</font>
+или
+<font size="-1">PM</font>
+согласно локали.
+</dd><dt><b>%r</b>
+
+</dt><dd>
+Время по 12-ти часовым часам (используя локальные AM или PM).
+В POSIX, локаль эквивалентна %I:%M:%S %p.
+Если <i>t_fmt_ampm</i> пустое в поле LC_TIME, то поведение не
+определено.
+</dd><dt><b>%R</b>
+
+</dt><dd>
+Эквивалент формата %H:%M.
+</dd><dt><b>%S</b>
+
+</dt><dd>
+Секунды (0-60; предшествующие нули можно ставить, но это необязательно.
+Разрешена дополнительная секунда для високосных лет).
+</dd><dt><b>%t</b>
+
+</dt><dd>
+Произвольные пустые места.
+</dd><dt><b>%T</b>
+
+</dt><dd>
+Эквивалент формата %H:%M:%S
+</dd><dt><b>%U</b>
+
+</dt><dd>
+Номер недели, где воскресенье первый день недели (0-53).
+Первое воскресенье января является первым днем первой недели.
+</dd><dt><b>%w</b>
+
+</dt><dd>
+Номер дня недели (0-6), где воскресенье=0.
+</dd><dt><b>%W</b>
+
+</dt><dd>
+Номер недели, где понедельник первый день недели (0-53).
+Первый понедельник января является первым днем первой недели.
+</dd><dt><b>%x</b>
+
+</dt><dd>
+Дата в формате, указанном в локали
+</dd><dt><b>%X</b>
+
+</dt><dd>
+Время в формате, указанном в локали
+</dd><dt><b>%y</b>
+
+</dt><dd>
+Год века (0-99); Если век никак не указывается, то года 69-99
+относятся к двадцатому веку (с 1969 по 1999 включительно); а года в
+диапазоне 00-68 относятся к двадцать первому веку (с 2000 по 2068
+включительно).
+</dd><dt><b>%Y</b>
+
+</dt><dd>
+Год в четырехразрядном формате (например, 1988).
+</dd></dl>
+<p>
+
+Некоторые описатели полей могут быть изменены модификаторами,
+обозначенными символами E или O. Если альтернативный формат не существует
+в текущей локали, то используются неизмененные описатели полей.
+</p><p>
+
+Модификатор E указывает на то, что строка ввода может содержать 
+альтернативный формат в зависимости от текущей локали:
+</p><dl compact="">
+<dt><b>%Ec</b>
+
+</dt><dd>
+альтернативный формат представления даты и времени в текущей локали.
+</dd><dt><b>%EC</b>
+
+</dt><dd>
+Альтернативный формат представления базового года (прим. переводчика: обычно это первые 
+две цифры года, например, для 1972 г. базовым будет 19) в зависимости от текущей локали.
+</dd><dt><b>%Ex</b>
+
+</dt><dd>
+Альтернативный формат представления даты в зависимости от текущей локали.
+</dd><dt><b>%EX</b>
+
+</dt><dd>
+Альтернативный формат представления времени в зависимости от текущей локали.
+</dd><dt><b>%Ey</b>
+
+</dt><dd>
+Альтернативный формат представления смещения от %EC (прим. переводчика: это год 
+столетия, например, для 1972 г. смещение равно 72) в зависимости от текущей локали.
+</dd><dt><b>%EY</b>
+
+</dt><dd>
+Альтернативный формат представления года.
+</dd></dl>
+<p>
+
+Модификатор O указывает, что числовой ввод может производиться в 
+альтернативном формате в зависимости от текущей локали:
+</p><dl compact="">
+<dt><b>%Od</b> или <b>%Oe</b>
+
+</dt><dd>
+Число месяца с использованием альтернативных чисел локали;
+предшествующие нули можно ставить, но это необязательно.
+</dd><dt><b>%OH</b>
+
+</dt><dd>
+Часы (0-24) с использованием альтернативных чисел локали.
+</dd><dt><b>%OI</b>
+
+</dt><dd>
+Часы (1-12) с использованием альтернативных чисел локали.
+</dd><dt><b>%Om</b>
+
+</dt><dd>
+Месяцы с использованием альтернативных чисел локали.
+</dd><dt><b>%OM</b>
+
+</dt><dd>
+Минуты с использованием альтернативных чисел локали.
+</dd><dt><b>%OS</b>
+
+</dt><dd>
+Секунды с использованием альтернативных чисел локали.
+</dd><dt><b>%OU</b>
+
+</dt><dd>
+Номер недели года (где воскресенье - нулевой день недели)
+с использованием альтернативных чисел локали.
+</dd><dt><b>%Ow</b>
+
+</dt><dd>
+Номер дня недели (где воскресенье -  нулевой день недели) 
+с использованием альтернативных чисел локали.
+</dd><dt><b>%OW</b>
+
+</dt><dd>
+Номер недели года (понедельник - первый день недели)
+с использованием альтернативных чисел локали.
+</dd><dt><b>%Oy</b>
+
+</dt><dd>
+Год (смещение от %C) с использованием альтернативных чисел локали. 
+</dd></dl>
+<p>
+
+Структура времени с разбиением <i>tm</i> описана в <i>&lt;<a href="file:/usr/include/time.h">time.h</a>&gt;</i> так:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>
+struct tm {
+        int     tm_sec;         /* секунды */
+        int     tm_min;         /* минуты */
+        int     tm_hour;        /* часы */
+        int     tm_mday;        /* число месяца */
+        int     tm_mon;         /* месяц */
+        int     tm_year;        /* год */
+        int     tm_wday;        /* день недели */
+        int     tm_yday;        /* число года */
+        int     tm_isdst;       /* переход на сезонное время */
+};
+
+</pre>
+
+</dd></dl>
+
+<a name="lbAE">&nbsp;</a>
+<h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+Возвращаемым значением функции является указатель на первый символ, не
+обработанный вызовом.  В случае, когда строка ввода содержит больше
+символов, чем требуется для строки format, возвращаемое значение будет
+указателем на место за последним обработанным символом. В случае, когда
+вся строка ввода обработана, возвращается указатель на  завершающий
+символ строки NULL. Если <b>strptime()</b> не может найти все
+соответствия в строке format и происходит ошибка, то возвращаемое
+значение будет равно <b>NULL</b>.
+<a name="lbAF">&nbsp;</a>
+<h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+XPG4, SUSv2, POSIX 1003.1-2001.
+<a name="lbAG">&nbsp;</a>
+<h2>ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</h2>
+
+Нижеследующий пример демонстрирует использование <b>strptime()</b> и
+<b>strftime()</b>.
+<p>
+</p><pre>
+#include &lt;<a href="file:/usr/include/stdio.h">stdio.h</a>&gt;
+#include &lt;<a href="file:/usr/include/time.h">time.h</a>&gt;
+
+int main() {
+        struct tm tm;
+        char buf[255];
+
+        strptime("2001-11-12 18:31:01", "%Y-%m-%d %H:%M:%S", &amp;tm);
+        strftime(buf, sizeof(buf), "%d %b %Y %H:%M", &amp;tm);
+        puts(buf);
+        return 0;
+}
+
+</pre>
+
+<a name="lbAH">&nbsp;</a>
+<h2>РАСШИРЕНИЯ GNU</h2>
+
+Для выполнения условий взаимозаменяемости, glibc пытается поддерживать
+формат символов для
+<b>strptime</b>
+
+такой же как и для
+<b>strftime.</b>
+
+Что приводит к следующему:
+<dl compact="">
+<dt><b>%F</b>
+
+</dt><dd>
+Эквивалент для <b>%Y-%m-%d</b>, формат ISO 8601.
+</dd><dt><b>%g</b>
+
+</dt><dd>
+Год соответствующий номеру недели по ISO, но без номера века
+(0-99).
+</dd><dt><b>%G</b>
+
+</dt><dd>
+Год соответствующий номеру недели по ISO (например, 1991).
+</dd><dt><b>%u</b>
+
+</dt><dd>
+День недели в цифровом формаие (1-7, где пнд = 1).
+</dd><dt><b>%V</b>
+
+</dt><dd>
+Номер недели по стандарту ISO 8601:1988 (1-53).
+Если неделя (начинающаяся с понедельника) содержит 1 января и имеет 4 или
+более дней в новом году, то это первая неделя. Иначе это последняя неделя
+предыдущего года, а следующая неделя первая.
+</dd><dt><b>%z</b>
+
+</dt><dd>
+Спецификация временных зон по RFC-822/ISO 8601.
+</dd><dt><b>%Z</b>
+
+</dt><dd>
+Название временной зоны.
+</dd></dl>
+<p>
+
+Всвязи с дополнениями GNU для <i>strftime</i>,
+%k принято считать синонимом %H, а %l синонимом для %I, а
+%P синонимом %p.
+</p><dl compact="">
+<dt><b>%s</b>
+
+</dt><dd>
+Количество секунд с начала эпохи, с 1970-01-01 00:00:00 UTC.
+</dd></dl>
+<p>
+
+GNU libc не требует пустого места (пробелов) между двумя описателями
+полей.
+<a name="lbAI">&nbsp;</a>
+</p><h2>ЗАМЕЧАНИЯ</h2>
+
+<p>
+
+В принципе, эта функция не инициализирует <b>tm</b>, а только сохраняет
+указанные значения. Это означает, что <b>tm</b> должна быть
+инициализирована до этого вызова. Существует небольшая разница между
+системами Unix. GNU libc не затрагивает эти области (которые точно не
+описаны), кроме того, что пересчитывает поля
+<i>tm_wday</i>
+
+и
+<i>tm_yday</i>,
+
+если изменился один из элементов: день, месяц или год.
+</p><p>
+
+Эта функция доступна в библиотеке libc с версии 4.6.8. Linux libc4 и
+libc5 имеют незавершенные определения прототипа; glibc2 включает в себя
+прототип при условии, что заданы _XOPEN_SOURCE или _GNU_SOURCE. 
+Модификаторы E и O используются, начиная с libc 5.4.13. 
+До libc 5.4.13 непечатаемые символы не поддерживались и спецификакция
+
+</p><p>
+
+Указатель 'y' (год столетия) указывает на год в двадцатом веке в libc4
+и libc5. В glibc 2.0. указывается год в диапазоне  1950-2049. А в glibc
+2.1. этот диапазон равен 1969-2068.
+
+
+<a name="lbAJ">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=time&amp;category=2">time</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getdate&amp;category=3">getdate</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=scanf&amp;category=3">scanf</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setlocale&amp;category=3">setlocale</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=strftime&amp;category=3">strftime</a></b>(3).
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAG">ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAH">РАСШИРЕНИЯ GNU</a></dt><dd>
+</dd><dt><a href="#lbAI">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="strptime" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

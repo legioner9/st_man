@@ -1,0 +1,688 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN rtnetlink (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, rtnetlink"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="rtnetlink" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">rtnetlink (7)</font><hr><li> <a href="/man.shtml?topic=rtnetlink&amp;category=3&amp;russian=0"><u>rtnetlink</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=rtnetlink&amp;category=3&amp;russian=2"><u>rtnetlink</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=rtnetlink&amp;category=4&amp;russian=2"><u>rtnetlink</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=rtnetlink&amp;category=7&amp;russian=0"><u>rtnetlink</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=rtnetlink&amp;category=7&amp;russian=2"><u>rtnetlink</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+rtnetlink, NETLINK_ROUTE - сокет маршрутизации IPv4 Linux.
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/asm/types.h">asm/types.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/linux/netlink.h">linux/netlink.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/linux/rtnetlink.h">linux/rtnetlink.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;</b>
+
+<b>rtnetlink_socket = socket(PF_NETLINK, int </b><i>socket_type</i><b>, NETLINK_ROUTE);</b>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Rtnetlink позволяет читать и изменять таблицы маршрутизации ядра. Он 
+используется внутри ядра для связи различных подсистем (хотя такое
+использование здесь не описано) и для связи с программами
+пространства пользователя. Управлять сетевыми маршрутами, адресами ip,
+параметрами соединений, настройками соседних машин, порядком отправки пакетов
+в очередь, классами трафика и классификаторами пакетов можно с помощью сокета
+<b>NETLINK_ROUTE</b>.
+
+Он базируется на сообщениях netlink, дополнительная информация об этом приведена в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netlink&amp;category=7">netlink</a></b>(7).
+
+<a name="lbAE">&nbsp;</a>
+<h2>АТРИБУТЫ МАРШРУТИЗАЦИИ</h2>
+
+Hекоторые сообщения rtnetlink имеют дополнительные атрибуты, следующие за
+начальным заголовком:
+<pre>
+struct rtattr
+{
+    unsigned short rta_len;     /* Длина опции */
+    unsigned short rta_type;    /* Тип опции */
+    /* данные */ 
+};
+</pre>
+
+Управлять этими атрибутами можно только с помощью макросов RTA_* либо с 
+помощью libnetlink, см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rtnetlink&amp;category=3">rtnetlink</a></b>(3).
+
+<a name="lbAF">&nbsp;</a>
+<h2>СООБЩЕНИЯ</h2>
+
+Rtnetlink состоит из сообщений следующих типов
+(в дополнение к стандартным сообщениям netlink):
+<dl compact="">
+<dt><b>RTM_NEWLINK</b>, <b>RTM_DELLINK</b>, <b>RTM_GETLINK</b>
+
+</dt><dd>
+Создать, удалить или получить информацию об определенном сетевом интерфейсе.
+Эти сообщения содержат структуру
+<b>ifinfomsg</b>,
+
+за которой следует ряд структур
+<b>rtattr</b>.
+
+<pre>
+struct ifinfomsg
+{
+    unsigned char  ifi_family;  /* AF_UNSPEC */
+    unsigned short ifi_type;    /* тип устройства */ 
+    int            ifi_index;   /* индекс интерфейса   */
+    unsigned int   ifi_flags;   /* флаги устройства  */
+    unsigned int   ifi_change;  /* маска смены */
+};
+</pre>
+
+<b>ifi_flags </b>
+
+содержит флаги устройства, см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netdevice&amp;category=7">netdevice</a>(7);</b>
+
+<b>ifi_index</b>
+
+является уникальным индексом интерфейса;
+<b>ifi_change</b>
+
+зарезервировано для использования в будущем и всегда должно быть
+равно 0xFFFFFFFF. 
+<table>
+<tbody><tr valign="top"><td align="center">Атрибуты маршрутизации<br></td></tr>
+<tr valign="top"><td>rta_type<br></td><td>тип значения<br></td><td>описание<br></td></tr>
+<tr valign="top"><td><hr></td></tr>
+<tr valign="top"><td>IFLA_UNSPEC<br></td><td>-<br></td><td>не указано.<br></td></tr>
+<tr valign="top"><td>IFLA_ADDRESS<br></td><td>аппаратный адрес<br></td><td>адрес интерфейса (L2).<br></td></tr>
+<tr valign="top"><td>IFLA_BROADCAST<br></td><td>аппаратный адрес<br></td><td>широковещательный адрес (L2).<br></td></tr>
+<tr valign="top"><td>IFLA_IFNAME<br></td><td>asciiz строка<br></td><td>имя устройства.<br></td></tr>
+<tr valign="top"><td>IFLA_MTU<br></td><td>unsigned int<br></td><td>MTU устройства.<br></td></tr>
+<tr valign="top"><td>IFLA_LINK<br></td><td>int<br></td><td>тип соединения.<br></td></tr>
+<tr valign="top"><td>IFLA_QDISC<br></td><td>asciiz строка<br></td><td>способ постановки в очередь.<br></td></tr>
+<tr valign="top"><td>IFLA_STATS<br></td><td>
+struct net_device_stats
+<br></td><td>статистика интерфейса.<br></td></tr>
+</tbody></table>
+
+</dd><dt><b>RTM_NEWADDR</b>, <b>RTM_DELADDR</b>, <b>RTM_GETADDR</b>
+
+</dt><dd>
+Добавить, удалить или получить информацию об адресе IP, связанном с 
+интерфейсом. В Linux 2.2 интерфейс может иметь несколько адресов IP; они  
+являются альтернативными псевдонимами устройств 2.0. В Linux 2.2 эти сообщения
+поддерживают как адреса IPv4, так и IPv6. Они содержат структуру
+<b>ifaddrmsg</b>,
+
+за которой могут следовать атрибуты маршрутизации
+<b>rtaddr</b>.
+
+<pre>
+struct ifaddrmsg
+{
+    unsigned char  ifa_family;  /* Тип адреса */
+    unsigned char  ifa_prefixlen;/* Длина префикса адреса */
+    unsigned char  ifa_flags;   /* Флаги адреса */
+    unsigned char  ifa_scope;   /* Область адреса */
+    int            ifa_index;   /* Индекс интерфейса   */
+};
+</pre>
+
+<b>ifa_family</b>
+
+является типом семейства адреса (в данный момент
+<b>AF_INET</b>
+
+или
+<b>AF_INET6), </b>
+
+<b>ifa_prefixlen</b>
+
+является длиной маски адреса, если она определена для семейства (как для IPv4),
+<b>ifa_scope</b>
+
+является областью адреса,
+<b>ifa_index</b>
+
+является индексом интерфейса, с которым связан адрес.
+<b>ifa_flags</b>
+
+- слово флагов:
+<b>IFA_F_SECONDARY</b>
+
+для вторичного адреса (старый интерфейс-псевдоним),
+<b>IFA_F_PERMANENT</b>
+
+для постоянного адреса, установленного пользователем, и других 
+неописанных флагов.
+<table>
+<tbody><tr valign="top"><td align="center">Атрибуты<br></td></tr>
+<tr valign="top"><td>rta_type<br></td><td>тип значения<br></td><td>описание<br></td></tr>
+<tr valign="top"><td><hr></td></tr>
+<tr valign="top"><td>IFA_UNSPEC<br></td><td>-<br></td><td>не указан.<br></td></tr>
+<tr valign="top"><td>IFA_ADDRESS<br></td><td>raw-адрес протокола<br></td><td>адрес интерфейса<br></td></tr>
+<tr valign="top"><td>IFA_LOCAL<br></td><td>raw-адрес протокола<br></td><td>локальный адрес<br></td></tr>
+<tr valign="top"><td>IFA_LABEL<br></td><td>asciiz строка<br></td><td>имя интерфейса<br></td></tr>
+<tr valign="top"><td>IFA_BROADCAST<br></td><td>raw-адрес протокола<br></td><td>широковещательный адрес.<br></td></tr>
+<tr valign="top"><td>IFA_ANYCAST<br></td><td>raw-адрес протокола<br></td><td>адрес anycast<br></td></tr>
+<tr valign="top"><td>IFA_CACHEINFO<br></td><td>struct ifa_cacheinfo<br></td><td>информация об адресе. <br></td></tr>
+</tbody></table>
+
+</dd><dt><b>RTM_NEWROUTE</b>, <b>RTM_DELROUTE</b>, <b>RTM_GETROUTE</b>
+
+</dt><dd>
+Создать, удалить или получить информацию о сетевом маршруте.
+Это сообщение содержит структуру
+<b>rtmsg</b>,
+
+за которой может следовать ряд структур
+<b>rtattr</b>.
+
+Для 
+<b>RTM_GETROUTE</b>
+
+устанвока 
+<b>rtm_dst_len </b>
+
+и 
+<b>rtm_src_len </b>
+
+в 0 будет обозначать, что вы получили все элементы для определенной
+балицы маршрутизации. Для всех других полей, за исключением 
+<b>rtm_table </b>
+
+и 
+<b>rtm_protocol</b>,
+
+0 будет являться шаблоном.
+<p>
+</p><pre>
+struct rtmsg
+{
+    unsigned char  rtm_family;  /* Семейство адресов маршрута */
+    unsigned char  rtm_dst_len; /* Длина источника */
+    unsigned char  rtm_src_len; /* Длина пути назначения */ 
+    unsigned char  rtm_tos;     /* Фильтр TOS */
+    unsigned char  rtm_table;   /* Идентификатор таблицы маршрутизации */
+    unsigned char  rtm_protocol;/* Протокол маршрутизации; см. ниже */
+    unsigned char  rtm_scope;   /* См. ниже */
+    unsigned char  rtm_type;    /* См. ниже */
+    unsigned int   rtm_flags;   
+};
+</pre>
+
+<table>
+<tbody><tr valign="top"><td>rtm_type</td><td>тип маршрута<br></td></tr>
+<tr valign="top"><td colspan="2"><hr></td></tr>
+<tr valign="top"><td>RTN_UNSPEC</td><td>неизвестный маршрут<br></td></tr>
+<tr valign="top"><td>RTN_UNICAST</td><td>шлюз или прямой маршрут<br></td></tr>
+<tr valign="top"><td>RTN_LOCAL</td><td>маршрут локального интерфейса<br></td></tr>
+<tr valign="top"><td>RTN_BROADCAST</td><td>
+локальный многоадресный маршрут (посылаемый как многоадресная передача)
+<br></td></tr>
+<tr valign="top"><td>RTN_ANYCAST</td><td>
+локальный многоадресный маршрут (посылаемый как одноадресная передача)
+<br></td></tr>
+<tr valign="top"><td>RTN_MULTICAST</td><td>многоадресный маршрут<br></td></tr>
+<tr valign="top"><td>RTN_BLACKHOLE</td><td>маршрут "выброса" пакетов (packet dropping)<br></td></tr>
+<tr valign="top"><td>RTN_UNREACHABLE</td><td>недоступный пункт назначения<br></td></tr>
+<tr valign="top"><td>RTN_PROHIBIT</td><td>маршрут отказа от пакетов (packet rejection)<br></td></tr>
+<tr valign="top"><td>RTN_THROW</td><td>продолжить поиск маршрута в другой таблице<br></td></tr>
+<tr valign="top"><td>RTN_NAT</td><td>правило преобразования сетевого адреса<br></td></tr>
+<tr valign="top"><td>RTN_XRESOLVE</td><td>
+ссылка на внешнюю систему определения адресов (не включено в систему)
+<br></td></tr>
+</tbody></table>
+
+<table>
+<tbody><tr valign="top"><td>rtm_protocol</td><td>источник маршрута.<br></td></tr>
+<tr valign="top"><td colspan="2"><hr></td></tr>
+<tr valign="top"><td>RTPROT_UNSPEC</td><td>неизвестен<br></td></tr>
+<tr valign="top"><td>RTPROT_REDIRECT</td><td>
+перенаправление ICMP (в данный момент не используется)
+<br></td></tr>
+<tr valign="top"><td>RTPROT_KERNEL</td><td>ядро<br></td></tr>
+<tr valign="top"><td>RTPROT_BOOT</td><td>при загрузке<br></td></tr>
+<tr valign="top"><td>RTPROT_STATIC</td><td>администратор<br></td></tr>
+</tbody></table>
+
+Значения, больше чем
+<b>RTPROT_STATIC</b>,
+
+не интерпретируются ядром и служат лишь для предоставления пользователю информации.
+Они могут быть использованы для пометки источника информации о маршрутизации или
+для различения демонов маршрутизации. Назначенные идентификаторы
+демонов маршрутизации всегда приводятся в
+<b>&lt;<a href="file:/usr/include/linux/rtnetlink.h">linux/rtnetlink.h</a>&gt;</b>.
+
+<b>rtm_scope </b>
+
+это расстояние до назначения:
+<table>
+<tbody><tr valign="top"><td>RT_SCOPE_UNIVERSE</td><td>глобальный маршрут<br></td></tr>
+<tr valign="top"><td>RT_SCOPE_SITE</td><td>
+внутренний маршрут в локальной автономной системе
+<br></td></tr>
+<tr valign="top"><td>RT_SCOPE_LINK</td><td>маршрут этого соединения<br></td></tr>
+<tr valign="top"><td>RT_SCOPE_HOST</td><td>маршрут в локальной машине<br></td></tr>
+<tr valign="top"><td>RT_SCOPE_NOWHERE</td><td>пункт назначения не существует<br></td></tr>
+</tbody></table>
+
+Значения между
+<b>RT_SCOPE_UNIVERSE</b>
+
+и
+<b>RT_SCOPE_SITE</b>
+
+доступны пользователю.
+</dd></dl>
+<p>
+
+<b>rtm_flags</b>
+
+может иметь следующие значения:
+<table>
+<tbody><tr valign="top"><td>RTM_F_NOTIFY</td><td>
+если маршрут меняется, оповестить пользователя по rtnetlink
+<br></td></tr>
+<tr valign="top"><td>RTM_F_CLONED</td><td>маршрут - клон другого маршрута<br></td></tr>
+<tr valign="top"><td>RTM_F_EQUALIZE</td><td>эквалайзер многоадресного вещания (еще не включен в программу)<br></td></tr>
+</tbody></table>
+
+<b>rtm_table</b>
+
+Указывает таблицу маршрутизации
+<table>
+<tbody><tr valign="top"><td>RT_TABLE_UNSPEC</td><td>неуказанная таблица маршрутизации<br></td></tr>
+<tr valign="top"><td>RT_TABLE_DEFAULT</td><td>таблица по умолчанию<br></td></tr>
+<tr valign="top"><td>RT_TABLE_MAIN</td><td>основная таблица<br></td></tr>
+<tr valign="top"><td>RT_TABLE_LOCAL</td><td>локальная таблица<br></td></tr>
+</tbody></table>
+
+Пользователь может присваивать таблице произвольные значения между
+<b>RT_TABLE_UNSPEC</b>
+
+и
+<b>RT_TABLE_DEFAULT</b>.
+
+<table>
+<tbody><tr valign="top"><td align="center">Атрибуты<br></td></tr>
+<tr valign="top"><td>rta_type<br></td><td>тип значения<br></td><td>описание<br></td></tr>
+<tr valign="top"><td><hr></td></tr>
+<tr valign="top"><td>RTA_UNSPEC<br></td><td>-<br></td><td>игнорируется.<br></td></tr>
+<tr valign="top"><td>RTA_DST<br></td><td>адрес протокола<br></td><td>адрес назначения маршрута.<br></td></tr>
+<tr valign="top"><td>RTA_SRC<br></td><td>адрес протокола<br></td><td>адрес источника маршрута.<br></td></tr>
+<tr valign="top"><td>RTA_IIF<br></td><td>int<br></td><td>индекс входного интерфейса.<br></td></tr>
+<tr valign="top"><td>RTA_OIF<br></td><td>int<br></td><td>индекс выходного интерфейса.<br></td></tr>
+<tr valign="top"><td>RTA_GATEWAY<br></td><td>адрес протокола<br></td><td>шлюз маршрута<br></td></tr>
+<tr valign="top"><td>RTA_PRIORITY<br></td><td>int<br></td><td>приоритет маршрута<br></td></tr>
+<tr valign="top"><td>RTA_PREFSRC<br></td><td><br></td><td><br></td></tr>
+<tr valign="top"><td>RTA_METRICS<br></td><td>int<br></td><td>метрика маршрута<br></td></tr>
+<tr valign="top"><td>RTA_MULTIPATH<br></td><td><br></td><td><br></td></tr>
+<tr valign="top"><td>RTA_PROTOINFO<br></td><td><br></td><td><br></td></tr>
+<tr valign="top"><td>RTA_FLOW<br></td><td><br></td><td><br></td></tr>
+<tr valign="top"><td>RTA_CACHEINFO<br></td><td><br></td><td><br></td></tr>
+</tbody></table>
+
+<b>Заполните эти значения!</b>
+
+</p><dl compact="">
+<dt><b>RTM_NEWNEIGH</b>, <b>RTM_DELNEIGH</b>, <b>RTM_GETNEIGH</b>
+
+</dt><dd>
+Добавить, удалить или получить информацию о записи, сделанной соседней машиной
+(например, запись ARP). Это сообщение содержит структуру
+<b>ndmsg</b>.
+
+<pre>
+struct ndmsg
+{
+    unsigned char  ndm_family;
+    int            ndm_ifindex; /* Индекс интерфейса */
+    __u16          ndm_state;   /* Состояние */ 
+    __u8           ndm_flags;   /* Флаги */
+    __u8           ndm_type;   
+};
+struct nda_cacheinfo
+{
+    __u32          ndm_confirmed;
+    __u32          ndm_used;
+    __u32          ndm_updated;
+    __u32          ndm_refcnt;
+};
+</pre>
+
+<b>ndm_state</b>
+
+является битовой маской со следующими состояниями:
+<table>
+<tbody><tr valign="top"><td>NUD_INCOMPLETE</td><td>запись кэша, определяемая в данный момент<br></td></tr>
+<tr valign="top"><td>NUD_REACHABLE</td><td>подтвержденная работающая запись кэша<br></td></tr>
+<tr valign="top"><td>NUD_STALE</td><td>устаревшая запись кэша<br></td></tr>
+<tr valign="top"><td>NUD_DELAY</td><td>запись, ожидающая сигнал таймера<br></td></tr>
+<tr valign="top"><td>NUD_PROBE</td><td>запись, вновь проверяемая в данный момент<br></td></tr>
+<tr valign="top"><td>NUD_FAILED</td><td>неверная запись кэша<br></td></tr>
+<tr valign="top"><td>NUD_NOARP</td><td>устройство без кэша назначений<br></td></tr>
+<tr valign="top"><td>NUD_PERMANENT</td><td>статическая запись<br></td></tr>
+</tbody></table>
+
+Возможные значения
+<b>ndm_flags</b>:
+
+<table>
+<tbody><tr valign="top"><td>NTF_PROXY</td><td>запись прокси arp<br></td></tr>
+<tr valign="top"><td>NTF_ROUTER</td><td>маршрутизатор IPv6<br></td></tr>
+</tbody></table>
+
+<b>более точно описывайте поля структуры</b>
+
+Поле 
+<b>rta_type</b>
+
+структуры
+<b>rtaddr</b>
+
+имеет следующие значения:
+<table>
+<tbody><tr valign="top"><td>NDA_UNSPEC</td><td>неизвестный тип<br></td></tr>
+<tr valign="top"><td>NDA_DST</td><td>адрес назначения кэша соседних машин на сетевом уровне<br></td></tr>
+<tr valign="top"><td>NDA_LLADDR</td><td>адрес соседней машины уровня соединения<br></td></tr>
+<tr valign="top"><td>NDA_CACHEINFO</td><td>статистические данные кэша.<br></td></tr>
+</tbody></table>
+
+Если значением поля
+<b>rta_type</b>
+
+является
+<b>NDA_CACHEINFO</b>,
+
+то далее находится заголовок
+<b>struct nda_cacheinfo</b>
+
+</dd><dt><b>RTM_NEWRULE</b>, <b>RTM_DELRULE</b>, <b>RTM_GETRULE</b>
+
+</dt><dd>
+Добавить, удалить или получить правило маршрутизации. Передает структуру
+<b>struct rtmsg .</b>
+
+</dd><dt><b>RTM_NEWQDISC</b>, <b>RTM_DELQDISC</b>, <b>RTM_GETQDISC</b>
+
+</dt><dd>
+Добавить, удалить или получить способ отправки пакета в очередь.
+Сообщение содержит структуру
+<b>struct tcmsg ,</b>
+
+за ним может следовать ряд атрибутов:
+<pre>
+struct tcmsg
+{
+    unsigned char  tcm_family;
+    int            tcm_ifindex; /* индекс интерфейса */
+    __u32          tcm_handle;  /* манипулятор способа */ 
+    __u32          tcm_parent;  /* родительский способ */
+    __u32          tcm_info;
+};
+</pre>
+
+<table>
+<tbody><tr valign="top"><td align="center">Атрибуты<br></td></tr>
+<tr valign="top"><td>rta_type<br></td><td>тип значения<br></td><td>описание<br></td></tr>
+<tr valign="top"><td><br></td><td><br></td><td><br></td></tr>
+<tr valign="top"><td>TCA_UNSPEC<br></td><td>-<br></td><td>не указано<br></td></tr>
+<tr valign="top"><td>TCA_KIND<br></td><td>asciiz строка<br></td><td>название способа постановки в очередь<br></td></tr>
+<tr valign="top"><td>TCA_OPTIONS<br></td><td>последовательность байтов<br></td><td>далее следуют опции способа<br></td></tr>
+<tr valign="top"><td>TCA_STATS<br></td><td>struct tc_stats<br></td><td>статистика способа.<br></td></tr>
+<tr valign="top"><td>TCA_XSTATS<br></td><td>зависит от способа<br></td><td>статистика, специфичная для модуля.<br></td></tr>
+<tr valign="top"><td>TCA_RATE<br></td><td>struct tc_estimator<br></td><td>ограничение темпа.<br></td></tr>
+</tbody></table>
+
+Кроме того, возможны различные другие атрибуты, предназначенные только для модуля.
+За дополнительной информацией обращайтесь к соответствующим файлам заголовков.
+</dd><dt><b>RTM_NEWTCLASS</b>, <b>RTM_DELTCLASS</b>, <b>RTM_GETTCLASS</b>
+
+</dt><dd>
+Добавить, удалить или получить класс трафика. Эти сообщения содержат структуру
+<b>struct tcmsg</b>,
+
+как описано выше.
+</dd><dt><b>RTM_NEWTFILTER</b>, <b>RTM_DELTFILTER</b>, <b>RTM_GETTFILTER</b>
+
+</dt><dd>
+Добавить, удалить или получить информацию о фильтре трафика. Эти сообщения
+содержат структуру
+<b>struct tcmsg</b>,
+
+как описано выше.
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ВЕРСИИ</h2>
+
+<b>rtnetlink </b>
+
+появился в Linux 2.2.
+<a name="lbAH">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Эта страница руководства далеко не полная.
+<a name="lbAI">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netlink&amp;category=7">netlink</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cmsg&amp;category=3">cmsg</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=rtnetlink&amp;category=3">rtnetlink</a></b>(3)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">АТРИБУТЫ МАРШРУТИЗАЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAF">СООБЩЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">ВЕРСИИ</a></dt><dd>
+</dd><dt><a href="#lbAH">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAI">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="rtnetlink" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

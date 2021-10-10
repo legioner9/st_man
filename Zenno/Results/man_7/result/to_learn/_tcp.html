@@ -1,0 +1,1060 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN tcp (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, tcp"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="tcp" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">tcp (7)</font><hr><li> <a href="/man.shtml?topic=tcp&amp;category=4&amp;russian=1"><u>tcp</u></a> (4) <font color="#555555"> ( FreeBSD man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=tcp&amp;category=4&amp;russian=2"><u>tcp</u></a> (4) <font color="#555555"> ( Linux man: Специальные файлы /dev/* )</font></li><li> <a href="/man.shtml?topic=tcp&amp;category=7&amp;russian=4"><u>tcp</u></a> (7) <font color="#555555"> ( Solaris man: Макропакеты и соглашения )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=tcp&amp;category=7&amp;russian=0"><u>tcp</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=tcp&amp;category=7&amp;russian=2"><u>tcp</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li><font color="#555555">Ключ <a href="/keywords/tcp.html"><u>tcp</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+tcp - протокол TCP.
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/netinet/in.h">netinet/in.h</a>&gt;</b>
+
+<br>
+
+<b>tcp_socket = socket(PF_INET, SOCK_STREAM, 0); </b>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Это реализация протокола TCP, описанного в RFC793, RFC1122 и RFC2001, 
+с расширениями NewReno и SACK. Этот протокол предоставляет пользователю надежное
+полнодуплексное потоковое соединение двух сокетов над
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7)
+
+для соединений версий v4 и v6.
+TCP гарантирует доставку данных в нужном порядке и повторно передает 
+потерявшиеся пакеты. Для выявления ошибок передачи протоколом генерируются и
+проверяются контрольные суммы пакетов. TCP не сохраняет границы записей.
+<p>
+
+Только что созданный сокет TCP не имеет локального или удаленного адреса и не
+является полностью определенным. Для создания исходящего соединения TCP с другим
+сокетом TCP используйте
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2).
+
+Для приема новых входящих соединений сперва подключите 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bind&amp;category=2">bind</a></b>(2)
+
+сокет к порту и присвойте ему локальный адрес, а затем с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=listen&amp;category=2">listen</a></b>(2)
+
+переведите сокет в режим прослушивания. После этого может быть принят
+новый сокет для каждого входящего соединения, используя
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=accept&amp;category=2">accept</a></b>(2).
+
+Сокет, для которого были успешно вызваны
+<b>accept</b>
+
+или
+<b>connect</b>,
+
+является полностью заданным и может передавать данные. Данные не могут быть
+переданы через слушающий или еще не соединенный сокет.
+</p><p>
+
+Linux поддерживает высокопроизводительные расширения TCP RFC1323. Они включают
+в себя: защиту против оболочек номеров последовательностей (PAWS),
+масштабируемые окна и временные метки. Масштабирование окон позволяет
+использовать большие (&gt; 64Кб) окна TCP для поддержки соединений с большой
+задержкой или высокой пропускной способностью. Для их использования
+необходимо увеличить размеры буферов приема и передачи.
+Это можно сделать глобально с помощью переменных sysctl
+<b>net.ipv4.tcp_wmem</b>
+
+и
+<b>net.ipv4.tcp_rmem,</b>
+
+или через индивидуальные сокеты, используя опции сокетов
+<b>SO_SNDBUF </b>
+
+и 
+<b>SO_RCVBUF </b>
+
+в вызове 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setsockopt&amp;category=2">setsockopt</a></b>(2).
+
+</p><p>
+Максимальный размер буферов сокета объявляется, используя механизмы
+<b>SO_SNDBUF</b>
+
+и
+<b>SO_RCVBUF</b>
+
+и ограничен глобальными вызовами sysctl:
+<b>net.core.rmem_max</b>
+
+и
+<b>net.core.wmem_max.</b>
+
+Заметим, что TCP в действительности размещает места в два раза больше, чем
+размер буфера, запрошенный в вызове
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setsockopt&amp;category=2">setsockopt</a></b>(2),
+
+поэтому последующий вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getsockopt&amp;category=2">getsockopt</a></b>(2)
+
+не возвратит тот же размер буфера, что был запрошен в вызове
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setsockopt&amp;category=2">setsockopt</a></b>(2).
+
+TCP использует это для административных целей и внутренних
+структур ядра, а переменные sysctl отражают большие размеры,
+по сравнению с действительными окнами TCP.
+Для отдельных соединений размер буфера сокета должен быть
+установлен в соответствии с вызовами
+<b>listen()</b>
+
+или
+<b>connect()</b>
+
+для нормальной работы.
+Дополнительную информацию смотрите в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7).
+
+</p><p>
+
+TCP поддерживает срочные данные. Срочные данные уведомляют принимающую сторону
+о том, что частью потока данных является некоторое важное сообщение, которое
+должно быть обработано как можно скорее. Для отправки
+срочных данных укажите с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=send&amp;category=2">send</a></b>(2)
+
+опцию
+<b>MSG_OOB.</b>
+
+При получении срочных данных ядро посылает сигнал 
+<b>SIGURG</b>
+
+считывающему процессу или группе процессов,
+заданным для сокета с помощью вызовов ioctl
+<b>SIOCSPGRP</b>
+
+или 
+<b>FIOSETOWN.</b>
+
+</p><p>
+Если запущена опция 
+<b>SO_OOBINLINE ,</b>
+
+то срочные данные будут помещены в обычный поток данных
+(и могут быть проверены с помощью ioctl-вызова
+<b>SIOCATMARK</b>),
+
+в противном случае они могут быть получены, только если для
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmsg&amp;category=2">sendmsg</a></b>(2)
+
+установлен флаг
+<b>MSG_OOB.</b>
+
+</p><p>
+Linux 2.4 предлагает несколько изменений для улучшенной
+пропускной способности и масштабирования, а также для
+разрешения особых дополнительных возможностей, таких как
+поддержка для пустого копирования (zerocopy) в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendfile&amp;category=2">sendfile</a></b>(2),
+
+Explicit Congestion Notification, новое управление сокетами
+TIME_WAIT, опции поддержки сокетов в рабочем состоянии
+и поддержка расширений Duplicate SACK.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ФОРМАТЫ АДРЕСОВ</h2>
+
+Протокол TCP построен поверх протокола IP (см. 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7)).
+
+Форматы адресов, определенные в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7),
+
+относятся и к TCP. TCP поддерживает только межузловые соединения (point-to-point);
+широковещательная и многоадресная передача не поддерживаются.
+<p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>СИСТЕМНЫЕ ВЫЗОВЫ</h2>
+
+Доступ к нижеприведенным переменным и вызовам sysctl можно получить
+с помощью файлов
+<b>/proc/sys/net/ipv4/* </b>
+
+или через интерфейс
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sysctl&amp;category=2">sysctl</a></b>(2).
+
+Кроме того, большинство вызовов sysctl IP относятся и к TCP; см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7).
+
+<dl compact="">
+<dt><b>tcp_abort_on_overflow</b>
+
+</dt><dd>
+Включает сброс соединений, если слушающий сервис слишком медленно работает
+и не может обработать существующие или принять новые соединения.
+По умолчанию выключен. Это означает, что при переполнении соединение
+будет повторно установлено. Включайте эту опцию _только_ если
+вы действительно убеждены, что слушающий демон не может быть настроен
+для более быстрой работы. Включение этой опции может нарушить
+работу пользователей и клиентов вашего сервера.
+</dd><dt><b>tcp_adv_win_scale</b>
+
+</dt><dd>
+Рассчитывает переполнение буфера по формуле bytes/2^tcp_adv_win_scale
+(если tcp_adv_win_scale &gt; 0) или bytes-bytes/2^(-tcp_adv_win_scale),
+если оно &lt;= 0. По умолчанию равно 2.
+<p>
+Буфер приема сокета - это пространство, разделяемое между приложением
+и ядром. TCP поддерживает часть буфера в виде окна TCP, то есть размера
+принимающего окна, предлагаемого другой стороне. Остаток пространства
+используется как "буфер приложения", используемый для изолирования сети
+от работ по расписанию и задержек приложения. По умочанию
+<b>tcp_adv_win_scale </b>
+
+равно 2, обозначая этим, что для буфера приложения используется
+четверть всего пространства.
+</p></dd><dt><b>tcp_app_win </b>
+
+</dt><dd>
+Эта переменная определяет, сколько байтов окна TCP зарезервировано
+для буферизации.
+<p>
+Максимум из (window/2^tcp_app_win, mss) байтов в окне будет зарезервировано
+для буфера приложения. Значение 0 обозначает, что ничего не зарезервировано.
+По умолчанию равно 31.
+</p></dd><dt><b>tcp_dsack</b>
+
+</dt><dd>
+Включает поддержку RFC2883 TCP Duplicate SACK.
+По умолчанию включено.
+</dd><dt><b>tcp_ecn</b>
+
+</dt><dd>
+Включает RFC2884 Explicit Congestion Notification.
+По умолчанию выключено.
+При активации может пропасть возможность установления соединений с некоторыми
+узлами из-за старых маршрутизаторов (работающих с этой опцией некорректно)
+по пути следования к узлу.
+</dd><dt><b>tcp_fack</b>
+
+</dt><dd>
+Включает поддержку TCP Forward Acknowledgement.
+По умолчанию включено.
+</dd><dt><b>tcp_fin_timeout</b>
+
+</dt><dd>
+Указывает на количество секунд, в течение которых необходимо ждать 
+последний пакет FIN до принудительного закрытия сокета. Строго говоря,
+это нарушение спецификации TCP, но оно необходимо для предотвращения
+атак отказа доступа к сервисам (DoS).
+Значение по умолчанию в ядрах 2.4 равно 80, и ниже 180 в ядрах 2.2.
+</dd><dt><b>tcp_keepalive_intvl </b>
+
+</dt><dd>
+Количество секунд между отправками "оживляющих" (keep-alive) проверок.
+По умолчанию равно 75 с.
+</dd><dt><b>tcp_keepalive_probes</b>
+
+</dt><dd>
+Максимальное количество отправляемых "оживляющих" (keep-alive)
+проверок перед тем, как соединение считается разорванным.
+Значение по умолчанию равно 9.
+</dd><dt><b>tcp_keepalive_time</b>
+
+</dt><dd>
+Количество секунд между отстутствием передаваемых данных и отправкой через
+соединение "оживляющего" пакета. Значение по умолчанию - 10800 секунд (3 часа).
+<b>tcp_keepalive_time</b>
+
+Количество секунд бездействия, после которого по соединению начинает
+передаваться "оживляющие" пакеты TCP. Эти пакеты будут отправляться,
+только если включена опция сокета
+<b>SO_KEEPALIVE.</b>
+
+По умолчанию равно 7200 секунд (2 часа). Бездействующее соединение
+разрывается примерно после 11 минут (9 пакетов, с интервалом 75 секунд)
+при включенном режиме keep-alive.
+<p>
+Заметим, что механизмы отслеживания соединений более низкого уровня
+и таймеры приложений могут быть гораздо короче.
+</p></dd><dt><b>tcp_max_orphans</b>
+
+</dt><dd>
+Максимальное число безродных (orphaned, не присоединенных ни к одному
+обработчику файлов) сокетов TCP, разрешенных в системе. Если превышается
+это число, то безродные соединения сбрасываются и выводится предупредительное
+сообщение. Данный лимит существует только для простейшего предотвращения
+атак отказа в сервисе (DoS). Понижать этот лимит не рекомендуется. Сетевые
+соединения могут требовать повышения этого числа, но заметим, что каждое
+такое безродное соединение использует до 64Кб невыгружаемой памяти.
+По умолчанию значение установлено равным значению параметра ядра NR_FILE.
+Значение может изменяться в зависимости от количества памяти в системе.
+</dd><dt><b>tcp_max_syn_backlog</b>
+
+</dt><dd>
+Максимальное количество запросов на соединения в очереди, все еще не
+получивших подтверждения от клиентов. Если это число превышается, то
+ядро начнет сбрасывать запросы. По умолчанию равно 256, при памяти больше
+128Мб повышается до 1024, при памяти меньше 32Мб уменьшается до 128.
+При значениях больше 1024 рекомендуется также изменить значение
+TCP_SYNQ_HSIZE в include/net/tcp.h так: TCP_SYNQ_HSIZE*16&lt;=tcp_max_syn_backlog,
+а также необходимо будет после этого пересобрать ядро.
+</dd><dt><b>tcp_max_tw_buckets</b>
+
+</dt><dd>
+Максимальное число сокетов в состоянии TIME_WAIT, разрешенное в системе.
+Этот лимит существует только для предотвращения простейших атак DoS.
+По умолчанию равно NR_FILE*2 и изменяется в зависимости от памяти в системе.
+Если это значение превышено, то сокеты закрываются и выводится предупреждение.
+</dd><dt><b>tcp_mem</b>
+
+</dt><dd>
+Вектор из 3 целочисленных значений: [low, pressure, high]. Эти границы
+используются TCP для отслеживания использования памяти. По умолчанию
+рассчитываются во время загрузки в зависимости от количества памяти системы.
+<p>
+<i>low </i>
+
+- TCP не регулирует распределение своей памяти, если число страниц
+ниже этого значения.
+</p><p>
+<i>pressure</i>
+
+- когда количество размещенных TCP страниц превышает это значение, то
+TCP изменяет свой метод использования памяти. Это состояние отменяется
+при падении количества размещенных страниц ниже значения
+<b>low.</b>
+
+</p><p>
+<i>high</i>
+
+- вообще максимальное количество страниц, размещаемых TCP. Это значение
+переопределяет все другие значения, указанные ядром.
+</p></dd><dt><b>tcp_orphan_retries</b>
+
+</dt><dd>
+Максимальное количество попыток проверки другой стороны соединения при
+разрыве связи с нашей стороны. По умолчанию равно 8.
+</dd><dt><b>tcp_reordering</b>
+
+</dt><dd>
+Максимальное число пакетов, упорядоченных в потоке пакетов TCP без того,
+чтобы TCP начало подразумевать потери пакетом и перешло в состояние
+медленного запуска. По умолчанию равно 3. Не рекомендуется менять
+это значение. Эта метрика упорядочивания пакетов предназначена для
+минимизации повторных передач, обусловленных переупорядочиванием
+пакетов в соединении.
+</dd><dt><b>tcp_retrans_collapse</b>
+
+</dt><dd>
+При повторных передачах пробовать посылать полноразмерные пакеты.
+Включено по умолчанию.
+</dd><dt><b>tcp_retries1</b>
+
+</dt><dd>
+Определяет количество попыток повторной передачи пакетов по установленному
+соединению без подключения к этому процессу других сетевых механизмов.
+Как только превышено это число, то уровень сети обновляет маршрут перед
+каждым повтором (если это возможно). По умолчанию спецификаций RFC 
+минимум равен 3.
+</dd><dt><b>tcp_retries2</b>
+
+</dt><dd>
+Максимальное количество попыток повторной передачи пакетов TCP
+по установленному соединению до того, как оно будет считаться разорванным.
+По умолчанию равно 15, что соответствует времени примерно от 13 до 30 минут,
+в зависимости от определенного у вас таймера повторной передачи.
+RFC1122 определяет минимальную границу в 100 секунд.
+</dd><dt><b>tcp_rfc1337</b>
+
+</dt><dd>
+Включает поведение TCP, совместимое с RFC 1337.
+По умолчанию выключено. Если выключено, то: если RST принимается в
+состоянии TIME_WAIT, то сокет закрывается немедленно, не дожидаясь
+конца периода TIME_WAIT.
+</dd><dt><b>tcp_rmem </b>
+
+</dt><dd>
+Вектор из 3 целочисленных значений: [min, default, max].
+Эти параметры используются TCP для регулирования размером
+буфера приема. TCP динамически корректирет размер буфера приема
+от значений по умолчанию, указанных ниже, в диапазоне
+этих переменных sysctl, в зависимости от количества памяти в системе.
+<p>
+<i>min</i>
+
+минимальный размер буфера приема, используемый каждый сокетом TCP.
+По умолчанию равен 4Кб, и может уменьшаться до PAGE_SIZE байтов
+в системах с малым количеством памяти. Это значение используется
+для того, чтобы размещения страниц памяти в режиме давления все
+равно были разрешены. Не используется для привязки к размеру
+буфера приема, объявленного через
+<b>SO_RCVBUF</b>
+
+для сокета.
+</p><p>
+<i>default</i>
+
+размер буфера приема по умолчанию для сокетов TCP. Значение
+переопределяет начальный размер убфера по умолчанию из общей переменной
+<b>net.core.rmem_default</b>
+
+для всех протоколов. По умолчанию равно 87380 байтов, может уменьшаться
+до 43689 в системах с малым количеством памяти. Если желательны
+большие размеры буферов приема, то это значение должно быть увеличено
+(для воздействия на все сокеты). Для разрешения больших размеров окон TCP
+должно быть включено
+<b>net.ipv4.tcp_window_scaling </b>
+
+(по умолчанию).
+</p><p>
+<i>max</i>
+
+максимальный размер буфера приема, используемый каждый сокетом TCP.
+Это значение не переопределяет глобальную переменную
+<b>net.core.rmem_max</b>.
+
+Не используется для ограничения размера буфера приема через
+<b>SO_RCVBUF</b>
+
+для каждого сокета. По умолчанию равно 87380*2 байтов, уменьшается до
+87380 в системах с малым количеством памяти.
+</p></dd><dt><b>tcp_sack</b>
+
+</dt><dd>
+Разрешить выборочные подтверждения TCP (TCP Selective Acknowledgements)
+для RFC2018. Включено по умолчанию.
+</dd><dt><b>tcp_stdurg</b>
+
+</dt><dd>
+Начать интерпретацию поля с указателем срочных данных TCP в строгом
+соответствии с RFC793. По умолчанию используется совместимая с BSD интерпретация
+указателя на неотложные данные, определяющая первый байт после неотложных
+данных. В соответствии с RFC793 указатель должен определять последний байт
+неотложных данных. Использование этой опции может привести к проблемам во
+взаимодействии сетей.
+</dd><dt><b>tcp_synack_retries</b>
+
+</dt><dd>
+Максимальное количество попыток повторной передачи сегмента SYN/ACK на
+пассивном соединении TCP. Число должно быть меньше 255. По умолчанию равно 5.
+</dd><dt><b>tcp_syncookies</b>
+
+</dt><dd>
+Включить TCP syncookies. Ядро должно быть собрано с включенной опцией
+<b>CONFIG_SYN_COOKIES</b>.
+
+Отправлять syncookies при переполнении. Возможность syncookies создана
+для защиты сокета от атак переполнения SYN. Используйте ее в самую последнюю
+очередь, а лучше вообще не используйте. Это является нарушением протокола
+TCP и конфликтует со многими другими областями TCP, например с расширениями.
+Может привести к проблемам в работе клиентов и релеев. Не рекомендуется
+к использованию на загруженных работой серверах в качестве "быстрой помощи"
+при перегрузках или некорректных настройках. В качестве рекомендуемой
+альтернативы предлагаем посмотреть опции
+<b>tcp_max_syn_backlog</b>,
+
+<b>tcp_synack_retries</b>,
+
+<b>tcp_abort_on_overflow</b>.
+
+</dd><dt><b>tcp_syn_retries</b>
+
+</dt><dd>
+Определяет количество посылаемых удаленной стороне начальных
+пакетов SYN до того, как будет возвращена ошибка. Значение
+должно быть меньше 255. Значение по умолчанию равно 5,
+что соответствует примерно 180 секундам.
+</dd><dt><b>tcp_timestamps</b>
+
+</dt><dd>
+Разрешить временные метки TCP (RFC1323). Включено по умолчанию.
+</dd><dt><b>tcp_tw_recycle</b>
+
+</dt><dd>
+Включает быстрый оборот сокетов TIME-WAIT. По умолчанию выключено.
+Включать ее не рекомендуется, так как это может привести к проблемам
+с трансляцией сетевых адресов NAT.
+</dd><dt><b>tcp_window_scaling</b>
+
+</dt><dd>
+Разрешить изменение размера окна TCP (RFC1323).
+По умолчанию включено. Эта возможность позволяет использовать большие
+(&gt; 64Кб) окна для соединений TCP, но она должна также поддерживаться
+на другой стороне соединения. Обычно 16 битовый размер поля длины окна
+в заголовке TCP ограничивает его размер до 64Кб. Если нужно обеспечить
+больший размер окна, то приложение должно увеличить размер своих буферов
+сокетов и включить опцию масштабирования окна. Если выключено
+<b>tcp_window_scaling </b>
+
+то TCP не будет согласовывать использование масштабирования окон с
+другой стороной во время установки соединения.
+</dd><dt><b>tcp_wmem</b>
+
+</dt><dd>
+Вектор из 3 целочисленных значений: [min, default, max].
+Эти параметры используются TCP для управления размером буфера отправления.
+TCP динамически корректирет размер буфера отправления от значений по
+умолчанию, указанных ниже, в диапазоне этих переменных sysctl, в зависимости
+от количества памяти в системе.
+<p>
+<i>min</i>
+
+минимальный размер буфера отправления, используемый каждый сокетом TCP.
+По умолчанию равен 4Кб. Это значение используется для того, чтобы размещения
+страниц памяти в режиме давления все равно были разрешены. Не используется
+для привязки к размеру буфера отправления, объявленного через
+<b>SO_SNDBUF</b>
+
+для сокета.
+</p><p>
+<i>default</i>
+
+размер буфера отправления по умолчанию для сокетов TCP. Значение
+переопределяет начальный размер убфера по умолчанию из общей переменной
+<b>net.core.wmem_default</b>
+
+для всех протоколов. По умолчанию равно 16Кб. Если желательны
+большие размеры буферов приема, то это значение должно быть увеличено
+(для воздействия на все сокеты). Для разрешения больших размеров окон TCP
+должно быть включено
+<b>net.ipv4.tcp_window_scaling </b>
+
+(по умолчанию).
+</p><p>
+<i>max</i>
+
+максимальный размер буфера отправления, используемый каждый сокетом TCP.
+Это значение не переопределяет глобальную переменную
+<b>net.core.wmem_max</b>.
+
+Не используется для ограничения размера буфера приема через
+<b>SO_SNDBUF</b>
+
+для каждого сокета. По умолчанию равно 128Кб. Уменьшается до
+64Кб в системах с малым количеством памяти.
+</p></dd><dt></dt></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ОПЦИИ СОКЕТОВ</h2>
+
+<dd>
+Для считывания опций сокетов TCP используется вызов
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getsockopt&amp;category=2">getsockopt</a></b>(2),
+
+для установки -
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setsockopt&amp;category=2">setsockopt</a></b>(2).
+
+Значение аргумента, принадлежащего семейству сокетов, должно быть равно
+<b>SOL_TCP</b>.
+
+Кроме того, сокетам TCP доступны большинство опций сокета
+<b>SOL_IP</b>.
+
+Дополнительная информация приведена в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7).
+
+<dl compact="">
+<dt><b>TCP_CORK</b>
+
+</dt><dd>
+Если функция запущена, то не посылать частичные кадры.
+Все поставленные в очередь частичные кадры будут отосланы,
+когда выполнение этой опции будет остановлено. 
+Это является эффективным для подготовки заголовков перед вызовом
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendfile&amp;category=2">sendfile</a></b>(2)
+
+или для оптимизации пропускной способности. Эта опция не может совмещаться с
+<b>TCP_NODELAY</b>.
+
+Эта опция не должна использоваться, если код в итоге должен быть портируемым.
+</dd><dt><b>TCP_DEFER_ACCEPT</b>
+
+</dt><dd>
+Позволяет слушающему просыпаться только при приходе данных на сокет.
+Принимает целое значение (секунды), ограничивает максимальное количество
+попыток TCP до закрытия этого соединения.
+Эта опция не должна использоваться, если код в итоге должен быть портируемым.
+</dd><dt><b>TCP_INFO</b>
+
+</dt><dd>
+Используется для сбора информации об этом сокете.
+Ядро возвращает структуру struct tcp_info, как определено в файле
+/usr/include/linux/tcp.h.
+Эта опция не должна использоваться, если код в итоге должен быть портируемым.
+</dd><dt><b>TCP_KEEPCNT</b>
+
+</dt><dd>
+Максимальное число проверок TCP, отправляемых до сброса соединения.
+Эта опция не должна использоваться, если код в итоге должен быть портируемым.
+</dd><dt><b>TCP_KEEPIDLE</b>
+
+</dt><dd>
+Время в секундах до того, как TCP начнет отправлять тестовые пакеты
+на неактивном соединении, если для сокета включена опция SO_KEEPALIVE.
+Эта опция не должна использоваться, если код в итоге должен быть портируемым.
+</dd><dt><b>TCP_KEEPINTVL</b>
+
+</dt><dd>
+Время в секундах между отдельными проверками соединения.
+Эта опция не должна использоваться, если код в итоге должен быть портируемым.
+</dd><dt><b>TCP_LINGER2</b>
+
+</dt><dd>
+Время жизни безродных сокетов состояния FIN_WAIT2. Эта опция может
+использоваться для переопределения общесистемного параметра sysctl
+<b>tcp_fin_timeout</b>
+
+на этом сокете. Не должно противоречить опции
+<b>SO_LINGER</b>
+
+уровня сокета
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7).
+
+Эта опция не должна использоваться, если код в итоге должен быть портируемым.
+</dd><dt><b>TCP_MAXSEG </b>
+
+</dt><dd>
+Максимальный размер сегмента для исходящих пакетов TCP.
+Если эта опция установлена до возникновения соединения, то меняется также и
+значение MSS, сообщаемое другой стороне в начальном пакете. Значения,
+превышающие MTU интерфейса, игнорируются. TCP также будет определять
+минимальную и максимальную границу поверх этих значений.
+</dd><dt><b>TCP_NODELAY</b>
+
+</dt><dd>
+Если включено, то отменить выполнение алгоритма Nagle. Это означает,
+что пакеты всегда отсылаются при первой же возможности, даже если к
+отправке назначено небольшое количество данных. Если выключено,
+то данные буферизуются и будут отправляться только после набора
+достаточно большого количества данных, при этом не отправляются
+постоянно небольшие пакеты с данными. Эта опция не может
+использоваться одновременно с опцией
+<b>TCP_CORK</b>.
+
+</dd><dt><b>TCP_QUICKACK</b>
+
+</dt><dd>
+Включает режим quickack при установке или выключает при очищении.
+В этом режиме все уведомления отправляются немедленно, а не с
+некоторой задержкой в соответствии с обычными операциями TCP.
+Этот флаг не постоянный, он только включает или выключает режим quickack.
+Последующие операции с протоколом TCP будут по своему
+включать/выключать этот режим в зависимости от своих внутренних
+протоколов, настроек и факторов.
+Эта опция не должна использоваться, если код в итоге должен быть портируемым.
+</dd><dt><b>TCP_SYNCNT</b>
+
+</dt><dd>
+Устанавливает число повторных передач SYN, отправляемых TCP до
+отмены попыток установки соединения. Не должно превышать 255.
+Эта опция не должна использоваться, если код в итоге должен быть портируемым.
+</dd><dt><b>TCP_WINDOW_CLAMP</b>
+
+</dt><dd>
+Определяет размер предлагаемого окна в это значение.
+Ядро определяет минимальный размер в SOCK_MIN_RCVBUF/2.
+Эта опция не должна использоваться, если код в итоге должен быть портируемым.
+</dd><dt></dt></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>СИСТЕМНЫЕ ВЫЗОВЫ</h2>
+
+</dd><dd>
+Доступ к нижеприведенным ioctl можно получить через
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ioctl&amp;category=2">ioctl</a></b>(2).
+
+Синтаксис следующий:
+<p>
+
+</p><dl compact=""><dt></dt><dd>
+<pre><b>int</b><i> value;</i>
+<i>error</i><b> = ioctl(</b><i>tcp_socket</i><b>, </b><i>ioctl_type</i><b>, &amp;</b><i>value</i><b>);</b>
+</pre>
+
+</dd></dl>
+
+<dl compact="">
+<dt><b>SIOCINQ</b>
+
+</dt><dd>
+Возвращает количество несчитанных данных в очереди в буфере
+приема. Аргументом является указатель на целое число.
+Сокет должен быть в состоянии прослушивания LISTEN,
+иначе возвратится ошибка (EINVAL).
+</dd><dt><b>SIOCATMARK</b>
+
+</dt><dd>
+Возвращает истинное значение, если все срочные данные 
+уже получены программой пользователя. Используется совместно с
+<b>SO_OOBINLINE</b>.
+
+Аргументом является указатель на целое число, служащее результатом проверки.
+</dd><dt><b>SIOCOUTQ</b>
+
+</dt><dd>
+Возвращает количество неотправленных данных в очереди буфера отправления,
+в передаваемом указателе на целое число. Сокет не должен быть в состоянии
+прослушивания LISTEN, иначе возвратится ошибка (EINVAL).
+<p>
+</p></dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>ОБРАБОТКА ОШИБОК</h2>
+
+При возникновении сетевой ошибки TCP пытается отправить пакет повторно. Если в
+течение некоторого времени этого сделать не удается, то возвращается либо 
+<b>ETIMEDOUT</b>
+
+либо последняя ошибка, произошедшая в этом соединении.
+<p>
+
+Hекоторые приложения требуют более быстрого предупреждения об ошибках.
+Это может быть выполнено с помощью уровня
+<b>SOL_IP </b>
+
+опции
+<b>IP_RECVERR </b>
+
+сокета. Если эта опция запущена, то все входящие ошибки немедленно передаются
+программе пользователя.
+Используйте эту опцию осторожно: она приводит к тому, что TCP становится более
+чувствительным к сменам маршрутов и возникновению других условий, обычных для сети.
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ЗАМЕЧАНИЯ</h2>
+
+Если во время соединения произошла ошибка записи в сокет, то значение
+<b>SIGPIPE</b>
+
+устанавливается только при установлении опции
+<b>SO_KEEPALIVE</b>.
+
+<p>
+
+TCP не имеет внепоточных данных; он имеет срочные данные. В Linux это
+означает, что если другая сторона посылает новые внепоточные данные, то старые
+срочные данные вставляются в поток в качестве обычных (даже если не
+установлена опция
+<b>SO_OOBINLINE</b>).
+
+Это поведение отличается от поведения стеков BSD.
+</p><p>
+
+Linux по умолчанию использует совместимую с BSD интерпретацию указателя на
+неотложные данные. Это противоречит RFC1122, но необходимо для 
+взаимодействия сетей. Положение можно изменить с помощью sysctl-вызова
+<b>tcp_stdurg</b>.
+
+<a name="lbAK">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+<dl compact="">
+<dt><b>EPIPE</b>
+
+</dt><dd>
+Другая сторона неожиданно закрыла сокет, или была произведена попытка чтения 
+в отключенном сокете.
+</dd><dt><b>ETIMEDOUT</b>
+
+</dt><dd>
+Другая сторона не подтвердила передачу данных через определенное время.
+</dd><dt><b>EAFNOTSUPPORT</b>
+
+</dt><dd>
+Переданный в 
+<i>sin_family </i>
+
+тип сокета не был типом
+<b>AF_INET</b>.
+
+</dd></dl>
+<p>
+
+Любые ошибки, определенные для
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7)
+
+или общего уровня сокетов, могут быть возвращены и для TCP.
+</p><p>
+
+<a name="lbAL">&nbsp;</a>
+</p><h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Hе все ошибки описаны.
+<p>
+
+IPv6 не описано. 
+
+
+
+<a name="lbAM">&nbsp;</a>
+</p><h2>ВЕРСИИ</h2>
+
+Поддержка для Explicit Congestion Notification, файлов zerocopy sendfile,
+поддержку переупорядочения и некоторые расширения SACK (DSACK)
+были представлены в версии 2.4.
+Поддержка для forward acknowledgement (FACK), циклам TIME_WAIT,
+опции поддержки сокетов для каждого соединения и вызовы sysctl
+были представлены в версии 2.3.
+Значения по умолчанию и описатели переменных sysctl, указанные выше,
+применимы для ядер 2.4 и выше.
+<a name="lbAN">&nbsp;</a>
+<h2>АВТОРЫ</h2>
+
+Это руководство было изначально написано Andi Kleen. 
+Затем было обновлено для ядер версии 2.4 благодаря Nivedita Singhvi,
+с помощью Documentation/networking/ip-sysctls.txt от Alexey Kuznetsov.
+<a name="lbAO">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=2">socket</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=bind&amp;category=2">bind</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=listen&amp;category=2">listen</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=accept&amp;category=2">accept</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=connect&amp;category=2">connect</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmsg&amp;category=2">sendmsg</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=recvmsg&amp;category=2">recvmsg</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendfile&amp;category=2">sendfile</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sysctl&amp;category=2">sysctl</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getsockopt&amp;category=2">getsockopt</a></b>(2).
+
+<p>
+RFC793 - спецификации TCP.
+<br>
+
+RFC1122 - требования TCP и описание алгоритма Nagle.
+<br>
+
+RFC1323 - для временных меток TCP и опций масштабируемых окон.
+<br>
+
+RFC1644 - для описания риска снятия TIME_WAIT.
+<br>
+
+RFC2481 - для описания Explicit Congestion Notification.
+<br>
+
+RFC2581 - некоторые алгоритмы управления TCP.
+<br>
+
+RFC2018 и RFC2883 - для SACK и расширений SACK.
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ФОРМАТЫ АДРЕСОВ</a></dt><dd>
+</dd><dt><a href="#lbAF">СИСТЕМНЫЕ ВЫЗОВЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">ОПЦИИ СОКЕТОВ</a></dt><dd>
+</dd><dt><a href="#lbAH">СИСТЕМНЫЕ ВЫЗОВЫ</a></dt><dd>
+</dd><dt><a href="#lbAI">ОБРАБОТКА ОШИБОК</a></dt><dd>
+</dd><dt><a href="#lbAJ">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAK">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAL">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAM">ВЕРСИИ</a></dt><dd>
+</dd><dt><a href="#lbAN">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAO">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="tcp" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</dd></body>
+<!---------------------------------------------  0  ---------------------------------------------->

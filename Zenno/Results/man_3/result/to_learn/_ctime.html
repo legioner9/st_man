@@ -1,0 +1,457 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ctime (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ctime"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ctime" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ctime (3)</font><hr><li> <a href="/man.shtml?topic=ctime&amp;category=3&amp;russian=4"><u>ctime</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=ctime&amp;category=3&amp;russian=1"><u>ctime</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=ctime&amp;category=3&amp;russian=0"><u>ctime</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=ctime&amp;category=3&amp;russian=2"><u>ctime</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=ctime&amp;category=3&amp;russian=5"><u>ctime</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+asctime, ctime, gmtime, localtime, mktime - преобразует дату и время
+в формат ASCII или в календарное представление
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<pre><b>#include &lt;<a href="file:/usr/include/time.h">time.h</a>&gt;</b>
+
+<b>char *asctime(const struct tm *</b><i>tm</i><b>);</b>
+<br>
+<b>char *asctime_r(const struct tm *</b><i>tm</i><b>, char *</b><i>buf</i><b>);</b>
+<br>
+<b>char *ctime_r(const time_t *</b><i>timep</i><b>, char *</b><i>buf</i><b>);</b>
+
+<b>char *ctime(const time_t *</b><i>timep</i><b>);</b>
+
+<b>struct tm *gmtime(const time_t *</b><i>timep</i><b>);</b>
+<br>
+<b>struct tm *gmtime_r(const time_t *</b><i>timep</i><b>, struct tm *</b><i>result</i><b>);</b>
+
+<b>struct tm *localtime(const time_t *</b><i>timep</i><b>);</b>
+<br>
+<b>struct tm *localtime_r(const time_t *</b><i>timep</i><b>, struct tm *</b><i>result</i><b>);</b>
+
+<b>time_t mktime(struct tm *</b><i>tm</i><b>);</b>
+</pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Функции <b>ctime()</b>, <b>gmtime()</b> и <b>localtime()</b> в качестве агрумента
+используют тип данных <i>time_t</i> , представляющий собой календарное время.
+Функции интерпретируют его как абсолютное время, содержащее количество секунд, 
+прошедших с 00:00:00 1 января 1970 года времени UTC.
+<p>
+
+Функции <b>asctime()</b> и <b>mktime()</b> используют в качестве аргумента
+локальное время в календарном представлении, то есть разделеное на год, месяц,
+день и т.д. Время в календарном представлении хранится в структуре <i>tm</i>,
+которая определена в файле <i>&lt;<a href="file:/usr/include/time.h">time.h</a>&gt;</i> следующим образом:
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>
+struct tm {
+        int     tm_sec;         /* секунды */
+        int     tm_min;         /* минуты */
+        int     tm_hour;        /* часы */
+        int     tm_mday;        /* день месяца */
+        int     tm_mon;         /* месяц */
+        int     tm_year;        /* год */
+        int     tm_wday;        /* день недели */
+        int     tm_yday;        /* день года */
+        int     tm_isdst;       /* летнее время */
+};
+
+</pre>
+
+</dd></dl>
+
+<p>
+
+Члены структуры <i>tm</i>:
+</p><dl compact="">
+<dt><i>tm_sec</i>
+
+</dt><dd>
+Число секунд, прошедших после минуты, обычно в диапазоне от 0 до 59; 
+но для того, чтобы установить високосную секунду, используются числа до 61.
+</dd><dt><i>tm_min</i>
+
+</dt><dd>
+Число минут, прошедших после часа, от 0 до 59. 
+</dd><dt><i>tm_hour</i>
+
+</dt><dd>
+Количество прошедших часов после полуночи, от 0 до 23.
+</dd><dt><i>tm_mday</i>
+
+</dt><dd>
+День месяца, от 1 до 31.
+</dd><dt><i>tm_mon</i>
+
+</dt><dd>
+Число месяцев, прошедших с января, от 0 до 11.
+</dd><dt><i>tm_year</i>
+
+</dt><dd>
+Число лет, прошедших с 1900.
+</dd><dt><i>tm_wday</i>
+
+</dt><dd>
+Число дней, прошедших с воскресенья, от 0 до 6.
+</dd><dt><i>tm_yday</i>
+
+</dt><dd>
+Количество дней, прошедших с 1 января, от 0 до 365.
+</dd><dt><i>tm_isdst</i>
+
+</dt><dd>
+Этот флаг показывает, в действительности ли "летнее" время учтено
+в этой структуре. Значение флага положительно, если "летнее" время
+учитывается, 0, если нет, и отрицательно, если информация недоступна. 
+</dd></dl>
+<p>
+
+Функция 
+<b>ctime(</b><i>t</i><b>)</b>
+
+является эквивалентом
+<b>asctime(localtime(</b><i>t</i><b>))</b><i></i>.
+
+Она преобразует календарное время <i>t</i> в строку формата
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+"Wed Jun 30 21:49:08 1993\n"
+</dd></dl>
+
+<p>
+Аббревиатуры дней недели: `Sun', `Mon', `Tue', `Wed', `Thu', `Fri' и `Sat'. 
+Аббревиатуры месяцев: `Jan', `Feb', `Mar', `Apr', `May', `Jun', `Jul', `Aug',
+`Sep', `Oct', `Nov' и `Dec'. Возвращаемое значение указывает на статически размещенную
+строку, которая может быть заново записана с помощью последовательности вызовов любых функций
+даты и времени. Функция также устанавливает значение внешней переменной <i>tzname</i> (см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tzset&amp;category=3">tzset</a></b>(3))
+
+равным значению текущей временной зоны.
+Реентрантная версия <b>ctime_r()</b> делает то же самое, но заносит строку в
+буфер, предоставляемый пользователем. Длина буфера должна быть не менее 26 байт.
+Устанавливать <i>tzname</i> необязательно.
+</p><p>
+
+Функция <b>gmtime()</b> преобразует календарное время <i>timep</i> в локальное
+представление времени, определенное во всеобщем скоординированном времени (UTC).
+Но она может вернуть значение NULL, если год не может быть описан типом integer.
+Возвращаемое значение указывает на статически выделенную структуру, содержимое
+которой может быть перезаписано последующими вызовами любых функций, работающих
+с датой и временем. Функция <b>gmtime_r()</b> делает то же самое, но помещает
+данные в структуру, предоставленную пользователем.
+</p><p>
+
+Функция <b>localtime()</b> преобразует календарное время <i>timep</i> в локальное, 
+определенное в соответствии с заданной пользователем
+временной зоной. Функция работает так, как будто она вызывает
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tzset&amp;category=3">tzset</a></b>(3),
+
+и устанавливает внешние переменные: <i>tzname</i> в значение
+текущей временной зоны, <i>timezone</i> в значение разницы  в секундах между
+всеобщим скоординированным временем (UTC) и локальным стандартом времени и <i>daylight</i>
+в ненулевое значение, если используются стандартные правила "летнего" времени.
+Возвращаемое значение указывает на статически выделенную структуру, содержимое
+которой может быть перезаписано последующими вызовами любых функций, работающих
+с датой и временем. 
+Функция <b>localtime_r()</b> делает то же самое, но помещает
+данные в структуру, предоставленную пользователем. Она не нуждается в установке
+<i>tzname</i>.
+</p><p>
+
+Функция <b>asctime()</b> преобразует значение локального времени <i>tm</i> 
+в строку того же формата, что и функция <b>ctime()</b>. Возвращаемое значение
+указывает на статическую строку, которая может быть перезаписана 
+последовательностью вызовов любых функций даты и времени.
+Функция <b>asctime_r()</b> делает то же самое, но заносит строку в буфер,
+предоставленный пользователем. Длина буфера должна быть не менее 26 байт.
+</p><p>
+
+Функция <b>mktime()</b> преобразует время в календарном представлении в абсолютное
+время. Функция игнорирует содержимое полей структуры 
+<i>tm_wday</i> и <i>tm_yday</i> и пересчитывает их значения в соответствии с другими
+элементами структуры. Если значения элементов структуры выходят за пределы
+допустимых значений, то они "нормализуются" (так, например, 40 октября 
+превращается в 9 ноября). Вызов <b>mktime()</b> также присваивает внешней 
+переменной <i>tzname</i> значение текущей временной зоны. Если локальное время
+не может быть представлено как календарное (число секунд с начала века), то
+<b>mktime()</b> возвращает значение (time_t)(-1) и не изменяет значения членов 
+структуры локального времени <i>tm_wday</i> и <i>tm_yday</i>.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</h2>
+
+Все вышеперечисленные функции возвращают описанное значение или NULL (-1 в
+случае <b>mktime()</b>) при возникновении ошибки.
+<a name="lbAF">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Функции
+<b>asctime()</b>,
+
+<b>ctime()</b>,
+
+<b>gmtime()</b>
+
+и
+<b>localtime()</b>
+
+возвращают указатели на статические данные и небезопасны с точки зрения
+подпроцессов (threads). Безопасными являются их аналоги
+<b>asctime_r()</b>,
+
+<b>ctime_r()</b>,
+
+<b>gmtime_r()</b>
+
+и
+<b>localtime_r(),</b>
+
+введенные в SUSv2 и повившееся в libc 5.2.5.
+<p>
+
+Структура struct tm библиотеки glibc имеет дополнительные поля
+</p><p>
+</p><dl compact=""><dt></dt><dd>
+<pre>long tm_gmtoff;           /* Секунды восточнее UTC */
+const char *tm_tm_zone;   /* Аббревиатура временной зоны */
+</pre>
+
+</dd></dl>
+
+<p>
+определяемые в случае, если _BSD_SOURCE был определен до включения
+<i>&lt;<a href="file:/usr/include/time.h">time.h</a>&gt;</i>.
+
+Это расширение BSD, присутствующее в 4.3BSD-Reno.
+<a name="lbAG">&nbsp;</a>
+</p><h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+SVID 3, POSIX, BSD 4.3, ISO 9899
+<a name="lbAH">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=date&amp;category=1">date</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gettimeofday&amp;category=2">gettimeofday</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=newctime&amp;category=3">newctime</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=time&amp;category=2">time</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=utime&amp;category=2">utime</a></b>(2),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=clock&amp;category=3">clock</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=difftime&amp;category=3">difftime</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=strftime&amp;category=3">strftime</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=strptime&amp;category=3">strptime</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=tzset&amp;category=3">tzset</a></b>(3)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ВОЗВРАЩАЕМЫЕ ЗНАЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAG">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ctime" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

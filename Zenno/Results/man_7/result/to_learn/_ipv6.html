@@ -1,0 +1,586 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN ipv6 (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, ipv6"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="ipv6" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">ipv6 (7)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=ipv6&amp;category=7&amp;russian=0"><u>ipv6</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=ipv6&amp;category=7&amp;russian=2"><u>ipv6</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li><li><font color="#555555">Ключ <a href="/keywords/ipv6.html"><u>ipv6</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+ipv6, PF_INET6 - реализация протокола Linux IPv6 
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/sys/socket.h">sys/socket.h</a>&gt;</b>
+
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/netinet/in.h">netinet/in.h</a>&gt; </b>
+
+<p>
+</p><p>
+<i>tcp6_socket</i><b> = socket(PF_INET6, SOCK_STREAM, 0);</b>
+
+<br>
+
+<i>raw6_socket</i><b> = socket(PF_INET6, SOCK_RAW, </b><i>protocol</i><b>);</b>
+
+<br>
+
+<i>udp6_socket</i><b> = socket(PF_INET6, SOCK_DGRAM, </b><i>protocol</i><b>);</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+В Linux 2.2 реализуется протокол Internet Protocol версии 6.
+Эта страница руководства содержит описание основного API для IPv6,
+которое реализовано в ядре Linux и в glibc 2.1. 
+Интерфейс базируется на сокетах BSD; см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=socket&amp;category=7">socket</a></b>(7).
+
+<p>
+
+API для IPv6 предназначен быть в основном совместимым с
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7)
+
+v4 API. На этой странице руководства описаны только различия между ними.
+</p><p>
+
+Для cвязки сокета
+<i>AF_INET6</i>
+
+c любым процессом локальный адрес должен быть скопирован из переменной
+<b>in6addr_any</b>,
+
+имеющей тип
+<i>in6_addr</i>.
+
+При статических инициализациях также может быть использовано
+<b>IN6ADDR_ANY_INIT</b>,
+
+которое расширено до константного выражения.
+Оба они существуют в сетевом порядке.
+</p><p>
+
+Адрес устройства обратной петли IPv6 (::1) доступен в глобальной переменной
+<b>in6addr_loopback</b>.
+
+Для инициализаций надо использовать
+<b>IN6ADDR_LOOPBACK_INIT</b>.
+
+</p><p>
+
+Соединения IPv4 могут обрабатываться API v6, используя v4-преобразованный-в-v6
+тип адреса; таким образом, программе необходимо поддерживать только данный
+тип API для работы с обоими протоколами. Они поддерживаются функцией,
+обрабатывающей адреса в библиотеке libc.
+</p><p>
+
+IPv4 и IPv6 разделяют локальное пространство порта.
+Когда Вы примете соединение IPv4 или пакеты на сокетах IPv6, то
+его источник отобразится в v6, и в дальнейшем он будет отображаться как v6.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ФОРМАТЫ АДРЕСОВ</h2>
+
+<p>
+</p><dl compact=""><dt></dt><dd>
+<pre>
+struct sockaddr_in6 {
+    u_int16_t       sin6_family;/* AF_INET6 */
+    u_int16_t       sin6_port;/* номер порта */
+    u_int32_t       sin6_flowinfo;/* поток информации IPv6 */
+    struct in6_addr sin6_addr;/* адрес IPv6 */
+    u_int32_t   sin6_scope_id;  /* Область id (новое с версии 2.4) */
+};
+
+struct in6_addr {
+    unsigned char   s6_addr[16];/* адрес IPv6 */
+};
+
+</pre>
+
+</dd></dl>
+
+<p>
+<b>sin6_family </b>
+
+всегда устанавливается в
+<b>AF_INET6; </b>
+
+<b>sin6_port </b>
+
+является портом протокола (см.
+<b>sin_port</b>
+
+в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7));
+
+<b>sin6_flowinfo</b>
+
+является идентификатором потока IPv6;
+<b>sin6_addr</b>
+
+является 128-битным адресом IPv6.
+<b>sin6_scope_id </b>
+
+является идентификатором id в зависимости от области адреса.
+Это новое добавление в версии Linux 2.4.
+Linux поддерживает его только для связи областей адресов, в этом случае
+<i>sin6_scope_id</i>
+
+содержит индекс интерфейса (см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netdevice&amp;category=7">netdevice</a></b>(7))<b>.</b>
+
+</p><p>
+
+IPv6 поддерживает несколько типов адресов: unicast - для адресации одного
+хоста, multicast - для адресации группы хостов, anycast - для адресации
+ближайшего члена группы хостов (не реализовано в Linux), IPv4-по-IPv6 -
+для адресации хоста IPv4, и несколько других зарезервированных типов адресов.
+</p><p>
+
+Нотацией адреса для IPv6 будет группа из шестнадцати 2-разрядных
+шестнадцатеричных чисел, разделенных двоеточием ':'. Два двоеточия '::'
+зарезервированы для обозначения строки из 0 бит.
+Специальные адреса - ::1 для устройства обратной петли и
+FFFF::&lt;адрес IPv4&gt; для IPv4-преобразованного-в-IPv6.
+</p><p>
+
+Место в порту IPv6 разделяется с IPv4.
+<a name="lbAF">&nbsp;</a>
+</p><h2>ОПЦИИ СОКЕТОВ</h2>
+
+IPv6 поддерживает некоторые протоколы с особыми параметрами сокетов,
+которые могут устанавливаться
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setsockopt&amp;category=2">setsockopt</a></b>(2)
+
+и считываться с помощью
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getsockopt&amp;category=2">getsockopt</a></b>(2).
+
+Уровни параметра сокетов IPv6 определяются
+<b>IPPROTO_IPV6</b>.
+
+Логический целочисленный флаг равен нулю, когда IPPROTO_IPV6 - ложь,
+в противном случае - истина.
+<dl compact="">
+<dt><b>IPV6_UNICAST_HOPS</b>
+
+</dt><dd>
+Определяет лимит хопов (hop) в unicast для сокетов. 
+Аргумент является указателем на целое число.
+Значение -1 означает использование маршрута по умолчанию,
+в противном случае его значение будет в диапазоне от 0 до 255.
+</dd><dt><b>IPV6_MULTICAST_HOPS</b>
+
+</dt><dd>
+Определяет лимит хопов в multicast для сокетов. 
+Аргумент является указателем на целое число.
+Значение -1 означает использование маршрута по умолчанию,
+в противном случае его значение будет в диапазоне от 0 до 255.
+</dd><dt><b>IPV6_MULTICAST_IF</b>
+
+</dt><dd>
+Определяет устройство для исходящих пакетов multicast для сокета.
+Это разрешено только для сокетов
+<i>SOCK_DGRAM</i>
+
+и
+<i>SOCK_RAW</i>.
+
+Аргумент является указателем на индекс интрефейса (см.
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=netdevice&amp;category=7">netdevice</a></b>(7))
+
+среди целых чисел.
+</dd><dt><b>IPV6_ADDRFORM</b>
+
+</dt><dd>
+Преобразует сокет
+<i>AF_INET6</i>
+
+в сокет другого семейства адресов. В этих ситуациях на данный момент
+поддерживаются только
+<i>AF_INET</i>.
+
+Оно разрешено только для сокетов IPv6, которые соединены
+и привязаны с адресами v4-преобразованные-в-v6. Аргумент
+является указателем на целое, содержащее
+<b>AF_INET</b>.
+
+Полезно передавать v4-преобразованные сокеты как 
+описатели файлов программам, которые не понимают IPv6 API.
+</dd><dt><b>IPV6_PKTINFO</b>
+
+</dt><dd>
+Установите отправку управляющего сообщения
+<b>IPV6_PKTINFO </b>
+
+для входящих датаграмм. Разрешено только для сокетов
+<b>SOCK_DGRAM</b>
+
+или
+<b>SOCK_RAW</b>.
+
+Аргументом является указатель на логическое значение среди целых чисел.
+</dd><dt>
+</dt><dd>
+<b>IPV6_RTHDR, IPV6_AUTHHDR, IPV6_DSTOPS, IPV6_HOPOPTS, IPV6_FLOWINFO, IPV6_HOPLIMIT</b>
+
+
+Устанавливают отправку управляющих сообщений для входящих датаграмм,
+содержащих заголовки расширения из принятых пакетов.
+<i>IPV6_RTHDR</i>
+
+доставляет заголовок маршрутизации,
+<i>IPV6_AUTHHDR</i>
+
+доставляет заголовок аутентификации,
+<i>IPV6_DSTOPTS</i>
+
+доставляет параметры назначения,
+<i>IPV6_HOPOPTS</i>
+
+доставляет параметры хопов,
+<i>IPV6_FLOWINFO</i>
+
+доставляет целое, содержащее поток id,
+<i>IPV6_HOPLIMIT</i>
+
+доставляет целое, содержащее счетчик хопов пакета.
+Управляющие сообщения имеют тот же тип, что и параметры сокета.
+Все эти параметры заголовка могут также устанавливаться
+для исходящих пакетов посылкой определенного управляющего сообщения 
+в управляющий буфер
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sendmsg&amp;category=2">sendmsg</a></b>(2).
+
+Разрешено только для сокетов
+<b>SOCK_DGRAM</b>
+
+или
+<b>SOCK_RAW</b>.
+
+Аргумент является указателем на логическое значение.
+</dd><dt><b>IPV6_MULTICAST_LOOP</b>
+
+</dt><dd>
+Определяет, видит ли сокет пакеты multicast, которые сам и посылал.
+Аргумент является указателем на логическое число.
+</dd><dt><b>IPV6_ADD_MEMBERSHIP, IPV6_DROP_MEMBERSHIP</b>
+
+</dt><dd>
+Определяет членством в группах multicast. 
+Аргумент является указателем на структуру
+<b>struct</b>ipv6_mreq<b>.</b>
+
+</dd><dt><b>IPV6_MTU</b>
+
+</dt><dd>
+Устанавливает MTU, который должен использоваться для сокета. 
+MTU ограничивается устройством MTU или маршрутом MTU, если
+включено определение пути MTU.
+Аргумент является указателем на целое.
+</dd><dt><b>IPV6_MTU_DISCOVER</b>
+
+</dt><dd>
+Управляет определением пути MTU для сокета. См.
+<i>IP_MTU_DISCOVER</i>
+
+в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7)
+
+для более детальной информации.
+</dd><dt><b>IPV6_RECVERR</b>
+
+</dt><dd>
+Управляет получением асинхронных параметров ошибки. См.
+<i>IP_RECVERR</i>
+
+в
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7)
+
+для более детальной информации.
+Аргумент является указателем на логическое число.
+</dd><dt><b>IPV6_ROUTER_ALERT</b>
+
+</dt><dd>
+Передает все пересланные пакеты, содержащие предупреждение параметра
+маршрутизатора для сокета.
+Разрешено только для датаграмм сокетов и для root. 
+Аргумент является указателем на логическое число.
+
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ВЕРСИИ</h2>
+
+Старые
+<i>libinet6</i>
+
+в libc5, основанные на реализации API IPv6 для Linux, 
+не описаны здесь и могут изменяться в конкретных деталах.
+<p>
+
+Linux 2.4 прервет двоичную совместимость для sockaddr_in6 для 
+64-битных хостов, изменяя выравнивание
+<i>in6_addr </i>
+
+и добавляя дополнительное поле
+<i>sin6_scope_id</i>.
+
+Интерфейс ядра остается совместимым, но программа, включающая 
+sockaddr_in6 или in6_addr в другие структуры уже может не быть совместимой. 
+Это не является проблемой для 32-битных хостов типа i386.
+</p><p>
+
+Поле
+<b>sin6_flowinfo</b>
+
+является нововведением в Linux 2.4. 
+Оно точно проходит/считывается ядром, когда длина прошедшего адреса 
+содержит его. Некоторые программы, которые передают более длинный буфер адреса 
+и затем проверяют длину исходящего адреса могут перестать работать.
+<a name="lbAH">&nbsp;</a>
+</p><h2>ЗАМЕЧАНИЯ ПО ПОРТИРОВАНИЮ</h2>
+
+Структура
+<b>sockaddr_in6</b>
+
+по размеру больше, чем более обобщенный
+<b>sockaddr. </b>
+
+Программы, которые допускают, что все типы адреса могут быть 
+нормально сохранены в
+<b>struct sockaddr,</b>
+
+требуют изменений для использования вместо него
+<b>struct sockaddr_storage.</b>
+
+<a name="lbAI">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Расширение API для IPv6, как в RFC2292, к настоящему времени только частично 
+реализовано; хотя ядро 2.2 имеет почти полную поддержку для получения 
+параметров, макросы для генерации параметров IPv6 пропускаются в glibc 2.1.
+<p>
+
+Поддержка IPSec для EH и АХ заголовков пропускается.
+</p><p>
+
+Руководство по управлению потоком не завершено и тут незадокументировано.
+</p><p>
+
+Эта страница руководста не совсем полна.
+<a name="lbAJ">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ip&amp;category=7">ip</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=cmsg&amp;category=3">cmsg</a></b>(3)
+
+<p>
+
+RFC2553: IPv6 BASIC API. Linux пытается быть совместимым с этим стандартом.
+</p><p>
+
+RFC2460: спецификация IPv6.
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ФОРМАТЫ АДРЕСОВ</a></dt><dd>
+</dd><dt><a href="#lbAF">ОПЦИИ СОКЕТОВ</a></dt><dd>
+</dd><dt><a href="#lbAG">ВЕРСИИ</a></dt><dd>
+</dd><dt><a href="#lbAH">ЗАМЕЧАНИЯ ПО ПОРТИРОВАНИЮ</a></dt><dd>
+</dd><dt><a href="#lbAI">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="ipv6" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

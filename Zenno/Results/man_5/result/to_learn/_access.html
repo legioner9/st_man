@@ -1,0 +1,366 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN access (5) Форматы файлов (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, access"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="access" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">access (5)</font><hr><li> <a href="/man.shtml?topic=access&amp;category=1&amp;russian=4"><u>access</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=access&amp;category=1&amp;russian=2"><u>access</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=access&amp;category=2&amp;russian=4"><u>access</u></a> (2) <font color="#555555"> ( Solaris man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=access&amp;category=2&amp;russian=1"><u>access</u></a> (2) <font color="#555555"> ( FreeBSD man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=access&amp;category=2&amp;russian=0"><u>access</u></a> (2) <font color="#555555"> ( Русские man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=access&amp;category=2&amp;russian=2"><u>access</u></a> (2) <font color="#555555"> ( Linux man: Системные вызовы )</font></li><li> <a href="/man.shtml?topic=access&amp;category=3&amp;russian=4"><u>access</u></a> (3) <font color="#555555"> ( Solaris man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=access&amp;category=3&amp;russian=5"><u>access</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=access&amp;category=5&amp;russian=0"><u>access</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=access&amp;category=5&amp;russian=2"><u>access</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li><li><font color="#555555">Ключ <a href="/keywords/access.html"><u>access</u></a> обнаружен в базе ключевых слов.</font></li>
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ </h2>
+
+access
+-
+формат таблицы доступа Postfix 
+<a name="lbAC">&nbsp;</a>
+<h2>ФОРМАТ</h2>
+
+
+<pre><b>postmap /etc/postfix/access</b>
+</pre><a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+
+
+Дополнительная таблица <b>access</b> заставляет SMTP-сервер Postfix
+избирательно отвергать или принимать почту от/для заданных имён машин, 
+доменных имён, сетей, сетевых адресов машин или почтовых адресов.
+
+Обычно таблица <b>access</b> оформляется в виде текстового файла,
+который затем обрабатывается командой <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=postmap&amp;category=1">postmap</a></b>(1). Для быстрого
+поиска почтовой системой используется получаемый индексированный 
+файл в формате dbm или db. После изменений в таблице <b>access</b>
+выполните команду <b>postmap /etc/postfix/access</b> для построения
+нового индексированного файла.
+
+Если таблица обеспечивается другими средствами, такими как NIS, LDAP 
+или SQL, поиск выполняется как и для обычных индексированных файлов.
+
+Кроме того, таблицу можно определить как карту регулярных выражений
+(regular-expression map), в которой шаблоны указаны в виде регулярных
+выражений. В этом случае, поиск выполняется немного иначе, как -  будет
+описано ниже.
+<a name="lbAE">&nbsp;</a>
+<h2>ФОРМАТ ТАБЛИЦЫ</h2>
+
+
+<pre></pre>
+
+Формат таблицы доступа следующий:
+<dl compact="">
+<dt>пробелы и комментарии</dt><dd>
+Пустые строки игнорируются, как и строки, начинающиеся с `#'.
+</dd><dt>начальный пропуск</dt><dd>
+Строки, начинающиеся с пробела, продолжают предыдущую строку.
+</dd><dt><i>шаблон действие</i></dt><dd>
+Если почтовый адрес, домен или адрес машины совпадает с <i>шаблоном</i>,
+выполняется соответствующее <i>действие</i>.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ШАБЛОНЫ</h2>
+
+
+<pre></pre>
+
+При поиске в индексированных файлах, таких как DB или DBM, а также 
+в сетевых таблицах типа NIS, LDAP или SQL, шаблоны проверяются в
+указанном ниже порядке:
+<dl compact="">
+<dt><i>user</i>@<i>domain</i></dt><dd>
+совпадение с указанным почтовым адресом.
+</dd><dt><i>domain.name</i></dt><dd>
+совпадение с самим <i>domain.name</i> и любым поддоменом как в именах 
+машин, так и в почтовых адресах. Домены верхнего уровня никогда 
+не сравниваются.
+</dd><dt><i>user</i>@</dt><dd>
+совпадают все почтовые адреса с указанной "пользовательской" частью
+адреса.
+</dd><dt><i>net.work.addr.ess</i></dt><dd>
+</dd><dt><i>net.work.addr</i></dt><dd>
+</dd><dt><i>net.work</i></dt><dd>
+</dd><dt><i>net</i></dt><dd>
+совпадает любой адрес машины в указанной сети. Сетевой адрес -- это 
+последовательность одного или более октетов, разделенных ".".
+</dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ДЕЙСТВИЯ</h2>
+
+
+<pre></pre>
+
+<dl compact="">
+<dt>[<b>45</b>]<i>XX text</i></dt><dd>
+Отвергает адрес и т.п., совпадающие с шаблоном
+и отправляет ответ с цифровым кодом и текстом.
+</dd><dt><b>REJECT</b></dt><dd>
+Отвергает адрес и т.п., совпадающие с шаблоном.
+Создаётся стандартный ответ об ошибке.
+</dd><dt><b>OK</b></dt><dd>
+Принимает адрес и т.п., совпавшие с шаблоном.
+</dd><dt><i>restriction...</i></dt><dd>
+Применяет именнованое ограничение UCE (<b>permit</b>, <b>reject</b>,
+<b>reject_unauth_destination</b> и т.п.).
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h2>ТАБЛИЦЫ РЕГУЛЯРНЫХ ВЫРАЖЕНИЙ</h2>
+
+
+<pre></pre>
+
+В этом разделе описано отличие поиска в таблицах, заданных в виде 
+регулярных выражений. Описание синтаксиса поисковой таблицы 
+регулярных выражений смотрите в <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=regexp_table&amp;category=5">regexp_table</a></b>(5) или 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pcre_table&amp;category=5">pcre_table</a></b>(5).
+
+Каждый шаблон является регулярным выражением, которое применяется
+ко всем строкам поиска. В зависимости от приложения, эта строка 
+является полным именем машины клиента, полным IP-адресом клиента 
+или полным почтовым адресом. Таким образом, поиск в родительском
+домене или родительской сети выполняться не будет, и почтовые адреса 
+<i><a href="mailto:user@domain">user@domain</a></i> не разбиваются на свои составные части <i>user@</i> 
+и <i>domain</i>.
+
+Шаблоны применяются в указанном в таблице порядке, пока не 
+будет найден шаблон, удовлетворяющий строке поиска.
+
+Действия те же самые, что и при просмотре обычного 
+индексированного файла с дополнительной возможностью интерполяции 
+отдельных подстрок шаблона как <b>$1</b>, <b>$2</b> и т.д.
+<a name="lbAI">&nbsp;</a>
+<h2>ОШИБКИ</h2>
+
+
+
+Формат таблицы не распознает соглашений о цитировании.
+<a name="lbAJ">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ</h2>
+
+
+<pre><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=postmap&amp;category=1">postmap</a>(1) - создает связывающую таблицу (mapping)
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=smtpd&amp;category=8">smtpd</a>(8) - smtp сервер
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=pcre_table&amp;category=5">pcre_table</a>(5) - формат таблицы PCRE
+<a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=regexp_table&amp;category=5">regexp_table</a>(5) - формат таблицы регулярных выражений POSIX
+</pre><a name="lbAK">&nbsp;</a>
+<h2>ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ</h2>
+
+
+<pre></pre>
+
+С этим программным обеспечением должна поставляться лицензия Secure Mailer'а.
+<a name="lbAL">&nbsp;</a>
+<h2>ОБ АВТОРАХ</h2>
+
+
+<pre>Wietse Venema
+IBM T.J. Watson Research
+P.O. Box 704
+Yorktown Heights, NY 10598, USA
+
+Перевод:
+Alex Savvin
+&lt;<a href="mailto:savvin@mail.ru">savvin@mail.ru</a>&gt;
+
+</pre>
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ </a></dt><dd>
+</dd><dt><a href="#lbAC">ФОРМАТ</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ФОРМАТ ТАБЛИЦЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">ШАБЛОНЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">ДЕЙСТВИЯ</a></dt><dd>
+</dd><dt><a href="#lbAH">ТАБЛИЦЫ РЕГУЛЯРНЫХ ВЫРАЖЕНИЙ</a></dt><dd>
+</dd><dt><a href="#lbAI">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAK">ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAL">ОБ АВТОРАХ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="access" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,434 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN crontab (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, crontab"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="crontab" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">crontab (8)</font><hr><li> <a href="/man.shtml?topic=crontab&amp;category=1&amp;russian=4"><u>crontab</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=1&amp;russian=1"><u>crontab</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=1&amp;russian=0"><u>crontab</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=1&amp;russian=2"><u>crontab</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=1&amp;russian=5"><u>crontab</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=5&amp;russian=1"><u>crontab</u></a> (5) <font color="#555555"> ( FreeBSD man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=5&amp;russian=0"><u>crontab</u></a> (5) <font color="#555555"> ( Русские man: Форматы файлов )</font></li><li> <a href="/man.shtml?topic=crontab&amp;category=5&amp;russian=2"><u>crontab</u></a> (5) <font color="#555555"> ( Linux man: Форматы файлов )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=crontab&amp;category=8&amp;russian=0"><u>crontab</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Пользовательские команды</h1></td>
+<td><h1 align="right">crontab(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>crontab</b> - управление пользовательским файлом заданий <b>cron</b></p>
+
+<h2>СИНТАКСИС</h2>
+<dl><dt></dt><dd><tt>
+crontab [ <b>имя_файла</b> ]<br>
+crontab [ -elr ] <b>имя_пользователя</b>
+</tt></dd></dl>
+
+<h2>ОПИСАНИЕ</h2>
+
+<p>Утилита <b>crontab</b> управляет доступом пользователя к демону <b>cron</b>
+(см. <a href="/man.shtml?topic=cron&amp;category=1"><b>cron(1M)</b></a>) путем копирования, создания, выдачи 
+содержимого и удаления файлов <b>crontab</b>, таблиц заданий. При вызове 
+без опций, <b>crontab</b>
+копирует указанный файл или стандартный входной поток (если файл не указан) в
+каталог, к котором хранятся пользовательские таблицы заданий <b>cron</b>.</p>
+
+<h3>&nbsp;&nbsp;&nbsp; Контроль доступа к <b>crontab</b></h3>
+
+<p>Доступ пользователя к <b>crontab</b> разрешен, если:</p>
+<ul>
+<li>имя пользователя указано в файле <b>/etc/cron.d/cron.allow</b>.</li>
+<li>файл <b>/etc/cron.d/cron.allow</b> не существует и имя пользователя не
+указано в файле <b>/etc/cron.d/cron.deny</b>.</li>
+</ul>
+
+<p>Доступ пользователя к <b>crontab</b> не разрешен, если:</p>
+<ul>
+<li>файл <b>/etc/cron.d/cron.allow</b> существует и имя пользователя в нем 
+не указано.</li>
+<li>файл <b>/etc/cron.d/cron.allow</b> не существует и имя пользователя указано в
+файле <b>/etc/cron.d/cron.deny</b>.</li>
+<li>ни один из упомянутых файлов не существует и пользователь не получил привилегию
+<b>solaris.jobs.user</b> через роль.</li>
+</ul>
+
+<p>Учтите, что правила разрешения и запрещения выполнения заданий применимы к пользователю <b>root</b> только если существуют файлы <b>allow</b>/<b>deny</b>.</p>
+
+<p>В файлах <b>allow</b>/<b>deny</b> надо задавать по одному имени пользователя в строке.</p>
+
+<h3>&nbsp;&nbsp;&nbsp; Формат записи файла <b>crontab</b></h3>
+
+<p>Файл <b>crontab</b> состоит из строк, содержащих шесть полей. Поля разделяются
+пробелмами или символами табуляции. Первые пять полей - целочисленные шаблоны,
+задающие:</p>
+
+<p>
+минуту (0-59),<br>
+час (0-23),<br>
+день месяца (1-31),<br>
+месяц года (1-12),<br>
+день недели (0-6, причем 0=воскресенье).</p>
+
+<p>Каждый из этих шаблонов может представлять собой звездочку (которая обозначает
+все допустимые значения) или список элементов через запятые. Элемент - число или два
+числа через дефис (что обозначает закрытый интервал). Обратите внимание,
+что дни можно указывать в двух полях (день месяца и день недели). Оба поля учитываются,
+если заданы в виде списка элементов. См. <a href="#examples"><b>ПРИМЕРЫ</b></a>.</p>
+
+<p>Шестое поле в строке файла <b>crontab</b> - строка, выполняемая командным
+интерпретатором в указанные моменты времени. Символ <b>%</b> (процент) в этом поле,
+если он не замаскирован <b>\</b> (обратной косой), преобразуется в символ новой строки.</p>
+
+<p>Только первая строка (до символа <b>%</b> или до конца строки) поля команды
+выполняется командным интерпретатором. Другие строки передаются команде как
+стандартный входной поток. Любая строка, начинающаяся символом <b>#</b>, считается
+комментарием и игнорируется. Файл не должен содержать пустых строк.</p>
+
+<p>Командный интерпретатор вызывается из начального каталога соответствующего 
+пользователя с аргументом <b>arg0</b>, равным <b>sh</b>. Пользователи, желающие, чтобы
+был выполнен их файл <b>.profile</b>, должны явно это указать в команде в файле
+<b>crontab</b>. Демон <b>cron</b> предоставляет каждому командному интерпретатору
+стандартную среду, задавая переменные <b>HOME</b>, <b>LOGNAME</b>, 
+<b>SHELL</b>(=<b>/bin/sh</b>), <b>TZ</b> и <b>PATH</b>. Стандартное значение
+переменной <b>PATH</b> для пользовательских заданий <b>cron</b> - <b>/usr/bin</b>, а
+для заданий <b>cron</b> пользователя <b>root</b> - <b>/usr/sbin:/usr/bin</b>.
+Стандартное значение переменной <b>PATH</b> можно задать в файле 
+<b>/etc/default/cron</b>; см. <a href="/man.shtml?topic=cron&amp;category=1"><b>cron(1M)</b></a>.</p>
+
+<p>Если стандартный выходной поток и стандартный поток ошибок команд не перенаправлены,
+любые сгенерированные результаты или сообщения об ошибках будут отправлены пользователю
+по электронной почте.</p>
+
+<h2>ОПЦИИ</h2>
+
+<p>Поддерживаются следующие опции:</p>
+
+<table cellspacing="4" width="100%" border="0">
+<tbody><tr><td valign="top" width="10%"><a name="e"><b>-e</b></a></td><td>
+Редактирует копию файла <b>crontab</b> текущего пользователя или создает пустой файл
+для редактирования, если соответствующего файла <b>crontab</b> не существует. Когда
+редактирование завершается, файл устанавливается в качестве пользовательского файла
+<b>crontab</b>. Если задано имя пользователя, реадктируется файл <b>crontab</b> этого, а не текущего пользователя; это может сделать только пользователь с привилегией
+<b>solaris.jobs.admin</b>. Переменная среды <b>EDITOR</b> задает редактор, вызываемый при указании опции -e. Стандартным редактором является <b>ed(1)</b>. Учтите, что
+все задания в файле <b>crontab</b> должны создаваться с помощью утилиты <b>crontab</b>;
+не стоит добавлять задания, просто редактируя файл <b>crontab</b>, поскольку демон
+<b>cron</b> не будет знать об изменениях, выполненных таким способом.
+</td></tr>
+<tr><td valign="top"><a name="l"><b>-l</b></a></td><td>
+Выдает файл <b>crontab</b> вызвавшего пользователя. Только пользователь с привилегией
+<b>solaris.jobs.admin</b> может указывать имя пользователя после опций <b>-r</b> 
+или <b>-l</b> для удаления или просмотра файла <b>crontab</b> другого пользователя.
+</td></tr>
+<tr><td valign="top"><a name="r"><b>-r</b></a></td><td>
+Удаляет пользовательский файл <b>crontab</b> из каталога заданий <b>cron</b>.
+</td></tr>
+</tbody></table>
+
+<h2><a name="examples">ПРИМЕРЫ</a></h2>
+
+<h3>Пример 1: Удаление core-файлов</h3>
+
+<p>Это задание удаляет файлы <b>core</b> каждый день в 3:15 утра:</p>
+
+<dl><dt></dt><dd><pre>15 3 * * 1-5 find $HOME -name core 2&gt;/dev/null | xargs rm -f
+</pre></dd></dl>
+
+<h3>Пример 2: Посылка позвдравления с днем рождения</h3>
+
+<dl><dt></dt><dd><pre>0 12 14 2 * mailx john%Happy Birthday!%Time for lunch.
+</pre></dd></dl>
+
+<h3>Пример 3: Задание дней месяца и дня недели</h3>
+
+<p>Следующее задание</p>
+
+<dl><dt></dt><dd><pre>0 0 1,15 * 1
+</pre></dd></dl>
+
+<p>будет выполнять команду 1 и 15 числа каждого месяца, а также по понедельникам.</p>
+
+<p>Чтобы задать дни выполнения только одним способом, в другом поле надо 
+поставить <b>*</b>. Например, задание:</p>
+
+<dl><dt></dt><dd><pre>0 0 * * 1
+</pre></dd></dl>
+
+<p>приведет к выполнению команды только по понедельникам.</p>
+
+<h2>ПЕРЕМЕННЫЕ СРЕДЫ</h2>
+
+<p>Описание следующих переменных среды:  
+<b>LC_CTYPE</b>, <b>LC_MESSAGES</b> и <b>NLSPATH</b>, 
+влияющих на работу команды <b>crontab</b>, 
+см. на странице справочного руководства <b><a href="/man.shtml?topic=environ&amp;category=5">environ(5)</a></b>.</p>
+
+<dl>
+<dt><b>EDITOR</b></dt><dd>
+Задает редактор, вызываемый при задании опции <a href="#e"><b>-e</b></a>. Стандартно
+вызывается редактор <b>ed(1)</b>. Если установлены переменные среды <b>EDITOR</b> 
+и <b>VISUAL</b>, редактор определяется значением переменной <b>VISUAL</b>.</dd>
+</dl>
+
+<h2>СТАТУС ВЫХОДА</h2>
+
+<p>Команда завершается со следующими статусами выхода:</p>
+
+<table width="100%" border="0">
+<tbody><tr><td width="10%"><b>0</b></td><td>
+Успешное выполнение.</td></tr>
+<tr><td><b>&gt;0</b></td><td>
+Произошла ошибка.</td></tr>
+</tbody></table>
+
+<h2>ФАЙЛЫ</h2>
+
+<dl>
+<dt><b>/etc/cron.d</b></dt><dd>
+основной каталог демона <b>cron</b></dd>
+<dt><b>/etc/cron.d/cron.allow</b></dt><dd>
+список пользователей, которые могут добавлять задания</dd>
+<dt><b>/etc/default/cron</b></dt><dd>
+стандартные значения для демона <b>cron</b></dd>
+<dt><b>/etc/cron.d/cron.deny</b></dt><dd>
+список пользователей, которым запрещено добавлять задания</dd>
+<dt><b>/var/cron/log</b></dt><dd>
+учетная информация</dd>
+<dt><b>/var/spool/cron/crontabs</b></dt><dd>
+область сброса для файлов <b>crontab</b></dd>
+</dl>
+
+<h2>АТРИБУТЫ</h2>
+
+<p>Описание следующих атрибутов см. на странице справочного руководства
+<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>:</p>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWcsu</td></tr>
+</tbody></table>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=atq&amp;category=1"><b>atq(1)</b></a>,
+	<a href="/man.shtml?topic=atrm&amp;category=1"><b>atrm(1)</b></a>,
+	<a href="/man.shtml?topic=auths&amp;category=1"><b>auths(1)</b></a>,
+	<a href="/man.shtml?topic=ed&amp;category=1"><b>ed(1)</b></a>,
+	<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>,
+	<a href="/man.shtml?topic=cron&amp;category=1"><b>cron(1M)</b></a>,
+	<a href="/man.shtml?topic=su&amp;category=1"><b>su(1M)</b></a>,
+	<a href="/man.shtml?topic=auth_attr&amp;category=4"><b>auth_attr(4)</b></a>,
+	<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>,
+	<a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>
+
+<h2>ПРИМЕЧАНИЯ</h2>
+
+<p>Если вы случайно ввели команду <b>crontab</b> без аргументов, не пытайтесь завершить
+работу с ней с помощью комбинации клавиш <b>Control-d</b>.
+Это приведет к удалению всех записей в файле <b>crontab</b>. Вместо этого, нажмите
+<b>Control-c</b> для выхода.</p>
+
+<p>Если авторизованный пользователь изменяет файл <b>crontab</b> другого пользователя,
+результат может оказаться непредсказуемым. Вместо этого, суперпользователь
+должен сначала выполнить команду <a href="/man.shtml?topic=su&amp;category=1"><b>su(1M)</b></a> для перехода
+в среду другого пользователя, а затем изменять его файл <b>crontab</b>.</p>
+
+<p>При изменении пользовательского файла <b>crontab</b> с помощью команды 
+<b>crontab</b> процесс <b>cron</b> немедленно учитывает эти изменения, если не
+выполняются задания <b>cron</b>. Однако если в момент изменения демон <b>cron</b>
+запускает задания <b>cron</b>, может потребоваться до 60 секунд, прежде чем демон
+<b>cron</b> учтет это изменение. Поэтому для безопасного выполнения надо добавлять 
+задания, которые должны выполниться не ранее, чем через минуту с момента 
+добавления.</p>
+
+<p align="center">Последнее изменение: 13 августа 1999 года</p>
+
+<p align="center"><font size="-2">
+Copyright 2002 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="crontab" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</dd></dl></body>
+<!---------------------------------------------  0  ---------------------------------------------->

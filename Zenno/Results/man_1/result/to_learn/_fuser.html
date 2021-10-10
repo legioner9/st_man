@@ -1,0 +1,478 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN fuser (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, fuser"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="fuser" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">fuser (1)</font><hr><li> <a href="/man.shtml?topic=fuser&amp;category=1&amp;russian=4"><u>fuser</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=fuser&amp;category=1&amp;russian=0"><u>fuser</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=fuser&amp;category=1&amp;russian=2"><u>fuser</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=fuser&amp;category=1&amp;russian=5"><u>fuser</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+fuser - идентифицирует процессы, которые используют указанные файлы или сокеты
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+
+<b>fuser</b>
+
+[<b>-a</b>|<b>-s</b>|<b>-c</b>]
+
+[<b>-4</b>|<b>-6</b>]
+
+[<b>-n&nbsp;</b>
+
+<i>space&nbsp;</i>]
+
+[<b>-k</b>
+
+[<b>-i</b>]
+
+[<b>-</b><i>signal</i>
+
+] ]
+[<b>-muvf</b>]
+
+<i>name</i> ...
+
+<br>
+
+<b>fuser</b>
+
+-l
+
+<br>
+
+<b>fuser</b>
+
+-V
+
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<b>fuser</b>
+
+отображает идентификаторы процессов (PIDs), которые используют в данный момент
+указанные файлы или файловые системы, заданные аргументом <b>name</b>.
+По умолчанию во время вывода информации после имени каждого файла
+следует буква, показывающая вид доступа:
+<dl compact=""><dt></dt><dd>
+<dl compact="">
+<dt><b>c</b></dt><dd>
+текущий каталог.
+</dd><dt><b>e</b></dt><dd>
+запущенный исполняемый файл.
+</dd><dt><b>f</b></dt><dd>
+открытый файл. По умолчанию в режиме вывода информации буква <b>f</b> может
+отсутствовать.
+</dd><dt><b>F</b></dt><dd>
+открытый для записи файл. По умолчанию в режиме вывода информации буква <b>F</b>
+может отсутствовать.
+</dd><dt><b>r</b></dt><dd>
+корневой каталог.
+</dd><dt><b>m</b></dt><dd>
+отображаемый файл или разделяемая (совместно используемая) библиотека.
+</dd></dl>
+</dd></dl>
+
+<p>
+
+Команда <b>fuser</b> возвращает ненулевой код возврата, если ни один из указанных
+файлов не "захвачен" ни одним процессом или в случае возникновения фатальной ошибки.
+Если найден хотя бы один процесс, который использует <b>name</b>, то команда <b>fuser</b>
+возвращает ноль.
+</p><p>
+
+В случае просмотра процессов, которые используют сокеты TCP и UDP, соответствующее
+название <b>space</b> должно быть указано с параметром <b>-n</b>. По умолчанию команда
+<b>fuser</b> будет искать по сокетам IPv6 и IPv4. Чтобы изменить установки,
+действующие по умолчанию, необходимо использовать параметры <b>-4</b> и <b>-6</b>.
+В качестве сокета(-ов) может быть указан как локальный, так и удалённый порт или
+удалённый адрес. Хотя все поля являются необязательными, однако перед пропущенными
+полями запятые должны присутствовать:
+</p><p>
+<b>[</b><i>lcl_port</i><b>][</b>,<b>[</b><i>rmt_host</i><b>][</b>,<b>[</b><i>rmt_port</i><b>]]]</b>
+
+</p><p>
+Для адресов IP и номеров портов может быть указан либо номер порта, либо его
+символьное название.
+</p><p>
+
+На стандартное устройство вывода <b>fuser</b> направляет только идентификаторы
+процессов (PIDs), всё остальное направляется на стандартное устройство вывода ошибок.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ПАРАМЕТРЫ</h2>
+
+<dl compact="">
+<dt><b>-a</b></dt><dd>
+Показывает информацию для всех файлов, которые указаны в командной строке.
+По умолчанию выводятся имена только тех файлов, которые используются
+хотя бы одним процессом.
+</dd><dt><b>-c</b></dt><dd>
+Подобно параметру -m и применяется для совместимости с POSIX.
+</dd><dt><b>-f</b></dt><dd>
+Игнорируется без предупреждения. Применяется для совместимости с POSIX.
+</dd><dt><b>-k</b></dt><dd>
+Уничтожает (завершает) процессы, которые используют указанный файл. Посылаемый сигнал
+завершения SIGKILL можно заменить с помощью параметра <b>-</b><i>signal</i>.
+Процесс <b>fuser</b> никогда не уничтожит себя сам, однако может завершить работу
+других процессов <b>fuser</b>. Перед попыткой уничтожить выполняющийся процесс,
+команда <b>fuser</b> устанавливает эффективный идентификатор пользователя ID этого
+процесса в идентификатор собственного пользователя.
+</dd><dt><b>-i</b></dt><dd>
+Перед завершением процесса потребует подтверждения от пользователя. Если не задан
+параметр <b>-k</b>, этот параметр игнорируется без предупреждения.
+</dd><dt><b>-l</b></dt><dd>
+Выводит список всех существующих названий сигналов.
+</dd><dt><b>-m</b></dt><dd>
+В качестве <i>name</i> указывается файл на смонтированной файловой системе или
+смонтированное специальное блочное устройство.
+Выводится список всех процессов, которые используют файлы на этой файловой системе.
+Если указанный файл является каталогом, тогда к его имени автоматически добавляется
+<i>name</i>/. и рассматривается любая файловая система, которая может быть
+смонтирована на этот каталог.
+</dd><dt><b>-n&nbsp;</b><i>space</i></dt><dd>
+Выбирает различные множества имён. Поддерживаются такие множество имён как <b>file</b>
+(по умолчанию это имена файлов), <b>udp</b> (локальные порты UDP) и <b>tcp</b>
+(локальные порты TCP). Для портов может быть указан либо номер порта, либо
+его символьное название. Можно использовать сокращенную запись цифрами
+<i>name</i><b>/</b>Ispace (например, <i>80</i><b>/</b>tcp ), если она однозначно
+характеризует объект.
+</dd><dt><b>-s</b></dt><dd>
+Выполняет операции без вывода сообщений. Параметры <b>-u</b> и <b>-v</b> игнорируются
+в этом режиме.
+Параметр <b>-a</b> не должен использоваться с параметром <b>-s</b>.
+</dd><dt><b>-</b><i>signal</i></dt><dd>
+Посылает процессу указанный сигнал завершения работы вместо обычного SIGKILL.
+Сигналы могут быть заданы по названию (например, <b>-HUP</b>) или по номеру
+(например, <b>-1</b>). Этот параметр без предупреждения игнорируется, если не
+используется параметр
+<b>-k</b>.
+</dd><dt><b>-u</b></dt><dd>
+Добавляет к каждому PID имя владельца процесса.
+</dd><dt><b>-v</b></dt><dd>
+Режим подробного информирования. Процессы показываются в стиле вывода команды <b>ps</b>.
+<br>&nbsp;Поля&nbsp;PID,&nbsp;USER&nbsp;и&nbsp;COMMAND&nbsp;подобны&nbsp;выводу&nbsp;команды&nbsp;<b>ps</b>.&nbsp;Поле&nbsp;ACCESS
+показывает процесс, который использует файл. Если объект используется ядром
+(например, в случае точек монтирования, swap файла и др.),
+вместо PID отображается строка <b>kernel</b>.
+</dd><dt><b>-V</b></dt><dd>
+Выводит информацию о версии программы.
+</dd><dt><b>-4</b></dt><dd>
+Выполняется поиск только для сокета IPv4. Этот параметр не должен использоваться
+с параметром <b>-6</b> и работает только с названиями <b>space</b> tcp и udp.
+</dd><dt><b>-6</b></dt><dd>
+Выполняется поиск только для сокета IPv6. Этот параметр не должен использоваться
+с параметром <b>-4</b> и работает только с названиями <b>space</b> tcp и udp.
+</dd><dt><b>-</b></dt><dd>
+Сбрасывает все параметры и устанавливает сигнал уничтожения процессов в SIGKILL.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<pre>/proc   месторасположение файловой системы proc
+</pre>
+
+<a name="lbAG">&nbsp;</a>
+<h2>ПРИМЕРЫ</h2>
+
+<b>fuser -km /home</b> уничтожает все процессы, использующие каким-либо образом
+файловую систему /home.
+<p>
+
+<b>if fuser -s /dev/ttyS1; then :; else </b><i>something</i>; fi вызывает выполнение
+<i>something</i>, если никакой другой процесс не использует /dev/ttyS1.
+</p><p>
+
+<b>fuser telnet/tcp</b> показывает все процессы (локальные) на порте TELNET.
+<a name="lbAH">&nbsp;</a>
+</p><h2>ОГРАНИЧЕНИЯ</h2>
+
+Информация о процессах, которые используют в различное время и по разному один и тот
+же файл или файловую систему, отображается только один раз.
+<p>
+
+Если один и тот же объект указывается в командной строке в различное время, то в
+дальнейшем некоторые из этих запросов могут быть проигнорированы.
+</p><p>
+
+Без запуска с необходимыми привилегиями команду <b>fuser</b> можно использовать
+для сбора предварительной неполной информации. Поскольку информация о файлах,
+открытых процессами, которые принадлежат другим пользователям, может отсутствовать в
+списке вывода, а режим выполнения может классифицироваться только как
+режим отображения на объект.
+</p><p>
+
+Установка для <b>fuser</b> бита привилегий суперпользователя SUID может устранить
+проблемы, которые связаны с неполной информативностью вывода программы для обычного
+пользователя, однако это может быть нежелательным с точки зрения информационной
+безопасности системы и соображений конфиденциальности личной информации.
+</p><p>
+
+Названия протоколов <b>udp</b>, <b>tcp</b> и доменных сокетов UNIX могут быть
+не найдены на старых ядрах (старее чем 1.3.78).
+</p><p>
+
+В настоящее время <b>udp</b> и <b>tcp</b> работают с IPv6 и IPv4, но
+адресные поля могут быть заданы только для IPv4 адресации.
+</p><p>
+
+Процессы, которые принадлежат ядру, выводятся только с параметром <b>-v</b>.
+</p><p>
+
+Параметр <b>-k</b> имеет силу только для процессов. Если владельцем процесса
+является ядро, <b>fuser</b> сообщит об этом и никаких действий не будет
+предпринимать.
+<a name="lbAI">&nbsp;</a>
+</p><h2>ОШИБКИ</h2>
+
+<p>
+
+Команда fuser -m /dev/sgX отобразит (или уничтожит с параметром -k)
+все процессы даже в том случае, если она не знает какое устройство сконфигурировано.
+Возможно она сделает это для различных устройств.
+</p><p>
+
+<b>fuser</b>
+
+не сможет дать информацию о любых процессах, режим доступа к которым
+запрещает просматривать файловую таблицу дескрипторов.
+В большинстве случаев эта проблема возникает при
+просмотре информации по сокетам TCP или UDP когда
+<b>fuser</b>
+
+выполняется от имени не суперпользователя. В этом случае
+<b>fuser</b>
+
+сообщит о невозможности доступа к  необходимой информации.
+<a name="lbAJ">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+<p>
+
+Werner Almesberger &lt;<a href="mailto:werner@almesberger.net">werner@almesberger.net</a>&gt;
+</p><p>
+
+Craig Small &lt;<a href="mailto:csmall@small.dropbear.id.au">csmall@small.dropbear.id.au</a>&gt;
+<a name="lbAK">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=kill&amp;category=1">kill</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=killall&amp;category=1">killall</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lsof&amp;category=8">lsof</a></b>(8), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ps&amp;category=1">ps</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=kill&amp;category=2">kill</a></b>(2).
+
+
+
+<a name="lbAL">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+оригинального файла на английском fuser.1.gz (2684 байт от 11.05.2005)
+выполнен Aleksander N.Gorohovski &lt;<a href="mailto:angel@feht.dgtu.donetsk.ua">angel@feht.dgtu.donetsk.ua</a>&gt; 09.01.2007.
+RE
+<a name="lbAM">&nbsp;</a>
+<h2>РЕЦЕНЗИЯ ПЕРЕВОДА</h2>
+
+Michael Shigorin &lt;<a href="mailto:mike@osdn.org.ua">mike@osdn.org.ua</a>&gt;
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">ОГРАНИЧЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAI">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAJ">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAK">СМ. ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAL">ПЕРЕВОД</a></dt><dd>
+</dd><dt><a href="#lbAM">РЕЦЕНЗИЯ ПЕРЕВОДА</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="fuser" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

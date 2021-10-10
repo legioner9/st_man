@@ -1,0 +1,1449 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN vsnprintf (3) Библиотечные вызовы (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, vsnprintf"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="vsnprintf" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">vsnprintf (3)</font><hr><li> <a href="/man.shtml?topic=vsnprintf&amp;category=3&amp;russian=1"><u>vsnprintf</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=vsnprintf&amp;category=3&amp;russian=0"><u>vsnprintf</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=vsnprintf&amp;category=3&amp;russian=2"><u>vsnprintf</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=vsnprintf&amp;category=3&amp;russian=5"><u>vsnprintf</u></a> (3) <font color="#555555"> ( POSIX man: Библиотечные вызовы )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+printf, fprintf, sprintf, snprintf, vprintf, vfprintf, vsprintf, vsnprintf - выводят данные с преобразованием формата
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>#include &lt;<a href="file:/usr/include/stdio.h">stdio.h</a>&gt;</b>
+
+<p>
+</p><pre><b>int printf(const char *</b><i>format</i><b>, ...);</b>
+<br>
+<b>int fprintf(FILE *</b><i>stream</i><b>, const char *</b><i>format</i><b>, ...);</b>
+<br>
+
+<b>#include &lt;<a href="file:/usr/include/stdarg.h">stdarg.h</a>&gt;</b>
+
+<b>int vprintf(const char *</b><i>format</i><b>, va_list </b><i>ap</i><b>);</b>
+<br>
+<b>int vfprintf(FILE *</b><i>stream</i><b>, const char *</b><i>format</i><b>, va_list </b><i>ap</i><b>);</b>
+<br>
+<b>int vsprintf(char *</b><i>str</i><b>, const char *</b><i>format</i><b>, va_list </b><i>ap</i><b>);</b>
+<br>
+<b>int vsnprintf(char *</b><i>str</i><b>, size_t </b><i>size</i><b>, const char *</b><i>format</i><b>, va_list </b><i>ap</i><b>);</b>
+</pre>
+
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Функции семейства 
+<b>printf</b>
+
+выводят данные в соответствии с параметром
+<i>format</i>,
+
+описанным ниже. Функции
+<b>printf</b>
+
+и
+<b>vprintf</b>
+
+направляют данные в стандартный поток вывода
+<i>stdout</i>;
+
+<b>fprintf</b>
+
+и
+<b>vfprintf</b>
+
+направляют данные в заданный поток вывода
+<i>stream</i>;
+
+<b>sprintf</b>,
+
+<b>snprintf</b>,
+
+<b>vsprintf</b>
+
+и
+<b>vsnprintf</b>
+
+направляют данные в символьную строку
+<i>str</i>.
+
+<p>
+
+Функции
+<b>vprintf</b>,
+
+<b>vfprintf</b>,
+
+<b>vsprintf</b>,
+
+<b>vsnprintf</b>
+
+эквивалентны соответствующим функциям
+<b>printf</b>,
+
+<b>fprintf</b>,
+
+<b>sprintf</b>,
+
+<b>snprintf</b>,
+
+исключая то, что они вызываются с va_list, а не с
+переменным количеством аргументов. Эти функции не вызывают макрос
+<i>va_end ,</i>
+
+и поэтому значение
+<i>ap</i>
+
+после вызова неопределенно. Приложение может позже само вызвать
+<i>va_end(ap)</i>.
+
+</p><p>
+
+Эти восемь функций выводят данные в соответствии со строкой
+<i>format</i>,
+
+которая определяет, каким образом последующие параметры
+(или доступные параметры переменной длины из
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=stdarg&amp;category=3">stdarg</a></b>(3))
+
+преобразуют поток вывода.
+<a name="lbAE">&nbsp;</a>
+</p><h3>Возвращаемое значение</h3>
+
+При успешном завершении работы эти функции возвращают количество напечатанных
+символов (не включая завершающий `\0', использующийся для обозначения конца
+строки данных). Функции
+<b>snprintf</b> и <b>vsnprintf</b>
+
+передают не больше байтов, чем указано в переменной
+<i>size</i>
+
+(включая завершающий '\0').
+Если вывод был урезан из-за этого ограничения, то возвращаемое значение
+является числом символов (кроме заверщающего '\0'),
+переданных в конечной строке, если для этого имелось достаточно места.
+Таким образом, возвращаемое значение
+<i>size </i>
+
+или более обозначает, что вывод был обрезан. (См. также ниже "ПРИМЧАНИЯ").
+Если случилась ошибка вывода, то возвратится отрицательное значение.
+<p>
+<a name="lbAF">&nbsp;</a>
+</p><h3>Структура строки параметров</h3>
+
+Cтрока параметров - это строка символов из переменных параметров.
+Эта строка может состоять из нуля или более параметров: обычных символов
+(кроме
+<b>%</b>),
+
+которые неизменно копируются в поток выхода;
+и спецификаторов преобразования, за каждым из которых следует один или более
+параметров. Каждый спецификатор преобразований предваряется символом
+<b>%</b>
+
+и оканчивается
+<i>спецификатором преобразования</i>.
+
+Между ними могут находиться (в определенном порядке) ноль или более
+<i>флагов</i>,
+
+необязательная минимальная
+<i>ширина поля</i>,
+
+необязательная
+<i>точность</i>
+
+и необязательные
+<i>модификаторы длины</i>.
+
+Параметры должны точно соответствовать (после преобразования типа)
+спецификаторам преобразований. По умолчанию параметры используются в порядке
+поступления, где каждая `*' и каждый спецификатор преобразования требуют последующего
+параметра (если указано недостаточно параметров, то это приведет к ошибке).
+Возможно явное указание на то, какой параметр будет следующим,
+с помощью записи `%m$' вместо `%' и `*m$' вместо `*', где десятичная цифра m означает
+позицию нужного параметра в их списке*; список начинается с единицы. Таким образом,
+<dl compact=""><dt></dt><dd>
+<pre>        printf("%*d", width, num);
+</pre>
+
+</dd></dl>
+
+и
+<dl compact=""><dt></dt><dd>
+<pre>        printf("%2$*1$d", width, num);
+</pre>
+
+</dd></dl>
+
+означают одно и то же. Вторая форма записи позволяет производить указание на
+тот же параметр несколько раз. Стандарт C99 не поддерживает использование `$',
+который пришел из Single Unix Specification. Если используется `$', то он
+должен использоваться для всех преобразований аргументов и во всех аргументах
+ширины и точности, но он может быть смешан с форматами `%%', которые не 
+поглощают аргументы. Там может не быть пробелов между числами аргументов, обусловленные
+использованием `$'. Например, если аргументы 1 и 3 определены, аргумент 2 должен также
+быть определен где-то в строке формата.
+<p>
+В некоторых цифровых преобразованиях используется символ десятичной точки или
+символ тысячной группировки `,'. Текущий символ
+зависит от переменной LC_NUMERIC. Стандарт POSIX
+по умолчанию использует символ `.' и не поддерживает символ группировки.
+Таким образом,
+</p><dl compact=""><dt></dt><dd>
+<pre>        printf("%'.2f", 1234567.89);
+</pre>
+
+</dd></dl>
+
+выводит `1234567.89' в стандарте POSIX, `1234567,89' в локализации
+nl_NL и `1.234.567,89' в локализации da_DK.
+<a name="lbAG">&nbsp;</a>
+<h3>Флаги</h3>
+
+За символом % может ничего не стоять или могут следовать следующие флаги:
+<dl compact="">
+<dt><b>#</b>
+
+</dt><dd>
+Значение преобразуется в "альтернативную форму".
+Для преобразования типа
+<b>o</b>
+
+первый символ выходного потока преобразуется в нуль
+(префикс 0, если до этого его не было указано).
+Для преобразований типа
+<b>x</b>
+
+и
+<b>X</b>
+
+к ненулевому результату добавляется `0x' (или `0X' для преобразования типа
+<b>X</b>).
+
+При преобразованиях типа:
+<b>a</b>,
+
+<b>A</b>,
+
+<b>e</b>,
+
+<b>E</b>,
+
+<b>f</b>,
+
+<b>F</b>,
+
+<b>g</b>
+
+и
+<b>G</b>
+
+- результат всегда будет содержать десятичную точку, даже если за ним нет 
+следующих цифр (обычно десятичная точка присутствует в результате таких
+преобразований, только если за ними следуют цифры). Для преобразований
+<b>g</b>
+
+и
+<b>G</b>
+
+завершающие нули не удаляются из результата, как это обычно случается.
+Результат других преобразований не определен.
+</dd><dt><b>0</b>
+
+</dt><dd>
+Значение добавляет нули. При преобразованиях типа:
+<b>d</b>,
+
+<b>i</b>,
+
+<b>o</b>,
+
+<b>u</b>,
+
+<b>x</b>,
+
+<b>X</b>,
+
+<b>a</b>,
+
+<b>A</b>,
+
+<b>e</b>,
+
+<b>E</b>,
+
+<b>f</b>,
+
+<b>F</b>,
+
+<b>g</b>
+
+и
+<b>G</b>
+
+- преобразуемое значение слева дополняется нулями (вместо пробелов).
+Если присутствуют флаги
+<b>0</b>,
+
+и
+<b>-</b>,
+
+то флаг
+<b>0</b>
+
+игнорируется.
+Если преобразование указано точно
+<b></b>(<b>d</b>,
+
+<b>i</b>,
+
+<b>o</b>,
+
+<b>u</b>,
+
+<b>x</b>
+
+и
+<b>X</b>),
+
+то флаг
+<b>0</b>
+
+игнорируется. Поведение флага при других преобразованиях не определено.
+</dd><dt><b>-</b>
+
+</dt><dd>
+Выравнивает результат преобразования по левой границе поля.
+(По умолчанию выравнивание выполняется справа.) Исключает преобразование типа
+<b>n ,</b>
+
+дополняя значение справа пробелами.
+<b>-</b>
+
+Отменяет флаг
+<b>0</b>,
+
+если оба флага были установлены.
+</dd><dt><b>' '</b>
+
+</dt><dd>
+(пробел). Устанавливает перед положительными числами (или пустой строкой)
+знак пробела для знаковых преобразований.
+</dd><dt><b>+</b>
+
+</dt><dd>
+Знак + или - всегда помещается перед числом со знаком.
+По умолчанию знак используется только для отрицательных чисел.
+<b>+</b>
+
+отменяет действие пробела, если оба флага используются.
+</dd></dl>
+<p>
+
+Пять флагов, описанных выше, определены в стандарте C.
+В стандарте SUSv2 определен один дополнительный флаг.
+</p><dl compact="">
+<dt><b>'</b>
+
+</dt><dd>
+При десятичных преобразованиях
+<b></b>(<b>i</b>,
+
+<b>d</b>,
+
+<b>u</b>,
+
+<b>f</b>,
+
+<b>g</b>,
+
+<b>G</b>)
+
+данные группируются символом тысячной группировки, если информация локализации
+не указывает на это. Обратите внимание, что многие версии
+<b>gcc</b>
+
+не могут распознать эту опцию и выводят соответствующее предупреждение.
+SUSv2 не включает %'F.
+</dd></dl>
+<p>
+
+glibc 2.2 добавит в будущем этот флаг.
+</p><dl compact="">
+<dt><b>I</b>
+
+</dt><dd>
+При преобразовании целых десятичных чисел
+<b></b>(<b>i</b>,
+
+<b>d</b>,
+
+<b>u</b>)
+
+вывод использует локальное представление цифр (например арабские цифры).
+Однако он не включает все локальные определения как определено в
+<b>outdigits</b>.
+
+См. <a href="http://sources.redhat.com/ml/libc-alpha/2000-08/msg00230.html">http://sources.redhat.com/ml/libc-alpha/2000-08/msg00230.html</a>
+</dd></dl>
+<a name="lbAH">&nbsp;</a>
+<h3>Ширина поля</h3>
+
+Необязательная стpока из десятичных цифp (с пеpвой цифpой, отличной от нуля)
+опpеделяет минимальную шиpину поля. Если пpеобpазованное значение имеет меньшее
+количество знаков, чем шиpина поля, то оно слева дополняется пpобелами
+(или спpава, если указан флаг левого пpеобpазования).
+Вместо стpоки десятичных цифp можно указать `*' или `*m$'
+(для некотоpого десятичного числа m), чтобы опpеделить шиpину поля по шиpине 
+следующего аpгумента или аpгумента  с номером m соответственно. Аргументы
+должны иметь тип
+<i>int</i>.
+
+Отpицательная шиpина поля пpинимается как флаг `-', устанавливающий
+положительную шиpину поля.
+Несуществующая или небольшая шиpина поля не делает его усеченным;
+если pезультат пpеобpазования больше шиpины поля, то поле
+pасшиpяется, чтобы вместить в себя пpеобpазованное значение.
+<a name="lbAI">&nbsp;</a>
+<h3>Точность</h3>
+
+Необязательный паpаметp точности в виде знака точки (`.') сопpовождается
+необязательной стpокой десятичных цифp.
+Вместо стpоки десятичных цифp можно указать `*' или `*m$'
+(для некотоpого десятичного числа m), чтобы опpеделить значение точности
+по следующему аpгументу или аpгументу с номером m соответственно,
+котоpые должны иметь тип
+<i>int</i>.
+
+Если точность указана как `.' или отpицательна,
+то она обрабатывается как нулевая.
+Это позволяет ограничивать количество выводимых символом для преобразований типов:
+<b>d</b>,
+
+<b>i</b>,
+
+<b>o</b>,
+
+<b>u</b>,
+
+<b>x</b>
+
+и
+<b>X</b>;
+
+показывать определенное количество цифр после десятичной точки для преобразований:
+<b>a</b>,
+
+<b>A</b>,
+
+<b>e</b>,
+
+<b>E</b>,
+
+<b>f</b>
+
+и
+<b>F</b>;
+
+показывать максимальное количество значащих цифр для преобразований
+<b>g</b>
+
+и
+<b>G</b>
+
+или максимальное количество символов для печати строк при преобразованиях
+<b>s</b>
+
+и
+<b>S</b>.
+
+<a name="lbAJ">&nbsp;</a>
+<h3>Модификаторы длины</h3>
+
+Устанавливаются для следующих `целых преобразователей':
+<b>d</b>,
+
+<b>i</b>,
+
+<b>o</b>,
+
+<b>u</b>,
+
+<b>x</b>
+
+или
+<b>X.</b>
+
+<dl compact="">
+<dt><b>hh</b>
+
+</dt><dd>
+Целые преобразователи соответствуют аргументам
+<i>signed char</i>
+
+или
+<i>unsigned char;</i>
+
+а также тип преобразования
+<b>n</b>
+
+соответствует аргументу указателя
+<i>signed char</i>.
+
+</dd><dt><b>h</b>
+
+</dt><dd>
+Целые преобразователи соответствуют аргументам
+<i>short int</i>
+
+или
+<i>unsigned short int</i>;
+
+а также тип преобразования
+<b>n</b>
+
+соответствует аргументу указателя
+<i>short int</i>.
+
+</dd><dt><b>l</b>
+
+</dt><dd>
+Целый преобразователь соответствует аргументам
+<i>long int</i>
+
+или
+<i>unsigned long int</i>;
+
+тип преобразования
+<b>n</b>
+
+соответствует аргументу указателя
+<i>long int</i>;
+
+тип преобразования
+<b>c</b>
+
+соответствует аргументу
+<i>wint_t</i>;
+
+тип преобразования
+<b>s</b>
+
+соответствует агрументу указателя
+<i>wchar_t</i>.
+
+</dd><dt><b>ll</b>
+
+</dt><dd>
+Целые преобразователи соответствуют аргументу
+<i>long long int</i>
+
+или
+<i>unsigned long long int;</i>
+
+тип преобразования
+<b>n</b>
+
+соответствует аргументу указателя
+<i>long long int .</i>
+
+</dd><dt><b>L</b>
+
+</dt><dd>
+Типы преобразования:
+<b>a</b>,
+
+<b>A</b>,
+
+<b>e</b>,
+
+<b>E</b>,
+
+<b>f</b>,
+
+<b>F</b>,
+
+<b>g</b>
+
+или
+<b>G</b>
+
+соответствуют аргументу
+<i>long</i>double<i>.</i>
+
+(C99 поддерживает %LF, а SUSv2 - нет.)
+</dd><dt><b>q</b>
+
+</dt><dd>
+(Только для библиотеки libc5 в BSD 4.4 и Linux. Не используйте их.)
+Это синоним 
+<b>ll</b>.
+
+</dd><dt><b>j</b>
+
+</dt><dd>
+Целые преобразователи соответствуют аргументу
+<i>intmax_t</i>
+
+или
+<i>uintmax_t</i>.
+
+</dd><dt><b>z</b>
+
+</dt><dd>
+Целые преобразователи соответствуют аргументу
+<i>size_t</i>
+
+или
+<i>ssize_t</i>.
+
+(Linux libc5 использует для этого
+<b>Z</b>.
+
+Не используйте данный аргумент.)
+</dd><dt><b>t</b>
+
+</dt><dd>
+Целые преобразователи соответствуют аргументу
+<i>ptrdiff_t</i>.
+
+</dd></dl>
+<p>
+
+SUSv2 располагает информацией только о модификаторах длины
+<b>h</b>
+
+(с
+<b>hd</b>,
+
+<b>hi</b>,
+
+<b>ho</b>,
+
+<b>hx</b>,
+
+<b>hX</b>,
+
+<b>hn</b>);
+
+<b>l</b>
+
+(с
+<b>ld</b>,
+
+<b>li</b>,
+
+<b>lo</b>,
+
+<b>lx</b>,
+
+<b>lX</b>,
+
+<b>ln</b>,
+
+<b>lc</b>,
+
+<b>ls</b>)
+
+и
+<b>L</b>
+
+(с
+<b>Le</b>,
+
+<b>LE</b>,
+
+<b>Lf</b>,
+
+<b>Lg</b>,
+
+<b>LG</b>).
+
+<a name="lbAK">&nbsp;</a>
+</p><h3>Тип преобразования</h3>
+
+Символы, которые определены как типы преобразования.
+Типы преобразования и их значения:
+<dl compact="">
+<dt><b>d</b>,<b>i</b>
+
+</dt><dd>
+Параметр
+<i>int</i>
+
+преобразует символы в их знаковое десятичное отображение. Точность задает минимальное 
+количество цифр в изображении результата; если результат можно показать с помощью меньшего
+количества цифр, то слева добавляются незначащие нули. По умолчанию значение
+точности равно единице. При выводе нуля с нулевой точностью выходной поток будет пуст.
+</dd><dt><b>o</b>,<b>u</b>,<b>x</b>,<b>X</b>
+
+</dt><dd>
+Параметр
+<i>unsigned int</i>
+
+преобразуется в беззнаковое восьмеричное выражение
+<b></b>(<b>o</b>),
+
+беззнаковое десятичное
+<b></b>(<b>u</b>)
+
+или беззнаковое шестнадцатеричное
+<b></b>(<b>x</b>
+
+и
+<b>X</b>).
+
+Буквы
+<b>abcdef</b>
+
+используются для преобразования 
+<b>x</b>,
+
+а буквы
+<b>ABCDEF</b>
+
+- для преобразования
+<b>X</b>.
+
+Точность задает минимальное  количество цифр в изображении результата;
+если результат можно показать с помощью меньшего количества цифр, то слева
+добавляются незначащие нули. По умолчанию значение точности равно единице.
+При выводе нуля с нулевой точностью выходной поток пуст.
+</dd><dt><b>e</b>,<b>E</b>
+
+</dt><dd>
+Параметр
+<i>double</i>
+
+округляется и преобразуется в десятичное отображение в виде
+
+<b></b>[-]d<b>.</b>ddd<b>e</b>\*(Pmdd<b>,</b>
+
+где одна цифра перед символом десятичной точки и количество цифр после нее
+указывают на необходимую точность; если точность отсутствует, она считается равной
+6-и; если точность равна нулю, символ десятичной точки не показывается. Преобразование
+<b>E</b>
+
+использует букву
+<b>E</b>
+
+(чаще 
+<b>e</b>)
+
+для отображения экспоненты. Экспонента всегда содержит две последние цифры;
+если ее значение равно нулю, экспонента равна 00.
+</dd><dt><b>f</b>,<b>F</b>
+
+</dt><dd>
+Параметр
+<i>double</i>
+
+округляется и преобразуется в десятичное выражение в виде
+<b></b>[-]ddd<b>.</b>ddd,
+
+где количество цифр после десятичной точки указывает на
+требуемую точность. Если точность отсутствует, она принимается равной
+6-и; если точность равна нулю, десятичная точка не показывается.
+Если десятичная точка есть, перед ней должна быть минимум одна цифра.
+(SUSv2 не располагает информацией о типе
+<b>F</b>
+
+и указывает, что этот символ предназначен для отображения символов бесконечности
+и NaN. Стандарт C99 определяет `[-]inf' или `[-]infinity'
+для указания на бесконечность, и строка начинается с `nan' для NaN в случае,
+если тип преобразования равен
+<b>f ;</b>
+
+она начинается с `[-]INF', `[-]INFINITY' или `NAN*' в случае, если тип преобразования равен
+<b>F</b>).
+
+</dd><dt><b>g</b>,<b>G</b>
+
+</dt><dd>
+Параметр
+<i>double</i>
+
+преобразуется в тип
+<b>f</b>
+
+или
+<b>e</b>
+
+(или
+<b>F</b>
+
+или
+<b>E</b>
+
+для преобразования
+<b>G</b>).
+
+Точность определяется количеством значащих цифр.
+Если точность отсутствует, то она определяется равной 6-и цифрам; если точность равна нулю,
+то она трактуется как 1. Тип
+<b>e</b>
+
+используется, если экпонента преобразования меньше, чем -4,  больше
+точности или равна ей. Завершающие нули удаляются из
+дробной части результата; десятичная точка стоит, только если
+за ней следует, по крайней мере, одна цифра.
+</dd><dt><b>a</b>,<b>A</b>
+
+</dt><dd>
+(для C99; в SUSv2 этого нет). Для преобразования типа
+<b>a</b>
+
+параметр
+<i>double</i>
+
+отображается в шестнадцатеричной форме (с помощью букв abcdef)
+вида
+<b></b>[-]<b>0x</b>h<b>.</b>hhhh<b>p</b>\*(Pmd;
+
+для преобразований типа
+<b>A</b>
+
+используется префикс
+<b>0X</b>,
+
+буквы ABCDEF и экспонентный разделитель
+<b>P</b>.
+
+Точность равна шестнадцатеричному разряду перед десятичной точкой
+и количеству цифр после нее.
+По умолчанию точность принимается равной точному значению разряда,
+если оно соответствует ему по основанию 2,
+и в противном случае размер ее является достаточным для определения значения типа
+<i>double</i>.
+
+Разряд перед десятичной точкой не определен для ненормализованных чисел
+и не равен нулю, но не определен для нормализованных чисел.
+</dd><dt><b>c</b>
+
+</dt><dd>
+Если модификатор
+<b>l</b>
+
+не представлен, параметр
+<i>int</i>
+
+преобразуется в
+<i>unsigned char</i>
+
+и выводится как результирующее значение. Если модификатор
+<b>l</b>
+
+представлен, параметр
+<i>wint_t</i>
+
+(расширенные символы) преобразуется в многобайтовую пследовательность для вызова
+в функции
+<b>wcrtomb</b>;
+
+первое его значение преобразуется в начальное значение и выводится в виде
+многобайтовой строки.
+</dd><dt><b>s</b>
+
+</dt><dd>
+Если модификатор
+<b>l</b>
+
+не представлен: параметр
+<i>const char *</i>
+
+преобразуется в указатель на массив символьного типа (строковый указатель).
+Символы из массива выводятся до заканчивающего символа
+<b>NUL</b>
+
+(не включая его); если точность определена, выводится не более 
+установленного количества символов.
+Если точность указана, нулевой символ не нужен;
+если точность не указана или она больше, чем размер массива,
+массив должен содержать заканчивающий символ
+<b>NUL</b>.
+
+Если модификатор
+<b>l</b>
+
+присутствует: параметр
+<i>const wchar_t *</i>
+
+преобразуется в указатель на массив с расширенными символами.
+Расширенные символы из массива преобразуются в многобайтовые символы
+(которые вызываются функцией
+<b>wcrtomb</b>;
+
+при этом первое значение преобразуется в начальное значение первого расширенного
+символа) и содержат завершающий нулевой символ.
+Результирующие многобайтовые символы выводятся до завершающего нулевого байта
+(не включая его). Если точность определена,
+выводится количество байтов, не превышающее это значение, а
+оставшаяся часть многобайтовых символов не выводится. Помните, что
+точность определяется числом выводимых
+<i>байтов</i>,
+
+а не 
+<i>расширенных символов</i>
+
+или
+<i>экранной позиции</i>.
+
+Массив должен содеpжать конечный нулевой символ, если точность не указана, и
+содеpжать количество байтов, меньшее pазмеpа массива.
+</dd><dt><b>C</b>
+
+</dt><dd>
+(Этого нет в C99, но есть в SUSv2.)
+Синоним
+<b>lc</b>.
+
+Не следует использовать.
+</dd><dt><b>S</b>
+
+</dt><dd>
+(Этого нет в C99, но есть в SUSv2.)
+Синоним
+<b>ls</b>.
+
+Не следует использовать.
+</dd><dt><b>p</b>
+
+</dt><dd>
+Параметр указателя
+<i>void *</i>,
+
+выводящийся в шестнадцатеричном виде (так же, как
+<b>%#x</b>
+
+или
+<b>%#lx</b>).
+
+</dd><dt><b>n</b>
+
+</dt><dd>
+Количество символов, выводящихся в целом типе
+<i>int *</i>
+
+(или других) без преобразующих параметров.
+</dd><dt><b>%</b>
+
+</dt><dd>
+Выводит символ `%' без преобразующих параметров.
+Полный спецификатор преобразования - `%%'.
+</dd></dl>
+<p>
+
+<a name="lbAL">&nbsp;</a>
+</p><h2>ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</h2>
+
+<br>
+
+
+Печатает  с пятью десятичными знаками после десятичной точки:
+<dl compact=""><dt></dt><dd>
+<pre>#include &lt;<a href="file:/usr/include/math.h">math.h</a>&gt;
+#include &lt;<a href="file:/usr/include/stdio.h">stdio.h</a>&gt;
+fprintf(stdout, "pi = %.5f\n", 4 * atan(1.0));
+</pre>
+
+</dd></dl>
+
+<p>
+
+Печатает дату и вpемя в фоpме `Sunday, July 3, 10:02', где
+<i>weekday</i>
+
+и
+<i>month</i>
+
+являются указателями на стpоку:
+</p><dl compact=""><dt></dt><dd>
+<pre>#include &lt;<a href="file:/usr/include/stdio.h">stdio.h</a>&gt;
+fprintf(stdout, "%s, %s %d, %.2d:%.2d\n",
+        weekday, month, day, hour, min);
+</pre>
+
+</dd></dl>
+
+<p>
+
+Многие стpаны используют поpядок отобpажения даты в виде "день, месяц, год".
+Следовательно, междунаpодная веpсия должна отображать
+значений в pазличных стандаpтах:
+</p><dl compact=""><dt></dt><dd>
+<pre>#include &lt;<a href="file:/usr/include/stdio.h">stdio.h</a>&gt;
+fprintf(stdout, format,
+        weekday, month, day, hour, min);
+</pre>
+
+</dd></dl>
+
+где
+<i>format</i>
+
+зависит от локальных установок и может менять аpгументы. Оперируя значениями
+<dl compact=""><dt></dt><dd>
+<pre>"%1$s, %3$d. %2$s, %4$d:%5$.2d\n"
+</pre>
+
+</dd></dl>
+
+, можно получить `Воскресенье, 3. Июль, 10:02'.
+<p>
+
+Указание достаточно большой строки и ее вывод
+(код корректен для обеих версий: glibc 2.0 и glibc 2.1):
+</p><dl compact=""><dt></dt><dd>
+<pre>#include &lt;<a href="file:/usr/include/stdio.h">stdio.h</a>&gt;
+#include &lt;<a href="file:/usr/include/stdlib.h">stdlib.h</a>&gt;
+#include &lt;<a href="file:/usr/include/stdarg.h">stdarg.h</a>&gt;
+char *
+make_message(const char *fmt, ...) {
+   /* необходимо не более 100-а байтов. */
+   int n, size = 100;
+   char *p;
+   va_list ap;
+   if ((p = malloc (size)) == NULL)
+      return NULL;
+   while (1) {
+      /* Попытайтесь произвести печать в pазpешенном пpостpанстве. */
+      va_start(ap, fmt);
+      n = vsnprintf (p, size, fmt, ap);
+      va_end(ap);
+      /* Если выполнено, возвpатить стpоку. */
+      if (n &gt; -1 &amp;&amp; n &lt; size)
+         return p;
+      /* Произвести повторную попытку, с пространством большего размера. */
+      if (n &gt; -1)    /* glibc 2.1 */
+         size = n+1; /* Это то, что необходимо */
+      else           /* glibc 2.0 */
+         size *= 2;  /* Удвоить стаpый pазмеp */
+      if ((p = realloc (p, size)) == NULL)
+         return NULL;
+   }
+}
+</pre>
+
+</dd></dl>
+
+<p>
+<a name="lbAM">&nbsp;</a>
+</p><h2>СООТВЕТСТВИЕ СТАНДАРТАМ</h2>
+
+Функции
+<b>fprintf</b>,
+
+<b>printf</b>,
+
+<b>sprintf</b>,
+
+<b>vprintf</b>,
+
+<b>vfprintf</b>,
+
+и
+<b>vsprintf</b>
+
+соответствуют ANSI X3.159-1989 (``ANSI C'') и ISO/IEC 9899:1999
+(``ISO C99''). Функции
+<b>snprintf</b>
+
+и
+<b>vsnprintf</b>
+
+соответствуют ISO/IEC 9899:1999.
+<p>
+
+Что касается возвpащаемого значения
+<b>snprintf</b>,
+
+то стандаpты SUSv2 и C99 пpотивоpечат дpуг дpугу: когда
+<b>snprintf</b>
+
+вызывается с
+<i>size</i>=0<i>,</i>
+
+тогда SUSv2 пpедусматpивает неопpеделенную величину возвpата, меньшую единицы,
+а C99 устанавливает в этом случае
+<i>str</i>
+
+pавной NULL и возвpащает значение (как обычно) в виде числа символов,
+размер которых в выходной стpоке был бы достаточным.
+</p><p>
+
+Библиотека Linux libc4 располагает информацией о пяти стандартных флагах C.
+Она также знает о модификаторах длины g, l, L и преобразованиях cdeEfFgGinopsuxX,
+где F является синонимом f.
+Дополнительно она принимает D, O, U как синонимы ld, lo, lu.
+(Это плохо и привело позже к серьезной ошибке, когда исчезла поддержка %D.)
+Зависимые от локали символы системы исчисления, разделители тысяч, бесконечность,
+%m$ и *m$ не поддерживаются.
+</p><p>
+
+Библиотека Linux libc5 располагает информацией о пяти стандартных флагах C и  
+флагах локализации, %m$ и *m$,
+о модификторах длины h,l,L,Z,q, но соотносит типы L и q
+с long double и сверхдлинным целым (это ошибка).
+Данная библиотека больше не распознает FDOU, но содержит новый символ преобразования
+<b>m</b>,
+
+который выводит
+<i>strerror(errno)</i>.
+
+</p><p>
+
+glibc 2.0 сейчас поддерживает символы C и S.
+</p><p>
+
+К glibc 2.1 добавлены модификаторы длины hh,j,t,z и символы преобразования a,A.
+В glibs 2.2 добавлены символы преобразования F с семантикой C99 и флаг I.
+<a name="lbAN">&nbsp;</a>
+</p><h2>ПРИМЕЧАНИЯ ПО ИСТОРИИ</h2>
+
+В Unix V7 были определены три функции:
+<b>printf</b>,
+
+<b>fprintf</b>,
+
+<b>sprintf</b>
+
+- а также имелись: ширина или точность *, модификатор длины l,
+типы преобразования doxfegcsu, а также D,O,U,X (как синонимы ld,lo,lu,lx).
+Это до сих пор является справедливым для BSD 2.9.1, но в BSD 2.10 уже имеются флаги
+#, + и &lt;space&gt;, хотя нет упоминаний о D,O,U,X.
+В BSD 2.11 появились
+<b>vprintf</b>,
+
+<b>vfprintf</b>,
+
+<b>vsprintf</b>.
+
+Предупреждение: не используйте D,O,U,X.
+В BSD 4.3 Reno были: 0, модификаторы длины h и L,
+типы преобразований n, p, E, G, X (с их текущими значениями);
+в этой версии осуждалось использование D,O,U. В BSD 4.4 представлены функции
+<b>snprintf</b>,
+
+<b>vsnprintf</b>
+
+и модификатор длины q. FreeBSD также имела функции
+<i>ff ,</i>
+
+<i>asprintf</i>
+
+и
+<i>vasprintf</i>,
+
+которые создавали буфер, достаточный для
+<b>sprintf</b>.
+
+В glibc имеются функции
+<i>dprintf</i>
+
+и
+<i>vdprintf</i>,
+
+которые вместо потока выводят в файловый дескриптор.
+<a name="lbAO">&nbsp;</a>
+<h2>НАЙДЕННЫЕ ОШИБКИ</h2>
+
+Так как
+<b>sprintf</b>
+
+и
+<b>vsprintf</b>
+
+получают строки произвольной длины, их вызов может привести к переполнению
+буфера, что невозможно предотвратить. Обратите внимание, что длина строки 
+определена как локально зависимая и ее трудно спрогнозировать.
+Используйте вместо них
+<b>snprintf</b>
+
+и
+<b>vsnprintf</b>
+
+(или
+<b>asprintf</b>
+
+и
+<b>vasprintf</b>).
+
+<p>
+
+Библиотека Linux libc4.[45] не имеет функции
+<b>snprintf</b>,
+
+однако предоставляет libbsd, содержащую
+<b>snprintf</b>,
+
+эквивалентную
+<b>sprintf</b>,
+
+то есть игнорирующую аргумент
+<i>size</i>.
+
+Таким образом, использование
+<b>snprintf</b>
+
+с ранними версиями libc4 ведет к серьезным проблемам с безопасностью.
+</p><p>
+
+Код типа
+<b>printf(</b><i>foo</i><b>);</b>
+
+часто приводит к ошибке, если
+<i>foo</i>
+
+может содержать символ %.
+Если в
+<i>foo</i>
+
+записан непроверенный ввод пользователя, то содержит foo может содержать
+%n, и это вызовет запись в память и создание бреши в безопасности.
+</p><p>
+
+Некоторые преобразования чисел с плавающей запятой в ранних версиях libc4
+приводили к утечкам памяти.
+<a name="lbAP">&nbsp;</a>
+</p><h2>ЗАМЕЧАНИЯ</h2>
+
+Реализация glibc функций
+<b>snprintf </b>
+
+и 
+<b>vsnprintf </b>
+
+соответствует стандарту C99, т.е. функции ведут себя так, как описано выше,
+начиная с glibc версии 2.1. До glibc 2.0.6 они возвращают -1 
+при обрезании вывода.
+<a name="lbAQ">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=printf&amp;category=1">printf</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=asprintf&amp;category=3">asprintf</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dprintf&amp;category=3">dprintf</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=wcrtomb&amp;category=3">wcrtomb</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=wprintf&amp;category=3">wprintf</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=scanf&amp;category=3">scanf</a></b>(3),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=locale&amp;category=5">locale</a></b>(5)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+<dl>
+<dt><a href="#lbAE">Возвращаемое значение</a></dt><dd>
+</dd><dt><a href="#lbAF">Структура строки параметров</a></dt><dd>
+</dd><dt><a href="#lbAG">Флаги</a></dt><dd>
+</dd><dt><a href="#lbAH">Ширина поля</a></dt><dd>
+</dd><dt><a href="#lbAI">Точность</a></dt><dd>
+</dd><dt><a href="#lbAJ">Модификаторы длины</a></dt><dd>
+</dd><dt><a href="#lbAK">Тип преобразования</a></dt><dd>
+</dd></dl>
+</dd><dt><a href="#lbAL">ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAM">СООТВЕТСТВИЕ СТАНДАРТАМ</a></dt><dd>
+</dd><dt><a href="#lbAN">ПРИМЕЧАНИЯ ПО ИСТОРИИ</a></dt><dd>
+</dd><dt><a href="#lbAO">НАЙДЕННЫЕ ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAP">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAQ">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="vsnprintf" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

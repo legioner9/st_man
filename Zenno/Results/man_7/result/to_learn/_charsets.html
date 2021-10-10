@@ -1,0 +1,547 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN charsets (7) Макропакеты и соглашения (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, charsets"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="charsets" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">charsets (7)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=charsets&amp;category=7&amp;russian=0"><u>charsets</u></a> (7) <font color="#555555"> ( Русские man: Макропакеты и соглашения )</font></li><li> <a href="/man.shtml?topic=charsets&amp;category=7&amp;russian=2"><u>charsets</u></a> (7) <font color="#555555"> ( Linux man: Макропакеты и соглашения )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+charsets - наборы символов для разных языков
+<a name="lbAC">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+Linux - это интернациональная операционная система. Различные ее
+утилиты и драйверы устройств (включая драйвер консоли) поддерживают
+многоязыковые наборы символов, включая символы латинского алфавита с
+диакритическими знаками, знаками ударения, лигатурами и
+нелатинские алфавиты, включая греческий, арабский, кириллицу и иврит.
+<p>
+
+Эта страница предоставляет Вам  информацию о различных стандартах 
+наборов символов: ASCII, ISO 8859, KOI8-R, Unicode, ISO 2022 и ISO 4873,
+и их совмещение в Linux с позиции программиста.
+Основной упор делается на наборы символов, используемые в локалях (а не на
+огромное количество наборов существующих в других системах).
+</p><p>
+
+Существует список наборов символов, которые поддерживаются в glibc
+2.2.3 is: ISO-8859-{1,2,3,5,6,7,8,9,13,15}, CP1251, UTF-8, EUC-{KR,JP,TW},
+KOI8-{R,U}, GB2312, GB18030, GBK, BIG5, BIG5-HKSCS и TIS-620. 
+(Румынский приравнивается к ISO-8859-16.)
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ASCII</h2>
+
+ASCII (American Standard Code For Information Interchange - американский
+стандартный код для обмена информацией) использует оригинальный 7-битный
+набор символов, изначально разработанный для американского варианта английского
+языка. Этот код описан в стантдарте ECMA-6.
+<p>
+
+Существуют различные варианты ASCII, в которых американский символ доллара (и
+знаки пунктуации) заменяются на знаки валют (из 7 бит) различных стран (Германия,
+Великобритания, Испания и др.). Все эти наборы символов не поддерживаются GNU 
+libc, так как не подъодят под стандарт наборов символов ASCII. (Эти наборы
+известны как ISO-646)
+</p><p>
+
+Так как ОС Linux была создана для оборудования, разработанного в США,
+то она с самого начала поддерживает ASCII.
+<a name="lbAE">&nbsp;</a>
+</p><h2>ISO 8859</h2>
+
+ISO 8859 - это последовательность из 15-и 8-битных наборов символов,
+каждый из которых имеет в своей нижней (7-битной) половине, невидимые
+управляющие символы US ASCII в позициях от 128-и до 159-и  и
+96 графических символов фиксированной ширины в позициях 160-255.
+<p>
+
+Из них самой важной является последовательность ISO 8859-1 (Latin-1).
+Она поддерживается драйвером консоли Linux, X11R6 и является
+базовым набором символов HTML.
+</p><p>
+
+Поддержка других наборов символов 8859 осуществляется в Linux
+консолью с помощью пользовательских утилит (таких, как
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=setfont&amp;category=8">setfont</a></b>(8)),
+
+
+меняющих назначения клавиатуры, таблицу графики EGA и
+передающих драйверу консоли таблицу соответствий символов шрифтам.
+</p><p>
+
+Hиже приводится краткое описание каждого набора.
+</p><dl compact="">
+<dt>8859-1 (Latin-1) </dt><dd>
+Latin-1 описывает большинство западноевропейских языков, таких, как:
+албанский, каталонский, датский, голландский, английский, фарезский,
+финский, французский, немецкий, галицийский, ирландский, исландский,
+итальянский, норвежский, португальский, испанский и шведский.
+Отсутствие лигатуры ij голландского языка, oe французского языка и старых
+,,немецких`` кавычек вполне приемлемо.
+</dd><dt>8859-2 (Latin-2)</dt><dd>
+Latin-2 подерживает большинство славянских и центральноевропейских
+языков: хорватский, чешский, немецкий, венгерский, польский,
+румынский, словацкий и словенский.
+</dd><dt>8859-3 (Latin-3)</dt><dd>
+Latin-3 включает в себя набор символов эсперанто, галицийского и 
+мальтийского языков.
+(турецкий сейчас пишется как 8859-9.)
+</dd><dt>8859-4 (Latin-4)</dt><dd>
+Latin-4 включает в себя символы эстонского, латвийского и литовского языков.
+В целом, он устарел; см. 8859-10 (Latin-6) и 8859-13 (Latin-7).
+</dd><dt>8859-5 </dt><dd>
+Кириллические символы поддерживают болгарский, белорусский,
+македонский, русский, сербский и украинский языки. Украинцы читают букву
+"г" с направленной вниз чертой как "х", поэтому для правильного
+написания "г" вам понадобится буква "г" с чертой, направленной вверх. 
+(См. ниже описание KOI8-R).
+</dd><dt>8859-6</dt><dd>
+Поддерживает арабский язык. Таблица глифов 8859-6 - это фиксированный
+шрифт отдельных форм букв; специальная программа отображения должна объединить
+их, используя корректные начальные, промежуточные и конечные формы.
+</dd><dt>8859-7</dt><dd>
+Поддерживает современный греческий язык.
+</dd><dt>8859-8</dt><dd>
+Поддерживает современный иврит без niqud (знаки пунктуации). Niqud
+и полный библейский иврит не входят в этот набор. Под Linux предпочтительно
+использовать для этого кодировку UTF-8.
+</dd><dt>8859-9 (Latin-5)</dt><dd>
+Это вариант Latin-1, в котором исландские буквы
+заменены турецкими.
+</dd><dt>8859-10 (Latin-6) </dt><dd>
+Latin 6 добавляет последние инуитские (гренландские) буквы и буквы сами
+(Sami Lappish), отсутствующие в Latin 4, для того, чтобы объединить шрифты
+всех нордических языков. RFC 1345 описывает начальный и отличный от него
+"latin6". В описание сами (sami) не вошло описание нескольких ударений.
+</dd><dt>8859-11</dt><dd>
+Эта кодировка является черновиком стандарта. Черновик идентичен
+кодировке TIS-620, используемую для тайского под Linux.
+</dd><dt>8859-12</dt><dd>
+Этот набор не существует. он был зарезервирован под вьетнамский, но
+он не подходит под 96 знаков. Для вьетнамского под Linux используется
+UTF-8.
+</dd><dt>8859-13 (Latin-7)</dt><dd>
+Поддерживает балтийские языки, в частности, латвийские символы не вошедшие
+в Latin-4.
+</dd><dt>8859-14 (Latin-8)</dt><dd>
+Это кельтский набор символов для гэлльского и уэльского языков.
+Этот набор также содержит символы для старого ирландского.
+</dd><dt>8859-15</dt><dd>
+Добавлен европейский знак и французские и финские лигатуры, отсутствующие 
+в Latin-1.
+</dd><dt>8859-16 (Latin-10)</dt><dd>
+Этот набор включает в себя почти все языки из 8859-2, и поддерживает
+полный румынский.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>KOI8-R</h2>
+
+KOI8-R является не-ISO набором символов, популярным в России. Hижняя часть
+таблицы описывает US ASCII, верхняя - набор символов кириллицы,
+более совершенный по сравнению с ISO 8859-5.
+KOI8-U это общий набор основанный на KOI8-R, имеющий полную
+поддержку украинского. Ни один из этих наборов не совмещается
+с ISO-2022 (в отличии от ISO-8859).
+<p>
+
+Консоль поддерживает KOI8-R с помощью пользовательских утилит,
+меняющих назначения клавиш, таблицу графики EGA и
+передающих таблицу соответствий символов и шрифтов драйверу консоли.
+
+
+<a name="lbAG">&nbsp;</a>
+</p><h2>JIS X 0208</h2>
+
+JIS X 0208 является стандартным набором для японского языка.
+Существуют несколько других стандартов, например, JIS X 0201, 
+JIS X 0212 и JIS X 0213, но первый, самый распространенный.
+Символы берутся из массива 94x94 и представлены двумя байтами
+каждый из которых находится в интервале 0x21-0x7e. Заметьте, что
+JIS X 0208 является набором символов, а не кодировкой. Это означает, 
+что JIS X 0208 не может представлять текстовую информацию
+самостоятельно, а является лишь компонентом для кодировок, таких
+как EUC-JP, Shift_JIS и ISO-2022-JP. EUC-JP является наиболее
+употребимой для Linux и включает в себя US ASCII и JIS X 0208. 
+<a name="lbAH">&nbsp;</a>
+<h2>KS X 1001</h2>
+
+KS X 1001 это корейский национальный стандарт для наборов символов.
+Как и в JIS X 0208, символы берутся из матрицы 94x94 и состоят
+из двух байт. KS X 1001, так же как и JIS X 0208, является компонентом
+для кодировок EUC-KR, Johab и ISO-2022-KR. EUC-KR является
+наиболее употребимой кодировкой для Linux и включает в себя
+US ASCII и KS X 1001. KS C 5601 это старое название KS X 1001.
+<a name="lbAI">&nbsp;</a>
+<h2>GB 2312</h2>
+
+GB 2312 это стандартный набр символов для упрощенного китайского.
+Как и в JIS X 0208, символы берутся из массива 94x94 и состоят
+из двух байт. Набор символов используется для кодировки EUC-CN.  EUC-CN
+является наиболее используемой кодировкой для Linux и включает в себя
+US ASCII и GB 2312. EUC-CN часто называют GB, GB 2312 или CN-GB.
+<a name="lbAJ">&nbsp;</a>
+<h2>Big5</h2>
+
+Big5 это популярный в Тайване набор для отображения традиционного
+китайского. Big5 является и кодировкой и набором символов. Он в ключает
+в себя US ASCII. Символы не входящие в ASCII представлены двумя байтами.
+Первый байт (символ представлен двумя байтами) берется из диапазона
+0xa1-0xfe. Big5 несовместим с ISO 2022.
+<a name="lbAK">&nbsp;</a>
+<h2>TIS 620</h2>
+
+TIS 620 это набор тайских символов с US ASCII. Как и в стандарте ISO
+8859, байты тайских символов находятся в интервале 0xa1-0xfe. 
+TIS 620 наиболее используемый набор для Linux.
+<a name="lbAL">&nbsp;</a>
+<h2>УНИКОД</h2>
+
+Unicode (ISO 10646) является стандартом, который может воспроизвести
+любой символ из всех известных человеку языков. Unicode изначально
+является 32-битным, так же есть 16-ти битный (UTF-16) и 8-ми битный
+(UTF-8). Информацию о Unicode можно найти по адресу:
+&lt;<a href="http://www.unicode.org">http://www.unicode.org</a>&gt;.
+<p>
+
+Для представления Unicode в Linux используется 8-битный формат
+преобразования Unicode (UTF-8 - 8-bit Unicode Transformation Format).
+UTF-8 - это формат непостоянной длины для кодирования Unicode.
+Он использует 1 байт для кодирования 7-и битов, 2 байта для 11-и битов,
+3 байта для 16-и битов, 4 байта для 21-ого бита, 5 байтов для 26-и 
+битов, 6 байтов для 31-ого бита.
+</p><p>
+
+Пусть 0, 1, x соответствует нулю, единице и случайному биту. Байт
+0xxxxxxx соответствует Unicode 00000000 0xxxxxxx, что, в свою очередь, 
+соответствует символу US ASCII 0xxxxxxxx. Таким образом, ни код, ни 
+размеры файлов ASCII в UTF-8 не изменяются.
+</p><p>
+
+Байт 110xxxxx является началом 2-байтного кода, и 110xxxxx 10yyyyyy
+преобразуется в 00000xxx xxyyyyyy.  Байт 1110xxxx - начало 3-байтного
+кода, и 1110xxxx 10yyyyyy 10zzzzzz преобразуется в xxxxyyyy yyzzzzzz.
+(Если UTF-8 используется для кодирования 31-битного ISO 10646, то
+это прогрессия продолжается до 6-байтных кодов.)
+</p><p>
+
+Большинство людей используют наборы ISO-8859, это означает, что символы
+не входящие в ASCII кодируются двумя байтами. Это приводит к тому, что обычный
+текстовый файл будет больше на 1-2 процента. Для текстов на греческом или
+русском на 100%, так как почти все символы в этих языках за пределами ASCII.
+Для японского 16-ти битный символ будет представлен 3-мя байтами. 
+</p><p>
+
+Обратите внимание, что UTF-8 является самосинхронизирующимся: 10xxxxxx
+- это "хвост", а любой другой байт - "голова" кода. Заметьте также, что
+байты ASCII в потоке UTF-8 встречаются  без изменений. 
+В частности, в потоке нет встроенных символов NUL или "/", формирующих код.
+</p><p>
+
+Так как символы ASCII, в частности, NUL и "/", не изменяются, то ядро
+не замечает, что используется UTF-8. Неважно, какие байты обрабатывает ядро.
+</p><p>
+
+Визуализация потоков данных Unicode обычно производится с помощью
+таблицы "подшрифтов", переводящей единицы набора Unicode в глифы.
+Ядро использует Unicode для описания подшрифта,
+загруженного в видеопамять. Это означает, что в режиме UTF-8 можно
+использовать набор символов с 512-ю различными символами. Этого
+недостаточно для японского, китайского и корейского языков, но достаточно
+для большинства других.
+</p><p>
+
+В настоящее время, консольные драйверы не поддерживают комбинированные символы.
+По этому. многие языки (например, тайский) не могут поддерживаться
+в консоли.
+<a name="lbAM">&nbsp;</a>
+</p><h2>ISO 2022 И ISO 4873</h2>
+
+Стандарты ISO 2022 и 4873 описывают модель управления шрифтами,
+основанную на практике работы VT100. Эта модель (частично)
+поддерживается ядром Linux и
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=xterm&amp;category=1">xterm</a></b>(1).
+
+Она популярна в Японии и Корее.
+<p>
+
+Имеется 4 набора графических символов, называемых G0, G1, G2 и G3.
+Один из них является текущим набором символов для кодов со старшим
+битом, равным нулю (изначально G0), другой - текущим набором для кодов
+со старшим битом, равным единице (изначально G1). Каждый набор
+графических символов имеет 94 или 96 символов и, по существу,
+является 7-битным набором символов. Используются либо коды 040-0177
+(041-0176), либо 0240-0377 (0241-0376). Размер G0 всегда равен 94-м
+символам и содержит коды 041-0176.
+</p><p>
+
+Переключение с одного набора символов на другой производится с помощью 
+функций сдвига ^N (SO or LS1), ^O (SI or LS0), ESC n (LS2), ESC o (LS3),
+ESC N (SS2), ESC O (SS3), ESC ~ (LS1R), ESC } (LS2R), ESC | (LS3R).
+Функция LS<i>n</i> делает набор символов G<i>n</i> текущим для кодов
+со старшим битом, равным нулю.
+Функция LS<i>n</i>R делает набор символов G<i>n</i> текущим для кодов
+со старшим битом, равным единице.
+Функция SS<i>n</i> делает набор символов G<i>n</i> (<i>n</i>=2
+или 3) текущим только для следующего символа (независимо от значения старшего
+бита).
+</p><p>
+
+94-символьный набор становится набором символов G<i>n</i> c помощью
+последовательности ESC ( xx (для G0), ESC ) xx (для G1),
+ESC * xx (для G2), ESC + xx (для G3), где xx является символом или
+парой символов, которая содержится в ISO 2375 International
+Register of Coded Character Sets (международном реестре кодированных
+наборов символов). Hапример, ESC ( @ выбирает в качестве G0 набор
+символов ISO 646, ESC ( A выбирает стандартный
+набор символов UK (со знаком фунта вместо знака номера), ESC ( B
+выбирает ASCII (со знаком доллара вместо знака валюты), ESC ( M
+выбирает набор символов для африканских языков, ESC ( ! A выбирает
+кубинский набор символов и т.д. и т.п.
+</p><p>
+
+96-символьный набор назначается набором символов G<i>n</i> с помощью
+последовательности ESC - xx (для G1), ESC . xx (для G2) или
+ESC / xx (для G3).
+Hапример, ESC - G выбирает в качестве G1 иврит.
+</p><p>
+
+Мультибайтный набор символов назначается набором символов G<i>n</i>
+последовательностью ESC $ xx или ESC $ ( xx (для G0),
+ESC $ ) xx (для G1), ESC $ * xx (для G2), ESC $ + xx (для G3).
+Hапример, ESC $ ( C выбирает для G0 корейский набор символов.
+Существует более новая версия японского набора символов, выбираемых
+при помощи ESC $ B и при помощи ESC &amp; @ ESC $ B.
+</p><p>
+
+ISO 4873 оговаривает более направленное использование наборов символов,
+при котором G0 фиксирован (всегда ASCII), так что G1, G2 и G3 могут
+быть заданы только для кодов с установленным старшим битом. При этом
+^N и ^O больше не используются, ESC ( xx может быть использована
+только с xx=B, а ESC ) xx, 
+ESC * xx и ESC + xx эквивалентны ESC - xx, ESC . xx и ESC / xx соответственно.
+<a name="lbAN">&nbsp;</a>
+</p><h2>СМ. ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=console&amp;category=4">console</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=console_ioctl&amp;category=4">console_ioctl</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=console_codes&amp;category=4">console_codes</a></b>(4),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ascii&amp;category=7">ascii</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=iso_8859_1&amp;category=7">iso_8859_1</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=unicode&amp;category=7">unicode</a></b>(7),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=utf-8&amp;category=7">utf-8</a></b>(7)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAD">ASCII</a></dt><dd>
+</dd><dt><a href="#lbAE">ISO 8859</a></dt><dd>
+</dd><dt><a href="#lbAF">KOI8-R</a></dt><dd>
+</dd><dt><a href="#lbAG">JIS X 0208</a></dt><dd>
+</dd><dt><a href="#lbAH">KS X 1001</a></dt><dd>
+</dd><dt><a href="#lbAI">GB 2312</a></dt><dd>
+</dd><dt><a href="#lbAJ">Big5</a></dt><dd>
+</dd><dt><a href="#lbAK">TIS 620</a></dt><dd>
+</dd><dt><a href="#lbAL">УНИКОД</a></dt><dd>
+</dd><dt><a href="#lbAM">ISO 2022 И ISO 4873</a></dt><dd>
+</dd><dt><a href="#lbAN">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="charsets" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

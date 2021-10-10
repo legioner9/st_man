@@ -1,0 +1,626 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN truss (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, truss"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="truss" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">truss (1)</font><hr><li> <a href="/man.shtml?topic=truss&amp;category=1&amp;russian=4"><u>truss</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=truss&amp;category=1&amp;russian=1"><u>truss</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=truss&amp;category=1&amp;russian=0"><u>truss</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>Пользовательские команды</h1></td>
+<td><h1 align="right">truss(1)</h1></td>
+</tr>
+</tbody></table>
+
+<h2><a name="name">НАЗВАНИЕ</a></h2>
+<p><b>truss</b> - трассировка системных вызовов и сигналов</p>
+
+<h2><a name="synopsis">СИНТАКСИС</a></h2>
+<dl><dt></dt><dd><tt>
+truss [ -fcaeildD ] [ - [ tTvx ] [ ! ] <b>системный_вызов</b> ,  ... ]<br>
+&nbsp;&nbsp;  [ - [ sS ] [ ! ]  <b>сигнал</b>, ... ] <br>
+&nbsp;&nbsp;  [ - [ mM ] [ ! ]  <b>сбой</b>, ... ] <br>
+&nbsp;&nbsp;  [ - [ rw ] [ ! ]  <b>fd</b>, ... ] <br>
+&nbsp;&nbsp;  [ - [ uU ] [ ! ]  <b>библиотека</b>, ...<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;  : [ : ] [ ! ] <b>функция</b>, ... ] <br>
+&nbsp;&nbsp;  [ -o <b>файл_результатов</b> ] <b>команда</b> | -p <b>pid</b> ...
+</tt></dd></dl>
+
+<h2><a name="description">ОПИСАНИЕ</a></h2>
+
+<p>Утилита <b>truss</b> выполняет указанную команду и выдает трассировку выполняемых ею
+системных вызовов, получаемых сигналов, и вызванных ею машинных сбоев. Каждая строка
+результатов трассировки либо сообщает о сбое, либо содержит имя сигнала или системного
+вызова, вместе с его аргументами и возвращаемыми значениями. Аргументы системного вызова
+выдаются, по возможности, в символьном виде, с использованием макросов, 
+определенных в соответствующих заголовочных файлах системы. Для указателей на имена 
+файлов выдается соответствующая строка. Информация об ошибках выдается с использованием имен,
+описанных на странице справочного руководства <a href="/man.shtml?topic=intro&amp;category=3"><b>intro(3)</b></a>.</p>
+
+<p>При указании соответствующей опции  (см. описание опции <a href="#u"><b>-u</b></a>), <b>truss</b>
+также выдает информацию о входе в пользовательские функции, вызываемые трассируемым процессом, 
+и выходе из них, причем для отражения вложенности вызовов используются отступы.</p>
+
+<h2><a name="options">ОПЦИИ</a></h2>
+
+<p>Утилита распознает представленные ниже опции. Для опций, принимающих аргумент-список,
+имя <b>all</b> можно использовать как сокращение, задающее все возможные элементы списка.
+Если список начинается с символа <b>!</b>, значение опции меняется на противоположное
+(например, исключить вызовы, а не трассировать). Одну и ту же опцию можно задавать несколько раз.
+Для одного и того же имени в списке, последующие опции (те, что правее)
+имеют приоритет над предыдущими (теми, что левее).</p>
+
+<dl>
+<dt><a name="p"><b>-p</b></a></dt><dd>
+Интерпретировать аргументы команды <b>truss</b> как список идентфикаторов существующих процессов 
+(см. <a href="/man.shtml?topic=ps&amp;category=1"><b>ps(1)</b></a>), а не как команду для выполнения. <b>truss</b> берет на
+себя управление каждым из процессов и начинает трассировать его, если только идентификатор
+пользователя- и группы-владельца процесса совпадают с идентификаторами текущего пользователя, или
+утилита вызвана привилегированным пользователем. Процессы можно также указывать по
+соответствующим именам в каталоге <b>/proc</b>, например, <b>/proc/12345</b>.<br><br></dd>
+<dt><a name="f"><b>-f</b></a></dt><dd>
+Отслеживать все процессы-потомки, созданные системным вызовом <b>fork()</b> или <b>vfork()</b> и
+включать в результаты трассировки информацию об их сигналах, сбоях и системных вызовах. 
+Обычно трассируются только команды или процессы верхнего уровня. Если указана опция <b>-f</b>,
+в каждую строку трассировки добавляется идентификатор процесса, показывающий, какой процесс
+выполнил системный вызов или получил сигнал.<br><br></dd>
+<dt><a name="c"><b>-c</b></a></dt><dd>
+Считать протрассированные системные вызовы, сбои и сигналы, а не выдавать информациюо них построчно.
+После завершения работы трассируемой команды или прерывания работы утилиты <b>truss</b> выдается 
+итоговый отчет. Если указана также опция <b>-f</b>, итоговые значения учитывают также все 
+протрассированные системные вызовы, сбои и сигналы порожденных процессов.<br><br></dd>
+<dt><a name="a"><b>-a</b></a></dt><dd>
+Выдавать строки аргументов, переданные в каждом системном вызове <b>exec()</b>.<br><br></dd>
+<dt><a name="e"><b>-e</b></a></dt><dd>
+Выдавать строки среды, передаваемые при каждом системном вызове <b>exec()</b>.<br><br></dd>
+<dt><a name="i"><b>-i</b></a></dt><dd>
+Не выдавать информацию о прерываемых спящих системных вызовах (interruptible  sleeping  system  calls).
+Некоторые системные вызовы, такие как <b>open()</b> и <b>read()</b> для терминальных устройств
+или программных каналов, могут "заснуть" не неопределенное время и являются прерываемыми. 
+Обычно утилита <b>truss</b> сообщает от таких спящих системных вызовах, если они остаются 
+спящими более одной секунды. Еще одна строка сообщения о системном вызове выдается при его завершении.
+Опция <b>-i</b> вызывает однократное информирование о таких вызовах, при их завершении.<br><br></dd>
+<dt><a name="l"><b>-l</b></a></dt><dd>
+Включать идентификатор соответствующего <i>легковесного процесса</i> (lightweight process - LWP)
+в каждую строку результатов трассировки. Если указана также опция <a href="#f"><b>-f</b></a>, 
+выдаются идентификаторы процесса и легковесного процесса.<br><br></dd>
+<dt><a name="d"><b>-d</b></a></dt><dd>
+Включать временную отметку в каждую строку результатов трассировки. Временная отметка выдается в 
+начале строки в виде поля <b>секунд.сотых</b>. Она показывает, сколько секунд прошло с начала трассировки.
+Первая строка результатов трассировки содержит базовое время, от которого отсчитываются отдельные
+временные отметки, в виде количества секунд с начала эры UNIX (см. <a href="/man.shtml?topic=time&amp;category=2"><b>time(2)</b></a>)
+и строки даты (см. <a href="/man.shtml?topic=ctime&amp;category=3"><b>ctime(3C)</b></a> и <a href="/man.shtml?topic=date&amp;category=3"><b>date(1)</b></a>).
+Выдаваемое время соответствует времени наступления соответствующего события. Для всех системных
+вызовов событием является завершение системного вызова, а не начало.<br><br></dd>
+<dt><a name="D"><b>-D</b></a></dt><dd>
+Включать дельту по времени в каждую строку результатов трассировки. Значение выдается в виде поля
+<b>секунд.сотых</b> и представляет время, прошедшее с момента обработки последнего события тем же 
+легковесным процессом (LWP). В частности, для системных вызовов это время не совпадает с временем
+работы системного вызова.<br><br></dd>
+<dt><a name="t"><b>-t [!]системный_вызов,...</b></a></dt><dd>
+Какие системные вызовы трассировать или не трассировать. Системные вызовы, указанные в списке
+через запятую, трассируются. Если список начинается символом <b>!</b>, соответствующие системные
+вызовы исключаются из списка трассируемых. Стандартное значение опции - <b>-tall</b>.<br><br></dd>
+<dt><a name="T"><b>-T [!]системный_вызов,...</b></a></dt><dd>
+Какие системные вызовы должны приводить к остановке процесса. Указанные системные вызовы добавляются
+к списку, заданному в опции <b>-t</b>. Если произойдет один из указанных здесь вызовов,
+утилита <b>truss</b> останавливает процесс и оставляет его в таком состоянии. Т.е. 
+перестает трассировать процесс и заврешает работу, но оставляет процесс остановленным по завершении
+соответствующего системного вызова. Затем остановленный процесс можно обработать отладчиком или 
+другим средством изучения состояния процессов (см. <a href="/man.shtml?topic=proc&amp;category=1"><b>proc(1)</b></a>).
+К остановленному процессу снова можно применить утилиту <b>truss</b> с теми же или другими
+опциями для продолжения трассировки. Стандартное значение опции - <b>-T!all</b>.<br>
+<br>
+Остановленный таким образом процесс нельзя перезапустить из приложения или сигналом <b>kill -CONT</b>,
+поскольку остановлен он при возникновении соответствующего события с помощью средств <b>/proc</b>,
+а не стандартной посылкой сигнала остановки (см. <a href="/man.shtml?topic=signal&amp;category=3"><b>signal(3HEAD)</b></a>).
+Для запуска остановленного так процесса можно использовать команду <b>prun(1)</b>, описанную на
+странице справочного руководства <a href="/man.shtml?topic=proc&amp;category=1"><b>proc(1)</b></a>.
+<br><br></dd>
+<dt><a name="v"><b>-v [!]системный_вызов,...</b></a></dt><dd>
+Информировать детально. Выдает содержание любых структур, передаваемых указанным системным вызовам по
+адресу (если эти вызовы трассируются опцией <a href="#t"><b>-t</b></a>). Показываются как входные 
+значения, так и значения, возвращаемые операционной системой. Для каждого поля, используемого
+как входное и выходное, выдается только выходное значение. Стандартное значение 
+опции - <b>-v!all</b>.<br><br></dd>
+<dt><a name="x"><b>-x [!]системный_вызов,...</b></a></dt><dd>
+Выдавать аргументы указанных системных вызовов (если они трассируются опцией <a href="#t"><b>-t</b></a>)
+в "сыром", обычно, шестнадцатеричном виде, а не в символическом. Эта возможность предназначена
+для безнадежных хакеров, которым для полного счастья надо видеть исходные значения байтов. 
+Стандартное значение опции - <b>-x!all</b>.<br><br></dd>
+<dt><a name="s"><b>-s [!]сигнал,...</b></a></dt><dd>
+Какие сигналы трассировать или не трассировать. Указанные в списке через запятую сигналы 
+трассируются. В результатах выдается информация о принятии каждого сигнала, даже если он
+проигнорирован (но не заблокирован). (Заблокированные сигналы не принимаются, пока не
+будут разблокированы.) Сигналы можно задавать по имени или по номеру (см. заголовочный
+файл <b>&lt;sys/signal.h&gt;</b>). Если список начинается с символа <b>!</b>, указанные сигналы
+не включаются в результаты трассировки. Стандартное значение опции - <b>-sall</b>.<br><br></dd>
+<dt><a name="S"><b>-S [!]сигнал,...</b></a></dt><dd>
+Какие сигналы должны приводить к остановке процесса. Указанные сигналы добавляются к множеству, 
+заданному в опции <b>-s</b>. При получении одного из перечисленных сигналов,
+утилита <b>truss</b> останавливает процесс и оставляет его в таком состоянии. 
+(см. описание опции <a href="#T"><b>-T</b></a>). Стандартное значение опции -
+<b>-S!all</b>.<br><br></dd>
+<dt><a name="m"><b>-m [!]сбой,...</b></a></dt><dd>
+Какие машинные сбои трассировать или не трассировать. Трассируются все сбои, перечисленные
+в списке через запятую. Сбои можно указывать по имени или по номеру (см. заголовочный файл
+<b>&lt;sys/fault.h&gt;</b>). Если список начинается символом <b>!</b>, указанные сбои не включаются
+в результаты трассировки. Стандартное значение опции - <b>-mall -m!fltpage</b>.<br><br></dd>
+<dt><a name="M"><b>-M [!]сбой,...</b></a></dt><dd>
+Какие машинные сбои должны приводить к остановке процесса. Указанные сбои добавляются к множеству,
+заданному в опции <b>-m</b>. Если происходит один из указанных сбоев,
+утилита <b>truss</b> останавливает процесс и оставляет его в таком состоянии. 
+(см. описание опцииs <a href="#T"><b>-T</b></a>). Стандартное значение опции -
+<b>-M!all</b>.<br><br></dd>
+<dt><a name="r"><b>-r [!]fd,...</b></a></dt><dd>
+Выдавать полностью содержимое буфера ввода/вывода для каждого вызова <b>read()</b> с любым
+из перечисленных <i>файловых дескрипторов</i> (<b>fd</b>). Результат форматируется по 32 байта в 
+строке и каждый байт выдается как ASCII-символ (предваренный одним пробелом) или как
+двухбайтовая управляющая последовательность языка C для управляющих символов вроде табуляции
+(<b>\t</b>) и новой строки (<b>\n</b>). Если интерпретация в виде ASCII-символа невозможна,
+байт представляется в шестнадцатеричном виде, как два символа. (Первые 12 байтов буфера
+ввода/вывода для каждого протрассированного вызова <b>read()</b> показываются даже
+при отсутствии опции <b>-r</b>.) Стандартное значение опции - <b>-r!all</b>.<br><br></dd>
+<dt><a name="w"><b>-w [!]fd,...</b></a></dt><dd>
+Выдавать содержимое буфера ввода/вывода для каждого вызова <b>write()</b> с любым
+из перечисленных файловых дескрипторов (см. описание опции <b>-r</b>). 
+Стандартное значение опции - <b>-w!all</b>.<br><br></dd>
+<dt><a name="u"><b>-u [!]библиотека,...:[:][!]функция,...</b></a></dt><dd>
+Трассировка вызова функции пользовательского уровня. <b>библиотека,...</b> - это список,
+через запятую, имен динамически компонуемых библиотек без суффикса "<b>.so.n</b>". 
+<b>функция,...</b> - это список имен функций через запятую. В обоих случаях, имена могут
+включать метасимволы сопоставления с образцом <b>*</b>, <b>?</b>, <b>[]</b> с таким
+же значеним, что и в командном интерпретаторе <b>sh(1)</b>. Но применяются эти метасимволы
+к именам библиотек/функций, а не файлов. Пустой список имен библиотек или функций
+интерпретируется как <b>*</b> и приводит к трассировке всех библиотек или функций в библиотеке.
+Начальный символ <b>!</b> в любом из списков означает, что список задает имена библиотек
+или функций, обращения к которым трассировать не надо. При исключении библиотеки из
+трассируемых, исключаются все функции этой библиотеки; любой список функций,
+идущий после списка не трассируемых библиотек, игнорируется.<br>
+<br>
+Если список библиотек отделяется от списка функций одним двоеточием (<b>:</b>), то трассироваться
+будут вызовы библиотек извне, но не вызовы одних функций библиотеки из других функций той
+же библиотеки. Два двоеточия (<b>::</b>) означают, что трассировать надо все вызовы, независимо 
+от того, откуда они сделаны.<br>
+<br>
+Шаблоны имен библиотек не соответствуют выполняемому файлу или динамически компонуемой 
+библиотеке, если нет точного совпадения (<b>l*</b> не соответствует <b>ld.so.1</b>).
+Для трассировки вызовов функций этих объектов необходимо задавать имена явно, например:<br>
+<br>
+truss -u a.out -u ld  ...<br>
+<br>
+Имя <b>a.out</b> для трассировки вызовов выполняемого файла надо использовать буквально;
+оно не задает имя конкретного выполняемого файла. При трассировке вызовов функций <b>a.out</b>
+предполагается трассировка всех вызовов (по умолчанию используется <b>::</b>).<br>
+<br>
+Можно задавать несколько опций <b>-u</b> - они обрабатываются слева направо. Если процесс
+скомпонован с библиотекой <b>-lthread</b>, в результаты трассировки включается 
+идентификатор нити, выполнившей соответствующий вызов. Утилита <b>truss</b> просматривает
+динамическую таблицу символов в каждой библиотеке для поиска имен функций, и 
+просматривает также стандартную таблицу символов, если она не была удалена (с помощью
+<b>stripe</b>).
+<br><br></dd>
+<dt><a name="U"><b>-U [!]библиотека,...:[:][!]функция,...</b></a></dt><dd>
+Какие вызовы функций пользовательского уровня должны останавливать процесс. Указанные функции
+добавляются к множеству, заданному в опции <a href="#u"><b>-u</b></a>. Если вызвана
+одна из этих функций, утилита <b>truss</b> останавливает процесс и оставляет его в таком состоянии. 
+(см. описание опцииs <a href="#T"><b>-T</b></a>).<br><br></dd>
+<dt><a name="o"><b>-o файл_результатов</b></a></dt><dd>
+Задает файл, в который будут выдаваться результаты трассировки. По умолчанию результаты выдаются 
+в стандартный поток ошибок.
+</dd>
+</dl>
+
+<p>Имена системных вызовов, принимаемые опциями <a href="#t"><b>-t</b></a>,
+<a href="#T"><b>-T</b></a>,  <a href="#v"><b>-v</b></a> и <a href="#x"><b>-x</b></a>
+см. в разделе 2 справочного руководства man: System Calls.</p>
+
+<p>Если утилита <b>truss</b> используется для запуска и трассировки указанной команды, и 
+использована опция <b>-o</b> или стандартный поток ошибок перенаправлен в файл, не связанный с
+терминалом, то процесс <b>truss</b> по ходу работы игнорирует сигналы <b>hangup</b>, 
+<b>interrupt</b> и <b>quit</b>. Это помогает трассировать интерактивные программы,
+перехватывающие сигналы <b>interrupt</b> и <b>quit</b>, поступающие с терминала.</p>
+
+<p>Если результаты трассировки направляются на терминал или трассируются уже запущенные
+процессы (с помощью опции <a href="#p"><b>-p</b></a>), утилита <b>truss</b> при
+получении сигналов <b>hangup</b>, <b>interrupt</b> и <b>quit</b> прекращает трассировать
+все процессы и завршает работу. Это позволяет пользователю прекратить выдачу избыточной
+трассировочной информации и прекратить трассировку ранее работавших процессов.
+Процессы, трассировка которых прекращена таким образом, продолжают работать нормально,
+как будто их никогда не трассировали.</p>
+
+<h2><a name="examples">ПРИМЕРЫ</a></h2>
+
+<h3>Пример 1: Трассировка комады</h3>
+
+<p>Следующий пример выдает на терминал трассировочную информацию для команды
+<a href="/man.shtml?topic=find&amp;category=1"><b>find(1)</b></a>:</p>
+
+<dl><dt></dt><dd><tt>
+example$ truss find . -print &gt;find.out
+</tt></dd></dl>
+
+<h3>Пример 2: трассировка типичных системных вызовов</h3>
+
+<p>Чтобы трассировать только системные вызовы <b>open</b>, <b>close</b>, <b>read</b> и
+<b>write</b>, выполните:</p>
+
+<dl><dt></dt><dd><tt>
+example$ truss -t open,close,read,write find . -print &gt;find.out
+</tt></dd></dl>
+
+<h3>Пример 3: Трассировка сценария командного интерпретатора</h3>
+
+<p>Следующая команда выдает трассировку команды <a href="/man.shtml?topic=spell&amp;category=1"><b>spell(1)</b></a> в
+файл <b>truss.out</b>:</p>
+
+<dl><dt></dt><dd><tt>
+example$ truss -f -o truss.out spell document
+</tt></dd></dl>
+
+<p><b>spell</b> - это сценарий командного интерпретатора, так что, необходимо указать флаг
+<a href="#f"><b>-f</b>Б</a>, чтобы трассировался не только командный интерпретатор, но
+и порожденные им процессы. (Сценарий <b>spell</b> запускает конвейер из восьми процессов.)</p>
+
+<h3>Пример 4: Сокращение объема результатов</h3>
+
+<p>Следующий пример дает огромный объем бесполезной трассировочной информации:</p>
+
+<dl><dt></dt><dd><tt>
+example$ truss nroff -mm document &gt;nroff.out
+</tt></dd></dl>
+
+<p>поскольку 97% строк сообщают о системных вызовах <b>lseek()</b>, <b>read()</b> и
+<b>write()</b>. Для сокращения объема получаемых результатов можно трассировать так:</p>
+
+<dl><dt></dt><dd><tt>
+example$ truss -t !lseek,read,write nroff -mm document &gt;nroff.out
+</tt></dd></dl>
+
+<h3>Пример 5: Трассировка библиотечных вызовов извне библиотеки libc</h3>
+
+<p>В этом примере трассируются все вызовы пользовательского уровня, обращающиеся извне
+к стандартной библиотеке <b>libc</b>:</p>
+
+<dl><dt></dt><dd><tt>
+example$ truss -u libc ...
+</tt></dd></dl>
+
+<h3>Пример 6: Трассировка библиотечных вызовов из самой библиотеки libc</h3>
+
+<p>В этом примере трассируются все вызовы стандартной библиотеки <b>libc</b>, выполненные 
+из самой библиотеки:</p>
+
+<dl><dt></dt><dd><tt>
+example$ truss -u libc:: ...
+</tt></dd></dl>
+
+<h3>Пример 7: Трассировка вызовов любой библиотеки, кроме libc</h3>
+
+<p>Вот как можно трассировать все пользовательские обращения ко всем библиотекам, кроме
+библиотеки <b>libc</b>:</p>
+
+<dl><dt></dt><dd><tt>
+example$ truss -u '*' -u !libc ...
+</tt></dd></dl>
+
+<h3>Пример 8: Трассировка вызовов функций <b>printf</b> и <b>scanf</b></h3>
+
+<p>В этом примере трассируются все обращения пользовательского уровня к функциям
+семейства <b>printf</b> и <b>scanf</b>, содержащимся в стандартной бибилотеке <b>libc</b>:</p>
+
+<dl><dt></dt><dd><tt>
+example$ truss -u 'libc:*printf,*scanf' ...
+</tt></dd></dl>
+
+<h3>Пример 9: Трассировка пользовательских вызовов любой функции</h3>
+
+<p>В этом примере трассируются все вызовы функций пользовательского уровня, откуда они бы ни
+делались:</p>
+
+<dl><dt></dt><dd><tt>
+example$ truss -u a.out -u ld:: -u :: ...
+</tt></dd></dl>
+
+<h3>Пример 10: Детальная трассировка системного вызова</h3>
+
+<p>Следующая команда обеспечивает детальную трассировку системных вызовов процесса
+с идентификатором 1, <a href="/man.shtml?topic=init&amp;category=1"><b>init(1M)</b></a> (выполнять ее может только
+привилегированный пользователь):</p>
+
+<dl><dt></dt><dd><tt>
+example# truss -p -v all 1
+</tt></dd></dl>
+
+<p>Если прервать работу <b>truss</b>, процесс <b>init</b> продолжит работать как обычно.</p>
+
+<h2><a name="files">ФАЙЛЫ</a></h2>
+
+<dl>
+<dt><b>/proc/*</b></dt><dd>
+файлы процессов</dd>
+</dl>
+
+<h2><a name="attributes">АТРИБУТЫ</a></h2>
+
+<p>Описание следующих атрибутов см. на странице справочного руководства
+<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>:</p>
+
+<table width="100%" border="1">
+<tbody><tr><td>ТИП АТРИБУТА</td>
+<td>ЗНАЧЕНИЕ АТРИБУТА</td></tr>
+<tr><td>Доступен в пакете</td>
+<td>SUNWtoo (32-битовая платформа)</td></tr>
+<tr><td>&nbsp;</td>
+<td>SUNWtoox (64-битовая платформа)</td></tr>
+</tbody></table>
+
+<h2><a name="see_also">ССЫЛКИ</a></h2>
+
+<dl><dt></dt><dd>
+	<a href="/man.shtml?topic=date&amp;category=1"><b>date(1)</b></a>, 
+	<a href="/man.shtml?topic=find&amp;category=1"><b>find(1)</b></a>,  
+	<a href="/man.shtml?topic=proc&amp;category=1"><b>proc(1)</b></a>,  
+	<a href="/man.shtml?topic=ps&amp;category=1"><b>ps(1)</b></a>, 
+	<a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>, 
+	<a href="/man.shtml?topic=spell&amp;category=1"><b>spell(1)</b></a>, 
+	<a href="/man.shtml?topic=init&amp;category=1"><b>init(1M)</b></a>,
+	<a href="/man.shtml?topic=intro&amp;category=3"><b>intro(3)</b></a>,
+	<a href="/man.shtml?topic=exec&amp;category=2"><b>exec(2)</b></a>,
+	<a href="/man.shtml?topic=fork&amp;category=2"><b>fork(2)</b></a>,
+	<a href="/man.shtml?topic=lseek&amp;category=2"><b>lseek(2)</b></a>,
+	<a href="/man.shtml?topic=open&amp;category=2"><b>open(2)</b></a>,
+	<a href="/man.shtml?topic=read&amp;category=2"><b>read(2)</b></a>,
+	<a href="/man.shtml?topic=time&amp;category=2"><b>time(2)</b></a>,
+	<a href="/man.shtml?topic=vfork&amp;category=2"><b>vfork(2)</b></a>,
+	<a href="/man.shtml?topic=write&amp;category=2"><b>write(2)</b></a>,
+	<a href="/man.shtml?topic=ctime&amp;category=3"><b>ctime(3C)</b></a>,
+	<a href="/man.shtml?topic=threads&amp;category=3"><b>threads(3THR)</b></a>, 
+	<a href="/man.shtml?topic=proc&amp;category=4"><b>proc(4)</b></a>, 
+	<a href="/man.shtml?topic=attributes&amp;category=5"><b>attributes(5)</b></a>, 
+	<a href="/man.shtml?topic=signal&amp;category=3"><b>signal(3HEAD)</b></a>
+</dd></dl>
+
+<dl><dt></dt><dd>
+Справочное руководство <b>man</b>, раздел 2: системные вызовы
+</dd></dl>
+
+<h2><a name="notes">ПРИМЕЧАНИЯ</a></h2>
+
+<p>Некоторые из системных вызовов, описанных в разделе 2 справочного руководства, посвященном
+системным вызовам, отличаются от фамктических интерфейсов системы. Не удивляйтесь, если
+обнаружите небольшие отличия результатов трассировки от описаний, представленных в этом разделе
+справочного руководства.</p>
+
+<p>Каждый сбой машины (кроме <b>page  fault</b>, сбоя при обращении к странице) приводит к
+посылке сигнала легковесному процессу (LWP), вызвавшему сбой. Информация о принятом сигнале
+будет идти сразу же за каждой строкой информации о машинном сбое (кроме <b>page fault</b>),
+если только соответствующий сигнал не заблокирован.</p>
+
+<p>Операционная система устанавливает, из соображений защиты, ряд ограничений на трассировку
+процессов. В частности, любая команда, объектный файл которой (<b>a.out</b>) не может
+быть прочитан пользователем, не может трассироваться этим пользователем; программы с
+установленными битами <b>suid</b> и <b>sgid</b> может трассировать только привилегированный
+пользователь. Если только не запущена привилегированным пользователем, утилита <b>truss</b>
+теряет контроль над любым процессом, выполнившим (<b>exec()</b>) объектный файл, 
+недоступный для чтения или с установленными битами <b>suid/sgid</b>; такие процессы
+продолжают работать нормально, но уже не трассируются утилитой <b>truss</b>, с момента
+выполнения соответствующего системного вызова <b>exec()</b>.</p>
+
+<p>Во избежание конфликтов с другими управляющими процессами, утилита <b>truss</b> не будет
+трассировать процесс, управляемый другим процессом через интерфейс <b>/proc</b>. Это
+позволяет утилите <b>truss</b> применяться к отладчикам на базе средств 
+<a href="/man.shtml?topic=proc&amp;category=4"><b>proc(4)</b></a> или к другим экземплярам самой себя.</p>
+
+<p>В результатх трассировки символы табуляции используются, исходя из предположения о
+стандартном шаге табуляции (восемь символов).</p>
+
+<p>Результаты трассировки для нескольких процессов или для <i>многонитиевого</i> 
+(multithreaded) процесса (содержащего более одного легковесного процесса, LWP) выдаются
+не строго упорядоченными по времени. Например, информация о вызове <b>read()</b> для
+программного канала может быть выдана раньше, чем о соответствующем вызове <b>write()</b>.
+Для любого одного LWP (обычный процесс содержит ровно один легковесный процесс), 
+выдаваемые результаты строго упорядочены по времени.</p>
+
+<p>При трассировке нескольких процессов, запускается отдельный управляющий процесс <b>truss</b>
+для каждого трассируемого процесса. В представленном выше примере трассировки команды <b>spell</b>,
+сама команда <b>spell</b> требует 9 слотов в таблице процессов, один - для командного
+интерпретатора и 8 для конвейера из 8 процессов, а <b>truss</b> добавляет еще 9 процессов,
+что суммарно дает 18.</p>
+
+<p>Не все возможные структуры, передаваемые в различные системные вызовы, выдаются при
+установке опции <a href="#v"><b>-v</b></a>.</p>
+
+<p align="center">Последнее изменение: 15 июля 1998 года</p>
+
+<p align="center"><font size="-2">
+Copyleft (no c) 2003 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p> 
+
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="truss" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

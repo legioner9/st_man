@@ -1,0 +1,561 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN make-ssh-known-hosts (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, make-ssh-known-hosts"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="make-ssh-known-hosts" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">make-ssh-known-hosts (1)</font><hr><li> <a href="/man.shtml?topic=make-ssh-known-hosts&amp;category=1&amp;russian=4"><u>make-ssh-known-hosts</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=make-ssh-known-hosts&amp;category=1&amp;russian=0"><u>make-ssh-known-hosts</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>НАЗВАНИЕ</h2>
+
+<b>make-ssh-known-hosts</b> - создание файла ssh_known_hosts из данных DNS
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+
+<dl compact="">
+<dt><b>make-ssh-known-hosts</b>
+
+</dt><dd>
+[<b>--initialdns </b><i>начальный_dns</i>]
+<br>
+
+[<b>--server </b><i>сервер_доменных_имен</i>]
+<br>
+
+[<b>--subdomains </b><i>разделенный_запятыми_список_поддоменов</i>]
+<br>
+
+[<b>--debug </b><i>уровень_отладки</i>]
+<br>
+
+[<b>--timeout </b><i>время_ожидания_выполнения_ssh</i>]
+<br>
+
+[<b>--pingtimeout </b><i>время_ожидания_ping</i>]
+<br>
+
+[<b>--passwordtimeout </b><i>время_ожидания_запроса_пароля</i>]
+<br>
+
+[<b>--notrustdaemon</b>]
+
+<br>
+
+[<b>--norecursive</b>]
+
+<br>
+
+[<b>--domainnamesplit</b>]
+
+<br>
+
+[<b>--silent</b>]
+
+<br>
+
+[<b>--keyscan</b>]
+
+<br>
+
+[<b>--nslookup </b><i>путь_к_программе_nslookup</i>]
+<br>
+
+[<b>--ssh </b><i>путь_к _программе_ssh</i>]
+<br>
+
+<i>имя_домена</i> [<i>take_regexp</i> [<i>remove_regexp</i>]]
+<p>
+</p></dd></dl>
+<a name="lbAD">&nbsp;</a>
+<h2>ОПИСАНИЕ</h2>
+
+<p>
+
+<b>make-ssh-known-hosts</b>
+
+это сценарий на perl5, который поможет в создании файла <i>/etc/ssh_known_hosts</i>,
+используемого
+<b>ssh</b>
+
+для хранения ключей всех публично известных машин.  
+Обычно 
+<b>ssh</b>
+
+не разрешает вход в систему с использованием аутентификации rhosts или /etc/hosts.equiv, если серверу не известен ключ клиентской машины. В добавок, ключи машин используются для предотвращения атак, построенных по принципу man-in-the-middle.
+</p><p>
+
+В дополнение к <i>/etc/ssh_known_hosts</i> <b>ssh</b> также использует файл
+<i>$HOME/.ssh/known_hosts</i>. Однако, этот файл предназначен для хранения только тех ключей машин, использование которых продиктовано спецификой данных пользователей. Подразумевается, что файл
+<i>/etc/ssh_known_hosts</i>
+
+может обслуживаться и быть периодически дополнен новыми ключами для любой новой машины только системным администратором.
+</p><p>
+
+Программа
+<b>make-ssh-known-hosts</b>
+
+найдет все машины в домене послав DNS запрос к главному серверу доменных имен домена. Главный сервер доменных имен будет найден посредством поиска SOA записи для домена с начального сервера имен (который может быть указан при помощи параметра <b>--initialdns</b>. Имя главного сервера доменных имен так-же может быть задано напрямую при помощи параметра <b>--server</b>.
+</p><p>
+
+После получения списка имен машин
+<b>make-ssh-known-hosts</b>
+
+пробует получить публичный ключ от каждой машины в домене. Сначала предпринимается попытка установить соединение через порт ssh для проверки, действует компьютер или нет, и если действует, то будет предпринята попытка выполнить на удаленной машине  с помощью <b>ssh</b> команду <b>cat /etc/ssh_host_key.pub</b>. Если команда была выполнена удачно, то программа будет знать, что <b>ssh</b> на удаленной машине установлено правильно и затем из результа будет извлечен публичный ключ и вывод <b>/etc/ssh_known_hosts</b> о нем будет направлен в STDOUT. Так как <b>make-ssh-known-hosts</b> обычно выполняется до того как на удаленных машинах будет создана запись в файле /etc/ssh_known_hosts, вам может понадобиться использование RSA-аутентификации для доступа к компьютерам.
+</p><p>
+
+Если по каким-то причинам выполнение программы завершилась неудачей, то будет произведена проверка был ли получен <b>ssh</b> клиентом в процессе инициализации публичный ключ с удаленной машины, и если это не так, то будет распечатана правильная запись, а если задан параметр <b>--notrustdaemon</b>, то она будет отмечена символом комментария.
+</p><p>
+
+<i>имя_домена</i>
+
+- это имя домена для которого был сгенерирован файл. По умолчанию 
+<b>make-ssh-known-hosts</b>
+
+извлекает также из домена все суб-домены. Во многих местах заносят некоторые домены в файл <i>/etc/ssh_known_hosts</i>.
+Записи для каждого домена должны быть извлечены раздельно, запуском
+<b>make-ssh-known-hosts </b>
+
+для каждого домена отдельно. Результаты затем могут быть объединены в одном окончательном файле.
+</p><p>
+
+<i>take_regexp</i>
+
+- это регулярное выражение perl, которое соответствует именам машин, взятым из домена. Соответствующие данные содержат все записи DNS в формате "<b>имя_поля=значение</b>". 
+Разделителем полей является новая строка, соответствия perl сделаны многострочными и не чувствительны к регистру. Многострочный режим означает, что вы можете использовать регулярные выражения подобные "<b>^wks=.*telnet.*$</b>"
+для соответствия всем компьютерам имеющим поля WKS (хорошо известные службы) содержащим значение "telnet".
+</p><p>
+
+<i>remove_regexp</i>
+
+- это схожее выражение, но те машины, которые соответствуют регулярному выражению, не будут добавлены (это может быть использовано, например, для отфильтровывания PC и Mac используя поле hinfo: "<b>^hinfo=.*(mac|pc)</b>").
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ПАРАМЕТРЫ</h2>
+
+<dl compact="">
+<dt><b>--initialdns </b><i>начальный_dns</i></dt><dd>
+</dd><dt><b>-i </b><i>начальный_dns</i></dt><dd>
+Указывает начальный сервер службы доменных имен, используемый для опроса записей SOA для домена.
+<p>
+</p></dd><dt><b>--server </b><i>сервер_доменных_имен</i></dt><dd>
+</dd><dt><b>-se </b><i>сервер_доменных_имен</i></dt><dd>
+Устанавливает главный сервер доменных имен домена. Этот компьютер используется для запроса списка DNS домена.
+<p>
+</p></dd><dt><b>--subdomains </b><i>список_суб-доменов</i></dt><dd>
+</dd><dt><b>-su </b><i>список_суб-доменов</i></dt><dd>
+Разделенный запятыми список суб-доменов, которые будут добавлены к именам машин. Например, если списком суб-доменов являются "<i>foo, foo.bar, foo.bar.zappa, foo.bar.zappa.hut.fi </i>", то когда машина foobar будет добавлена в файл <b>/etc/ssh_known_hosts</b>,
+то она получит псевдонимы "<i>foobar, foobar.foo, foobar.foo.bar, foobar.foo.bar.zappa, foobar.foo.bar.zappa.hut.fi </i>". По умолчанию берутся все составляющие имени машины, но второе с конца имени машины является базовым для компьютера. (Последний элемент имени, как правило, используется для обозначения кода государства, и что-нибудь типа
+<i>foobar.foo.bar.zappa.hut </i>
+
+не имело бы смысла.)
+<p>
+</p></dd><dt><b>--debug </b><i>уровень_отладки</i></dt><dd>
+</dd><dt><b>-de </b><i>уровень_отладки</i></dt><dd>
+Устанавливает уровень отладки. Значением по умолчанию является 5, большие значения дадут более информативный вывод.
+Использование большого значения (такого как 999) будет выводить уйму отладочной информации.
+<p>
+</p></dd><dt><b>--timeout </b><i>время_ожидания_выполнения_ssh</i></dt><dd>
+</dd><dt><b>-ti </b><i>время_ожидания_выполнения_ssh</i></dt><dd>
+Время ожидания выполнения команды <b>ssh</b>.
+Значением по умолчанию является 60 секунд.
+<p>
+</p></dd><dt><b>--pingtimeout </b><i>время_ожидания_ping</i></dt><dd>
+</dd><dt><b>-pi </b><i>время_ожидания_ping</i></dt><dd>
+Время ожидания пока выполняется ping портов ssh.  Значением по умолчанию является 3 секунды.
+<p>
+</p></dd><dt><b>--passwordtimeout </b><i>время_ожидания_запроса_пароля</i></dt><dd>
+</dd><dt><b>-pa </b><i>время_ожидания_запроса_пароля</i></dt><dd>
+Время ожидания запроса пароля для команды ssh. По умолчанию пароль не будет востребован. Используйте значение 0 для отмены ожидания запроса пароля.
+<p>
+</p></dd><dt><b>--notrustdaemon</b></dt><dd>
+</dd><dt><b>-notr</b></dt><dd>
+
+<br>
+
+Если команда
+<b>ssh</b>
+
+дала сбой используйте публичный ключ сохраненный в локальном файле известных машин и надейтесь, что это правильный ключ для машины. Если этот параметр не задан, такие записи будут закомментированы в сгенерированном файле <b>/etc/ssh_known_hosts</b>.
+<p>
+</p></dd><dt><b>--norecursive</b></dt><dd>
+</dd><dt><b>-nor</b></dt><dd>
+
+<br>
+
+Сообщает
+<b>make-ssh-known-hosts ,</b>
+
+что он должен только извлечь ключи для заданного домена без рекурсии. 
+<p>
+</p></dd><dt><b>--domainnamesplit</b></dt><dd>
+</dd><dt><b>-do</b></dt><dd>
+
+<br>
+
+Разбить имя домена для получения списка поддоменов. Используйте этот параметр, если вы не желаете, чтобы имена машин были разбиты автоматически. По умолчанию разбивка производится по принципу машина за машиной. Если доменом является 
+zappa.hut.fi  и имя машины  foo.bar, то по умолчанию будут добавлены записи "<i>foo, foo.bar, foo.bar.zappa, foo.bar.zappa.hut.fi </i>" Использование этого параметра добавит записи "<i>foo.bar, foo.bar.zappa, foo.bar.zappa.hut.fi </i>".
+<p>
+</p></dd><dt><b>--silent</b></dt><dd>
+</dd><dt><b>-si</b></dt><dd>
+
+<br>
+
+Быть тихим.
+<p>
+</p></dd><dt><b>--keyscan</b></dt><dd>
+</dd><dt><b>-k</b></dt><dd>
+
+<br>
+
+Вывод списка всех компьютеров в формате "ipaddr1,ipaddr2,...ipaddrn,
+имя_машины.домен.co,имя_машины,ipaddr1,ipaddr2,
+все_остальные_записи_имен_машин".
+Вывод этого может быть скормлен в ssh-keyscan для получения ключей.
+<p>
+</p></dd><dt><b>--nslookup </b><i>путь_к_программе_nslookup</i></dt><dd>
+</dd><dt><b>-n </b><i>путь_к_программе_nslookup</i></dt><dd>
+Указывает путь к программе <b>nslookup</b>.
+<p>
+</p></dd><dt><b>--ssh </b><i>путь_к_программе_ssh</i></dt><dd>
+</dd><dt><b>-ss </b><i>путь_к_программе_ssh</i></dt><dd>
+Указывает путь, включая все параметры, к программе <b>ssh</b>.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ПРИМЕРЫ</h2>
+
+<p>
+
+Команда
+</p><dl compact="">
+<dt></dt><dd>
+<b>make-ssh-known-hosts cs.hut.fi &gt; </b><b>/etc/ssh_known_hosts</b>
+
+</dd></dl>
+<p>
+
+найдет все публичные ключи в домене
+<b>cs.hut.fi </b>
+
+и поместит из в файл
+<b>/etc/ssh_known_hosts</b>
+
+с разбивкой доменных имен по-машинно.
+</p><p>
+
+Команда
+</p><dl compact="">
+<dt></dt><dd>
+<b>make-ssh-known-hosts hut.fi '^wks=.*ssh' &gt; </b><b>hut-hosts</b>
+
+</dd></dl>
+<p>
+
+найдет все машины в домене
+<b>hut.fi </b>
+
+и его под-доменах, имеющих свой собственный сервер имен (cs.hut.fi ,
+tf.hut.fi , tky.hut.fi ), которые имеют службу ssh, и поместит их публичные ключи в файл hut-hosts. Для этого требуется, чтобы сервер доменных имен hut.fi  определял бы все машины с действующими службами ssh по их WKS-записям. Если никто ещё не добавил ssh в WKS, то лучше использовать команду
+</p><dl compact="">
+<dt></dt><dd>
+<b>make-ssh-known-hosts hut.fi '^wks=.*telnet' &gt; </b><b>hut-hosts</b>
+
+</dd></dl>
+<p>
+
+которая отобрала бы машины, имеющие сервис telnet. Это использует список субдоменов по умолчанию.
+</p><p>
+</p><p>
+
+Команда
+</p><dl compact="">
+<dt></dt><dd>
+<b>make-ssh-known-hosts hut.fi 'dipoli.hut.fi ' '^hinfo=.*(mac|pc)' &gt; </b><b>dipoli-hosts</b>
+
+</dd></dl>
+<p>
+
+найдет все машины в домене hut.fi , которые находятся в поддомене dipoli.hut.fi  (обратите внимание, что dipoli.hut.fi  не имеет собственного сервера имен, так что записи о нем находятся на сервере hut.fi ) и что они не являются Mac или PC.
+</p><p>
+<a name="lbAG">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+
+
+<b>/etc/ssh_known_hosts</b> - глобальный список публичных ключей машин.
+<p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ssh&amp;category=1">ssh</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=sshd&amp;category=8">sshd</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ssh-keygen&amp;category=1">ssh-keygen</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ping&amp;category=8">ping</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=nslookup&amp;category=8">nslookup</a></b>(8),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=perl&amp;category=1">perl</a></b>(1),
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=perlre&amp;category=1">perlre</a></b>(1)
+
+<p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+
+Tero Kivinen &lt;<a href="mailto:kivinen@hut.fi">kivinen@hut.fi</a> &gt;
+
+<p>
+
+
+Александр Блохин &lt;<a href="mailto:sass@altlinux.ru">sass@altlinux.ru</a>&gt; - перевод на русский язык.
+
+<a name="lbAJ">&nbsp;</a>
+</p><h2>ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ</h2>
+
+----------------------------------------------------------------------
+<p>
+
+О Программе:
+</p><p>
+Это свободная программа; вы можете повторно распространять и/или
+модифицировать make-ssh-known-hosts в соответствии с Универсальной Общественной Лицензией GNU, опубликованной Фондом Свободного ПО; либо версии 2, либо (по вашему выбору) любой более  поздней версии.
+<br>&nbsp;
+Make-ssh-known-hosts распространяется в надежде, что она будет полезной, но БЕЗ
+КАКИХ-ЛИБО ГАРАНТИЙ; даже без подразумеваемых гарантий КОММЕРЧЕСКОЙ ЦЕННОСТИ
+или ПРИГОДНОСТИ ДЛЯ КОНКРЕТНОЙ ЦЕЛИ. Для получения подробных сведений смотрите
+Универсальную Общественную Лицензию GNU.
+<br>&nbsp;
+Вы должны были получить копию Универсальной Общественной Лицензии GNU вместе с
+этой программой; если нет, напишите по адресу: Free Software Foundation, Inc.,
+59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+----------------------------------------------------------------------
+</p><p>
+
+О Руководстве:
+</p><p>
+</p><p>
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+</p><p>
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the
+entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+</p><p>
+
+Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions, except that this permission notice may be included in
+translations approved by the the author instead of in the original
+English.
+----------------------------------------------------------------------
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ПАРАМЕТРЫ</a></dt><dd>
+</dd><dt><a href="#lbAF">ПРИМЕРЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAH">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd><dt><a href="#lbAI">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAJ">ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="make-ssh-known-hosts" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

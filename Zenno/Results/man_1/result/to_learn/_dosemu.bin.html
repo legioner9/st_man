@@ -1,0 +1,1135 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN dosemu.bin (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, dosemu.bin"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="dosemu.bin" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">dosemu.bin (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=dosemu.bin&amp;category=1&amp;russian=0"><u>dosemu.bin</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+dosemu.bin, dosdebug - запускает DOS и приложения DOS под Linux
+<a name="lbAC">&nbsp;</a>
+<h2>СИНТАКСИС</h2>
+
+<b>dosemu.bin</b>
+
+[
+<b>-ABCcdkVNXtsgKm234OU</b>
+
+]
+[
+<b>-h</b>
+
+<i>уровень</i>
+
+]
+[
+<b>-F</b>
+
+<i>файл</i>
+
+]
+[
+<b>--Fusers</b>
+
+<i>файл</i>
+
+]
+[
+<b>--Flibdir</b>
+
+<i>каталог</i>
+
+]
+[
+<b>--Fimagedir</b>
+
+<i>каталог</i>
+
+]
+[
+<b>-f</b>
+
+<i>файл</i>
+
+]
+[
+<b>-L</b>
+
+<i>dexe_файл</i>
+
+]
+[
+<b>-u</b>
+
+<i>переменная_настройки</i>
+
+]
+[
+<b>-D</b>
+
+<i>флаги</i>
+
+]
+[ 
+<b>-M </b>
+
+<i>объем</i>
+
+]
+[ 
+<b>-e </b>
+
+<i>объем</i>
+
+]
+[ 
+<b>-x </b>
+
+<i>объем</i>
+
+]
+[
+<b>-P </b>
+
+<i>файл</i>
+
+]
+[
+<b>-o</b>
+
+<i>файл</i>
+
+]
+[
+2&gt;
+<i>файл_отладки</i>
+
+]
+[
+<b>-I</b>
+
+<i>опции_настройки</i>
+
+]
+[
+<b>-U</b>
+
+<i>вх_канал[:вых_канал]</i>
+
+]
+<p>
+<b>dosdebug</b>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<b>dosemu.bin</b>
+
+является бинарным файлом, который запускается скриптом
+<b>dosemu</b>
+
+(1),
+активизирующим эмулятор DOS под Linux, также известный как
+<b>DOSEMU</b>.
+
+<br>
+
+<i>Файл_отладки</i>
+
+представляет собой опциональный файл, куда будет перенаправляться вся отладочная информация.
+<p>
+
+<b>dosdebug</b>
+
+используется для управления или отладки уже запущенного  
+<b>DOSEMU</b>.
+
+</p><p>
+
+Хотя эта программа известна как 
+<i>эмулятор </i>
+
+DOS, она в действительноти является виртуальной машиной для DOS, позволяющей
+оперировать DOS и программами, написанными для DOS, в окружении, подобном
+стандартному IBM PC/AT компьютеру или совместимому с процессором Intel 80x86
+в реальном режиме.
+<b>DOSEMU</b>
+
+предоставляет эмуляцию таких сервисов как видео подсистемы, дисковой,
+клавиатурной, последовательного порта и подсистемы принтера, доступных через
+BIOS; памяти CMOS для настроечной информации; часов реального времени; 
+работу с памятью через спецификации XMS 3.0, EMS 4.0 и DPMI 0.9.
+</p><p>
+
+Поскольку 
+<b>DOSEMU</b>
+
+не является действительным эмулятором DOS, требуется копия FreeDos, которая
+сейчас преднастроена и включена как часть официального бинарного дистрибутива
+DOSEMU.
+В дополнение, любой доступный сейчас проприетарный DOS (такой как MS-DOS, 
+PC-DOS, DR-DOS) может быть запущен, при настройке должным образом.
+</p><p>
+<a name="lbAE">&nbsp;</a>
+</p><h2>ТРЕБОВАНИЯ К ЯДРУ</h2>
+
+На текущий момент времени, необходимо иметь Linux 2.0.28 или выше с
+вкомпилированной опцией SYSV IPC (System V InterProcess Communication
+facilities, смотрите 
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=ipc&amp;category=2">ipc</a></b>(2)).
+
+Опция SYSV IPC включается в окне настройки ядра Linux в процессе его
+компиляции.
+<p>
+<a name="lbAF">&nbsp;</a>
+</p><h2>ОПИЦИИ</h2>
+
+<dl compact="">
+<dt><i>-A</i>
+
+</dt><dd>
+загрузка с дисковода A (не требует наличия реального дисковода, смотрите ниже)
+</dd><dt><i>-B</i>
+
+</dt><dd>
+загрузка с дисковода B (не требует наличия реального дисковода, смотрите ниже)
+</dd><dt><i>-C</i>
+
+</dt><dd>
+загрузка с жесткого диска C (не требует наличия реального жесткого диска и даже
+файловой системы msdos, смотрите ниже) 
+</dd><dt><i>-c</i>
+
+</dt><dd>
+использвать видео консоль напрямую (должно зыпускаться из консоли,
+требуется, чтобы 
+<b>dos </b>
+
+был с флагом suid для пользователя root)
+</dd><dt><i>-d</i>
+
+</dt><dd>
+отсоединиться от текущей виртуальной консоли или tty устройства и 
+присоединиться к первой свободной виртуальной консоли
+</dd><dt><i>-V</i>
+
+</dt><dd>
+использовать VGA спефицичную оптимизацию видео
+</dd><dt><i>-k</i>
+
+</dt><dd>
+использовать прозрачную клавиатуру консоли (должно запускаться из консоли)
+</dd><dt><i>-F</i>
+
+</dt><dd>
+Обработать предоставленный настроечный скрипт вместо встроенного файла
+global.conf (необходимо запустить DOSEMU от root с установленным флагом suid)
+</dd><dt><i>--Fusers</i>
+
+</dt><dd>
+Обойти файл /etc/dosemu.users и взять предоставленный файл вместо него
+(принимается только в случае, когда
+<b>dosemu.bin</b>
+
+<i>не</i>
+
+имеет флага suid-root).
+</dd><dt><i>--Flibdir</i>
+
+</dt><dd>
+Обойти каталог по умолчанию DOSEMU_LIB_DIR (как, возможно, определено в
+/etc/dosemu.users) и использовать предоставленный каталог вместо него 
+(принимается только в случае, когда
+<b>dosemu.bin</b>
+
+<i>не</i>
+
+имеет флага suid-root).
+</dd><dt><i>--Fimagedir</i>
+
+</dt><dd>
+Обойти каталог по умолчанию для загрузочного и каталога образов диска 
+(DOSEMU_HDIMAGE_DIR) и использовать предоставленный каталог вместо него
+(принимается только в случае, когда
+<b>dosemu.bin</b>
+
+<i>не</i>
+
+имеет флага suid-root).
+</dd><dt><i>-f</i>
+
+</dt><dd>
+Разобрать предоставленный настроечный файл вместо .dosemurc
+</dd><dt><i>-u</i>
+
+</dt><dd>
+установить пользовательскую переменную настройки. Префиксированная опция
+<b>u_</b>
+
+применяется для недопущения конфликта имен. Эта переменная может быть 
+проверена в файле dosemu.conf или global.conf при изготовлении некоторой
+специальной настройки.
+</dd><dt><i>-L</i>
+
+</dt><dd>
+Загрузить и запустить файл DEXE (специальный преднастроенный загрузочный образ
+диска, содержащий только одно приложение DOS)
+</dd><dt><i>-I</i>
+
+</dt><dd>
+Обработать строку, следующую за опцией.
+<i>-I</i>
+
+работает с таким же синтаксисом, как и global.conf или .dosemurc, например,
+</dd><dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>dos ... -I 'video { mda }'</dt><dd>
+<p><br>
+Эта опция полезна, если необходимо временно заменить предоставленный
+настроечный параметр. Также можно использовать общую настройку путем запуска
+скрипта как показано ниже
+</p></dd><dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>dos ... -I "`myconf.sh`"</dt><dd>
+<p><br>
+где
+<i>myconf.sh</i>
+
+является скриптом, выдающим настройку на стандартный вывод. Если имеется
+альтернативный файл настроек помимо .dosrc, то команда
+</p></dd><dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>dos ... -I "`cat myother.conf`"</dt><dd>
+<p><br>
+его будет использовать. Однако заметьте, что необходимо взять в кавычки
+параметр за 
+<i>-I,</i>
+
+потому что ожидается 
+<i>один</i>
+
+аргумент.
+</p></dd><dt><i>-D</i>
+
+</dt><dd>
+определяет какие отладочные сообщения позволить, а какие запретить
+</dd><dt><i>-h</i>
+
+</dt><dd>
+вывести дамп настроек на стандартный поток ошибок и выйти (поздразумевается
+установка -D+c). Опция полезна для отладки файла настроек, необходимо
+использовать
+<i>-O</i>
+
+также для направления сообщений типа +c на стандартный поток ошибок. Возможны
+`уровни' 0, 1 или 2, которые управляют количеством выводимой отладочной
+информации обработчика настроек:
+без отладочной информации (0), отладка петли обработчика (1), отладка
+if_else_endif (2).
+</dd><dt><i>-H</i>
+
+</dt><dd>
+определяет флаги, поддерживаемые dosdebug. В настоящий момент только `1'
+имеет смысл. С
+<i>-H1</i>
+
+происходит принуждение dosemu к ожиданию, пока подсоединен dosdebug терминал.
+Отсюда, чтобы отладить DOS сессию с самого начала, необходимо вначале запустить
+dosemu с параметром -H1, а затем запустить dosdebug.
+DOSEMU будет затем заблокирован перед переходом в загруженный boot сектор в
+ожидании соединения dosdebug. Однажды присоединившись, программа находится
+в состоянии `остановлена' и можно установить точки останова или пройтись
+пошагово через загрузочный код.
+</dd><dt><i>-O</i>
+
+</dt><dd>
+использовать стандартный поток ошибок для вывода отладочных сообщений
+</dd><dt><i>-o</i>
+
+</dt><dd>
+использовать предоставленный файл для вывода отладочных сообщений в него
+</dd><dt><i>-M</i>
+
+</dt><dd>
+установить базовую память в предоставленное значение объема в килобайтах
+</dd><dt><i>-m</i>
+
+</dt><dd>
+разрешить внутреннюю поддержку мыши
+</dd><dt><i>-P</i>
+
+</dt><dd>
+копировать отладочный вывод в предоставленный файл
+</dd><dt><i>-2,3,4</i>
+
+</dt><dd>
+выбрать 286, 386 или 486 процессор (Будьте осторожны!
+<b>DOSEMU</b>
+
+не является полностью 32-хбитным,
+так что при определении программой 386 или 486 процессора и использовании
+32-хбитных регистров, возможно сбивание ее с толку из-за функций BIOS. 
+Если предполагается, что такое случается, используйте -2 для принужденного
+перехода
+<b>DOSEMU</b>
+
+в режим 286.)
+</dd><dt><i>-U</i>
+
+</dt><dd>
+определяет входной и выходной каналы для асинхронного управления
+<b>DOSEMU</b>
+
+из других процессов. Формат такой (без пробелов между словами):
+</dd><dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>вх_канал:вых_канал</dt><dd>
+<p><br>
+где `:вых_канал' может быть опущен. В последнем случае можно не ожидать
+обратной связи от 
+<b>DOSEMU.</b>
+
+</p><p>
+По соображениям безопастности
+<b>DOSEMU</b>
+
+не создает именованные каналы самому себе, так пользователь отвечает за 
+установку корректных прав доступа на каналы. Заметьте, что при использовании
+этих опций, инородный процесс может контроллировать сессию
+<b>DOSEMU</b>
+
+(типа ввода с клавиатуры). Опция будет следоватьльно использована только
+внешними интерфейсами (типа kdos), которые вначале содадут соответствующие
+именованные каналы и затем запустят на исполнение
+<b>DOSEMU.</b>
+
+Специальные управляющяя команда (
+<i>ack on</i>
+
+) может быть использована, чтобы принудить
+<b>DOSEMU</b>
+
+возвратить признаки установки связи через `вых_канал' такой, чтобы внешний
+интерфейс знал когда управляющая команда началась или закончилась и была ли
+она успешна. Формат такого диалога признаков показан ниже
+</p></dd><dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>SYN: &lt;имя_команды&gt;</dt><dd>
+</dd><dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>&lt;различный вывод от команды&gt;</dt><dd>
+</dd><dt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>ACK: code=n</dt><dd>
+<p><br>
+где 
+<i>n</i>
+
+равно 0 в случае успеха.
+Простой управляющий терминал, который служит как пример, замещается программой
+<i>dosctrl.</i>
+
+Она берет только два канала как аргументы и дает возможность затем
+вводить управляющие команды, из которых `help' наиболее важна ;-)
+Заметьте, 
+<i>dosctrl</i>
+
+не запускает на выполнение
+<b>DOSEMU,</b>
+
+что необходимо сделать вручную.
+</p><p>
+
+</p></dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>ЖЕСТКИЕ ДИСКИ</h2>
+
+<b>DOSEMU</b>
+
+поддерживает четыре метода замещения DOS с жесткими дисками:
+<dl compact="">
+<dt>1.</dt><dd>
+виртуальный файл диска, находящийся на файловой системе Linux, который
+эмулирует жесткий диск.
+</dd><dt>2.</dt><dd>
+непосредственный доступ к разделу DOS через прозрачное дисковое устройство
+(например, /dev/hda, /dev/hdb, /dev/sdX).
+</dd><dt>3.</dt><dd>
+непосредственный доступ к разделу DOS через доступ к единичному разделу 
+(к примеру, /dev/hda1, /dev/hdb2, /dev/sdxx). Необходимо запустить программу
+<b>mkpartition</b>
+
+для разрешения
+<b>DOSEMU</b>
+
+доступа к разделу DOS с SPA (Single Partition Access).
+</dd><dt>4.</dt><dd>
+доступ к файловой системе Linux как к "сетевому" устройству, используя
+драйвер emufs.sys, поставляемый с
+<b>DOSEMU</b>
+
+как commands/emufs.sys.
+</dd></dl>
+<p>
+
+Все это объясняется подробнее в 
+<b>QuickStart.</b>
+
+</p><p>
+
+Настройка ресурсов жесткого диска
+<b>DOSEMU</b>
+
+выполняется путем редактирования файла 
+<b>dosemu.conf</b>
+
+перед запуском
+<b>DOSEMU</b>.
+
+Смотрите также doc/README.txt.
+</p><p>
+<a name="lbAH">&nbsp;</a>
+</p><h2>ФЛОППИ ДИСКИ</h2>
+
+<b>DOSEMU</b>
+
+поддерживает два метода замещения DOS с флоппи дисками:
+<dl compact="">
+<dt>1.</dt><dd>
+виртуальный файл диска, находящийся на файловой системе Linux, эмулирующий
+флоппи дисковод
+</dd><dt>2.</dt><dd>
+непосредственный доступ к физическому флоппи дисководу через прозрачное 
+дисковое устройство (к примеру, /dev/fd0, /dev/fd1).
+</dd></dl>
+<p>
+
+Все это также разъяснено более подробно в
+<b>QuickStart.</b>
+
+</p><p>
+
+Настройка ресурсов флоппи диска
+<b>DOSEMU</b>
+
+выполняется путем редактирования файла 
+<b>dosemu.conf</b>
+
+перед запуском
+<b>DOSEMU</b>.
+
+</p><p>
+<a name="lbAI">&nbsp;</a>
+</p><h2>ВИДЕО</h2>
+
+<b>DOSEMU</b>
+
+может запускаться на любом tty устройстве. Однако, увеличенная
+производительность и функциональность может быть получена с применением
+дополнительных особенностей консоли Linux.
+Так, для запускаемого в консоли
+<b>DOSEMU</b>
+
+желательно исследовать ключи 
+<i>-c,</i>
+
+<i>-k,</i>
+
+и
+<i>-V,</i>
+
+разъясненные более подробно в
+<b>QuickStart.Ю</b>
+
+Также некоторая укороченная документация находится в файле dosemu.conf,
+который можно редактировать, если это необходимо.
+<p>
+
+Вкратце, правильное использование консольного устройства и соответствующих
+ключей позволяет пользователю работать с DOS программой в оригинальном
+цвете и с оригинальным шрифтом, без проблем переодического обновления экрана
+при кодах вывода на базовое устройство tty. 
+</p><p>
+<a name="lbAJ">&nbsp;</a>
+</p><h2>КЛАВИАТУРА</h2>
+
+Те, кто желает применять
+<b>DOSEMU</b>
+
+в консоли Linux, могут также воспользоваться прямым доступом к клавиатуре.
+Такой режим действия, выбранный ключом
+<i>-k,</i>
+
+предоставляет пользователю доступ ко всей клавиатуре прямо из-под DOS. 
+Любые комбинации клавиш ALT, CTRL и SHIFT могут использоваться
+для генерации необычных кодов клавиш, ожидаемых многими программами.
+<p>
+<a name="lbAK">&nbsp;</a>
+</p><h2>ПЕЧАТЬ</h2>
+
+Сервисы печати BIOS эмулирутся через стандартный I/O доступ к файлам UNIX
+через временные файлы, которые периодически опрашиваются LPR либо другим
+клиентом печати как указано в параметре $_printer в файле dosemu.conf. 
+<p>
+<a name="lbAL">&nbsp;</a>
+</p><h2>ОТЛАДОЧНЫЕ СООБЩЕНИЯ</h2>
+
+Отладочные сообщения могут контроллироваться как в командной строке, так и
+в настроечном файле. Просмотрите документацию, находящуюся внутри файла
+config.dist, включённого в подкаталог примеров
+<b>DOSEMU,</b>
+
+для информации об опциях отладки. В командной строке можно определить
+какие классы сообщений будут доступны  
+<b>dos.</b>
+
+Синтаксис тут передаётся 
+<b>DOSEMU</b>
+
+через опцию "-D FLAGS", где FLAGS представляет собой строку букв, которые
+определяют какие опции будут печатать на экран, а какие подавляться.
+<b>DOSEMU</b>
+
+разбирает эту строку справа налево.
+<p>
+<br>&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;включает&nbsp;следующие&nbsp;опции&nbsp;(начальное&nbsp;состояние)
+<br>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;выключает&nbsp;следующие&nbsp;опции
+<br>&nbsp;&nbsp;&nbsp;a&nbsp;&nbsp;&nbsp;включает&nbsp;или&nbsp;выключает&nbsp;все&nbsp;опции&nbsp;в&nbsp;зависимости&nbsp;от&nbsp;флага
+<br>&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;выключает&nbsp;все&nbsp;опции
+<br>&nbsp;&nbsp;&nbsp;1-9&nbsp;устанавливает&nbsp;уровень&nbsp;отладки:&nbsp;чем&nbsp;выше,&nbsp;тем&nbsp;больше&nbsp;выводится
+<br>&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;где&nbsp;#&nbsp;-&nbsp;это&nbsp;буква&nbsp;из&nbsp;списка&nbsp;верного&nbsp;класса,&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;включает&nbsp;или&nbsp;выключает&nbsp;опцию&nbsp;в&nbsp;зависимости&nbsp;от&nbsp;состояния&nbsp;+/-.
+</p><p>
+<i>Классы Сообщений:</i>
+
+</p><p>
+<br>&nbsp;d&nbsp;&nbsp;диск<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>R&nbsp;&nbsp;чтение&nbsp;с&nbsp;диска<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>W&nbsp;&nbsp;запись&nbsp;на&nbsp;диск<br>
+<br>&nbsp;D&nbsp;&nbsp;int&nbsp;21h<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>C&nbsp;&nbsp;компакт&nbsp;дисковод<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>v&nbsp;&nbsp;видео<br>
+<br>&nbsp;X&nbsp;&nbsp;поддержка&nbsp;X<tt>&nbsp;</tt>k&nbsp;&nbsp;клавиатура<tt>&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>i&nbsp;&nbsp;порты&nbsp;I/O<br>
+<br>&nbsp;s&nbsp;&nbsp;послед.&nbsp;порты<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>m&nbsp;&nbsp;мышь<tt>&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>#&nbsp;&nbsp;прерывания<br>
+<br>&nbsp;p&nbsp;&nbsp;принтер<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>g&nbsp;&nbsp;базовые<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>c&nbsp;&nbsp;настройка<br>
+<br>&nbsp;w&nbsp;&nbsp;предупреждения<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>h&nbsp;&nbsp;оборудование<tt>&nbsp;</tt>I&nbsp;&nbsp;IPC<br>
+<br>&nbsp;E&nbsp;&nbsp;EMS<tt>&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>x&nbsp;&nbsp;XMS<tt>&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>M&nbsp;&nbsp;DPMI<br>
+<br>&nbsp;n&nbsp;&nbsp;сеть&nbsp;IPX<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>P&nbsp;&nbsp;пакетный&nbsp;драйвер<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>S&nbsp;&nbsp;ЗВУК<br>
+<br>&nbsp;r&nbsp;&nbsp;PIC<tt>&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>T&nbsp;&nbsp;трассировка&nbsp;IO<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Z&nbsp;&nbsp;PCI-BIOS<br>
+<br>&nbsp;A&nbsp;&nbsp;драйвер&nbsp;ASPI<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>Q&nbsp;&nbsp;mapping&nbsp;driver<br>
+</p><p>
+Любые классы отладки, следующие после символа 
+<i>+ </i>
+
+до символа 
+<i>-,</i>
+
+будут включены (неподавляющиеся). Любые, следующие после символа 
+<i>-</i>
+
+до символа 
+<i>+,</i>
+
+будут подавлены.  Символ 
+<i>a</i>
+
+действует подобно строке со всеми возможными классами отладки, так 
+<i>+a</i>
+
+включит все отладочные сообщения и 
+<i>-a</i>
+
+выключит все отладочные сообщения.  Символы 
+<i>0 </i>
+
+и 
+<i>1-9</i>
+
+также специального назначения: 
+<i>0</i>
+
+выключает все отладочные сообщения, а 
+<i>1-9</i>
+
+включает все отладочные сообщения, но также устанавливает и уровень отладки.
+</p><p>
+Символ 
+<i>+</i>
+
+приписывается в начало строки FLAGS.
+Некоторые классы, типа класса ошибок, не могут быть выключаны.  
+В случае, если перенаправление на стандартный поток ошибок нежелательно, 
+ближайший путь для достижения результата -  перенаправить весь
+вывод в устройство
+<b>/dev/null.</b>
+
+</p><p>
+Несколько примеров:
+<br>&nbsp;&nbsp;"-D+a-v"&nbsp;или&nbsp;"-D1-v"&nbsp;:&nbsp;все&nbsp;сообщения&nbsp;кроме&nbsp;видео
+<br>&nbsp;&nbsp;"-D+kd"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;по&nbsp;умолчанию&nbsp;вместе&nbsp;с&nbsp;клавиатурой&nbsp;и&nbsp;диском
+<br>&nbsp;&nbsp;"-D0+RW"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;только&nbsp;чтение&nbsp;с&nbsp;диска&nbsp;и&nbsp;запись&nbsp;на&nbsp;диск
+</p><p>
+Любая опциональная буква может располагаться в любом месте. Даже
+бессмысленные комбинации, типа
+<i>-D01-a-1+0,</i>
+
+будут разобраны без ошибки, так что будьте осторожны.
+Некоторые опции установлены по умолчанию, некоторые наоборот.
+Это предмет авторского каприза и возможны изменения между версиями. 
+Можно обеспечить четкую установку конкретных опций, всегда явно определяя их.
+</p><p>
+<a name="lbAM">&nbsp;</a>
+</p><h2>СПЕЦИАЛЬНЫЕ КЛАВИШИ</h2>
+
+В режиме работы с клавиатурой напрямую (смотрите опцию
+<b>-k),</b>
+
+<b>DOSEMU</b>
+
+возвращает известные последовательности клавиш как управляющие функции.
+<p>
+
+
+</p><dl compact="">
+<dt></dt><dd>
+ctrl-scrlock   =  показать 0x32 векторов прерываний
+</dd><dt></dt><dd>
+alt-scrlock    =  показать регистры vm86
+</dd><dt></dt><dd>
+rshift-scrlock =  генерировать int8 (таймер)
+</dd><dt></dt><dd>
+lshift-scrlock =  генерировать int9 (клавиатура)
+</dd><dt></dt><dd>
+ctrl-break     =  ctrl-break как под DOS.
+</dd><dt></dt><dd>
+ctrl-alt-pgup  =  перегрузить DOS. Не доверяйте этому!
+</dd><dt></dt><dd>
+ctrl-alt-pgdn  =  выйти из эмулятора
+
+</dd></dl>
+<p>
+
+Используйте &lt;LEFT CTRL&gt;-&lt;LEFT ALT&gt;-&lt;Функциональная клавиша&gt;, чтобы
+переключиться на другую виртуальную консоль.
+</p><p>
+<a name="lbAN">&nbsp;</a>
+</p><h2>ПАМЯТЬ</h2>
+
+Поддержка памяти XMS в
+<b>DOSEMU</b>
+
+соответствует расширенной спецификации памяти Lotus/Intel/Microsoft/AST
+версии 3.0.  Реализованы все функции XMS кроме функции 0x12
+(Перераспределить Верхний Блок Памяти).
+<p>
+
+В то время как идет реализация функций UMB, они крайне глупые и 
+будут почти всегда действовать неоптимально. Очередная версия
+<b>DOSEMU</b>
+
+будет иметь разумную поддержку UMB.
+</p><p>
+
+<b>DOSEMU</b>
+
+также поддерживает EMS 4.0 и DPMI 0.9 (1.0 частично).
+</p><p>
+</p><p>
+<a name="lbAO">&nbsp;</a>
+</p><h2>АВТОРЫ</h2>
+
+<b>DOSEMU</b>
+
+(содержащий в себе файлы
+<b>dosemu.bin</b>
+
+и 
+<b>dosemu</b>
+
+) базируется на версии 0.4 оригинальной программы, написанной Matthias Lautner
+(текущий адрес которого на данный момент неизвестен).
+<p>
+
+Robert Sanders &lt;<a href="mailto:gt8134b@prism.gatech.edu">gt8134b@prism.gatech.edu</a>&gt; поддерживал и расширял
+воплощение 
+<b>DOSEMU, </b>
+
+с которым начало распространяться это man руководство. Втечение около 4-х
+лет James B. MacLean &lt;<a href="mailto:macleajb@ednet.ns.ca">macleajb@ednet.ns.ca</a>&gt; был неустанным лидером команды
+dosemu, реализация DPMI (которая позволила запускать Windows-3.1, dos4gw,
+djgpp и прочее) произошла втечение его 'правления' и перенесла проект ближе к
+состоянию Beta. Hans Lermen &lt;<a href="mailto:lermen@fgan.de">lermen@fgan.de</a>&gt; работал над новой версией и
+выпустил первый релиз версии 1.0. Сейчас Bart Oldeman &lt;<a href="mailto:bart@dosemu.org">bart@dosemu.org</a>&gt;
+является основным разработчиком этого прекрасного программного обеспечения.
+Перевод выполнен Andy Shevchenko &lt;<a href="mailto:andy@smile.org.ua">andy@smile.org.ua</a>&gt;.
+</p><p>
+<a name="lbAP">&nbsp;</a>
+</p><h2>ОШИБКИ</h2>
+
+Их число довольно велико, лучше свести список до минимума.  
+<p>
+
+Пожалуйста, отсылайте отчеты об ошибках автору.
+Также автору нравиться слышать о тех программах, которые работают.
+Присылайте только подробную заметку о том, какая программа (и какой версии)
+используется, что работает, а что нет и тому подобное.
+</p><p>
+<a name="lbAQ">&nbsp;</a>
+</p><h2>ДОСТУПНОСТЬ</h2>
+
+Большинство последних версий
+<b>DOSEMU</b>
+
+можно получить с сайта <a href="http://www.dosemu.org">www.dosemu.org</a>; скоростное зеркало расположено по
+адресу ibiblio.unc.edu:/pub/Linux/system/emulators/dosemu/.
+Если хотите получать частные версии для разработчиков, вступайте в команду
+разработчиков
+<b>DOSEMU, </b>
+
+всего лишь хорошие и подробные отладочные отчеты - всё, что необходимо!
+<p>
+<a name="lbAR">&nbsp;</a>
+</p><h2>ФАЙЛЫ</h2>
+
+
+<dl compact="">
+<dt><i>/usr/local/bin/dosemu.bin</i>
+
+</dt><dd>
+Исполняемый модуль
+</dd><dt><i>/usr/local/bin/dosemu</i>
+
+</dt><dd>
+Оберточный скрипт, рекомендуемый для запуска dosemu.bin, который не стоит
+запускать непосредственно.
+</dd><dt><i>/usr/local/bin/xdosemu</i>
+
+</dt><dd>
+То же самое, но служит для запуска DOS в X window.
+</dd><dt><i>$HOME/.dosemu</i>
+
+</dt><dd>
+Локальный каталог на каждого пользователя
+<b>DOSEMU.</b>
+
+Создание каталога происходит молча, если он отсутствует.
+</dd><dt><i>$HOME/.dosemu/tmp</i>
+
+</dt><dd>
+Создание всех временных файлов происходит здесь, /tmp больше не используется.
+</dd><dt><i>/var/run/dosemu.*</i>
+
+</dt><dd>
+или
+</dd><dt><i>$HOME/.dosemu/run</i>
+
+</dt><dd>
+Различные файлы, используемые
+<b>DOSEMU,</b>
+
+включая отладочные каналы.
+</dd><dt></dt><dt><i>$HOME/dosemu/freedos</i>
+
+</dt><dd>
+</dd><dd>
+Загрузочный каталог, содержащий FreeDos.
+</dd><dt><i>dosemu.conf</i>
+
+</dt><dd>
+Основной настроечный файл для
+<b>DOSEMU,</b>
+
+включающийся в 
+<i>global.conf</i>
+
+(global.conf включен в dosemu.bin по умолчанию).
+</dd><dt><i>/etc/dosemu.users</i>
+
+</dt><dd>
+или
+</dd><dt><i>/etc/dosemu/dosemu.users</i>
+
+</dt><dd>
+Для запускаемых бинарников с suid-root: определение прав доступа к
+<b>DOSEMU</b>
+
+на базисе каждого пользователя и установка некоторой необходимой 
+конфигурации. Этот настроечный файл имеет только
+фиксированное расположение,
+<b>DOSEMU</b>
+
+вначале ищет
+<i>/etc/dosemu.users</i>
+
+и, если он не найден, обращается к
+<i>/etc/dosemu/dosemu.users.</i>
+
+Через ключевой параметр
+<i>default_lib_dir=</i>
+
+в файле
+<i>dosemu.users</i>
+
+системно расширяющий каталог
+<i>DOSEMU_LIB_DIR</i>
+
+может быть перемещен куда-нибудь.
+За более детальной информацией обращайтесь к
+<i>./doc/README.txt</i>
+
+</dd><dt><i>/etc/dosemu/dos.ini</i>
+
+</dt><dd>
+Настроечный файл для IPX.
+<p>
+</p></dd><dt><i>doc/DPR</i>
+
+</dt><dd>
+Команда разработчиков dosemu: кто и какую часть проекта
+<b>DOSEMU</b>
+
+ведет?
+</dd><dt><i>doc/DANG</i>
+
+</dt><dd>
+Помощь для изучения кода
+<b>DOSEMU.</b>
+
+</dd><dt><i>doc/README.*</i>
+
+</dt><dd>
+Различная документация.
+</dd><dt><i>QuickStart</i>
+
+</dt><dd>
+Бытрая установка 
+<b>DOSEMU.</b>
+
+</dd><dt><i>ChangeLog</i>
+
+</dt><dd>
+Изменения в 
+<b>DOSEMU</b>
+
+с момента последнего релиза.
+</dd><dt><i>README.bindist</i>
+
+</dt><dd>
+Информация о том, как использовать готовый к работе пакет бинарников
+DOSEMU/FreeDos.
+</dd><dt><i>README.distributors</i>
+
+</dt><dd>
+Информация для дистрибьютеров Linux о том, как паковать сборку
+<b>DOSEMU,</b>
+
+для расширения возможностей системы.
+</dd><dt><i>Список рассылки MSDOS</i>
+
+</dt><dd>
+Для подробной информации пишите на адрес
+</dd><dt><a href="mailto:linux-msdos@vger.kernel.org">linux-msdos@vger.kernel.org</a></dt><dd>
+<p>
+</p><p>
+</p><p>
+</p></dd></dl>
+<a name="lbAS">&nbsp;</a>
+<h2>СМОТРИ ТАКЖЕ</h2>
+
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=dosemu&amp;category=1">dosemu</a></b>(1), <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=mkfatimage16&amp;category=1">mkfatimage16</a></b>(1)
+
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ТРЕБОВАНИЯ К ЯДРУ</a></dt><dd>
+</dd><dt><a href="#lbAF">ОПИЦИИ</a></dt><dd>
+</dd><dt><a href="#lbAG">ЖЕСТКИЕ ДИСКИ</a></dt><dd>
+</dd><dt><a href="#lbAH">ФЛОППИ ДИСКИ</a></dt><dd>
+</dd><dt><a href="#lbAI">ВИДЕО</a></dt><dd>
+</dd><dt><a href="#lbAJ">КЛАВИАТУРА</a></dt><dd>
+</dd><dt><a href="#lbAK">ПЕЧАТЬ</a></dt><dd>
+</dd><dt><a href="#lbAL">ОТЛАДОЧНЫЕ СООБЩЕНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAM">СПЕЦИАЛЬНЫЕ КЛАВИШИ</a></dt><dd>
+</dd><dt><a href="#lbAN">ПАМЯТЬ</a></dt><dd>
+</dd><dt><a href="#lbAO">АВТОРЫ</a></dt><dd>
+</dd><dt><a href="#lbAP">ОШИБКИ</a></dt><dd>
+</dd><dt><a href="#lbAQ">ДОСТУПНОСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAR">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAS">СМОТРИ ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="dosemu.bin" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

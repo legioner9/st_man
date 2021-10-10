@@ -1,0 +1,398 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN login (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, login"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="login" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">login (8)</font><hr><li> <a href="/man.shtml?topic=login&amp;category=1&amp;russian=4"><u>login</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=login&amp;category=1&amp;russian=1"><u>login</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=login&amp;category=1&amp;russian=0"><u>login</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=login&amp;category=1&amp;russian=2"><u>login</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=login&amp;category=3&amp;russian=1"><u>login</u></a> (3) <font color="#555555"> ( FreeBSD man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=login&amp;category=3&amp;russian=0"><u>login</u></a> (3) <font color="#555555"> ( Русские man: Библиотечные вызовы )</font></li><li> <a href="/man.shtml?topic=login&amp;category=3&amp;russian=2"><u>login</u></a> (3) <font color="#555555"> ( Linux man: Библиотечные вызовы )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=login&amp;category=8&amp;russian=0"><u>login</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/login.html"><u>login</u></a> обнаружен в базе ключевых слов.</font></li>
+<table width="100%" border="0">
+<tbody><tr>
+<td><h1>login(1)</h1></td>
+<td><h1 align="right">login(1)</h1></td>
+</tr>
+</tbody></table>
+<!-- END OF MAN PAGE HEADER -->
+
+<h2>НАЗВАНИЕ</h2>
+<p><b>login</b> - регистрация в системе</p>
+
+<h2>СИНТАКСИС</h2>
+<dl><dt></dt>
+  <dd><tt>
+        login [-p] имя [среда . . .]</tt>
+</dd></dl>
+
+<h2>ОПИСАНИЕ</h2>
+<p><b>login</b> - это механизм идентификации и проверки идентичности,
+вызываемый <i>монитором порта</i> (port monitor), обычно, <b>ttymon</b>, в начале
+каждого терминального сеанса. Он обеспечивает средства
+идентификации пользователей в системе и проверки идентичности
+пользователя. В качестве последнего шага процедуры регистрации
+вызывается определенная программа, обычно командный интерпретатор
+<a href="/man.shtml?topic=sh&amp;category=1"><b>sh</b></a>.</p>
+
+<p><b>login</b> нельзя вызывать из командного интерпретатора. Эта команда
+помещается системным администратором в административный файл
+монитора порта и вызывается монитором порта, обычно, <b>ttymon</b>. (См.
+<a href="/man.shtml?topic=ttymon&amp;category=1"><b>ttymon(1M)</b></a> и
+<a href="/man.shtml?topic=pmadm&amp;category=1"><b>pmadm(1M)</b></a>.)</p>
+
+<p>При вызове <b>login</b> монитором порта, появляется приглашение. В ответ,
+как минимум, необходимо ввести <i>регистрационное имя</i> (login name).
+Другие возможные опции и параметры описаны <a href="#options">ниже</a>.</p>
+
+<p>Если необходимо, <b>login</b> может попросить ввести пароль. При
+возможности, выдача вводимых символов пароля отключается, так что
+пароль не попадает в запись сеанса. Если была указана опция <b>-p</b>, <b>login</b>
+вызывает команду <b>passwd</b>. (См. <a href="/man.shtml?topic=passwd&amp;category=1"><b>passwd(1)</b></a>.)
+Если в стандартном файле
+паролей установлено ключевое слово <b>LOGIN_ONLY</b>, такое
+использование опции <b>-p</b> является единственным способом изменить
+пароль для пользователя.</p>
+
+<p>В некоторых конфигурациях от вас, кроме пароля регистрационного
+имени, могут потребовать ввести <i>пароль дозвона</i> (dialup password) для
+подключения по коммутируемой линии. В этом случае приглашение на
+ввод пароля дозвона будет:
+</p><dl><dt></dt>
+        <dd><tt>Dialup Password:</tt></dd>
+</dl>
+
+<p>Если корректная регистрационная информация не введена за
+определенный период времени (см. <a href="/man.shtml?topic=defadm&amp;category=1"><b>defadm(1M)</b></a>),
+скорее всего, вы будете отключены безо всяких сообщений.</p>
+
+<p>В ответ на приглашение команды <b>login</b> можно ввести следующие
+аргументы и <a name="options">опции</a>.</p>
+
+<table width="100%" border="0">
+<tbody><tr><td width="15%"><b>имя</b></td>
+        <td>Регистрационное имя пользователя.</td></tr>
+
+<tr><td width="15%"><b>-p</b></td>
+        <td>Изменяет пароль пользователя. Система запрашивает
+        старый пароль и новый пароль, а затем предлагает
+        повторить ввод нового пароля, чтобы убедиться в
+        отсутствии ошибок набора.</td></tr>
+
+<tr><td width="15%"><b>среда</b></td>
+        <td>Устанавливает <i>переменные среды</i> (environment variables).<p></p>
+
+        <p>Базовая среда инициализируется следующим образом:</p>
+        <dl><dt></dt>
+                <dd><tt>
+                HOME=ваш_начальный_каталог<br>
+                LOGNAME=ваше_регистрационное_имя<br>
+                MAIL=/var/mail/ваше_регистрационное_имя<br>
+                PATH=/usr/bin<br>
+                SHELL=последнее_поле_записи_в_passwd<br>
+                        &nbsp;&nbsp;&nbsp; # (/bin/sh если поле пустое)<br>
+                TZ=спецификация_часового_пояса
+                </tt></dd>
+        </dl>
+
+        <p>Среда может быть расширена или изменена путем
+        ввода дополнительных аргументов в ответ на запрос
+        программой <b>login</b> регистрационного имени
+        пользователя. Аргументы могут иметь один из двух
+        видов: <b>xxx</b> или <b>xxx=yyy</b>. Аргументы без знака
+        равенства помещаются в среду как</p>
+        <dl><dt></dt>
+                <dd><tt>Ln=xxx</tt></dd>
+        </dl>
+
+        <p>где <b>n</b> - это число, начинающееся с 0 и увеличивающееся
+        на единицу для каждого последующего имени
+        переменной. Переменные, содержащие =, помещаются в
+        среду без изменения. Если такая переменная уже
+        определена, новое значение замещает старое. Чтобы не
+        дать пользователям, зарегистрировавшимся с
+        ограниченными командными интерпретаторами,
+        породить вторичные интерпретаторы без ограничений,
+        нельзя изменять следующие переменные среды:</p>
+        <dl><dt></dt>
+                <dd><tt>
+                HOME<br>
+                IFS<br>
+                LOGNAME<br>
+                PATH<br>
+                SHELL
+                </tt></dd>
+        </dl>
+        </td></tr>
+</tbody></table>
+
+<p><b>login</b> поддерживает простые соглашения по маскировке одиночных
+символов. Ввод <i>обратной косой</i> (backslash) перед символом маскирует
+его и позволяет включать символы вроде пробелов и табуляций.</p>
+
+<p>Если проверка идентичности, выполняемая системой
+<b>/usr/lib/iaf/login/scheme</b>, прошла успешно, <b>scheme</b> передает
+следующую информацию модулю STREAMS и возвращает управление
+монитору порта:</p>
+<ul>
+        <li><tt>AUDITMASK</tt></li>
+        <li><tt>GID</tt></li>
+        <li><tt>GIDCNT</tt> (счетчик группы)</li>
+        <li><tt>HOME</tt></li>
+        <li><tt>HZ</tt></li>
+        <li><tt>LOGNAME</tt></li>
+        <li><tt>PATH</tt></li>
+        <li><tt>SGID</tt> (список дополнительных групп)</li>
+        <li><tt>SHELL</tt></li>
+        <li><tt>TTY</tt></li>
+        <li><tt>TZ</tt></li>
+        <li><tt>UID</tt></li>
+        <li><tt>ULIMIT</tt></li>
+</ul>
+
+<p>Затем монитор порта вызывает <b>set_id</b> и <b>set_env</b>, которые используют
+эту информацию для установки идентификационной информации
+пользователя и среды.</p>
+
+<p>После успешной регистрации изменяются <i>учетные файлы</i> (accounting
+files), печатается время последнего входа в систему и (если необходимо)
+текущий уровень пользователя.</p>
+
+<h2>ФАЙЛЫ</h2>
+
+<table width="100%" border="0">
+<tbody><tr><td width="45%"><tt>/etc/default/login</tt></td>
+        <td>файл со стандартными установками регистрации</td></tr>
+<tr><td width="45%"><tt>/etc/dialups</tt></td></tr>
+<tr><td width="45%"><tt>/etc/d_passwd</tt></td></tr>
+<tr><td width="45%"><tt>/etc/motd</tt></td>
+        <td>сообщение дня</td></tr>
+<tr><td width="45%"><tt>/etc/passwd</tt></td>
+        <td>файл паролей</td></tr>
+<tr><td width="45%"><tt>/etc/profile</tt></td>
+        <td>системный профиль</td></tr>
+<tr><td width="45%"><tt>$HOME/.profile</tt></td>
+        <td>профиль пользователя</td></tr>
+<tr><td width="45%"><tt>/etc/security/ia/index</tt></td>
+        <td>индекс в /etc/security/ia/master</td></tr>
+<tr><td width="45%"><tt>/etc/security/ia/master</tt></td>
+        <td>содержит всю информацию I&amp;A о пользователях</td></tr>
+<tr><td width="45%"><tt>/usr/lib/iaf/login/scheme</tt></td>
+        <td>система проверки идентичности</td></tr>
+<tr><td width="45%"><tt>/var/adm/lastlog</tt></td>
+        <td>время последнего входа</td></tr>
+<tr><td width="45%"><tt>/var/adm/loginlog</tt></td>
+        <td>запись неудачных попыток регистрации</td></tr>
+<tr><td width="45%"><tt>/var/adm/utmp</tt></td>
+        <td>учетный файл</td></tr>
+<tr><td width="45%"><tt>/var/adm/wtmp</tt></td>
+        <td>учетный файл</td></tr>
+<tr><td width="45%"><tt>/var/mail/ваше_имя</tt></td>
+        <td>почтовый ящик для пользователя ваше_имя</td></tr>
+<tr><td width="45%"><tt>/usr/lib/locale/локаль/<br>LC_MESSAGES/uxcore</tt></td>
+        <td>файл сообщений для текущего языка
+        (См. LANG в <a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>.)</td></tr>
+</tbody></table>
+
+<h2>ССЫЛКИ</h2>
+<dl><dt></dt><dd>
+         <a href="/man.shtml?topic=defadm&amp;category=1"><b>defadm(1M)</b></a>,
+         <a href="/man.shtml?topic=environ&amp;category=5"><b>environ(5)</b></a>,
+         <a href="/man.shtml?topic=login&amp;category=4"><b>login(4)</b></a>,
+         <a href="/man.shtml?topic=loginlog&amp;category=4"><b>loginlog(4)</b></a>,
+         <a href="/man.shtml?topic=mail&amp;category=1"><b>mail(1)</b></a>,
+         <a href="/man.shtml?topic=newgrp&amp;category=1"><b>newgrp(1M)</b></a>,
+         <a href="/man.shtml?topic=passwd&amp;category=4"><b>passwd(4)</b></a>,
+         <a href="/man.shtml?topic=profile&amp;category=4"><b>profile(4)</b></a>,
+         <a href="/man.shtml?topic=sh&amp;category=1"><b>sh(1)</b></a>,
+         <a href="/man.shtml?topic=su&amp;category=1"><b>su(1M)</b></a>,
+         <a href="/man.shtml?topic=ttymon&amp;category=1"><b>ttymon(1M)</b></a>
+</dd></dl>
+
+<!-- START OF MAN PAGE FOOTER -->
+<p align="center"><font size="-2">Copyright 1994 Novell, Inc.
+<br>Copyright 2000 <a href="mailto:valera@openxs.kiev.ua">В. Кравчук</a>,
+<a href="http://ln.com.ua/~openxs">OpenXS Initiative</a>, перевод на русский язык
+</font></p>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="login" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

@@ -1,0 +1,480 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN touch (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, touch"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="touch" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">touch (1)</font><hr><li> <a href="/man.shtml?topic=touch&amp;category=1&amp;russian=4"><u>touch</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=touch&amp;category=1&amp;russian=1"><u>touch</u></a> (1) <font color="#555555"> ( FreeBSD man: Команды и прикладные программы пользовательского уровня )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=touch&amp;category=1&amp;russian=0"><u>touch</u></a> (1) <font color="#555555"> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=touch&amp;category=1&amp;russian=2"><u>touch</u></a> (1) <font color="#555555"> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=touch&amp;category=1&amp;russian=5"><u>touch</u></a> (1) <font color="#555555"> ( POSIX man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=touch&amp;category=8&amp;russian=0"><u>touch</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/touch.html"><u>touch</u></a> обнаружен в базе ключевых слов.</font></li>
+<a name="lbAB">&nbsp;</a>
+<h2>ИМЯ</h2>
+
+touch - изменяет временные штампы файла
+<a name="lbAC">&nbsp;</a>
+<h2>ОБЗОР</h2>
+
+<b>touch</b>
+
+<b>[-acm][-r </b><i>ref_file</i><b>|-t </b><i>время</i><b>] [--]</b><i>файл...</i>
+
+<p>
+Устаревшая версия:
+<br>
+
+<b>touch</b>
+
+<b>[-acm][</b><i>ugly_time</i><b>] </b><i>файл...</i>
+
+</p><p>
+Версия GNU:
+<br>
+
+<b>touch</b>
+
+<b>[-acfm] [-r </b><i>файл</i><b>] [-t </b><i>decimtime</i><b>]</b>
+
+<b>[-d </b><i>time</i><b>] [--time={atime,access,use,mtime,modify}]</b>
+
+<b>[--date=</b><i>время</i><b>] [--reference=</b><i>файл</i><b>]</b>
+
+<b>[--no-create] [--help] [--version] [--] </b><i>файл...</i>
+
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<b>touch</b>
+
+изменяет время последнего доступа и/или время последней модификации
+каждого заданного
+<i>файла</i>.
+
+Эти временные штампы устанавливаются в текущее время; или, если задана
+опция -r, то эти штампы устанавливаются в те же, что имеет файл
+<i>ref_file</i>;
+
+или, если задана опция -t, то эти штампы устанавливаются на заданное 
+<i>время</i>.
+
+Оба штампа изменяются, если не задана ни одна из опций -a и -m
+или если заданы они обе. Если задана только опция -a или только -m,
+то изменяться будет, соответственно, только время последнего доступа
+или время последней модификации. Если заданный файл еще не существует,
+то он создается (как пустой файл с правами доступа 0666, с учетом
+umask), если не задана опция -c. 
+<a name="lbAE">&nbsp;</a>
+<h2>ОПЦИИ POSIX</h2>
+
+<dl compact="">
+<dt><b>-a</b>
+
+</dt><dd>
+Изменить время последнего доступа к
+<i>файлу</i>.
+
+</dd><dt><b>-c</b>
+
+</dt><dd>
+Не создавать
+<i>файл</i>.
+
+</dd><dt><b>-m</b>
+
+</dt><dd>
+Изменять время последней модификации
+<i>файла</i>.
+
+</dd><dt><b>-r </b><i>ref_file</i>
+
+</dt><dd>
+Использовать соответствующий временной штамп от файла
+<i>ref_file</i>
+
+в качестве нового значения для изменяемого временного штампа (или штампов).
+</dd><dt><b>-t </b><i>время</i>
+
+</dt><dd>
+Использовать заданное время в качестве нового значения для изменяемого
+временного штампа (или штампов).  Аргумент является десятичным числом
+вида
+<br>
+
+<pre>    [[ВВ]ГГ]ММДДччмм[.СС]
+<br>
+</pre>
+
+с очевидными обозначениями (ВВ - век, ГГ - год, ММ - месяц, ДД - день,
+чч - часы, мм - минуты, СС - секунды).  Если ВВ не задан, то год ВВГГ берется из
+диапазона 1969-2068. Если СС не задано, то берется 0. Секунды могут
+быть заданы в диапазоне 0-61, чтобы можно было указать високосную
+секунду. Считается, что результирующее время соответствует часовому
+поясу, заданному в переменной окружения TZ.  Если
+в результате получилось время до 1 января 1970 года, то будет
+выдана ошибка.
+</dd><dt><b>[--]</b>
+
+</dt><dd>
+Завершает список опций.
+</dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ДЕТАЛИ ВЕРСИИ POSIX</h2>
+
+Вторая форма вызова имеет неудачный синтаксис, который может вызвать
+некоторую двусмысленность, так как непонятно, что именно задает аргумент 
+<i>ugly_time</i>:
+
+время или файл.  Если не указаны опции -r и -t, и задано не менее двух 
+аргументов, причем первый аргумент является восьми- или десятизначным
+числом, то считается, что аргумент
+<i>ugly_time</i>
+
+задает время.  Формат
+<i>ugly_time</i>
+
+выглядит как ММДДччмм[гг], причем 
+<i>гг</i>
+
+в диапазоне 69-99, означает 1969-1999, а случай, когда
+<i>гг</i>
+
+не задан, означает текущий год. Данная форма вызова устарела.
+<a name="lbAG">&nbsp;</a>
+<h2>ДЕТАЛИ ВЕРСИИ GNU</h2>
+
+Если первый
+<i>файл</i>
+
+может быть правильным аргументом для опции
+<b>-t</b>,
+
+и временной штамп не задан с помощью опций 
+<b>-d</b>,
+
+<b>-r</b>
+
+или
+<b>-t</b>,
+
+и не задан аргумент `--', то этот
+<i>файл</i>
+
+интерпретируется как временной штамп для других файлов, а не как имя 
+файла.
+<p>
+
+Если задано изменение как времени последнего доступа, так и времени
+последней модификации файла на текущее время, то
+<b>touch</b>
+
+может изменять эти временные штампы для файлов, которыми пользователь
+не владеет, но в которые у него есть права на запись. 
+Во всех других случаях, пользователь должен владеть этими файлами.
+<a name="lbAH">&nbsp;</a>
+</p><h2>ОПЦИИ GNU</h2>
+
+<dl compact="">
+<dt><b>-a, --time=atime, --time=access, --time=use</b>
+
+</dt><dd>
+Изменять только время последнего доступа.
+</dd><dt><b>-c, --no-create</b>
+
+</dt><dd>
+Не создавать файлы, которые не существуют.
+</dd><dt><b>-d, --date=</b><i>время</i>
+
+</dt><dd>
+Использовать
+<i>время</i>
+
+вместо текущего времени.  Оно может содержать имена месяцев, часовые
+пояса, `am' и `pm', и т.~д.
+</dd><dt><b>-f</b>
+
+</dt><dd>
+Игнорируется; для совместимости с BSD версией
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=touch&amp;category=1">touch</a></b>(1).
+
+</dd><dt><b>-m, --time=mtime, --time=modify</b>
+
+</dt><dd>
+Изменять только время последней модификации.
+</dd><dt><b>-r </b><i>file</i><b>, --reference=</b><i>файл</i>
+
+</dt><dd>
+Использовать время указанного
+<i>файла</i>
+
+вместо текущего времени.
+</dd><dt><b>-t </b><i>decimtime</i>
+
+</dt><dd>
+Здесь
+<i>decimtime</i>
+
+имеет формат ММДДччмм[[ВВ]ГГ][.сс]
+Использовать аргумент (месяц, день, часы, минуты, необязательный век,
+год, секунды) вместо текущего времени.
+Заметим, что этот формат нарушает спецификацию POSIX.
+</dd></dl>
+<a name="lbAI">&nbsp;</a>
+<h2>СТАНДАРТНЫЕ ОПЦИИ GNU</h2>
+
+<dl compact="">
+<dt><b>--help</b>
+
+</dt><dd>
+Выдать подсказку на стандартный вывод и успешно завершиться.
+</dd><dt><b>--version</b>
+
+</dt><dd>
+Выдать информацию о версии на стандартный вывод и успешно завершиться.
+</dd><dt><b>--</b>
+
+</dt><dd>
+Служит для обозначения конца списка опций.
+</dd></dl>
+<a name="lbAJ">&nbsp;</a>
+<h2>ОКРУЖЕНИЕ</h2>
+
+Для интерпретации явно заданного времени используется переменная TZ.
+При работе обычным образом используются значения переменных LANG, LC_ALL, LC_COLLATE,
+LC_CTYPE и LC_MESSAGES.
+<a name="lbAK">&nbsp;</a>
+<h2>СОВМЕСТИМОСТЬ</h2>
+
+POSIX 1003.2 описывает синтаксис для аргумента опции -t, который
+отличается от того, что используется в реализации GNU.
+<a name="lbAL">&nbsp;</a>
+<h2>ПРИМЕР ИСПОЛЬЗОВАНИЯ</h2>
+
+Команда
+<i>touch foo</i>
+
+создаст файл
+<i>foo</i>,
+
+если он не существует,
+и изменит время последней модификации на текущее. Это очень часто
+используется для управления действиями программы
+<b>make</b>.
+
+<a name="lbAM">&nbsp;</a>
+<h2>ЗАМЕЧАНИЯ</h2>
+
+Данная страница описывает версию
+<b>touch</b>
+
+из пакета fileutils-4.0;
+другие версии могут иметь небольшие отличия.
+Исправления и дополнения присылайте по адресу <a href="mailto:aeb@cwi.nl">aeb@cwi.nl</a>.
+Отчеты об ошибках в этой программе присылайте по адресу
+<a href="mailto:fileutils-bugs@gnu.ai.mit.edu">fileutils-bugs@gnu.ai.mit.edu</a>.
+<a name="lbAN">&nbsp;</a>
+<h2>ПЕРЕВОД</h2>
+
+Перевёл с английского Виктор Вислобоков &lt;<a href="mailto:corochoone@perm.ru">corochoone@perm.ru</a>&gt; 2003
+<p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">ИМЯ</a></dt><dd>
+</dd><dt><a href="#lbAC">ОБЗОР</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ОПЦИИ POSIX</a></dt><dd>
+</dd><dt><a href="#lbAF">ДЕТАЛИ ВЕРСИИ POSIX</a></dt><dd>
+</dd><dt><a href="#lbAG">ДЕТАЛИ ВЕРСИИ GNU</a></dt><dd>
+</dd><dt><a href="#lbAH">ОПЦИИ GNU</a></dt><dd>
+</dd><dt><a href="#lbAI">СТАНДАРТНЫЕ ОПЦИИ GNU</a></dt><dd>
+</dd><dt><a href="#lbAJ">ОКРУЖЕНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAK">СОВМЕСТИМОСТЬ</a></dt><dd>
+</dd><dt><a href="#lbAL">ПРИМЕР ИСПОЛЬЗОВАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAM">ЗАМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAN">ПЕРЕВОД</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="touch" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

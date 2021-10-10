@@ -1,0 +1,697 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Проект OpenNet: MAN named (8) Команды системного администрирования (FreeBSD и Linux)</title><meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, named"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+
+
+<body link="#0000FF" vlink="#000080" text="#000000" bgcolor="#E3E4D0" alink="#FF00FF">
+<link rel="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<form method="get" action="https://www.opennet.ru/search.shtml">
+<aside>
+<div style="width: 100%; text-align: right; font-size: 70%; background: #E9EAD6; margin-bottom:-10px;">
+Профиль: <b><a href="/~" rel="nofollow" title="/~ - сводная страница участника"><u>Аноним</u></a></b> (<a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=login">вход</a> | <a href="https://www.opennet.ru/cgi-bin/openforum/vsluhboard.cgi?az=user_register">регистрация</a>)</div>
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tbody><tr>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" valign="BOTTOM" bgcolor="#E9EAD6" width="300">
+<a href="https://www.opennet.ru/"><img src="/opennet2.gif" alt="The OpenNET Project" height="60" width="249" border="0"></a><br>
+</td>
+<td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left" bgcolor="#E9EAD6" align="CENTER" width="100">
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:10px;" bgcolor="#E9EAD6" align="CENTER" width="50%">
+<table width="100%" border="0">
+<tbody><tr>
+<td width="22%">
+ <a href="https://www.opennet.ru/opennews/" class="h"><b>НОВОСТИ</b></a> (<a href="https://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td width="18%%">
+  <a href="https://www.opennet.ru/mp/" class="h"><b>КОНТЕНТ</b></a>
+</td><td width="14%">
+  <a href="http://wiki.opennet.ru" class="h"><b>WIKI</b></a>
+</td><td width="14%">
+   <a href="https://www.opennet.ru/man.shtml" class="h"><b>MAN'ы</b></a>
+</td><td width="16%">
+   <a href="https://www.opennet.ru/forum/" class="h"><b>ФОРУМ</b></a>
+</td><td width="16%">
+<a href="https://www.opennet.ru/search.shtml" class="h" onmouseover="document.getElementById('form12').style.display='block';">Поиск</a>&nbsp;(<a href="https://www.opennet.ru/keywords/" class="h">теги</a>)
+<input id="form12" style="display: none;" size="10" name="words" value="" title="для поиска в google наберите &quot;g фраза&quot;" type="text">
+</td></tr>
+</tbody></table>
+
+</td><td style="background: #E9EAD6 url('/back.gif') repeat-x bottom left;padding-bottom:5px;" bgcolor="#E9EAD6" align="right" width="20%">
+
+<a href="https://www.opennet.ru/opennews/opennews_all_utf.rss"><img src="/img/rss.png" alt="RSS" title="RSS" height="16" width="16" border="0"></a>&nbsp;<a href="https://twitter.com/opennetru"><img src="/twitter.png" alt="twitter" title="Twitter" height="16" width="16" border="0"></a>&nbsp;<a href="https://vk.com/opennet"><img src="/img/vkontakte.gif" title="ВКонтакте" height="16" width="16" border="0"></a>&nbsp;<a href="https://zen.yandex.ru/opennet"><img src="/img/zen.gif" title="Yandex Zen" height="16" width="16" border="0"></a>&nbsp;<a href="https://www.facebook.com/OpenNet.News/"><img src="/img/facebook.gif" title="Facebook" height="16" width="16" border="0"></a>&nbsp;<a href="https://telegram.space/opennet_ru"><img src="/img/telegram2.png" title="Telegram" height="16" width="16" border="0"></a>
+</td></tr></tbody></table>
+</aside>
+
+<style>
+    .hdr_mobile {
+	text-align: center; 
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    }
+</style>
+<div class="hdr_mobile">
+<div style="margin-left: auto; margin-right: auto; width: 100%; height: 70px; border:1px solid #b0b190; min-width: 360px; max-width: 600px; background: #E9EAD6 url('/back.gif') repeat-x bottom left;">
+<div style="float:left; width: 249px; height: 60px; margin-top: 10px;">
+<a href="https://www.opennet.ru"><img src="/opennet2_lite.gif" style="height: 60px; width: 249px; border: 1px;" alt="The OpenNET Project / Index page"></a>
+</div>
+<div style="float: left; text-align: center; height: 70px; width: 331px; padding: 5px; margin-left: 10px;">
+<br><small>[ <a href="/opennews/">новости</a>&nbsp;/<a href="/opennews/?full_lines=15&amp;lines=15&amp;mid_lines=00">+++</a> | <a href="/forum/">форум</a> | <a href="http://wiki.opennet.ru">wiki</a> | <a href="/keywords/">теги</a>
+| <a href="tg://resolve?domain=opennet_ru"><img src="/img/telegram2.png" title="Telegram" style="margin-bottom: -4px;" height="16" width="16" border="0"></a>
+]</small>
+</div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id="adv">
+</div>
+<div style="padding-top: 0px;position:absolute;left:50%;margin-left:-235px;width:470px;" id="adv2">
+</div>
+<div style="width: 279;float: right;" id="adv3">
+</div>
+<div style="clear: both;"></div>
+<br>
+</form>
+<!--/htdig_noindex-->
+
+<center><h3><font color="#000088">Интерактивная система просмотра системных руководств (man-ов)</font></h3></center>
+<form method="GET" action="/man.shtml"> 
+<table cellspacing="0" cellpadding="1" bgcolor="#B0B190" align="center" width="600" border="0">
+<tbody><tr>
+<td valign="TOP">
+
+<table cellspacing="0" cellpadding="0" bgcolor="#E9EAD6" align="center" width="100%" border="0">
+<tbody><tr><td>&nbsp;<font color="#555555">Тема</font></td><td><font color="#555555">Набор</font></td><td><font color="#555555">Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input size="20" name="topic" value="named" type="text"></td><td><select name="russian">
+<option value="4">Solaris man
+</option><option value="1">FreeBSD man
+</option><option value="3">Разные man
+</option><option value="0" selected="">Русские man
+</option><option value="2">Linux man
+</option><option value="5">POSIX man
+</option></select></td>
+<td><select size="1" name="category">
+	  <option value="" selected="">All
+	  </option><option value="1">1
+	  </option><option value="2">2
+	  </option><option value="3">3
+	  </option><option value="4">4
+	  </option><option value="5">5
+	  </option><option value="6">6
+	  </option><option value="7">7
+	  </option><option value="8">8
+	  </option><option value="9">9
+</option></select></td>
+
+<td><input name="submit" value="Показать man" type="submit"></td></tr>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align="left">&nbsp;[<a href="/man.shtml">Cписок руководств</a> | <a href="#" onclick="pr('none');">Печать</a>]</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+</form>
+<h3></h3><font size="+2">named (8)</font><hr><li> <a href="/man.shtml?topic=named&amp;category=1&amp;russian=4"><u>named</u></a> (1) <font color="#555555"> ( Solaris man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=named&amp;category=8&amp;russian=1"><u>named</u></a> (8) <font color="#555555"> ( FreeBSD man: Команды системного администрирования )</font></li><li>&gt;&gt; <a href="/man.shtml?topic=named&amp;category=8&amp;russian=0"><u>named</u></a> (8) <font color="#555555"> ( Русские man: Команды системного администрирования )</font></li><li> <a href="/man.shtml?topic=named&amp;category=8&amp;russian=2"><u>named</u></a> (8) <font color="#555555"> ( Linux man: Команды системного администрирования )</font></li><li><font color="#555555">Ключ <a href="/keywords/named.html"><u>named</u></a> обнаружен в базе ключевых слов.</font></li>
+<p>
+<a name="lbAB">&nbsp;</a>
+</p><h2>НАЗВАНИЕ</h2>
+
+<p>
+named - сервер доменных имен Internet
+</p><p>
+<a name="lbAC">&nbsp;</a>
+</p><h2>СИНТАКСИС</h2>
+
+<p>
+<b>named</b> [ <b>-d</b> <i>уровень отладки</i> ]
+[ <b>-p</b> <i>номер порта</i>[<i>/номер локального порта</i>] ]
+[{ -b} <i>стартовый файл</i> ] [ <b>-q</b> ] [ <b>-r</b> ]
+</p><p>
+<a name="lbAD">&nbsp;</a>
+</p><h2>ОПИСАНИЕ</h2>
+
+<p>
+<i>Named</i> является сервером доменных имен Internet. Более
+подробно о системе доменных имен Internet см. документы RFC 1033,
+1034 и 1035. Будучи запущен без параметров, <i>named</i> читает
+стартовый файл по умолчанию <i>/etc/named.boot</i>, загружает
+все первоначальные данные и начинает слушать запросы.
+</p><p>
+Имеются следующие опции:
+</p><p>
+</p><dl compact="">
+<dt><b>-d</b> </dt><dd>
+<p>
+Выводит отладочную информацию. Число после
+``d'' определяет уровень выводимых сообщений.
+</p><p>
+</p></dd><dt><b>-p</b> </dt><dd>
+<p>
+Использовать нестандартные номера портов. По умолчанию используется
+стандартный номер порта, возвращаемый функцией <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=getservbyname&amp;category=3">getservbyname</a>(3)</b>
+для службы ``domain''. В аргументе могут быть указаны два номера портов,
+разделенных наклонной чертой
+(``<b>/</b>''). В это случае первый порт используется при соединении
+с удаленными серверами, а второй назначает себе локальная копия
+<i>named</i>. Это используется в основном для отладочных целей.
+</p><p>
+</p></dd><dt><b>-b</b> </dt><dd>
+<p>
+Использовать указанный стартовый файл. Эта опция необязательна и позволяет
+указывать имя файла, начинающегося с дефиса.
+</p><p>
+</p></dd><dt><b>-q</b> </dt><dd>
+<p>
+Отслеживать все входящие запросы, если <i>named</i> был скомпилирован
+с определенной константой компиляции <i>QRYLOG</i>. <i>ПРИМЕЧАНИЕ:</i>
+вместо этой опции лучше использовать директиву
+стартового файла ``options query-log''.
+</p><p>
+</p></dd><dt><b>-r</b> </dt><dd>
+<p>
+Выключает рекурсию в сервере. Ответы могут приходить только от локальных
+(первичных или вторичных) зон.
+Эта опция может быть использована на корневых серверах. <i>ПРИМЕЧАНИЕ:</i>
+вместо этой опции лучше использовать директиву
+стартового файла ``options no-recursion''.
+</p><p>
+Каждый дополнительный аргумент воспринимается как имя стартового файла.
+Если указано несколько стартовых файлов, используется последний из них.
+</p><p>
+Стартовый файл содержит информацию о том, где сервер имен должен брать
+начальные данные. Каждая директива стартового файла должна располагаться
+ровно на одной строке. Ниже приведен небольшой пример стартового файла:
+</p><p>
+</p><pre>
+         ;
+         ;    boot file for name server
+         ;
+         directory /usr/local/adm/named
+         ; type      domain                source host/file          backup file
+         cache       .                     root.cache
+         primary     Berkeley.EDU          berkeley.edu.zone
+         primary     32.128.IN-ADDR.ARPA   ucbhosts.rev
+         secondary   CC.Berkeley.EDU       128.32.137.8 128.32.137.3 cc.zone.bak
+         secondary   6.32.128.IN-ADDR.ARPA 128.32.137.8 128.32.137.3 cc.rev.bak
+         primary     0.0.127.IN-ADDR.ARPA  localhost.rev
+         forwarders  10.0.0.78 10.2.0.78
+         limit       transfers-in 10
+         limit       datasize 64M
+         limit       files 256
+         options     forward-only query-log fake-iquery
+         check-names primary fail
+         check-names secondary warn
+         check-names response ignore
+
+</pre>
+
+<p>
+Директива ``directory'' меняет рабочий директорий сервера на
+указанный в аргументе этой директивы. Это может быть важно
+для правильной обработки вложенных директивой $INCLUDE файлов в
+файлы первичных зон.
+</p><p>
+Директива ``cache'' указывает, что содержимое файла ``root.cache''
+должно быть считано в кэш сервера при старте. Основное его предназначение
+заключается в указании местоположения корневых серверов.
+Этот кэш не используется при нормальной работе, но необходим
+в качестве ``подсказки'' при поиске текущих корневых серверов.
+Файл ``root.cache'' имеет тот же формат, что и ``berkeley.edu.zone''.
+Директивой ``cache'' может быть описано более одного файла.
+Файл ``root.cache'' необходимо регулярно обновлять из
+FTP.RS.INTERNIC.NET, поскольку он содержит периодически изменяющийся
+список корневых серверов.
+</p><p>
+Первая директива ``primary'' указывает, что файл
+``berkeley.edu.zone'' содержит авторитетные данные по зоне
+``Berkeley.EDU''. Файл ``berkeley.edu.zone''
+содержит данные в формате мастер-файла, описанном в RFC
+883. Все доменные имена указываются относительно исходного домена (origin),
+в данном случае ``Berkeley.EDU'' (более подробно см. ниже).
+Вторая директива ``primary'' указывает, что в файле
+``ucbhosts.rev'' находятся авторитетные данные по домену
+``32.128.IN-ADDR.ARPA'', который используется для трансляции
+IP-адресов в сети 128.32 в имена хостов. Какждый из мастер-файлов
+должен начинаться с записи SOA для указанной в нем зоны (см.
+ниже).
+</p><p>
+Первая директива ``secondary'' указывает, что все
+авторитетные данные по зоне ``CC.Berkeley.EDU'' должны
+приниматься с сервера по адрему 128.32.137.8. Если эти данные принять
+не удается, необходимо попытаться принять их с сервера по адресу
+128.32.137.3, и так далее, причем в этой директиве может быть указано
+до 10 таких адресов. Вторичная копия также считается
+авторитетной для указанного домена. Первое имя в этой директиве,
+не являющееся IP-адресом (отличное от четырех чисел, разделенных
+точками), воспринимается как имя файла, в котором будет
+сохранена резервная копия принятых данных по зоне.
+Сервер загрузит данные по зоне из этой резервной копии,
+обеспечивая сервис имен даже в том случае, если первичные
+сервера будут недоступны. Резервная копия будет обновляться после
+каждого успешного обновления, полученного автоматически с одного из
+первичных серверов. Если имя файла резервной копии не указано,
+данные по зоне будут сохраняться во временном файле, который
+будет удален после каждого успешного приема зоны. Это не рекомендуется
+делать из-за неоправданного повышения сетевого траффика.
+Вторая директива ``secondary'' указывает, что резервные копии файлов
+для трансляция адресов в имена подсети 128.32.136 должны получаться
+с тех же серверов, что и для для предыдущей зоны.
+</p><p>
+Директива ``forwarders'' указывает адреса тех серверов в пределах
+сети, которые воспринимают рекурсивные запросы от других серверов.
+Если в стартовом файле указано более одного такого сервера, то
+основной сервер перенаправит все запросы, для которых нет ответа
+в кэше, сначала им. В процессе перенаправления запроса будут опрошены
+все сервера в списке ``forwarders'' до тех пор, пока не будет
+получен ответ либо исчерпан сам список. Если ответ все-таки не будет
+получен, основной сервер продолжит работу так, как если бы ни одного
+сервера с рекурсивным запросом не было указано (если только он не
+работает в режиме ``forward-only'', то есть ``только перенаправление
+запросов''). Возможность перенаправления запросов бывает полезна для
+создания большого кэша в пределах сети на мастер-сервере и, как следствие,
+уменьшения сетевого траффика при запросах к внешним серверам.
+Она также может быть полезной для серверов, не имеющих прямого подключения
+к Internet, но желающих, тем не менее, производить поиск внешних имен.
+</p><p>
+Директива ``slave'' (в настоящее время устаревшая) используется для
+обратной совместимости. Ее значение полностью аналогично директиве
+``options forward-only''.
+</p><p>
+Директива ``sortlist'' может использоваться для указания приоритета
+одних сетей над другими. При этом общий приоритет в просмотре имен
+распределится следующим образом: сначала при получении запроса
+сервер просмотрит список имен с адресами локальной сети, затем
+последовательно список адресов, представленный в директиве ``sortlist'',
+а затем все остальные адреса.
+</p><p>
+Директива ``xfrnets'' (в примере не показана) может использоваться
+для простейшего контроля доступа. При указании этой директивы
+сервер будет отвечать на запросы передачи зоны только от тех
+хостов, которые находятся в сетях, указанных в директиве
+``xfrnets''. Другое, устаревшее, название этой директивы -
+``tcplist''.
+</p><p>
+Директива ``include'' (в примере не показана) может использоваться
+для обработки другого файла, как если бы его содержимое было вставлено
+вместо самой директивы ``include''. Она бывает полезна при наличии
+большого количества зон либо при логической группировке зон,
+сопровождаемых разными людьми. Директива ``include'' имеет один аргумент,
+являющийся именем включаемого файла, при этом само имя файла в кавычки
+(либо другие ограничители) не заключается.
+</p><p>
+Директива ``bogusns'' (в примере не показана) сообщает системе BIND,
+что серверам с указанными в ней IP-адресами нельзя посылать никаких
+запросов. Это может быть полезным в том случае, когда у какого-либо
+популярного сервера появляются неверные или испорченные данные в его
+зоне либо кэше, и Вы хотите избежать обращений к нему до тех пор, пока
+ситуация не будет исправлена.
+</p><p>
+Директива ``limit'' используется для изменения внутренних предельных
+величин системы BIND, причем некоторые из них (<b>datasize</b>, например)
+реализованы на системном уровне, а другие (вроде <b>transfers-in</b>)
+на уровне самой BIND. Для чисел, указывающих значения пределов и следующих
+за именами предельных величин, могут указываться приставки
+``k,'' ``m'' или ``g'', означающие килобайты, мегабайты и гигабайты
+соответственно. Аргумент параметра <b>datasize</b>
+устанавливает размер блока данных процесса, ограничиваемый сверху ядром.
+<i>Примечание:</i> этот системный вызов реализован не во всех системах
+-- на таких системах использование параметра <b>datasize</b> директивы
+``limit'' приведет к появлению предупреждающего сообщения.
+Аргументом параметра <b>transfersin</b> является максимальное количество
+подпроцессов <i>named-xfer</i>, запускаемых BIND одновременно.
+Аргументом параметра <b>transfers-per-ns</b> является максимальное количество
+зонных обменов, инициируемых одновременно с любым заданным удаленным сервером
+имен. Аргумент параметра <b>files</b> устанавливает максимальное
+количество дескрипторов файлов, доступных процессу. <i>Примечание:</i>
+этот системный вызов реализован не во всех системах
+-- на таких системах использование параметра <b>files</b> директивы
+``limit'' приведет к появлению предупреждающего сообщения.
+</p><p>
+Директива ``options'' определяет логический параметр, изменяющий
+поведение системы BIND. В одной директиве могут быть указаны несколько
+параметров. Ниже перечислены опции, определенные в настоящее время.
+<b>no-recursion</b> - заставляет сервер имен отвечать
+ссылкой на более авторитетный сервер, нежели точным ответом,
+при встрече запроса имени, за которое сам сервер не является
+ответственным. Не устанавливайте эту опцию на сервере, ссылка на который
+есть в файле <i>resolv.conf</i> любого хоста.
+<b>no-fetch-glue</b> - заставляет сервер имен не искать части или
+суффиксы доменного имени при конструировании секции ``additional data''
+(дополнительные данные) ответа. Эта опция может использоваться в сочетании
+с опцией <b>no-recursion</b> с целью предотвращения увеличения кэша
+BIND или его разрушения. <b>query-log</b> - заставляет фиксировать
+все запросы в системном журнале посредством <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=8">syslog</a>(8)</b>.
+Это приводит к быстрому росту системного журнала, поэтому не пользуйтесь
+этой опцией без необходимости. <b>forward-only</b> - заставляет сервер
+только перенаправлять запросы другим серверам с возможностью рекурсивного
+запроса (forwarders). Обычно эта опция используется на машине, на которой
+запущен сервер имен, но которая по физическим либо административным
+причинам не может иметь доступа к Internet. <b>fake-iquery</b> -
+заставляет сервер отсылать обратно бесполезные ответы на ``инверсные
+запросы''. Это может быть полезным, если Ваша сеть состоит из микрокомпьютеров
+или машин с SunOS или и тех, и других.
+</p><p>
+Директива ``check-names'' указывает системе BIND проверять имена
+в файлах как первичных (``primary''), так и вторичных (``secondary'') зон,
+а также в сообщениях (``responce''), полученных во время рекурсивного
+запроса (например, при обработке запроса от хоста, находящегося за
+сетевым экраном (firewall)). На каждый тип имени BIND может отправить либо
+ответ типа ``fail'' (неудача), при этом такая зона не будет загружена,
+а запрос не будет кэширован или отправлен дольше для рекурсивного запроса,
+либо ответ типа ``warn'' (предупреждение), в результате чего на это имя
+сервер сгенерирует сообщение в системном журнале, либо ответ типа
+``ignore'' (игнорировать), и тогда имя будет обработано обычным порядком,
+невзирая на его возможную неправильность. Имена считаются правильными,
+если они отвечают рекомендациям RFC 952 (если это имена хостов) либо
+состоят только из печатаемых ASCII-символов (если они не являются
+именами хостов).
+</p><p>
+Директива ``max-fetch'' (в примере не показана), в настоящее время устаревшая,
+используется для обратной совместимости. Ее значение полностью аналогично
+директиве ``limit transfers-in''.
+</p><p>
+Мастер-файл состоит из управляющей информации и списка
+записей ресурсов для объектов зоны в следующих форматах:
+</p><p>
+</p><pre>
+        $INCLUDE &lt;имя_файла&gt; &lt;необяз_домен&gt;
+        $ORIGIN &lt;домен&gt;
+        &lt;домен&gt; &lt;необяз_время_жизни&gt; &lt;необяз_класс&gt; &lt;тип&gt; &lt;данные_с_записями_ресурсов&gt;
+
+</pre>
+
+<p>
+где <i>domain</i> - это "." для корневого домена,
+"@" для текущей зоны (origin) или стандартное имя домена.
+Если <i>domain</i> является стандартным именем домена,
+не заканчивающемся ``.'', то к его концу добавляется имя текущей зоны.
+Имена доменов, заканчивающиеся ``.'', остаются неизменными.
+Поле <i>необяз_домен</i> используется для определения текущей зоны
+для данных, находящихся во включаемом файле. Она эквивалентна помещению
+директивы $ORIGIN перед первой строкой включаемого файла. Это поле
+необязательно. Ни поле <i>opt_domain</i>, ни директива $ORIGIN во
+включаемом файле не меняют текущую зону для этого файла.
+Поле <i>необяз_время_жизни</i> является необязательным целым числом,
+указывающем время жизни зоны. По умолчанию оно устанавливается в ноль,
+означающий минимальное значение, указанное в записи SOA зоны.
+Поле <i>необяз_класс</i> указывает на тип адреса объекта; в настоящее
+время поддерживается только один тип, <b>IN</b>, для объектов,
+подключенных к DARPA Internet. Поле <i>type</i> содержит
+одну из приводимых ниже лексем; формат данных, ожидаемых в поле
+<i>resource_record_data</i>, приведен там же, в скобках.
+</p><p>
+</p></dd><dt>A </dt><dd>
+<p>
+адрес хоста (четыре числа через точку)
+</p><p>
+</p></dd><dt>NS </dt><dd>
+<p>
+ответственный сервер (доменное имя)
+</p><p>
+</p></dd><dt>MX </dt><dd>
+<p>
+почтовая станция (доменное имя), перед которой указывается
+уровень приоритета (0..32767), при этом чем ниже числовое значение,
+тем выше уровень приоритета.
+</p><p>
+</p></dd><dt>CNAME </dt><dd>
+<p>
+каноническое имя псевдонима (доменное имя)
+</p><p>
+</p></dd><dt>SOA </dt><dd>
+<p>
+отмечает начало зоны ответственности (доменное имя ответственного хоста,
+доменный адрес ответственного лица, серийный номер, а также
+времена обновления, возобновления запроса, устаревания и
+минимального TTL (времени жизни) (см. RFC 883), заданные в секундах).
+</p><p>
+</p></dd><dt>NULL </dt><dd>
+<p>
+запись пустого ресурса (формат или данные отсутствуют)
+</p><p>
+</p></dd><dt>RP </dt><dd>
+<p>
+ответственное лицо для имени домена (почтовый адрес,
+текстовая ссылка)
+</p><p>
+</p></dd><dt>PTR </dt><dd>
+<p>
+указатель на доменное имя (доменное имя)
+</p><p>
+</p></dd><dt>HINFO </dt><dd>
+<p>
+информация о хосте (тип_процессора тип_ОС)
+</p><p>
+Записи ресурсов обычно заканчиваются в конце строки, но
+Вы можете продолжить их за пределы одной строки, если заключите
+запись в круглые скобки. Комментарии наинаются символом точки с
+запятой (``;'') и продолжаются до конца строки.
+</p><p>
+Заметьте, что существуют и другие типы записей ресурсов, не
+показанные здесь. Для полного списка типов отсылаем Вас к
+BIND Operations Guide (``BOG''). Некоторые из типов записей
+ресурсов могли быть стандартизованы в одном из RFC, но еще не
+реализованы в этой версии BIND.
+</p><p>
+Каждый мастер-файл зоны должен начинаться с записи SOA (``start
+of authority'', начало ответственности) для зоны. Ниже приведен
+пример записи SOA:
+</p><p>
+</p><pre>
+@ IN SOA ucbvax.Berkeley.EDU. rwh.ucbvax.Berkeley.EDU. (
+         1989020501 ; серийный номер
+         10800      ; обновление
+         3600       ; новая попытка
+         3600000    ; устаревание
+         86400 )    ; минимальное время жизни
+
+
+</pre>
+
+<p>
+Запись SOA указывает серийный номер, который должен быть изменен всякий
+раз при изменении мастер-файла. Заметьте, что серийный номер может
+состоять из чисел, разделенных точкой, но такой формат
+<i>настоятельно не рекомендуется</i>, поскольку перевод в обычные
+числа придется делать конкатенацией, а не простым сложением и умножением.
+В серийном номере можно указать год, месяц, число и номер версии в пределах
+0..99 и все еще остаться в пределах 32-битного беззнакового целого.
+Да, эту стратегию придется пересмотреть в 4294 году по григорианскому
+календарю, но пока мы можем об этом не беспокоиться. Вторичные сервера
+проверяют серийный номер в интервалы, заданные полем ``обновление''
+в секундах; если за это время серийный номер изменился, то они инициируют
+зонный обмен и загружают новые данные. Если мастер-сервер недоступен
+ко времени обновления, то новая попытка зонного обмена будет предпринята
+через время, заданное в поле ``новая попытка''. Если мастер-сервер
+не доступен после времени, указанном в поле ``устаревание'', то данные
+по зоне удаляются вторичными серверами. Поле ``минимальное время жизни''
+(``TTL'') используется теми записями файла, для которых это поле не
+указано явно.
+</p><p>
+</p></dd></dl>
+<a name="lbAE">&nbsp;</a>
+<h2>ПРИМЕЧАНИЯ</h2>
+
+<p>
+Вместо директив стартового файла ``domain'' и ``suffixes'' теперь
+используется более совершенная реализация определения суффиксов
+частично заданных доменов на уровне клиентской части сервиса
+имен (resolver-based). Существовавшие до этого механизмы могли не
+сработать в ряде ситуаций, особенно когда у локального сервера
+имен не было полной информации по доменному имени.
+</p><p>
+Вы можете управлять сервером имен следующими сигналами, посылая
+их с помощью команды <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=kill&amp;category=1">kill</a>(1)</b>.
+</p><p>
+</p><dl compact="">
+<dt>SIGHUP</dt><dd>
+<p>
+Заставляет сервер перечитать файл named.boot и перегрузить
+базу данных. Если сервер был скомпилирован со включенной
+опцией FORCED_RELOAD, то по сигналу SIGHUP он также проверит
+серийные номера на всех вторичных зонах. Обычно серийные номера
+проверяются только по достижении временных интервалов, указанных
+в записях SOA.
+</p><p>
+</p></dd><dt>SIGINT</dt><dd>
+<p>
+Сбрасывает содержимое базы данных и кэша в файл
+/var/tmp/named_dump.db
+</p><p>
+</p></dd><dt>SIGIOT</dt><dd>
+<p>
+Если сервер скомпилирован с опцией -DSTATS, то по этому
+сигналу он сбрасывает статистические данные в файл
+/var/tmp/named.stats, при этом вывод добавляется в конец
+файла. На некоторых системах для этой цели используется
+сигнал SIGABRT.
+</p><p>
+</p></dd><dt>SIGSYS</dt><dd>
+<p>
+Если сервер скомпилирован с включенной поддержкой профилирования,
+то по этому сигналу он сбрасывает данные профилирования
+в файл /var/tmp (при этом сервер порождает дочерний процесс,
+меняет текущий директорий и завершается).
+</p><p>
+</p></dd><dt>SIGTERM</dt><dd>
+<p>
+Выводит дампы первичной и вторичной базы данных.
+Обычно используется для сохранения измененных данных при
+останове системы, при этом сервер должен быть скомпилирован
+с включенной поддержкой динамического обновления данных.
+</p><p>
+</p></dd><dt>SIGUSR1</dt><dd>
+<p>
+Включает отладку; каждый последующий сигнал SIGUSR1 увеличивает
+уровень отладки на единицу (на старых системах без сигнала SIGUSR1
+использовался сигнал SIGEMT).
+</p><p>
+</p></dd><dt>SIGUSR2</dt><dd>
+<p>
+Полностью выключает отладку (на старых системах без сигнала SIGUSR2
+использовался сигнал SIGFPE).
+</p><p>
+</p></dd><dt>SIGWINCH</dt><dd>
+<p>
+Включает/выключает запись всех входящих запросов через <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=syslog&amp;category=8">syslog</a>(8)</b>
+(для этого сервер должен быть скомпилирован с опцией
+QRYLOG).
+</p><p>
+</p></dd></dl>
+<a name="lbAF">&nbsp;</a>
+<h2>ФАЙЛЫ</h2>
+
+<p>
+</p><dl compact="">
+<dt>/etc/named.boot </dt><dd>
+<p>
+файл стартовой конфигурации сервера имен
+</p><p>
+</p></dd><dt>/etc/named.pid </dt><dd>
+<p>
+номер процесса (pid) (на старых системах)
+</p><p>
+</p></dd><dt>/var/run/named.pid </dt><dd>
+<p>
+номер процесса (pid) (на новых системах)
+</p><p>
+</p></dd><dt>/var/tmp/named_dump.db </dt><dd>
+<p>
+дамп базы данных сервера имен
+</p><p>
+</p></dd><dt>/var/tmp/named.run </dt><dd>
+<p>
+вывод отладочной информации
+</p><p>
+</p></dd><dt>/var/tmp/named.stats </dt><dd>
+<p>
+статистические данные по серверу имен
+</p><p>
+</p></dd></dl>
+<a name="lbAG">&nbsp;</a>
+<h2>СМ. ТАКЖЕ</h2>
+
+<p>
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=kill&amp;category=1">kill</a>(1)</b>
+, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=gethostbyname&amp;category=3">gethostbyname</a>(3)</b>
+, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=signal&amp;category=2">signal</a>(2)</b>
+, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=resolver&amp;category=3">resolver</a>(3)</b>
+,
+<b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=resolver&amp;category=5">resolver</a>(5)</b>
+, <b><a href="https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=hostname&amp;category=7">hostname</a>(7)</b>
+, RFC 882, RFC 883, RFC 973, RFC
+974, RFC 1033, RFC 1034, RFC 1035, RFC 1123, <i>Name Server
+Operations Guide for BIND</i>
+</p><p>
+</p><p>
+
+</p><hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">НАЗВАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAC">СИНТАКСИС</a></dt><dd>
+</dd><dt><a href="#lbAD">ОПИСАНИЕ</a></dt><dd>
+</dd><dt><a href="#lbAE">ПРИМЕЧАНИЯ</a></dt><dd>
+</dd><dt><a href="#lbAF">ФАЙЛЫ</a></dt><dd>
+</dd><dt><a href="#lbAG">СМ. ТАКЖЕ</a></dt><dd>
+</dd></dl>
+<hr>
+<br>
+<form method="get" action="/search.shtml">
+<font size="-1">
+<font color="#555555">Поиск по тексту MAN-ов:&nbsp;</font><input size="30" name="words" value="named" type="text">
+<input name="restrict" value="/man" type="hidden">
+<input value="Найти" type="submit">
+</font>
+<input name="method" value="and" type="hidden">
+<input name="format" value="builtin-long" type="hidden">
+<input name="sort" value="score" type="hidden">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br><br>
+<div style="background-color: #E9EAD6; width:100%; height: 61px;">
+<div style="margin-right: 20px; float:left; line-height: 61px; vertical-align: middle; margin-left: 10px; font-size: 120%;">
+Спонсоры:
+</div>
+<div style="float:left; height: 60px;  line-height: 60px; margin-left: 20px;">
+<a style="align: middle;" target="_blank" href="https://inferno.name/"><img src="/img/inferno2.png" alt="Inferno Solutions" height="57" width="200"></a>
+</div>
+<div style="float:right; height: 60px;  line-height: 60px;  margin-left: 15px;">
+<a style="align: middle;" target="_blank" href="http://hoster.ru/?utm_source=site&amp;utm_medium=banner&amp;utm_campaign=opennet"><img src="/img/dh143x60t.png" alt="Hosting by Hoster.ru" height="60" width="143"></a>
+</div>
+<div style="float:right;  height: 60px;  line-height: 60px; vertical-align: middle;font-size: 120%;">
+Хостинг:
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<br>
+<table class="ttxt" style="border-top: 3px solid #C9CaB6;">
+<tbody><tr><td width="35%">
+<a href="/cgi-bin/opennet/bookmark.cgi">Закладки на сайте</a><br>
+<a href="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить за страницей</a>
+</td>
+<td align="RIGHT" width="65%">
+Created&nbsp;1996-2021&nbsp;by <b><a href="/contact.shtml" title="email maxim.chirkov@gmail.com">Maxim&nbsp;Chirkov</a></b><br>
+<a href="https://www.opennet.ru/add.shtml">Добавить</a>, <a href="https://www.opennet.ru/donate.shtml" style="color: #C00000;">Поддержать</a>, <a href="https://www.opennet.ru/banners2.shtml">Вебмастеру</a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+
+
+<!--/htdig_noindex-->
+<!-- end of footer -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-123449-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->

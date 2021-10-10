@@ -1,0 +1,594 @@
+
+<!--+++++++++++++++++++++++++++++++++++++++++++  0  +++++++++++++++++++++++++++++++++++++++++++--->
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-49925874-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-49925874-3');
+  </script>
+
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <title>Git - git-fetch-pack Documentation</title>
+
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+  <link rel="stylesheet" media="screen" href="/assets/application-3fb605347038cd5206e27d1f90829d3159e0de904e21be188a31e8f8c27c42a8.css">
+  <script src="/assets/modernize-b3ebe0c31c24f230dc62179d3e1030d2e57a53b1668d9382c0a27dbd44a94beb.js"></script>
+  <!--[if (gte IE 6)&(lte IE 8)]>
+  <script src="/javascripts/selectivizr-min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body id="documentation">
+
+  <div class="inner">
+    <header>
+
+  <a href="/"><img src="/images/logo@2x.png" alt="Git" height="46" width="110"></a>
+  <span id="tagline">--distributed-even-if-your-workflow-isnt</span>
+  <script type="text/javascript">
+    var taglines = ["fast-version-control","everything-is-local","distributed-even-if-your-workflow-isnt","local-branching-on-the-cheap","distributed-is-the-new-centralized"];
+    var tagline = taglines[Math.floor(Math.random() * taglines.length)];
+    document.getElementById('tagline').innerHTML = '--' + tagline;
+  </script>
+  <form id="search" action="/search/results">
+    <input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text">
+  </form>
+  <div id="search-results"></div>
+
+</header>
+
+  </div> <!-- .inner -->
+
+    <div class="inner">
+      <div id="content-wrapper">
+        <aside class="sidebar">
+  <nav>
+    <ul>
+      <li>
+        <a href="/about">About</a>
+        <ul class="">
+          <li>
+            <a href="/about">Branching and Merging</a>
+          </li>
+          <li>
+            <a href="/about/small-and-fast">Small and Fast</a>
+          </li>
+          <li>
+            <a href="/about/distributed">Distributed</a>
+          </li>
+          <li>
+            <a href="/about/info-assurance">Data Assurance</a>
+          </li>
+          <li>
+            <a href="/about/staging-area">Staging Area</a>
+          </li>
+          <li>
+            <a href="/about/free-and-open-source">Free and Open Source</a>
+          </li>
+          <li>
+            <a href="/about/trademark">Trademark</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="active" href="/doc">Documentation</a>
+        <ul class="expanded">
+          <li>
+            <a class="active" href="/docs">Reference</a>
+          </li>
+          <li>
+            <a href="/book">Book</a>
+          </li>
+          <li>
+            <a href="/videos">Videos</a>
+          </li>
+          <li>
+            <a href="/doc/ext">External Links</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/downloads">Downloads</a>
+        <ul class="">
+          <li>
+            <a href="/downloads/guis">GUI Clients</a>
+          </li>
+          <li>
+            <a href="/downloads/logos">Logos</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/community">Community</a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+        <div id="content">
+          
+  <div id="reference-version">
+    <a class="dropdown-trigger" id="reference-languages-trigger" data-panel-id="l10n-versions-dropdown" href="#">
+  English ▾</a>
+<div class="dropdown-panel right" id="l10n-versions-dropdown">
+  <header>Localized versions of <strong>git-fetch-pack</strong> manual</header>
+  <ol class="reference-previous-versions">
+      <li>
+        <a href="/docs/git-fetch-pack/en"><span class="version">English</span>
+        </a>
+        </li>
+      <li>
+        <a href="/docs/git-fetch-pack/pt_BR"><span class="version">Português (Brasil)</span>
+        </a>
+        </li>
+  </ol>
+  <footer>
+    Want to read in your language or fix typos?<br> <a href="https://github.com/jnavila/git-manpages-l10n">You can help translate this page</a>.
+  </footer>
+</div>
+
+    <a class="dropdown-trigger" id="reference-topics-trigger" data-panel-id="topics-dropdown" href="#">Topics ▾</a>
+<div class="dropdown-panel right" id="topics-dropdown">
+  <div class="three-column">
+    <div class="column-left">
+      <h3 class="setup">Setup and Config</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git">git</a></li>
+  <li><a href="/docs/git-config">config</a></li>
+  <li><a href="/docs/git-help">help</a></li>
+  <li><a href="/docs/git-bugreport">bugreport</a></li>
+</ul>
+
+      <h3 class="projects">Getting and Creating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-init">init</a></li>
+  <li><a href="/docs/git-clone">clone</a></li>
+</ul>
+
+      <h3 class="snapshotting">Basic Snapshotting</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-add">add</a></li>
+  <li><a href="/docs/git-status">status</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-commit">commit</a></li>
+  <li><a href="/docs/git-notes">notes</a></li>
+  <li><a href="/docs/git-restore">restore</a></li>
+  <li><a href="/docs/git-reset">reset</a></li>
+  <li><a href="/docs/git-rm">rm</a></li>
+  <li><a href="/docs/git-mv">mv</a></li>
+</ul>
+
+      <h3 class="branching">Branching and Merging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-branch">branch</a></li>
+  <li><a href="/docs/git-checkout">checkout</a></li>
+  <li><a href="/docs/git-switch">switch</a></li>
+  <li><a href="/docs/git-merge">merge</a></li>
+  <li><a href="/docs/git-mergetool">mergetool</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-stash">stash</a></li>
+  <li><a href="/docs/git-tag">tag</a></li>
+  <li><a href="/docs/git-worktree">worktree</a></li>
+</ul>
+
+      <h3 class="sharing">Sharing and Updating Projects</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-fetch">fetch</a></li>
+  <li><a href="/docs/git-pull">pull</a></li>
+  <li><a href="/docs/git-push">push</a></li>
+  <li><a href="/docs/git-remote">remote</a></li>
+  <li><a href="/docs/git-submodule">submodule</a></li>
+</ul>
+
+    </div>
+    <div class="column-middle">
+      <h3 class="inspection">Inspection and Comparison</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-show">show</a></li>
+  <li><a href="/docs/git-log">log</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-difftool">difftool</a></li>
+  <li><a href="/docs/git-range-diff">range-diff</a></li>
+  <li><a href="/docs/git-shortlog">shortlog</a></li>
+  <li><a href="/docs/git-describe">describe</a></li>
+</ul>
+
+      <h3 class="patching">Patching</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-cherry-pick">cherry-pick</a></li>
+  <li><a href="/docs/git-diff">diff</a></li>
+  <li><a href="/docs/git-rebase">rebase</a></li>
+  <li><a href="/docs/git-revert">revert</a></li>
+</ul>
+
+      <h3 class="debugging">Debugging</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-bisect">bisect</a></li>
+  <li><a href="/docs/git-blame">blame</a></li>
+  <li><a href="/docs/git-grep">grep</a></li>
+</ul>
+
+      <h3 class="email">Email</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-am">am</a></li>
+  <li><a href="/docs/git-apply">apply</a></li>
+  <li><a href="/docs/git-format-patch">format-patch</a></li>
+  <li><a href="/docs/git-send-email">send-email</a></li>
+  <li><a href="/docs/git-request-pull">request-pull</a></li>
+</ul>
+
+      <h3 class="external">External Systems</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-svn">svn</a></li>
+  <li><a href="/docs/git-fast-import">fast-import</a></li>
+</ul>
+
+      <h3 class="server-admin">Server Admin</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-daemon">daemon</a></li>
+  <li><a href="/docs/git-update-server-info">update-server-info</a></li>
+</ul>
+
+    </div>
+    <div class="column-right">
+      <h3 class="guides">Guides</h3>
+<ul class="unstyled">
+  <li><a href="/docs/gitattributes">gitattributes</a></li>
+  <li><a href="/docs/gitcli">Command-line interface conventions</a></li>
+  <li><a href="/docs/giteveryday">Everyday Git</a></li>
+  <li><a href="/docs/gitfaq">Frequently Asked Questions (FAQ)</a></li>
+  <li><a href="/docs/gitglossary">Glossary</a></li>
+  <li><a href="/docs/githooks">Hooks</a></li>
+  <li><a href="/docs/gitignore">gitignore</a></li>
+  <li><a href="/docs/gitmodules">gitmodules</a></li>
+  <li><a href="/docs/gitrevisions">Revisions</a></li>
+  <li><a href="/docs/gitsubmodules">Submodules</a></li>
+  <li><a href="/docs/gittutorial">Tutorial</a></li>
+  <li><a href="/docs/gitworkflows">Workflows</a></li>
+  <li><a href="/docs/git#_guides">All guides...</a></li>
+</ul>
+
+      <h3 class="admin">Administration</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-clean">clean</a></li>
+  <li><a href="/docs/git-gc">gc</a></li>
+  <li><a href="/docs/git-fsck">fsck</a></li>
+  <li><a href="/docs/git-reflog">reflog</a></li>
+  <li><a href="/docs/git-filter-branch">filter-branch</a></li>
+  <li><a href="/docs/git-instaweb">instaweb</a></li>
+  <li><a href="/docs/git-archive">archive</a></li>
+  <li><a href="/docs/git-bundle">bundle</a></li>
+</ul>
+
+      <h3 class="plumbing">Plumbing Commands</h3>
+<ul class="unstyled">
+  <li><a href="/docs/git-cat-file">cat-file</a></li>
+  <li><a href="/docs/git-check-ignore">check-ignore</a></li>
+  <li><a href="/docs/git-checkout-index">checkout-index</a></li>
+  <li><a href="/docs/git-commit-tree">commit-tree</a></li>
+  <li><a href="/docs/git-count-objects">count-objects</a></li>
+  <li><a href="/docs/git-diff-index">diff-index</a></li>
+  <li><a href="/docs/git-for-each-ref">for-each-ref</a></li>
+  <li><a href="/docs/git-hash-object">hash-object</a></li>
+  <li><a href="/docs/git-ls-files">ls-files</a></li>
+  <li><a href="/docs/git-ls-tree">ls-tree</a></li>
+  <li><a href="/docs/git-merge-base">merge-base</a></li>
+  <li><a href="/docs/git-read-tree">read-tree</a></li>
+  <li><a href="/docs/git-rev-list">rev-list</a></li>
+  <li><a href="/docs/git-rev-parse">rev-parse</a></li>
+  <li><a href="/docs/git-show-ref">show-ref</a></li>
+  <li><a href="/docs/git-symbolic-ref">symbolic-ref</a></li>
+  <li><a href="/docs/git-update-index">update-index</a></li>
+  <li><a href="/docs/git-update-ref">update-ref</a></li>
+  <li><a href="/docs/git-verify-pack">verify-pack</a></li>
+  <li><a href="/docs/git-write-tree">write-tree</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+    <a class="dropdown-trigger" id="reference-versions-trigger" data-panel-id="previous-versions-dropdown" href="#">
+    Version 2.33.0
+ ▾ </a>
+<span class="light">git-fetch-pack last updated in 2.33.0</span>
+<div class="dropdown-panel left" id="previous-versions-dropdown">
+  <header>Changes in the <strong>git-fetch-pack</strong> manual</header>
+  <ol class="reference-previous-versions">
+        <li class="no-change"><span>2.18.1 → 2.33.0 no changes</span></li>
+        <li>
+        <a href="/docs/git-fetch-pack/2.18.0"><span class="version">2.18.0</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">06/21/18</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.12.5 → 2.17.6 no changes</span></li>
+        <li>
+        <a href="/docs/git-fetch-pack/2.11.4"><span class="version">2.11.4</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+          </span>
+          <em class="date">09/22/17</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.10.5 no changes</span></li>
+        <li>
+        <a href="/docs/git-fetch-pack/2.9.5"><span class="version">2.9.5</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">07/30/17</em>
+        </a>
+        </li>
+        <li>
+        <a href="/docs/git-fetch-pack/2.8.6"><span class="version">2.8.6</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">07/30/17</em>
+        </a>
+        </li>
+        <li class="no-change"><span>2.5.6 → 2.7.6 no changes</span></li>
+        <li>
+        <a href="/docs/git-fetch-pack/2.4.12"><span class="version">2.4.12</span>
+          <span class="diff">
+              <img src="/images/icons/green-dot.png">
+              <img src="/images/icons/red-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+              <img src="/images/icons/grey-dot.png">
+          </span>
+          <em class="date">05/05/17</em>
+        </a>
+        </li>
+    <li>&nbsp;</li>
+    <!-- <li><a class="more" href="#">See more previous releases →</a></li> -->
+  </ol>
+  <footer>
+    <p>Check your version of git by running</p>
+    <code class="command">git --version</code>
+  </footer>
+</div>
+
+  </div>
+
+  <div id="main">
+    <div class="sect1">
+<h2 id="_name"><a class="anchor" href="#_name"></a>NAME</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>git-fetch-pack - Receive missing objects from another repository</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<pre class="content"><em>git fetch-pack</em> [--all] [--quiet|-q] [--keep|-k] [--thin] [--include-tag]
+	[--upload-pack=&lt;git-upload-pack&gt;]
+	[--depth=&lt;n&gt;] [--no-progress]
+	[-v] &lt;repository&gt; [&lt;refs&gt;…​]</pre>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_description"><a class="anchor" href="#_description"></a>DESCRIPTION</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Usually you would want to use <em>git fetch</em>, which is a
+higher level wrapper of this command, instead.</p>
+</div>
+<div class="paragraph">
+<p>Invokes <em>git-upload-pack</em> on a possibly remote repository
+and asks it to send objects missing from this repository, to
+update the named heads.  The list of commits available locally
+is found out by scanning the local refs/ hierarchy and sent to
+<em>git-upload-pack</em> running on the other end.</p>
+</div>
+<div class="paragraph">
+<p>This command degenerates to download everything to complete the
+asked refs from the remote side when the local side does not
+have a common ancestor commit.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_options"><a class="anchor" href="#_options"></a>OPTIONS</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---all"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---all"></a>--all </dt>
+<dd>
+<p>Fetch all remote refs.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---stdin"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---stdin"></a>--stdin </dt>
+<dd>
+<p>Take the list of refs from stdin, one per line. If there
+are refs specified on the command line in addition to this
+option, then the refs from stdin are processed after those
+on the command line.</p>
+<div class="paragraph">
+<p>If <code>--stateless-rpc</code> is specified together with this option then
+the list of refs must be in packet format (pkt-line). Each ref must
+be in a separate packet, and the list must end with a flush packet.</p>
+</div>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt--q"> <a class="anchor" href="#Documentation/git-fetch-pack.txt--q"></a>-q </dt>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---quiet"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---quiet"></a>--quiet </dt>
+<dd>
+<p>Pass <code>-q</code> flag to <em>git unpack-objects</em>; this makes the
+cloning process less verbose.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt--k"> <a class="anchor" href="#Documentation/git-fetch-pack.txt--k"></a>-k </dt>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---keep"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---keep"></a>--keep </dt>
+<dd>
+<p>Do not invoke <em>git unpack-objects</em> on received data, but
+create a single packfile out of it instead, and store it
+in the object database. If provided twice then the pack is
+locked against repacking.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---thin"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---thin"></a>--thin </dt>
+<dd>
+<p>Fetch a "thin" pack, which records objects in deltified form based
+on objects not included in the pack to reduce network traffic.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---include-tag"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---include-tag"></a>--include-tag </dt>
+<dd>
+<p>If the remote side supports it, annotated tags objects will
+be downloaded on the same connection as the other objects if
+the object the tag references is downloaded.  The caller must
+otherwise determine the tags this option made available.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---upload-packltgit-upload-packgt"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---upload-packltgit-upload-packgt"></a>--upload-pack=&lt;git-upload-pack&gt; </dt>
+<dd>
+<p>Use this to specify the path to <em>git-upload-pack</em> on the
+remote side, if is not found on your $PATH.
+Installations of sshd ignores the user’s environment
+setup scripts for login shells (e.g. .bash_profile) and
+your privately installed git may not be found on the system
+default $PATH.  Another workaround suggested is to set
+up your $PATH in ".bashrc", but this flag is for people
+who do not want to pay the overhead for non-interactive
+shells by having a lean .bashrc file (they set most of
+the things up in .bash_profile).</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---execltgit-upload-packgt"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---execltgit-upload-packgt"></a>--exec=&lt;git-upload-pack&gt; </dt>
+<dd>
+<p>Same as --upload-pack=&lt;git-upload-pack&gt;.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---depthltngt"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---depthltngt"></a>--depth=&lt;n&gt; </dt>
+<dd>
+<p>Limit fetching to ancestor-chains not longer than n.
+<em>git-upload-pack</em> treats the special depth 2147483647 as
+infinite even if there is an ancestor-chain that long.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---shallow-sinceltdategt"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---shallow-sinceltdategt"></a>--shallow-since=&lt;date&gt; </dt>
+<dd>
+<p>Deepen or shorten the history of a shallow repository to
+include all reachable commits after &lt;date&gt;.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---shallow-excludeltrevisiongt"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---shallow-excludeltrevisiongt"></a>--shallow-exclude=&lt;revision&gt; </dt>
+<dd>
+<p>Deepen or shorten the history of a shallow repository to
+exclude commits reachable from a specified remote branch or tag.
+This option can be specified multiple times.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---deepen-relative"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---deepen-relative"></a>--deepen-relative </dt>
+<dd>
+<p>Argument --depth specifies the number of commits from the
+current shallow boundary instead of from the tip of each
+remote branch history.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---no-progress"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---no-progress"></a>--no-progress </dt>
+<dd>
+<p>Do not show the progress.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt---check-self-contained-and-connected"> <a class="anchor" href="#Documentation/git-fetch-pack.txt---check-self-contained-and-connected"></a>--check-self-contained-and-connected </dt>
+<dd>
+<p>Output "connectivity-ok" if the received pack is
+self-contained and connected.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt--v"> <a class="anchor" href="#Documentation/git-fetch-pack.txt--v"></a>-v </dt>
+<dd>
+<p>Run verbosely.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt-ltrepositorygt"> <a class="anchor" href="#Documentation/git-fetch-pack.txt-ltrepositorygt"></a>&lt;repository&gt; </dt>
+<dd>
+<p>The URL to the remote repository.</p>
+</dd>
+<dt class="hdlist1" id="Documentation/git-fetch-pack.txt-ltrefsgt82308203"> <a class="anchor" href="#Documentation/git-fetch-pack.txt-ltrefsgt82308203"></a>&lt;refs&gt;…​ </dt>
+<dd>
+<p>The remote heads to update from. This is relative to
+$GIT_DIR (e.g. "HEAD", "refs/heads/master").  When
+unspecified, update from all heads the remote side has.</p>
+<div class="paragraph">
+<p>If the remote has enabled the options <code>uploadpack.allowTipSHA1InWant</code>,
+<code>uploadpack.allowReachableSHA1InWant</code>, or <code>uploadpack.allowAnySHA1InWant</code>,
+they may alternatively be 40-hex sha1s present on the remote.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_see_also"><a class="anchor" href="#_see_also"></a>SEE ALSO</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="/docs/git-fetch">git-fetch[1]</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git"><a class="anchor" href="#_git"></a>GIT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Part of the <a href="/docs/git">git[1]</a> suite</p>
+</div>
+</div>
+</div>
+  </div>
+
+        </div>
+      </div>
+      <footer>
+  <div class="site-source">
+    <a href="/site">About this site</a><br>
+    Patches, suggestions, and comments are welcome.
+  </div>
+  <div class="sfc-member">
+    Git is a member of <a href="/sfc">Software Freedom Conservancy</a>
+  </div>
+</footer>
+
+<script src="/assets/application-8f00caf205cd147207c24e44516f18312442fd845fad0725e748f19cad311d0d.js"></script>
+
+    </div>
+
+
+
+</body>
+<!---------------------------------------------  0  ---------------------------------------------->
